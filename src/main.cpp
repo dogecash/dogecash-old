@@ -2877,17 +2877,15 @@ bool ActivateBestChain(CValidationState& state, const CBlock* pblock, bool fAlre
 
             // Notifications/callbacks that can run without cs_main
             if (!fInitialDownload) {
-                uint256 hashNewTip = pindexNewTip->GetBlockHash();
+                const uint256& hashNewTip = pindexNewTip->GetBlockHash();
+                const int nNewHeight = pindexNewTip->nHeight;
                 // Relay inventory, but don't relay old inventory during initial block download.
-                int nBlockEstimate = Checkpoints::GetTotalBlocksEstimate();
-                {
-                    if (connman) {
-                        connman->ForEachNode([pindexNewTip, nBlockEstimate, hashNewTip](CNode* pnode) {
-                            if (pindexNewTip->nHeight > (pnode->nStartingHeight != -1 ? pnode->nStartingHeight - 2000 : nBlockEstimate)) {
-                                pnode->PushInventory(CInv(MSG_BLOCK, hashNewTip));
-                            }
-                        });
-                    }
+                if (connman) {
+                    connman->ForEachNode([nNewHeight, hashNewTip](CNode* pnode) {
+                        if (nNewHeight > (pnode->nStartingHeight != -1 ? pnode->nStartingHeight - 2000 : 0)) {
+                            pnode->PushInventory(CInv(MSG_BLOCK, hashNewTip));
+                        }
+                    });
                 }
 
                 unsigned size = 0;
@@ -2903,6 +2901,7 @@ bool ActivateBestChain(CValidationState& state, const CBlock* pblock, bool fAlre
             GetMainSignals().UpdatedBlockTip(pindexNewTip, pindexFork, fInitialDownload);
         }
     } while (pindexMostWork != chainActive.Tip());
+
     CheckBlockIndex();
 
     // Write changes periodically to disk, after relay.
