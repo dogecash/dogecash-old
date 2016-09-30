@@ -1148,7 +1148,7 @@ UniValue invalidateblock(const JSONRPCRequest& request)
     }
 
     if (state.IsValid()) {
-        ActivateBestChain(state, nullptr, false, g_connman.get());
+        ActivateBestChain(state, nullptr, false);
         budget.SetBestHeight(WITH_LOCK(cs_main, return chainActive.Height(); ));
     }
 
@@ -1187,7 +1187,7 @@ UniValue reconsiderblock(const JSONRPCRequest& request)
     }
 
     if (state.IsValid()) {
-        ActivateBestChain(state, nullptr, false, g_connman.get());
+        ActivateBestChain(state, nullptr, false);
         budget.SetBestHeight(WITH_LOCK(cs_main, return chainActive.Height(); ));
     }
 
