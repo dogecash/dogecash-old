@@ -2889,8 +2889,6 @@ bool ActivateBestChain(CValidationState& state, const CBlock* pblock, bool fAlre
                         });
                     }
                 }
-                // Notify external listeners about the new tip.
-                GetMainSignals().UpdatedBlockTip(pindexNewTip);
 
                 unsigned size = 0;
                 if (pblock)
@@ -2901,6 +2899,8 @@ bool ActivateBestChain(CValidationState& state, const CBlock* pblock, bool fAlre
                 }
             }
 
+            // Notify external listeners about the new tip.
+            GetMainSignals().UpdatedBlockTip(pindexNewTip, pindexFork, fInitialDownload);
         }
     } while (pindexMostWork != chainActive.Tip());
     CheckBlockIndex();
