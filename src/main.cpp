@@ -4292,6 +4292,9 @@ bool CVerifyDB::VerifyDB(CCoinsView* coinsview, int nCheckLevel, int nCheckDepth
     return true;
 }
 
+// May NOT be used after any connections are up as much
+// of the peer-processing logic assumes a consistent
+// block index state
 void UnloadBlockIndex()
 {
     LOCK(cs_main);
@@ -4302,19 +4305,13 @@ void UnloadBlockIndex()
     mempool.clear();
     mapOrphanTransactions.clear();
     mapOrphanTransactionsByPrev.clear();
-    nSyncStarted = 0;
     mapBlocksUnlinked.clear();
     vinfoBlockFile.clear();
     nLastBlockFile = 0;
     nBlockSequenceId = 1;
-    mapBlockSource.clear();
-    mapBlocksInFlight.clear();
     nQueuedValidatedHeaders = 0;
-    nPreferredDownload = 0;
     setDirtyBlockIndex.clear();
     setDirtyFileInfo.clear();
-    mapNodeState.clear();
-    recentRejects.reset(nullptr);
 
     for (BlockMap::value_type& entry : mapBlockIndex) {
         delete entry.second;
@@ -4334,9 +4331,6 @@ bool LoadBlockIndex(std::string& strError)
 bool InitBlockIndex()
 {
     LOCK(cs_main);
-
-    // Initialize global variables that cannot be constructed at startup.
-    recentRejects.reset(new CRollingBloomFilter(120000, 0.000001));
 
     // Check whether we're already initialized
     if (chainActive.Genesis() != NULL)
@@ -4652,6 +4646,13 @@ std::string GetWarnings(std::string strFor)
 //
 // blockchain -> download logic notification
 //
+
+PeerLogicValidation::PeerLogicValidation(CConnman* connmanIn) :
+        connman(connmanIn)
+{
+    // Initialize global variables that cannot be constructed at startup.
+    recentRejects.reset(new CRollingBloomFilter(120000, 0.000001));
+}
 
 void PeerLogicValidation::UpdatedBlockTip(const CBlockIndex* pindexNew, const CBlockIndex* pindexFork, bool fInitialDownload)
 {
