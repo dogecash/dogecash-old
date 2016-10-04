@@ -61,7 +61,6 @@ class CValidationState;
 
 struct PrecomputedTransactionData;
 struct CBlockTemplate;
-struct CNodeStateStats;
 
 /** Default for -limitancestorcount, max number of in-mempool ancestors */
 static const unsigned int DEFAULT_ANCESTOR_LIMIT = 25;
@@ -181,11 +180,6 @@ extern CBlockIndex* pindexBestHeader;
 /** Minimum disk space required - used in CheckDiskSpace() */
 static const uint64_t nMinDiskSpace = 52428800;
 
-/** Register with a network node to receive its signals */
-void RegisterNodeSignals(CNodeSignals& nodeSignals);
-/** Unregister a network node */
-void UnregisterNodeSignals(CNodeSignals& nodeSignals);
-
 /**
  * Process an incoming block. This only returns after the best known valid
  * block is made active. Note that it does not, however, guarantee that the
@@ -216,17 +210,6 @@ bool LoadBlockIndex(std::string& strError);
 void UnloadBlockIndex();
 /** See whether the protocol update is enforced for connected nodes */
 int ActiveProtocol();
-/** Process protocol messages received from a given node */
-bool ProcessMessages(CNode* pfrom, CConnman& connman, std::atomic<bool>& interrupt);
-/**
- * Send queued protocol messages to be sent to a give node.
- *
- * @param[in]   pto             The node which we are sending messages to.
- * @param[in]   connman         The connection manager for that node.
- * @param[in]   interrupt       Interrupt condition for processing threads
- * @return                      True if there is more work to be done
- */
-bool SendMessages(CNode* pto, CConnman& connman, std::atomic<bool>& interrupt);
 /** Run an instance of the script checking thread */
 void ThreadScriptCheck();
 
@@ -250,10 +233,6 @@ CAmount GetBlockValue(int nHeight);
 
 /** Create a new block index entry for a given block hash */
 CBlockIndex* InsertBlockIndex(uint256 hash);
-/** Get statistics from node state */
-bool GetNodeStateStats(NodeId nodeid, CNodeStateStats& stats);
-/** Increase a node's misbehavior score. */
-void Misbehaving(NodeId nodeid, int howmuch) EXCLUSIVE_LOCKS_REQUIRED(cs_main);
 /** Flush all state, indexes and buffers to disk. */
 void FlushStateToDisk();
 
@@ -265,13 +244,6 @@ int GetIXConfirmations(uint256 nTXHash);
 
 /** Convert CValidationState to a human-readable message for logging */
 std::string FormatStateMessage(const CValidationState &state);
-
-struct CNodeStateStats {
-    int nMisbehavior;
-    int nSyncHeight;
-    int nCommonHeight;
-    std::vector<int> vHeightInFlight;
-};
 
 CAmount GetMinRelayFee(const CTransaction& tx, const CTxMemPool& pool, unsigned int nBytes, bool fAllowFree);
 
@@ -451,5 +423,38 @@ static const unsigned int REJECT_HIGHFEE = 0x100;
 static const unsigned int REJECT_ALREADY_KNOWN = 0x101;
 /** Transaction conflicts with a transaction already known */
 static const unsigned int REJECT_CONFLICT = 0x102;
+
+
+// The following things handle network-processing logic
+// (and should be moved to a separate file)
+
+/** Register with a network node to receive its signals */
+void RegisterNodeSignals(CNodeSignals& nodeSignals);
+/** Unregister a network node */
+void UnregisterNodeSignals(CNodeSignals& nodeSignals);
+
+struct CNodeStateStats {
+    int nMisbehavior;
+    int nSyncHeight;
+    int nCommonHeight;
+    std::vector<int> vHeightInFlight;
+};
+
+/** Get statistics from node state */
+bool GetNodeStateStats(NodeId nodeid, CNodeStateStats& stats);
+/** Increase a node's misbehavior score. */
+void Misbehaving(NodeId nodeid, int howmuch) EXCLUSIVE_LOCKS_REQUIRED(cs_main);
+
+/** Process protocol messages received from a given node */
+bool ProcessMessages(CNode* pfrom, CConnman& connman, std::atomic<bool>& interrupt);
+/**
+ * Send queued protocol messages to be sent to a give node.
+ *
+ * @param[in]   pto             The node which we are sending messages to.
+ * @param[in]   connman         The connection manager for that node.
+ * @param[in]   interrupt       Interrupt condition for processing threads
+ * @return                      True if there is more work to be done
+ */
+bool SendMessages(CNode* pto, CConnman& connman, std::atomic<bool>& interrupt);
 
 #endif // BITCOIN_MAIN_H
