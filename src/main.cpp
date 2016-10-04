@@ -1505,19 +1505,6 @@ void static InvalidChainFound(CBlockIndex* pindexNew)
 
 void static InvalidBlockFound(CBlockIndex* pindex, const CValidationState& state)
 {
-    int nDoS = 0;
-    if (state.IsInvalid(nDoS)) {
-        std::map<uint256, NodeId>::iterator it = mapBlockSource.find(pindex->GetBlockHash());
-        if (it != mapBlockSource.end() && State(it->second)) {
-            assert (state.GetRejectCode() < REJECT_INTERNAL); // Blocks are never rejected with internal reject codes
-            CBlockReject reject = {(unsigned char) state.GetRejectCode(), state.GetRejectReason().substr(0, MAX_REJECT_MESSAGE_LENGTH), pindex->GetBlockHash()};
-            State(it->second)->rejects.push_back(reject);
-            if (nDoS > 0) {
-                LOCK(cs_main);
-                Misbehaving(it->second, nDoS);
-            }
-        }
-    }
     if (!state.CorruptionPossible()) {
         pindex->nStatus |= BLOCK_FAILED_VALID;
         setDirtyBlockIndex.insert(pindex);
@@ -2574,7 +2561,6 @@ bool static ConnectTip(CValidationState& state, CBlockIndex* pindexNew, const CB
                 InvalidBlockFound(pindexNew, state);
             return error("ConnectTip() : ConnectBlock %s failed", pindexNew->GetBlockHash().ToString());
         }
-        mapBlockSource.erase(pindexNew->GetBlockHash());
         nTime3 = GetTimeMicros();
         nTimeConnectTotal += nTime3 - nTime2;
         LogPrint(BCLog::BENCH, "  - Connect total: %.2fms [%.2fs]\n", (nTime3 - nTime2) * 0.001, nTimeConnectTotal * 0.000001);
@@ -4677,6 +4663,28 @@ void PeerLogicValidation::UpdatedBlockTip(const CBlockIndex* pindexNew, const CB
     }
 }
 
+void PeerLogicValidation::BlockChecked(const CBlock& block, const CValidationState& state)
+{
+    LOCK(cs_main);
+
+    const uint256& hash = block.GetHash();
+    std::map<uint256, NodeId>::iterator it = mapBlockSource.find(hash);
+
+    int nDoS = 0;
+    if (state.IsInvalid(nDoS)) {
+        if (it != mapBlockSource.end() && State(it->second)) {
+            assert (state.GetRejectCode() < REJECT_INTERNAL); // Blocks are never rejected with internal reject codes
+            CBlockReject reject = {(unsigned char) state.GetRejectCode(), state.GetRejectReason().substr(0, MAX_REJECT_MESSAGE_LENGTH), hash};
+            State(it->second)->rejects.push_back(reject);
+            if (nDoS > 0) {
+                Misbehaving(it->second, nDoS);
+            }
+        }
+    }
+
+    if (it != mapBlockSource.end())
+        mapBlockSource.erase(it);
+}
 
 //////////////////////////////////////////////////////////////////////////////
 //
