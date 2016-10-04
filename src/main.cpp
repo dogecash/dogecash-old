@@ -2865,6 +2865,9 @@ bool ActivateBestChain(CValidationState& state, const CBlock* pblock, bool fAlre
             break;
         }
 
+        // Notify external listeners about the new tip.
+        GetMainSignals().UpdatedBlockTip(pindexNewTip, pindexFork, fInitialDownload);
+
         // Always notify the UI if a new block tip was connected
         if (pindexFork != pindexNewTip) {
 
@@ -2878,10 +2881,8 @@ bool ActivateBestChain(CValidationState& state, const CBlock* pblock, bool fAlre
             if (size > MAX_BLOCK_SIZE_LEGACY && pblock->GetBlockTime() > GetAdjustedTime() - 300) {
                 uiInterface.NotifyBlockSize(static_cast<int>(size), pindexNewTip->GetBlockHash());
             }
-
-            // Notify external listeners about the new tip.
-            GetMainSignals().UpdatedBlockTip(pindexNewTip, pindexFork, fInitialDownload);
         }
+
     } while (pindexMostWork != chainActive.Tip());
 
     CheckBlockIndex();
@@ -4663,20 +4664,16 @@ std::string GetWarnings(std::string strFor)
 void PeerLogicValidation::UpdatedBlockTip(const CBlockIndex* pindexNew, const CBlockIndex* pindexFork, bool fInitialDownload)
 {
     const int nNewHeight = pindexNew->nHeight;
-
-    if(connman)
-        connman->SetBestHeight(nNewHeight);
+    connman->SetBestHeight(nNewHeight);
 
     if (!fInitialDownload) {
         const uint256& hashNewTip = pindexNew->GetBlockHash();
         // Relay inventory, but don't relay old inventory during initial block download.
-        if (connman) {
-            connman->ForEachNode([nNewHeight, hashNewTip](CNode* pnode) {
-                if (nNewHeight > (pnode->nStartingHeight != -1 ? pnode->nStartingHeight - 2000 : 0)) {
-                    pnode->PushInventory(CInv(MSG_BLOCK, hashNewTip));
-                }
-            });
-        }
+        connman->ForEachNode([nNewHeight, hashNewTip](CNode* pnode) {
+            if (nNewHeight > (pnode->nStartingHeight != -1 ? pnode->nStartingHeight - 2000 : 0)) {
+                pnode->PushInventory(CInv(MSG_BLOCK, hashNewTip));
+            }
+        });
     }
 }
 
