@@ -83,7 +83,7 @@ RecursiveMutex cs_main;
 BlockMap mapBlockIndex;
 CChain chainActive;
 CBlockIndex* pindexBestHeader = NULL;
-int64_t nTimeBestReceived = 0;
+int64_t nTimeBestReceived = 0;  // Used only to inform the wallet of when we last received a block
 int64_t nMoneySupply;
 
 // Best block section
@@ -2442,7 +2442,6 @@ void static UpdateTip(CBlockIndex* pindexNew)
     g_IsSaplingActive = Params().GetConsensus().NetworkUpgradeActive(pindexNew->nHeight, Consensus::UPGRADE_V5_DUMMY);
 
     // New best block
-    nTimeBestReceived = GetTime();
     mempool.AddTransactionsUpdated(1);
 
     {
@@ -4670,6 +4669,8 @@ void PeerLogicValidation::UpdatedBlockTip(const CBlockIndex* pindexNew, const CB
             }
         });
     }
+
+    nTimeBestReceived = GetTime();
 }
 
 void PeerLogicValidation::BlockChecked(const CBlock& block, const CValidationState& state)
