@@ -23,8 +23,8 @@
 #include "validationinterface.h"
 #include "wallet/wallet_ismine.h"
 #include "wallet/walletdb.h"
-#include "zDOGEC/zDOGECwallet.h"
-#include "zDOGEC/zDOGECtracker.h"
+#include "zDOGEC/zdogecwallet.h"
+#include "zDOGEC/zdogectracker.h"
 
 #include <algorithm>
 #include <map>
