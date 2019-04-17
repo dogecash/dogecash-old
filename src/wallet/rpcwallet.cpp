@@ -17,7 +17,7 @@
 #include "utilmoneystr.h"
 #include "wallet.h"
 #include "walletdb.h"
-#include "zDOGECchain.h"
+#include "zdogecchain.h"
 
 #include <stdint.h>
 
