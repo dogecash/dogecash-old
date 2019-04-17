@@ -65,7 +65,7 @@ UniValue getinfo(const UniValue& params, bool fHelp)
             "  \"difficulty\": xxxxxx,       (numeric) the current difficulty\n"
             "  \"testnet\": true|false,      (boolean) if the server is using testnet or not\n"
             "  \"moneysupply\" : \"supply\"       (numeric) The money supply when this block was added to the blockchain\n"
-            "  \"zdogecsupply\" :\n"
+            "  \"zDOGECsupply\" :\n"
             "  {\n"
             "     \"1\" : n,            (numeric) supply of 1 zDOGEC denomination\n"
             "     \"5\" : n,            (numeric) supply of 5 zDOGEC denomination\n"
@@ -149,7 +149,7 @@ UniValue getinfo(const UniValue& params, bool fHelp)
         zDOGECObj.push_back(Pair(to_string(denom), ValueFromAmount(chainActive.Tip()->mapZerocoinSupply.at(denom) * (denom*COIN))));
     }
     zDOGECObj.push_back(Pair("total", ValueFromAmount(chainActive.Tip()->GetZerocoinSupply())));
-    obj.push_back(Pair("zdogecsupply", zDOGECObj));
+    obj.push_back(Pair("zDOGECsupply", zDOGECObj));
 
 #ifdef ENABLE_WALLET
     if (pwalletMain) {

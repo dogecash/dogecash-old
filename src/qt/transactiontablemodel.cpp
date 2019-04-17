@@ -346,7 +346,7 @@ QString TransactionTableModel::formatTxType(const TransactionRecord* wtx) const
     case TransactionRecord::StakeMint:
         return tr("DOGEC Stake");
     case TransactionRecord::StakezDOGEC:
-        return tr("zdogec Stake");
+        return tr("zDOGEC Stake");
     case TransactionRecord::Generated:
         return tr("Mined");
     case TransactionRecord::ObfuscationDenominate:

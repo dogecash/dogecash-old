@@ -3,14 +3,14 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <zDOGEC/deterministicmint.h>
-#include "zdogectracker.h"
+#include "zDOGECtracker.h"
 #include "util.h"
 #include "sync.h"
 #include "main.h"
 #include "txdb.h"
 #include "wallet/walletdb.h"
-#include "zdogec/accumulators.h"
-#include "zdogec/zDOGECwallet.h"
+#include "zDOGEC/accumulators.h"
+#include "zDOGEC/zDOGECwallet.h"
 #include "witness.h"
 
 using namespace std;

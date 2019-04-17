@@ -17,14 +17,14 @@
 #include "main.h"
 #include "primitives/block.h"
 #include "primitives/transaction.h"
-#include "zdogec/zerocoin.h"
+#include "zDOGEC/zerocoin.h"
 #include "ui_interface.h"
 #include "util.h"
 #include "validationinterface.h"
 #include "wallet/wallet_ismine.h"
 #include "wallet/walletdb.h"
-#include "zdogec/zDOGECwallet.h"
-#include "zdogec/zDOGECtracker.h"
+#include "zDOGEC/zDOGECwallet.h"
+#include "zDOGEC/zDOGECtracker.h"
 
 #include <algorithm>
 #include <map>

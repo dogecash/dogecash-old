@@ -9,7 +9,7 @@
 #include "main.h"
 #include "pow.h"
 #include "uint256.h"
-#include "zdogec/accumulators.h"
+#include "zDOGEC/accumulators.h"
 
 #include <stdint.h>
 

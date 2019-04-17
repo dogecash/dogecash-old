@@ -2,9 +2,9 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "zdogec/accumulators.h"
+#include "zDOGEC/accumulators.h"
 #include "chain.h"
-#include "zdogec/deterministicmint.h"
+#include "zDOGEC/deterministicmint.h"
 #include "main.h"
 #include "stakeinput.h"
 #include "wallet/wallet.h"

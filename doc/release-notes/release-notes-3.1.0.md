@@ -338,7 +338,7 @@ Detailed release notes follow. This overview includes changes that affect behavi
  - #473 `9e2ed8f0f` [Qt] Make toolbar icons bigger (Mrs-X)
  - #462 `c62eabe7b` [Qt] Consistent trx colors for Overview + Transaction tabs (Mrs-X)
  - #472 `b7929bdcf` [Qt] Minor changes and fixes (Mrs-X)
- - #467 `7099831bd` [Qt] Clear PrivacyDialog "zdogec Selected" labels after sending. (presstab)
+ - #467 `7099831bd` [Qt] Clear PrivacyDialog "zDOGEC Selected" labels after sending. (presstab)
  - #465 `d8e21774d` [Qt] Added controls to the options dialog for enable or disable auto-minting and set required level (lex-dev3)
  - #464 `59fd7d378` [Qt] setstakesplitthreshold value set in Qt GUI (lex-dev3)
  - #452 `219b68dc9` [Qt] Complete re-design of Qt-wallet (Mrs-X)

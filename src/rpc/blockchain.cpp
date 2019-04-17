@@ -14,10 +14,10 @@
 #include "txdb.h"
 #include "util.h"
 #include "utilmoneystr.h"
-#include "zdogec/accumulatormap.h"
-#include "zdogec/accumulators.h"
+#include "zDOGEC/accumulatormap.h"
+#include "zDOGEC/accumulators.h"
 #include "wallet/wallet.h"
-#include "zdogecchain.h"
+#include "zDOGECchain.h"
 
 #include <stdint.h>
 #include <fstream>
@@ -142,7 +142,7 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
         zDOGECObj.push_back(Pair(to_string(denom), ValueFromAmount(blockindex->mapZerocoinSupply.at(denom) * (denom*COIN))));
     }
     zDOGECObj.push_back(Pair("total", ValueFromAmount(blockindex->GetZerocoinSupply())));
-    result.push_back(Pair("zdogecsupply", zDOGECObj));
+    result.push_back(Pair("zDOGECsupply", zDOGECObj));
 
     return result;
 }
@@ -180,7 +180,7 @@ UniValue getchecksumblock(const UniValue& params, bool fHelp)
             "  \"previousblockhash\" : \"hash\",  (string) The hash of the previous block\n"
             "  \"nextblockhash\" : \"hash\"       (string) The hash of the next block\n"
             "  \"moneysupply\" : \"supply\"       (numeric) The money supply when this block was added to the blockchain\n"
-            "  \"zdogecsupply\" :\n"
+            "  \"zDOGECsupply\" :\n"
             "  {\n"
             "     \"1\" : n,            (numeric) supply of 1 zDOGEC denomination\n"
             "     \"5\" : n,            (numeric) supply of 5 zDOGEC denomination\n"
@@ -571,7 +571,7 @@ UniValue getblock(const UniValue& params, bool fHelp)
             "  \"previousblockhash\" : \"hash\",  (string) The hash of the previous block\n"
             "  \"nextblockhash\" : \"hash\"       (string) The hash of the next block\n"
             "  \"moneysupply\" : \"supply\"       (numeric) The money supply when this block was added to the blockchain\n"
-            "  \"zdogecsupply\" :\n"
+            "  \"zDOGECsupply\" :\n"
             "  {\n"
             "     \"1\" : n,            (numeric) supply of 1 zDOGEC denomination\n"
             "     \"5\" : n,            (numeric) supply of 5 zDOGEC denomination\n"

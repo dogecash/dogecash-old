@@ -2,14 +2,14 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "zdogecwallet.h"
+#include "zDOGECwallet.h"
 #include "main.h"
 #include "txdb.h"
 #include "wallet/walletdb.h"
 #include "init.h"
 #include "wallet/wallet.h"
 #include "deterministicmint.h"
-#include "zdogecchain.h"
+#include "zDOGECchain.h"
 
 using namespace libzerocoin;
 

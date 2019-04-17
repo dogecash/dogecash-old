@@ -23,11 +23,11 @@
 #endif
 #include "validationinterface.h"
 #include "masternode-payments.h"
-#include "zdogec/accumulators.h"
+#include "zDOGEC/accumulators.h"
 #include "blocksignature.h"
 #include "spork.h"
 #include "invalid.h"
-#include "zdogecchain.h"
+#include "zDOGECchain.h"
 
 
 #include <boost/thread.hpp>

@@ -2,10 +2,10 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "zdogeccontroldialog.h"
+#include "zDOGECcontroldialog.h"
 #include "ui_zDOGECcontroldialog.h"
 
-#include "zdogec/accumulators.h"
+#include "zDOGEC/accumulators.h"
 #include "main.h"
 #include "walletmodel.h"
 
