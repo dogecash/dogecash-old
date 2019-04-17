@@ -205,8 +205,8 @@ if (true && genesis.GetHash() != hashGenesisBlock)
         }
 	
         hashGenesisBlock = genesis.GetHash();
-        //assert(hashGenesisBlock == uint256("000009a7bad1966421754adaa60cfaaef30dd065b30e1a93b8c6d71e3cfe1be7")); 
-        //assert(genesis.hashMerkleRoot == uint256("78238ed2a47655347272ac0feaaed0596ec057a1ad8958a9afd2ca1d4173b3e0")); 
+        assert(hashGenesisBlock == uint256("000009a7bad1966421754adaa60cfaaef30dd065b30e1a93b8c6d71e3cfe1be7")); 
+        assert(genesis.hashMerkleRoot == uint256("78238ed2a47655347272ac0feaaed0596ec057a1ad8958a9afd2ca1d4173b3e0")); 
 
         vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "DogeCash.seed.fuzzbawls.pw"));     // Primary DNS Seeder from Fuzzbawls
       //  vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "DogeCash.seed2.fuzzbawls.pw"));    // Secondary DNS Seeder from Fuzzbawls
@@ -326,7 +326,7 @@ if (true && genesis.GetHash() != hashGenesisBlock)
         }
 
         hashGenesisBlock = genesis.GetHash();
-        //assert(hashGenesisBlock == uint256("0x0000041e482b9b9691d98eefb48473405c0b8ec31b76df3797c74a78680ef818"));
+        assert(hashGenesisBlock == uint256("0x0000041e482b9b9691d98eefb48473405c0b8ec31b76df3797c74a78680ef818"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -422,7 +422,7 @@ if (true && genesis.GetHash() != hashGenesisBlock)
             Logprintf("new mainnet genesis hash: %s\n", genesis.GetHash().ToString().c_str());
         }
         hashGenesisBlock = genesis.GetHash();
-        //assert(hashGenesisBlock == uint256("0x0000041e482b9b9691d98eefb48473405c0b8ec31b76df3797c74a78680ef818"));
+        assert(hashGenesisBlock == uint256("0x0000041e482b9b9691d98eefb48473405c0b8ec31b76df3797c74a78680ef818"));
         //assert(hashGenesisBlock == uint256("0x4f023a2120d9127b21bbad01724fdb79b519f593f2a85b60d3d79160ec5f29df"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
