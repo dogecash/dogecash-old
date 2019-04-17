@@ -409,8 +409,8 @@
         <translation>Pregledajte povijest transakcija</translation>
     </message>
     <message>
-        <source>Privacy Actions for zDOGEC</source>
-        <translation>Aktivnosti na privatnost za zDOGEC</translation>
+        <source>Privacy Actions for zdogec</source>
+        <translation>Aktivnosti na privatnost za zdogec</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -1579,7 +1579,7 @@
     </message>
     </context>
 <context>
-    <name>zDOGECControlDialog</name>
+    <name>zdogecControlDialog</name>
     <message>
         <source>0</source>
         <translation>0</translation>

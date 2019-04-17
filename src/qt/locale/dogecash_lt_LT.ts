@@ -433,8 +433,8 @@
         <translation>Naršyti pavedimų istoriją</translation>
     </message>
     <message>
-        <source>Privacy Actions for zDOGEC</source>
-        <translation>zDOGEC Saugumo Veiksmai </translation>
+        <source>Privacy Actions for zdogec</source>
+        <translation>zdogec Saugumo Veiksmai </translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -1843,24 +1843,24 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Įrašyti prievadą naudojant &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
-        <translation>Įgalinti automatinį konvertavimą iš DOGEC į zDOGEC</translation>
+        <source>Enable automatic minting of DOGEC units to zdogec</source>
+        <translation>Įgalinti automatinį konvertavimą iš DOGEC į zdogec</translation>
     </message>
     <message>
-        <source>Enable zDOGEC Automint</source>
-        <translation>Įgalinti zDOGEC Automatinį nukaldinima</translation>
+        <source>Enable zdogec Automint</source>
+        <translation>Įgalinti zdogec Automatinį nukaldinima</translation>
     </message>
     <message>
-        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
-        <translation>Procentas gauto DOGEC, kuris automatiškai bus konvertuotas į zDOGEC naudojant Zerocoin Protokolą (min: 10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zdogec via Zerocoin Protocol (min: 10%)</source>
+        <translation>Procentas gauto DOGEC, kuris automatiškai bus konvertuotas į zdogec naudojant Zerocoin Protokolą (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zDOGEC</source>
-        <translation>Automatiškai sukurtų zDOGEC procentas</translation>
+        <source>Percentage of autominted zdogec</source>
+        <translation>Automatiškai sukurtų zdogec procentas</translation>
     </message>
     <message>
-        <source>Preferred Automint zDOGEC Denomination</source>
-        <translation>Pageidautinas zDOGEC Automatinio Nukaldinimo Nominalas</translation>
+        <source>Preferred Automint zdogec Denomination</source>
+        <translation>Pageidautinas zdogec Automatinio Nukaldinimo Nominalas</translation>
     </message>
     <message>
         <source>Connect to the dogecash network through a SOCKS5 proxy.</source>
@@ -2010,14 +2010,14 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Jūsų dabartinis dogecash balansas, įskaitant nepatvirtintus ir nesubrendusius sandorius</translation>
     </message>
     <message>
-        <source>zDOGEC Balance</source>
-        <translation>zDOGEC Balansas</translation>
+        <source>zdogec Balance</source>
+        <translation>zdogec Balansas</translation>
     </message>
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zDOGEC are spendable.</source>
+These zdogec are spendable.</source>
         <translation>Subrendę: daugiau nei 20 patvirtinimų ir daugiau nei 1 konvertacija to pačio nominalo, kai jis jau buvo konvertuotas.
-Šiuos zDOGEC galima išleisti.</translation>
+Šiuos zdogec galima išleisti.</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
@@ -2070,8 +2070,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Prienamas išleidimui:</translation>
     </message>
     <message>
-        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
-        <translation>Užrakinti DOGEC arba Masternode užstatai. Jie yra neįtraukti į zDOGEC kalimą.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zdogec minting.</source>
+        <translation>Užrakinti DOGEC arba Masternode užstatai. Jie yra neįtraukti į zdogec kalimą.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2175,8 +2175,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>Available for minting are coins which are confirmed and not locked or Masternode collaterals.</source>
@@ -2219,12 +2219,12 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>PRIVATUMAS</translation>
     </message>
     <message>
-        <source>zDOGEC Control</source>
-        <translation>zDOGEC Kontrolė</translation>
+        <source>zdogec Control</source>
+        <translation>zdogec Kontrolė</translation>
     </message>
     <message>
-        <source>zDOGEC Selected:</source>
-        <translation>Pasirinkta zDOGEC:</translation>
+        <source>zdogec Selected:</source>
+        <translation>Pasirinkta zdogec:</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -2243,8 +2243,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Prieinamas Balansas: </translation>
     </message>
     <message>
-        <source>0 zDOGEC</source>
-        <translation>0 zDOGEC</translation>
+        <source>0 zdogec</source>
+        <translation>0 zdogec</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
@@ -2283,8 +2283,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Zerocoin Statistika:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zDOGEC</source>
-        <translation>Bendras balansas, įskaitant nepatvirtintą ir nesubrendusį zDOGEC</translation>
+        <source>Total Balance including unconfirmed and immature zdogec</source>
+        <translation>Bendras balansas, įskaitant nepatvirtintą ir nesubrendusį zdogec</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
@@ -2461,12 +2461,12 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Kopijuoti sumą</translation>
     </message>
     <message>
-        <source>zDOGEC Spend #: </source>
-        <translation>zDOGEC Išleidimas #:</translation>
+        <source>zdogec Spend #: </source>
+        <translation>zdogec Išleidimas #:</translation>
     </message>
     <message>
-        <source>zDOGEC Mint</source>
-        <translation>zDOGEC Konvertavimas</translation>
+        <source>zdogec Mint</source>
+        <translation>zdogec Konvertavimas</translation>
     </message>
     <message>
         <source> &lt;b&gt;enabled&lt;/b&gt;.</source>
@@ -3401,14 +3401,14 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
     </message>
     </context>
 <context>
-    <name>zDOGECControlDialog</name>
+    <name>zdogecControlDialog</name>
     <message>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     </context>
 <context>

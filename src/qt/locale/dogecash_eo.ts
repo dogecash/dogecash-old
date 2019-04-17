@@ -433,8 +433,8 @@
         <translation>&amp;Foliumi transakcio historio</translation>
     </message>
     <message>
-        <source>Privacy Actions for zDOGEC</source>
-        <translation>Privataj agoj por zDOGEC</translation>
+        <source>Privacy Actions for zdogec</source>
+        <translation>Privataj agoj por zdogec</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -1752,8 +1752,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Via aktuala dogecash totalo, nekonformita kaj nematurita transakcioj inkluzivita</translation>
     </message>
     <message>
-        <source>zDOGEC Balance</source>
-        <translation>zDOGEC kvanto</translation>
+        <source>zdogec Balance</source>
+        <translation>zdogec kvanto</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
@@ -1823,8 +1823,8 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>0.000 000 00 DOGEC</source>
@@ -1843,12 +1843,12 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
         <translation>Kvanto:</translation>
     </message>
     <message>
-        <source>zDOGEC Control</source>
-        <translation>zDOGEC kontrolu</translation>
+        <source>zdogec Control</source>
+        <translation>zdogec kontrolu</translation>
     </message>
     <message>
-        <source>zDOGEC Selected:</source>
-        <translation>Elektita zDOGEC</translation>
+        <source>zdogec Selected:</source>
+        <translation>Elektita zdogec</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -1859,12 +1859,12 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
         <translation>Elspezi zerocoin</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zDOGEC for spending</source>
-        <translation>Havebla (matura kaj elspezebla) zDOGEC por elspezi</translation>
+        <source>Available (mature and spendable) zdogec for spending</source>
+        <translation>Havebla (matura kaj elspezebla) zdogec por elspezi</translation>
     </message>
     <message>
-        <source>0 zDOGEC</source>
-        <translation>0 zDOGEC</translation>
+        <source>0 zdogec</source>
+        <translation>0 zdogec</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
@@ -2613,14 +2613,14 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
     </message>
     </context>
 <context>
-    <name>zDOGECControlDialog</name>
+    <name>zdogecControlDialog</name>
     <message>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     </context>
 <context>

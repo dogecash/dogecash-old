@@ -433,8 +433,8 @@
         <translation>История на транзакциите</translation>
     </message>
     <message>
-        <source>Privacy Actions for zDOGEC</source>
-        <translation>Поверителни Действия за zDOGEC</translation>
+        <source>Privacy Actions for zdogec</source>
+        <translation>Поверителни Действия за zdogec</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -1895,28 +1895,28 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Картографирай портовете използвайки &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
-        <translation>Включи автоматичното емитиране на DOGEC единици в zDOGEC</translation>
+        <source>Enable automatic minting of DOGEC units to zdogec</source>
+        <translation>Включи автоматичното емитиране на DOGEC единици в zdogec</translation>
     </message>
     <message>
-        <source>Enable zDOGEC Automint</source>
-        <translation>Включи Автоматично емитиране на zDOGEC</translation>
+        <source>Enable zdogec Automint</source>
+        <translation>Включи Автоматично емитиране на zdogec</translation>
     </message>
     <message>
-        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
-        <translation>Процент от входящите DOGEC, който автоматично да се конвертира в zDOGEC посредтвом Zerocoin Протокола (мин: 10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zdogec via Zerocoin Protocol (min: 10%)</source>
+        <translation>Процент от входящите DOGEC, който автоматично да се конвертира в zdogec посредтвом Zerocoin Протокола (мин: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zDOGEC</source>
-        <translation>Процент автоматично сечени zDOGEC</translation>
+        <source>Percentage of autominted zdogec</source>
+        <translation>Процент автоматично сечени zdogec</translation>
     </message>
     <message>
         <source>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</source>
-        <translation>Не бързай с автоматичното конвертиране в zDOGEC докато не се съберат достатъчно DOGEC за тази деноминация</translation>
+        <translation>Не бързай с автоматичното конвертиране в zdogec докато не се съберат достатъчно DOGEC за тази деноминация</translation>
     </message>
     <message>
-        <source>Preferred Automint zDOGEC Denomination</source>
-        <translation>Предпочитани деноминации, в които да се сече автоматичен zDOGEC</translation>
+        <source>Preferred Automint zdogec Denomination</source>
+        <translation>Предпочитани деноминации, в които да се сече автоматичен zdogec</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2106,14 +2106,14 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Вашите dogecash наличности, включително непотвърдените и неузрели преводи</translation>
     </message>
     <message>
-        <source>zDOGEC Balance</source>
-        <translation>zDOGEC Наличности</translation>
+        <source>zdogec Balance</source>
+        <translation>zdogec Наличности</translation>
     </message>
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zDOGEC are spendable.</source>
+These zdogec are spendable.</source>
         <translation>Узрели: повече от 20 потвърждения и повече от 1 емисии от същата деноминация след като е била емитирана.
-Тези zDOGEC могат да се похарчат.</translation>
+Тези zdogec могат да се похарчат.</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
@@ -2166,8 +2166,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <translation>Налични за харчене:</translation>
     </message>
     <message>
-        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
-        <translation>Заключен DOGEC или допълнителни гаранции в Главни Възли. Тези не са включени в zDOGEC емитирането.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zdogec minting.</source>
+        <translation>Заключен DOGEC или допълнителни гаранции в Главни Възли. Тези не са включени в zdogec емитирането.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2178,8 +2178,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <translation>Непотвърден</translation>
     </message>
     <message>
-        <source>Your current zDOGEC balance, unconfirmed and immature zDOGEC included.</source>
-        <translation>Вашите zDOGEC наличности, включеително непотвърдените и неузрелите zDOGEC.</translation>
+        <source>Your current zdogec balance, unconfirmed and immature zdogec included.</source>
+        <translation>Вашите zdogec наличности, включеително непотвърдените и неузрелите zdogec.</translation>
     </message>
     <message>
         <source>Recent transactions</source>
@@ -2329,8 +2329,8 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in dogecash.c
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>Available for minting are coins which are confirmed and not locked or Masternode collaterals.</source>
@@ -2381,16 +2381,16 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in dogecash.c
         <translation>КОНФИДЕНЦИАЛНОСТ</translation>
     </message>
     <message>
-        <source>Enter an amount of DOGEC to convert to zDOGEC</source>
-        <translation>Въведете колко DOGEC  да се конвертират в zDOGEC</translation>
+        <source>Enter an amount of DOGEC to convert to zdogec</source>
+        <translation>Въведете колко DOGEC  да се конвертират в zdogec</translation>
     </message>
     <message>
-        <source>zDOGEC Control</source>
-        <translation>zDOGEC Контрол</translation>
+        <source>zdogec Control</source>
+        <translation>zdogec Контрол</translation>
     </message>
     <message>
-        <source>zDOGEC Selected:</source>
-        <translation>Избрани zDOGEC:</translation>
+        <source>zdogec Selected:</source>
+        <translation>Избрани zdogec:</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -2405,24 +2405,24 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in dogecash.c
         <translation>Похарчи Zerocoin</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zDOGEC for spending</source>
-        <translation>Налични (узрели и готови за харчене) zDOGEC за употреба</translation>
+        <source>Available (mature and spendable) zdogec for spending</source>
+        <translation>Налични (узрели и готови за харчене) zdogec за употреба</translation>
     </message>
     <message>
         <source>Available Balance:</source>
         <translation>Налични:</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zDOGEC for spending
+        <source>Available (mature and spendable) zdogec for spending
 
-zDOGEC are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
-        <translation>Налични (узрели и готови за харчене) zDOGEC за употреба
+zdogec are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
+        <translation>Налични (узрели и готови за харчене) zdogec за употреба
 
-zDOGEC са узрели, тогава когато имат повече от 20 потвърждения И повече от 2 емисии от същата деноминация след като са биле емитирани</translation>
+zdogec са узрели, тогава когато имат повече от 20 потвърждения И повече от 2 емисии от същата деноминация след като са биле емитирани</translation>
     </message>
     <message>
-        <source>0 zDOGEC</source>
-        <translation>0 zDOGEC</translation>
+        <source>0 zdogec</source>
+        <translation>0 zdogec</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
@@ -2462,7 +2462,7 @@ zDOGEC са узрели, тогава когато имат повече от 2
     </message>
     <message>
         <source>Convert Change to Zerocoin (might cost additional fees)</source>
-        <translation>Изсечи zDOGEC от рестото (ще струва допълнително заради таксите)</translation>
+        <translation>Изсечи zdogec от рестото (ще струва допълнително заради таксите)</translation>
     </message>
     <message>
         <source>If checked, the wallet tries to minimize the returning change instead of minimizing the number of spent denominations.</source>
@@ -2481,8 +2481,8 @@ zDOGEC са узрели, тогава когато имат повече от 2
         <translation>Zerocoin статистика:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zDOGEC</source>
-        <translation>Обща Наличност включеително непотвърдените и неузрели zDOGEC</translation>
+        <source>Total Balance including unconfirmed and immature zdogec</source>
+        <translation>Обща Наличност включеително непотвърдените и неузрели zdogec</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
@@ -2503,24 +2503,24 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Неузрели: потвърдени, но с по-малко от 1 емисии от същата деноминация след като са биле емитирани</translation>
     </message>
     <message>
-        <source>Show the current status of automatic zDOGEC minting.
+        <source>Show the current status of automatic zdogec minting.
 
 To change the status (restart required):
 - enable: add 'enablezeromint=1' to dogecash.conf
 - disable: add 'enablezeromint=0' to dogecash.conf
 
 To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zDOGEC
+- menu Settings-&gt;Options-&gt;Percentage of autominted zdogec
 
 </source>
-        <translation>Покажи състоянието на автоматичното zDOGEC емитиране.
+        <translation>Покажи състоянието на автоматичното zdogec емитиране.
 
 За да пормените състоянието (изисква рестарт):
 - вклчване: добавете 'enablezeromint=1' в dogecash.conf
 - изключване: добавете 'enablezeromint=0' в dogecash.conf
 
 За промяна в процентите (не изисква рестарт):
-- меню Настройки -&gt; Опции -&gt; Процент на автоемитиран zDOGEC
+- меню Настройки -&gt; Опции -&gt; Процент на автоемитиран zdogec
 </translation>
     </message>
     <message>
@@ -2708,12 +2708,12 @@ Maximum allowed: </source>
 Максимум позволени:</translation>
     </message>
     <message>
-        <source>zDOGEC Spend #: </source>
-        <translation>zDOGEC Похарчени #:</translation>
+        <source>zdogec Spend #: </source>
+        <translation>zdogec Похарчени #:</translation>
     </message>
     <message>
-        <source>zDOGEC Mint</source>
-        <translation>Сечене на zDOGEC</translation>
+        <source>zdogec Mint</source>
+        <translation>Сечене на zdogec</translation>
     </message>
     <message>
         <source> &lt;b&gt;enabled&lt;/b&gt;.</source>
@@ -2728,12 +2728,12 @@ Maximum allowed: </source>
         <translation>Конфигуриран целеви процент: &lt;b&gt;</translation>
     </message>
     <message>
-        <source>zDOGEC is currently disabled due to maintenance.</source>
-        <translation>В момента zDOGEC не работи поради ремонт.</translation>
+        <source>zdogec is currently disabled due to maintenance.</source>
+        <translation>В момента zdogec не работи поради ремонт.</translation>
     </message>
     <message>
-        <source>zDOGEC is currently undergoing maintenance.</source>
-        <translation>В момента zDOGEC е в ремонт.</translation>
+        <source>zdogec is currently undergoing maintenance.</source>
+        <translation>В момента zdogec е в ремонт.</translation>
     </message>
     <message>
         <source>Denom. with value &lt;b&gt;1&lt;/b&gt;:</source>
@@ -2820,8 +2820,8 @@ Maximum allowed: </source>
         <translation>Успешно изсечени</translation>
     </message>
     <message>
-        <source> zDOGEC in </source>
-        <translation>zDOGEC в</translation>
+        <source> zdogec in </source>
+        <translation>zdogec в</translation>
     </message>
     <message>
         <source> sec. Used denominations:
@@ -3214,8 +3214,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Персонален резервен път:</translation>
     </message>
     <message>
-        <source>Custom zDOGEC Backup Path:</source>
-        <translation>Персонализиран zDOGEC резервен път:</translation>
+        <source>Custom zdogec Backup Path:</source>
+        <translation>Персонализиран zdogec резервен път:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -4422,8 +4422,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>DOGEC Stake</translation>
     </message>
     <message>
-        <source>zDOGEC Stake</source>
-        <translation>zDOGEC Stake</translation>
+        <source>zdogec Stake</source>
+        <translation>zdogec Stake</translation>
     </message>
     <message>
         <source>Obfuscation Denominate</source>
@@ -4442,32 +4442,32 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Обфускация и направа на Деноминации</translation>
     </message>
     <message>
-        <source>Converted DOGEC to zDOGEC</source>
-        <translation>Конвертиран DOGEC във zDOGEC</translation>
+        <source>Converted DOGEC to zdogec</source>
+        <translation>Конвертиран DOGEC във zdogec</translation>
     </message>
     <message>
-        <source>Spent zDOGEC</source>
-        <translation>Похарчени zDOGEC</translation>
+        <source>Spent zdogec</source>
+        <translation>Похарчени zdogec</translation>
     </message>
     <message>
-        <source>Received DOGEC from zDOGEC</source>
-        <translation>Получен DOGEC от zDOGEC</translation>
+        <source>Received DOGEC from zdogec</source>
+        <translation>Получен DOGEC от zdogec</translation>
     </message>
     <message>
-        <source>Minted Change as zDOGEC from zDOGEC Spend</source>
-        <translation>Исечено ресто като zDOGEC от похарчените zDOGEC</translation>
+        <source>Minted Change as zdogec from zdogec Spend</source>
+        <translation>Исечено ресто като zdogec от похарчените zdogec</translation>
     </message>
     <message>
-        <source>Converted zDOGEC to DOGEC</source>
-        <translation>Конвертиран zDOGEC във DOGEC</translation>
+        <source>Converted zdogec to DOGEC</source>
+        <translation>Конвертиран zdogec във DOGEC</translation>
     </message>
     <message>
-        <source>Anonymous (zDOGEC Transaction)</source>
-        <translation>Анонимен (транзакция zDOGEC)</translation>
+        <source>Anonymous (zdogec Transaction)</source>
+        <translation>Анонимен (транзакция zdogec)</translation>
     </message>
     <message>
-        <source>Anonymous (zDOGEC Stake)</source>
-        <translation>Анонимен (zDOGEC Stake)</translation>
+        <source>Anonymous (zdogec Stake)</source>
+        <translation>Анонимен (zdogec Stake)</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -4677,12 +4677,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Експортирането Успешно</translation>
     </message>
     <message>
-        <source>Received DOGEC from zDOGEC</source>
-        <translation>Получен DOGEC от zDOGEC</translation>
+        <source>Received DOGEC from zdogec</source>
+        <translation>Получен DOGEC от zdogec</translation>
     </message>
     <message>
-        <source>Zerocoin Spend, Change in zDOGEC</source>
-        <translation>Харчене на Zerocoin, Ресто в zDOGEC</translation>
+        <source>Zerocoin Spend, Change in zdogec</source>
+        <translation>Харчене на Zerocoin, Ресто в zdogec</translation>
     </message>
     <message>
         <source>The transaction history was successfully saved to %1.</source>
@@ -4750,10 +4750,10 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
 </context>
 <context>
-    <name>zDOGECControlDialog</name>
+    <name>zdogecControlDialog</name>
     <message>
-        <source>Select zDOGEC to Spend</source>
-        <translation>Изберете zDOGEC за Изпращане</translation>
+        <source>Select zdogec to Spend</source>
+        <translation>Изберете zdogec за Изпращане</translation>
     </message>
     <message>
         <source>Quantity</source>
@@ -4764,8 +4764,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>Select/Deselect All</source>
@@ -4831,8 +4831,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Активиране или деактивиране на функцията за зареждане за DOGEC входове (0-1, по подразбиране: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)</source>
-        <translation>Активиране или деактивиране на функцията за зареждане за zDOGEC входове (0-1, по подразбиране: %u)</translation>
+        <source>Enable or disable staking functionality for zdogec inputs (0-1, default: %u)</source>
+        <translation>Активиране или деактивиране на функцията за зареждане за zdogec входове (0-1, по подразбиране: %u)</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -5427,8 +5427,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Процент автоматично емитирани Zerocoin (1-100, по подразбиране: %u)</translation>
     </message>
     <message>
-        <source>Reindex the DOGEC and zDOGEC money supply statistics</source>
-        <translation>Индексирай наново DOGEC и zDOGEC данните по наличности</translation>
+        <source>Reindex the DOGEC and zdogec money supply statistics</source>
+        <translation>Индексирай наново DOGEC и zdogec данните по наличности</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5503,8 +5503,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Предпочитани деноминации за автоматично изсечените Zerocoin (1/5/10/50/100/500/1000/5000), 0 за каквито и да е. (По подразбиране: %u)</translation>
     </message>
     <message>
-        <source>Specify custom backup path to add a copy of any automatic zDOGEC backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
-        <translation>Посочете персонализиран път за архивиране, за да добавите копие на всяко автоматично архивиране zDOGEC. Ако е зададено като реж., Всеки архив генерира файл с времева маркировка. Ако е зададен като файл, ще пренапише към този файл всеки архив. Ако е зададено и резервно копие, ще се случат 4 архиви</translation>
+        <source>Specify custom backup path to add a copy of any automatic zdogec backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
+        <translation>Посочете персонализиран път за архивиране, за да добавите копие на всяко автоматично архивиране zdogec. Ако е зададено като реж., Всеки архив генерира файл с времева маркировка. Ако е зададен като файл, ще пренапише към този файл всеки архив. Ако е зададено и резервно копие, ще се случат 4 архиви</translation>
     </message>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
@@ -5999,8 +5999,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Синхронизиране на вилицо-лъжиците...</translation>
     </message>
     <message>
-        <source>Syncing zDOGEC wallet...</source>
-        <translation>Синхронизиране на zDOGEC портфейла ...</translation>
+        <source>Syncing zdogec wallet...</source>
+        <translation>Синхронизиране на zdogec портфейла ...</translation>
     </message>
     <message>
         <source>The coin spend has been used</source>
@@ -6139,8 +6139,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Потребителско име за JSON-RPC свръзките</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zDOGEC</source>
-        <translation>Стойността е под най-малката налична деноминация (= 1) в zDOGEC</translation>
+        <source>Value is below the smallest available denomination (= 1) of zdogec</source>
+        <translation>Стойността е под най-малката налична деноминация (= 1) в zdogec</translation>
     </message>
     <message>
         <source>Value more than Obfuscation pool maximum allows.</source>

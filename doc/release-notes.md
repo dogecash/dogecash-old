@@ -48,11 +48,11 @@ A full report provided by dogecash developers is available on the [dogecash Webs
 
 ### Wrapped Serials
 
-On March 6th 2019, an attack was detected on the dogecash network zerocoin protocol, or zDOGEC. The vulnerability allows an attacker to fake serials accepted by the network and thus to spend zerocoins that have never been minted. As severe as it is, it does not harm users’ privacy and does not affect their holdings directly.
+On March 6th 2019, an attack was detected on the dogecash network zerocoin protocol, or zdogec. The vulnerability allows an attacker to fake serials accepted by the network and thus to spend zerocoins that have never been minted. As severe as it is, it does not harm users’ privacy and does not affect their holdings directly.
 
-As a result of this, all zDOGEC functionality was disabled via one of our sporks shortly after verification of this exploit. A full report, detailing how this attack was performed, as well as investigation results and mitigation methods is available [On Medium](https://medium.com/@dev.dogecash/report-wrapped-serials-attack-5f4bf7b51701).
+As a result of this, all zdogec functionality was disabled via one of our sporks shortly after verification of this exploit. A full report, detailing how this attack was performed, as well as investigation results and mitigation methods is available [On Medium](https://medium.com/@dev.dogecash/report-wrapped-serials-attack-5f4bf7b51701).
 
-zDOGEC functions will be restored after v3.2.0 is pushed out and the majority of the network has upgraded.
+zdogec functions will be restored after v3.2.0 is pushed out and the majority of the network has upgraded.
 
 Major New Features
 ------
@@ -63,7 +63,7 @@ dogecash Core v3.2.0 introduces new consensus rules for scripting pathways to su
 
 ### Automint Addresses
 
-A new "Automint Addresses" feature has been added to the wallet that allows for the creation of new addresses who's purpose is to automatically convert any DOGEC funds received by such addresses to zDOGEC. The feature as a whole can be enabled/disabled either at runtime using the `-enableautoconvertaddress` option, via RPC/Console with the `enableautomintaddress` command, or via the GUI's options dialog, with the default being enabled.
+A new "Automint Addresses" feature has been added to the wallet that allows for the creation of new addresses who's purpose is to automatically convert any DOGEC funds received by such addresses to zdogec. The feature as a whole can be enabled/disabled either at runtime using the `-enableautoconvertaddress` option, via RPC/Console with the `enableautomintaddress` command, or via the GUI's options dialog, with the default being enabled.
 
 Creation of these automint addresses is currently only available via the RPC/Console `createautomintaddress` command, which takes no additional arguments. The command returns a new dogecash address each time, but addresses created by this command can be re-used if desired.
 
@@ -79,9 +79,9 @@ A full technical writeup of the protocol can be found [Here](https://dogec.io/wp
 
 ### Precomputed Zerocoin Proofs
 
-This introduces the ability to do most of the heavy computation required for zDOGEC spends **before** actually initiating the spend. A new thread, `ThreadPrecomputeSpends`, is added which constantly runs in the background.
+This introduces the ability to do most of the heavy computation required for zdogec spends **before** actually initiating the spend. A new thread, `ThreadPrecomputeSpends`, is added which constantly runs in the background.
 
-`ThreadPrecomputeSpends`' purpose is to monitor the wallet's zDOGEC mints and perform partial witness accumulations up to `nHeight - 20` blocks from the chain's tip (to ensure that it only ever computes data that is at least 2 accumulator checkpoints deep), retaining the results in memory.
+`ThreadPrecomputeSpends`' purpose is to monitor the wallet's zdogec mints and perform partial witness accumulations up to `nHeight - 20` blocks from the chain's tip (to ensure that it only ever computes data that is at least 2 accumulator checkpoints deep), retaining the results in memory.
 
 Additionally, a file based cache is introduced, `precomputes.dat`, which serves as a place to store any precomputed data between sessions, or when the in-memory cache size is exhausted. Swapping data between memory and disk file is done as needed, and periodic cache flushes to the disk are routine.
 
@@ -92,7 +92,7 @@ This also introduces 2 new runtime configuration options:
 
 A new RPC command, `clearspendcache`, has been added that allows for the clearing/resetting of the precompute cache (both memory and disk). This command takes no additional arguments.
 
-Finally, the "security level" option for spending zDOGEC has been completely removed, and all zDOGEC spends now spend at what was formerly "security level" `100`. This change has been reflected in any RPC command that previously took a security level argument, as well as in the GUI's Privacy section for spending zDOGEC.
+Finally, the "security level" option for spending zdogec has been completely removed, and all zdogec spends now spend at what was formerly "security level" `100`. This change has been reflected in any RPC command that previously took a security level argument, as well as in the GUI's Privacy section for spending zdogec.
 
 ### Regression Test Suite
 

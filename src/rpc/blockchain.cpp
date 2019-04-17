@@ -14,10 +14,10 @@
 #include "txdb.h"
 #include "util.h"
 #include "utilmoneystr.h"
-#include "zDOGEC/accumulatormap.h"
-#include "zDOGEC/accumulators.h"
+#include "zdogec/accumulatormap.h"
+#include "zdogec/accumulators.h"
 #include "wallet/wallet.h"
-#include "zDOGECchain.h"
+#include "zdogecchain.h"
 
 #include <stdint.h>
 #include <fstream>
@@ -137,12 +137,12 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
 
     result.push_back(Pair("moneysupply",ValueFromAmount(blockindex->nMoneySupply)));
 
-    UniValue zDOGECObj(UniValue::VOBJ);
+    UniValue zdogecObj(UniValue::VOBJ);
     for (auto denom : libzerocoin::zerocoinDenomList) {
-        zDOGECObj.push_back(Pair(to_string(denom), ValueFromAmount(blockindex->mapZerocoinSupply.at(denom) * (denom*COIN))));
+        zdogecObj.push_back(Pair(to_string(denom), ValueFromAmount(blockindex->mapZerocoinSupply.at(denom) * (denom*COIN))));
     }
-    zDOGECObj.push_back(Pair("total", ValueFromAmount(blockindex->GetZerocoinSupply())));
-    result.push_back(Pair("zDOGECsupply", zDOGECObj));
+    zdogecObj.push_back(Pair("total", ValueFromAmount(blockindex->GetZerocoinSupply())));
+    result.push_back(Pair("zdogecsupply", zdogecObj));
 
     return result;
 }
@@ -180,17 +180,17 @@ UniValue getchecksumblock(const UniValue& params, bool fHelp)
             "  \"previousblockhash\" : \"hash\",  (string) The hash of the previous block\n"
             "  \"nextblockhash\" : \"hash\"       (string) The hash of the next block\n"
             "  \"moneysupply\" : \"supply\"       (numeric) The money supply when this block was added to the blockchain\n"
-            "  \"zDOGECsupply\" :\n"
+            "  \"zdogecsupply\" :\n"
             "  {\n"
-            "     \"1\" : n,            (numeric) supply of 1 zDOGEC denomination\n"
-            "     \"5\" : n,            (numeric) supply of 5 zDOGEC denomination\n"
-            "     \"10\" : n,           (numeric) supply of 10 zDOGEC denomination\n"
-            "     \"50\" : n,           (numeric) supply of 50 zDOGEC denomination\n"
-            "     \"100\" : n,          (numeric) supply of 100 zDOGEC denomination\n"
-            "     \"500\" : n,          (numeric) supply of 500 zDOGEC denomination\n"
-            "     \"1000\" : n,         (numeric) supply of 1000 zDOGEC denomination\n"
-            "     \"5000\" : n,         (numeric) supply of 5000 zDOGEC denomination\n"
-            "     \"total\" : n,        (numeric) The total supply of all zDOGEC denominations\n"
+            "     \"1\" : n,            (numeric) supply of 1 zdogec denomination\n"
+            "     \"5\" : n,            (numeric) supply of 5 zdogec denomination\n"
+            "     \"10\" : n,           (numeric) supply of 10 zdogec denomination\n"
+            "     \"50\" : n,           (numeric) supply of 50 zdogec denomination\n"
+            "     \"100\" : n,          (numeric) supply of 100 zdogec denomination\n"
+            "     \"500\" : n,          (numeric) supply of 500 zdogec denomination\n"
+            "     \"1000\" : n,         (numeric) supply of 1000 zdogec denomination\n"
+            "     \"5000\" : n,         (numeric) supply of 5000 zdogec denomination\n"
+            "     \"total\" : n,        (numeric) The total supply of all zdogec denominations\n"
             "  }\n"
             "}\n"
 
@@ -571,17 +571,17 @@ UniValue getblock(const UniValue& params, bool fHelp)
             "  \"previousblockhash\" : \"hash\",  (string) The hash of the previous block\n"
             "  \"nextblockhash\" : \"hash\"       (string) The hash of the next block\n"
             "  \"moneysupply\" : \"supply\"       (numeric) The money supply when this block was added to the blockchain\n"
-            "  \"zDOGECsupply\" :\n"
+            "  \"zdogecsupply\" :\n"
             "  {\n"
-            "     \"1\" : n,            (numeric) supply of 1 zDOGEC denomination\n"
-            "     \"5\" : n,            (numeric) supply of 5 zDOGEC denomination\n"
-            "     \"10\" : n,           (numeric) supply of 10 zDOGEC denomination\n"
-            "     \"50\" : n,           (numeric) supply of 50 zDOGEC denomination\n"
-            "     \"100\" : n,          (numeric) supply of 100 zDOGEC denomination\n"
-            "     \"500\" : n,          (numeric) supply of 500 zDOGEC denomination\n"
-            "     \"1000\" : n,         (numeric) supply of 1000 zDOGEC denomination\n"
-            "     \"5000\" : n,         (numeric) supply of 5000 zDOGEC denomination\n"
-            "     \"total\" : n,        (numeric) The total supply of all zDOGEC denominations\n"
+            "     \"1\" : n,            (numeric) supply of 1 zdogec denomination\n"
+            "     \"5\" : n,            (numeric) supply of 5 zdogec denomination\n"
+            "     \"10\" : n,           (numeric) supply of 10 zdogec denomination\n"
+            "     \"50\" : n,           (numeric) supply of 50 zdogec denomination\n"
+            "     \"100\" : n,          (numeric) supply of 100 zdogec denomination\n"
+            "     \"500\" : n,          (numeric) supply of 500 zdogec denomination\n"
+            "     \"1000\" : n,         (numeric) supply of 1000 zdogec denomination\n"
+            "     \"5000\" : n,         (numeric) supply of 5000 zdogec denomination\n"
+            "     \"total\" : n,        (numeric) The total supply of all zdogec denominations\n"
             "  }\n"
             "}\n"
 
@@ -1302,7 +1302,7 @@ UniValue getaccumulatorwitness(const UniValue& params, bool fHelp)
     CZerocoinSpendReceipt receipt;
 
     if (!GenerateAccumulatorWitness(pubCoin, accumulator, witness, nMintsAdded, strFailReason)) {
-        receipt.SetStatus(_(strFailReason.c_str()), zDOGEC_FAILED_ACCUMULATOR_INITIALIZATION);
+        receipt.SetStatus(_(strFailReason.c_str()), zdogec_FAILED_ACCUMULATOR_INITIALIZATION);
         throw JSONRPCError(RPC_DATABASE_ERROR, receipt.GetStatusMessage());
     }
 

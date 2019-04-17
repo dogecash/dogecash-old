@@ -409,8 +409,8 @@
         <translation>Olhar histórico de transação</translation>
     </message>
     <message>
-        <source>Privacy Actions for zDOGEC</source>
-        <translation>Ações privadas para zDOGEC</translation>
+        <source>Privacy Actions for zdogec</source>
+        <translation>Ações privadas para zdogec</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -1934,8 +1934,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>0.000 000 00 DOGEC</source>
@@ -2006,8 +2006,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Estatísticas zerocoin:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zDOGEC</source>
-        <translation>Balanço Total incluindo não confirmadas e imaturas zDOGEC</translation>
+        <source>Total Balance including unconfirmed and immature zdogec</source>
+        <translation>Balanço Total incluindo não confirmadas e imaturas zdogec</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
@@ -3614,7 +3614,7 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
     </message>
 </context>
 <context>
-    <name>zDOGECControlDialog</name>
+    <name>zdogecControlDialog</name>
     <message>
         <source>Quantity</source>
         <translation>Quantia</translation>
@@ -3624,8 +3624,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>Select/Deselect All</source>

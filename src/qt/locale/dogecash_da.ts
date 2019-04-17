@@ -433,8 +433,8 @@
         <translation>Vis transaktionshistorik</translation>
     </message>
     <message>
-        <source>Privacy Actions for zDOGEC</source>
-        <translation>Beskyttelse af personlige oplysninger for zDOGEC</translation>
+        <source>Privacy Actions for zdogec</source>
+        <translation>Beskyttelse af personlige oplysninger for zdogec</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -1937,28 +1937,28 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>MAP port ved hjælp af UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
-        <translation>Aktivér automatisk mintning af DOGEC-enheder til zDOGEC</translation>
+        <source>Enable automatic minting of DOGEC units to zdogec</source>
+        <translation>Aktivér automatisk mintning af DOGEC-enheder til zdogec</translation>
     </message>
     <message>
-        <source>Enable zDOGEC Automint</source>
-        <translation>Aktivér zDOGEC Automint</translation>
+        <source>Enable zdogec Automint</source>
+        <translation>Aktivér zdogec Automint</translation>
     </message>
     <message>
-        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
-        <translation>Procentdelen af indkommende DOGEC, som automatisk konverteres til zDOGEC via Zerocoin Protocol (min: 10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zdogec via Zerocoin Protocol (min: 10%)</source>
+        <translation>Procentdelen af indkommende DOGEC, som automatisk konverteres til zdogec via Zerocoin Protocol (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zDOGEC</source>
-        <translation>Procentdel af automatiseret zDOGEC</translation>
+        <source>Percentage of autominted zdogec</source>
+        <translation>Procentdel af automatiseret zdogec</translation>
     </message>
     <message>
         <source>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</source>
         <translation>Vent med automatisk konvertering til Zerocoin, indtil nok DOGEC til denne betegnelse er tilgængelig</translation>
     </message>
     <message>
-        <source>Preferred Automint zDOGEC Denomination</source>
-        <translation>Foretrukket Automint zDOGEC Denomination</translation>
+        <source>Preferred Automint zdogec Denomination</source>
+        <translation>Foretrukket Automint zdogec Denomination</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2148,14 +2148,14 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Din nuværende dogecash-saldo, ubekræftede og umodne transaktioner inkluderet</translation>
     </message>
     <message>
-        <source>zDOGEC Balance</source>
-        <translation>zDOGEC-saldo</translation>
+        <source>zdogec Balance</source>
+        <translation>zdogec-saldo</translation>
     </message>
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zDOGEC are spendable.</source>
+These zdogec are spendable.</source>
         <translation>Ældre: mere end 20 bekræftelser og mere end 1 minutter med samme betegnelse, efter at den blev minted
-Disse zDOGEC kan bruges.</translation>
+Disse zdogec kan bruges.</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
@@ -2208,8 +2208,8 @@ Uplettet: bekræftet, men mindre end 1 minutter med samme betegnelse, efter at d
         <translation>Brugbare:</translation>
     </message>
     <message>
-        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
-        <translation>Låste DOGEC eller Masternode collaterals. Disse er udelukket fra zDOGEC-mintning.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zdogec minting.</source>
+        <translation>Låste DOGEC eller Masternode collaterals. Disse er udelukket fra zdogec-mintning.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2220,8 +2220,8 @@ Uplettet: bekræftet, men mindre end 1 minutter med samme betegnelse, efter at d
         <translation>Ubekræftet:</translation>
     </message>
     <message>
-        <source>Your current zDOGEC balance, unconfirmed and immature zDOGEC included.</source>
-        <translation>Din nuværende zDOGEC-saldo, ubekræftede og umodne zDOGEC inkluderet.</translation>
+        <source>Your current zdogec balance, unconfirmed and immature zdogec included.</source>
+        <translation>Din nuværende zdogec-saldo, ubekræftede og umodne zdogec inkluderet.</translation>
     </message>
     <message>
         <source>Recent transactions</source>
@@ -2232,10 +2232,10 @@ Uplettet: bekræftet, men mindre end 1 minutter med samme betegnelse, efter at d
         <translation>Ude af synk</translation>
     </message>
     <message>
-        <source>Current percentage of zDOGEC.
+        <source>Current percentage of zdogec.
 If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
 </source>
-        <translation>Nuværende procentdel af zDOGEC
+        <translation>Nuværende procentdel af zdogec
 Hvis AutoMint er aktiveret, vil denne procentdel sætte sig omkring den konfigurerede AutoMint-procent (default = 10%)</translation>
     </message>
     <message>
@@ -2378,8 +2378,8 @@ For at aktivere AutoMint-ændring 'enablezeromint = 0' til 'enablezeromint = 1' 
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>Available for minting are coins which are confirmed and not locked or Masternode collaterals.</source>
@@ -2430,16 +2430,16 @@ For at aktivere AutoMint-ændring 'enablezeromint = 0' til 'enablezeromint = 1' 
         <translation>PRIVATLIV</translation>
     </message>
     <message>
-        <source>Enter an amount of DOGEC to convert to zDOGEC</source>
-        <translation>Indtast en mængde DOGEC for at konvertere til zDOGEC</translation>
+        <source>Enter an amount of DOGEC to convert to zdogec</source>
+        <translation>Indtast en mængde DOGEC for at konvertere til zdogec</translation>
     </message>
     <message>
-        <source>zDOGEC Control</source>
-        <translation>zDOGEC Control</translation>
+        <source>zdogec Control</source>
+        <translation>zdogec Control</translation>
     </message>
     <message>
-        <source>zDOGEC Selected:</source>
-        <translation>zDOGEC Selected:</translation>
+        <source>zdogec Selected:</source>
+        <translation>zdogec Selected:</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -2454,24 +2454,24 @@ For at aktivere AutoMint-ændring 'enablezeromint = 0' til 'enablezeromint = 1' 
         <translation>Tilbring Zerocoin</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zDOGEC for spending</source>
-        <translation>Tilgængelig (moden og brugt) zDOGEC for udgifter</translation>
+        <source>Available (mature and spendable) zdogec for spending</source>
+        <translation>Tilgængelig (moden og brugt) zdogec for udgifter</translation>
     </message>
     <message>
         <source>Available Balance:</source>
         <translation>Disponibel saldo:</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zDOGEC for spending
+        <source>Available (mature and spendable) zdogec for spending
 
-zDOGEC are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
-        <translation>Tilgængelig (moden og brugt) zDOGEC for spending
+zdogec are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
+        <translation>Tilgængelig (moden og brugt) zdogec for spending
 
-zDOGEC er modne, når de har mere end 20 bekræftelser OG mere end 2 minutter med samme betegnelse, efter at de blev præsenteret</translation>
+zdogec er modne, når de har mere end 20 bekræftelser OG mere end 2 minutter med samme betegnelse, efter at de blev præsenteret</translation>
     </message>
     <message>
-        <source>0 zDOGEC</source>
-        <translation>0 zDOGEC</translation>
+        <source>0 zdogec</source>
+        <translation>0 zdogec</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
@@ -2530,8 +2530,8 @@ zDOGEC er modne, når de har mere end 20 bekræftelser OG mere end 2 minutter me
         <translation>Zerocoin Stats:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zDOGEC</source>
-        <translation>Samlet saldo inklusive ubekræftede og umodne zDOGEC</translation>
+        <source>Total Balance including unconfirmed and immature zdogec</source>
+        <translation>Samlet saldo inklusive ubekræftede og umodne zdogec</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
@@ -2552,24 +2552,24 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Uplettet: bekræftet, men mindre end 1 minutter med samme betegnelse, efter at den blev mønnet</translation>
     </message>
     <message>
-        <source>Show the current status of automatic zDOGEC minting.
+        <source>Show the current status of automatic zdogec minting.
 
 To change the status (restart required):
 - enable: add 'enablezeromint=1' to dogecash.conf
 - disable: add 'enablezeromint=0' to dogecash.conf
 
 To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zDOGEC
+- menu Settings-&gt;Options-&gt;Percentage of autominted zdogec
 
 </source>
-        <translation>Vis den aktuelle status for automatisk zDOGEC minting.øj
+        <translation>Vis den aktuelle status for automatisk zdogec minting.øj
 
 For at ændre status (genstart kræves):.
 - aktiver: tilføj 'enablezeromint = 1' til dogecash.conf
 - deaktiver: tilføj 'enablezeromint = 0' til dogecash.conf
 
 For at ændre procentdelen (ingen genstart kræves):.
-- menu Indstillinger-&gt; Indstillinger-&gt; Procentdel af automatiseret zDOGEC
+- menu Indstillinger-&gt; Indstillinger-&gt; Procentdel af automatiseret zdogec
 </translation>
     </message>
     <message>
@@ -2757,12 +2757,12 @@ Maximum allowed: </source>
 Maksimum tilladt:</translation>
     </message>
     <message>
-        <source>zDOGEC Spend #: </source>
-        <translation>zDOGEC Spend #: </translation>
+        <source>zdogec Spend #: </source>
+        <translation>zdogec Spend #: </translation>
     </message>
     <message>
-        <source>zDOGEC Mint</source>
-        <translation>zDOGEC Mint</translation>
+        <source>zdogec Mint</source>
+        <translation>zdogec Mint</translation>
     </message>
     <message>
         <source> &lt;b&gt;enabled&lt;/b&gt;.</source>
@@ -2777,12 +2777,12 @@ Maksimum tilladt:</translation>
         <translation>Konfigureret målprocent:&lt;b&gt;</translation>
     </message>
     <message>
-        <source>zDOGEC is currently disabled due to maintenance.</source>
-        <translation>zDOGEC er i øjeblikket deaktiveret på grund af vedligeholdelse.</translation>
+        <source>zdogec is currently disabled due to maintenance.</source>
+        <translation>zdogec er i øjeblikket deaktiveret på grund af vedligeholdelse.</translation>
     </message>
     <message>
-        <source>zDOGEC is currently undergoing maintenance.</source>
-        <translation>zDOGEC er i øjeblikket under opretholdelse.</translation>
+        <source>zdogec is currently undergoing maintenance.</source>
+        <translation>zdogec er i øjeblikket under opretholdelse.</translation>
     </message>
     <message>
         <source>Denom. with value &lt;b&gt;1&lt;/b&gt;:</source>
@@ -2869,8 +2869,8 @@ Maksimum tilladt:</translation>
         <translation>Mynt succesfuldt</translation>
     </message>
     <message>
-        <source> zDOGEC in </source>
-        <translation> zDOGEC i</translation>
+        <source> zdogec in </source>
+        <translation> zdogec i</translation>
     </message>
     <message>
         <source> sec. Used denominations:
@@ -2944,7 +2944,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
     </message>
     <message numerus="yes">
         <source>PrivacyDialog</source>
-        <comment>Enter an amount of DOGEC to convert to zDOGEC</comment>
+        <comment>Enter an amount of DOGEC to convert to zdogec</comment>
         <translation><numerusform>PrivacyDialog</numerusform><numerusform>PrivacyDialog</numerusform></translation>
     </message>
     <message>
@@ -3268,8 +3268,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Brugerdefineret Backup-sti:</translation>
     </message>
     <message>
-        <source>Custom zDOGEC Backup Path:</source>
-        <translation>Brugerdefineret zDOGEC Backup-sti:</translation>
+        <source>Custom zdogec Backup Path:</source>
+        <translation>Brugerdefineret zdogec Backup-sti:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -4500,8 +4500,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>DOGEC Stake</translation>
     </message>
     <message>
-        <source>zDOGEC Stake</source>
-        <translation>zDOGEC Stake</translation>
+        <source>zdogec Stake</source>
+        <translation>zdogec Stake</translation>
     </message>
     <message>
         <source>Obfuscation Denominate</source>
@@ -4520,32 +4520,32 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Opret tilsløret designering</translation>
     </message>
     <message>
-        <source>Converted DOGEC to zDOGEC</source>
-        <translation>Konverteret DOGEC til zDOGEC</translation>
+        <source>Converted DOGEC to zdogec</source>
+        <translation>Konverteret DOGEC til zdogec</translation>
     </message>
     <message>
-        <source>Spent zDOGEC</source>
-        <translation>Brugt zDOGEC</translation>
+        <source>Spent zdogec</source>
+        <translation>Brugt zdogec</translation>
     </message>
     <message>
-        <source>Received DOGEC from zDOGEC</source>
-        <translation>Modtaget DOGEC fra zDOGEC</translation>
+        <source>Received DOGEC from zdogec</source>
+        <translation>Modtaget DOGEC fra zdogec</translation>
     </message>
     <message>
-        <source>Minted Change as zDOGEC from zDOGEC Spend</source>
-        <translation>Minted Change som zDOGEC fra zDOGEC Spend</translation>
+        <source>Minted Change as zdogec from zdogec Spend</source>
+        <translation>Minted Change som zdogec fra zdogec Spend</translation>
     </message>
     <message>
-        <source>Converted zDOGEC to DOGEC</source>
-        <translation>Konverteret DOGEC til zDOGEC</translation>
+        <source>Converted zdogec to DOGEC</source>
+        <translation>Konverteret DOGEC til zdogec</translation>
     </message>
     <message>
-        <source>Anonymous (zDOGEC Transaction)</source>
-        <translation>Anonym (zDOGEC Transaction)</translation>
+        <source>Anonymous (zdogec Transaction)</source>
+        <translation>Anonym (zdogec Transaction)</translation>
     </message>
     <message>
-        <source>Anonymous (zDOGEC Stake)</source>
-        <translation>Anonym (zDOGEC Stake)</translation>
+        <source>Anonymous (zdogec Stake)</source>
+        <translation>Anonym (zdogec Stake)</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -4755,12 +4755,12 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Eksporteret!</translation>
     </message>
     <message>
-        <source>Received DOGEC from zDOGEC</source>
-        <translation>Modtaget DOGEC fra zDOGEC</translation>
+        <source>Received DOGEC from zdogec</source>
+        <translation>Modtaget DOGEC fra zdogec</translation>
     </message>
     <message>
-        <source>Zerocoin Spend, Change in zDOGEC</source>
-        <translation>Zerocoin Spend, Ændring i zDOGEC</translation>
+        <source>Zerocoin Spend, Change in zdogec</source>
+        <translation>Zerocoin Spend, Ændring i zdogec</translation>
     </message>
     <message>
         <source>The transaction history was successfully saved to %1.</source>
@@ -4828,10 +4828,10 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
     </message>
 </context>
 <context>
-    <name>zDOGECControlDialog</name>
+    <name>zdogecControlDialog</name>
     <message>
-        <source>Select zDOGEC to Spend</source>
-        <translation>Vælg zDOGEC for at bruge</translation>
+        <source>Select zdogec to Spend</source>
+        <translation>Vælg zdogec for at bruge</translation>
     </message>
     <message>
         <source>Quantity</source>
@@ -4842,8 +4842,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>Select/Deselect All</source>
@@ -4906,16 +4906,16 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
 &lt;http://www.opensource.org/licenses/mit-license.php&gt;. </translation>
     </message>
     <message>
-        <source>Enable automatic wallet backups triggered after each zDOGEC minting (0-1, default: %u)</source>
-        <translation>Aktivér automatiske wallet-sikkerhedskopier udløst efter hver zDOGEC-mintning (0-1, standard: %u)</translation>
+        <source>Enable automatic wallet backups triggered after each zdogec minting (0-1, default: %u)</source>
+        <translation>Aktivér automatiske wallet-sikkerhedskopier udløst efter hver zdogec-mintning (0-1, standard: %u)</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for DOGEC inputs (0-1, default: %u)</source>
         <translation>Aktiver eller deaktiver staking-funktionalitet for DOGEC-indgange (0-1, standard: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)</source>
-        <translation>Aktiver eller deaktiver staking-funktionalitet for zDOGEC-indgange (0-1, standard: %u)</translation>
+        <source>Enable or disable staking functionality for zdogec inputs (0-1, default: %u)</source>
+        <translation>Aktiver eller deaktiver staking-funktionalitet for zdogec-indgange (0-1, standard: %u)</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -5518,8 +5518,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Procentdel af automatisk mintede Zerocoin (10-100, standard: %u)</translation>
     </message>
     <message>
-        <source>Reindex the DOGEC and zDOGEC money supply statistics</source>
-        <translation>Reindex DOGEC og zDOGEC pengemængde statistikker</translation>
+        <source>Reindex the DOGEC and zdogec money supply statistics</source>
+        <translation>Reindex DOGEC og zdogec pengemængde statistikker</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5594,8 +5594,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Foretrukken Betegnelse for automatisk mintede Zerocoin (1/5/10/50/100/500/1000/5000), 0 uden præference. standard: %u)</translation>
     </message>
     <message>
-        <source>Specify custom backup path to add a copy of any automatic zDOGEC backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
-        <translation>Angiv brugerdefineret backup-vej for at tilføje en kopi af enhver zDOGEC-backup. Hvis det er angivet som dig, genererer hver backup en tidsstempelet fil. Hvis den er angivet som fil, ønsker man at omskrive til den pågældende fil hver backup. Hvis backupath er indstillet, vil der ske 4 sikkerhedskopier</translation>
+        <source>Specify custom backup path to add a copy of any automatic zdogec backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
+        <translation>Angiv brugerdefineret backup-vej for at tilføje en kopi af enhver zdogec-backup. Hvis det er angivet som dig, genererer hver backup en tidsstempelet fil. Hvis den er angivet som fil, ønsker man at omskrive til den pågældende fil hver backup. Hvis backupath er indstillet, vil der ske 4 sikkerhedskopier</translation>
     </message>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
@@ -6090,8 +6090,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Synkroniserer sporks...</translation>
     </message>
     <message>
-        <source>Syncing zDOGEC wallet...</source>
-        <translation>Syncing zDOGEC wallet ..</translation>
+        <source>Syncing zdogec wallet...</source>
+        <translation>Syncing zdogec wallet ..</translation>
     </message>
     <message>
         <source>The coin spend has been used</source>
@@ -6230,8 +6230,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Brugernavn til JSON-RPC forbindelser</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zDOGEC</source>
-        <translation>Værdien er under den mindste tilgængelige værdi (= 1) for zDOGEC</translation>
+        <source>Value is below the smallest available denomination (= 1) of zdogec</source>
+        <translation>Værdien er under den mindste tilgængelige værdi (= 1) for zdogec</translation>
     </message>
     <message>
         <source>Value more than Obfuscation pool maximum allows.</source>

@@ -5,9 +5,9 @@
 #include "libzerocoin/Denominations.h"
 #include "libzerocoin/CoinSpend.h"
 #include "libzerocoin/Accumulator.h"
-#include "zDOGEC/zerocoin.h"
-#include "zDOGEC/deterministicmint.h"
-#include "zDOGEC/zDOGECwallet.h"
+#include "zdogec/zerocoin.h"
+#include "zdogec/deterministicmint.h"
+#include "zdogec/zdogecwallet.h"
 #include "libzerocoin/Coin.h"
 #include "amount.h"
 #include "chainparams.h"
@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE(zerocoin_wrapped_serial_spend_test)
     string strWalletFile = "unittestwallet.dat";
     CWalletDB walletdb(strWalletFile, "cr+");
     CWallet wallet(strWalletFile);
-    CzDOGECWallet *czDOGECWallet = new CzDOGECWallet(wallet.strWalletFile);
+    CzdogecWallet *czdogecWallet = new CzdogecWallet(wallet.strWalletFile);
 
     // Get the 5 created mints.
     CoinDenomination denom = CoinDenomination::ZQ_FIFTY;
@@ -48,8 +48,8 @@ BOOST_AUTO_TEST_CASE(zerocoin_wrapped_serial_spend_test)
     for (unsigned int i = 0; i < TESTS_COINS_TO_ACCUMULATE; i++) {
         PrivateCoin coin(ZCParams, denom, false);
         CDeterministicMint dMint;
-        czDOGECWallet->GenerateDeterministiczDOGEC(denom, coin, dMint, true);
-        czDOGECWallet->UpdateCount();
+        czdogecWallet->GenerateDeterministiczdogec(denom, coin, dMint, true);
+        czdogecWallet->UpdateCount();
         vCoins.emplace_back(coin);
     }
 

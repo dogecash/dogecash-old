@@ -2,14 +2,14 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "zDOGEC/accumulators.h"
+#include "zdogec/accumulators.h"
 #include "chain.h"
-#include "zDOGEC/deterministicmint.h"
+#include "zdogec/deterministicmint.h"
 #include "main.h"
 #include "stakeinput.h"
 #include "wallet/wallet.h"
 
-CzDOGECStake::CzDOGECStake(const libzerocoin::CoinSpend& spend)
+CzdogecStake::CzdogecStake(const libzerocoin::CoinSpend& spend)
 {
     this->nChecksum = spend.getAccumulatorChecksum();
     this->denom = spend.getDenomination();
@@ -19,7 +19,7 @@ CzDOGECStake::CzDOGECStake(const libzerocoin::CoinSpend& spend)
     fMint = false;
 }
 
-int CzDOGECStake::GetChecksumHeightFromMint()
+int CzdogecStake::GetChecksumHeightFromMint()
 {
     int nHeightChecksum = chainActive.Height() - Params().Zerocoin_RequiredStakeDepth();
 
@@ -30,20 +30,20 @@ int CzDOGECStake::GetChecksumHeightFromMint()
     return GetChecksumHeight(nChecksum, denom);
 }
 
-int CzDOGECStake::GetChecksumHeightFromSpend()
+int CzdogecStake::GetChecksumHeightFromSpend()
 {
     return GetChecksumHeight(nChecksum, denom);
 }
 
-uint32_t CzDOGECStake::GetChecksum()
+uint32_t CzdogecStake::GetChecksum()
 {
     return nChecksum;
 }
 
-// The zDOGEC block index is the first appearance of the accumulator checksum that was used in the spend
+// The zdogec block index is the first appearance of the accumulator checksum that was used in the spend
 // note that this also means when staking that this checksum should be from a block that is beyond 60 minutes old and
 // 100 blocks deep.
-CBlockIndex* CzDOGECStake::GetIndexFrom()
+CBlockIndex* CzdogecStake::GetIndexFrom()
 {
     if (pindexFrom)
         return pindexFrom;
@@ -65,14 +65,14 @@ CBlockIndex* CzDOGECStake::GetIndexFrom()
     return pindexFrom;
 }
 
-CAmount CzDOGECStake::GetValue()
+CAmount CzdogecStake::GetValue()
 {
     return denom * COIN;
 }
 
 //Use the first accumulator checkpoint that occurs 60 minutes after the block being staked from
 // In case of regtest, next accumulator of 60 blocks after the block being staked from
-bool CzDOGECStake::GetModifier(uint64_t& nStakeModifier)
+bool CzdogecStake::GetModifier(uint64_t& nStakeModifier)
 {
     CBlockIndex* pindex = GetIndexFrom();
     if (!pindex)
@@ -98,15 +98,15 @@ bool CzDOGECStake::GetModifier(uint64_t& nStakeModifier)
     }
 }
 
-CDataStream CzDOGECStake::GetUniqueness()
+CDataStream CzdogecStake::GetUniqueness()
 {
-    //The unique identifier for a zDOGEC is a hash of the serial
+    //The unique identifier for a zdogec is a hash of the serial
     CDataStream ss(SER_GETHASH, 0);
     ss << hashSerial;
     return ss;
 }
 
-bool CzDOGECStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
+bool CzdogecStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
 {
     CBlockIndex* pindexCheckpoint = GetIndexFrom();
     if (!pindexCheckpoint)
@@ -126,25 +126,25 @@ bool CzDOGECStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
     return true;
 }
 
-bool CzDOGECStake::CreateTxOuts(CWallet* pwallet, vector<CTxOut>& vout, CAmount nTotal)
+bool CzdogecStake::CreateTxOuts(CWallet* pwallet, vector<CTxOut>& vout, CAmount nTotal)
 {
-    //Create an output returning the zDOGEC that was staked
+    //Create an output returning the zdogec that was staked
     CTxOut outReward;
     libzerocoin::CoinDenomination denomStaked = libzerocoin::AmountToZerocoinDenomination(this->GetValue());
     CDeterministicMint dMint;
-    if (!pwallet->CreatezDOGECOutPut(denomStaked, outReward, dMint))
-        return error("%s: failed to create zDOGEC output", __func__);
+    if (!pwallet->CreatezdogecOutPut(denomStaked, outReward, dMint))
+        return error("%s: failed to create zdogec output", __func__);
     vout.emplace_back(outReward);
 
     //Add new staked denom to our wallet
     if (!pwallet->DatabaseMint(dMint))
-        return error("%s: failed to database the staked zDOGEC", __func__);
+        return error("%s: failed to database the staked zdogec", __func__);
 
     for (unsigned int i = 0; i < 3; i++) {
         CTxOut out;
         CDeterministicMint dMintReward;
-        if (!pwallet->CreatezDOGECOutPut(libzerocoin::CoinDenomination::ZQ_ONE, out, dMintReward))
-            return error("%s: failed to create zDOGEC output", __func__);
+        if (!pwallet->CreatezdogecOutPut(libzerocoin::CoinDenomination::ZQ_ONE, out, dMintReward))
+            return error("%s: failed to create zdogec output", __func__);
         vout.emplace_back(out);
 
         if (!pwallet->DatabaseMint(dMintReward))
@@ -154,19 +154,19 @@ bool CzDOGECStake::CreateTxOuts(CWallet* pwallet, vector<CTxOut>& vout, CAmount 
     return true;
 }
 
-bool CzDOGECStake::GetTxFrom(CTransaction& tx)
+bool CzdogecStake::GetTxFrom(CTransaction& tx)
 {
     return false;
 }
 
-bool CzDOGECStake::MarkSpent(CWallet *pwallet, const uint256& txid)
+bool CzdogecStake::MarkSpent(CWallet *pwallet, const uint256& txid)
 {
-    CzDOGECTracker* zDOGECTracker = pwallet->zDOGECTracker.get();
+    CzdogecTracker* zdogecTracker = pwallet->zdogecTracker.get();
     CMintMeta meta;
-    if (!zDOGECTracker->GetMetaFromStakeHash(hashSerial, meta))
+    if (!zdogecTracker->GetMetaFromStakeHash(hashSerial, meta))
         return error("%s: tracker does not have serialhash", __func__);
 
-    zDOGECTracker->SetPubcoinUsed(meta.hashPubcoin, txid);
+    zdogecTracker->SetPubcoinUsed(meta.hashPubcoin, txid);
     return true;
 }
 

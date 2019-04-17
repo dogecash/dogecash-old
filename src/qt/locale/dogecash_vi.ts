@@ -215,7 +215,7 @@
     </message>
     </context>
 <context>
-    <name>zDOGECControlDialog</name>
+    <name>zdogecControlDialog</name>
     </context>
 <context>
     <name>dogecash-core</name>

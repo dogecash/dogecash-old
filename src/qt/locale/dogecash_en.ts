@@ -557,7 +557,7 @@
     </message>
     <message>
         <location line="+11"/>
-        <source>Privacy Actions for zDOGEC</source>
+        <source>Privacy Actions for zdogec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2574,17 +2574,17 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</source
     </message>
     <message>
         <location line="-184"/>
-        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
+        <source>Enable automatic minting of DOGEC units to zdogec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Enable zDOGEC Automint</source>
+        <source>Enable zdogec Automint</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Enable automatic zDOGEC minting from specific addresses</source>
+        <source>Enable automatic zdogec minting from specific addresses</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2594,12 +2594,12 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</source
     </message>
     <message>
         <location line="+11"/>
-        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
+        <source>Percentage of incoming DOGEC which get automatically converted to zdogec via Zerocoin Protocol (min: 10%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Percentage of autominted zDOGEC</source>
+        <source>Percentage of autominted zdogec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2610,7 +2610,7 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</source
     </message>
     <message>
         <location line="-13"/>
-        <source>Preferred Automint zDOGEC Denomination</source>
+        <source>Preferred Automint zdogec Denomination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2866,14 +2866,14 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</source
     </message>
     <message>
         <location line="+96"/>
-        <source>zDOGEC Balance</source>
+        <source>zdogec Balance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+53"/>
         <location line="+17"/>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zDOGEC are spendable.</source>
+These zdogec are spendable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2946,7 +2946,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
     <message>
         <location line="+191"/>
         <location line="+19"/>
-        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zdogec minting.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2962,7 +2962,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
     <message>
         <location line="+58"/>
         <location line="+19"/>
-        <source>Your current zDOGEC balance, unconfirmed and immature zDOGEC included.</source>
+        <source>Your current zdogec balance, unconfirmed and immature zdogec included.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2978,7 +2978,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
     </message>
     <message>
         <location line="+111"/>
-        <source>Current percentage of zDOGEC.
+        <source>Current percentage of zdogec.
 If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
 </source>
         <translation type="unfinished"></translation>
@@ -3169,7 +3169,7 @@ To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1
     <message>
         <location line="-371"/>
         <location line="+600"/>
-        <source>zDOGEC</source>
+        <source>zdogec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3235,17 +3235,17 @@ To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1
     <message>
         <location line="+308"/>
         <location line="+52"/>
-        <source>Enter an amount of DOGEC to convert to zDOGEC</source>
+        <source>Enter an amount of DOGEC to convert to zdogec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+301"/>
-        <source>zDOGEC Control</source>
+        <source>zdogec Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>zDOGEC Selected:</source>
+        <source>zdogec Selected:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3271,7 +3271,7 @@ To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1
     </message>
     <message>
         <location line="+7"/>
-        <source>Available (mature and spendable) zDOGEC for spending</source>
+        <source>Available (mature and spendable) zdogec for spending</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3281,9 +3281,9 @@ To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1
     </message>
     <message>
         <location line="+16"/>
-        <source>Available (mature and spendable) zDOGEC for spending
+        <source>Available (mature and spendable) zdogec for spending
 
-zDOGEC are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
+zdogec are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3300,7 +3300,7 @@ zDOGEC are mature when they have more than 20 confirmations AND more than 2 mint
         <location line="+31"/>
         <location line="+31"/>
         <location line="+31"/>
-        <source>0 zDOGEC</source>
+        <source>0 zdogec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3378,7 +3378,7 @@ zDOGEC are mature when they have more than 20 confirmations AND more than 2 mint
         <location line="+25"/>
         <location line="+885"/>
         <location line="+38"/>
-        <source>Total Balance including unconfirmed and immature zDOGEC</source>
+        <source>Total Balance including unconfirmed and immature zdogec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3412,14 +3412,14 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
     </message>
     <message>
         <location line="+40"/>
-        <source>Show the current status of automatic zDOGEC minting.
+        <source>Show the current status of automatic zdogec minting.
 
 To change the status (restart required):
 - enable: add &apos;enablezeromint=1&apos; to dogecash.conf
 - disable: add &apos;enablezeromint=0&apos; to dogecash.conf
 
 To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zDOGEC
+- menu Settings-&gt;Options-&gt;Percentage of autominted zdogec
 
 </source>
         <translation type="unfinished"></translation>
@@ -3489,7 +3489,7 @@ To change the percentage (no restart required):
     </message>
     <message>
         <location line="-1273"/>
-        <source>Show zDOGEC denominations list</source>
+        <source>Show zdogec denominations list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3681,12 +3681,12 @@ Maximum allowed: </source>
     </message>
     <message>
         <location line="+34"/>
-        <source>zDOGEC Spend #: </source>
+        <source>zdogec Spend #: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+16"/>
-        <source>zDOGEC Mint</source>
+        <source>zdogec Mint</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3707,13 +3707,13 @@ Maximum allowed: </source>
     <message>
         <location line="+12"/>
         <location line="+4"/>
-        <source>zDOGEC is currently disabled due to maintenance.</source>
+        <source>zdogec is currently disabled due to maintenance.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-645"/>
         <location line="+112"/>
-        <source>zDOGEC is currently undergoing maintenance.</source>
+        <source>zdogec is currently undergoing maintenance.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3824,7 +3824,7 @@ Maximum allowed: </source>
     </message>
     <message>
         <location line="+0"/>
-        <source> zDOGEC in </source>
+        <source> zdogec in </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3918,7 +3918,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message numerus="yes">
         <location line="+362"/>
         <source>PrivacyDialog</source>
-        <comment>Enter an amount of DOGEC to convert to zDOGEC</comment>
+        <comment>Enter an amount of DOGEC to convert to zdogec</comment>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
@@ -4478,7 +4478,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+29"/>
-        <source>Custom zDOGEC Backup Path:</source>
+        <source>Custom zdogec Backup Path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6102,7 +6102,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>zDOGEC Stake</source>
+        <source>zdogec Stake</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6127,37 +6127,37 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+4"/>
-        <source>Converted DOGEC to zDOGEC</source>
+        <source>Converted DOGEC to zdogec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Spent zDOGEC</source>
+        <source>Spent zdogec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Received DOGEC from zDOGEC</source>
+        <source>Received DOGEC from zdogec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Minted Change as zDOGEC from zDOGEC Spend</source>
+        <source>Minted Change as zdogec from zdogec Spend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Converted zDOGEC to DOGEC</source>
+        <source>Converted zdogec to DOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+56"/>
-        <source>Anonymous (zDOGEC Transaction)</source>
+        <source>Anonymous (zdogec Transaction)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Anonymous (zDOGEC Stake)</source>
+        <source>Anonymous (zdogec Stake)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6426,12 +6426,12 @@ Please be patient...</source>
     </message>
     <message>
         <location line="-310"/>
-        <source>Received DOGEC from zDOGEC</source>
+        <source>Received DOGEC from zdogec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Zerocoin Spend, Change in zDOGEC</source>
+        <source>Zerocoin Spend, Change in zdogec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6516,10 +6516,10 @@ Please be patient...</source>
     </message>
 </context>
 <context>
-    <name>zDOGECControlDialog</name>
+    <name>zdogecControlDialog</name>
     <message>
-        <location filename="../forms/zDOGECcontroldialog.ui" line="+20"/>
-        <source>Select zDOGEC to Spend</source>
+        <location filename="../forms/zdogeccontroldialog.ui" line="+20"/>
+        <source>Select zdogec to Spend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6535,7 +6535,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="-7"/>
-        <source>zDOGEC</source>
+        <source>zdogec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6623,7 +6623,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Enable automatic wallet backups triggered after each zDOGEC minting (0-1, default: %u)</source>
+        <source>Enable automatic wallet backups triggered after each zdogec minting (0-1, default: %u)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6633,7 +6633,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)</source>
+        <source>Enable or disable staking functionality for zdogec inputs (0-1, default: %u)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7138,7 +7138,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Enable precomputation of zDOGEC spends and stakes (0-1, default %u)</source>
+        <source>Enable precomputation of zdogec spends and stakes (0-1, default %u)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7443,17 +7443,17 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Recalculating minted zDOGEC...</source>
+        <source>Recalculating minted zdogec...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Recalculating spent zDOGEC...</source>
+        <source>Recalculating spent zdogec...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Reindex the DOGEC and zDOGEC money supply statistics</source>
+        <source>Reindex the DOGEC and zdogec money supply statistics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7550,7 +7550,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+27"/>
-        <source>Specify custom backup path to add a copy of any automatic zDOGEC backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
+        <source>Specify custom backup path to add a copy of any automatic zdogec backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8180,7 +8180,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Syncing zDOGEC wallet...</source>
+        <source>Syncing zdogec wallet...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8355,7 +8355,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Value is below the smallest available denomination (= 1) of zDOGEC</source>
+        <source>Value is below the smallest available denomination (= 1) of zdogec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

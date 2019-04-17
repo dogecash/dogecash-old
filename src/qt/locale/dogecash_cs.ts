@@ -397,8 +397,8 @@
         <translation>Procházet historii transakcí</translation>
     </message>
     <message>
-        <source>Privacy Actions for zDOGEC</source>
-        <translation>Řešení soukromí pro zDOGEC</translation>
+        <source>Privacy Actions for zdogec</source>
+        <translation>Řešení soukromí pro zdogec</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -2387,7 +2387,7 @@ MultiSend: %1</translation>
     </message>
     </context>
 <context>
-    <name>zDOGECControlDialog</name>
+    <name>zdogecControlDialog</name>
     <message>
         <source>0</source>
         <translation>0</translation>

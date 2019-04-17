@@ -433,8 +433,8 @@
         <translation>Pregled povijesti transakcija</translation>
     </message>
     <message>
-        <source>Privacy Actions for zDOGEC</source>
-        <translation>Postavke privatnosti za zDOGEC</translation>
+        <source>Privacy Actions for zdogec</source>
+        <translation>Postavke privatnosti za zdogec</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -1898,28 +1898,28 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
 </translation>
     </message>
     <message>
-        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
-        <translation>Omogućite automint DOGEC jedinica na zDOGEC</translation>
+        <source>Enable automatic minting of DOGEC units to zdogec</source>
+        <translation>Omogućite automint DOGEC jedinica na zdogec</translation>
     </message>
     <message>
-        <source>Enable zDOGEC Automint</source>
-        <translation>Omogući zDOGEC Automint</translation>
+        <source>Enable zdogec Automint</source>
+        <translation>Omogući zdogec Automint</translation>
     </message>
     <message>
-        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
-        <translation>Postotak dolaznih DOGEC koji se automatski pretvara u zDOGEC putem protokola Zerocoin (min: 10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zdogec via Zerocoin Protocol (min: 10%)</source>
+        <translation>Postotak dolaznih DOGEC koji se automatski pretvara u zdogec putem protokola Zerocoin (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zDOGEC</source>
-        <translation>Postotak automatiziranog zDOGEC</translation>
+        <source>Percentage of autominted zdogec</source>
+        <translation>Postotak automatiziranog zdogec</translation>
     </message>
     <message>
         <source>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</source>
         <translation>Pričekajte s automatskom pretvorbom u Zerocoin dok ne bude dostupno dovoljno DOGEC za apoen</translation>
     </message>
     <message>
-        <source>Preferred Automint zDOGEC Denomination</source>
-        <translation>Preferirana Automint zDOGEC denominacijad</translation>
+        <source>Preferred Automint zdogec Denomination</source>
+        <translation>Preferirana Automint zdogec denominacijad</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2109,14 +2109,14 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Uključena je vaša trenutna bilanca dogecash, nepotvrđene i nezrele transakcije</translation>
     </message>
     <message>
-        <source>zDOGEC Balance</source>
-        <translation>zDOGEC Bilanca</translation>
+        <source>zdogec Balance</source>
+        <translation>zdogec Bilanca</translation>
     </message>
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zDOGEC are spendable.</source>
+These zdogec are spendable.</source>
         <translation>Mature: više od 20 potvrda i više od 1 mint od iste denominacije nakon što je mintan.
-Ti zDOGECs se mogu potrošiti.</translation>
+Ti zdogecs se mogu potrošiti.</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
@@ -2169,8 +2169,8 @@ Nezreli: potvrđeno, ali manje od 1 minta iste denominacije nakon mintanja</tran
         <translation>Po potrošiti:</translation>
     </message>
     <message>
-        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
-        <translation>Zaključani DOGEC ili Masternode kolateral. Oni su isključeni iz zDOGEC kovanja.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zdogec minting.</source>
+        <translation>Zaključani DOGEC ili Masternode kolateral. Oni su isključeni iz zdogec kovanja.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2181,8 +2181,8 @@ Nezreli: potvrđeno, ali manje od 1 minta iste denominacije nakon mintanja</tran
         <translation>Nepotvrđeno:</translation>
     </message>
     <message>
-        <source>Your current zDOGEC balance, unconfirmed and immature zDOGEC included.</source>
-        <translation>Vaša trenutačna zDOGEC bilanca, nepotvrđena i nezrela zDOGEC.</translation>
+        <source>Your current zdogec balance, unconfirmed and immature zdogec included.</source>
+        <translation>Vaša trenutačna zdogec bilanca, nepotvrđena i nezrela zdogec.</translation>
     </message>
     <message>
         <source>Recent transactions</source>
@@ -2193,10 +2193,10 @@ Nezreli: potvrđeno, ali manje od 1 minta iste denominacije nakon mintanja</tran
         <translation>nije sinkronizirano</translation>
     </message>
     <message>
-        <source>Current percentage of zDOGEC.
+        <source>Current percentage of zdogec.
 If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
 </source>
-        <translation>Trenutni postotak zDOGEC.
+        <translation>Trenutni postotak zdogec.
 Ako je omogućeno automatsko navođenje, ovaj postotak će se podmiriti oko konfiguriranog postotka automatskog navođenja (zadano = 10%).
 </translation>
     </message>
@@ -2340,8 +2340,8 @@ Da biste omogućili, promjenite postavke AutoMint 'enablezeromint=0' na 'enablez
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>Available for minting are coins which are confirmed and not locked or Masternode collaterals.</source>
@@ -2392,16 +2392,16 @@ Da biste omogućili, promjenite postavke AutoMint 'enablezeromint=0' na 'enablez
         <translation>PRIVATNOST</translation>
     </message>
     <message>
-        <source>Enter an amount of DOGEC to convert to zDOGEC</source>
-        <translation>Unesite iznos DOGEC za pretvorbu u zDOGEC</translation>
+        <source>Enter an amount of DOGEC to convert to zdogec</source>
+        <translation>Unesite iznos DOGEC za pretvorbu u zdogec</translation>
     </message>
     <message>
-        <source>zDOGEC Control</source>
-        <translation>Upravljanje zDOGEC</translation>
+        <source>zdogec Control</source>
+        <translation>Upravljanje zdogec</translation>
     </message>
     <message>
-        <source>zDOGEC Selected:</source>
-        <translation>zDOGEC Odabrani:</translation>
+        <source>zdogec Selected:</source>
+        <translation>zdogec Odabrani:</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -2416,24 +2416,24 @@ Da biste omogućili, promjenite postavke AutoMint 'enablezeromint=0' na 'enablez
         <translation>Potroši Zerocoin</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zDOGEC for spending</source>
-        <translation>Dostupni (zreli) zDOGEC za potrošnju</translation>
+        <source>Available (mature and spendable) zdogec for spending</source>
+        <translation>Dostupni (zreli) zdogec za potrošnju</translation>
     </message>
     <message>
         <source>Available Balance:</source>
         <translation>Dostupna Bilanca:</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zDOGEC for spending
+        <source>Available (mature and spendable) zdogec for spending
 
-zDOGEC are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
-        <translation>Dostupni (zreli) zDOGEC za potrošnju
+zdogec are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
+        <translation>Dostupni (zreli) zdogec za potrošnju
 
-zDOGEC su zreli kada imaju više od 20 potvrda I više od 2 mint od iste denominacije nakon što su bili mintani</translation>
+zdogec su zreli kada imaju više od 20 potvrda I više od 2 mint od iste denominacije nakon što su bili mintani</translation>
     </message>
     <message>
-        <source>0 zDOGEC</source>
-        <translation>0 zDOGEC</translation>
+        <source>0 zdogec</source>
+        <translation>0 zdogec</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
@@ -2492,8 +2492,8 @@ zDOGEC su zreli kada imaju više od 20 potvrda I više od 2 mint od iste denomin
         <translation>Statistike Zerocoina:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zDOGEC</source>
-        <translation>Ukupni saldo uključujući nepotvrđeni i nedovršeni zDOGEC</translation>
+        <source>Total Balance including unconfirmed and immature zdogec</source>
+        <translation>Ukupni saldo uključujući nepotvrđeni i nedovršeni zdogec</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
@@ -2514,24 +2514,24 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Nezreli: potvrđeno, ali manje od 1 minta iste denominacije nakon mintanja</translation>
     </message>
     <message>
-        <source>Show the current status of automatic zDOGEC minting.
+        <source>Show the current status of automatic zdogec minting.
 
 To change the status (restart required):
 - enable: add 'enablezeromint=1' to dogecash.conf
 - disable: add 'enablezeromint=0' to dogecash.conf
 
 To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zDOGEC
+- menu Settings-&gt;Options-&gt;Percentage of autominted zdogec
 
 </source>
-        <translation>Pokažite trenutačni status automatskog zDOGEC mintanja.
+        <translation>Pokažite trenutačni status automatskog zdogec mintanja.
 
 Da biste promijenili status (potrebno je ponovno pokretanje):
 - omogući: dodajte 'enablezeromint = 1' u dogecash.conf
 - onemogućiti: dodajte 'enablezeromint = 0' na dogecash.conf
 
 Promjena postotka (nije potrebno ponovno pokretanje):
-- izbornik Postavke-&gt; Opcije-&gt; Postotak zDOGEC</translation>
+- izbornik Postavke-&gt; Opcije-&gt; Postotak zdogec</translation>
     </message>
     <message>
         <source>AutoMint Status</source>
@@ -2717,12 +2717,12 @@ Maximum allowed: </source>
 Maksimalno dopušteno:</translation>
     </message>
     <message>
-        <source>zDOGEC Spend #: </source>
-        <translation>zDOGEC utrošeno #: </translation>
+        <source>zdogec Spend #: </source>
+        <translation>zdogec utrošeno #: </translation>
     </message>
     <message>
-        <source>zDOGEC Mint</source>
-        <translation>zDOGEC Mint</translation>
+        <source>zdogec Mint</source>
+        <translation>zdogec Mint</translation>
     </message>
     <message>
         <source> &lt;b&gt;enabled&lt;/b&gt;.</source>
@@ -2737,12 +2737,12 @@ Maksimalno dopušteno:</translation>
         <translation> Konfigirani ciljani postotak: &lt;b&gt;</translation>
     </message>
     <message>
-        <source>zDOGEC is currently disabled due to maintenance.</source>
-        <translation>Zbog održavanja zDOGEC je trenutačno onemogućen.</translation>
+        <source>zdogec is currently disabled due to maintenance.</source>
+        <translation>Zbog održavanja zdogec je trenutačno onemogućen.</translation>
     </message>
     <message>
-        <source>zDOGEC is currently undergoing maintenance.</source>
-        <translation>Radovi u tijeku na zDOGEC.</translation>
+        <source>zdogec is currently undergoing maintenance.</source>
+        <translation>Radovi u tijeku na zdogec.</translation>
     </message>
     <message>
         <source>Denom. with value &lt;b&gt;1&lt;/b&gt;:</source>
@@ -2829,8 +2829,8 @@ Maksimalno dopušteno:</translation>
         <translation>Uspješno mintano</translation>
     </message>
     <message>
-        <source> zDOGEC in </source>
-        <translation> ulazni zDOGEC </translation>
+        <source> zdogec in </source>
+        <translation> ulazni zdogec </translation>
     </message>
     <message>
         <source> sec. Used denominations:
@@ -3222,8 +3222,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Put prilagođenog sigurnosnog kopiranja:</translation>
     </message>
     <message>
-        <source>Custom zDOGEC Backup Path:</source>
-        <translation>Prilagođeni put zDOGEC sigurnosne kopije:</translation>
+        <source>Custom zdogec Backup Path:</source>
+        <translation>Prilagođeni put zdogec sigurnosne kopije:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -4434,8 +4434,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>DOGEC Stake</translation>
     </message>
     <message>
-        <source>zDOGEC Stake</source>
-        <translation>zDOGEC Stake</translation>
+        <source>zdogec Stake</source>
+        <translation>zdogec Stake</translation>
     </message>
     <message>
         <source>Obfuscation Denominate</source>
@@ -4454,32 +4454,32 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Prikrivanje Stvara Denominacije</translation>
     </message>
     <message>
-        <source>Converted DOGEC to zDOGEC</source>
-        <translation>Pretvoreni DOGEC u zDOGEC</translation>
+        <source>Converted DOGEC to zdogec</source>
+        <translation>Pretvoreni DOGEC u zdogec</translation>
     </message>
     <message>
-        <source>Spent zDOGEC</source>
-        <translation>Utrošeni zDOGEC</translation>
+        <source>Spent zdogec</source>
+        <translation>Utrošeni zdogec</translation>
     </message>
     <message>
-        <source>Received DOGEC from zDOGEC</source>
-        <translation>Primljeni DOGEC od zDOGEC</translation>
+        <source>Received DOGEC from zdogec</source>
+        <translation>Primljeni DOGEC od zdogec</translation>
     </message>
     <message>
-        <source>Minted Change as zDOGEC from zDOGEC Spend</source>
-        <translation>Mintana razlika zDOGEC od zDOGEC Utroška</translation>
+        <source>Minted Change as zdogec from zdogec Spend</source>
+        <translation>Mintana razlika zdogec od zdogec Utroška</translation>
     </message>
     <message>
-        <source>Converted zDOGEC to DOGEC</source>
-        <translation>Pretvoreni zDOGEC u DOGEC</translation>
+        <source>Converted zdogec to DOGEC</source>
+        <translation>Pretvoreni zdogec u DOGEC</translation>
     </message>
     <message>
-        <source>Anonymous (zDOGEC Transaction)</source>
-        <translation>Anonimno (zDOGEC Transakcija)</translation>
+        <source>Anonymous (zdogec Transaction)</source>
+        <translation>Anonimno (zdogec Transakcija)</translation>
     </message>
     <message>
-        <source>Anonymous (zDOGEC Stake)</source>
-        <translation>Anonimno (zDOGEC Stake)</translation>
+        <source>Anonymous (zdogec Stake)</source>
+        <translation>Anonimno (zdogec Stake)</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -4689,12 +4689,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Izvoz uspješan</translation>
     </message>
     <message>
-        <source>Received DOGEC from zDOGEC</source>
-        <translation>Primljeni DOGEC od zDOGEC</translation>
+        <source>Received DOGEC from zdogec</source>
+        <translation>Primljeni DOGEC od zdogec</translation>
     </message>
     <message>
-        <source>Zerocoin Spend, Change in zDOGEC</source>
-        <translation>Zerocoin Utrošeno, Razlika (ostatak) u zDOGEC</translation>
+        <source>Zerocoin Spend, Change in zdogec</source>
+        <translation>Zerocoin Utrošeno, Razlika (ostatak) u zdogec</translation>
     </message>
     <message>
         <source>The transaction history was successfully saved to %1.</source>
@@ -4762,10 +4762,10 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
 </context>
 <context>
-    <name>zDOGECControlDialog</name>
+    <name>zdogecControlDialog</name>
     <message>
-        <source>Select zDOGEC to Spend</source>
-        <translation>Odabrani zDOGEC za utrošiti</translation>
+        <source>Select zdogec to Spend</source>
+        <translation>Odabrani zdogec za utrošiti</translation>
     </message>
     <message>
         <source>Quantity</source>
@@ -4776,8 +4776,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>Select/Deselect All</source>
@@ -4839,16 +4839,16 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Distribuirano pod MIT softverskom licencom, pogledajte priloženu datoteku COPYING ili &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
     </message>
     <message>
-        <source>Enable automatic wallet backups triggered after each zDOGEC minting (0-1, default: %u)</source>
-        <translation>Omogući automatsko sigurnosno kopiranje novčanika nakon svakog zDOGEC mintanja (0-1, default: %u)</translation>
+        <source>Enable automatic wallet backups triggered after each zdogec minting (0-1, default: %u)</source>
+        <translation>Omogući automatsko sigurnosno kopiranje novčanika nakon svakog zdogec mintanja (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for DOGEC inputs (0-1, default: %u)</source>
         <translation>Omogući ili onemogući staking funkcionalnosti za DOGEC unose (0-1, default: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)</source>
-        <translation>Omogući ili onemogući staking funkcionalnosti za zDOGEC unose (0-1, default: %u)</translation>
+        <source>Enable or disable staking functionality for zdogec inputs (0-1, default: %u)</source>
+        <translation>Omogući ili onemogući staking funkcionalnosti za zdogec unose (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -5448,8 +5448,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Postotak automatskog kovanog Zerocoina (1-100, zadano: %u)</translation>
     </message>
     <message>
-        <source>Reindex the DOGEC and zDOGEC money supply statistics</source>
-        <translation>Ponovno indeksirati statistiku DOGEC i zDOGEC ponude novca</translation>
+        <source>Reindex the DOGEC and zdogec money supply statistics</source>
+        <translation>Ponovno indeksirati statistiku DOGEC i zdogec ponude novca</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5523,8 +5523,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Preferirana denominacija za automatski ovjereni Zerocoin (1/5/10/50/100/500/1000/5000), 0 bez preferencije. zadana vrijednost: %u)</translation>
     </message>
     <message>
-        <source>Specify custom backup path to add a copy of any automatic zDOGEC backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
-        <translation>Navedite put prilagođenog sigurnosnog kopiranja da biste dodali kopiju bilo koje automatske zDOGEC sigurnosne kopije. Ako je postavljeno kao dir, svaka sigurnosna kopija generira vremensku datoteku. Ako je postavljen kao datoteka, prepisat će na tu datoteku svaku kopiju. Ako je postavljen backuppath, dogodit će se 4 sigurnosne kopije</translation>
+        <source>Specify custom backup path to add a copy of any automatic zdogec backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
+        <translation>Navedite put prilagođenog sigurnosnog kopiranja da biste dodali kopiju bilo koje automatske zdogec sigurnosne kopije. Ako je postavljeno kao dir, svaka sigurnosna kopija generira vremensku datoteku. Ako je postavljen kao datoteka, prepisat će na tu datoteku svaku kopiju. Ako je postavljen backuppath, dogodit će se 4 sigurnosne kopije</translation>
     </message>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
@@ -6019,8 +6019,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Sinkronizacija sporka...</translation>
     </message>
     <message>
-        <source>Syncing zDOGEC wallet...</source>
-        <translation>Sinkronizacija zDOGEC novčanika...</translation>
+        <source>Syncing zdogec wallet...</source>
+        <translation>Sinkronizacija zdogec novčanika...</translation>
     </message>
     <message>
         <source>The coin spend has been used</source>
@@ -6159,8 +6159,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Korisničko ime za JSON-RPC veze</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zDOGEC</source>
-        <translation>Vrijednost je niža od najmanje dostupne denominacije (= 1) zDOGEC-a</translation>
+        <source>Value is below the smallest available denomination (= 1) of zdogec</source>
+        <translation>Vrijednost je niža od najmanje dostupne denominacije (= 1) zdogec-a</translation>
     </message>
     <message>
         <source>Value more than Obfuscation pool maximum allows.</source>

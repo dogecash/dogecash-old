@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef dogecash_zDOGECTRACKER_H
-#define dogecash_zDOGECTRACKER_H
+#ifndef dogecash_zdogecTRACKER_H
+#define dogecash_zdogecTRACKER_H
 
 #include "zerocoin.h"
 #include "witness.h"
@@ -11,9 +11,9 @@
 #include <list>
 
 class CDeterministicMint;
-class CzDOGECWallet;
+class CzdogecWallet;
 
-class CzDOGECTracker
+class CzdogecTracker
 {
 private:
     bool fInitialized;
@@ -23,9 +23,9 @@ private:
     std::map<uint256, std::unique_ptr<CoinWitnessData> > mapStakeCache; //serialhash, witness value, height
     bool UpdateStatusInternal(const std::set<uint256>& setMempool, CMintMeta& mint);
 public:
-    CzDOGECTracker(std::string strWalletFile);
-    ~CzDOGECTracker();
-    void Add(const CDeterministicMint& dMint, bool isNew = false, bool isArchived = false, CzDOGECWallet* zDOGECWallet = NULL);
+    CzdogecTracker(std::string strWalletFile);
+    ~CzdogecTracker();
+    void Add(const CDeterministicMint& dMint, bool isNew = false, bool isArchived = false, CzdogecWallet* zdogecWallet = NULL);
     void Add(const CZerocoinMint& mint, bool isNew = false, bool isArchived = false);
     bool Archive(CMintMeta& meta);
     bool HasPubcoin(const CBigNum& bnValue) const;
@@ -55,4 +55,4 @@ public:
     void Clear();
 };
 
-#endif //dogecash_zDOGECTRACKER_H
+#endif //dogecash_zdogecTRACKER_H

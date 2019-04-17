@@ -433,8 +433,8 @@
         <translation>Espora la cronologia delle transazioni</translation>
     </message>
     <message>
-        <source>Privacy Actions for zDOGEC</source>
-        <translation>Operazioni di privacy per zDOGEC</translation>
+        <source>Privacy Actions for zdogec</source>
+        <translation>Operazioni di privacy per zdogec</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -1661,24 +1661,24 @@ MultiSend non verrà attivato a meno che tu non prema su Attiva</translation>
         <translation>Mappa la porta utilizzando &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
-        <translation>Attiva il conio automatico di unità DOGEC in zDOGEC</translation>
+        <source>Enable automatic minting of DOGEC units to zdogec</source>
+        <translation>Attiva il conio automatico di unità DOGEC in zdogec</translation>
     </message>
     <message>
-        <source>Enable zDOGEC Automint</source>
-        <translation>Attiva Conio automatico zDOGEC</translation>
+        <source>Enable zdogec Automint</source>
+        <translation>Attiva Conio automatico zdogec</translation>
     </message>
     <message>
-        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
-        <translation>Percentuale di DOGEC in entrata che viene automaticamente convertita in zDOGEC attraverso il protocollo Zerocoin (min: 10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zdogec via Zerocoin Protocol (min: 10%)</source>
+        <translation>Percentuale di DOGEC in entrata che viene automaticamente convertita in zdogec attraverso il protocollo Zerocoin (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zDOGEC</source>
-        <translation>Percentuale di zDOGEC Percentuale di zDOGEC da coniare automaticamente</translation>
+        <source>Percentage of autominted zdogec</source>
+        <translation>Percentuale di zdogec Percentuale di zdogec da coniare automaticamente</translation>
     </message>
     <message>
-        <source>Preferred Automint zDOGEC Denomination</source>
-        <translation>Denominazione preferita conio automatico zDOGEC</translation>
+        <source>Preferred Automint zdogec Denomination</source>
+        <translation>Denominazione preferita conio automatico zdogec</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1756,14 +1756,14 @@ MultiSend non verrà attivato a meno che tu non prema su Attiva</translation>
         <translation>Il tuo saldo dogecash corrente, incluse le transazioni non confermate e non mature</translation>
     </message>
     <message>
-        <source>zDOGEC Balance</source>
-        <translation>Bilancio zDOGEC</translation>
+        <source>zdogec Balance</source>
+        <translation>Bilancio zdogec</translation>
     </message>
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zDOGEC are spendable.</source>
+These zdogec are spendable.</source>
         <translation>Maturi: più di 20 conferme e più di 1 conio della stessa denominazione dopo il conio.
-Questi zDOGEC sono spendibili.</translation>
+Questi zdogec sono spendibili.</translation>
     </message>
     <message>
         <source>OVERVIEW</source>
@@ -1794,8 +1794,8 @@ Questi zDOGEC sono spendibili.</translation>
         <translation>Spendibili:</translation>
     </message>
     <message>
-        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
-        <translation>DOGEC bloccati o collaterali Masternodo. Questi sono esclusi dal conio di zDOGEC.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zdogec minting.</source>
+        <translation>DOGEC bloccati o collaterali Masternodo. Questi sono esclusi dal conio di zdogec.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -1806,18 +1806,18 @@ Questi zDOGEC sono spendibili.</translation>
         <translation>Non confermati:</translation>
     </message>
     <message>
-        <source>Your current zDOGEC balance, unconfirmed and immature zDOGEC included.</source>
-        <translation>Il tuo saldo zDOGEC corrente, inclusi zDOGEC non confermati e non maturi</translation>
+        <source>Your current zdogec balance, unconfirmed and immature zdogec included.</source>
+        <translation>Il tuo saldo zdogec corrente, inclusi zdogec non confermati e non maturi</translation>
     </message>
     <message>
         <source>Recent transactions</source>
         <translation>Transazioni recenti</translation>
     </message>
     <message>
-        <source>Current percentage of zDOGEC.
+        <source>Current percentage of zdogec.
 If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
 </source>
-        <translation>Percentuale corrente di zDOGEC.
+        <translation>Percentuale corrente di zdogec.
 Se il conio automatico è attivato questa percentuale si stabilizzerà all'incirca sulla percentuale stabilita per il conio automatico (percentuale prestabilita = 10%).
 </translation>
     </message>
@@ -1881,8 +1881,8 @@ Per attivare il Conio automatico cambiare 'enablezeromint=0' in 'enablezeromint=
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>0.000 000 00 DOGEC</source>
@@ -1909,16 +1909,16 @@ Per attivare il Conio automatico cambiare 'enablezeromint=0' in 'enablezeromint=
         <translation>PRIVACY</translation>
     </message>
     <message>
-        <source>Enter an amount of DOGEC to convert to zDOGEC</source>
-        <translation>Immetti un importo di DOGEC da convertire in zDOGEC</translation>
+        <source>Enter an amount of DOGEC to convert to zdogec</source>
+        <translation>Immetti un importo di DOGEC da convertire in zdogec</translation>
     </message>
     <message>
-        <source>zDOGEC Control</source>
-        <translation>Controllo zDOGEC</translation>
+        <source>zdogec Control</source>
+        <translation>Controllo zdogec</translation>
     </message>
     <message>
-        <source>zDOGEC Selected:</source>
-        <translation>zDOGEC selezionati:</translation>
+        <source>zdogec Selected:</source>
+        <translation>zdogec selezionati:</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -1929,23 +1929,23 @@ Per attivare il Conio automatico cambiare 'enablezeromint=0' in 'enablezeromint=
         <translation>Spendi Zerocoin</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zDOGEC for spending</source>
-        <translation>zDOGEC disponibili disponibili per essere spesi (maturi e spendibili)</translation>
+        <source>Available (mature and spendable) zdogec for spending</source>
+        <translation>zdogec disponibili disponibili per essere spesi (maturi e spendibili)</translation>
     </message>
     <message>
         <source>Available Balance:</source>
         <translation>Bilancio Disponibile:</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zDOGEC for spending
+        <source>Available (mature and spendable) zdogec for spending
 
-zDOGEC are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
-        <translation>zDOGEC disponibili disponibili per essere spesi (maturi e spendibili)
-Gli zDOGEC sono maturi quando hanno più di 20 conferme E più di 2 conii della stessa denominazione dopo che sono stati coniati</translation>
+zdogec are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
+        <translation>zdogec disponibili disponibili per essere spesi (maturi e spendibili)
+Gli zdogec sono maturi quando hanno più di 20 conferme E più di 2 conii della stessa denominazione dopo che sono stati coniati</translation>
     </message>
     <message>
-        <source>0 zDOGEC</source>
-        <translation>0 zDOGEC</translation>
+        <source>0 zdogec</source>
+        <translation>0 zdogec</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
@@ -1988,31 +1988,31 @@ Gli zDOGEC sono maturi quando hanno più di 20 conferme E più di 2 conii della 
         <translation>Statistiche Zerocoin:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zDOGEC</source>
-        <translation>Saldo totale inclusi zDOGEC non confermati e non maturi</translation>
+        <source>Total Balance including unconfirmed and immature zdogec</source>
+        <translation>Saldo totale inclusi zdogec non confermati e non maturi</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
         <translation>Saldo totale Zerocoin:</translation>
     </message>
     <message>
-        <source>Show the current status of automatic zDOGEC minting.
+        <source>Show the current status of automatic zdogec minting.
 
 To change the status (restart required):
 - enable: add 'enablezeromint=1' to dogecash.conf
 - disable: add 'enablezeromint=0' to dogecash.conf
 
 To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zDOGEC
+- menu Settings-&gt;Options-&gt;Percentage of autominted zdogec
 
 </source>
-        <translation>Mostra lo stato corrente del conio automatico zDOGEC.
+        <translation>Mostra lo stato corrente del conio automatico zdogec.
 Per cambiare lo stato (riavvio necessario):
 - attivato: aggiungi 'enablezeromint=1' a dogecash.conf
 - disattivato: aggiungi 'enablezeromint=0' a dogecash.conf
 
 Per cambiare la percentuale (riavvio non necessario):
-- menu Impostazioni-&gt;Opzioni-&gt;Percentuale di zDOGEC da coniare automaticamente
+- menu Impostazioni-&gt;Opzioni-&gt;Percentuale di zdogec da coniare automaticamente
 
 </translation>
     </message>
@@ -2161,8 +2161,8 @@ Per cambiare la percentuale (riavvio non necessario):
         <translation>Copia ammontare</translation>
     </message>
     <message>
-        <source>zDOGEC Mint</source>
-        <translation>Conio zDOGEC</translation>
+        <source>zdogec Mint</source>
+        <translation>Conio zdogec</translation>
     </message>
     <message>
         <source>AutoMint Status:</source>
@@ -2645,14 +2645,14 @@ Per cambiare la percentuale (riavvio non necessario):
     </message>
     </context>
 <context>
-    <name>zDOGECControlDialog</name>
+    <name>zdogecControlDialog</name>
     <message>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     </context>
 <context>

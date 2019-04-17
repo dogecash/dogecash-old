@@ -174,20 +174,20 @@ BITCOIN_CORE_H = \
   wallet/wallet.h \
   wallet/wallet_ismine.h \
   wallet/walletdb.h \
-  zDOGECchain.h \
-  zDOGEC/accumulators.h \
-  zDOGEC/accumulatorcheckpoints.h \
-  zDOGEC/accumulatorcheckpoints.json.h \
-  zDOGEC/accumulatormap.h \
-  zDOGEC/deterministicmint.h \
-  zDOGEC/mintpool.h \
-  zDOGEC/witness.h \
-  zDOGEC/zerocoin.h \
-  zDOGEC/zDOGECtracker.h \
-  zDOGEC/zDOGECwallet.h \
+  zdogecchain.h \
+  zdogec/accumulators.h \
+  zdogec/accumulatorcheckpoints.h \
+  zdogec/accumulatorcheckpoints.json.h \
+  zdogec/accumulatormap.h \
+  zdogec/deterministicmint.h \
+  zdogec/mintpool.h \
+  zdogec/witness.h \
+  zdogec/zerocoin.h \
+  zdogec/zdogectracker.h \
+  zdogec/zdogecwallet.h \
   genwit.h \
   concurrentqueue.h \
-  lightzDOGECthread.h \
+  lightzdogecthread.h \
   zmq/zmqabstractnotifier.h \
   zmq/zmqconfig.h \
   zmq/zmqnotificationinterface.h \
@@ -235,7 +235,7 @@ libbitcoin_server_a_SOURCES = \
   txdb.cpp \
   txmempool.cpp \
   validationinterface.cpp \
-  zDOGECchain.cpp \
+  zdogecchain.cpp \
   $(BITCOIN_CORE_H)
 
 if ENABLE_ZMQ
@@ -272,16 +272,16 @@ libbitcoin_wallet_a_SOURCES = \
   wallet/wallet.cpp \
   wallet/wallet_ismine.cpp \
   wallet/walletdb.cpp \
-  zDOGEC/deterministicmint.cpp \
-  zDOGEC/zerocoin.cpp \
-  zDOGEC/accumulators.cpp \
-  zDOGEC/mintpool.cpp \
-  zDOGEC/witness.cpp \
-  zDOGEC/zDOGECwallet.cpp \
-  zDOGEC/zDOGECtracker.cpp \
+  zdogec/deterministicmint.cpp \
+  zdogec/zerocoin.cpp \
+  zdogec/accumulators.cpp \
+  zdogec/mintpool.cpp \
+  zdogec/witness.cpp \
+  zdogec/zdogecwallet.cpp \
+  zdogec/zdogectracker.cpp \
   stakeinput.cpp \
   genwit.cpp \
-  lightzDOGECthread.cpp \
+  lightzdogecthread.cpp \
   $(BITCOIN_CORE_H)
 
 # crypto primitives library
@@ -350,9 +350,9 @@ libzerocoin_libbitcoin_zerocoin_a_SOURCES = \
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
-  zDOGEC/accumulators.cpp \
-  zDOGEC/accumulatorcheckpoints.cpp \
-  zDOGEC/accumulatormap.cpp \
+  zdogec/accumulators.cpp \
+  zdogec/accumulatorcheckpoints.cpp \
+  zdogec/accumulatormap.cpp \
   allocators.cpp \
   amount.cpp \
   base58.cpp \
@@ -361,9 +361,9 @@ libbitcoin_common_a_SOURCES = \
   coins.cpp \
   compressor.cpp \
   primitives/block.cpp \
-  zDOGEC/deterministicmint.cpp \
+  zdogec/deterministicmint.cpp \
   primitives/transaction.cpp \
-  zDOGEC/zerocoin.cpp \
+  zdogec/zerocoin.cpp \
   core_read.cpp \
   core_write.cpp \
   hash.cpp \

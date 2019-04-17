@@ -21,7 +21,7 @@ class zPoSFakeStakeAccepted(dogecash_FakeStakeTest):
         '''
         self.setup_clean_chain = True
         self.num_nodes = 1
-        self.extra_args = [['-staking=1', '-debug=net', '-zDOGECstake']] * self.num_nodes
+        self.extra_args = [['-staking=1', '-debug=net', '-zdogecstake']] * self.num_nodes
 
     def run_test(self):
         self.description = "Performs the same check as in Test_02 verifying that zPoS forked blocks that stake a zerocoin which is spent on mainchain on an higher block are still accepted."
