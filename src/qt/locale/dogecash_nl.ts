@@ -433,8 +433,8 @@
         <translation>Blader door transactiegescheidenis</translation>
     </message>
     <message>
-        <source>Privacy Actions for zDOGEC</source>
-        <translation>Privacy Acties voor zDOGEC</translation>
+        <source>Privacy Actions for zdogec</source>
+        <translation>Privacy Acties voor zdogec</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -1985,28 +1985,28 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Map poort gebruikt &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
-        <translation>Schakel automatisch slaan van DOGEC-eenheden in op zDOGEC</translation>
+        <source>Enable automatic minting of DOGEC units to zdogec</source>
+        <translation>Schakel automatisch slaan van DOGEC-eenheden in op zdogec</translation>
     </message>
     <message>
-        <source>Enable zDOGEC Automint</source>
-        <translation>Schakel zDOGEC Automint in</translation>
+        <source>Enable zdogec Automint</source>
+        <translation>Schakel zdogec Automint in</translation>
     </message>
     <message>
-        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
-        <translation>Percentage inkomende DOGEC die automatisch wordt omgezet naar zDOGEC via Zerocoin Protocol (min: 10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zdogec via Zerocoin Protocol (min: 10%)</source>
+        <translation>Percentage inkomende DOGEC die automatisch wordt omgezet naar zdogec via Zerocoin Protocol (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zDOGEC</source>
-        <translation>Percentage autominted zDOGEC</translation>
+        <source>Percentage of autominted zdogec</source>
+        <translation>Percentage autominted zdogec</translation>
     </message>
     <message>
         <source>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</source>
         <translation>Wacht met automatische omzetting naar Zerocoin totdat er genoeg DOGEC voor deze denominatie beschikbaar is</translation>
     </message>
     <message>
-        <source>Preferred Automint zDOGEC Denomination</source>
-        <translation>Gewenste Automint zDOGEC denominatie</translation>
+        <source>Preferred Automint zdogec Denomination</source>
+        <translation>Gewenste Automint zdogec denominatie</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2204,12 +2204,12 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Uw huidige dogecash-saldo, onbevestigde en onvolgroeide transacties inbegrepen</translation>
     </message>
     <message>
-        <source>zDOGEC Balance</source>
-        <translation>zDOGEC-saldo</translation>
+        <source>zdogec Balance</source>
+        <translation>zdogec-saldo</translation>
     </message>
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zDOGEC are spendable.</source>
+These zdogec are spendable.</source>
         <translation>Volwassen: meer dan 20 bevestigingen en meer dan 1 mint van dezelfde denominatie nadat het gemint was.
 Deze zPIB zijn besteedbaar.</translation>
     </message>
@@ -2264,8 +2264,8 @@ Onvolwassen: bevestigd, maar minder dan 1 mint van dezelfde denominatie nadat he
         <translation>Uitgeefbaar:</translation>
     </message>
     <message>
-        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
-        <translation>Vergrendelde DOGEC of Masternode onderpanden. Deze zijn uitgesloten van de zDOGEC muntage.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zdogec minting.</source>
+        <translation>Vergrendelde DOGEC of Masternode onderpanden. Deze zijn uitgesloten van de zdogec muntage.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2276,8 +2276,8 @@ Onvolwassen: bevestigd, maar minder dan 1 mint van dezelfde denominatie nadat he
         <translation>Onbevestigd:</translation>
     </message>
     <message>
-        <source>Your current zDOGEC balance, unconfirmed and immature zDOGEC included.</source>
-        <translation>Uw huidige zDOGEC-saldo, onbevestigde en onvolgroeide zDOGEC inbegrepen.</translation>
+        <source>Your current zdogec balance, unconfirmed and immature zdogec included.</source>
+        <translation>Uw huidige zdogec-saldo, onbevestigde en onvolgroeide zdogec inbegrepen.</translation>
     </message>
     <message>
         <source>Recent transactions</source>
@@ -2288,10 +2288,10 @@ Onvolwassen: bevestigd, maar minder dan 1 mint van dezelfde denominatie nadat he
         <translation>niet gesynchroniseerd</translation>
     </message>
     <message>
-        <source>Current percentage of zDOGEC.
+        <source>Current percentage of zdogec.
 If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
 </source>
-        <translation>Huidige percentage van zDOGEC
+        <translation>Huidige percentage van zdogec
 Als AutoMint ingeschakeld is zal deze percentage afhangen van de geconfigureerde AutoMint percentage (standaard = 10%).
 </translation>
     </message>
@@ -2435,8 +2435,8 @@ Om AutoMint in te schakelend verander je 'enablezeromint=0' naar 'enablezeromint
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>Available for minting are coins which are confirmed and not locked or Masternode collaterals.</source>
@@ -2487,16 +2487,16 @@ Om AutoMint in te schakelend verander je 'enablezeromint=0' naar 'enablezeromint
         <translation>PRIVACY</translation>
     </message>
     <message>
-        <source>Enter an amount of DOGEC to convert to zDOGEC</source>
-        <translation>Vul het aantal DOGEC in om te converteren naar zDOGEC</translation>
+        <source>Enter an amount of DOGEC to convert to zdogec</source>
+        <translation>Vul het aantal DOGEC in om te converteren naar zdogec</translation>
     </message>
     <message>
-        <source>zDOGEC Control</source>
-        <translation>zDOGEC Control</translation>
+        <source>zdogec Control</source>
+        <translation>zdogec Control</translation>
     </message>
     <message>
-        <source>zDOGEC Selected:</source>
-        <translation>zDOGEC geselecteerd:</translation>
+        <source>zdogec Selected:</source>
+        <translation>zdogec geselecteerd:</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -2511,24 +2511,24 @@ Om AutoMint in te schakelend verander je 'enablezeromint=0' naar 'enablezeromint
         <translation>Besteed Zerocoin</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zDOGEC for spending</source>
-        <translation>Beschikbare (volwassen en uitgeefbaar) zDOGEC voor besteding</translation>
+        <source>Available (mature and spendable) zdogec for spending</source>
+        <translation>Beschikbare (volwassen en uitgeefbaar) zdogec voor besteding</translation>
     </message>
     <message>
         <source>Available Balance:</source>
         <translation>Beschikbaar saldo:</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zDOGEC for spending
+        <source>Available (mature and spendable) zdogec for spending
 
-zDOGEC are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
-        <translation>Beschikbare (volwwassen en uitgeefbaar) zDOGEC voor besteding
+zdogec are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
+        <translation>Beschikbare (volwwassen en uitgeefbaar) zdogec voor besteding
 
-zDOGEC zijn volwassen wanneer zij meer dan 20 bevestigingen hebben EN meer dan 2 muntages van dezelfde denominaties nadat zij gemunt zijn.</translation>
+zdogec zijn volwassen wanneer zij meer dan 20 bevestigingen hebben EN meer dan 2 muntages van dezelfde denominaties nadat zij gemunt zijn.</translation>
     </message>
     <message>
-        <source>0 zDOGEC</source>
-        <translation>0 zDOGEC</translation>
+        <source>0 zdogec</source>
+        <translation>0 zdogec</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
@@ -2587,8 +2587,8 @@ zDOGEC zijn volwassen wanneer zij meer dan 20 bevestigingen hebben EN meer dan 2
         <translation>Zerocoin Statistieken:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zDOGEC</source>
-        <translation>Totale Saldi, inclusief onbevestigde en onvolwassen zDOGEC</translation>
+        <source>Total Balance including unconfirmed and immature zdogec</source>
+        <translation>Totale Saldi, inclusief onbevestigde en onvolwassen zdogec</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
@@ -2609,24 +2609,24 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Onvolwassen: bevestigd, maar minder dan 1 mint van dezelfde denominatie nadat het gemint was.</translation>
     </message>
     <message>
-        <source>Show the current status of automatic zDOGEC minting.
+        <source>Show the current status of automatic zdogec minting.
 
 To change the status (restart required):
 - enable: add 'enablezeromint=1' to dogecash.conf
 - disable: add 'enablezeromint=0' to dogecash.conf
 
 To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zDOGEC
+- menu Settings-&gt;Options-&gt;Percentage of autominted zdogec
 
 </source>
-        <translation>Toon de huidige status van automatische zDOGEC-markering.
+        <translation>Toon de huidige status van automatische zdogec-markering.
 
 Om de status te wijzigen (opnieuw opstarten vereist): 
 - enable: voeg 'enablezeromint = 1' toe aan dogecash.conf
 - uitschakelen: voeg 'enablezeromint = 0' toe aan dogecash.conf
 
 Om het percentage te wijzigen (geen herstart vereist): 
-- menu Instellingen-&gt; Opties-&gt; Percentage van geautomatiseerde zDOGEC
+- menu Instellingen-&gt; Opties-&gt; Percentage van geautomatiseerde zdogec
 </translation>
     </message>
     <message>
@@ -2674,8 +2674,8 @@ Om het percentage te wijzigen (geen herstart vereist):
         <translation> 0 x</translation>
     </message>
     <message>
-        <source>Show zDOGEC denominations list</source>
-        <translation>Toon zDOGEC denominatielijst</translation>
+        <source>Show zdogec denominations list</source>
+        <translation>Toon zdogec denominatielijst</translation>
     </message>
     <message>
         <source>Show Denominations</source>
@@ -2826,12 +2826,12 @@ Maximum allowed: </source>
 Maximaal toegestaan:</translation>
     </message>
     <message>
-        <source>zDOGEC Spend #: </source>
-        <translation>zDOGEC besteed #:</translation>
+        <source>zdogec Spend #: </source>
+        <translation>zdogec besteed #:</translation>
     </message>
     <message>
-        <source>zDOGEC Mint</source>
-        <translation>zDOGEC mint</translation>
+        <source>zdogec Mint</source>
+        <translation>zdogec mint</translation>
     </message>
     <message>
         <source> &lt;b&gt;enabled&lt;/b&gt;.</source>
@@ -2846,12 +2846,12 @@ Maximaal toegestaan:</translation>
         <translation>Geconfigureerd doelpercentage:&lt;b&gt;</translation>
     </message>
     <message>
-        <source>zDOGEC is currently disabled due to maintenance.</source>
-        <translation>zDOGEC is momenteel uitgeschakeld vanwege onderhoud.</translation>
+        <source>zdogec is currently disabled due to maintenance.</source>
+        <translation>zdogec is momenteel uitgeschakeld vanwege onderhoud.</translation>
     </message>
     <message>
-        <source>zDOGEC is currently undergoing maintenance.</source>
-        <translation>zDOGEC wordt momenteel onderhouden.</translation>
+        <source>zdogec is currently undergoing maintenance.</source>
+        <translation>zdogec wordt momenteel onderhouden.</translation>
     </message>
     <message>
         <source>Denom. with value &lt;b&gt;1&lt;/b&gt;:</source>
@@ -2938,8 +2938,8 @@ Maximaal toegestaan:</translation>
         <translation>Succesvol gemint</translation>
     </message>
     <message>
-        <source> zDOGEC in </source>
-        <translation> zDOGEC in </translation>
+        <source> zdogec in </source>
+        <translation> zdogec in </translation>
     </message>
     <message>
         <source> sec. Used denominations:
@@ -3013,7 +3013,7 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
     </message>
     <message numerus="yes">
         <source>PrivacyDialog</source>
-        <comment>Enter an amount of DOGEC to convert to zDOGEC</comment>
+        <comment>Enter an amount of DOGEC to convert to zdogec</comment>
         <translation><numerusform>PrivacyDialog</numerusform><numerusform>PrivacyDialog</numerusform></translation>
     </message>
     <message>
@@ -3337,8 +3337,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Aangepast back-up pad:</translation>
     </message>
     <message>
-        <source>Custom zDOGEC Backup Path:</source>
-        <translation>Aangepast zDOGEC back-up pad:</translation>
+        <source>Custom zdogec Backup Path:</source>
+        <translation>Aangepast zdogec back-up pad:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -4577,8 +4577,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>DOGEC Stake</translation>
     </message>
     <message>
-        <source>zDOGEC Stake</source>
-        <translation>zDOGEC Stake</translation>
+        <source>zdogec Stake</source>
+        <translation>zdogec Stake</translation>
     </message>
     <message>
         <source>Obfuscation Denominate</source>
@@ -4597,32 +4597,32 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Verduistering creëert denominaties</translation>
     </message>
     <message>
-        <source>Converted DOGEC to zDOGEC</source>
-        <translation>Geconverteerde DOGEC naar zDOGEC</translation>
+        <source>Converted DOGEC to zdogec</source>
+        <translation>Geconverteerde DOGEC naar zdogec</translation>
     </message>
     <message>
-        <source>Spent zDOGEC</source>
-        <translation>Bestede zDOGEC</translation>
+        <source>Spent zdogec</source>
+        <translation>Bestede zdogec</translation>
     </message>
     <message>
-        <source>Received DOGEC from zDOGEC</source>
-        <translation>Ontvangen DOGEC van zDOGEC</translation>
+        <source>Received DOGEC from zdogec</source>
+        <translation>Ontvangen DOGEC van zdogec</translation>
     </message>
     <message>
-        <source>Minted Change as zDOGEC from zDOGEC Spend</source>
-        <translation>Gemint wisselgeld als zDOGEC van bestede zDOGEC</translation>
+        <source>Minted Change as zdogec from zdogec Spend</source>
+        <translation>Gemint wisselgeld als zdogec van bestede zdogec</translation>
     </message>
     <message>
-        <source>Converted zDOGEC to DOGEC</source>
-        <translation>Geconverteerde zDOGEC naar DOGEC</translation>
+        <source>Converted zdogec to DOGEC</source>
+        <translation>Geconverteerde zdogec naar DOGEC</translation>
     </message>
     <message>
-        <source>Anonymous (zDOGEC Transaction)</source>
-        <translation>Anonieme (zDOGEC transactie)</translation>
+        <source>Anonymous (zdogec Transaction)</source>
+        <translation>Anonieme (zdogec transactie)</translation>
     </message>
     <message>
-        <source>Anonymous (zDOGEC Stake)</source>
-        <translation>Anonieme (zDOGEC stake)</translation>
+        <source>Anonymous (zdogec Stake)</source>
+        <translation>Anonieme (zdogec stake)</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -4836,12 +4836,12 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Exporteren succesvol</translation>
     </message>
     <message>
-        <source>Received DOGEC from zDOGEC</source>
-        <translation>Ontvangen DOGEC van zDOGEC</translation>
+        <source>Received DOGEC from zdogec</source>
+        <translation>Ontvangen DOGEC van zdogec</translation>
     </message>
     <message>
-        <source>Zerocoin Spend, Change in zDOGEC</source>
-        <translation>Zerocoin besteed, wisselgeld in zDOGEC</translation>
+        <source>Zerocoin Spend, Change in zdogec</source>
+        <translation>Zerocoin besteed, wisselgeld in zdogec</translation>
     </message>
     <message>
         <source>The transaction history was successfully saved to %1.</source>
@@ -4909,10 +4909,10 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
     </message>
 </context>
 <context>
-    <name>zDOGECControlDialog</name>
+    <name>zdogecControlDialog</name>
     <message>
-        <source>Select zDOGEC to Spend</source>
-        <translation>Selecteer zDOGEC om te besteden</translation>
+        <source>Select zdogec to Spend</source>
+        <translation>Selecteer zdogec om te besteden</translation>
     </message>
     <message>
         <source>Quantity</source>
@@ -4923,8 +4923,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>Select/Deselect All</source>
@@ -4986,16 +4986,16 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Gedistribueerd onder de MIT software licentie, zie het bijgevoegde bestand COPYING of &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
     </message>
     <message>
-        <source>Enable automatic wallet backups triggered after each zDOGEC minting (0-1, default: %u)</source>
-        <translation>Schakel automatische portemonnee back-ups in geactiveerd na elke geminte zDOGEC (0-1, standaard: %u)</translation>
+        <source>Enable automatic wallet backups triggered after each zdogec minting (0-1, default: %u)</source>
+        <translation>Schakel automatische portemonnee back-ups in geactiveerd na elke geminte zdogec (0-1, standaard: %u)</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for DOGEC inputs (0-1, default: %u)</source>
         <translation>In- of uitschakelen staking functionaliteit voor DOGEC inputs (0-1, standaard: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)</source>
-        <translation>In- of uitschakelen staking functionaliteit voor zDOGEC inputs (0-1, standaard: %u)</translation>
+        <source>Enable or disable staking functionality for zdogec inputs (0-1, default: %u)</source>
+        <translation>In- of uitschakelen staking functionaliteit voor zdogec inputs (0-1, standaard: %u)</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -5602,8 +5602,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Percentage automatisch geminte Zerocoin (10-100, standaard: %u)</translation>
     </message>
     <message>
-        <source>Reindex the DOGEC and zDOGEC money supply statistics</source>
-        <translation>Indexeer de DOGEC- en zDOGEC-geldvoorraadstatistieken opnieuw</translation>
+        <source>Reindex the DOGEC and zdogec money supply statistics</source>
+        <translation>Indexeer de DOGEC- en zdogec-geldvoorraadstatistieken opnieuw</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5678,8 +5678,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Voorkeur denominatie voor automatisch minted Zerocoin (1/5/10/50/100/500/1000/5000), 0 voor geen voorkeur. standaard: %u)</translation>
     </message>
     <message>
-        <source>Specify custom backup path to add a copy of any automatic zDOGEC backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
-        <translation>Specificeer aangepast back-up pad om een kopie van elke automatische zDOGEC back-up toe te voegen. Indien ingesteld als dir zal elke back-up een bestand genereren met een tijdstempel. Indien ingesteld als file zal elke back-up herschreven worden naar dat bestand. Indien backuppath ook is ingesteld zullen 4 back-ups gedaan worden.</translation>
+        <source>Specify custom backup path to add a copy of any automatic zdogec backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
+        <translation>Specificeer aangepast back-up pad om een kopie van elke automatische zdogec back-up toe te voegen. Indien ingesteld als dir zal elke back-up een bestand genereren met een tijdstempel. Indien ingesteld als file zal elke back-up herschreven worden naar dat bestand. Indien backuppath ook is ingesteld zullen 4 back-ups gedaan worden.</translation>
     </message>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
@@ -6174,8 +6174,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Synchroniseren sporks...</translation>
     </message>
     <message>
-        <source>Syncing zDOGEC wallet...</source>
-        <translation>Synchroniseren zDOGEC portemonnee...</translation>
+        <source>Syncing zdogec wallet...</source>
+        <translation>Synchroniseren zdogec portemonnee...</translation>
     </message>
     <message>
         <source>The coin spend has been used</source>
@@ -6318,8 +6318,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Gebruikersnaam voor JSON-RPC verbindingen</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zDOGEC</source>
-        <translation>Waarde is minder dan de kleinst beschikbare denominatie (=1) van zDOGEC</translation>
+        <source>Value is below the smallest available denomination (= 1) of zdogec</source>
+        <translation>Waarde is minder dan de kleinst beschikbare denominatie (=1) van zdogec</translation>
     </message>
     <message>
         <source>Value more than Obfuscation pool maximum allows.</source>

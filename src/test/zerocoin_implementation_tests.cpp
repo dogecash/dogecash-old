@@ -7,16 +7,16 @@
 #include "chainparams.h"
 #include "main.h"
 #include "txdb.h"
-#include "zDOGEC/deterministicmint.h"
+#include "zdogec/deterministicmint.h"
 #include "key.h"
-#include "zDOGEC/accumulatorcheckpoints.h"
+#include "zdogec/accumulatorcheckpoints.h"
 #include "libzerocoin/bignum.h"
 #include <boost/test/unit_test.hpp>
 #include <iostream>
-#include <zDOGEC/accumulators.h>
+#include <zdogec/accumulators.h>
 #include "wallet/wallet.h"
-#include "zDOGEC/zDOGECwallet.h"
-#include "zDOGECchain.h"
+#include "zdogec/zdogecwallet.h"
+#include "zdogecchain.h"
 
 using namespace libzerocoin;
 
@@ -513,7 +513,7 @@ BOOST_AUTO_TEST_CASE(deterministic_tests)
     CWalletDB walletdb(strWalletFile, "cr+");
 
     CWallet wallet(strWalletFile);
-    CzDOGECWallet zWallet(wallet.strWalletFile);
+    CzdogecWallet zWallet(wallet.strWalletFile);
     zWallet.SetMasterSeed(seedMaster);
     wallet.setZWallet(&zWallet);
 
@@ -525,7 +525,7 @@ BOOST_AUTO_TEST_CASE(deterministic_tests)
     for (int i = 0; i < nTests; i++) {
         PrivateCoin coin(Params().Zerocoin_Params(false), denom, false);
         CDeterministicMint dMint;
-        zWallet.GenerateDeterministiczDOGEC(denom, coin, dMint);
+        zWallet.GenerateDeterministiczdogec(denom, coin, dMint);
         vCoins.emplace_back(coin);
     }
 

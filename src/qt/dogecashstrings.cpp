@@ -60,12 +60,12 @@ QT_TRANSLATE_NOOP("dogecash-core", ""
 QT_TRANSLATE_NOOP("dogecash-core", ""
 "Enable automatic Zerocoin minting from specific addresses (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("dogecash-core", ""
-"Enable automatic wallet backups triggered after each zDOGEC minting (0-1, "
+"Enable automatic wallet backups triggered after each zdogec minting (0-1, "
 "default: %u)"),
 QT_TRANSLATE_NOOP("dogecash-core", ""
 "Enable or disable staking functionality for DOGEC inputs (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("dogecash-core", ""
-"Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)"),
+"Enable or disable staking functionality for zdogec inputs (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("dogecash-core", ""
 "Enable spork administration functionality with the appropriate private key."),
 QT_TRANSLATE_NOOP("dogecash-core", ""
@@ -181,7 +181,7 @@ QT_TRANSLATE_NOOP("dogecash-core", ""
 "Show N confirmations for a successfully locked transaction (0-9999, default: "
 "%u)"),
 QT_TRANSLATE_NOOP("dogecash-core", ""
-"Specify custom backup path to add a copy of any automatic zDOGEC backup. If "
+"Specify custom backup path to add a copy of any automatic zdogec backup. If "
 "set as dir, every backup generates a timestamped file. If set as file, will "
 "rewrite to that file every backup. If backuppath is set as well, 4 backups "
 "will happen"),
@@ -304,7 +304,7 @@ QT_TRANSLATE_NOOP("dogecash-core", "Do not load the wallet and disable wallet RP
 QT_TRANSLATE_NOOP("dogecash-core", "Do you want to rebuild the block database now?"),
 QT_TRANSLATE_NOOP("dogecash-core", "Done loading"),
 QT_TRANSLATE_NOOP("dogecash-core", "Enable automatic Zerocoin minting (0-1, default: %u)"),
-QT_TRANSLATE_NOOP("dogecash-core", "Enable precomputation of zDOGEC spends and stakes (0-1, default %u)"),
+QT_TRANSLATE_NOOP("dogecash-core", "Enable precomputation of zdogec spends and stakes (0-1, default %u)"),
 QT_TRANSLATE_NOOP("dogecash-core", "Enable publish hash block in <address>"),
 QT_TRANSLATE_NOOP("dogecash-core", "Enable publish hash transaction (locked via SwiftX) in <address>"),
 QT_TRANSLATE_NOOP("dogecash-core", "Enable publish hash transaction in <address>"),
@@ -432,10 +432,10 @@ QT_TRANSLATE_NOOP("dogecash-core", "Randomly drop 1 of every <n> network message
 QT_TRANSLATE_NOOP("dogecash-core", "Randomly fuzz 1 of every <n> network messages"),
 QT_TRANSLATE_NOOP("dogecash-core", "Rebuild block chain index from current blk000??.dat files"),
 QT_TRANSLATE_NOOP("dogecash-core", "Recalculating DOGEC supply..."),
-QT_TRANSLATE_NOOP("dogecash-core", "Recalculating minted zDOGEC..."),
-QT_TRANSLATE_NOOP("dogecash-core", "Recalculating spent zDOGEC..."),
+QT_TRANSLATE_NOOP("dogecash-core", "Recalculating minted zdogec..."),
+QT_TRANSLATE_NOOP("dogecash-core", "Recalculating spent zdogec..."),
 QT_TRANSLATE_NOOP("dogecash-core", "Receive and display P2P network alerts (default: %u)"),
-QT_TRANSLATE_NOOP("dogecash-core", "Reindex the DOGEC and zDOGEC money supply statistics"),
+QT_TRANSLATE_NOOP("dogecash-core", "Reindex the DOGEC and zdogec money supply statistics"),
 QT_TRANSLATE_NOOP("dogecash-core", "Reindex the accumulator database"),
 QT_TRANSLATE_NOOP("dogecash-core", "Reindexing zerocoin database..."),
 QT_TRANSLATE_NOOP("dogecash-core", "Reindexing zerocoin failed"),
@@ -488,7 +488,7 @@ QT_TRANSLATE_NOOP("dogecash-core", "Synchronizing budgets..."),
 QT_TRANSLATE_NOOP("dogecash-core", "Synchronizing masternode winners..."),
 QT_TRANSLATE_NOOP("dogecash-core", "Synchronizing masternodes..."),
 QT_TRANSLATE_NOOP("dogecash-core", "Synchronizing sporks..."),
-QT_TRANSLATE_NOOP("dogecash-core", "Syncing zDOGEC wallet..."),
+QT_TRANSLATE_NOOP("dogecash-core", "Syncing zdogec wallet..."),
 QT_TRANSLATE_NOOP("dogecash-core", "The coin spend has been used"),
 QT_TRANSLATE_NOOP("dogecash-core", "The transaction did not verify"),
 QT_TRANSLATE_NOOP("dogecash-core", "This help message"),
@@ -524,7 +524,7 @@ QT_TRANSLATE_NOOP("dogecash-core", "Use block spam filter (default: %u)"),
 QT_TRANSLATE_NOOP("dogecash-core", "Use the test network"),
 QT_TRANSLATE_NOOP("dogecash-core", "User Agent comment (%s) contains unsafe characters."),
 QT_TRANSLATE_NOOP("dogecash-core", "Username for JSON-RPC connections"),
-QT_TRANSLATE_NOOP("dogecash-core", "Value is below the smallest available denomination (= 1) of zDOGEC"),
+QT_TRANSLATE_NOOP("dogecash-core", "Value is below the smallest available denomination (= 1) of zdogec"),
 QT_TRANSLATE_NOOP("dogecash-core", "Value more than Obfuscation pool maximum allows."),
 QT_TRANSLATE_NOOP("dogecash-core", "Verifying blocks..."),
 QT_TRANSLATE_NOOP("dogecash-core", "Verifying wallet..."),

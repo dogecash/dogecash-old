@@ -2508,7 +2508,7 @@
     </message>
 </context>
 <context>
-    <name>zDOGECControlDialog</name>
+    <name>zdogecControlDialog</name>
     <message>
         <source>0</source>
         <translation>0</translation>

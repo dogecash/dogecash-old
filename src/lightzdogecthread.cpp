@@ -5,11 +5,11 @@
 //
 
 
-#include "lightzDOGECthread.h"
+#include "lightzdogecthread.h"
 #include "main.h"
 
 /****** Thread ********/
-void CLightWorker::ThreadLightzDOGECSimplified() {
+void CLightWorker::ThreadLightzdogecSimplified() {
     RenameThread("dogecash-light-thread");
     isWorkerRunning = true;
     while (true) {
@@ -61,7 +61,7 @@ void CLightWorker::ThreadLightzDOGECSimplified() {
                         );
 
                     } catch (NotEnoughMintsException e) {
-                        LogPrintStr(std::string("ThreadLightzDOGECSimplified: ") + e.message + "\n");
+                        LogPrintStr(std::string("ThreadLightzdogecSimplified: ") + e.message + "\n");
                         rejectWork(genWit, blockHeight, NOT_ENOUGH_MINTS);
                         continue;
                     }
@@ -95,7 +95,7 @@ void CLightWorker::ThreadLightzDOGECSimplified() {
             }
         } catch (std::exception& e) {
             //std::cout << "exception in light loop, closing it. " << e.what() << std::endl;
-            PrintExceptionContinue(&e, "lightzDOGECthread");
+            PrintExceptionContinue(&e, "lightzdogecthread");
             break;
         }
     }

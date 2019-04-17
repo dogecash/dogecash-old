@@ -11,10 +11,10 @@
 #include "wallet/db.h"
 #include "key.h"
 #include "keystore.h"
-#include "zDOGEC/zerocoin.h"
+#include "zdogec/zerocoin.h"
 #include "libzerocoin/Accumulator.h"
 #include "libzerocoin/Denominations.h"
-#include "zDOGEC/zdogectracker.h"
+#include "zdogec/zdogectracker.h"
 
 #include <list>
 #include <stdint.h>
@@ -179,14 +179,14 @@ public:
     bool ReadZerocoinSpendSerialEntry(const CBigNum& bnSerial);
     bool WriteCurrentSeedHash(const uint256& hashSeed);
     bool ReadCurrentSeedHash(uint256& hashSeed);
-    bool WritezDOGECSeed(const uint256& hashSeed, const vector<unsigned char>& seed);
-    bool ReadzDOGECSeed(const uint256& hashSeed, vector<unsigned char>& seed);
-    bool ReadzDOGECSeed_deprecated(uint256& seed);
-    bool ErasezDOGECSeed();
-    bool ErasezDOGECSeed_deprecated();
+    bool WritezdogecSeed(const uint256& hashSeed, const vector<unsigned char>& seed);
+    bool ReadzdogecSeed(const uint256& hashSeed, vector<unsigned char>& seed);
+    bool ReadzdogecSeed_deprecated(uint256& seed);
+    bool ErasezdogecSeed();
+    bool ErasezdogecSeed_deprecated();
 
-    bool WritezDOGECCount(const uint32_t& nCount);
-    bool ReadzDOGECCount(uint32_t& nCount);
+    bool WritezdogecCount(const uint32_t& nCount);
+    bool ReadzdogecCount(uint32_t& nCount);
     std::map<uint256, std::vector<pair<uint256, uint32_t> > > MapMintPool();
     bool WriteMintPoolPair(const uint256& hashMasterSeed, const uint256& hashPubcoin, const uint32_t& nCount);
 

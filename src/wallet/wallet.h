@@ -17,14 +17,14 @@
 #include "main.h"
 #include "primitives/block.h"
 #include "primitives/transaction.h"
-#include "zDOGEC/zerocoin.h"
+#include "zdogec/zerocoin.h"
 #include "ui_interface.h"
 #include "util.h"
 #include "validationinterface.h"
 #include "wallet/wallet_ismine.h"
 #include "wallet/walletdb.h"
-#include "zDOGEC/zdogecwallet.h"
-#include "zDOGEC/zdogectracker.h"
+#include "zdogec/zdogecwallet.h"
+#include "zdogec/zdogectracker.h"
 
 #include <algorithm>
 #include <map>
@@ -45,7 +45,7 @@ extern bool bSpendZeroConfChange;
 extern bool bdisableSystemnotifications;
 extern bool fSendFreeTransactions;
 extern bool fPayAtLeastCustomFee;
-extern bool fGlobalUnlockSpendCache; // Bool used for letting the precomputing thread know that zDOGECspends need to use the cs_spendcache
+extern bool fGlobalUnlockSpendCache; // Bool used for letting the precomputing thread know that zdogecspends need to use the cs_spendcache
 
 //! -paytxfee default
 static const CAmount DEFAULT_TRANSACTION_FEE = 0;
@@ -92,25 +92,25 @@ enum AvailableCoinsType {
     STAKABLE_COINS = 6                          // UTXO's that are valid for staking
 };
 
-// Possible states for zDOGEC send
+// Possible states for zdogec send
 enum ZerocoinSpendStatus {
-    zDOGEC_SPEND_OKAY = 0,                            // No error
-    zDOGEC_SPEND_ERROR = 1,                           // Unspecified class of errors, more details are (hopefully) in the returning text
-    zDOGEC_WALLET_LOCKED = 2,                         // Wallet was locked
-    zDOGEC_COMMIT_FAILED = 3,                         // Commit failed, reset status
-    zDOGEC_ERASE_SPENDS_FAILED = 4,                   // Erasing spends during reset failed
-    zDOGEC_ERASE_NEW_MINTS_FAILED = 5,                // Erasing new mints during reset failed
-    zDOGEC_TRX_FUNDS_PROBLEMS = 6,                    // Everything related to available funds
-    zDOGEC_TRX_CREATE = 7,                            // Everything related to create the transaction
-    zDOGEC_TRX_CHANGE = 8,                            // Everything related to transaction change
-    zDOGEC_TXMINT_GENERAL = 9,                        // General errors in MintToTxIn
-    zDOGEC_INVALID_COIN = 10,                         // Selected mint coin is not valid
-    zDOGEC_FAILED_ACCUMULATOR_INITIALIZATION = 11,    // Failed to initialize witness
-    zDOGEC_INVALID_WITNESS = 12,                      // Spend coin transaction did not verify
-    zDOGEC_BAD_SERIALIZATION = 13,                    // Transaction verification failed
-    zDOGEC_SPENT_USED_zDOGEC = 14,                      // Coin has already been spend
-    zDOGEC_TX_TOO_LARGE = 15,                          // The transaction is larger than the max tx size
-    zDOGEC_SPEND_V1_SEC_LEVEL                         // Spend is V1 and security level is not set to 100
+    zdogec_SPEND_OKAY = 0,                            // No error
+    zdogec_SPEND_ERROR = 1,                           // Unspecified class of errors, more details are (hopefully) in the returning text
+    zdogec_WALLET_LOCKED = 2,                         // Wallet was locked
+    zdogec_COMMIT_FAILED = 3,                         // Commit failed, reset status
+    zdogec_ERASE_SPENDS_FAILED = 4,                   // Erasing spends during reset failed
+    zdogec_ERASE_NEW_MINTS_FAILED = 5,                // Erasing new mints during reset failed
+    zdogec_TRX_FUNDS_PROBLEMS = 6,                    // Everything related to available funds
+    zdogec_TRX_CREATE = 7,                            // Everything related to create the transaction
+    zdogec_TRX_CHANGE = 8,                            // Everything related to transaction change
+    zdogec_TXMINT_GENERAL = 9,                        // General errors in MintToTxIn
+    zdogec_INVALID_COIN = 10,                         // Selected mint coin is not valid
+    zdogec_FAILED_ACCUMULATOR_INITIALIZATION = 11,    // Failed to initialize witness
+    zdogec_INVALID_WITNESS = 12,                      // Spend coin transaction did not verify
+    zdogec_BAD_SERIALIZATION = 13,                    // Transaction verification failed
+    zdogec_SPENT_USED_zdogec = 14,                      // Coin has already been spend
+    zdogec_TX_TOO_LARGE = 15,                          // The transaction is larger than the max tx size
+    zdogec_SPEND_V1_SEC_LEVEL                         // Spend is V1 and security level is not set to 100
 };
 
 struct CompactTallyItem {
@@ -219,15 +219,15 @@ public:
     std::string ResetMintZerocoin();
     std::string ResetSpentZerocoin();
     void ReconsiderZerocoins(std::list<CZerocoinMint>& listMintsRestored, std::list<CDeterministicMint>& listDMintsRestored);
-    void zDOGECBackupWallet();
+    void zdogecBackupWallet();
     bool GetZerocoinKey(const CBigNum& bnSerial, CKey& key);
-    bool CreatezDOGECOutPut(libzerocoin::CoinDenomination denomination, CTxOut& outMint, CDeterministicMint& dMint);
+    bool CreatezdogecOutPut(libzerocoin::CoinDenomination denomination, CTxOut& outMint, CDeterministicMint& dMint);
     bool GetMint(const uint256& hashSerial, CZerocoinMint& mint);
     bool GetMintFromStakeHash(const uint256& hashStake, CZerocoinMint& mint);
     bool DatabaseMint(CDeterministicMint& dMint);
     bool SetMintUnspent(const CBigNum& bnSerial);
     bool UpdateMint(const CBigNum& bnValue, const int& nHeight, const uint256& txid, const libzerocoin::CoinDenomination& denom);
-    string GetUniqueWalletBackupName(bool fzDOGECAuto) const;
+    string GetUniqueWalletBackupName(bool fzdogecAuto) const;
     void InitAutoConvertAddresses();
 
 
@@ -244,7 +244,7 @@ public:
      */
     mutable CCriticalSection cs_wallet;
 
-    CzDOGECWallet* zwalletMain;
+    CzdogecWallet* zwalletMain;
 
     std::set<CBitcoinAddress> setAutoConvertAddresses;
 
@@ -252,7 +252,7 @@ public:
     bool fWalletUnlockAnonymizeOnly;
     std::string strWalletFile;
     bool fBackupMints;
-    std::unique_ptr<CzDOGECTracker> zDOGECTracker;
+    std::unique_ptr<CzdogecTracker> zdogecTracker;
 
     std::set<int64_t> setKeyPool;
     std::map<CKeyID, CKeyMetadata> mapKeyMetadata;
@@ -337,20 +337,20 @@ public:
         return nZeromintPercentage;
     }
 
-    void setZWallet(CzDOGECWallet* zwallet)
+    void setZWallet(CzdogecWallet* zwallet)
     {
         zwalletMain = zwallet;
-        zDOGECTracker = std::unique_ptr<CzDOGECTracker>(new CzDOGECTracker(strWalletFile));
+        zdogecTracker = std::unique_ptr<CzdogecTracker>(new CzdogecTracker(strWalletFile));
     }
 
-    CzDOGECWallet* getZWallet() { return zwalletMain; }
+    CzdogecWallet* getZWallet() { return zwalletMain; }
 
     bool isZeromintEnabled()
     {
         return fEnableZeromint || fEnableAutoConvert;
     }
 
-    void setzDOGECAutoBackups(bool fEnabled)
+    void setzdogecAutoBackups(bool fEnabled)
     {
         fBackupMints = fEnabled;
     }
@@ -685,8 +685,8 @@ public:
     /** MultiSig address added */
     boost::signals2::signal<void(bool fHaveMultiSig)> NotifyMultiSigChanged;
 
-    /** zDOGEC reset */
-    boost::signals2::signal<void()> NotifyzDOGECReset;
+    /** zdogec reset */
+    boost::signals2::signal<void()> NotifyzdogecReset;
 
     /** notify wallet file backed up */
     boost::signals2::signal<void (const bool& fSuccess, const std::string& filename)> NotifyWalletBacked;

@@ -12,7 +12,7 @@
 #include "util.h"
 #include "stakeinput.h"
 #include "utilmoneystr.h"
-#include "zDOGECchain.h"
+#include "zdogecchain.h"
 
 using namespace std;
 
@@ -366,7 +366,7 @@ bool CheckProofOfStake(const CBlock block, uint256& hashProofOfStake, std::uniqu
         if (spend.getSpendType() != libzerocoin::SpendType::STAKE)
             return error("%s: spend is using the wrong SpendType (%d)", __func__, (int)spend.getSpendType());
 
-        stake = std::unique_ptr<CStakeInput>(new CzDOGECStake(spend));
+        stake = std::unique_ptr<CStakeInput>(new CzdogecStake(spend));
     } else {
         // First try finding the previous transaction in database
         uint256 hashBlock;

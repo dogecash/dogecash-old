@@ -39,8 +39,8 @@ public:
         ToggleLock,     /** Toggle wallet lock state */
         ChangePass,     /** Change passphrase */
         Send_DOGEC,       /** Send DOGEC */
-        Send_zDOGEC,      /** Send zDOGEC */
-        Mint_zDOGEC,      /** Mint zDOGEC */
+        Send_zdogec,      /** Send zdogec */
+        Mint_zdogec,      /** Mint zdogec */
         BIP_38,         /** BIP38 menu */
         Multi_Sig,      /** Multi-Signature dialog */
         Sign_Message,   /** Sign/verify message dialog */

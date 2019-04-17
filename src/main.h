@@ -20,7 +20,7 @@
 #include "pow.h"
 #include "primitives/block.h"
 #include "primitives/transaction.h"
-#include "zDOGEC/zerocoin.h"
+#include "zdogec/zerocoin.h"
 #include "script/script.h"
 #include "script/sigcache.h"
 #include "script/standard.h"
@@ -129,7 +129,7 @@ static const unsigned char REJECT_DUST = 0x41;
 static const unsigned char REJECT_INSUFFICIENTFEE = 0x42;
 static const unsigned char REJECT_CHECKPOINT = 0x43;
 
-/** zDOGEC precomputing variables
+/** zdogec precomputing variables
  * Set the number of included blocks to precompute per cycle. */
 static const int DEFAULT_PRECOMPUTE_LENGTH = 1000;
 static const int MIN_PRECOMPUTE_LENGTH = 500;
@@ -241,7 +241,7 @@ bool GetTransaction(const uint256& hash, CTransaction& tx, uint256& hashBlock, b
 
 // ***TODO***
 double ConvertBitsToDouble(unsigned int nBits);
-int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount, bool iszDOGECStake);
+int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount, bool iszdogecStake);
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock, bool fProofOfStake);
 
 bool ActivateBestChain(CValidationState& state, CBlock* pblock = NULL, bool fAlreadyChecked = false);
@@ -364,8 +364,8 @@ bool IsTransactionInChain(const uint256& txId, int& nHeightTx);
 bool IsBlockHashInChain(const uint256& hashBlock);
 bool ValidOutPoint(const COutPoint out, int nHeight);
 void AddWrappedSerialsInflation();
-void RecalculatezDOGECSpent();
-void RecalculatezDOGECMinted();
+void RecalculatezdogecSpent();
+void RecalculatezdogecMinted();
 bool RecalculateDOGECSupply(int nHeightStart);
 bool ReindexAccumulators(list<uint256>& listMissingCheckpoints, string& strError);
 

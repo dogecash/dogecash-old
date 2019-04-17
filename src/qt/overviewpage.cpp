@@ -147,7 +147,7 @@ OverviewPage::~OverviewPage()
     delete ui;
 }
 
-void OverviewPage::getPercentage(CAmount nUnlockedBalance, CAmount nZerocoinBalance, QString& sDOGECPercentage, QString& szDOGECPercentage)
+void OverviewPage::getPercentage(CAmount nUnlockedBalance, CAmount nZerocoinBalance, QString& sDOGECPercentage, QString& szdogecPercentage)
 {
     int nPrecision = 2;
     double dzPercentage = 0.0;
@@ -166,7 +166,7 @@ void OverviewPage::getPercentage(CAmount nUnlockedBalance, CAmount nZerocoinBala
 
     double dPercentage = 100.0 - dzPercentage;
 
-    szDOGECPercentage = "(" + QLocale(QLocale::system()).toString(dzPercentage, 'f', nPrecision) + " %)";
+    szdogecPercentage = "(" + QLocale(QLocale::system()).toString(dzPercentage, 'f', nPrecision) + " %)";
     sDOGECPercentage = "(" + QLocale(QLocale::system()).toString(dPercentage, 'f', nPrecision) + " %)";
 
 }
@@ -201,7 +201,7 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     CAmount nTotalWatchBalance = watchOnlyBalance + watchUnconfBalance;
     CAmount nAvailableWatchBalance = watchOnlyBalance - watchImmatureBalance - nWatchOnlyLockedBalance;
 
-    // zDOGEC Balance
+    // zdogec Balance
     CAmount matureZerocoinBalance = zerocoinBalance - unconfirmedZerocoinBalance - immatureZerocoinBalance;
 
     // Percentages
@@ -226,7 +226,7 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     ui->labelWatchLocked->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, nWatchOnlyLockedBalance, false, BitcoinUnits::separatorAlways));
     ui->labelWatchTotal->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, nTotalWatchBalance, false, BitcoinUnits::separatorAlways));
 
-    // zDOGEC labels
+    // zdogec labels
     ui->labelzBalance->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, zerocoinBalance, false, BitcoinUnits::separatorAlways));
     ui->labelzBalanceUnconfirmed->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedZerocoinBalance, false, BitcoinUnits::separatorAlways));
     ui->labelzBalanceMature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, matureZerocoinBalance, false, BitcoinUnits::separatorAlways));
@@ -238,10 +238,10 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
 
     // Percentage labels
     ui->labelDOGECPercent->setText(sPercentage);
-    ui->labelzDOGECPercent->setText(szPercentage);
+    ui->labelzdogecPercent->setText(szPercentage);
 
     // Adjust bubble-help according to AutoMint settings
-    QString automintHelp = tr("Current percentage of zDOGEC.\nIf AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).\n");
+    QString automintHelp = tr("Current percentage of zdogec.\nIf AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).\n");
     bool fEnableZeromint = GetBoolArg("-enablezeromint", true);
     int nZeromintPercentage = GetArg("-zeromintpercentage", 10);
     if (fEnableZeromint) {
@@ -290,21 +290,21 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     ui->labelLockedBalance->setVisible(showDOGECLocked || showWatchOnlyDOGECLocked);
     ui->labelWatchLocked->setVisible(showWatchOnlyDOGECLocked && showWatchOnly);
 
-    // zDOGEC
-    bool showzDOGECAvailable = settingShowAllBalances || zerocoinBalance != matureZerocoinBalance;
-    bool showzDOGECUnconfirmed = settingShowAllBalances || unconfirmedZerocoinBalance != 0;
-    bool showzDOGECImmature = settingShowAllBalances || immatureZerocoinBalance != 0;
-    ui->labelzBalanceMature->setVisible(showzDOGECAvailable);
-    ui->labelzBalanceMatureText->setVisible(showzDOGECAvailable);
-    ui->labelzBalanceUnconfirmed->setVisible(showzDOGECUnconfirmed);
-    ui->labelzBalanceUnconfirmedText->setVisible(showzDOGECUnconfirmed);
-    ui->labelzBalanceImmature->setVisible(showzDOGECImmature);
-    ui->labelzBalanceImmatureText->setVisible(showzDOGECImmature);
+    // zdogec
+    bool showzdogecAvailable = settingShowAllBalances || zerocoinBalance != matureZerocoinBalance;
+    bool showzdogecUnconfirmed = settingShowAllBalances || unconfirmedZerocoinBalance != 0;
+    bool showzdogecImmature = settingShowAllBalances || immatureZerocoinBalance != 0;
+    ui->labelzBalanceMature->setVisible(showzdogecAvailable);
+    ui->labelzBalanceMatureText->setVisible(showzdogecAvailable);
+    ui->labelzBalanceUnconfirmed->setVisible(showzdogecUnconfirmed);
+    ui->labelzBalanceUnconfirmedText->setVisible(showzdogecUnconfirmed);
+    ui->labelzBalanceImmature->setVisible(showzdogecImmature);
+    ui->labelzBalanceImmatureText->setVisible(showzdogecImmature);
 
     // Percent split
     bool showPercentages = ! (zerocoinBalance == 0 && nTotalBalance == 0);
     ui->labelDOGECPercent->setVisible(showPercentages);
-    ui->labelzDOGECPercent->setVisible(showPercentages);
+    ui->labelzdogecPercent->setVisible(showPercentages);
 
     static int cachedTxLocks = 0;
 

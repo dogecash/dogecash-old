@@ -7,7 +7,7 @@
 
 #include "wallet/wallet.h"
 
-#include "zDOGEC/accumulators.h"
+#include "zdogec/accumulators.h"
 #include "base58.h"
 #include "checkpoints.h"
 #include "coincontrol.h"
@@ -28,16 +28,16 @@
 
 #include "denomination_functions.h"
 #include "libzerocoin/Denominations.h"
-#include "zDOGEC/zdogecwallet.h"
-#include "zDOGEC/zdogectracker.h"
-#include "zDOGEC/deterministicmint.h"
+#include "zdogec/zdogecwallet.h"
+#include "zdogec/zdogectracker.h"
+#include "zdogec/deterministicmint.h"
 #include <assert.h>
 
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/thread.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
-#include <zDOGEC/witness.h>
+#include <zdogec/witness.h>
 
 using namespace std;
 
@@ -798,7 +798,7 @@ bool CWallet::IsUsed(const CBitcoinAddress address) const
 
 bool CWallet::IsMyZerocoinSpend(const CBigNum& bnSerial) const
 {
-    return zDOGECTracker->HasSerial(bnSerial);
+    return zdogecTracker->HasSerial(bnSerial);
 }
 
 CAmount CWallet::GetDebit(const CTxIn& txin, const isminefilter& filter) const
@@ -1457,9 +1457,9 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate)
 {
     int ret = 0;
     int64_t nNow = GetTime();
-    bool fCheckzDOGEC = GetBoolArg("-zapwallettxes", false);
-    if (fCheckzDOGEC)
-        zDOGECTracker->Init();
+    bool fCheckzdogec = GetBoolArg("-zapwallettxes", false);
+    if (fCheckzdogec)
+        zdogecTracker->Init();
 
     CBlockIndex* pindex = pindexStart;
     {
@@ -1485,8 +1485,8 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate)
                     ret++;
             }
 
-            //If this is a zapwallettx, need to readd zDOGEC
-            if (fCheckzDOGEC && pindex->nHeight >= Params().Zerocoin_StartHeight()) {
+            //If this is a zapwallettx, need to readd zdogec
+            if (fCheckzdogec && pindex->nHeight >= Params().Zerocoin_StartHeight()) {
                 list<CZerocoinMint> listMints;
                 BlockToZerocoinMintList(block, listMints, true);
 
@@ -1669,7 +1669,7 @@ CAmount CWallet::GetZerocoinBalance(bool fMatureOnly) const
         nLastMaturityCheck = chainActive.Height();
 
         CAmount nBalance = 0;
-        vector<CMintMeta> vMints = zDOGECTracker->GetMints(true);
+        vector<CMintMeta> vMints = zdogecTracker->GetMints(true);
         for (auto meta : vMints) {
             if (meta.nHeight >= mapMintMaturity.at(meta.denom) || meta.nHeight >= chainActive.Height() || meta.nHeight == 0)
                 continue;
@@ -1678,7 +1678,7 @@ CAmount CWallet::GetZerocoinBalance(bool fMatureOnly) const
         return nBalance;
     }
 
-    return zDOGECTracker->GetBalance(false, false);
+    return zdogecTracker->GetBalance(false, false);
 }
 
 CAmount CWallet::GetImmatureZerocoinBalance() const
@@ -1688,7 +1688,7 @@ CAmount CWallet::GetImmatureZerocoinBalance() const
 
 CAmount CWallet::GetUnconfirmedZerocoinBalance() const
 {
-    return zDOGECTracker->GetUnconfirmedBalance();
+    return zdogecTracker->GetUnconfirmedBalance();
 }
 
 CAmount CWallet::GetUnlockedCoins() const
@@ -1735,7 +1735,7 @@ std::map<libzerocoin::CoinDenomination, CAmount> CWallet::GetMyZerocoinDistribut
         spread.insert(std::pair<libzerocoin::CoinDenomination, CAmount>(denom, 0));
     {
         LOCK(cs_wallet);
-        set<CMintMeta> setMints = zDOGECTracker->ListMints(true, true, true);
+        set<CMintMeta> setMints = zdogecTracker->ListMints(true, true, true);
         for (auto& mint : setMints)
             spread.at(mint.denom)++;
     }
@@ -2149,9 +2149,9 @@ bool CWallet::SelectStakeCoins(std::list<std::unique_ptr<CStakeInput> >& listInp
         }
     }
 
-    //zDOGEC
-    if ((GetBoolArg("-zDOGECstake", true) || fPrecompute) && chainActive.Height() > Params().Zerocoin_Block_V2_Start() && !IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) {
-        //Only update zDOGEC set once per update interval
+    //zdogec
+    if ((GetBoolArg("-zdogecstake", true) || fPrecompute) && chainActive.Height() > Params().Zerocoin_Block_V2_Start() && !IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) {
+        //Only update zdogec set once per update interval
         bool fUpdate = false;
         static int64_t nTimeLastUpdate = 0;
         if (GetAdjustedTime() - nTimeLastUpdate > nStakeSetUpdateTime) {
@@ -2159,7 +2159,7 @@ bool CWallet::SelectStakeCoins(std::list<std::unique_ptr<CStakeInput> >& listInp
             nTimeLastUpdate = GetAdjustedTime();
         }
 
-        set<CMintMeta> setMints = zDOGECTracker->ListMints(true, true, fUpdate);
+        set<CMintMeta> setMints = zdogecTracker->ListMints(true, true, fUpdate);
         for (auto meta : setMints) {
             if (meta.hashStake == 0) {
                 CZerocoinMint mint;
@@ -2167,13 +2167,13 @@ bool CWallet::SelectStakeCoins(std::list<std::unique_ptr<CStakeInput> >& listInp
                     uint256 hashStake = mint.GetSerialNumber().getuint256();
                     hashStake = Hash(hashStake.begin(), hashStake.end());
                     meta.hashStake = hashStake;
-                    zDOGECTracker->UpdateState(meta);
+                    zdogecTracker->UpdateState(meta);
                 }
             }
             if (meta.nVersion < CZerocoinMint::STAKABLE_VERSION)
                 continue;
             if (meta.nHeight < chainActive.Height() - Params().Zerocoin_RequiredStakeDepth()) {
-                std::unique_ptr<CzDOGECStake> input(new CzDOGECStake(meta.denom, meta.hashStake));
+                std::unique_ptr<CzdogecStake> input(new CzdogecStake(meta.denom, meta.hashStake));
                 listInputs.emplace_back(std::move(input));
             }
         }
@@ -2186,7 +2186,7 @@ bool CWallet::MintableCoins()
 {
     LOCK(cs_main);
     CAmount nBalance = GetBalance();
-    CAmount nzDOGECBalance = GetZerocoinBalance(false);
+    CAmount nzdogecBalance = GetZerocoinBalance(false);
 
     // Regular DOGEC
     if (nBalance > 0) {
@@ -2211,9 +2211,9 @@ bool CWallet::MintableCoins()
         }
     }
 
-    // zDOGEC
-    if (nzDOGECBalance > 0) {
-        set<CMintMeta> setMints = zDOGECTracker->ListMints(true, true, true);
+    // zdogec
+    if (nzdogecBalance > 0) {
+        set<CMintMeta> setMints = zdogecTracker->ListMints(true, true, true);
         for (auto mint : setMints) {
             if (mint.nVersion < CZerocoinMint::STAKABLE_VERSION)
                 continue;
@@ -3060,7 +3060,7 @@ bool CWallet::CreateCoinStake(
             txNew.vout.insert(txNew.vout.end(), vout.begin(), vout.end());
 
             CAmount nMinFee = 0;
-            if (!stakeInput->IszDOGEC()) {
+            if (!stakeInput->Iszdogec()) {
                 // Set output amount
                 if (txNew.vout.size() == 3) {
                     txNew.vout[1].nValue = ((nCredit - nMinFee) / 2 / CENT) * CENT;
@@ -3075,10 +3075,10 @@ bool CWallet::CreateCoinStake(
                 return error("CreateCoinStake : exceeded coinstake size limit");
 
             //Masternode payment
-            FillBlockPayee(txNew, nMinFee, true, stakeInput->IszDOGEC());
+            FillBlockPayee(txNew, nMinFee, true, stakeInput->Iszdogec());
 
             {
-                TRY_LOCK(zDOGECTracker->cs_spendcache, fLocked);
+                TRY_LOCK(zdogecTracker->cs_spendcache, fLocked);
                 if (!fLocked)
                     continue;
 
@@ -3094,8 +3094,8 @@ bool CWallet::CreateCoinStake(
             }
 
             //Mark mints as spent
-            if (stakeInput->IszDOGEC()) {
-                CzDOGECStake* z = (CzDOGECStake*)stakeInput.get();
+            if (stakeInput->Iszdogec()) {
+                CzdogecStake* z = (CzdogecStake*)stakeInput.get();
                 if (!z->MarkSpent(this, txNew.GetHash()))
                     return error("%s: failed to mark mint as used\n", __func__);
             }
@@ -3131,13 +3131,13 @@ bool CWallet::CreateCoinStake(
                 return error("%s: extracting pubcoin from txout failed", __func__);
 
             uint256 hashPubcoin = GetPubCoinHash(pubcoin.getValue());
-            if (!zDOGECTracker->HasPubcoinHash(hashPubcoin))
+            if (!zdogecTracker->HasPubcoinHash(hashPubcoin))
                 return error("%s: could not find pubcoinhash %s in tracker", __func__, hashPubcoin.GetHex());
 
-            CMintMeta meta = zDOGECTracker->GetMetaFromPubcoin(hashPubcoin);
+            CMintMeta meta = zdogecTracker->GetMetaFromPubcoin(hashPubcoin);
             meta.txid = txNew.GetHash();
             meta.nHeight = chainActive.Height() + 1;
-            if (!zDOGECTracker->UpdateState(meta))
+            if (!zdogecTracker->UpdateState(meta))
                 return error("%s: failed to update metadata in tracker", __func__);
         }
     }
@@ -4081,7 +4081,7 @@ void CWallet::CreateAutoMintTransaction(const CAmount& nMintAmount, CCoinControl
         CAmount nZerocoinBalance = GetZerocoinBalance(false);
         CAmount nBalance = GetUnlockedCoins();
         CAmount dPercentage = 100 * (double)nZerocoinBalance / (double)(nZerocoinBalance + nBalance);
-        LogPrintf("CWallet::AutoZeromint() @ block %ld: successfully minted %ld zDOGEC. Current percentage of zDOGEC: %lf%%\n",
+        LogPrintf("CWallet::AutoZeromint() @ block %ld: successfully minted %ld zdogec. Current percentage of zdogec: %lf%%\n",
                   chainActive.Tip()->nHeight, nMintAmount, dPercentage);
         // Re-adjust startup time to delay next Automint for 5 minutes
         nStartupTime = GetAdjustedTime();
@@ -4124,29 +4124,29 @@ void CWallet::AutoZeromint()
     CAmount nMintAmount = 0;
     CAmount nToMintAmount = 0;
 
-    // zDOGEC are integers > 0, so we can't mint 10% of 9 DOGEC
+    // zdogec are integers > 0, so we can't mint 10% of 9 DOGEC
     if (nBalance < 10){
-        LogPrint("zero", "CWallet::AutoZeromint(): available balance (%ld) too small for minting zDOGEC\n", nBalance);
+        LogPrint("zero", "CWallet::AutoZeromint(): available balance (%ld) too small for minting zdogec\n", nBalance);
         return;
     }
 
-    // Percentage of zDOGEC we already have
+    // Percentage of zdogec we already have
     double dPercentage = 100 * (double)nZerocoinBalance / (double)(nZerocoinBalance + nBalance);
 
     // Check if minting is actually needed
     if(dPercentage >= nZeromintPercentage){
-        LogPrint("zero", "CWallet::AutoZeromint() @block %ld: percentage of existing zDOGEC (%lf%%) already >= configured percentage (%d%%). No minting needed...\n",
+        LogPrint("zero", "CWallet::AutoZeromint() @block %ld: percentage of existing zdogec (%lf%%) already >= configured percentage (%d%%). No minting needed...\n",
                   chainActive.Tip()->nHeight, dPercentage, nZeromintPercentage);
         return;
     }
 
-    // zDOGEC amount needed for the target percentage
+    // zdogec amount needed for the target percentage
     nToMintAmount = ((nZerocoinBalance + nBalance) * nZeromintPercentage / 100);
 
-    // zDOGEC amount missing from target (must be minted)
+    // zdogec amount missing from target (must be minted)
     nToMintAmount = (nToMintAmount - nZerocoinBalance) / COIN;
 
-    // Use the biggest denomination smaller than the needed zDOGEC We'll only mint exact denomination to make minting faster.
+    // Use the biggest denomination smaller than the needed zdogec We'll only mint exact denomination to make minting faster.
     // Exception: for big amounts use 6666 (6666 = 1*5000 + 1*1000 + 1*500 + 1*100 + 1*50 + 1*10 + 1*5 + 1) to create all
     // possible denominations to avoid having 5000 denominations only.
     // If a preferred denomination is used (means nPreferredDenom != 0) do nothing until we have enough DOGEC to mint this denomination
@@ -4563,11 +4563,11 @@ bool CWallet::GetZerocoinKey(const CBigNum& bnSerial, CKey& key)
     return mint.GetKeyPair(key);
 }
 
-bool CWallet::CreatezDOGECOutPut(libzerocoin::CoinDenomination denomination, CTxOut& outMint, CDeterministicMint& dMint)
+bool CWallet::CreatezdogecOutPut(libzerocoin::CoinDenomination denomination, CTxOut& outMint, CDeterministicMint& dMint)
 {
     // mint a new coin (create Pedersen Commitment) and extract PublicCoin that is shareable from it
     libzerocoin::PrivateCoin coin(Params().Zerocoin_Params(false), denomination, false);
-    zwalletMain->GenerateDeterministiczDOGEC(denomination, coin, dMint);
+    zwalletMain->GenerateDeterministiczdogec(denomination, coin, dMint);
 
     libzerocoin::PublicCoin pubCoin = coin.getPublicCoin();
 
@@ -4612,8 +4612,8 @@ bool CWallet::CreateZerocoinMintTransaction(const CAmount nValue, CMutableTransa
 
         CTxOut outMint;
         CDeterministicMint dMint;
-        if (!CreatezDOGECOutPut(denomination, outMint, dMint)) {
-            strFailReason = strprintf("%s: failed to create new zDOGEC output", __func__);
+        if (!CreatezdogecOutPut(denomination, outMint, dMint)) {
+            strFailReason = strprintf("%s: failed to create new zdogec output", __func__);
             return error(strFailReason.c_str());
         }
         txNew.vout.push_back(outMint);
@@ -4661,7 +4661,7 @@ bool CWallet::CreateZerocoinMintTransaction(const CAmount nValue, CMutableTransa
             reservekey->ReturnKey();
     }
 
-    // Sign if these are dogecash outputs - NOTE that zDOGEC outputs are signed later in SoK
+    // Sign if these are dogecash outputs - NOTE that zdogec outputs are signed later in SoK
     if (!isZCSpendChange) {
         int nIn = 0;
         for (const std::pair<const CWalletTx*, unsigned int>& coin : setCoins) {
@@ -4678,20 +4678,20 @@ bool CWallet::CreateZerocoinMintTransaction(const CAmount nValue, CMutableTransa
 bool CWallet::CheckCoinSpend(libzerocoin::CoinSpend& spend, libzerocoin::Accumulator& accumulator, CZerocoinSpendReceipt& receipt)
 {
     if (!spend.Verify(accumulator)) {
-        receipt.SetStatus(_("The transaction did not verify"), zDOGEC_BAD_SERIALIZATION);
+        receipt.SetStatus(_("The transaction did not verify"), zdogec_BAD_SERIALIZATION);
         return error("%s : The transaction did not verify", __func__);
     }
 
     if (Params().NetworkID() != CBaseChainParams::REGTEST && IsSerialKnown(spend.getCoinSerialNumber())) {
-        //Tried to spend an already spent zDOGEC
-        receipt.SetStatus(_("The coin spend has been used"), zDOGEC_SPENT_USED_zDOGEC);
+        //Tried to spend an already spent zdogec
+        receipt.SetStatus(_("The coin spend has been used"), zdogec_SPENT_USED_zdogec);
         uint256 hashSerial = GetSerialHash(spend.getCoinSerialNumber());
-        if(!zDOGECTracker->HasSerialHash(hashSerial))
+        if(!zdogecTracker->HasSerialHash(hashSerial))
             return error("%s: serialhash %s not found in tracker", __func__, hashSerial.GetHex());
 
-        CMintMeta meta = zDOGECTracker->Get(hashSerial);
+        CMintMeta meta = zdogecTracker->Get(hashSerial);
         meta.isUsed = true;
-        if (!zDOGECTracker->UpdateState(meta))
+        if (!zdogecTracker->UpdateState(meta))
             LogPrintf("%s: failed to write zerocoinmint\n", __func__);
 
         return false;
@@ -4717,14 +4717,14 @@ bool CWallet::MintsToInputVector(std::map<CBigNum, CZerocoinMint>& mapMintsSelec
                          CZerocoinSpendReceipt& receipt, libzerocoin::SpendType spendType, CBlockIndex* pindexCheckpoint)
 {
     // Default error status if not changed below
-    receipt.SetStatus(_("Transaction Mint Started"), zDOGEC_TXMINT_GENERAL);
+    receipt.SetStatus(_("Transaction Mint Started"), zdogec_TXMINT_GENERAL);
     libzerocoin::ZerocoinParams* paramsAccumulator = Params().Zerocoin_Params(false);
     AccumulatorMap mapAccumulators(paramsAccumulator);
     int64_t nTimeStart = GetTimeMicros();
 
     int nLockAttempts = 0;
     while (nLockAttempts < 100) {
-        TRY_LOCK(zDOGECTracker->cs_spendcache, lockSpendcache);
+        TRY_LOCK(zdogecTracker->cs_spendcache, lockSpendcache);
         if (!lockSpendcache) {
             fGlobalUnlockSpendCache = true;
             MilliSleep(100);
@@ -4734,8 +4734,8 @@ bool CWallet::MintsToInputVector(std::map<CBigNum, CZerocoinMint>& mapMintsSelec
 
         for (auto &it : mapMintsSelected) {
             CZerocoinMint mint = it.second;
-            CMintMeta meta = zDOGECTracker->Get(GetSerialHash(mint.GetSerialNumber()));
-            CoinWitnessData *coinWitness = zDOGECTracker->GetSpendCache(meta.hashStake);
+            CMintMeta meta = zdogecTracker->Get(GetSerialHash(mint.GetSerialNumber()));
+            CoinWitnessData *coinWitness = zdogecTracker->GetSpendCache(meta.hashStake);
 
             if (!coinWitness->nHeightAccEnd) {
                 *coinWitness = CoinWitnessData(mint);
@@ -4745,7 +4745,7 @@ bool CWallet::MintsToInputVector(std::map<CBigNum, CZerocoinMint>& mapMintsSelec
             // Generate the witness for each mint being spent
             if (!GenerateAccumulatorWitness(coinWitness, mapAccumulators, pindexCheckpoint)) {
                 receipt.SetStatus(_("Couldn't generate the accumulator witness"),
-                                  zDOGEC_FAILED_ACCUMULATOR_INITIALIZATION);
+                                  zdogec_FAILED_ACCUMULATOR_INITIALIZATION);
                 return error("%s : %s", __func__, receipt.GetStatusMessage());
             }
 
@@ -4765,7 +4765,7 @@ bool CWallet::MintsToInputVector(std::map<CBigNum, CZerocoinMint>& mapMintsSelec
             if (nVersion >= libzerocoin::PrivateCoin::PUBKEY_VERSION) {
                 CKey key;
                 if (!mint.GetKeyPair(key))
-                    return error("%s: failed to set zDOGEC privkey mint version=%d", __func__, nVersion);
+                    return error("%s: failed to set zdogec privkey mint version=%d", __func__, nVersion);
                 privateCoin.setPrivKey(key.GetPrivKey());
             }
             int64_t nTime3 = GetTimeMicros();
@@ -4785,7 +4785,7 @@ bool CWallet::MintsToInputVector(std::map<CBigNum, CZerocoinMint>& mapMintsSelec
                                              *coinWitness->pWitness, hashTxOut, spendType);
 
                 if (!CheckCoinSpend(spend, accumulator, receipt)) {
-                    receipt.SetStatus(_("CoinSpend: failed check"), zDOGEC_SPEND_ERROR);
+                    receipt.SetStatus(_("CoinSpend: failed check"), zdogec_SPEND_ERROR);
                     return error("%s : %s", __func__, receipt.GetStatusMessage());
                 }
 
@@ -4798,7 +4798,7 @@ bool CWallet::MintsToInputVector(std::map<CBigNum, CZerocoinMint>& mapMintsSelec
                 int64_t nTime5 = GetTimeMicros();
                 LogPrint("bench", "        - CoinSpend verified in %.2fms\n", 0.001 * (nTime5 - nTime4));
             } catch (const std::exception &) {
-                receipt.SetStatus(_("CoinSpend: Accumulator witness does not verify"), zDOGEC_INVALID_WITNESS);
+                receipt.SetStatus(_("CoinSpend: Accumulator witness does not verify"), zdogec_INVALID_WITNESS);
                 return error("%s : %s", __func__, receipt.GetStatusMessage());
             }
         }
@@ -4807,14 +4807,14 @@ bool CWallet::MintsToInputVector(std::map<CBigNum, CZerocoinMint>& mapMintsSelec
 
     if (nLockAttempts == 100) {
         LogPrintf("%s : could not get lock on cs_spendcache\n", __func__);
-        receipt.SetStatus(_("could not get lock on cs_spendcache"), zDOGEC_TXMINT_GENERAL);
+        receipt.SetStatus(_("could not get lock on cs_spendcache"), zdogec_TXMINT_GENERAL);
         return false;
     }
 
     int64_t nTimeFinished = GetTimeMicros();
     LogPrint("bench", "    - %s took %.2fms [%.3fms/spend]\n", __func__, 0.001 * (nTimeFinished - nTimeStart), 0.001 * (nTimeFinished - nTimeStart) / mapMintsSelected.size());
 
-    receipt.SetStatus(_("Spend Valid"), zDOGEC_SPEND_OKAY); // Everything okay
+    receipt.SetStatus(_("Spend Valid"), zdogec_SPEND_OKAY); // Everything okay
 
     return true;
 }
@@ -4822,19 +4822,19 @@ bool CWallet::MintsToInputVector(std::map<CBigNum, CZerocoinMint>& mapMintsSelec
 bool CWallet::CreateZerocoinSpendTransaction(CAmount nValue, CWalletTx& wtxNew, CReserveKey& reserveKey, CZerocoinSpendReceipt& receipt, vector<CZerocoinMint>& vSelectedMints, vector<CDeterministicMint>& vNewMints, bool fMintChange,  bool fMinimizeChange, CBitcoinAddress* address)
 {
     // Check available funds
-    int nStatus = zDOGEC_TRX_FUNDS_PROBLEMS;
+    int nStatus = zdogec_TRX_FUNDS_PROBLEMS;
     if (nValue > GetZerocoinBalance(true)) {
         receipt.SetStatus(_("You don't have enough Zerocoins in your wallet"), nStatus);
         return false;
     }
 
     if (nValue < 1) {
-        receipt.SetStatus(_("Value is below the smallest available denomination (= 1) of zDOGEC"), nStatus);
+        receipt.SetStatus(_("Value is below the smallest available denomination (= 1) of zdogec"), nStatus);
         return false;
     }
 
     // Create transaction
-    nStatus = zDOGEC_TRX_CREATE;
+    nStatus = zdogec_TRX_CREATE;
 
     // If not already given pre-selected mints, then select mints from the wallet
     CWalletDB walletdb(pwalletMain->strWalletFile);
@@ -4842,10 +4842,10 @@ bool CWallet::CreateZerocoinSpendTransaction(CAmount nValue, CWalletTx& wtxNew, 
     CAmount nValueSelected = 0;
     int nCoinsReturned = 0; // Number of coins returned in change from function below (for debug)
     int nNeededSpends = 0;  // Number of spends which would be needed if selection failed
-    const int nMaxSpends = Params().Zerocoin_MaxSpendsPerTransaction(); // Maximum possible spends for one zDOGEC transaction
+    const int nMaxSpends = Params().Zerocoin_MaxSpendsPerTransaction(); // Maximum possible spends for one zdogec transaction
     vector<CMintMeta> vMintsToFetch;
     if (vSelectedMints.empty()) {
-        setMints = zDOGECTracker->ListMints(true, true, true); // need to find mints to spend
+        setMints = zdogecTracker->ListMints(true, true, true); // need to find mints to spend
         if(setMints.empty()) {
             receipt.SetStatus(_("Failed to find Zerocoins in wallet.dat"), nStatus);
             return false;
@@ -4858,7 +4858,7 @@ bool CWallet::CreateZerocoinSpendTransaction(CAmount nValue, CWalletTx& wtxNew, 
         if(!fWholeNumber)
             nValueToSelect = static_cast<CAmount>(ceil(dValue) * COIN);
 
-        // Select the zDOGEC mints to use in this spend
+        // Select the zdogec mints to use in this spend
         std::map<libzerocoin::CoinDenomination, CAmount> DenomMap = GetMyZerocoinDistribution();
         list<CMintMeta> listMints(setMints.begin(), setMints.end());
         vMintsToFetch = SelectMintsFromList(nValueToSelect, nValueSelected, nMaxSpends, fMinimizeChange,
@@ -4891,12 +4891,12 @@ bool CWallet::CreateZerocoinSpendTransaction(CAmount nValue, CWalletTx& wtxNew, 
         if (IsSerialInBlockchain(mint.GetSerialNumber(), nHeightSpend)) {
             receipt.SetStatus(_("Trying to spend an already spent serial #, try again."), nStatus);
             uint256 hashSerial = GetSerialHash(mint.GetSerialNumber());
-            if (!zDOGECTracker->HasSerialHash(hashSerial))
+            if (!zdogecTracker->HasSerialHash(hashSerial))
                 return error("%s: tracker does not have serialhash %s", __func__, hashSerial.GetHex());
 
-            CMintMeta meta = zDOGECTracker->Get(hashSerial);
+            CMintMeta meta = zdogecTracker->Get(hashSerial);
             meta.isUsed = true;
-            zDOGECTracker->UpdateState(meta);
+            zdogecTracker->UpdateState(meta);
 
             return false;
         }
@@ -4940,7 +4940,7 @@ bool CWallet::CreateZerocoinSpendTransaction(CAmount nValue, CWalletTx& wtxNew, 
     }
 
     // Create change if needed
-    nStatus = zDOGEC_TRX_CHANGE;
+    nStatus = zdogec_TRX_CHANGE;
 
     CMutableTransaction txNew;
     wtxNew.BindWallet(this);
@@ -5017,7 +5017,7 @@ bool CWallet::CreateZerocoinSpendTransaction(CAmount nValue, CWalletTx& wtxNew, 
             // Limit size
             unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
             if (nBytes >= MAX_ZEROCOIN_TX_SIZE) {
-                receipt.SetStatus(_("In rare cases, a spend with 7 coins exceeds our maximum allowable transaction size, please retry spend using 6 or less coins"), zDOGEC_TX_TOO_LARGE);
+                receipt.SetStatus(_("In rare cases, a spend with 7 coins exceeds our maximum allowable transaction size, please retry spend using 6 or less coins"), zdogec_TX_TOO_LARGE);
                 return false;
             }
 
@@ -5039,7 +5039,7 @@ bool CWallet::CreateZerocoinSpendTransaction(CAmount nValue, CWalletTx& wtxNew, 
         }
     }
 
-    receipt.SetStatus(_("Transaction Created"), zDOGEC_SPEND_OKAY); // Everything okay
+    receipt.SetStatus(_("Transaction Created"), zdogec_SPEND_OKAY); // Everything okay
 
     return true;
 }
@@ -5050,7 +5050,7 @@ string CWallet::ResetMintZerocoin()
     long deletions = 0;
     CWalletDB walletdb(pwalletMain->strWalletFile);
 
-    set<CMintMeta> setMints = zDOGECTracker->ListMints(false, false, true);
+    set<CMintMeta> setMints = zdogecTracker->ListMints(false, false, true);
     vector<CMintMeta> vMintsToFind(setMints.begin(), setMints.end());
     vector<CMintMeta> vMintsMissing;
     vector<CMintMeta> vMintsToUpdate;
@@ -5061,17 +5061,17 @@ string CWallet::ResetMintZerocoin()
     // Update the meta data of mints that were marked for updating
     for (CMintMeta meta : vMintsToUpdate) {
         updates++;
-        zDOGECTracker->UpdateState(meta);
+        zdogecTracker->UpdateState(meta);
     }
 
     // Delete any mints that were unable to be located on the blockchain
     for (CMintMeta mint : vMintsMissing) {
         deletions++;
-        if (!zDOGECTracker->Archive(mint))
+        if (!zdogecTracker->Archive(mint))
             LogPrintf("%s: failed to archive mint\n", __func__);
     }
 
-    NotifyzDOGECReset();
+    NotifyzdogecReset();
 
     string strResult = _("ResetMintZerocoin finished: ") + to_string(updates) + _(" mints updated, ") + to_string(deletions) + _(" mints deleted\n");
     return strResult;
@@ -5082,7 +5082,7 @@ string CWallet::ResetSpentZerocoin()
     long removed = 0;
     CWalletDB walletdb(pwalletMain->strWalletFile);
 
-    set<CMintMeta> setMints = zDOGECTracker->ListMints(false, false, true);
+    set<CMintMeta> setMints = zdogecTracker->ListMints(false, false, true);
     list<CZerocoinSpend> listSpends = walletdb.ListSpentCoins();
     list<CZerocoinSpend> listUnconfirmedSpends;
 
@@ -5104,14 +5104,14 @@ string CWallet::ResetSpentZerocoin()
             if (meta.hashSerial == GetSerialHash(spend.GetSerial())) {
                 removed++;
                 meta.isUsed = false;
-                zDOGECTracker->UpdateState(meta);
+                zdogecTracker->UpdateState(meta);
                 walletdb.EraseZerocoinSpendSerialEntry(spend.GetSerial());
                 continue;
             }
         }
     }
 
-    NotifyzDOGECReset();
+    NotifyzdogecReset();
 
     string strResult = _("ResetSpentZerocoin finished: ") + to_string(removed) + _(" unconfirmed transactions removed\n");
     return strResult;
@@ -5154,10 +5154,10 @@ void CWallet::ReconsiderZerocoins(std::list<CZerocoinMint>& listMintsRestored, s
         mint.SetHeight(nHeight);
         mint.SetUsed(IsSerialInBlockchain(mint.GetSerialNumber(), nHeight));
 
-        if (!zDOGECTracker->UnArchive(hashPubcoin, false)) {
+        if (!zdogecTracker->UnArchive(hashPubcoin, false)) {
             LogPrintf("%s : failed to unarchive mint %s\n", __func__, mint.GetValue().GetHex());
         } else {
-            zDOGECTracker->UpdateZerocoinMint(mint);
+            zdogecTracker->UpdateZerocoinMint(mint);
         }
         listMintsRestored.emplace_back(mint);
     }
@@ -5173,39 +5173,39 @@ void CWallet::ReconsiderZerocoins(std::list<CZerocoinMint>& listMintsRestored, s
         uint256 txidSpend;
         dMint.SetUsed(IsSerialInBlockchain(dMint.GetSerialHash(), nHeight, txidSpend));
 
-        if (!zDOGECTracker->UnArchive(dMint.GetPubcoinHash(), true)) {
+        if (!zdogecTracker->UnArchive(dMint.GetPubcoinHash(), true)) {
             LogPrintf("%s : failed to unarchive deterministic mint %s\n", __func__, dMint.GetPubcoinHash().GetHex());
         } else {
-            zDOGECTracker->Add(dMint, true);
+            zdogecTracker->Add(dMint, true);
         }
         listDMintsRestored.emplace_back(dMint);
     }
 }
 
-string CWallet::GetUniqueWalletBackupName(bool fzDOGECAuto) const
+string CWallet::GetUniqueWalletBackupName(bool fzdogecAuto) const
 {
     stringstream ssDateTime;
     std::string strWalletBackupName = strprintf("%s", DateTimeStrFormat(".%Y-%m-%d-%H-%M", GetTime()));
     ssDateTime << strWalletBackupName;
 
-    return strprintf("wallet%s.dat%s", fzDOGECAuto ? "-autozDOGECbackup" : "", DateTimeStrFormat(".%Y-%m-%d-%H-%M", GetTime()));
+    return strprintf("wallet%s.dat%s", fzdogecAuto ? "-autozdogecbackup" : "", DateTimeStrFormat(".%Y-%m-%d-%H-%M", GetTime()));
 }
 
-void CWallet::zDOGECBackupWallet()
+void CWallet::zdogecBackupWallet()
 {
     filesystem::path backupDir = GetDataDir() / "backups";
     filesystem::path backupPath;
     string strNewBackupName;
 
     for (int i = 0; i < 10; i++) {
-        strNewBackupName = strprintf("wallet-autozDOGECbackup-%d.dat", i);
+        strNewBackupName = strprintf("wallet-autozdogecbackup-%d.dat", i);
         backupPath = backupDir / strNewBackupName;
 
         if (filesystem::exists(backupPath)) {
             //Keep up to 10 backups
             if (i <= 8) {
                 //If the next file backup exists and is newer, then iterate
-                filesystem::path nextBackupPath = backupDir / strprintf("wallet-autozDOGECbackup-%d.dat", i + 1);
+                filesystem::path nextBackupPath = backupDir / strprintf("wallet-autozdogecbackup-%d.dat", i + 1);
                 if (filesystem::exists(nextBackupPath)) {
                     time_t timeThis = filesystem::last_write_time(backupPath);
                     time_t timeNext = filesystem::last_write_time(nextBackupPath);
@@ -5220,7 +5220,7 @@ void CWallet::zDOGECBackupWallet()
                 continue;
             }
             //reset to 0 because name with 9 already used
-            strNewBackupName = strprintf("wallet-autozDOGECbackup-%d.dat", 0);
+            strNewBackupName = strprintf("wallet-autozdogecbackup-%d.dat", 0);
             backupPath = backupDir / strNewBackupName;
             break;
         }
@@ -5230,8 +5230,8 @@ void CWallet::zDOGECBackupWallet()
 
     BackupWallet(*this, backupPath.string());
 
-    if(!GetArg("-zDOGECbackuppath", "").empty()) {
-        filesystem::path customPath(GetArg("-zDOGECbackuppath", ""));
+    if(!GetArg("-zdogecbackuppath", "").empty()) {
+        filesystem::path customPath(GetArg("-zdogecbackuppath", ""));
         filesystem::create_directories(customPath);
 
         if(!customPath.has_extension()) {
@@ -5306,13 +5306,13 @@ string CWallet::MintZerocoin(CAmount nValue, CWalletTx& wtxNew, vector<CDetermin
         CWalletDB walletdb(pwalletMain->strWalletFile);
         for (CDeterministicMint dMint : vDMints) {
             dMint.SetTxHash(wtxNew.GetHash());
-            zDOGECTracker->Add(dMint, true);
+            zdogecTracker->Add(dMint, true);
         }
     }
 
     //Create a backup of the wallet
     if (fBackupMints)
-        zDOGECBackupWallet();
+        zdogecBackupWallet();
 
     return "";
 }
@@ -5320,10 +5320,10 @@ string CWallet::MintZerocoin(CAmount nValue, CWalletTx& wtxNew, vector<CDetermin
 bool CWallet::SpendZerocoin(CAmount nAmount, CWalletTx& wtxNew, CZerocoinSpendReceipt& receipt, vector<CZerocoinMint>& vMintsSelected, bool fMintChange, bool fMinimizeChange, CBitcoinAddress* addressTo)
 {
     // Default: assume something goes wrong. Depending on the problem this gets more specific below
-    int nStatus = zDOGEC_SPEND_ERROR;
+    int nStatus = zdogec_SPEND_ERROR;
 
     if (IsLocked()) {
-        receipt.SetStatus("Error: Wallet locked, unable to create transaction!", zDOGEC_WALLET_LOCKED);
+        receipt.SetStatus("Error: Wallet locked, unable to create transaction!", zdogec_WALLET_LOCKED);
         return false;
     }
 
@@ -5334,24 +5334,24 @@ bool CWallet::SpendZerocoin(CAmount nAmount, CWalletTx& wtxNew, CZerocoinSpendRe
     }
 
     if (fMintChange && fBackupMints)
-        zDOGECBackupWallet();
+        zdogecBackupWallet();
 
     CWalletDB walletdb(pwalletMain->strWalletFile);
     if (!CommitTransaction(wtxNew, reserveKey)) {
         LogPrintf("%s: failed to commit\n", __func__);
-        nStatus = zDOGEC_COMMIT_FAILED;
+        nStatus = zdogec_COMMIT_FAILED;
 
         //reset all mints
         for (CZerocoinMint mint : vMintsSelected) {
             uint256 hashPubcoin = GetPubCoinHash(mint.GetValue());
-            zDOGECTracker->SetPubcoinNotUsed(hashPubcoin);
+            zdogecTracker->SetPubcoinNotUsed(hashPubcoin);
             pwalletMain->NotifyZerocoinChanged(pwalletMain, mint.GetValue().GetHex(), "New", CT_UPDATED);
         }
 
         //erase spends
         for (CZerocoinSpend spend : receipt.GetSpends()) {
             if (!walletdb.EraseZerocoinSpendSerialEntry(spend.GetSerial())) {
-                receipt.SetStatus("Error: It cannot delete coin serial number in wallet", zDOGEC_ERASE_SPENDS_FAILED);
+                receipt.SetStatus("Error: It cannot delete coin serial number in wallet", zdogec_ERASE_SPENDS_FAILED);
             }
 
             //Remove from public zerocoinDB
@@ -5361,7 +5361,7 @@ bool CWallet::SpendZerocoin(CAmount nAmount, CWalletTx& wtxNew, CZerocoinSpendRe
         // erase new mints
         for (auto& dMint : vNewMints) {
             if (!walletdb.EraseDeterministicMint(dMint.GetPubcoinHash())) {
-                receipt.SetStatus("Error: Unable to cannot delete zerocoin mint in wallet", zDOGEC_ERASE_NEW_MINTS_FAILED);
+                receipt.SetStatus("Error: Unable to cannot delete zerocoin mint in wallet", zdogec_ERASE_NEW_MINTS_FAILED);
             }
         }
 
@@ -5373,9 +5373,9 @@ bool CWallet::SpendZerocoin(CAmount nAmount, CWalletTx& wtxNew, CZerocoinSpendRe
     uint256 txidSpend = wtxNew.GetHash();
     for (CZerocoinMint mint : vMintsSelected) {
         uint256 hashPubcoin = GetPubCoinHash(mint.GetValue());
-        zDOGECTracker->SetPubcoinUsed(hashPubcoin, txidSpend);
+        zdogecTracker->SetPubcoinUsed(hashPubcoin, txidSpend);
 
-        CMintMeta metaCheck = zDOGECTracker->GetMetaFromPubcoin(hashPubcoin);
+        CMintMeta metaCheck = zdogecTracker->GetMetaFromPubcoin(hashPubcoin);
         if (!metaCheck.isUsed) {
             receipt.SetStatus("Error, the mint did not get marked as used", nStatus);
             return false;
@@ -5385,10 +5385,10 @@ bool CWallet::SpendZerocoin(CAmount nAmount, CWalletTx& wtxNew, CZerocoinSpendRe
     // write new Mints to db
     for (auto& dMint : vNewMints) {
         dMint.SetTxHash(txidSpend);
-        zDOGECTracker->Add(dMint, true);
+        zdogecTracker->Add(dMint, true);
     }
 
-    receipt.SetStatus("Spend Successful", zDOGEC_SPEND_OKAY);  // When we reach this point spending zDOGEC was successful
+    receipt.SetStatus("Spend Successful", zdogec_SPEND_OKAY);  // When we reach this point spending zdogec was successful
 
     return true;
 }
@@ -5396,18 +5396,18 @@ bool CWallet::SpendZerocoin(CAmount nAmount, CWalletTx& wtxNew, CZerocoinSpendRe
 bool CWallet::GetMintFromStakeHash(const uint256& hashStake, CZerocoinMint& mint)
 {
     CMintMeta meta;
-    if (!zDOGECTracker->GetMetaFromStakeHash(hashStake, meta))
+    if (!zdogecTracker->GetMetaFromStakeHash(hashStake, meta))
         return error("%s: failed to find meta associated with hashStake", __func__);
     return GetMint(meta.hashSerial, mint);
 }
 
 bool CWallet::GetMint(const uint256& hashSerial, CZerocoinMint& mint)
 {
-    if (!zDOGECTracker->HasSerialHash(hashSerial))
+    if (!zdogecTracker->HasSerialHash(hashSerial))
         return error("%s: serialhash %s is not in tracker", __func__, hashSerial.GetHex());
 
     CWalletDB walletdb(strWalletFile);
-    CMintMeta meta = zDOGECTracker->Get(hashSerial);
+    CMintMeta meta = zdogecTracker->Get(hashSerial);
     if (meta.isDeterministic) {
         CDeterministicMint dMint;
         if (!walletdb.ReadDeterministicMint(meta.hashPubcoin, dMint))
@@ -5426,7 +5426,7 @@ bool CWallet::GetMint(const uint256& hashSerial, CZerocoinMint& mint)
 
 bool CWallet::IsMyMint(const CBigNum& bnValue) const
 {
-    if (zDOGECTracker->HasPubcoin(bnValue))
+    if (zdogecTracker->HasPubcoin(bnValue))
         return true;
 
     return zwalletMain->IsInMintPool(bnValue);
@@ -5436,11 +5436,11 @@ bool CWallet::UpdateMint(const CBigNum& bnValue, const int& nHeight, const uint2
 {
     uint256 hashValue = GetPubCoinHash(bnValue);
     CZerocoinMint mint;
-    if (zDOGECTracker->HasPubcoinHash(hashValue)) {
-        CMintMeta meta = zDOGECTracker->GetMetaFromPubcoin(hashValue);
+    if (zdogecTracker->HasPubcoinHash(hashValue)) {
+        CMintMeta meta = zdogecTracker->GetMetaFromPubcoin(hashValue);
         meta.nHeight = nHeight;
         meta.txid = txid;
-        return zDOGECTracker->UpdateState(meta);
+        return zdogecTracker->UpdateState(meta);
     } else {
         //Check if this mint is one that is in our mintpool (a potential future mint from our deterministic generation)
         if (zwalletMain->IsInMintPool(bnValue)) {
@@ -5456,18 +5456,18 @@ bool CWallet::UpdateMint(const CBigNum& bnValue, const int& nHeight, const uint2
 bool CWallet::SetMintUnspent(const CBigNum& bnSerial)
 {
     uint256 hashSerial = GetSerialHash(bnSerial);
-    if (!zDOGECTracker->HasSerialHash(hashSerial))
+    if (!zdogecTracker->HasSerialHash(hashSerial))
         return error("%s: did not find mint", __func__);
 
-    CMintMeta meta = zDOGECTracker->Get(hashSerial);
-    zDOGECTracker->SetPubcoinNotUsed(meta.hashPubcoin);
+    CMintMeta meta = zdogecTracker->Get(hashSerial);
+    zdogecTracker->SetPubcoinNotUsed(meta.hashPubcoin);
     return true;
 }
 
 bool CWallet::DatabaseMint(CDeterministicMint& dMint)
 {
     CWalletDB walletdb(strWalletFile);
-    zDOGECTracker->Add(dMint, true);
+    zdogecTracker->Add(dMint, true);
     return true;
 }
 
@@ -5530,7 +5530,7 @@ void CWallet::PrecomputeSpends()
             nLastCacheWriteDB = nLastCacheCleanUpTime;
         }
 
-        // Get the list of zDOGEC inputs
+        // Get the list of zdogec inputs
         std::list <std::unique_ptr<CStakeInput>> listInputs;
         if (!SelectStakeCoins(listInputs, 0, true)) {
             MilliSleep(5000);
@@ -5566,7 +5566,7 @@ void CWallet::PrecomputeSpends()
             CoinWitnessCacheData tempDataHolder;
 
             {
-                TRY_LOCK(zDOGECTracker->cs_spendcache, fLocked);
+                TRY_LOCK(zdogecTracker->cs_spendcache, fLocked);
                 if (!fLocked)
                     continue;
 
@@ -5582,7 +5582,7 @@ void CWallet::PrecomputeSpends()
 
                 uint256 serialHash = stakeInput->GetSerialHash();
                 setInputHashes.insert(serialHash);
-                CoinWitnessData* witnessData = zDOGECTracker->GetSpendCache(serialHash);
+                CoinWitnessData* witnessData = zdogecTracker->GetSpendCache(serialHash);
 
                 // Initialize nHeightStop so it can be set below
                 int nHeightStop = 0;

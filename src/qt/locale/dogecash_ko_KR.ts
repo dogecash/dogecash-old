@@ -433,8 +433,8 @@
         <translation>겨래내역 보기</translation>
     </message>
     <message>
-        <source>Privacy Actions for zDOGEC</source>
-        <translation>zDOGEC 생성 및 관리</translation>
+        <source>Privacy Actions for zdogec</source>
+        <translation>zdogec 생성 및 관리</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -1895,28 +1895,28 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>&amp;UPnp를 사용하여 포트 매핑</translation>
     </message>
     <message>
-        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
-        <translation>보상받은 DOGEC를 zDOGEC로 자동변환 활성화</translation>
+        <source>Enable automatic minting of DOGEC units to zdogec</source>
+        <translation>보상받은 DOGEC를 zdogec로 자동변환 활성화</translation>
     </message>
     <message>
-        <source>Enable zDOGEC Automint</source>
-        <translation>zDOGEC 자동생성 활성화</translation>
+        <source>Enable zdogec Automint</source>
+        <translation>zdogec 자동생성 활성화</translation>
     </message>
     <message>
-        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
-        <translation>DOGEC수신시 자동변환 zDOGEC 비율 (최소값:10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zdogec via Zerocoin Protocol (min: 10%)</source>
+        <translation>DOGEC수신시 자동변환 zdogec 비율 (최소값:10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zDOGEC</source>
-        <translation>자동 변환되는 zDOGEC 비율</translation>
+        <source>Percentage of autominted zdogec</source>
+        <translation>자동 변환되는 zdogec 비율</translation>
     </message>
     <message>
         <source>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</source>
         <translation>이 디노미네이션의 DOGEC가 충분해질 때까지 Zerocoin으로 자동전환은 보류됩니다.</translation>
     </message>
     <message>
-        <source>Preferred Automint zDOGEC Denomination</source>
-        <translation>선호하는 자동생성 zDOGEC 디노미네이션 </translation>
+        <source>Preferred Automint zdogec Denomination</source>
+        <translation>선호하는 자동생성 zdogec 디노미네이션 </translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2106,14 +2106,14 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>현재 dogecash 잔액, 미확정, 생성중인 코인 포함</translation>
     </message>
     <message>
-        <source>zDOGEC Balance</source>
-        <translation>zDOGEC 잔액</translation>
+        <source>zdogec Balance</source>
+        <translation>zdogec 잔액</translation>
     </message>
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zDOGEC are spendable.</source>
+These zdogec are spendable.</source>
         <translation>성숙한 : 그것이 발행 된 후 같은 명칭의 20 개 이상의 확인 및 1 개 민트.
-이 zDOGEC는 쓸만합니다.</translation>
+이 zdogec는 쓸만합니다.</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
@@ -2166,8 +2166,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <translation>출금 가능 액수:</translation>
     </message>
     <message>
-        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
-        <translation>잠금 DOGEC 또는 Masternode collaterals. 이들은 zDOGEC minting에서 제외됩니다.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zdogec minting.</source>
+        <translation>잠금 DOGEC 또는 Masternode collaterals. 이들은 zdogec minting에서 제외됩니다.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2178,8 +2178,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <translation>미승인:</translation>
     </message>
     <message>
-        <source>Your current zDOGEC balance, unconfirmed and immature zDOGEC included.</source>
-        <translation>zDOGEC 잔액, 미확정, 생성중인 zDOGEC 포함.</translation>
+        <source>Your current zdogec balance, unconfirmed and immature zdogec included.</source>
+        <translation>zdogec 잔액, 미확정, 생성중인 zdogec 포함.</translation>
     </message>
     <message>
         <source>Recent transactions</source>
@@ -2190,10 +2190,10 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <translation>동기화되지 않음</translation>
     </message>
     <message>
-        <source>Current percentage of zDOGEC.
+        <source>Current percentage of zdogec.
 If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
 </source>
-        <translation>현재 zDOGEC의 백분율 .
+        <translation>현재 zdogec의 백분율 .
 자동 저장 기능이 활성화 된 경우이 비율은 구성된 자동 저장 비율 (기본값 = 10 %)을 기준으로 정해집니다.</translation>
     </message>
     <message>
@@ -2336,8 +2336,8 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in dogecash.c
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>Available for minting are coins which are confirmed and not locked or Masternode collaterals.</source>
@@ -2388,16 +2388,16 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in dogecash.c
         <translation>프라이버시</translation>
     </message>
     <message>
-        <source>Enter an amount of DOGEC to convert to zDOGEC</source>
-        <translation>zDOGEC로 변환할 DOGEC 수량을 입력하세요.</translation>
+        <source>Enter an amount of DOGEC to convert to zdogec</source>
+        <translation>zdogec로 변환할 DOGEC 수량을 입력하세요.</translation>
     </message>
     <message>
-        <source>zDOGEC Control</source>
-        <translation>zDOGEC 컨트롤</translation>
+        <source>zdogec Control</source>
+        <translation>zdogec 컨트롤</translation>
     </message>
     <message>
-        <source>zDOGEC Selected:</source>
-        <translation>선택된 zDOGEC :</translation>
+        <source>zdogec Selected:</source>
+        <translation>선택된 zdogec :</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -2412,24 +2412,24 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in dogecash.c
         <translation>제로코인 보내기</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zDOGEC for spending</source>
-        <translation>전송 가능한 zDOGEC</translation>
+        <source>Available (mature and spendable) zdogec for spending</source>
+        <translation>전송 가능한 zdogec</translation>
     </message>
     <message>
         <source>Available Balance:</source>
         <translation>가능한 잔액:</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zDOGEC for spending
+        <source>Available (mature and spendable) zdogec for spending
 
-zDOGEC are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
-        <translation>지출에 사용할 수있는 성숙한 소비재 zDOGEC
+zdogec are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
+        <translation>지출에 사용할 수있는 성숙한 소비재 zdogec
 
-zDOGEC는 성명서가 20 개 이상 있고 명칭이 동일하지 않은 2 개 이상의 민트가 작성되었을 때 성숙합니다.</translation>
+zdogec는 성명서가 20 개 이상 있고 명칭이 동일하지 않은 2 개 이상의 민트가 작성되었을 때 성숙합니다.</translation>
     </message>
     <message>
-        <source>0 zDOGEC</source>
-        <translation>0 zDOGEC</translation>
+        <source>0 zdogec</source>
+        <translation>0 zdogec</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
@@ -2488,7 +2488,7 @@ zDOGEC는 성명서가 20 개 이상 있고 명칭이 동일하지 않은 2 개 
         <translation>제로코인 상태 :</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zDOGEC</source>
+        <source>Total Balance including unconfirmed and immature zdogec</source>
         <translation>승인중이거나, 생성중인 제로코인도 포함된 전체 잔액입니다.</translation>
     </message>
     <message>
@@ -2510,24 +2510,24 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 미성숙 : 확인되었지만 발행 된 후 같은 종파 1 개 미만</translation>
     </message>
     <message>
-        <source>Show the current status of automatic zDOGEC minting.
+        <source>Show the current status of automatic zdogec minting.
 
 To change the status (restart required):
 - enable: add 'enablezeromint=1' to dogecash.conf
 - disable: add 'enablezeromint=0' to dogecash.conf
 
 To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zDOGEC
+- menu Settings-&gt;Options-&gt;Percentage of autominted zdogec
 
 </source>
-        <translation>현재 zDOGEC 자동 생성 상태를 보여줍니다.
+        <translation>현재 zdogec 자동 생성 상태를 보여줍니다.
 
 자동생성 상태를 변경하시려면 (지갑 재시작 필요함):
 - 활성화: 'enablezeromint=1' 를 dogecash.conf 파일에 추가
 - 비활성화: 'enablezeromint=0' 를 dogecash.conf 파일에 추가
 
 자동 생성 비율 변경하시려면 (지갑 재시작 필요없음):
-- 메뉴 설정-&gt;옵션-&gt;zDOGEC 자동생성 비율
+- 메뉴 설정-&gt;옵션-&gt;zdogec 자동생성 비율
 
 </translation>
     </message>
@@ -2716,12 +2716,12 @@ Maximum allowed: </source>
 가능한 최대값 :</translation>
     </message>
     <message>
-        <source>zDOGEC Spend #: </source>
-        <translation>zDOGEC 전송 # :</translation>
+        <source>zdogec Spend #: </source>
+        <translation>zdogec 전송 # :</translation>
     </message>
     <message>
-        <source>zDOGEC Mint</source>
-        <translation>zDOGEC 생성</translation>
+        <source>zdogec Mint</source>
+        <translation>zdogec 생성</translation>
     </message>
     <message>
         <source> &lt;b&gt;enabled&lt;/b&gt;.</source>
@@ -2736,12 +2736,12 @@ Maximum allowed: </source>
         <translation> 구성된 목표 비율 : &lt;b&gt;</translation>
     </message>
     <message>
-        <source>zDOGEC is currently disabled due to maintenance.</source>
-        <translation>zDOGEC는 현재 점검중이라 사용하실수 없습니다.</translation>
+        <source>zdogec is currently disabled due to maintenance.</source>
+        <translation>zdogec는 현재 점검중이라 사용하실수 없습니다.</translation>
     </message>
     <message>
-        <source>zDOGEC is currently undergoing maintenance.</source>
-        <translation>zDOGEC는 현재 점검중입니다.</translation>
+        <source>zdogec is currently undergoing maintenance.</source>
+        <translation>zdogec는 현재 점검중입니다.</translation>
     </message>
     <message>
         <source>Denom. with value &lt;b&gt;1&lt;/b&gt;:</source>
@@ -2828,8 +2828,8 @@ Maximum allowed: </source>
         <translation>성공적으로 발행됨</translation>
     </message>
     <message>
-        <source> zDOGEC in </source>
-        <translation> zDOGEC in </translation>
+        <source> zdogec in </source>
+        <translation> zdogec in </translation>
     </message>
     <message>
         <source> sec. Used denominations:
@@ -3221,8 +3221,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>맞춤 백업 경로 :</translation>
     </message>
     <message>
-        <source>Custom zDOGEC Backup Path:</source>
-        <translation>맞춤 zDOGEC 백업 경로 :</translation>
+        <source>Custom zdogec Backup Path:</source>
+        <translation>맞춤 zdogec 백업 경로 :</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -4431,8 +4431,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>DOGEC stake</translation>
     </message>
     <message>
-        <source>zDOGEC Stake</source>
-        <translation>zDOGEC stake</translation>
+        <source>zdogec Stake</source>
+        <translation>zdogec stake</translation>
     </message>
     <message>
         <source>Obfuscation Denominate</source>
@@ -4451,32 +4451,32 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>난독화 표시 만들기</translation>
     </message>
     <message>
-        <source>Converted DOGEC to zDOGEC</source>
-        <translation>DOGEC를 zDOGEC로 변환</translation>
+        <source>Converted DOGEC to zdogec</source>
+        <translation>DOGEC를 zdogec로 변환</translation>
     </message>
     <message>
-        <source>Spent zDOGEC</source>
-        <translation>zDOGEC 사용</translation>
+        <source>Spent zdogec</source>
+        <translation>zdogec 사용</translation>
     </message>
     <message>
-        <source>Received DOGEC from zDOGEC</source>
-        <translation>zDOGEC를 DOGEC로 받음</translation>
+        <source>Received DOGEC from zdogec</source>
+        <translation>zdogec를 DOGEC로 받음</translation>
     </message>
     <message>
-        <source>Minted Change as zDOGEC from zDOGEC Spend</source>
-        <translation>zDOGEC 전송후 남은 zDOGEC로 잔돈 생성</translation>
+        <source>Minted Change as zdogec from zdogec Spend</source>
+        <translation>zdogec 전송후 남은 zdogec로 잔돈 생성</translation>
     </message>
     <message>
-        <source>Converted zDOGEC to DOGEC</source>
-        <translation>zDOGEC를 DOGEC로 변환</translation>
+        <source>Converted zdogec to DOGEC</source>
+        <translation>zdogec를 DOGEC로 변환</translation>
     </message>
     <message>
-        <source>Anonymous (zDOGEC Transaction)</source>
-        <translation>Anonymous (zDOGEC 거래)</translation>
+        <source>Anonymous (zdogec Transaction)</source>
+        <translation>Anonymous (zdogec 거래)</translation>
     </message>
     <message>
-        <source>Anonymous (zDOGEC Stake)</source>
-        <translation>Anonymous (zDOGEC 스테이킹)</translation>
+        <source>Anonymous (zdogec Stake)</source>
+        <translation>Anonymous (zdogec 스테이킹)</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -4686,12 +4686,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>내보내기 성공</translation>
     </message>
     <message>
-        <source>Received DOGEC from zDOGEC</source>
-        <translation>zDOGEC를 DOGEC로 받음</translation>
+        <source>Received DOGEC from zdogec</source>
+        <translation>zdogec를 DOGEC로 받음</translation>
     </message>
     <message>
-        <source>Zerocoin Spend, Change in zDOGEC</source>
-        <translation>제로코인 전송, 잔돈은 zDOGEC</translation>
+        <source>Zerocoin Spend, Change in zdogec</source>
+        <translation>제로코인 전송, 잔돈은 zdogec</translation>
     </message>
     <message>
         <source>The transaction history was successfully saved to %1.</source>
@@ -4759,10 +4759,10 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
 </context>
 <context>
-    <name>zDOGECControlDialog</name>
+    <name>zdogecControlDialog</name>
     <message>
-        <source>Select zDOGEC to Spend</source>
-        <translation>사용할 zDOGEC 선택</translation>
+        <source>Select zdogec to Spend</source>
+        <translation>사용할 zdogec 선택</translation>
     </message>
     <message>
         <source>Quantity</source>
@@ -4773,8 +4773,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>Select/Deselect All</source>
@@ -4836,16 +4836,16 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>MIT 소프트웨어 라이센스에 따라 배포, 첨부 파일 COPYING 또는 &lt;http://www.opensource.org/licenses/mit-license.php&gt; 를 참조하십시오.</translation>
     </message>
     <message>
-        <source>Enable automatic wallet backups triggered after each zDOGEC minting (0-1, default: %u)</source>
-        <translation>Enable automatic wallet backups triggered after each zDOGEC minting (0-1, default: %u)</translation>
+        <source>Enable automatic wallet backups triggered after each zdogec minting (0-1, default: %u)</source>
+        <translation>Enable automatic wallet backups triggered after each zdogec minting (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for DOGEC inputs (0-1, default: %u)</source>
         <translation>Enable or disable staking functionality for DOGEC inputs (0-1, default: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)</source>
-        <translation>Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)</translation>
+        <source>Enable or disable staking functionality for zdogec inputs (0-1, default: %u)</source>
+        <translation>Enable or disable staking functionality for zdogec inputs (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -5445,11 +5445,11 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
     <message>
         <source>Percentage of automatically minted Zerocoin  (1-100, default: %u)</source>
-        <translation>자동생성 zDOGEC 비율  (1-100, default: %u)</translation>
+        <translation>자동생성 zdogec 비율  (1-100, default: %u)</translation>
     </message>
     <message>
-        <source>Reindex the DOGEC and zDOGEC money supply statistics</source>
-        <translation>DOGEC 및 zDOGEC 공급량 다시 색인</translation>
+        <source>Reindex the DOGEC and zdogec money supply statistics</source>
+        <translation>DOGEC 및 zdogec 공급량 다시 색인</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5524,8 +5524,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>자동생성 제로코인 선호 디노미네이션 (1/5/10/50/100/500/1000/5000) 0사용안됨, 기본값 : %u)</translation>
     </message>
     <message>
-        <source>Specify custom backup path to add a copy of any automatic zDOGEC backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
-        <translation>Specify custom backup path to add a copy of any automatic zDOGEC backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</translation>
+        <source>Specify custom backup path to add a copy of any automatic zdogec backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
+        <translation>Specify custom backup path to add a copy of any automatic zdogec backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</translation>
     </message>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
@@ -6020,8 +6020,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>sporks와 동기화 중입니다...</translation>
     </message>
     <message>
-        <source>Syncing zDOGEC wallet...</source>
-        <translation>zDOGEC 지갑 동기화중...</translation>
+        <source>Syncing zdogec wallet...</source>
+        <translation>zdogec 지갑 동기화중...</translation>
     </message>
     <message>
         <source>The coin spend has been used</source>
@@ -6160,8 +6160,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>JSON-RPC 연결 사용자 이름</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zDOGEC</source>
-        <translation>Value is below the smallest available denomination (= 1) of zDOGEC</translation>
+        <source>Value is below the smallest available denomination (= 1) of zdogec</source>
+        <translation>Value is below the smallest available denomination (= 1) of zdogec</translation>
     </message>
     <message>
         <source>Value more than Obfuscation pool maximum allows.</source>
@@ -6217,7 +6217,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
     <message>
         <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>지갑에 zDOGEC 가 부족합니다.</translation>
+        <translation>지갑에 zdogec 가 부족합니다.</translation>
     </message>
     <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>

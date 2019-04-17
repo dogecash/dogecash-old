@@ -258,16 +258,16 @@ bool CCryptoKeyStore::Unlock(const CKeyingMaterial& vMasterKeyIn)
         if (CWalletDB(pwalletMain->strWalletFile).ReadCurrentSeedHash(hashSeed)) {
             uint256 nSeed;
             if (!GetDeterministicSeed(hashSeed, nSeed)) {
-                return error("Failed to read zDOGEC seed from DB. Wallet is probably corrupt.");
+                return error("Failed to read zdogec seed from DB. Wallet is probably corrupt.");
             }
             pwalletMain->zwalletMain->SetMasterSeed(nSeed, false);
         } else {
-            // First time this wallet has been unlocked with dzDOGEC
+            // First time this wallet has been unlocked with dzdogec
             // Borrow random generator from the key class so that we don't have to worry about randomness
             CKey key;
             key.MakeNewKey(true);
             uint256 seed = key.GetPrivKey_256();
-            LogPrintf("%s: first run of zDOGEC wallet detected, new seed generated. Seedhash=%s\n", __func__, Hash(seed.begin(), seed.end()).GetHex());
+            LogPrintf("%s: first run of zdogec wallet detected, new seed generated. Seedhash=%s\n", __func__, Hash(seed.begin(), seed.end()).GetHex());
             pwalletMain->zwalletMain->SetMasterSeed(seed, true);
             pwalletMain->zwalletMain->GenerateMintPool();
         }
@@ -389,7 +389,7 @@ bool CCryptoKeyStore::AddDeterministicSeed(const uint256& seed)
             //attempt encrypt
             if (EncryptSecret(vMasterKey, kmSeed, hashSeed, vchSeedSecret)) {
                 //write to wallet with hashSeed as unique key
-                if (db.WritezDOGECSeed(hashSeed, vchSeedSecret)) {
+                if (db.WritezdogecSeed(hashSeed, vchSeedSecret)) {
                     return true;
                 }
             }
@@ -397,12 +397,12 @@ bool CCryptoKeyStore::AddDeterministicSeed(const uint256& seed)
         }
         strErr = "save since wallet is locked";
     } else { //wallet not encrypted
-        if (db.WritezDOGECSeed(hashSeed, ToByteVector(seed))) {
+        if (db.WritezdogecSeed(hashSeed, ToByteVector(seed))) {
             return true;
         }
-        strErr = "save zDOGECseed to wallet";
+        strErr = "save zdogecseed to wallet";
     }
-                //the use case for this is no password set seed, mint dzDOGEC,
+                //the use case for this is no password set seed, mint dzdogec,
 
     return error("s%: Failed to %s\n", __func__, strErr);
 }
@@ -417,7 +417,7 @@ bool CCryptoKeyStore::GetDeterministicSeed(const uint256& hashSeed, uint256& see
 
             vector<unsigned char> vchCryptedSeed;
             //read encrypted seed
-            if (db.ReadzDOGECSeed(hashSeed, vchCryptedSeed)) {
+            if (db.ReadzdogecSeed(hashSeed, vchCryptedSeed)) {
                 uint256 seedRetrieved = uint256(ReverseEndianString(HexStr(vchCryptedSeed)));
                 //this checks if the hash of the seed we just read matches the hash given, meaning it is not encrypted
                 //the use case for this is when not crypted, seed is set, then password set, the seed not yet crypted in memory
@@ -438,7 +438,7 @@ bool CCryptoKeyStore::GetDeterministicSeed(const uint256& hashSeed, uint256& see
     } else {
         vector<unsigned char> vchSeed;
         // wallet not crypted
-        if (db.ReadzDOGECSeed(hashSeed, vchSeed)) {
+        if (db.ReadzdogecSeed(hashSeed, vchSeed)) {
             seedOut = uint256(ReverseEndianString(HexStr(vchSeed)));
             return true;
         }

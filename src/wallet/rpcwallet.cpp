@@ -23,7 +23,7 @@
 
 #include "libzerocoin/Coin.h"
 #include "spork.h"
-#include "zDOGEC/deterministicmint.h"
+#include "zdogec/deterministicmint.h"
 #include <boost/assign/list_of.hpp>
 #include <boost/thread/thread.hpp>
 
@@ -2544,11 +2544,11 @@ UniValue getzerocoinbalance(const UniValue& params, bool fHelp)
     if (fHelp || params.size() != 0)
         throw runtime_error(
             "getzerocoinbalance\n"
-            "\nReturn the wallet's total zDOGEC balance.\n" +
+            "\nReturn the wallet's total zdogec balance.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult:\n"
-            "amount         (numeric) Total zDOGEC balance.\n"
+            "amount         (numeric) Total zdogec balance.\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getzerocoinbalance", "") + HelpExampleRpc("getzerocoinbalance", ""));
@@ -2572,7 +2572,7 @@ UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 2)
         throw runtime_error(
             "listmintedzerocoins (fVerbose) (fMatureOnly)\n"
-            "\nList all zDOGEC mints in the wallet.\n" +
+            "\nList all zdogec mints in the wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -2590,7 +2590,7 @@ UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
             "  {\n"
             "    \"serial hash\": \"xxx\",   (string) Mint serial hash in hex format.\n"
             "    \"version\": n,   (numeric) Zerocoin version number.\n"
-            "    \"zDOGEC ID\": \"xxx\",   (string) Pubcoin in hex format.\n"
+            "    \"zdogec ID\": \"xxx\",   (string) Pubcoin in hex format.\n"
             "    \"denomination\": n,   (numeric) Coin denomination.\n"
             "    \"mint height\": n     (numeric) Height of the block containing this mint.\n"
             "    \"confirmations\": n   (numeric) Number of confirmations.\n"
@@ -2612,7 +2612,7 @@ UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
     EnsureWalletIsUnlocked(true);
 
     CWalletDB walletdb(pwalletMain->strWalletFile);
-    set<CMintMeta> setMints = pwalletMain->zDOGECTracker->ListMints(true, fMatureOnly, true);
+    set<CMintMeta> setMints = pwalletMain->zdogecTracker->ListMints(true, fMatureOnly, true);
 
     int nBestHeight = chainActive.Height();
 
@@ -2623,7 +2623,7 @@ UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
             UniValue objMint(UniValue::VOBJ);
             objMint.push_back(Pair("serial hash", m.hashSerial.GetHex()));  // Serial hash
             objMint.push_back(Pair("version", m.nVersion));                 // Zerocoin version
-            objMint.push_back(Pair("zDOGEC ID", m.hashPubcoin.GetHex()));     // PubCoin
+            objMint.push_back(Pair("zdogec ID", m.hashPubcoin.GetHex()));     // PubCoin
             int denom = libzerocoin::ZerocoinDenominationToInt(m.denom);
             objMint.push_back(Pair("denomination", denom));                 // Denomination
             objMint.push_back(Pair("mint height", m.nHeight));              // Mint Height
@@ -2636,7 +2636,7 @@ UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
                     uint256 hashStake = mint.GetSerialNumber().getuint256();
                     hashStake = Hash(hashStake.begin(), hashStake.end());
                     m.hashStake = hashStake;
-                    pwalletMain->zDOGECTracker->UpdateState(m);
+                    pwalletMain->zdogecTracker->UpdateState(m);
                 }
             }
             objMint.push_back(Pair("hash stake", m.hashStake.GetHex()));       // Confirmations
@@ -2677,7 +2677,7 @@ UniValue listzerocoinamounts(const UniValue& params, bool fHelp)
     EnsureWalletIsUnlocked(true);
 
     CWalletDB walletdb(pwalletMain->strWalletFile);
-    set<CMintMeta> setMints = pwalletMain->zDOGECTracker->ListMints(true, true, true);
+    set<CMintMeta> setMints = pwalletMain->zdogecTracker->ListMints(true, true, true);
 
     std::map<libzerocoin::CoinDenomination, CAmount> spread;
     for (const auto& denom : libzerocoin::zerocoinDenomList)
@@ -2701,7 +2701,7 @@ UniValue listspentzerocoins(const UniValue& params, bool fHelp)
     if (fHelp || params.size() != 0)
         throw runtime_error(
             "listspentzerocoins\n"
-            "\nList all the spent zDOGEC mints in the wallet.\n" +
+            "\nList all the spent zdogec mints in the wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult:\n"
@@ -2733,11 +2733,11 @@ UniValue mintzerocoin(const UniValue& params, bool fHelp)
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
             "mintzerocoin amount ( utxos )\n"
-            "\nMint the specified zDOGEC amount\n" +
+            "\nMint the specified zdogec amount\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. amount      (numeric, required) Enter an amount of DOGEC to convert to zDOGEC\n"
+            "1. amount      (numeric, required) Enter an amount of DOGEC to convert to zdogec\n"
             "2. utxos       (string, optional) A json array of objects.\n"
             "                   Each object needs the txid (string) and vout (numeric)\n"
             "  [\n"
@@ -2781,7 +2781,7 @@ UniValue mintzerocoin(const UniValue& params, bool fHelp)
 
     int64_t nTime = GetTimeMillis();
     if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zDOGEC is currently disabled due to maintenance.");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zdogec is currently disabled due to maintenance.");
 
     EnsureWalletIsUnlocked(true);
 
@@ -2844,7 +2844,7 @@ UniValue spendzerocoin(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 4 || params.size() < 3)
         throw runtime_error(
             "spendzerocoin amount mintchange minimizechange ( \"address\" )\n"
-            "\nSpend zDOGEC to a DOGEC address.\n" +
+            "\nSpend zdogec to a DOGEC address.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -2884,18 +2884,18 @@ UniValue spendzerocoin(const UniValue& params, bool fHelp)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zDOGEC is currently disabled due to maintenance.");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zdogec is currently disabled due to maintenance.");
 
     EnsureWalletIsUnlocked();
 
     CAmount nAmount = AmountFromValue(params[0]);   // Spending amount
-    bool fMintChange = params[1].get_bool();        // Mint change to zDOGEC
+    bool fMintChange = params[1].get_bool();        // Mint change to zdogec
     bool fMinimizeChange = params[2].get_bool();    // Minimize change
     std::string address_str = params.size() > 3 ? params[3].get_str() : "";
 
     vector<CZerocoinMint> vMintsSelected;
 
-    return DozDOGECSpend(nAmount, fMintChange, fMinimizeChange, vMintsSelected, address_str);
+    return DozdogecSpend(nAmount, fMintChange, fMinimizeChange, vMintsSelected, address_str);
 }
 
 
@@ -2904,7 +2904,7 @@ UniValue spendzerocoinmints(const UniValue& params, bool fHelp)
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
             "spendzerocoinmints mints_list (\"address\") \n"
-            "\nSpend zDOGEC mints to a DOGEC address.\n" +
+            "\nSpend zdogec mints to a DOGEC address.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -2941,7 +2941,7 @@ UniValue spendzerocoinmints(const UniValue& params, bool fHelp)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zDOGEC is currently disabled due to maintenance.");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zdogec is currently disabled due to maintenance.");
 
     std::string address_str = "";
     if (params.size() > 1) {
@@ -2989,11 +2989,11 @@ UniValue spendzerocoinmints(const UniValue& params, bool fHelp)
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid dogecash address");
     }
 
-    return DozDOGECSpend(nAmount, false, true, vMintsSelected, address_str);
+    return DozdogecSpend(nAmount, false, true, vMintsSelected, address_str);
 }
 
 
-extern UniValue DozDOGECSpend(const CAmount nAmount, bool fMintChange, bool fMinimizeChange, vector<CZerocoinMint>& vMintsSelected, std::string address_str)
+extern UniValue DozdogecSpend(const CAmount nAmount, bool fMintChange, bool fMinimizeChange, vector<CZerocoinMint>& vMintsSelected, std::string address_str)
 {
     int64_t nTimeStart = GetTimeMillis();
     CBitcoinAddress address = CBitcoinAddress(); // Optional sending address. Dummy initialization here.
@@ -3085,8 +3085,8 @@ UniValue resetmintzerocoin(const UniValue& params, bool fHelp)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     CWalletDB walletdb(pwalletMain->strWalletFile);
-    CzDOGECTracker* zDOGECTracker = pwalletMain->zDOGECTracker.get();
-    set<CMintMeta> setMints = zDOGECTracker->ListMints(false, false, true);
+    CzdogecTracker* zdogecTracker = pwalletMain->zdogecTracker.get();
+    set<CMintMeta> setMints = zdogecTracker->ListMints(false, false, true);
     vector<CMintMeta> vMintsToFind(setMints.begin(), setMints.end());
     vector<CMintMeta> vMintsMissing;
     vector<CMintMeta> vMintsToUpdate;
@@ -3097,14 +3097,14 @@ UniValue resetmintzerocoin(const UniValue& params, bool fHelp)
     // update the meta data of mints that were marked for updating
     UniValue arrUpdated(UniValue::VARR);
     for (CMintMeta meta : vMintsToUpdate) {
-        zDOGECTracker->UpdateState(meta);
+        zdogecTracker->UpdateState(meta);
         arrUpdated.push_back(meta.hashPubcoin.GetHex());
     }
 
     // delete any mints that were unable to be located on the blockchain
     UniValue arrDeleted(UniValue::VARR);
     for (CMintMeta mint : vMintsMissing) {
-        zDOGECTracker->Archive(mint);
+        zdogecTracker->Archive(mint);
         arrDeleted.push_back(mint.hashPubcoin.GetHex());
     }
 
@@ -3138,8 +3138,8 @@ UniValue resetspentzerocoin(const UniValue& params, bool fHelp)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     CWalletDB walletdb(pwalletMain->strWalletFile);
-    CzDOGECTracker* zDOGECTracker = pwalletMain->zDOGECTracker.get();
-    set<CMintMeta> setMints = zDOGECTracker->ListMints(false, false, false);
+    CzdogecTracker* zdogecTracker = pwalletMain->zdogecTracker.get();
+    set<CMintMeta> setMints = zdogecTracker->ListMints(false, false, false);
     list<CZerocoinSpend> listSpends = walletdb.ListSpentCoins();
     list<CZerocoinSpend> listUnconfirmedSpends;
 
@@ -3161,7 +3161,7 @@ UniValue resetspentzerocoin(const UniValue& params, bool fHelp)
     for (CZerocoinSpend spend : listUnconfirmedSpends) {
         for (auto& meta : setMints) {
             if (meta.hashSerial == GetSerialHash(spend.GetSerial())) {
-                zDOGECTracker->SetPubcoinNotUsed(meta.hashPubcoin);
+                zdogecTracker->SetPubcoinNotUsed(meta.hashPubcoin);
                 walletdb.EraseZerocoinSpendSerialEntry(spend.GetSerial());
                 RemoveSerialFromDB(spend.GetSerial());
                 UniValue obj(UniValue::VOBJ);
@@ -3243,12 +3243,12 @@ UniValue exportzerocoins(const UniValue& params, bool fHelp)
 
             "\nArguments:\n"
             "1. \"include_spent\"        (bool, required) Include mints that have already been spent\n"
-            "2. \"denomination\"         (integer, optional) Export a specific denomination of zDOGEC\n"
+            "2. \"denomination\"         (integer, optional) Export a specific denomination of zdogec\n"
 
             "\nResult:\n"
             "[                   (array of json object)\n"
             "  {\n"
-            "    \"id\": \"serial hash\",  (string) the mint's zDOGEC serial hash \n"
+            "    \"id\": \"serial hash\",  (string) the mint's zdogec serial hash \n"
             "    \"d\": n,         (numeric) the mint's zerocoin denomination \n"
             "    \"p\": \"pubcoin\", (string) The public coin\n"
             "    \"s\": \"serial\",  (string) The secret serial number\n"
@@ -3256,8 +3256,8 @@ UniValue exportzerocoins(const UniValue& params, bool fHelp)
             "    \"t\": \"txid\",    (string) The txid that the coin was minted in\n"
             "    \"h\": n,         (numeric) The height the tx was added to the blockchain\n"
             "    \"u\": used,      (boolean) Whether the mint has been spent\n"
-            "    \"v\": version,   (numeric) The version of the zDOGEC\n"
-            "    \"k\": \"privkey\"  (string) The zDOGEC private key (V2+ zDOGEC only)\n"
+            "    \"v\": version,   (numeric) The version of the zdogec\n"
+            "    \"k\": \"privkey\"  (string) The zdogec private key (V2+ zdogec only)\n"
             "  }\n"
             "  ,...\n"
             "]\n"
@@ -3276,8 +3276,8 @@ UniValue exportzerocoins(const UniValue& params, bool fHelp)
     if (params.size() == 2)
         denomination = libzerocoin::IntToZerocoinDenomination(params[1].get_int());
 
-    CzDOGECTracker* zDOGECTracker = pwalletMain->zDOGECTracker.get();
-    set<CMintMeta> setMints = zDOGECTracker->ListMints(!fIncludeSpent, false, false);
+    CzdogecTracker* zdogecTracker = pwalletMain->zdogecTracker.get();
+    set<CMintMeta> setMints = zdogecTracker->ListMints(!fIncludeSpent, false, false);
 
     UniValue jsonList(UniValue::VARR);
     for (const CMintMeta& meta : setMints) {
@@ -3328,7 +3328,7 @@ UniValue importzerocoins(const UniValue& params, bool fHelp)
             "\nResult:\n"
             "{\n"
             "  \"added\": n,        (numeric) The quantity of zerocoin mints that were added\n"
-            "  \"value\": amount    (numeric) The total zDOGEC value of zerocoin mints that were added\n"
+            "  \"value\": amount    (numeric) The total zdogec value of zerocoin mints that were added\n"
             "}\n"
 
             "\nExamples\n" +
@@ -3392,7 +3392,7 @@ UniValue importzerocoins(const UniValue& params, bool fHelp)
         CZerocoinMint mint(denom, bnValue, bnRandom, bnSerial, fUsed, nVersion, &privkey);
         mint.SetTxHash(txid);
         mint.SetHeight(nHeight);
-        pwalletMain->zDOGECTracker->Add(mint, true);
+        pwalletMain->zdogecTracker->Add(mint, true);
         count++;
         nValue += libzerocoin::ZerocoinDenominationToAmount(denom);
     }
@@ -3408,7 +3408,7 @@ UniValue reconsiderzerocoins(const UniValue& params, bool fHelp)
     if(fHelp || !params.empty())
         throw runtime_error(
             "reconsiderzerocoins\n"
-            "\nCheck archived zDOGEC list to see if any mints were added to the blockchain.\n" +
+            "\nCheck archived zdogec list to see if any mints were added to the blockchain.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult:\n"
@@ -3454,30 +3454,30 @@ UniValue reconsiderzerocoins(const UniValue& params, bool fHelp)
     return arrRet;
 }
 
-UniValue setzDOGECseed(const UniValue& params, bool fHelp)
+UniValue setzdogecseed(const UniValue& params, bool fHelp)
 {
     if(fHelp || params.size() != 1)
         throw runtime_error(
-            "setzDOGECseed \"seed\"\n"
-            "\nSet the wallet's deterministic zDOGEC seed to a specific value.\n" +
+            "setzdogecseed \"seed\"\n"
+            "\nSet the wallet's deterministic zdogec seed to a specific value.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"seed\"        (string, required) The deterministic zDOGEC seed.\n"
+            "1. \"seed\"        (string, required) The deterministic zdogec seed.\n"
 
             "\nResult\n"
             "\"success\" : b,  (boolean) Whether the seed was successfully set.\n"
 
             "\nExamples\n" +
-            HelpExampleCli("setzDOGECseed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5") +
-            HelpExampleRpc("setzDOGECseed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5"));
+            HelpExampleCli("setzdogecseed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5") +
+            HelpExampleRpc("setzdogecseed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5"));
 
     EnsureWalletIsUnlocked();
 
     uint256 seed;
     seed.SetHex(params[0].get_str());
 
-    CzDOGECWallet* zwallet = pwalletMain->getZWallet();
+    CzdogecWallet* zwallet = pwalletMain->getZWallet();
     bool fSuccess = zwallet->SetMasterSeed(seed, true);
     if (fSuccess)
         zwallet->SyncWithChain();
@@ -3488,23 +3488,23 @@ UniValue setzDOGECseed(const UniValue& params, bool fHelp)
     return ret;
 }
 
-UniValue getzDOGECseed(const UniValue& params, bool fHelp)
+UniValue getzdogecseed(const UniValue& params, bool fHelp)
 {
     if(fHelp || !params.empty())
         throw runtime_error(
-            "getzDOGECseed\n"
-            "\nCheck archived zDOGEC list to see if any mints were added to the blockchain.\n" +
+            "getzdogecseed\n"
+            "\nCheck archived zdogec list to see if any mints were added to the blockchain.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult\n"
-            "\"seed\" : s,  (string) The deterministic zDOGEC seed.\n"
+            "\"seed\" : s,  (string) The deterministic zdogec seed.\n"
 
             "\nExamples\n" +
-            HelpExampleCli("getzDOGECseed", "") + HelpExampleRpc("getzDOGECseed", ""));
+            HelpExampleCli("getzdogecseed", "") + HelpExampleRpc("getzdogecseed", ""));
 
     EnsureWalletIsUnlocked();
 
-    CzDOGECWallet* zwallet = pwalletMain->getZWallet();
+    CzdogecWallet* zwallet = pwalletMain->getZWallet();
     uint256 seed = zwallet->GetMasterSeed();
 
     UniValue ret(UniValue::VOBJ);
@@ -3518,12 +3518,12 @@ UniValue generatemintlist(const UniValue& params, bool fHelp)
     if(fHelp || params.size() != 2)
         throw runtime_error(
             "generatemintlist\n"
-            "\nShow mints that are derived from the deterministic zDOGEC seed.\n" +
+            "\nShow mints that are derived from the deterministic zdogec seed.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments\n"
-            "1. \"count\"  : n,  (numeric) Which sequential zDOGEC to start with.\n"
-            "2. \"range\"  : n,  (numeric) How many zDOGEC to generate.\n"
+            "1. \"count\"  : n,  (numeric) Which sequential zdogec to start with.\n"
+            "2. \"range\"  : n,  (numeric) How many zdogec to generate.\n"
 
             "\nResult:\n"
             "[\n"
@@ -3543,7 +3543,7 @@ UniValue generatemintlist(const UniValue& params, bool fHelp)
 
     int nCount = params[0].get_int();
     int nRange = params[1].get_int();
-    CzDOGECWallet* zwallet = pwalletMain->zwalletMain;
+    CzdogecWallet* zwallet = pwalletMain->zwalletMain;
 
     UniValue arrRet(UniValue::VARR);
     for (int i = nCount; i < nCount + nRange; i++) {
@@ -3562,28 +3562,28 @@ UniValue generatemintlist(const UniValue& params, bool fHelp)
     return arrRet;
 }
 
-UniValue dzDOGECstate(const UniValue& params, bool fHelp) {
+UniValue dzdogecstate(const UniValue& params, bool fHelp) {
     if (fHelp || params.size() != 0)
         throw runtime_error(
-                "dzDOGECstate\n"
-                        "\nThe current state of the mintpool of the deterministic zDOGEC wallet.\n" +
+                "dzdogecstate\n"
+                        "\nThe current state of the mintpool of the deterministic zdogec wallet.\n" +
                 HelpRequiringPassphrase() + "\n"
 
                         "\nExamples\n" +
                 HelpExampleCli("mintpoolstatus", "") + HelpExampleRpc("mintpoolstatus", ""));
 
-    CzDOGECWallet* zwallet = pwalletMain->zwalletMain;
+    CzdogecWallet* zwallet = pwalletMain->zwalletMain;
     UniValue obj(UniValue::VOBJ);
     int nCount, nCountLastUsed;
     zwallet->GetState(nCount, nCountLastUsed);
-    obj.push_back(Pair("dzDOGEC_count", nCount));
+    obj.push_back(Pair("dzdogec_count", nCount));
     obj.push_back(Pair("mintpool_count", nCountLastUsed));
 
     return obj;
 }
 
 
-void static SearchThread(CzDOGECWallet* zwallet, int nCountStart, int nCountEnd)
+void static SearchThread(CzdogecWallet* zwallet, int nCountStart, int nCountEnd)
 {
     LogPrintf("%s: start=%d end=%d\n", __func__, nCountStart, nCountEnd);
     CWalletDB walletDB(pwalletMain->strWalletFile);
@@ -3600,7 +3600,7 @@ void static SearchThread(CzDOGECWallet* zwallet, int nCountStart, int nCountEnd)
             CBigNum bnSerial;
             CBigNum bnRandomness;
             CKey key;
-            zwallet->SeedTozDOGEC(zerocoinSeed, bnValue, bnSerial, bnRandomness, key);
+            zwallet->SeedTozdogec(zerocoinSeed, bnValue, bnSerial, bnRandomness, key);
 
             uint256 hashPubcoin = GetPubCoinHash(bnValue);
             zwallet->AddToMintPool(make_pair(hashPubcoin, i), true);
@@ -3613,21 +3613,21 @@ void static SearchThread(CzDOGECWallet* zwallet, int nCountStart, int nCountEnd)
     }
 }
 
-UniValue searchdzDOGEC(const UniValue& params, bool fHelp)
+UniValue searchdzdogec(const UniValue& params, bool fHelp)
 {
     if(fHelp || params.size() != 3)
         throw runtime_error(
-            "searchdzDOGEC\n"
-            "\nMake an extended search for deterministically generated zDOGEC that have not yet been recognized by the wallet.\n" +
+            "searchdzdogec\n"
+            "\nMake an extended search for deterministically generated zdogec that have not yet been recognized by the wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments\n"
-            "1. \"count\"       (numeric) Which sequential zDOGEC to start with.\n"
-            "2. \"range\"       (numeric) How many zDOGEC to generate.\n"
+            "1. \"count\"       (numeric) Which sequential zdogec to start with.\n"
+            "2. \"range\"       (numeric) How many zdogec to generate.\n"
             "3. \"threads\"     (numeric) How many threads should this operation consume.\n"
 
             "\nExamples\n" +
-            HelpExampleCli("searchdzDOGEC", "1, 100, 2") + HelpExampleRpc("searchdzDOGEC", "1, 100, 2"));
+            HelpExampleCli("searchdzdogec", "1, 100, 2") + HelpExampleRpc("searchdzdogec", "1, 100, 2"));
 
     EnsureWalletIsUnlocked();
 
@@ -3641,9 +3641,9 @@ UniValue searchdzDOGEC(const UniValue& params, bool fHelp)
 
     int nThreads = params[2].get_int();
 
-    CzDOGECWallet* zwallet = pwalletMain->zwalletMain;
+    CzdogecWallet* zwallet = pwalletMain->zwalletMain;
 
-    boost::thread_group* dzDOGECThreads = new boost::thread_group();
+    boost::thread_group* dzdogecThreads = new boost::thread_group();
     int nRangePerThread = nRange / nThreads;
 
     int nPrevThreadEnd = nCount - 1;
@@ -3651,12 +3651,12 @@ UniValue searchdzDOGEC(const UniValue& params, bool fHelp)
         int nStart = nPrevThreadEnd + 1;;
         int nEnd = nStart + nRangePerThread;
         nPrevThreadEnd = nEnd;
-        dzDOGECThreads->create_thread(boost::bind(&SearchThread, zwallet, nStart, nEnd));
+        dzdogecThreads->create_thread(boost::bind(&SearchThread, zwallet, nStart, nEnd));
     }
 
-    dzDOGECThreads->join_all();
+    dzdogecThreads->join_all();
 
-    zwallet->RemoveMintsFromPool(pwalletMain->zDOGECTracker->GetSerialHashes());
+    zwallet->RemoveMintsFromPool(pwalletMain->zdogecTracker->GetSerialHashes());
     zwallet->SyncWithChain(false);
 
     //todo: better response
@@ -3724,7 +3724,7 @@ UniValue spendrawzerocoin(const UniValue& params, bool fHelp)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     if (GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-            throw JSONRPCError(RPC_WALLET_ERROR, "zDOGEC is currently disabled due to maintenance.");
+            throw JSONRPCError(RPC_WALLET_ERROR, "zdogec is currently disabled due to maintenance.");
 
     CBigNum serial;
     serial.SetHex(params[0].get_str());
@@ -3758,7 +3758,7 @@ UniValue spendrawzerocoin(const UniValue& params, bool fHelp)
     vector<CZerocoinMint> vMintsSelected = {mint};
     CAmount nAmount = mint.GetDenominationAsAmount();
 
-    return DozDOGECSpend(nAmount, false, true, vMintsSelected, address_str);
+    return DozdogecSpend(nAmount, false, true, vMintsSelected, address_str);
 }
 
 UniValue clearspendcache(const UniValue& params, bool fHelp)
@@ -3766,7 +3766,7 @@ UniValue clearspendcache(const UniValue& params, bool fHelp)
     if(fHelp || params.size() != 0)
         throw runtime_error(
             "clearspendcache\n"
-            "\nClear the pre-computed zDOGEC spend cache, and database.\n" +
+            "\nClear the pre-computed zdogec spend cache, and database.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nExamples\n" +
@@ -3774,14 +3774,14 @@ UniValue clearspendcache(const UniValue& params, bool fHelp)
 
     EnsureWalletIsUnlocked();
 
-    CzDOGECTracker* zDOGECTracker = pwalletMain->zDOGECTracker.get();
+    CzdogecTracker* zdogecTracker = pwalletMain->zdogecTracker.get();
 
     {
         int nTries = 0;
         while (nTries < 100) {
-            TRY_LOCK(zDOGECTracker->cs_spendcache, fLocked);
+            TRY_LOCK(zdogecTracker->cs_spendcache, fLocked);
             if (fLocked) {
-                if (zDOGECTracker->ClearSpendCache()) {
+                if (zdogecTracker->ClearSpendCache()) {
                     fClearSpendCache = true;
                     CWalletDB walletdb("precomputes.dat", "cr+");
                     walletdb.EraseAllPrecomputes();

@@ -46,7 +46,7 @@ public:
 
     void setModel(WalletModel* model);
     void showOutOfSyncWarning(bool fShow);
-    void setzDOGECControlLabels(int64_t nAmount, int nQuantity);
+    void setzdogecControlLabels(int64_t nAmount, int nQuantity);
 
 public slots:
     void setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance,
@@ -76,7 +76,7 @@ private:
 
     int nDisplayUnit;
     bool updateLabel(const QString& address);
-    void sendzDOGEC();
+    void sendzdogec();
 
 private slots:
     void on_payTo_textChanged(const QString& address);
@@ -96,11 +96,11 @@ private slots:
 //    void coinControlClipboardLowOutput();
 //    void coinControlClipboardChange();
 
-    void on_pushButtonMintzDOGEC_clicked();
+    void on_pushButtonMintzdogec_clicked();
     void on_pushButtonMintReset_clicked();
     void on_pushButtonSpentReset_clicked();
-    void on_pushButtonSpendzDOGEC_clicked();
-    void on_pushButtonzDOGECControl_clicked();
+    void on_pushButtonSpendzdogec_clicked();
+    void on_pushButtonzdogecControl_clicked();
     void on_pushButtonHideDenoms_clicked();
     void on_pushButtonShowDenoms_clicked();
     void on_pasteButton_clicked();

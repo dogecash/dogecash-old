@@ -11,7 +11,7 @@
 #include "swifttx.h"
 #include "timedata.h"
 #include "wallet/wallet.h"
-#include "zDOGECchain.h"
+#include "zdogecchain.h"
 
 #include <stdint.h>
 
@@ -54,10 +54,10 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
         if (!wtx.IsZerocoinSpend() && !ExtractDestination(wtx.vout[1].scriptPubKey, address))
             return parts;
 
-        if (wtx.IsZerocoinSpend() && (fZSpendFromMe || wallet->zDOGECTracker->HasMintTx(hash))) {
-            //zDOGEC stake reward
+        if (wtx.IsZerocoinSpend() && (fZSpendFromMe || wallet->zdogecTracker->HasMintTx(hash))) {
+            //zdogec stake reward
             sub.involvesWatchAddress = false;
-            sub.type = TransactionRecord::StakezDOGEC;
+            sub.type = TransactionRecord::Stakezdogec;
             sub.address = mapValue["zerocoinmint"];
             sub.credit = 0;
             for (const CTxOut& out : wtx.vout) {
@@ -98,7 +98,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
                 isminetype mine = wallet->IsMine(txout);
                 TransactionRecord sub(hash, nTime);
                 sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
-                sub.type = TransactionRecord::ZerocoinSpend_Change_zDOGEC;
+                sub.type = TransactionRecord::ZerocoinSpend_Change_zdogec;
                 sub.address = mapValue["zerocoinmint"];
                 if (!fFeeAssigned) {
                     sub.debit -= (wtx.GetZerocoinSpent() - wtx.GetValueOut());
@@ -308,14 +308,14 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
     return parts;
 }
 
-bool IszDOGECType(TransactionRecord::Type type)
+bool IszdogecType(TransactionRecord::Type type)
 {
     switch (type) {
-        case TransactionRecord::StakezDOGEC:
+        case TransactionRecord::Stakezdogec:
         case TransactionRecord::ZerocoinMint:
         case TransactionRecord::ZerocoinSpend:
         case TransactionRecord::RecvFromZerocoinSpend:
-        case TransactionRecord::ZerocoinSpend_Change_zDOGEC:
+        case TransactionRecord::ZerocoinSpend_Change_zdogec:
         case TransactionRecord::ZerocoinSpend_FromMe:
             return true;
         default:
@@ -360,7 +360,7 @@ void TransactionRecord::updateStatus(const CWalletTx& wtx)
         }
     }
     // For generated transactions, determine maturity
-    else if (type == TransactionRecord::Generated || type == TransactionRecord::StakeMint || type == TransactionRecord::StakezDOGEC || type == TransactionRecord::MNReward) {
+    else if (type == TransactionRecord::Generated || type == TransactionRecord::StakeMint || type == TransactionRecord::Stakezdogec || type == TransactionRecord::MNReward) {
         if (nBlocksToMaturity > 0) {
             status.status = TransactionStatus::Immature;
             status.matures_in = nBlocksToMaturity;

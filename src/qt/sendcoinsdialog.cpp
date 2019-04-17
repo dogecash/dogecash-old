@@ -134,7 +134,7 @@ SendCoinsDialog::SendCoinsDialog(QWidget* parent) : QDialog(parent, Qt::WindowSy
     ui->customFee->setValue(settings.value("nTransactionFee").toLongLong());
     ui->checkBoxMinimumFee->setChecked(settings.value("fPayOnlyMinFee").toBool());
     ui->checkBoxFreeTx->setChecked(settings.value("fSendFreeTransactions").toBool());
-    ui->checkzDOGEC->hide();
+    ui->checkzdogec->hide();
 
     minimizeFeeSection(settings.value("fFeeSectionMinimized").toBool());
     // If SwiftX activated hide button 'Choose'. Show otherwise.

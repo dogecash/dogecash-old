@@ -433,8 +433,8 @@
         <translation>İşlem geçmişini ara</translation>
     </message>
     <message>
-        <source>Privacy Actions for zDOGEC</source>
-        <translation>Gizlilik Aksiyonları zDOGEC</translation>
+        <source>Privacy Actions for zdogec</source>
+        <translation>Gizlilik Aksiyonları zdogec</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -1920,28 +1920,28 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Map port using &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
-        <translation>DOGEC birimlerinin zDOGEC'e otomatik basımını ektinleştir</translation>
+        <source>Enable automatic minting of DOGEC units to zdogec</source>
+        <translation>DOGEC birimlerinin zdogec'e otomatik basımını ektinleştir</translation>
     </message>
     <message>
-        <source>Enable zDOGEC Automint</source>
-        <translation>zDOGEC Otomatik basımı etkinleştir</translation>
+        <source>Enable zdogec Automint</source>
+        <translation>zdogec Otomatik basımı etkinleştir</translation>
     </message>
     <message>
-        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
-        <translation>Zerocoin Protokolü üzerinden otomatik olarak zDOGEC'ye dönüştürülen gelen DOGEC yüzdesi (dakika: 10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zdogec via Zerocoin Protocol (min: 10%)</source>
+        <translation>Zerocoin Protokolü üzerinden otomatik olarak zdogec'ye dönüştürülen gelen DOGEC yüzdesi (dakika: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zDOGEC</source>
-        <translation>Otomatikleştirilmiş zDOGEC yüzdesi</translation>
+        <source>Percentage of autominted zdogec</source>
+        <translation>Otomatikleştirilmiş zdogec yüzdesi</translation>
     </message>
     <message>
         <source>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</source>
         <translation>Bu mezhebi için yeterli DOGEC bulunana kadar Zerocoin'e otomatik dönüşümle birlikte bekleyin</translation>
     </message>
     <message>
-        <source>Preferred Automint zDOGEC Denomination</source>
-        <translation>Tercih edilen Automint zDOGEC Nominal değeri</translation>
+        <source>Preferred Automint zdogec Denomination</source>
+        <translation>Tercih edilen Automint zdogec Nominal değeri</translation>
     </message>
     <message>
         <source>Connect to the dogecash network through a SOCKS5 proxy.</source>
@@ -2127,14 +2127,14 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Güncel dogecash bakiyeniz, onaylanmamış ve olgunlaşmamış işlemler dahil</translation>
     </message>
     <message>
-        <source>zDOGEC Balance</source>
-        <translation>zDOGEC Bakiyesi</translation>
+        <source>zdogec Balance</source>
+        <translation>zdogec Bakiyesi</translation>
     </message>
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zDOGEC are spendable.</source>
+These zdogec are spendable.</source>
         <translation>Olgun: basılmış olduktan sonra 20'den fazla onay alınmış ve aynı ölçü biriminden 1 kereden fazla basılmış.
-Bu zDOGEC ler harcanabilir.</translation>
+Bu zdogec ler harcanabilir.</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
@@ -2187,8 +2187,8 @@ Olgunlaşmamış: onaylandı, ancak basıldıktan sonra aynı ölçü biriminden
         <translation>Harcanabilir:</translation>
     </message>
     <message>
-        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
-        <translation>Kilitli DOGEC veya Masternode teminatları. Bunlar zDOGEC matlaştırmadan çıkarılır.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zdogec minting.</source>
+        <translation>Kilitli DOGEC veya Masternode teminatları. Bunlar zdogec matlaştırmadan çıkarılır.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2199,8 +2199,8 @@ Olgunlaşmamış: onaylandı, ancak basıldıktan sonra aynı ölçü biriminden
         <translation>onaylanmamış:</translation>
     </message>
     <message>
-        <source>Your current zDOGEC balance, unconfirmed and immature zDOGEC included.</source>
-        <translation>Güncel zDOGEC bakiyeniz, onaylanmamış ve olgunlaşmamış zDOGEC'ler dahil.</translation>
+        <source>Your current zdogec balance, unconfirmed and immature zdogec included.</source>
+        <translation>Güncel zdogec bakiyeniz, onaylanmamış ve olgunlaşmamış zdogec'ler dahil.</translation>
     </message>
     <message>
         <source>Recent transactions</source>
@@ -2211,10 +2211,10 @@ Olgunlaşmamış: onaylandı, ancak basıldıktan sonra aynı ölçü biriminden
         <translation>senkronizasyon dışı</translation>
     </message>
     <message>
-        <source>Current percentage of zDOGEC.
+        <source>Current percentage of zdogec.
 If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
 </source>
-        <translation>Mevcut zDOGEC yüzdesi.
+        <translation>Mevcut zdogec yüzdesi.
 AutoMint etkinleştirilirse, bu yüzde, yapılandırılmış AutoMint yüzdesi etrafında düzelir (varsayılan = 10%).
 </translation>
     </message>
@@ -2358,8 +2358,8 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in dogecash.c
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>Available for minting are coins which are confirmed and not locked or Masternode collaterals.</source>
@@ -2410,16 +2410,16 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in dogecash.c
         <translation>GİZLİLİK</translation>
     </message>
     <message>
-        <source>Enter an amount of DOGEC to convert to zDOGEC</source>
-        <translation>zDOGEC'e dönüştürmek için bir miktar DOGEC girin</translation>
+        <source>Enter an amount of DOGEC to convert to zdogec</source>
+        <translation>zdogec'e dönüştürmek için bir miktar DOGEC girin</translation>
     </message>
     <message>
-        <source>zDOGEC Control</source>
-        <translation>zDOGEC Kontrolü</translation>
+        <source>zdogec Control</source>
+        <translation>zdogec Kontrolü</translation>
     </message>
     <message>
-        <source>zDOGEC Selected:</source>
-        <translation>zDOGEC Seçildi:</translation>
+        <source>zdogec Selected:</source>
+        <translation>zdogec Seçildi:</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -2434,24 +2434,24 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in dogecash.c
         <translation>Harca Zerocoin</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zDOGEC for spending</source>
-        <translation>Mevcut (olgun ve harcanabilir) harcama için zDOGEC</translation>
+        <source>Available (mature and spendable) zdogec for spending</source>
+        <translation>Mevcut (olgun ve harcanabilir) harcama için zdogec</translation>
     </message>
     <message>
         <source>Available Balance:</source>
         <translation>Kullanılabilir Bakiye:</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zDOGEC for spending
+        <source>Available (mature and spendable) zdogec for spending
 
-zDOGEC are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
-        <translation>Mevcut (olgun ve harcanabilir) harcama için zDOGEC
+zdogec are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
+        <translation>Mevcut (olgun ve harcanabilir) harcama için zdogec
 
-zDOGEC, 20'den fazla teyit bulunduğunda olgunlaşır ve bundan sonra aynı mezhepten 2 kat fazla darphane çekilir.</translation>
+zdogec, 20'den fazla teyit bulunduğunda olgunlaşır ve bundan sonra aynı mezhepten 2 kat fazla darphane çekilir.</translation>
     </message>
     <message>
-        <source>0 zDOGEC</source>
-        <translation>0 zDOGEC</translation>
+        <source>0 zdogec</source>
+        <translation>0 zdogec</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
@@ -2510,8 +2510,8 @@ zDOGEC, 20'den fazla teyit bulunduğunda olgunlaşır ve bundan sonra aynı mezh
         <translation>Zerocoin durumu:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zDOGEC</source>
-        <translation>Doğrulanmamış ve olgunlaşmamış zDOGEC dahil toplam bakiye</translation>
+        <source>Total Balance including unconfirmed and immature zdogec</source>
+        <translation>Doğrulanmamış ve olgunlaşmamış zdogec dahil toplam bakiye</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
@@ -2684,12 +2684,12 @@ Maximum allowed: </source>
 Maksimum bırakılan: </translation>
     </message>
     <message>
-        <source>zDOGEC is currently disabled due to maintenance.</source>
-        <translation>zDOGEC bakım nedeniyle şu an kullanıma kapalı.</translation>
+        <source>zdogec is currently disabled due to maintenance.</source>
+        <translation>zdogec bakım nedeniyle şu an kullanıma kapalı.</translation>
     </message>
     <message>
-        <source>zDOGEC is currently undergoing maintenance.</source>
-        <translation>zDOGEC halen bakım alıyor.</translation>
+        <source>zdogec is currently undergoing maintenance.</source>
+        <translation>zdogec halen bakım alıyor.</translation>
     </message>
     <message>
         <source>AutoMint Status:</source>
@@ -2712,8 +2712,8 @@ Maksimum bırakılan: </translation>
         <translation>Başarılı şekilde mint edildi</translation>
     </message>
     <message>
-        <source> zDOGEC in </source>
-        <translation> zDOGEC in </translation>
+        <source> zdogec in </source>
+        <translation> zdogec in </translation>
     </message>
     <message>
         <source> sec. Used denominations:
@@ -4506,7 +4506,7 @@ Ya daha yüksek mezhepleri daraltın (daha az girdi gereklidir) veya harcama mik
     </message>
 </context>
 <context>
-    <name>zDOGECControlDialog</name>
+    <name>zdogecControlDialog</name>
     <message>
         <source>Quantity</source>
         <translation>Adet</translation>
@@ -4516,8 +4516,8 @@ Ya daha yüksek mezhepleri daraltın (daha az girdi gereklidir) veya harcama mik
         <translation>0</translation>
     </message>
     <message>
-        <source>zDOGEC</source>
-        <translation>zDOGEC</translation>
+        <source>zdogec</source>
+        <translation>zdogec</translation>
     </message>
     <message>
         <source>Select/Deselect All</source>

@@ -65,17 +65,17 @@ UniValue getinfo(const UniValue& params, bool fHelp)
             "  \"difficulty\": xxxxxx,       (numeric) the current difficulty\n"
             "  \"testnet\": true|false,      (boolean) if the server is using testnet or not\n"
             "  \"moneysupply\" : \"supply\"       (numeric) The money supply when this block was added to the blockchain\n"
-            "  \"zDOGECsupply\" :\n"
+            "  \"zdogecsupply\" :\n"
             "  {\n"
-            "     \"1\" : n,            (numeric) supply of 1 zDOGEC denomination\n"
-            "     \"5\" : n,            (numeric) supply of 5 zDOGEC denomination\n"
-            "     \"10\" : n,           (numeric) supply of 10 zDOGEC denomination\n"
-            "     \"50\" : n,           (numeric) supply of 50 zDOGEC denomination\n"
-            "     \"100\" : n,          (numeric) supply of 100 zDOGEC denomination\n"
-            "     \"500\" : n,          (numeric) supply of 500 zDOGEC denomination\n"
-            "     \"1000\" : n,         (numeric) supply of 1000 zDOGEC denomination\n"
-            "     \"5000\" : n,         (numeric) supply of 5000 zDOGEC denomination\n"
-            "     \"total\" : n,        (numeric) The total supply of all zDOGEC denominations\n"
+            "     \"1\" : n,            (numeric) supply of 1 zdogec denomination\n"
+            "     \"5\" : n,            (numeric) supply of 5 zdogec denomination\n"
+            "     \"10\" : n,           (numeric) supply of 10 zdogec denomination\n"
+            "     \"50\" : n,           (numeric) supply of 50 zdogec denomination\n"
+            "     \"100\" : n,          (numeric) supply of 100 zdogec denomination\n"
+            "     \"500\" : n,          (numeric) supply of 500 zdogec denomination\n"
+            "     \"1000\" : n,         (numeric) supply of 1000 zdogec denomination\n"
+            "     \"5000\" : n,         (numeric) supply of 5000 zdogec denomination\n"
+            "     \"total\" : n,        (numeric) The total supply of all zdogec denominations\n"
             "  }\n"
             "  \"keypoololdest\": xxxxxx,    (numeric) the timestamp (seconds since GMT epoch) of the oldest pre-generated key in the key pool\n"
             "  \"keypoolsize\": xxxx,        (numeric) how many new keys are pre-generated\n"
@@ -144,12 +144,12 @@ UniValue getinfo(const UniValue& params, bool fHelp)
     }
 
     obj.push_back(Pair("moneysupply",ValueFromAmount(chainActive.Tip()->nMoneySupply)));
-    UniValue zDOGECObj(UniValue::VOBJ);
+    UniValue zdogecObj(UniValue::VOBJ);
     for (auto denom : libzerocoin::zerocoinDenomList) {
-        zDOGECObj.push_back(Pair(to_string(denom), ValueFromAmount(chainActive.Tip()->mapZerocoinSupply.at(denom) * (denom*COIN))));
+        zdogecObj.push_back(Pair(to_string(denom), ValueFromAmount(chainActive.Tip()->mapZerocoinSupply.at(denom) * (denom*COIN))));
     }
-    zDOGECObj.push_back(Pair("total", ValueFromAmount(chainActive.Tip()->GetZerocoinSupply())));
-    obj.push_back(Pair("zDOGECsupply", zDOGECObj));
+    zdogecObj.push_back(Pair("total", ValueFromAmount(chainActive.Tip()->GetZerocoinSupply())));
+    obj.push_back(Pair("zdogecsupply", zdogecObj));
 
 #ifdef ENABLE_WALLET
     if (pwalletMain) {

@@ -4,12 +4,12 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 //
 
-#ifndef dogecash_LIGHTzDOGECTHREAD_H
-#define dogecash_LIGHTzDOGECTHREAD_H
+#ifndef dogecash_LIGHTzdogecTHREAD_H
+#define dogecash_LIGHTzdogecTHREAD_H
 
 #include <atomic>
 #include "genwit.h"
-#include "zDOGEC/accumulators.h"
+#include "zdogec/accumulators.h"
 #include "concurrentqueue.h"
 #include "chainparams.h"
 #include <boost/function.hpp>
@@ -50,22 +50,22 @@ public:
         return true;
     }
 
-    void StartLightzDOGECThread(boost::thread_group& threadGroup) {
+    void StartLightzdogecThread(boost::thread_group& threadGroup) {
         LogPrintf("%s thread start\n", "dogecash-light-thread");
-        threadIns = boost::thread(boost::bind(&CLightWorker::ThreadLightzDOGECSimplified, this));
+        threadIns = boost::thread(boost::bind(&CLightWorker::ThreadLightzdogecSimplified, this));
     }
 
-    void StopLightzDOGECThread() {
+    void StopLightzdogecThread() {
         threadIns.interrupt();
         LogPrintf("%s thread interrupted\n", "dogecash-light-thread");
     }
 
 private:
 
-    void ThreadLightzDOGECSimplified();
+    void ThreadLightzdogecSimplified();
 
     void rejectWork(CGenWit& wit, int blockHeight, uint32_t errorNumber);
 
 };
 
-#endif //dogecash_LIGHTzDOGECTHREAD_H
+#endif //dogecash_LIGHTzdogecTHREAD_H
