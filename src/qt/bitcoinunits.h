@@ -57,9 +57,9 @@ public:
       @note Source: https://en.bitcoin.it/wiki/Units . Please add only sensible ones
      */
     enum Unit {
-        PIV,
-        mPIV,
-        uPIV
+        DOGEC,
+        mDOGEC,
+        uDOGEC
     };
 
     enum SeparatorStyle {

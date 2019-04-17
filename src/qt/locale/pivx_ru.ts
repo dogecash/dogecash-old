@@ -176,7 +176,7 @@
         <translation>Подтверждение шифрования кошелька</translation>
     </message>
     <message>
-        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
         <translation>DogeCash сейчас закроется, чтобы завершить процесс шифрования. Помните, что шифрование вашего кошелька не может полностью защитить ваши DogeCash от кражи с использованием вредоносного ПО.</translation>
     </message>
     <message>
@@ -184,8 +184,8 @@
         <translation>Вы действительно хотите зашифровать свой кошелек?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
-        <translation>Внимание: если вы зашифруете свой кошелёк и потеряете от него пароль, то вы &lt;b&gt;ПОТЕРЯЕТЕ ВСЕ СВОИ PIV&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR DOGEC&lt;/b&gt;!</source>
+        <translation>Внимание: если вы зашифруете свой кошелёк и потеряете от него пароль, то вы &lt;b&gt;ПОТЕРЯЕТЕ ВСЕ СВОИ DOGEC&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -1106,8 +1106,8 @@ MultiSend: %1</translation>
         <translation>Этот маркер становится красным если получаемая адресатом сумма меньше, чем %1</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Может вариироваться +/- %1 upiv при вводе</translation>
+        <source>Can vary +/- %1 uDOGEC per input.</source>
+        <translation>Может вариироваться +/- %1 uDOGEC при вводе</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1628,8 +1628,8 @@ Please be patient after clicking import.</source>
         <translation>Адрес/ Сумма:</translation>
     </message>
     <message>
-        <source>Add destinations to send PIV to</source>
-        <translation>Добавить назначение куда отправить PIV</translation>
+        <source>Add destinations to send DOGEC to</source>
+        <translation>Добавить назначение куда отправить DOGEC</translation>
     </message>
     <message>
         <source>Add &amp;Destination</source>
@@ -1727,32 +1727,32 @@ Please be patient after clicking import.</source>
         <translation>Выберите уровень конфиденциальности.</translation>
     </message>
     <message>
-        <source>Use 2 separate masternodes to mix funds up to 10000 PIV</source>
-        <translation>Используйте 2 разные мастерноды для смешивания средств до 10000 PIV</translation>
+        <source>Use 2 separate masternodes to mix funds up to 10000 DOGEC</source>
+        <translation>Используйте 2 разные мастерноды для смешивания средств до 10000 DOGEC</translation>
     </message>
     <message>
-        <source>Use 8 separate masternodes to mix funds up to 10000 PIV</source>
-        <translation>Используйте 8 разных мастернод для смешивания средств до 10000 PIV</translation>
+        <source>Use 8 separate masternodes to mix funds up to 10000 DOGEC</source>
+        <translation>Используйте 8 разных мастернод для смешивания средств до 10000 DOGEC</translation>
     </message>
     <message>
         <source>Use 16 separate masternodes</source>
         <translation>Используйте 16 разных мастернод</translation>
     </message>
     <message>
-        <source>This option is the quickest and will cost about ~0.025 PIV to anonymize 10000 PIV</source>
-        <translation>Этот вариант является самым быстрым и будет стоить порядка ~0.025 PIV для анонимизации 10000 PIV</translation>
+        <source>This option is the quickest and will cost about ~0.025 DOGEC to anonymize 10000 DOGEC</source>
+        <translation>Этот вариант является самым быстрым и будет стоить порядка ~0.025 DOGEC для анонимизации 10000 DOGEC</translation>
     </message>
     <message>
-        <source>This option is moderately fast and will cost about 0.05 PIV to anonymize 10000 PIV</source>
-        <translation>Это средний по скорости вариант и он будет стоить около 0.05 PIV для анонимизации 10000 PIV</translation>
+        <source>This option is moderately fast and will cost about 0.05 DOGEC to anonymize 10000 DOGEC</source>
+        <translation>Это средний по скорости вариант и он будет стоить около 0.05 DOGEC для анонимизации 10000 DOGEC</translation>
     </message>
     <message>
         <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
         <translation>Это самый медленный и безопасный вариант. Максимальная анонимность стоит</translation>
     </message>
     <message>
-        <source>0.1 PIV per 10000 PIV you anonymize.</source>
-        <translation>0.1 PIV за 10000 PIV которые вы собираетесь анонимизировать.</translation>
+        <source>0.1 DOGEC per 10000 DOGEC you anonymize.</source>
+        <translation>0.1 DOGEC за 10000 DOGEC которые вы собираетесь анонимизировать.</translation>
     </message>
     <message>
         <source>Obfuscation Configuration</source>
@@ -1895,24 +1895,24 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations</transl
         <translation>Карта порта, использующего &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of PIV units to zDOGEC</source>
-        <translation>Невозможно автоматически отчеканить единицы PIV для zDOGEC</translation>
+        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
+        <translation>Невозможно автоматически отчеканить единицы DOGEC для zDOGEC</translation>
     </message>
     <message>
         <source>Enable zDOGEC Automint</source>
         <translation>Невозможно авточеканка  zDOGEC</translation>
     </message>
     <message>
-        <source>Percentage of incoming PIV which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
-        <translation>Процент приходящих PIV, которые автоматически конвертируются в zDOGEC благодаря Zerocoin протоколу (min: 10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
+        <translation>Процент приходящих DOGEC, которые автоматически конвертируются в zDOGEC благодаря Zerocoin протоколу (min: 10%)</translation>
     </message>
     <message>
         <source>Percentage of autominted zDOGEC</source>
         <translation>Процент  авточеканненых zDOGEC</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</source>
-        <translation>Подождите с автоматическим преобразованием в Zerocoin, пока не будет достаточно PIV для этой номинации.</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</source>
+        <translation>Подождите с автоматическим преобразованием в Zerocoin, пока не будет достаточно DOGEC для этой номинации.</translation>
     </message>
     <message>
         <source>Preferred Automint zDOGEC Denomination</source>
@@ -2078,8 +2078,8 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations</transl
         <translation>Общий баланс включая все не доступные монеты</translation>
     </message>
     <message>
-        <source>PIV Balance</source>
-        <translation>Баланс PIV</translation>
+        <source>DOGEC Balance</source>
+        <translation>Баланс DOGEC</translation>
     </message>
     <message>
         <source>Pending:</source>
@@ -2165,8 +2165,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <translation>Расходуемый:</translation>
     </message>
     <message>
-        <source>Locked PIV or Masternode collaterals. These are excluded from zDOGEC minting.</source>
-        <translation>Заблокированно дополнительное обеспечение PIV или Masternode. Они исключены из чеканки zDOGEC.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
+        <translation>Заблокированно дополнительное обеспечение DOGEC или Masternode. Они исключены из чеканки zDOGEC.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2348,8 +2348,8 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in DogeCash.c
         <translation>Доступный для чеканки</translation>
     </message>
     <message>
-        <source>0.000 000 00 PIV</source>
-        <translation>0.000 000 00 PIV</translation>
+        <source>0.000 000 00 DOGEC</source>
+        <translation>0.000 000 00 DOGEC</translation>
     </message>
     <message>
         <source>Reset Zerocoin Wallet DB. Deletes transactions that did not make it into the blockchain.</source>
@@ -2388,8 +2388,8 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in DogeCash.c
         <translation>КОНФИДЕНЦИАЛЬНОСТЬ</translation>
     </message>
     <message>
-        <source>Enter an amount of Piv to convert to zDOGEC</source>
-        <translation>Введите сумму в Piv для  конвертации в zDOGEC</translation>
+        <source>Enter an amount of DOGEC to convert to zDOGEC</source>
+        <translation>Введите сумму в DOGEC для  конвертации в zDOGEC</translation>
     </message>
     <message>
         <source>zDOGEC Control</source>
@@ -3669,8 +3669,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>UTXO Размер:</translation>
     </message>
     <message>
-        <source>0 PIV</source>
-        <translation>0 PIV</translation>
+        <source>0 DOGEC</source>
+        <translation>0 DOGEC</translation>
     </message>
     <message>
         <source>Transaction Fee:</source>
@@ -3725,12 +3725,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Монеты автоматически выбираются</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uPIVs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uPIVs in fee,&lt;br /&gt;while "at least" pays 1000 uPIVs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Если пользовательская плата установлена в 1000 uPIVs, а транзакция составляет всего 250 байт, тогда «за килобайт» платит только 250 uPIVs,&lt;br /&gt;а «по крайней мере» платит 1000 uPIV. Для транзакций, превышающих килобайт, оплата за килобайт</translation>
+        <source>If the custom fee is set to 1000 uDOGECs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uDOGECs in fee,&lt;br /&gt;while "at least" pays 1000 uDOGECs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Если пользовательская плата установлена в 1000 uDOGECs, а транзакция составляет всего 250 байт, тогда «за килобайт» платит только 250 uDOGECs,&lt;br /&gt;а «по крайней мере» платит 1000 uDOGEC. Для транзакций, превышающих килобайт, оплата за килобайт</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uPIVs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uPIVs in fee,&lt;br /&gt;while "total at least" pays 1000 uPIVs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Если пользовательская плата установлена в 1000 uPIVs, а транзакция составляет всего 250 байт, тогда «за килобайт» платит только 250 uPIVs,&lt;br /&gt;а «по крайней мере» платит 1000 uPIV. Для транзакций, превышающих килобайт, оплата за килобайт</translation>
+        <source>If the custom fee is set to 1000 uDOGECs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uDOGECs in fee,&lt;br /&gt;while "total at least" pays 1000 uDOGECs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Если пользовательская плата установлена в 1000 uDOGECs, а транзакция составляет всего 250 байт, тогда «за килобайт» платит только 250 uDOGECs,&lt;br /&gt;а «по крайней мере» платит 1000 uDOGEC. Для транзакций, превышающих килобайт, оплата за килобайт</translation>
     </message>
     <message>
         <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for DogeCash transactions than the network can process.</source>
@@ -3781,8 +3781,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Добавить &amp;Получателя</translation>
     </message>
     <message>
-        <source>Anonymized PIV</source>
-        <translation>Анонимный PIV</translation>
+        <source>Anonymized DOGEC</source>
+        <translation>Анонимный DOGEC</translation>
     </message>
     <message>
         <source>Balance:</source>
@@ -4425,8 +4425,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Получено через обфускацию</translation>
     </message>
     <message>
-        <source>PIV Stake</source>
-        <translation>Доля PIV</translation>
+        <source>DOGEC Stake</source>
+        <translation>Доля DOGEC</translation>
     </message>
     <message>
         <source>zDOGEC Stake</source>
@@ -4449,24 +4449,24 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Обфускация Создание конфессий</translation>
     </message>
     <message>
-        <source>Converted PIV to zDOGEC</source>
-        <translation>Преобразованный PIV в zDOGEC</translation>
+        <source>Converted DOGEC to zDOGEC</source>
+        <translation>Преобразованный DOGEC в zDOGEC</translation>
     </message>
     <message>
         <source>Spent zDOGEC</source>
         <translation>потраченный zDOGEC</translation>
     </message>
     <message>
-        <source>Received PIV from zDOGEC</source>
-        <translation>Полученный PIV от zDOGEC</translation>
+        <source>Received DOGEC from zDOGEC</source>
+        <translation>Полученный DOGEC от zDOGEC</translation>
     </message>
     <message>
         <source>Minted Change as zDOGEC from zDOGEC Spend</source>
         <translation>созданная  замена  zDOGEC из потраенного zDOGEC </translation>
     </message>
     <message>
-        <source>Converted zDOGEC to PIV</source>
-        <translation>Преобразованный zDOGEC to PIV</translation>
+        <source>Converted zDOGEC to DOGEC</source>
+        <translation>Преобразованный zDOGEC to DOGEC</translation>
     </message>
     <message>
         <source>Anonymous (zDOGEC Transaction)</source>
@@ -4684,8 +4684,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Экспортирование произошло успешно</translation>
     </message>
     <message>
-        <source>Received PIV from zDOGEC</source>
-        <translation>Полученный PIV от zDOGEC</translation>
+        <source>Received DOGEC from zDOGEC</source>
+        <translation>Полученный DOGEC от zDOGEC</translation>
     </message>
     <message>
         <source>Zerocoin Spend, Change in zDOGEC</source>
@@ -4725,8 +4725,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Отправить Монеты</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIV.</source>
-        <translation>SwiftX не поддерживает отправку значений, которые еще высоки. В настоящее время транзакции ограничены %1 PIV.</translation>
+        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 DOGEC.</source>
+        <translation>SwiftX не поддерживает отправку значений, которые еще высоки. В настоящее время транзакции ограничены %1 DOGEC.</translation>
     </message>
 </context>
 <context>
@@ -4838,8 +4838,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Включить автоматическое резервное копирование кошелька, запускаемое после каждого чеканки zDOGEC (0-1, по умолчанию: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for PIV inputs (0-1, default: %u)</source>
-        <translation>Включение или отключение функций разбивки для входов PIV (0-1, по умолчанию: %u)</translation>
+        <source>Enable or disable staking functionality for DOGEC inputs (0-1, default: %u)</source>
+        <translation>Включение или отключение функций разбивки для входов DOGEC (0-1, по умолчанию: %u)</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)</source>
@@ -4878,12 +4878,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Выполнить команду, когда лучший блок изменяется (%s в cmd заменяется блочным хэшем)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Тарифы (в PIV / Kb), меньшие, чем это, считаются нулевой комиссией за ретрансляцию (по умолчанию: %s)</translation>
+        <source>Fees (in DOGEC/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Тарифы (в DOGEC / Kb), меньшие, чем это, считаются нулевой комиссией за ретрансляцию (по умолчанию: %s)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Плата (в PIV / Kb) меньше этого считается нулевой комиссией за создание транзакции (по умолчанию: %s)</translation>
+        <source>Fees (in DOGEC/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Плата (в DOGEC / Kb) меньше этого считается нулевой комиссией за создание транзакции (по умолчанию: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -4990,12 +4990,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Не удалось найти достаточное количество средств, предназначенных для обфускации, для этой транзакции.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIV.</source>
-        <translation>Невозможно найти достаточное количество средств, не предназначенных для обфускации, для этой транзакции, которые не равны 10000 PIV.</translation>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 DOGEC.</source>
+        <translation>Невозможно найти достаточное количество средств, не предназначенных для обфускации, для этой транзакции, которые не равны 10000 DOGEC.</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIV.</source>
-        <translation>Не удалось найти достаточное количество средств для этой транзакции, которые не равны 10000 PIV.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 10000 DOGEC.</source>
+        <translation>Не удалось найти достаточное количество средств для этой транзакции, которые не равны 10000 DOGEC.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5314,8 +5314,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Не удалось прочитать блок</translation>
     </message>
     <message>
-        <source>Fee (in PIV/kB) to add to transactions you send (default: %s)</source>
-        <translation>Плата (в PIV / kB) для добавления к транзакциям, которые вы отправляете (по умолчанию: %s)</translation>
+        <source>Fee (in DOGEC/kB) to add to transactions you send (default: %s)</source>
+        <translation>Плата (в DOGEC / kB) для добавления к транзакциям, которые вы отправляете (по умолчанию: %s)</translation>
     </message>
     <message>
         <source>Finalizing transaction.</source>
@@ -5446,8 +5446,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Процент автоматически отчеканенного Zerocoin (1-100, по умолчанию: %u)</translation>
     </message>
     <message>
-        <source>Reindex the PIV and zDOGEC money supply statistics</source>
-        <translation>Reindex статистика денежной массы PIV и zDOGEC</translation>
+        <source>Reindex the DOGEC and zDOGEC money supply statistics</source>
+        <translation>Reindex статистика денежной массы DOGEC и zDOGEC</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>

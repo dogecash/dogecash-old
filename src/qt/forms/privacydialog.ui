@@ -378,7 +378,7 @@
                            </size>
                           </property>
                           <property name="toolTip">
-                           <string>Enter an amount of Piv to convert to zDOGEC</string>
+                           <string>Enter an amount of DOGEC to convert to zDOGEC</string>
                           </property>
                           <property name="text">
                            <string>Mint Zerocoin</string>
@@ -430,10 +430,10 @@
                            </font>
                           </property>
                           <property name="toolTip">
-                           <string>Enter an amount of Piv to convert to zDOGEC</string>
+                           <string>Enter an amount of DOGEC to convert to zDOGEC</string>
                           </property>
                           <property name="text">
-                           <string>0.000 000 00 PIV</string>
+                           <string>0.000 000 00 DOGEC</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -609,7 +609,7 @@
                              <enum>Qt::ActionsContextMenu</enum>
                             </property>
                             <property name="text">
-                             <string notr="true">0.00 PIV</string>
+                             <string notr="true">0.00 DOGEC</string>
                             </property>
                             <property name="textInteractionFlags">
                              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -2168,7 +2168,7 @@ To change the percentage (no restart required):
          <enum>Qt::ActionsContextMenu</enum>
         </property>
         <property name="text">
-         <string notr="true">0.000 000 00 PIV</string>
+         <string notr="true">0.000 000 00 DOGEC</string>
         </property>
         <property name="textInteractionFlags">
          <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -2250,7 +2250,7 @@ To change the percentage (no restart required):
            <enum>Qt::ActionsContextMenu</enum>
           </property>
           <property name="text">
-           <string notr="true">0.00 PIV</string>
+           <string notr="true">0.00 DOGEC</string>
           </property>
           <property name="textInteractionFlags">
            <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -2472,7 +2472,7 @@ To change the percentage (no restart required):
          <enum>Qt::ActionsContextMenu</enum>
         </property>
         <property name="text">
-         <string notr="true">0.000 000 00 PIV</string>
+         <string notr="true">0.000 000 00 DOGEC</string>
         </property>
         <property name="textInteractionFlags">
          <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>

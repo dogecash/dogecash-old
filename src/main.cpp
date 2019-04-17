@@ -84,7 +84,7 @@ bool fClearSpendCache = false;
 unsigned int nStakeMinAge = 60 * 60;
 int64_t nReserveBalance = 0;
 
-/** Fees smaller than this (in upiv) are considered zero fee (for relaying and mining)
+/** Fees smaller than this (in uDOGEC) are considered zero fee (for relaying and mining)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minRelayTxFee only 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  */
@@ -2191,7 +2191,7 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
     } else if (nHeight < Params().Zerocoin_Block_V2_Start()) {
         return GetSeeSaw(blockValue, nMasternodeCount, nHeight);
     } else {
-        //When zDOGEC is staked, masternode only gets 2 PIV
+        //When zDOGEC is staked, masternode only gets 2 DOGEC
         ret = 3 * COIN;
         if (iszDOGECStake)
             ret = 2 * COIN;
@@ -2821,7 +2821,7 @@ void RecalculatezDOGECSpent()
     uiInterface.ShowProgress("", 100);
 }
 
-bool RecalculatePIVSupply(int nHeightStart)
+bool RecalculateDOGECSupply(int nHeightStart)
 {
     if (nHeightStart > chainActive.Height())
         return false;
@@ -2831,12 +2831,12 @@ bool RecalculatePIVSupply(int nHeightStart)
     if (nHeightStart == Params().Zerocoin_StartHeight())
         nSupplyPrev = CAmount(5449796547496199);
 
-    uiInterface.ShowProgress(_("Recalculating PIV supply..."), 0);
+    uiInterface.ShowProgress(_("Recalculating DOGEC supply..."), 0);
     while (true) {
         if (pindex->nHeight % 1000 == 0) {
             LogPrintf("%s : block %d...\n", __func__, pindex->nHeight);
             int percent = std::max(1, std::min(99, (int)((double)((pindex->nHeight - nHeightStart) * 100) / (chainActive.Height() - nHeightStart))));
-            uiInterface.ShowProgress(_("Recalculating PIV supply..."), percent);
+            uiInterface.ShowProgress(_("Recalculating DOGEC supply..."), percent);
         }
 
         CBlock block;
@@ -3221,7 +3221,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     if (pindex->nHeight == Params().Zerocoin_Block_RecalculateAccumulators() + 1) {
         RecalculatezDOGECMinted();
         RecalculatezDOGECSpent();
-        RecalculatePIVSupply(Params().Zerocoin_StartHeight());
+        RecalculateDOGECSupply(Params().Zerocoin_StartHeight());
     }
 
     //Track zDOGEC money supply in the block index
@@ -3438,7 +3438,7 @@ void static UpdateTip(CBlockIndex* pindexNew)
     chainActive.SetTip(pindexNew);
 
 #ifdef ENABLE_WALLET
-    // If turned on AutoZeromint will automatically convert PIV to zDOGEC
+    // If turned on AutoZeromint will automatically convert DOGEC to zDOGEC
     if (pwalletMain && pwalletMain->isZeromintEnabled())
         pwalletMain->AutoZeromint();
 #endif // ENABLE_WALLET
@@ -4643,17 +4643,17 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
         CTransaction &stakeTxIn = block.vtx[1];
 
         // Inputs
-        std::vector<CTxIn> pivInputs;
+        std::vector<CTxIn> DOGECInputs;
         std::vector<CTxIn> zDOGECInputs;
 
         for (const CTxIn& stakeIn : stakeTxIn.vin) {
             if(stakeIn.scriptSig.IsZerocoinSpend()){
                 zDOGECInputs.push_back(stakeIn);
             }else{
-                pivInputs.push_back(stakeIn);
+                DOGECInputs.push_back(stakeIn);
             }
         }
-        const bool hasPIVInputs = !pivInputs.empty();
+        const bool hasDOGECInputs = !DOGECInputs.empty();
         const bool haszDOGECInputs = !zDOGECInputs.empty();
 
         // ZC started after PoS.
@@ -4674,10 +4674,10 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
                     }
                 }
                 if(tx.IsCoinStake()) continue;
-                if(hasPIVInputs)
+                if(hasDOGECInputs)
                     // Check if coinstake input is double spent inside the same block
-                    for (const CTxIn& pivIn : pivInputs){
-                        if(pivIn.prevout == in.prevout){
+                    for (const CTxIn& DOGECIn : DOGECInputs){
+                        if(DOGECIn.prevout == in.prevout){
                             // double spent coinstake input inside block
                             return error("%s: double spent coinstake input inside block", __func__);
                         }
@@ -4713,11 +4713,11 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
                 for (const CTransaction& t : bl.vtx) {
                     for (const CTxIn& in: t.vin) {
                         // Loop through every input of the staking tx
-                        for (const CTxIn& stakeIn : pivInputs) {
+                        for (const CTxIn& stakeIn : DOGECInputs) {
                             // if it's already spent
 
                             // First regular staking check
-                            if(hasPIVInputs) {
+                            if(hasDOGECInputs) {
                                 if (stakeIn.prevout == in.prevout) {
                                     return state.DoS(100, error("%s: input already spent on a previous block", __func__));
                                 }

@@ -158,7 +158,7 @@ CAmount CzDOGECTracker::GetBalance(bool fConfirmedOnly, bool fUnconfirmedOnly) c
     }
 
     {
-        //LOCK(cs_pivtracker);
+        //LOCK(cs_DOGECtracker);
         // Get Unused coins
         for (auto& it : mapSerialHashes) {
             CMintMeta meta = it.second;

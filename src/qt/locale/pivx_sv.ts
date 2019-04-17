@@ -176,16 +176,16 @@
         <translation>Bekräfta plånboks krypering</translation>
     </message>
     <message>
-        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
-        <translation>DogeCash kommer att stängas ner nu för att färdigställa kryperingsprocessen. Kom ihåg att kryptering av din plånbok inte kan säkerställa dina PIVs från att bli stulna av skadeprogram som infekterat din dator.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash kommer att stängas ner nu för att färdigställa kryperingsprocessen. Kom ihåg att kryptering av din plånbok inte kan säkerställa dina DOGECs från att bli stulna av skadeprogram som infekterat din dator.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Är du säker på att du vill kryptera din plånbok?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
-        <translation>Varning: om du krypterar din plånbok och tappar bort din lösenfras kommer du &lt;b&gt; FÖRLORA ALLA DINA PIV&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR DOGEC&lt;/b&gt;!</source>
+        <translation>Varning: om du krypterar din plånbok och tappar bort din lösenfras kommer du &lt;b&gt; FÖRLORA ALLA DINA DOGEC&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -1134,8 +1134,8 @@ MultiSend: %1</translation>
         <translation>Den här etiketten blir röd, ifall någon mottagare får en mängd som är mindre än %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Kan variera med +/- %1 upiv per inmatning.</translation>
+        <source>Can vary +/- %1 uDOGEC per input.</source>
+        <translation>Kan variera med +/- %1 uDOGEC per inmatning.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1726,8 +1726,8 @@ Var god vänta efter att du trycker på importera.</translation>
         <translation>Adress / Mängd:</translation>
     </message>
     <message>
-        <source>Add destinations to send PIV to</source>
-        <translation>Lägg till destination att skicka PIV till</translation>
+        <source>Add destinations to send DOGEC to</source>
+        <translation>Lägg till destination att skicka DOGEC till</translation>
     </message>
     <message>
         <source>Add &amp;Destination</source>
@@ -1825,32 +1825,32 @@ Var god vänta efter att du trycker på importera.</translation>
         <translation>Var vänlig och välj en sekretess nivå.</translation>
     </message>
     <message>
-        <source>Use 2 separate masternodes to mix funds up to 10000 PIV</source>
-        <translation>Använd 2 separata huvudnoder för att blanda tillgångar upp till 10000 PIV</translation>
+        <source>Use 2 separate masternodes to mix funds up to 10000 DOGEC</source>
+        <translation>Använd 2 separata huvudnoder för att blanda tillgångar upp till 10000 DOGEC</translation>
     </message>
     <message>
-        <source>Use 8 separate masternodes to mix funds up to 10000 PIV</source>
-        <translation>Använd 8 separata huvudnoderför att blanda tillgångar upp till 10000 PIV</translation>
+        <source>Use 8 separate masternodes to mix funds up to 10000 DOGEC</source>
+        <translation>Använd 8 separata huvudnoderför att blanda tillgångar upp till 10000 DOGEC</translation>
     </message>
     <message>
         <source>Use 16 separate masternodes</source>
         <translation>Använd 16 separata huvudnoder</translation>
     </message>
     <message>
-        <source>This option is the quickest and will cost about ~0.025 PIV to anonymize 10000 PIV</source>
-        <translation>Det här alternativet är det snabbaste och kommer kostar ungefär ~0.025 PIV för att anonymisera 10000 PIV</translation>
+        <source>This option is the quickest and will cost about ~0.025 DOGEC to anonymize 10000 DOGEC</source>
+        <translation>Det här alternativet är det snabbaste och kommer kostar ungefär ~0.025 DOGEC för att anonymisera 10000 DOGEC</translation>
     </message>
     <message>
-        <source>This option is moderately fast and will cost about 0.05 PIV to anonymize 10000 PIV</source>
-        <translation>Det här alternativet är måttligt snabb och kommer kostar ungefär 0.05 PIV för att anonymisera 10000 PIV</translation>
+        <source>This option is moderately fast and will cost about 0.05 DOGEC to anonymize 10000 DOGEC</source>
+        <translation>Det här alternativet är måttligt snabb och kommer kostar ungefär 0.05 DOGEC för att anonymisera 10000 DOGEC</translation>
     </message>
     <message>
         <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
         <translation>Det här är det långsammaste och säkraste alternativet. Använda maximal anonymitet kommer kosta</translation>
     </message>
     <message>
-        <source>0.1 PIV per 10000 PIV you anonymize.</source>
-        <translation>0.1 PIV per 10000 PIV du anonymiserar.</translation>
+        <source>0.1 DOGEC per 10000 DOGEC you anonymize.</source>
+        <translation>0.1 DOGEC per 10000 DOGEC du anonymiserar.</translation>
     </message>
     <message>
         <source>Obfuscation Configuration</source>
@@ -1993,24 +1993,24 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations</transl
         <translation>Kartlägg port med &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of PIV units to zDOGEC</source>
-        <translation>Tillåt automatisk prägling med PIV enheter till zDOGEC</translation>
+        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
+        <translation>Tillåt automatisk prägling med DOGEC enheter till zDOGEC</translation>
     </message>
     <message>
         <source>Enable zDOGEC Automint</source>
         <translation>Tillåt zDOGEC Autoprägling</translation>
     </message>
     <message>
-        <source>Percentage of incoming PIV which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
-        <translation>Procent av inkommande PIV som automatiskt konverteras till zDOGEC via Zerocoin Protokollet (min: 10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
+        <translation>Procent av inkommande DOGEC som automatiskt konverteras till zDOGEC via Zerocoin Protokollet (min: 10%)</translation>
     </message>
     <message>
         <source>Percentage of autominted zDOGEC</source>
         <translation>Procent av autopräglade zDOGEC</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</source>
-        <translation>Vänta med automatisk omvandling till Zerocoin tills tillräckligt många PIV för denna valör är tillgängliga</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</source>
+        <translation>Vänta med automatisk omvandling till Zerocoin tills tillräckligt många DOGEC för denna valör är tillgängliga</translation>
     </message>
     <message>
         <source>Preferred Automint zDOGEC Denomination</source>
@@ -2184,8 +2184,8 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations</transl
         <translation>Totalt saldo, inkluderar alla otillgängliga mynt.</translation>
     </message>
     <message>
-        <source>PIV Balance</source>
-        <translation>PIV Saldo</translation>
+        <source>DOGEC Balance</source>
+        <translation>DOGEC Saldo</translation>
     </message>
     <message>
         <source>Pending:</source>
@@ -2272,8 +2272,8 @@ Omogna: bekräftade men under 1 myntning av samma valör efter den blev präglad
         <translation>Spenderbar:</translation>
     </message>
     <message>
-        <source>Locked PIV or Masternode collaterals. These are excluded from zDOGEC minting.</source>
-        <translation>Låsta PIV eller masternode som säkerhet. Dessa är uteslutna från zDOGEC minting.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
+        <translation>Låsta DOGEC eller masternode som säkerhet. Dessa är uteslutna från zDOGEC minting.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2455,8 +2455,8 @@ För att aktivera AutoMint ändra 'enablezeromint=0' till 'enablezeromint=1' i D
         <translation>Tillgängligt att prägla:</translation>
     </message>
     <message>
-        <source>0.000 000 00 PIV</source>
-        <translation>0.000 000 00 PIV</translation>
+        <source>0.000 000 00 DOGEC</source>
+        <translation>0.000 000 00 DOGEC</translation>
     </message>
     <message>
         <source>Reset Zerocoin Wallet DB. Deletes transactions that did not make it into the blockchain.</source>
@@ -2495,8 +2495,8 @@ För att aktivera AutoMint ändra 'enablezeromint=0' till 'enablezeromint=1' i D
         <translation>SEKRETESS</translation>
     </message>
     <message>
-        <source>Enter an amount of Piv to convert to zDOGEC</source>
-        <translation>Mata in en mängd PIV att konvertera till zDOGEC</translation>
+        <source>Enter an amount of DOGEC to convert to zDOGEC</source>
+        <translation>Mata in en mängd DOGEC att konvertera till zDOGEC</translation>
     </message>
     <message>
         <source>zDOGEC Control</source>
@@ -3022,7 +3022,7 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     </message>
     <message numerus="yes">
         <source>PrivacyDialog</source>
-        <comment>Enter an amount of PIV to convert to zDOGEC</comment>
+        <comment>Enter an amount of DOGEC to convert to zDOGEC</comment>
         <translation><numerusform>SekretessDialog</numerusform><numerusform>SekretessDialog</numerusform></translation>
     </message>
     <message>
@@ -3810,12 +3810,12 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>UTXO Storlek:</translation>
     </message>
     <message>
-        <source>0 PIV</source>
-        <translation>0 PIV</translation>
+        <source>0 DOGEC</source>
+        <translation>0 DOGEC</translation>
     </message>
     <message>
-        <source>SwiftX technology allows for near instant transactions - A flat fee of 0.01 PIV applies</source>
-        <translation>SwiftX teknologi tillåter nästan omedelbara transaktioner - En fast avgift på 0.01PIV tillkommer</translation>
+        <source>SwiftX technology allows for near instant transactions - A flat fee of 0.01 DOGEC applies</source>
+        <translation>SwiftX teknologi tillåter nästan omedelbara transaktioner - En fast avgift på 0.01DOGEC tillkommer</translation>
     </message>
     <message>
         <source>Transaction Fee:</source>
@@ -3870,12 +3870,12 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Mynt automatiskt valda</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uPIVs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uPIVs in fee,&lt;br /&gt;while "at least" pays 1000 uPIVs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Om 1000 uPIVs är den valda skräddarsydda avgiften och transaktionen är bara 250 bytes så kommer "per kilobyte" bara betala 250 uPIVs i avgift,&lt;br /&gt;medans "minst" betalar 1000 uPIVs. För transaktioner större än en kilobyte så betalar båda per kilobyte.</translation>
+        <source>If the custom fee is set to 1000 uDOGECs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uDOGECs in fee,&lt;br /&gt;while "at least" pays 1000 uDOGECs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Om 1000 uDOGECs är den valda skräddarsydda avgiften och transaktionen är bara 250 bytes så kommer "per kilobyte" bara betala 250 uDOGECs i avgift,&lt;br /&gt;medans "minst" betalar 1000 uDOGECs. För transaktioner större än en kilobyte så betalar båda per kilobyte.</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uPIVs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uPIVs in fee,&lt;br /&gt;while "total at least" pays 1000 uPIVs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Om 1000 uPIVs är den valda skräddarsydda avgiften och transaktionen är bara 250 bytes så kommer "per kilobyte" bara betala 250 uPIVs i avgift,&lt;br /&gt;medans "minst totalt" betalar 1000 uPIVs. För transaktioner större än en kilobyte så betalar båda per kilobyte.</translation>
+        <source>If the custom fee is set to 1000 uDOGECs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uDOGECs in fee,&lt;br /&gt;while "total at least" pays 1000 uDOGECs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Om 1000 uDOGECs är den valda skräddarsydda avgiften och transaktionen är bara 250 bytes så kommer "per kilobyte" bara betala 250 uDOGECs i avgift,&lt;br /&gt;medans "minst totalt" betalar 1000 uDOGECs. För transaktioner större än en kilobyte så betalar båda per kilobyte.</translation>
     </message>
     <message>
         <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for DogeCash transactions than the network can process.</source>
@@ -3926,8 +3926,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Lägg till &amp;Mottagare</translation>
     </message>
     <message>
-        <source>Anonymized PIV</source>
-        <translation>Anonymiserade PIV</translation>
+        <source>Anonymized DOGEC</source>
+        <translation>Anonymiserade DOGEC</translation>
     </message>
     <message>
         <source>Balance:</source>
@@ -4594,8 +4594,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Mottaget via Fördunkling</translation>
     </message>
     <message>
-        <source>PIV Stake</source>
-        <translation>PIV staking</translation>
+        <source>DOGEC Stake</source>
+        <translation>DOGEC staking</translation>
     </message>
     <message>
         <source>zDOGEC Stake</source>
@@ -4618,24 +4618,24 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Obfuscation Skapa tecken</translation>
     </message>
     <message>
-        <source>Converted PIV to zDOGEC</source>
-        <translation>Konvertera PIV till zDOGEC</translation>
+        <source>Converted DOGEC to zDOGEC</source>
+        <translation>Konvertera DOGEC till zDOGEC</translation>
     </message>
     <message>
         <source>Spent zDOGEC</source>
         <translation>Spendera zDOGEC</translation>
     </message>
     <message>
-        <source>Received PIV from zDOGEC</source>
-        <translation>Mottog PIV från zDOGEC</translation>
+        <source>Received DOGEC from zDOGEC</source>
+        <translation>Mottog DOGEC från zDOGEC</translation>
     </message>
     <message>
         <source>Minted Change as zDOGEC from zDOGEC Spend</source>
         <translation>Myntad Växel som zDOGEC från zDOGEC Spendering</translation>
     </message>
     <message>
-        <source>Converted zDOGEC to PIV</source>
-        <translation>Konverterad zDOGEC till PIV</translation>
+        <source>Converted zDOGEC to DOGEC</source>
+        <translation>Konverterad zDOGEC till DOGEC</translation>
     </message>
     <message>
         <source>Anonymous (zDOGEC Transaction)</source>
@@ -4857,8 +4857,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Exportering Lyckat</translation>
     </message>
     <message>
-        <source>Received PIV from zDOGEC</source>
-        <translation>Mottog PIV från zDOGEC</translation>
+        <source>Received DOGEC from zDOGEC</source>
+        <translation>Mottog DOGEC från zDOGEC</translation>
     </message>
     <message>
         <source>Zerocoin Spend, Change in zDOGEC</source>
@@ -4898,8 +4898,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Skicka Mynt</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIV.</source>
-        <translation>wiftX stödjer inte att skicka så höga värden än. Transaktioner är för nuvarande begränsade till %1 PIV.</translation>
+        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 DOGEC.</source>
+        <translation>wiftX stödjer inte att skicka så höga värden än. Transaktioner är för nuvarande begränsade till %1 DOGEC.</translation>
     </message>
 </context>
 <context>
@@ -5011,8 +5011,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Aktivera automatisk plånboksbackup efter varje zDOGEC minting (0-1, standard: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for PIV inputs (0-1, default: %u)</source>
-        <translation>Aktivera eller avaktivera staking funktionalitet för PIV inmatningar (0-1, standard: %u)</translation>
+        <source>Enable or disable staking functionality for DOGEC inputs (0-1, default: %u)</source>
+        <translation>Aktivera eller avaktivera staking funktionalitet för DOGEC inmatningar (0-1, standard: %u)</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)</source>
@@ -5051,12 +5051,12 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Exekvera kommando när den bästa block ändras (%s i cmd är utbytt mot block hash)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Avgifter (i PIV/Kb) mindre än detta anses vara noll avgift i vidarebefodring (standard: %s)</translation>
+        <source>Fees (in DOGEC/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Avgifter (i DOGEC/Kb) mindre än detta anses vara noll avgift i vidarebefodring (standard: %s)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Avgifter (i PIV/Kb) mindre än detta anses vara noll avgift i transaktionsskapelse (standard: %s)</translation>
+        <source>Fees (in DOGEC/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Avgifter (i DOGEC/Kb) mindre än detta anses vara noll avgift i transaktionsskapelse (standard: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -5167,12 +5167,12 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Kan ej lokalisera tillräckligt Fördunklingsdenominationerade pengar för denna transaktion.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIV.</source>
-        <translation>Kan ej lokalisera tillräckligt Fördunkling icke-denominationerade pengar för denna transaktion som inte är 10000 PIV.</translation>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 DOGEC.</source>
+        <translation>Kan ej lokalisera tillräckligt Fördunkling icke-denominationerade pengar för denna transaktion som inte är 10000 DOGEC.</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIV.</source>
-        <translation>Kan inte hitta tillräckligt med pengar för denna transaktion som inte är 10000 PIV.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 10000 DOGEC.</source>
+        <translation>Kan inte hitta tillräckligt med pengar för denna transaktion som inte är 10000 DOGEC.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5495,8 +5495,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Misslyckades läsa block</translation>
     </message>
     <message>
-        <source>Fee (in PIV/kB) to add to transactions you send (default: %s)</source>
-        <translation>Avgift (i PIV/kB) för att lägga till transaktioner you skicka (standard: %s)</translation>
+        <source>Fee (in DOGEC/kB) to add to transactions you send (default: %s)</source>
+        <translation>Avgift (i DOGEC/kB) för att lägga till transaktioner you skicka (standard: %s)</translation>
     </message>
     <message>
         <source>Finalizing transaction.</source>
@@ -5627,8 +5627,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Procent automatiskt mintad Zerocoin (1-100, default: %u)</translation>
     </message>
     <message>
-        <source>Reindex the PIV and zDOGEC money supply statistics</source>
-        <translation>Indexera PIV och zDOGEC pengarna tillgång statistik på nytt</translation>
+        <source>Reindex the DOGEC and zDOGEC money supply statistics</source>
+        <translation>Indexera DOGEC och zDOGEC pengarna tillgång statistik på nytt</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>

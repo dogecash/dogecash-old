@@ -1,7 +1,7 @@
 <!--- Remove this description and sections that do not apply -->
 
 This issue tracker is only for technical issues related to DogeCash Core.
-General DogeCash questions and/or support requests and are best directed to the [DogeCash Discord](https://discord.DogeCash.org).
+General DogeCash questions and/or support requests and are best directed to the [DogeCash Discord](https://discord.dogec.io).
 
 ### Describe the issue
 

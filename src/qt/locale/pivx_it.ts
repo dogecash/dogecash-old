@@ -176,16 +176,16 @@
         <translation>Conferma cifratura portafoglio</translation>
     </message>
     <message>
-        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
-        <translation>DogeCash verrà ora chiuso per completare il processo di cifratura. Ricorda che crittografare il tuo portafoglio non protegge completamente i tuoi PIV dal furto da parte di software malevoli che potrebbero infettare il tuo computer.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash verrà ora chiuso per completare il processo di cifratura. Ricorda che crittografare il tuo portafoglio non protegge completamente i tuoi DOGEC dal furto da parte di software malevoli che potrebbero infettare il tuo computer.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Confermi di voler crittografare il portafoglio?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
-        <translation>Attenzione: Se crittografi il portafoglio e poi perdi la parola d'ordine, &lt;b&gt;PERDERAI TUTTI I TUOI PIV&lt;7b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR DOGEC&lt;/b&gt;!</source>
+        <translation>Attenzione: Se crittografi il portafoglio e poi perdi la parola d'ordine, &lt;b&gt;PERDERAI TUTTI I TUOI DOGEC&lt;7b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -1102,8 +1102,8 @@ MultiSend: %1</translation>
         <translation>Questa etichetta diventa rossa se uno dei destinatari riceve un importo inferiore a %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Può variare di +/- %1 uPIV per input.</translation>
+        <source>Can vary +/- %1 uDOGEC per input.</source>
+        <translation>Può variare di +/- %1 uDOGEC per input.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1262,7 +1262,7 @@ MultiSend: %1</translation>
     </message>
     <message>
         <source>Welcome to DogeCash Core.</source>
-        <translation>Benvenuto in PIVIX Core.</translation>
+        <translation>Benvenuto in DOGECIX Core.</translation>
     </message>
     <message>
         <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
@@ -1619,12 +1619,12 @@ MultiSend non verrà attivato a meno che tu non prema su Attiva</translation>
         <translation>Configura Offuscamento</translation>
     </message>
     <message>
-        <source>Use 2 separate masternodes to mix funds up to 10000 PIV</source>
-        <translation>Usa 2 masternodi diversi per mescolare fino a 10000 PIV</translation>
+        <source>Use 2 separate masternodes to mix funds up to 10000 DOGEC</source>
+        <translation>Usa 2 masternodi diversi per mescolare fino a 10000 DOGEC</translation>
     </message>
     <message>
-        <source>Use 8 separate masternodes to mix funds up to 10000 PIV</source>
-        <translation>Usa 8 masternodi diversi per mixare fino a 10000 PIV</translation>
+        <source>Use 8 separate masternodes to mix funds up to 10000 DOGEC</source>
+        <translation>Usa 8 masternodi diversi per mixare fino a 10000 DOGEC</translation>
     </message>
     <message>
         <source>Use 16 separate masternodes</source>
@@ -1661,16 +1661,16 @@ MultiSend non verrà attivato a meno che tu non prema su Attiva</translation>
         <translation>Mappa la porta utilizzando &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of PIV units to zDOGEC</source>
-        <translation>Attiva il conio automatico di unità PIV in zDOGEC</translation>
+        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
+        <translation>Attiva il conio automatico di unità DOGEC in zDOGEC</translation>
     </message>
     <message>
         <source>Enable zDOGEC Automint</source>
         <translation>Attiva Conio automatico zDOGEC</translation>
     </message>
     <message>
-        <source>Percentage of incoming PIV which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
-        <translation>Percentuale di PIV in entrata che viene automaticamente convertita in zDOGEC attraverso il protocollo Zerocoin (min: 10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
+        <translation>Percentuale di DOGEC in entrata che viene automaticamente convertita in zDOGEC attraverso il protocollo Zerocoin (min: 10%)</translation>
     </message>
     <message>
         <source>Percentage of autominted zDOGEC</source>
@@ -1740,8 +1740,8 @@ MultiSend non verrà attivato a meno che tu non prema su Attiva</translation>
         <translation>Saldo totale, inclusi tutte le monete non disponibili.</translation>
     </message>
     <message>
-        <source>PIV Balance</source>
-        <translation>Bilancio PIV</translation>
+        <source>DOGEC Balance</source>
+        <translation>Bilancio DOGEC</translation>
     </message>
     <message>
         <source>Immature:</source>
@@ -1794,8 +1794,8 @@ Questi zDOGEC sono spendibili.</translation>
         <translation>Spendibili:</translation>
     </message>
     <message>
-        <source>Locked PIV or Masternode collaterals. These are excluded from zDOGEC minting.</source>
-        <translation>PIV bloccati o collaterali Masternodo. Questi sono esclusi dal conio di zDOGEC.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
+        <translation>DOGEC bloccati o collaterali Masternodo. Questi sono esclusi dal conio di zDOGEC.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -1885,8 +1885,8 @@ Per attivare il Conio automatico cambiare 'enablezeromint=0' in 'enablezeromint=
         <translation>zDOGEC</translation>
     </message>
     <message>
-        <source>0.000 000 00 PIV</source>
-        <translation>0.000 000 00 PIV</translation>
+        <source>0.000 000 00 DOGEC</source>
+        <translation>0.000 000 00 DOGEC</translation>
     </message>
     <message>
         <source>Reset</source>
@@ -1909,8 +1909,8 @@ Per attivare il Conio automatico cambiare 'enablezeromint=0' in 'enablezeromint=
         <translation>PRIVACY</translation>
     </message>
     <message>
-        <source>Enter an amount of Piv to convert to zDOGEC</source>
-        <translation>Immetti un importo di PIV da convertire in zDOGEC</translation>
+        <source>Enter an amount of DOGEC to convert to zDOGEC</source>
+        <translation>Immetti un importo di DOGEC da convertire in zDOGEC</translation>
     </message>
     <message>
         <source>zDOGEC Control</source>

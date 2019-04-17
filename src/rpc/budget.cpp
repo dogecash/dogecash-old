@@ -174,8 +174,8 @@ UniValue preparebudget(const UniValue& params, bool fHelp)
             "\"xxxx\"       (string) proposal fee hash (if successful) or error message (if failed)\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("preparebudget", "\"test-proposal\" \"https://forum.DogeCash.org/t/test-proposal\" 2 820800 \"D9oc6C3dttUbv8zd7zGNq1qKBGf4ZQ1XEE\" 500") +
-            HelpExampleRpc("preparebudget", "\"test-proposal\" \"https://forum.DogeCash.org/t/test-proposal\" 2 820800 \"D9oc6C3dttUbv8zd7zGNq1qKBGf4ZQ1XEE\" 500"));
+            HelpExampleCli("preparebudget", "\"test-proposal\" \"https://forum.dogec.io/t/test-proposal\" 2 820800 \"D9oc6C3dttUbv8zd7zGNq1qKBGf4ZQ1XEE\" 500") +
+            HelpExampleRpc("preparebudget", "\"test-proposal\" \"https://forum.dogec.io/t/test-proposal\" 2 820800 \"D9oc6C3dttUbv8zd7zGNq1qKBGf4ZQ1XEE\" 500"));
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
@@ -235,7 +235,7 @@ UniValue preparebudget(const UniValue& params, bool fHelp)
     // }
 
     CWalletTx wtx;
-    if (!pwalletMain->GetBudgetSystemCollateralTX(wtx, budgetProposalBroadcast.GetHash(), useIX)) { // 50 PIV collateral for proposal
+    if (!pwalletMain->GetBudgetSystemCollateralTX(wtx, budgetProposalBroadcast.GetHash(), useIX)) { // 50 DOGEC collateral for proposal
         throw runtime_error("Error making collateral transaction for proposal. Please check your wallet balance.");
     }
 
@@ -270,8 +270,8 @@ UniValue submitbudget(const UniValue& params, bool fHelp)
             "\"xxxx\"       (string) proposal hash (if successful) or error message (if failed)\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("submitbudget", "\"test-proposal\" \"https://forum.DogeCash.org/t/test-proposal\" 2 820800 \"D9oc6C3dttUbv8zd7zGNq1qKBGf4ZQ1XEE\" 500") +
-            HelpExampleRpc("submitbudget", "\"test-proposal\" \"https://forum.DogeCash.org/t/test-proposal\" 2 820800 \"D9oc6C3dttUbv8zd7zGNq1qKBGf4ZQ1XEE\" 500"));
+            HelpExampleCli("submitbudget", "\"test-proposal\" \"https://forum.dogec.io/t/test-proposal\" 2 820800 \"D9oc6C3dttUbv8zd7zGNq1qKBGf4ZQ1XEE\" 500") +
+            HelpExampleRpc("submitbudget", "\"test-proposal\" \"https://forum.dogec.io/t/test-proposal\" 2 820800 \"D9oc6C3dttUbv8zd7zGNq1qKBGf4ZQ1XEE\" 500"));
 
     // Check these inputs the same way we check the vote commands:
     // **********************************************************

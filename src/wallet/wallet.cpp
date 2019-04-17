@@ -55,7 +55,7 @@ bool fGlobalUnlockSpendCache = false;
 int64_t nStartupTime = GetTime(); //!< Client startup time for use with automint
 
 /**
- * Fees smaller than this (in upiv) are considered zero fee (for transaction creation)
+ * Fees smaller than this (in uDOGEC) are considered zero fee (for transaction creation)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minTxFee 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  * Override with -mintxfee
@@ -2114,11 +2114,11 @@ bool less_then_denom(const COutput& out1, const COutput& out2)
 bool CWallet::SelectStakeCoins(std::list<std::unique_ptr<CStakeInput> >& listInputs, CAmount nTargetAmount, bool fPrecompute)
 {
     LOCK(cs_main);
-    //Add PIV
+    //Add DOGEC
     vector<COutput> vCoins;
     AvailableCoins(vCoins, true, NULL, false, STAKABLE_COINS);
     CAmount nAmountSelected = 0;
-    if (GetBoolArg("-pivstake", true) && !fPrecompute) {
+    if (GetBoolArg("-DOGECstake", true) && !fPrecompute) {
         for (const COutput &out : vCoins) {
             //make sure not to outrun target amount
             if (nAmountSelected + out.tx->vout[out.i].nValue > nTargetAmount)
@@ -2143,7 +2143,7 @@ bool CWallet::SelectStakeCoins(std::list<std::unique_ptr<CStakeInput> >& listInp
             //add to our stake set
             nAmountSelected += out.tx->vout[out.i].nValue;
 
-            std::unique_ptr<CPivStake> input(new CPivStake());
+            std::unique_ptr<CDOGECStake> input(new CDOGECStake());
             input->SetInput((CTransaction) *out.tx, out.i);
             listInputs.emplace_back(std::move(input));
         }
@@ -2188,7 +2188,7 @@ bool CWallet::MintableCoins()
     CAmount nBalance = GetBalance();
     CAmount nzDOGECBalance = GetZerocoinBalance(false);
 
-    // Regular PIV
+    // Regular DOGEC
     if (nBalance > 0) {
         if (mapArgs.count("-reservebalance") && !ParseMoney(mapArgs["-reservebalance"], nReserveBalance))
             return error("%s : invalid reserve balance amount", __func__);
@@ -2359,13 +2359,13 @@ bool CWallet::SelectCoins(const CAmount& nTargetValue, set<pair<const CWalletTx*
         return (nValueRet >= nTargetValue);
     }
 
-    //if we're doing only denominated, we need to round up to the nearest .1 PIV
+    //if we're doing only denominated, we need to round up to the nearest .1 DOGEC
     if (coin_type == ONLY_DENOMINATED) {
         // Make outputs by looping through denominations, from large to small
         BOOST_FOREACH (CAmount v, obfuScationDenominations) {
             BOOST_FOREACH (const COutput& out, vCoins) {
                 if (out.tx->vout[out.i].nValue == v                                               //make sure it's the denom we're looking for
-                    && nValueRet + out.tx->vout[out.i].nValue < nTargetValue + (0.1 * COIN) + 100 //round the amount up to .1 PIV over
+                    && nValueRet + out.tx->vout[out.i].nValue < nTargetValue + (0.1 * COIN) + 100 //round the amount up to .1 DOGEC over
                     ) {
                     CTxIn vin = CTxIn(out.tx->GetHash(), out.i);
                     int rounds = GetInputObfuscationRounds(vin);
@@ -2427,12 +2427,12 @@ bool CWallet::SelectCoinsByDenominations(int nDenom, CAmount nValueMin, CAmount 
 
             // Function returns as follows:
             //
-            // bit 0 - 10000 PIV+1 ( bit on if present )
-            // bit 1 - 1000 PIV+1
-            // bit 2 - 100 PIV+1
-            // bit 3 - 10 PIV+1
-            // bit 4 - 1 PIV+1
-            // bit 5 - .1 PIV+1
+            // bit 0 - 10000 DOGEC+1 ( bit on if present )
+            // bit 1 - 1000 DOGEC+1
+            // bit 2 - 100 DOGEC+1
+            // bit 3 - 10 DOGEC+1
+            // bit 4 - 1 DOGEC+1
+            // bit 5 - .1 DOGEC+1
 
             CTxIn vin = CTxIn(out.tx->GetHash(), out.i);
 
@@ -2672,7 +2672,7 @@ bool CWallet::GetBudgetSystemCollateralTX(CWalletTx& tx, uint256 hash, bool useI
     CAmount nFeeRet = 0;
     std::string strFail = "";
     vector<pair<CScript, CAmount> > vecSend;
-    vecSend.push_back(make_pair(scriptChange, BUDGET_FEE_TX_OLD)); // Old 50 PIV collateral
+    vecSend.push_back(make_pair(scriptChange, BUDGET_FEE_TX_OLD)); // Old 50 DOGEC collateral
 
     CCoinControl* coinControl = NULL;
     bool success = CreateTransaction(vecSend, tx, reservekey, nFeeRet, strFail, coinControl, ALL_COINS, useIX, (CAmount)0);
@@ -2695,7 +2695,7 @@ bool CWallet::GetBudgetFinalizationCollateralTX(CWalletTx& tx, uint256 hash, boo
     CAmount nFeeRet = 0;
     std::string strFail = "";
     vector<pair<CScript, CAmount> > vecSend;
-    vecSend.push_back(make_pair(scriptChange, BUDGET_FEE_TX)); // New 5 PIV collateral
+    vecSend.push_back(make_pair(scriptChange, BUDGET_FEE_TX)); // New 5 DOGEC collateral
 
     CCoinControl* coinControl = NULL;
     bool success = CreateTransaction(vecSend, tx, reservekey, nFeeRet, strFail, coinControl, ALL_COINS, useIX, (CAmount)0);
@@ -2803,9 +2803,9 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend,
                     if (coin_type == ALL_COINS) {
                         strFailReason = _("Insufficient funds.");
                     } else if (coin_type == ONLY_NOT10000IFMN) {
-                        strFailReason = _("Unable to locate enough funds for this transaction that are not equal 10000 PIV.");
+                        strFailReason = _("Unable to locate enough funds for this transaction that are not equal 10000 DOGEC.");
                     } else if (coin_type == ONLY_NONDENOMINATED_NOT10000IFMN) {
-                        strFailReason = _("Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIV.");
+                        strFailReason = _("Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 DOGEC.");
                     } else {
                         strFailReason = _("Unable to locate enough Obfuscation denominated funds for this transaction.");
                         strFailReason += " " + _("Obfuscation uses exact denominated amounts to send funds, you might simply need to anonymize some more coins.");
@@ -3111,7 +3111,7 @@ bool CWallet::CreateCoinStake(
     if (!fKernelFound)
         return false;
 
-    // Sign for PIV
+    // Sign for DOGEC
     int nIn = 0;
     if (!txNew.vin[0].scriptSig.IsZerocoinSpend()) {
         for (CTxIn txIn : txNew.vin) {
@@ -4124,7 +4124,7 @@ void CWallet::AutoZeromint()
     CAmount nMintAmount = 0;
     CAmount nToMintAmount = 0;
 
-    // zDOGEC are integers > 0, so we can't mint 10% of 9 PIV
+    // zDOGEC are integers > 0, so we can't mint 10% of 9 DOGEC
     if (nBalance < 10){
         LogPrint("zero", "CWallet::AutoZeromint(): available balance (%ld) too small for minting zDOGEC\n", nBalance);
         return;
@@ -4149,7 +4149,7 @@ void CWallet::AutoZeromint()
     // Use the biggest denomination smaller than the needed zDOGEC We'll only mint exact denomination to make minting faster.
     // Exception: for big amounts use 6666 (6666 = 1*5000 + 1*1000 + 1*500 + 1*100 + 1*50 + 1*10 + 1*5 + 1) to create all
     // possible denominations to avoid having 5000 denominations only.
-    // If a preferred denomination is used (means nPreferredDenom != 0) do nothing until we have enough PIV to mint this denomination
+    // If a preferred denomination is used (means nPreferredDenom != 0) do nothing until we have enough DOGEC to mint this denomination
 
     if (nPreferredDenom > 0){
         if (nToMintAmount >= nPreferredDenom)
@@ -4647,7 +4647,7 @@ bool CWallet::CreateZerocoinMintTransaction(const CAmount nValue, CMutableTransa
     }
 
     //any change that is less than 0.0100000 will be ignored and given as an extra fee
-    //also assume that a zerocoinspend that is minting the change will not have any change that goes to Piv
+    //also assume that a zerocoinspend that is minting the change will not have any change that goes to DOGEC
     CAmount nChange = nValueIn - nTotalValue; // Fee already accounted for in nTotalValue
     if (nChange > 1 * CENT && !isZCSpendChange) {
         // Fill a vout to ourself using the largest contributing address

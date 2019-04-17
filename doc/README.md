@@ -3,7 +3,7 @@ DogeCash Core
 
 Setup
 ---------------------
-[DogeCash Core](http://DogeCash.org/wallet) is the original DogeCash client and it builds the backbone of the network. However, it downloads and stores the entire history of DogeCash transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[DogeCash Core](http://dogec.io/wallet) is the original DogeCash client and it builds the backbone of the network. However, it downloads and stores the entire history of DogeCash transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
@@ -28,9 +28,9 @@ Drag DogeCash-Qt to your applications folder, and then run DogeCash-Qt.
 
 * See the documentation at the [DogeCash Wiki](https://en.bitcoin.it/wiki/Main_Page) ***TODO***
 for help and more information.
-* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or on the [DogeCash Forum](http://forum.DogeCash.org/).
-* Join our Discord server [Discord Server](https://discord.DogeCash.org)
-* Join one of our Slack groups [DogeCash Slack Groups](https://DogeCash.org/slack-logins/) (Main community is replaced by Discord).
+* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or on the [DogeCash Forum](http://forum.dogec.io/).
+* Join our Discord server [Discord Server](https://discord.dogec.io)
+* Join one of our Slack groups [DogeCash Slack Groups](https://dogec.io/slack-logins/) (Main community is replaced by Discord).
 
 Building
 ---------------------
@@ -56,7 +56,7 @@ The DogeCash repo's [root README](https://github.com/DogeCash-Project/DogeCash/b
 
 ### Resources
 
-* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or the [DogeCash](http://forum.DogeCash.org/) forum.
+* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or the [DogeCash](http://forum.dogec.io/) forum.
 * Join the [DogeCash-Dev](https://DogeCash-dev.slack.com/) Slack group ([Sign-Up](https://DogeCash-dev.herokuapp.com/)).
 
 ### Miscellaneous

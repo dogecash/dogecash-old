@@ -13,7 +13,7 @@ Please report bugs using the issue tracker at github:
 Mandatory Update
 ==============
 
-DogeCash Core v3.0.5 is a mandatory update for all users. This release contains various updates/fixes pertaining to the zDOGEC protocol, supply tracking, block transmission and relaying, as well as usability and quality-of-life updates to the GUI. Users are required to update before block `908000` which is when the accumulators will be refactored. Shortly after that block, zDOGEC transactions will be enabled. **When zDOGEC is enabled, autominting will also be enabled.** If you would like to disable automatic conversion of 10% of your PIV balance to zDOGEC, then you will need to add `enablezeromint=0` to your `DogeCash.conf` file. For information about where to find your DogeCash.conf you can visit this link from [DogeCash Support](https://DogeCash.freshdesk.com/support/solutions/articles/30000004664-where-are-my-wallet-dat-blockchain-and-configuration-conf-files-located-).
+DogeCash Core v3.0.5 is a mandatory update for all users. This release contains various updates/fixes pertaining to the zDOGEC protocol, supply tracking, block transmission and relaying, as well as usability and quality-of-life updates to the GUI. Users are required to update before block `908000` which is when the accumulators will be refactored. Shortly after that block, zDOGEC transactions will be enabled. **When zDOGEC is enabled, autominting will also be enabled.** If you would like to disable automatic conversion of 10% of your DOGEC balance to zDOGEC, then you will need to add `enablezeromint=0` to your `DogeCash.conf` file. For information about where to find your DogeCash.conf you can visit this link from [DogeCash Support](https://DogeCash.freshdesk.com/support/solutions/articles/30000004664-where-are-my-wallet-dat-blockchain-and-configuration-conf-files-located-).
 
 Users will have a grace period to update their clients before versions prior to this release are no longer allowed to connect to this (and future) version(s).
 
@@ -60,7 +60,7 @@ Handling the above noted libzerocoin exploit required the DogeCash team to immed
 
 Money Supply Indexing
 ---------------------
-The exploit in libzerocoin threw off some of the wallet's internal money supply calculations for both the zDOGEC supply and the PIV supply. User's wallet's will automatically recalculate the supply on block `908001`. User's also have the ability to recalculate supply using the startup flag `reindexmoneysupply`.
+The exploit in libzerocoin threw off some of the wallet's internal money supply calculations for both the zDOGEC supply and the DOGEC supply. User's wallet's will automatically recalculate the supply on block `908001`. User's also have the ability to recalculate supply using the startup flag `reindexmoneysupply`.
 
 More Extensive Tracking of zDOGEC Supply Through RPC
 ---------------------

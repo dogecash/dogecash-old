@@ -69,13 +69,13 @@ public:
     uint32_t GetChecksum();
 };
 
-class CPivStake : public CStakeInput
+class CDOGECStake : public CStakeInput
 {
 private:
     CTransaction txFrom;
     unsigned int nPosition;
 public:
-    CPivStake()
+    CDOGECStake()
     {
         this->pindexFrom = nullptr;
     }

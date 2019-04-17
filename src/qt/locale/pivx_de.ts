@@ -43,11 +43,11 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>Wählen Sie die Adresse aus, an die Sie PIV überweisen möchten</translation>
+        <translation>Wählen Sie die Adresse aus, an die Sie DOGEC überweisen möchten</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>Wählen Sie die Adresse aus, über die Sie PIV empfangen wollen</translation>
+        <translation>Wählen Sie die Adresse aus, über die Sie DOGEC empfangen wollen</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -63,7 +63,7 @@
     </message>
     <message>
         <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Dies sind ihre DogeCash-Adressen zum Tätigen von Überweisungen. Bitte prüfen Sie den Betrag und die Empfangsadresse, bevor Sie PIV überweisen.</translation>
+        <translation>Dies sind ihre DogeCash-Adressen zum Tätigen von Überweisungen. Bitte prüfen Sie den Betrag und die Empfangsadresse, bevor Sie DOGEC überweisen.</translation>
     </message>
     <message>
         <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
@@ -176,16 +176,16 @@
         <translation>Verschlüsselung der Wallet bestätigen</translation>
     </message>
     <message>
-        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
-        <translation>Die Anwendung wird nun geschlossen um die Verschlüsselung abzuschließen. Bitte bedenken Sie, dass auch die Verschlüsselung nicht sicher vor Diebstahl ihrer PIVs durch Schadsoftware schützt, die ihren Computer befällt.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>Die Anwendung wird nun geschlossen um die Verschlüsselung abzuschließen. Bitte bedenken Sie, dass auch die Verschlüsselung nicht sicher vor Diebstahl ihrer DOGECs durch Schadsoftware schützt, die ihren Computer befällt.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Sind Sie sich sicher, dass Sie Ihre Wallet verschlüsseln möchten?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
-        <translation>Warnung: Wenn Sie Ihre Wallet verschlüsseln und Ihre Passphrase verlieren, &lt;b&gt;verlieren Sie alle ihre PIVs&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR DOGEC&lt;/b&gt;!</source>
+        <translation>Warnung: Wenn Sie Ihre Wallet verschlüsseln und Ihre Passphrase verlieren, &lt;b&gt;verlieren Sie alle ihre DOGECs&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -1101,8 +1101,8 @@ Adresse: %4</translation>
         <translation>Diese Bezeichnung wird rot, wenn ein Empfänger einen Betrag erhält, der kleiner ist als %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Kann um +/- %1 upiv pro Eingang variieren.</translation>
+        <source>Can vary +/- %1 uDOGEC per input.</source>
+        <translation>Kann um +/- %1 uDOGEC pro Eingang variieren.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1619,8 +1619,8 @@ Bitte haben Sie etwas Geduld, nachdem Sie auf Importieren geklickt haben.</trans
         <translation>Adresse / Menge:</translation>
     </message>
     <message>
-        <source>Add destinations to send PIV to</source>
-        <translation>Füge Transaktionsziele für PIV-Überweisung hinzu</translation>
+        <source>Add destinations to send DOGEC to</source>
+        <translation>Füge Transaktionsziele für DOGEC-Überweisung hinzu</translation>
     </message>
     <message>
         <source>Add &amp;Destination</source>
@@ -1718,32 +1718,32 @@ Bitte haben Sie etwas Geduld, nachdem Sie auf Importieren geklickt haben.</trans
         <translation>Bitte den gewünschten Privatsphäre Level auswählen.</translation>
     </message>
     <message>
-        <source>Use 2 separate masternodes to mix funds up to 10000 PIV</source>
-        <translation>2 separate Masternodes verwenden um bis zu 10000 PIV zu mixen</translation>
+        <source>Use 2 separate masternodes to mix funds up to 10000 DOGEC</source>
+        <translation>2 separate Masternodes verwenden um bis zu 10000 DOGEC zu mixen</translation>
     </message>
     <message>
-        <source>Use 8 separate masternodes to mix funds up to 10000 PIV</source>
-        <translation>8 separate Masternodes verwenden um bis zu 10000 PIV zu mixen</translation>
+        <source>Use 8 separate masternodes to mix funds up to 10000 DOGEC</source>
+        <translation>8 separate Masternodes verwenden um bis zu 10000 DOGEC zu mixen</translation>
     </message>
     <message>
         <source>Use 16 separate masternodes</source>
         <translation>16 separate Masternodes verwenden</translation>
     </message>
     <message>
-        <source>This option is the quickest and will cost about ~0.025 PIV to anonymize 10000 PIV</source>
-        <translation>Diese Option ist die schnellst und kostet ungefähr ~0.025 PIV um 10000 PIV zu anonymisieren </translation>
+        <source>This option is the quickest and will cost about ~0.025 DOGEC to anonymize 10000 DOGEC</source>
+        <translation>Diese Option ist die schnellst und kostet ungefähr ~0.025 DOGEC um 10000 DOGEC zu anonymisieren </translation>
     </message>
     <message>
-        <source>This option is moderately fast and will cost about 0.05 PIV to anonymize 10000 PIV</source>
-        <translation>Diese Option ist angemessen schnell und kostet ungefähr  0.05 PIV um 10000 PIV zu anonymisieren</translation>
+        <source>This option is moderately fast and will cost about 0.05 DOGEC to anonymize 10000 DOGEC</source>
+        <translation>Diese Option ist angemessen schnell und kostet ungefähr  0.05 DOGEC um 10000 DOGEC zu anonymisieren</translation>
     </message>
     <message>
         <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
         <translation>Diese Option ist die langsamste und sicherste Option. Die Verwendung maximaler Anonymisierung kostet</translation>
     </message>
     <message>
-        <source>0.1 PIV per 10000 PIV you anonymize.</source>
-        <translation>0.1 PIV per 10000 PIV die anonymisiert werden.</translation>
+        <source>0.1 DOGEC per 10000 DOGEC you anonymize.</source>
+        <translation>0.1 DOGEC per 10000 DOGEC die anonymisiert werden.</translation>
     </message>
     <message>
         <source>Obfuscation Configuration</source>
@@ -1886,24 +1886,24 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations</transl
         <translation>Port mit &amp;UPnP mappen</translation>
     </message>
     <message>
-        <source>Enable automatic minting of PIV units to zDOGEC</source>
-        <translation>Aktivieren Sie die automatische Prägung von PIV-Einheiten zu zDOGEC</translation>
+        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
+        <translation>Aktivieren Sie die automatische Prägung von DOGEC-Einheiten zu zDOGEC</translation>
     </message>
     <message>
         <source>Enable zDOGEC Automint</source>
         <translation>Aktivieren Sie zDOGEC Automint</translation>
     </message>
     <message>
-        <source>Percentage of incoming PIV which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
-        <translation>Anteil des eingehenden PIV, welcher automatisch zu zDOGEC via Zerocoin Protokoll konvertiert wird (min: 10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
+        <translation>Anteil des eingehenden DOGEC, welcher automatisch zu zDOGEC via Zerocoin Protokoll konvertiert wird (min: 10%)</translation>
     </message>
     <message>
         <source>Percentage of autominted zDOGEC</source>
         <translation>Prozentsatz der automatisierten zDOGEC</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</source>
-        <translation>Warte mit automatischer Konvertierung zu Zerocoin, bis genügend PIV für diese Stückelung verfügbar ist</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</source>
+        <translation>Warte mit automatischer Konvertierung zu Zerocoin, bis genügend DOGEC für diese Stückelung verfügbar ist</translation>
     </message>
     <message>
         <source>Preferred Automint zDOGEC Denomination</source>
@@ -2069,8 +2069,8 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations</transl
         <translation>Gesamtsaldo, einschließlich aller nicht verfügbaren Münzen.</translation>
     </message>
     <message>
-        <source>PIV Balance</source>
-        <translation>PIV Bilanzen</translation>
+        <source>DOGEC Balance</source>
+        <translation>DOGEC Bilanzen</translation>
     </message>
     <message>
         <source>Pending:</source>
@@ -2157,8 +2157,8 @@ Unreif: Bestätigt, aber keine Prägung in der selben Stückelung seit erfolgter
         <translation>Verfügbar:</translation>
     </message>
     <message>
-        <source>Locked PIV or Masternode collaterals. These are excluded from zDOGEC minting.</source>
-        <translation>Gesperrte PIV oder Masternode Pfand. Diese sind vom zDOGEC Prägen ausgeschlossen.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
+        <translation>Gesperrte DOGEC oder Masternode Pfand. Diese sind vom zDOGEC Prägen ausgeschlossen.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2340,8 +2340,8 @@ Um das automatische Prägen zu aktivieren ändere 'enablezeromint=0' zu 'enablez
         <translation>Verfügbar für Prägung:</translation>
     </message>
     <message>
-        <source>0.000 000 00 PIV</source>
-        <translation>0.000 000 00 PIV</translation>
+        <source>0.000 000 00 DOGEC</source>
+        <translation>0.000 000 00 DOGEC</translation>
     </message>
     <message>
         <source>Reset Zerocoin Wallet DB. Deletes transactions that did not make it into the blockchain.</source>
@@ -2380,8 +2380,8 @@ Um das automatische Prägen zu aktivieren ändere 'enablezeromint=0' zu 'enablez
         <translation>PRIVATSPHÄRE</translation>
     </message>
     <message>
-        <source>Enter an amount of Piv to convert to zDOGEC</source>
-        <translation>Geben Sie den Betrag ein, den sie von PIV in zDOGEC umwandeln möchten</translation>
+        <source>Enter an amount of DOGEC to convert to zDOGEC</source>
+        <translation>Geben Sie den Betrag ein, den sie von DOGEC in zDOGEC umwandeln möchten</translation>
     </message>
     <message>
         <source>zDOGEC Control</source>
@@ -3586,7 +3586,7 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
     <name>SendCoinsDialog</name>
     <message>
         <source>Send Coins</source>
-        <translation>PIVs überweisen</translation>
+        <translation>DOGECs überweisen</translation>
     </message>
     <message>
         <source>SEND</source>
@@ -3661,8 +3661,8 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
         <translation>UTXO Größe:</translation>
     </message>
     <message>
-        <source>0 PIV</source>
-        <translation>0 PIV</translation>
+        <source>0 DOGEC</source>
+        <translation>0 DOGEC</translation>
     </message>
     <message>
         <source>Transaction Fee:</source>
@@ -3717,12 +3717,12 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
         <translation>Coins automatisch ausgewählt</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uPIVs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uPIVs in fee,&lt;br /&gt;while "at least" pays 1000 uPIVs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Wenn die kundenspezifische Gebühr auf 1000 uPIVs eingestellt ist und die Transaktion nur 250 Bytes beträgt, dann zahlt man "pro Kilobyte" nur 250 uPIVs an Gebühren,&lt;br /&gt;während man "mindestens" 1000 uPIVs bezahlt. Für Transaktionen, die größer sind als ein Kilobyte, bezahlen sie per Kilobyte.</translation>
+        <source>If the custom fee is set to 1000 uDOGECs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uDOGECs in fee,&lt;br /&gt;while "at least" pays 1000 uDOGECs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Wenn die kundenspezifische Gebühr auf 1000 uDOGECs eingestellt ist und die Transaktion nur 250 Bytes beträgt, dann zahlt man "pro Kilobyte" nur 250 uDOGECs an Gebühren,&lt;br /&gt;während man "mindestens" 1000 uDOGECs bezahlt. Für Transaktionen, die größer sind als ein Kilobyte, bezahlen sie per Kilobyte.</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uPIVs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uPIVs in fee,&lt;br /&gt;while "total at least" pays 1000 uPIVs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Wenn die kundenspezifische Gebühr auf 1000 uPIVs eingestellt ist und die Transaktion nur 250 Bytes beträgt, dann zahlt man "pro Kilobyte" nur 250 uPIVs an Gebühren,&lt;br /&gt;während man "insgesamt mindestens" 1000 uPIVs bezahlt. Für Transaktionen, die größer sind als ein Kilobyte, bezahlen sie per Kilobyte.</translation>
+        <source>If the custom fee is set to 1000 uDOGECs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uDOGECs in fee,&lt;br /&gt;while "total at least" pays 1000 uDOGECs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Wenn die kundenspezifische Gebühr auf 1000 uDOGECs eingestellt ist und die Transaktion nur 250 Bytes beträgt, dann zahlt man "pro Kilobyte" nur 250 uDOGECs an Gebühren,&lt;br /&gt;während man "insgesamt mindestens" 1000 uDOGECs bezahlt. Für Transaktionen, die größer sind als ein Kilobyte, bezahlen sie per Kilobyte.</translation>
     </message>
     <message>
         <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for DogeCash transactions than the network can process.</source>
@@ -3773,8 +3773,8 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
         <translation>Empfänge&amp;r hinzufügen</translation>
     </message>
     <message>
-        <source>Anonymized PIV</source>
-        <translation>Anonymisierte PIV</translation>
+        <source>Anonymized DOGEC</source>
+        <translation>Anonymisierte DOGEC</translation>
     </message>
     <message>
         <source>Balance:</source>
@@ -4316,7 +4316,7 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
     </message>
     <message>
         <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Erzeugte PIVs müssen %1 Blöcke lang reifen, bevor sie ausgegeben werden können. Als Sie diesen Block erzeugten, wurde er an das Netzwerk übertragen, um ihn der Blockkette hinzuzufügen. Falls dies fehlschlägt wird der Status in "nicht angenommen" geändert und Sie werden keine PIVs gutgeschrieben bekommen. Das kann gelegentlich passieren, wenn ein anderer Knoten einen Block fast zeitgleich erzeugt.</translation>
+        <translation>Erzeugte DOGECs müssen %1 Blöcke lang reifen, bevor sie ausgegeben werden können. Als Sie diesen Block erzeugten, wurde er an das Netzwerk übertragen, um ihn der Blockkette hinzuzufügen. Falls dies fehlschlägt wird der Status in "nicht angenommen" geändert und Sie werden keine DOGECs gutgeschrieben bekommen. Das kann gelegentlich passieren, wenn ein anderer Knoten einen Block fast zeitgleich erzeugt.</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -4417,8 +4417,8 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
         <translation>über/durch Verschleierung empfangen</translation>
     </message>
     <message>
-        <source>PIV Stake</source>
-        <translation>PIV Stake</translation>
+        <source>DOGEC Stake</source>
+        <translation>DOGEC Stake</translation>
     </message>
     <message>
         <source>zDOGEC Stake</source>
@@ -4441,24 +4441,24 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
         <translation>Verschleierung Erzeugung der Stückelung</translation>
     </message>
     <message>
-        <source>Converted PIV to zDOGEC</source>
-        <translation>Umgewandeltes PIV zu zDOGEC</translation>
+        <source>Converted DOGEC to zDOGEC</source>
+        <translation>Umgewandeltes DOGEC zu zDOGEC</translation>
     </message>
     <message>
         <source>Spent zDOGEC</source>
         <translation>Ausgegebene zDOGEC</translation>
     </message>
     <message>
-        <source>Received PIV from zDOGEC</source>
-        <translation>Empfangene PIV von zDOGEC</translation>
+        <source>Received DOGEC from zDOGEC</source>
+        <translation>Empfangene DOGEC von zDOGEC</translation>
     </message>
     <message>
         <source>Minted Change as zDOGEC from zDOGEC Spend</source>
         <translation>Geprägtes zDOGEC Wechselgeld aus zDOGEC Überweisung</translation>
     </message>
     <message>
-        <source>Converted zDOGEC to PIV</source>
-        <translation>Umgewandeltes zDOGEC zu PIV</translation>
+        <source>Converted zDOGEC to DOGEC</source>
+        <translation>Umgewandeltes zDOGEC zu DOGEC</translation>
     </message>
     <message>
         <source>Anonymous (zDOGEC Transaction)</source>
@@ -4676,8 +4676,8 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
         <translation>Exportieren erfolgreich</translation>
     </message>
     <message>
-        <source>Received PIV from zDOGEC</source>
-        <translation>Empfangene PIV von zDOGEC</translation>
+        <source>Received DOGEC from zDOGEC</source>
+        <translation>Empfangene DOGEC von zDOGEC</translation>
     </message>
     <message>
         <source>Zerocoin Spend, Change in zDOGEC</source>
@@ -4714,11 +4714,11 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
-        <translation>PIVs überweisen</translation>
+        <translation>DOGECs überweisen</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIV.</source>
-        <translation>Swift Transaktionen unterstützen das senden solch hoher Beträge noch nicht. Transaktionen sind momentan auf %1 PIV begrenzt.</translation>
+        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 DOGEC.</source>
+        <translation>Swift Transaktionen unterstützen das senden solch hoher Beträge noch nicht. Transaktionen sind momentan auf %1 DOGEC begrenzt.</translation>
     </message>
 </context>
 <context>
@@ -4830,8 +4830,8 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
         <translation>Aktiviere nach jeder zDOGEC-Prägung ausgelöste automatische Wallet-Backups (0-1, Standard: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for PIV inputs (0-1, default: %u)</source>
-        <translation>Aktiviere oder deaktiviere Staking-Funktionalität für PIV Eingänge (0-1, default: %u)</translation>
+        <source>Enable or disable staking functionality for DOGEC inputs (0-1, default: %u)</source>
+        <translation>Aktiviere oder deaktiviere Staking-Funktionalität für DOGEC Eingänge (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)</source>
@@ -4870,12 +4870,12 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
         <translation>Befehl ausführen, wenn sich der beste Block ändert (%s in cmd wird durch Blockhash ersetzt)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Gebühren (in PIV/kB) kleiner als diese gelten für die Weiterleitung als Null-Gebühr  (default: %s)</translation>
+        <source>Fees (in DOGEC/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Gebühren (in DOGEC/kB) kleiner als diese gelten für die Weiterleitung als Null-Gebühr  (default: %s)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Gebühren (in PIV/kB) kleiner als diese werden als Null-Gebühr für die Transaktionserstellung betrachtet (default: %s)</translation>
+        <source>Fees (in DOGEC/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Gebühren (in DOGEC/kB) kleiner als diese werden als Null-Gebühr für die Transaktionserstellung betrachtet (default: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -4982,12 +4982,12 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
         <translation>Nicht genügend gestückeltes, verschleiertes Guthaben für diese Transaktion gefunden.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIV.</source>
-        <translation>Nicht genügend verschleiertes, nicht gestückeltes Guthaben für diese Transaktion gefunden, die nicht gleich 10000 PIV entsprechen.</translation>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 DOGEC.</source>
+        <translation>Nicht genügend verschleiertes, nicht gestückeltes Guthaben für diese Transaktion gefunden, die nicht gleich 10000 DOGEC entsprechen.</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIV.</source>
-        <translation>Nicht genügend Guthaben für diese Transaktion gefunden, die nicht gleich 10000 PIV entsprechen.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 10000 DOGEC.</source>
+        <translation>Nicht genügend Guthaben für diese Transaktion gefunden, die nicht gleich 10000 DOGEC entsprechen.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5306,8 +5306,8 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
         <translation>Block konnte nicht gelesen werden</translation>
     </message>
     <message>
-        <source>Fee (in PIV/kB) to add to transactions you send (default: %s)</source>
-        <translation>Gebühr (in PIV/kB) die den Transaktionen, die Sie überweisen, hinzugefügt wird (Standard: %s)</translation>
+        <source>Fee (in DOGEC/kB) to add to transactions you send (default: %s)</source>
+        <translation>Gebühr (in DOGEC/kB) die den Transaktionen, die Sie überweisen, hinzugefügt wird (Standard: %s)</translation>
     </message>
     <message>
         <source>Finalizing transaction.</source>
@@ -5438,8 +5438,8 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
         <translation>Prozent automatisch geprägter Zerocoins (1-100, Standard: %u)</translation>
     </message>
     <message>
-        <source>Reindex the PIV and zDOGEC money supply statistics</source>
-        <translation>Die Geldmengenstatistik PIV und zDOGEC neu indizieren</translation>
+        <source>Reindex the DOGEC and zDOGEC money supply statistics</source>
+        <translation>Die Geldmengenstatistik DOGEC und zDOGEC neu indizieren</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>

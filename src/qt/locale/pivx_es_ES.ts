@@ -176,16 +176,16 @@
         <translation>Confirmar encriptación del monedero</translation>
     </message>
     <message>
-        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
-        <translation>DogeCash se cerrará ahora para completar el proceso de encriptación. Recuerde que la encriptación no le protege completamente del robo de sus PIVs frente a malware que infecte su ordenador.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash se cerrará ahora para completar el proceso de encriptación. Recuerde que la encriptación no le protege completamente del robo de sus DOGECs frente a malware que infecte su ordenador.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>¿Está seguro de que quiere encriptar su monedero?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
-        <translation>Advertencia: si encripta su monedero y pierde su clave de seguridad, ¡&lt;b&gt;PERDERÁ TODOS SUS PIV&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR DOGEC&lt;/b&gt;!</source>
+        <translation>Advertencia: si encripta su monedero y pierde su clave de seguridad, ¡&lt;b&gt;PERDERÁ TODOS SUS DOGEC&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>

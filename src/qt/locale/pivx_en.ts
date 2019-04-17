@@ -221,7 +221,7 @@
     </message>
     <message>
         <location line="+9"/>
-        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -231,7 +231,7 @@
     </message>
     <message>
         <location line="+0"/>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR DOGEC&lt;/b&gt;!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1467,7 +1467,7 @@ Address: %4
     </message>
     <message>
         <location line="+8"/>
-        <source>Can vary +/- %1 upiv per input.</source>
+        <source>Can vary +/- %1 uDOGEC per input.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2242,7 +2242,7 @@ Please be patient after clicking import.</source>
     </message>
     <message>
         <location line="+13"/>
-        <source>Add destinations to send PIV to</source>
+        <source>Add destinations to send DOGEC to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2365,12 +2365,12 @@ Please be patient after clicking import.</source>
     </message>
     <message>
         <location line="+13"/>
-        <source>Use 2 separate masternodes to mix funds up to 10000 PIV</source>
+        <source>Use 2 separate masternodes to mix funds up to 10000 DOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+13"/>
-        <source>Use 8 separate masternodes to mix funds up to 10000 PIV</source>
+        <source>Use 8 separate masternodes to mix funds up to 10000 DOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2380,12 +2380,12 @@ Please be patient after clicking import.</source>
     </message>
     <message>
         <location line="+13"/>
-        <source>This option is the quickest and will cost about ~0.025 PIV to anonymize 10000 PIV</source>
+        <source>This option is the quickest and will cost about ~0.025 DOGEC to anonymize 10000 DOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+13"/>
-        <source>This option is moderately fast and will cost about 0.05 PIV to anonymize 10000 PIV</source>
+        <source>This option is moderately fast and will cost about 0.05 DOGEC to anonymize 10000 DOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2395,7 +2395,7 @@ Please be patient after clicking import.</source>
     </message>
     <message>
         <location line="+13"/>
-        <source>0.1 PIV per 10000 PIV you anonymize.</source>
+        <source>0.1 DOGEC per 10000 DOGEC you anonymize.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2574,7 +2574,7 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations</source
     </message>
     <message>
         <location line="-184"/>
-        <source>Enable automatic minting of PIV units to zDOGEC</source>
+        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2594,7 +2594,7 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations</source
     </message>
     <message>
         <location line="+11"/>
-        <source>Percentage of incoming PIV which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
+        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2605,7 +2605,7 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations</source
     <message>
         <location line="+30"/>
         <location line="+16"/>
-        <source>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</source>
+        <source>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2829,7 +2829,7 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations</source
     </message>
     <message>
         <location line="+71"/>
-        <source>PIV Balance</source>
+        <source>DOGEC Balance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2946,7 +2946,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
     <message>
         <location line="+191"/>
         <location line="+19"/>
-        <source>Locked PIV or Masternode collaterals. These are excluded from zDOGEC minting.</source>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3184,7 +3184,7 @@ To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1
     </message>
     <message>
         <location line="+19"/>
-        <source>0.000&#x2009;000&#x2009;00 PIV</source>
+        <source>0.000&#x2009;000&#x2009;00 DOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3235,7 +3235,7 @@ To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1
     <message>
         <location line="+308"/>
         <location line="+52"/>
-        <source>Enter an amount of Piv to convert to zDOGEC</source>
+        <source>Enter an amount of DOGEC to convert to zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3918,7 +3918,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message numerus="yes">
         <location line="+362"/>
         <source>PrivacyDialog</source>
-        <comment>Enter an amount of PIV to convert to zDOGEC</comment>
+        <comment>Enter an amount of DOGEC to convert to zDOGEC</comment>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
@@ -5071,12 +5071,12 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+7"/>
-        <source>0 PIV</source>
+        <source>0 DOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+167"/>
-        <source>SwiftX technology allows for near instant transactions - A flat fee of 0.01 PIV applies</source>
+        <source>SwiftX technology allows for near instant transactions - A flat fee of 0.01 DOGEC applies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5146,12 +5146,12 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1062"/>
-        <source>If the custom fee is set to 1000 uPIVs and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 uPIVs in fee,&lt;br /&gt;while &quot;at least&quot; pays 1000 uPIVs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 uDOGECs and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 uDOGECs in fee,&lt;br /&gt;while &quot;at least&quot; pays 1000 uDOGECs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+16"/>
-        <source>If the custom fee is set to 1000 uPIVs and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 uPIVs in fee,&lt;br /&gt;while &quot;total at least&quot; pays 1000 uPIVs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 uDOGECs and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 uDOGECs in fee,&lt;br /&gt;while &quot;total at least&quot; pays 1000 uDOGECs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5217,7 +5217,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+35"/>
-        <source>Anonymized PIV</source>
+        <source>Anonymized DOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6097,7 +6097,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+7"/>
-        <source>PIV Stake</source>
+        <source>DOGEC Stake</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6127,7 +6127,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+4"/>
-        <source>Converted PIV to zDOGEC</source>
+        <source>Converted DOGEC to zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6137,7 +6137,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Received PIV from zDOGEC</source>
+        <source>Received DOGEC from zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6147,7 +6147,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Converted zDOGEC to PIV</source>
+        <source>Converted zDOGEC to DOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6426,7 +6426,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="-310"/>
-        <source>Received PIV from zDOGEC</source>
+        <source>Received DOGEC from zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6478,7 +6478,7 @@ Please be patient...</source>
     <message>
         <location line="-18"/>
         <location line="+9"/>
-        <source>SwiftX doesn&apos;t support sending values that high yet. Transactions are currently limited to %1 PIV.</source>
+        <source>SwiftX doesn&apos;t support sending values that high yet. Transactions are currently limited to %1 DOGEC.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6628,7 +6628,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Enable or disable staking functionality for PIV inputs (0-1, default: %u)</source>
+        <source>Enable or disable staking functionality for DOGEC inputs (0-1, default: %u)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6678,12 +6678,12 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+8"/>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <source>Fees (in DOGEC/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <source>Fees (in DOGEC/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6843,12 +6843,12 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIV.</source>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 DOGEC.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIV.</source>
+        <source>Unable to locate enough funds for this transaction that are not equal 10000 DOGEC.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7273,7 +7273,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+4"/>
-        <source>Fee (in PIV/kB) to add to transactions you send (default: %s)</source>
+        <source>Fee (in DOGEC/kB) to add to transactions you send (default: %s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7438,7 +7438,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+8"/>
-        <source>Recalculating PIV supply...</source>
+        <source>Recalculating DOGEC supply...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7453,7 +7453,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Reindex the PIV and zDOGEC money supply statistics</source>
+        <source>Reindex the DOGEC and zDOGEC money supply statistics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

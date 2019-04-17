@@ -63,7 +63,7 @@ QT_TRANSLATE_NOOP("DogeCash-core", ""
 "Enable automatic wallet backups triggered after each zDOGEC minting (0-1, "
 "default: %u)"),
 QT_TRANSLATE_NOOP("DogeCash-core", ""
-"Enable or disable staking functionality for PIV inputs (0-1, default: %u)"),
+"Enable or disable staking functionality for DOGEC inputs (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("DogeCash-core", ""
 "Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("DogeCash-core", ""
@@ -102,10 +102,10 @@ QT_TRANSLATE_NOOP("DogeCash-core", ""
 QT_TRANSLATE_NOOP("DogeCash-core", ""
 "Failed to find coin set amongst held coins with less than maxNumber of Spends"),
 QT_TRANSLATE_NOOP("DogeCash-core", ""
-"Fees (in PIV/Kb) smaller than this are considered zero fee for relaying "
+"Fees (in DOGEC/Kb) smaller than this are considered zero fee for relaying "
 "(default: %s)"),
 QT_TRANSLATE_NOOP("DogeCash-core", ""
-"Fees (in PIV/Kb) smaller than this are considered zero fee for transaction "
+"Fees (in DOGEC/Kb) smaller than this are considered zero fee for transaction "
 "creation (default: %s)"),
 QT_TRANSLATE_NOOP("DogeCash-core", ""
 "Flush database activity from memory pool to disk log every <n> megabytes "
@@ -215,10 +215,10 @@ QT_TRANSLATE_NOOP("DogeCash-core", ""
 "Unable to locate enough Obfuscation denominated funds for this transaction."),
 QT_TRANSLATE_NOOP("DogeCash-core", ""
 "Unable to locate enough Obfuscation non-denominated funds for this "
-"transaction that are not equal 10000 PIV."),
+"transaction that are not equal 10000 DOGEC."),
 QT_TRANSLATE_NOOP("DogeCash-core", ""
 "Unable to locate enough funds for this transaction that are not equal 10000 "
-"PIV."),
+"DOGEC."),
 QT_TRANSLATE_NOOP("DogeCash-core", ""
 "Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: "
 "%s)"),
@@ -343,7 +343,7 @@ QT_TRANSLATE_NOOP("DogeCash-core", "Failed to read block"),
 QT_TRANSLATE_NOOP("DogeCash-core", "Failed to select a zerocoin"),
 QT_TRANSLATE_NOOP("DogeCash-core", "Failed to wipe zerocoinDB"),
 QT_TRANSLATE_NOOP("DogeCash-core", "Failed to write coin serial number into wallet"),
-QT_TRANSLATE_NOOP("DogeCash-core", "Fee (in PIV/kB) to add to transactions you send (default: %s)"),
+QT_TRANSLATE_NOOP("DogeCash-core", "Fee (in DOGEC/kB) to add to transactions you send (default: %s)"),
 QT_TRANSLATE_NOOP("DogeCash-core", "Finalizing transaction."),
 QT_TRANSLATE_NOOP("DogeCash-core", "Force safe mode (default: %u)"),
 QT_TRANSLATE_NOOP("DogeCash-core", "Found enough users, signing ( waiting %s )"),
@@ -431,11 +431,11 @@ QT_TRANSLATE_NOOP("DogeCash-core", "RPC server options:"),
 QT_TRANSLATE_NOOP("DogeCash-core", "Randomly drop 1 of every <n> network messages"),
 QT_TRANSLATE_NOOP("DogeCash-core", "Randomly fuzz 1 of every <n> network messages"),
 QT_TRANSLATE_NOOP("DogeCash-core", "Rebuild block chain index from current blk000??.dat files"),
-QT_TRANSLATE_NOOP("DogeCash-core", "Recalculating PIV supply..."),
+QT_TRANSLATE_NOOP("DogeCash-core", "Recalculating DOGEC supply..."),
 QT_TRANSLATE_NOOP("DogeCash-core", "Recalculating minted zDOGEC..."),
 QT_TRANSLATE_NOOP("DogeCash-core", "Recalculating spent zDOGEC..."),
 QT_TRANSLATE_NOOP("DogeCash-core", "Receive and display P2P network alerts (default: %u)"),
-QT_TRANSLATE_NOOP("DogeCash-core", "Reindex the PIV and zDOGEC money supply statistics"),
+QT_TRANSLATE_NOOP("DogeCash-core", "Reindex the DOGEC and zDOGEC money supply statistics"),
 QT_TRANSLATE_NOOP("DogeCash-core", "Reindex the accumulator database"),
 QT_TRANSLATE_NOOP("DogeCash-core", "Reindexing zerocoin database..."),
 QT_TRANSLATE_NOOP("DogeCash-core", "Reindexing zerocoin failed"),

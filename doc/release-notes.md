@@ -44,7 +44,7 @@ Attacks, Exploits, and Mitigations
 
 On Janurary 22 2019, Decentralized Systems Lab out of the University of Illinois published a study entitled “[‘Fake Stake’ attacks on chain-based Proof-of-Stake cryptocurrencies](https://medium.com/@dsl_uiuc/fake-stake-attacks-on-chain-based-proof-of-stake-cryptocurrencies-b8b05723f806)”, which outlined a type of Denial of Service attack that could take place on a number of Proof of Stake based networks by exhausting a client's RAM or Disk resources.
 
-A full report provided by DogeCash developers is available on the [DogeCash Website](https://DogeCash.org/fake-stake-official-DogeCash-report/), which includes additional findings, mitigation details, and resources for testing. This type of attack has no risk to users' privacy and does not affect their holdings.
+A full report provided by DogeCash developers is available on the [DogeCash Website](https://dogec.io/fake-stake-official-DogeCash-report/), which includes additional findings, mitigation details, and resources for testing. This type of attack has no risk to users' privacy and does not affect their holdings.
 
 ### Wrapped Serials
 
@@ -63,7 +63,7 @@ DogeCash Core v3.2.0 introduces new consensus rules for scripting pathways to su
 
 ### Automint Addresses
 
-A new "Automint Addresses" feature has been added to the wallet that allows for the creation of new addresses who's purpose is to automatically convert any PIV funds received by such addresses to zDOGEC. The feature as a whole can be enabled/disabled either at runtime using the `-enableautoconvertaddress` option, via RPC/Console with the `enableautomintaddress` command, or via the GUI's options dialog, with the default being enabled.
+A new "Automint Addresses" feature has been added to the wallet that allows for the creation of new addresses who's purpose is to automatically convert any DOGEC funds received by such addresses to zDOGEC. The feature as a whole can be enabled/disabled either at runtime using the `-enableautoconvertaddress` option, via RPC/Console with the `enableautomintaddress` command, or via the GUI's options dialog, with the default being enabled.
 
 Creation of these automint addresses is currently only available via the RPC/Console `createautomintaddress` command, which takes no additional arguments. The command returns a new DogeCash address each time, but addresses created by this command can be re-used if desired.
 
@@ -75,7 +75,7 @@ A new UI wallet tab has been introduced that allows users to view the current bu
 
 Support for the ZLN Protocol has been added, which allows for a node to opt-in to providing extended network services for the protocol. By default, this functionality is disabled, but can be enabled by using the `-peerbloomfilterszc` runtime option.
 
-A full technical writeup of the protocol can be found [Here](https://DogeCash.org/wp-content/uploads/2018/11/Zerocoin_Light_Node_Protocol.pdf).
+A full technical writeup of the protocol can be found [Here](https://dogec.io/wp-content/uploads/2018/11/Zerocoin_Light_Node_Protocol.pdf).
 
 ### Precomputed Zerocoin Proofs
 

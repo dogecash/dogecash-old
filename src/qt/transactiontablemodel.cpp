@@ -344,7 +344,7 @@ QString TransactionTableModel::formatTxType(const TransactionRecord* wtx) const
     case TransactionRecord::SendToSelf:
         return tr("Payment to yourself");
     case TransactionRecord::StakeMint:
-        return tr("PIV Stake");
+        return tr("DOGEC Stake");
     case TransactionRecord::StakezDOGEC:
         return tr("zDOGEC Stake");
     case TransactionRecord::Generated:
@@ -360,15 +360,15 @@ QString TransactionTableModel::formatTxType(const TransactionRecord* wtx) const
     case TransactionRecord::Obfuscated:
         return tr("Obfuscated");
     case TransactionRecord::ZerocoinMint:
-        return tr("Converted PIV to zDOGEC");
+        return tr("Converted DOGEC to zDOGEC");
     case TransactionRecord::ZerocoinSpend:
         return tr("Spent zDOGEC");
     case TransactionRecord::RecvFromZerocoinSpend:
-        return tr("Received PIV from zDOGEC");
+        return tr("Received DOGEC from zDOGEC");
     case TransactionRecord::ZerocoinSpend_Change_zDOGEC:
         return tr("Minted Change as zDOGEC from zDOGEC Spend");
     case TransactionRecord::ZerocoinSpend_FromMe:
-        return tr("Converted zDOGEC to PIV");
+        return tr("Converted zDOGEC to DOGEC");
 
     default:
         return QString();

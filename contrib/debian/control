@@ -22,7 +22,7 @@ Build-Depends: debhelper,
  libqrencode-dev,
  libprotobuf-dev, protobuf-compiler
 Standards-Version: 3.9.2
-Homepage: http://www.DogeCash.org
+Homepage: http://www.dogec.io
 Vcs-Git: git://github.com/DogeCash-Project/DogeCash.git
 Vcs-Browser: http://github.com/DogeCash-Project/DogeCash
 

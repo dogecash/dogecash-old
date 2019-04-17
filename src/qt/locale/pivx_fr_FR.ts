@@ -176,16 +176,16 @@
         <translation>Confirmer le cryptage du portefeuille</translation>
     </message>
     <message>
-        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
-        <translation>DogeCash va maintenant se fermer pour finir le processus de cryptage. Notez que le cryptage de votre portefeuille ne peut pas complètement protéger vos PIVs d'un vol par un malware ayant infecté votre ordinateur. </translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash va maintenant se fermer pour finir le processus de cryptage. Notez que le cryptage de votre portefeuille ne peut pas complètement protéger vos DOGECs d'un vol par un malware ayant infecté votre ordinateur. </translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Êtes-vous sûr de vouloir crypter votre portefeuille?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
-        <translation>Attention : si vous cryptez votre portefeuille et perdez votre phrase secrète, vous &lt;b&gt;PERDREZ TOUS VOS PIV&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR DOGEC&lt;/b&gt;!</source>
+        <translation>Attention : si vous cryptez votre portefeuille et perdez votre phrase secrète, vous &lt;b&gt;PERDREZ TOUS VOS DOGEC&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -1130,8 +1130,8 @@ Adresse : %4
         <translation>Ce label devient rouge si l'un des destinataires reçoit un montant inférieur à %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Peut varier de +/- %1 upiv par entrée.</translation>
+        <source>Can vary +/- %1 uDOGEC per input.</source>
+        <translation>Peut varier de +/- %1 uDOGEC par entrée.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1734,8 +1734,8 @@ S'il vous plaît soyez patient après avoir cliqué sur l'importation.</translat
         <translation>Adresse / Montant:</translation>
     </message>
     <message>
-        <source>Add destinations to send PIV to</source>
-        <translation>Ajouter des destinations pour envoyer PIV</translation>
+        <source>Add destinations to send DOGEC to</source>
+        <translation>Ajouter des destinations pour envoyer DOGEC</translation>
     </message>
     <message>
         <source>Add &amp;Destination</source>
@@ -1833,32 +1833,32 @@ S'il vous plaît soyez patient après avoir cliqué sur l'importation.</translat
         <translation>Veuillez sélectionner un niveau de confidentialité.</translation>
     </message>
     <message>
-        <source>Use 2 separate masternodes to mix funds up to 10000 PIV</source>
-        <translation>Utiliser 2 masternodes différentes pour mélanger les fonds jusqu'a 10000 PIV</translation>
+        <source>Use 2 separate masternodes to mix funds up to 10000 DOGEC</source>
+        <translation>Utiliser 2 masternodes différentes pour mélanger les fonds jusqu'a 10000 DOGEC</translation>
     </message>
     <message>
-        <source>Use 8 separate masternodes to mix funds up to 10000 PIV</source>
-        <translation>Utiliser 8 masternodes différentes pour mélanger les fonds jusqu'a 10000 PIV</translation>
+        <source>Use 8 separate masternodes to mix funds up to 10000 DOGEC</source>
+        <translation>Utiliser 8 masternodes différentes pour mélanger les fonds jusqu'a 10000 DOGEC</translation>
     </message>
     <message>
         <source>Use 16 separate masternodes</source>
         <translation>Utiliser 16 masternodes différents</translation>
     </message>
     <message>
-        <source>This option is the quickest and will cost about ~0.025 PIV to anonymize 10000 PIV</source>
-        <translation>Cette option est la plus rapide, et coutera ~0.025 PIV pour anonymiser 10000 PIV</translation>
+        <source>This option is the quickest and will cost about ~0.025 DOGEC to anonymize 10000 DOGEC</source>
+        <translation>Cette option est la plus rapide, et coutera ~0.025 DOGEC pour anonymiser 10000 DOGEC</translation>
     </message>
     <message>
-        <source>This option is moderately fast and will cost about 0.05 PIV to anonymize 10000 PIV</source>
-        <translation>Cette option est moyennement rapide, et coutera 0.05 PIV pour anonymiser 10000 PIV</translation>
+        <source>This option is moderately fast and will cost about 0.05 DOGEC to anonymize 10000 DOGEC</source>
+        <translation>Cette option est moyennement rapide, et coutera 0.05 DOGEC pour anonymiser 10000 DOGEC</translation>
     </message>
     <message>
         <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
         <translation>Il s'agit de l'option la plus lente est la plus sécurisé. Utiliser l'anonymat maximum coutera</translation>
     </message>
     <message>
-        <source>0.1 PIV per 10000 PIV you anonymize.</source>
-        <translation>0.1 PIV par 10000 PIV vous anonymisez.</translation>
+        <source>0.1 DOGEC per 10000 DOGEC you anonymize.</source>
+        <translation>0.1 DOGEC par 10000 DOGEC vous anonymisez.</translation>
     </message>
     <message>
         <source>Obfuscation Configuration</source>
@@ -2001,8 +2001,8 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations</transl
         <translation>Répertorier les port utilisant UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of PIV units to zDOGEC</source>
-        <translation>Activé l'auto-monnayage de PIV unités en zDOGEC</translation>
+        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
+        <translation>Activé l'auto-monnayage de DOGEC unités en zDOGEC</translation>
     </message>
     <message>
         <source>Enable zDOGEC Automint</source>
@@ -2017,16 +2017,16 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations</transl
         <translation>Activer les Adresses Automint</translation>
     </message>
     <message>
-        <source>Percentage of incoming PIV which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
-        <translation>Pourcentage des PIV entrants qui seront automatiquement convertis en zDOGEC via le protocole Zerocoin (min. 10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
+        <translation>Pourcentage des DOGEC entrants qui seront automatiquement convertis en zDOGEC via le protocole Zerocoin (min. 10%)</translation>
     </message>
     <message>
         <source>Percentage of autominted zDOGEC</source>
         <translation>Pourcentage de zDOGEC auto-monnayé</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</source>
-        <translation>Met en attente la conversion automatique Zerocoin jusqu'à ce qu'il y ai suffisament de PIV disponibles pour la dénomination demandée</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</source>
+        <translation>Met en attente la conversion automatique Zerocoin jusqu'à ce qu'il y ai suffisament de DOGEC disponibles pour la dénomination demandée</translation>
     </message>
     <message>
         <source>Preferred Automint zDOGEC Denomination</source>
@@ -2200,8 +2200,8 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations</transl
         <translation>Solde total, incluant les pièces indisponibles.</translation>
     </message>
     <message>
-        <source>PIV Balance</source>
-        <translation>Solde de PIV</translation>
+        <source>DOGEC Balance</source>
+        <translation>Solde de DOGEC</translation>
     </message>
     <message>
         <source>Pending:</source>
@@ -2288,8 +2288,8 @@ Immature: confirmé, mais moins de 1 monnaie de la même dénomination après sa
         <translation>Dépensable:</translation>
     </message>
     <message>
-        <source>Locked PIV or Masternode collaterals. These are excluded from zDOGEC minting.</source>
-        <translation>PIV Verrouillé ou Masternode collatéraux. Ceux-ci sont exclus du monnayage zDOGEC.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
+        <translation>DOGEC Verrouillé ou Masternode collatéraux. Ceux-ci sont exclus du monnayage zDOGEC.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2471,8 +2471,8 @@ Pour activer Auto-monnayage, changez 'enablezeromint = 0' en 'enablezeromint = 1
         <translation>Disponible :</translation>
     </message>
     <message>
-        <source>0.000 000 00 PIV</source>
-        <translation>0.000 000 00 PIV</translation>
+        <source>0.000 000 00 DOGEC</source>
+        <translation>0.000 000 00 DOGEC</translation>
     </message>
     <message>
         <source>Reset Zerocoin Wallet DB. Deletes transactions that did not make it into the blockchain.</source>
@@ -2511,8 +2511,8 @@ Pour activer Auto-monnayage, changez 'enablezeromint = 0' en 'enablezeromint = 1
         <translation>CONFIDENTIALITÉ</translation>
     </message>
     <message>
-        <source>Enter an amount of Piv to convert to zDOGEC</source>
-        <translation>Entrez un montant de PIV à convertir en zDOGEC</translation>
+        <source>Enter an amount of DOGEC to convert to zDOGEC</source>
+        <translation>Entrez un montant de DOGEC à convertir en zDOGEC</translation>
     </message>
     <message>
         <source>zDOGEC Control</source>
@@ -3923,12 +3923,12 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Taille UTXO:</translation>
     </message>
     <message>
-        <source>0 PIV</source>
-        <translation>0 PIV</translation>
+        <source>0 DOGEC</source>
+        <translation>0 DOGEC</translation>
     </message>
     <message>
-        <source>SwiftX technology allows for near instant transactions - A flat fee of 0.01 PIV applies</source>
-        <translation>La technologie SwiftX permet des transactions quasi instantanées - Des frais minimum de 0.01 PIV s'appliquent</translation>
+        <source>SwiftX technology allows for near instant transactions - A flat fee of 0.01 DOGEC applies</source>
+        <translation>La technologie SwiftX permet des transactions quasi instantanées - Des frais minimum de 0.01 DOGEC s'appliquent</translation>
     </message>
     <message>
         <source>Transaction Fee:</source>
@@ -3983,12 +3983,12 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Pièces automatiquement sélectionnées</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uPIVs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uPIVs in fee,&lt;br /&gt;while "at least" pays 1000 uPIVs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Si le tarif personnalisé est fixé à 1000 uPIV et que la transaction ne représente que 250 octets, "par kilo-octet", alors le système ne paiera que 250 uPIV en frais,&lt;br /&gt;tandis que le choix "au moins" paiera 1000 uPIV forfaitairement. Pour les transactions supérieures à un kilo-octet, les deux choix paieront les frais par kilo-octets.</translation>
+        <source>If the custom fee is set to 1000 uDOGECs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uDOGECs in fee,&lt;br /&gt;while "at least" pays 1000 uDOGECs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Si le tarif personnalisé est fixé à 1000 uDOGEC et que la transaction ne représente que 250 octets, "par kilo-octet", alors le système ne paiera que 250 uDOGEC en frais,&lt;br /&gt;tandis que le choix "au moins" paiera 1000 uDOGEC forfaitairement. Pour les transactions supérieures à un kilo-octet, les deux choix paieront les frais par kilo-octets.</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uPIVs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uPIVs in fee,&lt;br /&gt;while "total at least" pays 1000 uPIVs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Si le tarif personnalisé est fixé à 1000 uPIV et que la transaction ne représente que 250 octets, "par kilo-octet", alors le système ne paiera que 250 uPIV en frais,tandis que le choix "total au moins" paiera 1000 uPIV. Pour les transactions supérieures à un kilo-octet, les deux choix paieront les frais par kilo-octets.</translation>
+        <source>If the custom fee is set to 1000 uDOGECs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uDOGECs in fee,&lt;br /&gt;while "total at least" pays 1000 uDOGECs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Si le tarif personnalisé est fixé à 1000 uDOGEC et que la transaction ne représente que 250 octets, "par kilo-octet", alors le système ne paiera que 250 uDOGEC en frais,tandis que le choix "total au moins" paiera 1000 uDOGEC. Pour les transactions supérieures à un kilo-octet, les deux choix paieront les frais par kilo-octets.</translation>
     </message>
     <message>
         <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for DogeCash transactions than the network can process.</source>
@@ -4039,8 +4039,8 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Ajouter un destinataire</translation>
     </message>
     <message>
-        <source>Anonymized PIV</source>
-        <translation>PIV anonymisé</translation>
+        <source>Anonymized DOGEC</source>
+        <translation>DOGEC anonymisé</translation>
     </message>
     <message>
         <source>Balance:</source>
@@ -4703,32 +4703,32 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Reçu via Obfuscation</translation>
     </message>
     <message>
-        <source>PIV Stake</source>
-        <translation>PIV Stake</translation>
+        <source>DOGEC Stake</source>
+        <translation>DOGEC Stake</translation>
     </message>
     <message>
         <source>zDOGEC Stake</source>
         <translation>zDOGEC Stake</translation>
     </message>
     <message>
-        <source>Converted PIV to zDOGEC</source>
-        <translation>PIV converti en zDOGEC</translation>
+        <source>Converted DOGEC to zDOGEC</source>
+        <translation>DOGEC converti en zDOGEC</translation>
     </message>
     <message>
         <source>Spent zDOGEC</source>
         <translation>zDOGEC dépensés</translation>
     </message>
     <message>
-        <source>Received PIV from zDOGEC</source>
-        <translation>PIV reçu depuis zDOGEC</translation>
+        <source>Received DOGEC from zDOGEC</source>
+        <translation>DOGEC reçu depuis zDOGEC</translation>
     </message>
     <message>
         <source>Minted Change as zDOGEC from zDOGEC Spend</source>
         <translation>Monnaie rendue à partir d'une dépense zDOGEC frappée comme zDOGEC </translation>
     </message>
     <message>
-        <source>Converted zDOGEC to PIV</source>
-        <translation>zDOGEC converti en PIV</translation>
+        <source>Converted zDOGEC to DOGEC</source>
+        <translation>zDOGEC converti en DOGEC</translation>
     </message>
     <message>
         <source>Anonymous (zDOGEC Transaction)</source>
@@ -4851,7 +4851,7 @@ S'il vous plaît soyez patient ...</translation>
     </message>
     <message>
         <source>Zerocoin Mint</source>
-        <translation>PIV convertit en zDOGEC</translation>
+        <translation>DOGEC convertit en zDOGEC</translation>
     </message>
     <message>
         <source>Zerocoin Spend</source>
@@ -4950,8 +4950,8 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Exportation réussie</translation>
     </message>
     <message>
-        <source>Received PIV from zDOGEC</source>
-        <translation>PIV reçu depuis zDOGEC</translation>
+        <source>Received DOGEC from zDOGEC</source>
+        <translation>DOGEC reçu depuis zDOGEC</translation>
     </message>
     <message>
         <source>Zerocoin Spend, Change in zDOGEC</source>
@@ -4991,8 +4991,8 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Envoyer des pièces</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIV.</source>
-        <translation>SwiftX ne supporte pas l'envoi de montants aussi élevés. Les transactions sont actuellement lmitées à %1 PIV.</translation>
+        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 DOGEC.</source>
+        <translation>SwiftX ne supporte pas l'envoi de montants aussi élevés. Les transactions sont actuellement lmitées à %1 DOGEC.</translation>
     </message>
 </context>
 <context>
@@ -5104,8 +5104,8 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Activer la frappe automatique de monnaie à partir d’adresses spécifiques (0-1, par défaut: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for PIV inputs (0-1, default: %u)</source>
-        <translation>Active ou désactive la fonctionnalité de staking pour les entrées PIV (0-1, par défaut: %u)</translation>
+        <source>Enable or disable staking functionality for DOGEC inputs (0-1, default: %u)</source>
+        <translation>Active ou désactive la fonctionnalité de staking pour les entrées DOGEC (0-1, par défaut: %u)</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)</source>
@@ -5144,12 +5144,12 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Exécuter la commande lorsque le meilleur bloc change  (%s dans cmd est remplacé par le hash du bloc)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Les frais (en PIV / Kb) inférieurs à ceux-ci sont considérés comme des frais nuls pour le relais (par défaut: %s)</translation>
+        <source>Fees (in DOGEC/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Les frais (en DOGEC / Kb) inférieurs à ceux-ci sont considérés comme des frais nuls pour le relais (par défaut: %s)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Les frais (en PIV / Kb) inférieurs à cette valeur sont considérés comme des frais nuls pour la création de transaction (par défaut: %s)</translation>
+        <source>Fees (in DOGEC/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Les frais (en DOGEC / Kb) inférieurs à cette valeur sont considérés comme des frais nuls pour la création de transaction (par défaut: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -5260,12 +5260,12 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Incapable de localiser suffisamment de fonds non-dénommés pour l'Obfuscation de cette transaction.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIV.</source>
-        <translation>Incapable de localiser suffisamment de fonds non-dénommés pour l'Obfuscation de cette transaction qui ne sont pas égaux à 10000 PIV.</translation>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 DOGEC.</source>
+        <translation>Incapable de localiser suffisamment de fonds non-dénommés pour l'Obfuscation de cette transaction qui ne sont pas égaux à 10000 DOGEC.</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIV.</source>
-        <translation>Impossible de grouper assez de fonds pour cette transaction qui n'est pas égale à 10000 PIV.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 10000 DOGEC.</source>
+        <translation>Impossible de grouper assez de fonds pour cette transaction qui n'est pas égale à 10000 DOGEC.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5584,8 +5584,8 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Impossible de lire le bloc</translation>
     </message>
     <message>
-        <source>Fee (in PIV/kB) to add to transactions you send (default: %s)</source>
-        <translation>Frais (en PIV/kB) à ajouter aux transactions envoyées (défaut: %s)</translation>
+        <source>Fee (in DOGEC/kB) to add to transactions you send (default: %s)</source>
+        <translation>Frais (en DOGEC/kB) à ajouter aux transactions envoyées (défaut: %s)</translation>
     </message>
     <message>
         <source>Finalizing transaction.</source>
@@ -5712,8 +5712,8 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Script incorrect détecté.</translation>
     </message>
     <message>
-        <source>Reindex the PIV and zDOGEC money supply statistics</source>
-        <translation>Recalculer les statistiques sur l'approvisionnement en PIV et zDOGEC</translation>
+        <source>Reindex the DOGEC and zDOGEC money supply statistics</source>
+        <translation>Recalculer les statistiques sur l'approvisionnement en DOGEC et zDOGEC</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>

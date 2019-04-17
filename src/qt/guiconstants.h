@@ -54,7 +54,7 @@ static const int MAX_URI_LENGTH = 255;
 #define SPINNER_FRAMES 35
 
 #define QAPP_ORG_NAME "DogeCash"
-#define QAPP_ORG_DOMAIN "DogeCash.org"
+#define QAPP_ORG_DOMAIN "dogec.io"
 #define QAPP_APP_NAME_DEFAULT "DogeCash-Qt"
 #define QAPP_APP_NAME_TESTNET "DogeCash-Qt-testnet"
 
