@@ -40,7 +40,7 @@
 #include <vector>
 
 #include "libzerocoin/CoinSpend.h"
-#include "lightzDOGECthread.h"
+#include "lightzdogecthread.h"
 
 #include <boost/unordered_map.hpp>
 
