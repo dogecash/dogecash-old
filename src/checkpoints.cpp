@@ -66,7 +66,7 @@ double GuessVerificationProgress(CBlockIndex* pindex, bool fSigchecks)
         double nCheapBefore = data.nTransactionsLastCheckpoint;
         double nExpensiveBefore = pindex->nChainTx - data.nTransactionsLastCheckpoint;
         double nExpensiveAfter = (nNow - pindex->GetBlockTime()) / 86400.0 * data.fTransactionsPerDay;
-        fWorkBefore = nCheapBefore + nExpensiveBefore * DOGEC;
+        fWorkBefore = nCheapBefore + nExpensiveBefore * fSigcheckVerificationFactor;
         fWorkAfter = nExpensiveAfter * fSigcheckVerificationFactor;
     }
 
