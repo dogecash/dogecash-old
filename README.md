@@ -1,16 +1,16 @@
-PIVX Core integration/staging repository
+DogeCash Core integration/staging repository
 =====================================
 
-[![Build Status](https://travis-ci.org/PIVX-Project/PIVX.svg?branch=master)](https://travis-ci.org/PIVX-Project/PIVX) [![GitHub version](https://badge.fury.io/gh/PIVX-Project%2FPIVX.svg)](https://badge.fury.io/gh/PIVX-Project%2FPIVX)
+[![Build Status](https://travis-ci.org/DogeCash-Project/DogeCash.svg?branch=master)](https://travis-ci.org/DogeCash-Project/DogeCash) [![GitHub version](https://badge.fury.io/gh/DogeCash-Project%2FDogeCash.svg)](https://badge.fury.io/gh/DogeCash-Project%2FDogeCash)
 
-PIVX is an open source crypto-currency focused on fast private transactions using the Zerocoin protocol, with low transaction fees & environmental footprint.  It utilizes the first ever anonymous proof of stake protocol, called zPoS, combined with regular PoS and masternodes for securing its network. zPoS incentivises using the privacy features available in PIVX by granting a higher block reward for zPoS over regular PoS and masternodes. In practice PIVX has between 4 to 10 times higher use of it's privacy features in comparison to other coins that combine public and private transactions. This is thanks to innovations like zPoS and integrating the Zerocoin protocol into light/mobile wallets, allowing for a complete and lightweight privacy protocol that can be used on the go. As well as security improvements like [deterministic generation of zPIV for easy backups.](https://www.reddit.com/r/pivx/comments/8gbjf7/how_to_use_deterministic_zerocoin_generation/)
-The goal of PIVX is to achieve a decentralized sustainable crypto currency with near instant full-time private transactions, fair governance and community intelligence.
-- Anonymized transactions & consensus using the [_Zerocoin Protocol_](http://www.pivx.org/zpiv) and [zPoS](https://pivx.org/zpos/).
-- light/mobile wallet privacy using the [Zerocoin Light Node Protocol](https://pivx.org/wp-content/uploads/2018/11/Zerocoin_Light_Node_Protocol.pdf)
+DogeCash is an open source crypto-currency focused on fast private transactions using the Zerocoin protocol, with low transaction fees & environmental footprint.  It utilizes the first ever anonymous proof of stake protocol, called zPoS, combined with regular PoS and masternodes for securing its network. zPoS incentivises using the privacy features available in DogeCash by granting a higher block reward for zPoS over regular PoS and masternodes. In practice DogeCash has between 4 to 10 times higher use of it's privacy features in comparison to other coins that combine public and private transactions. This is thanks to innovations like zPoS and integrating the Zerocoin protocol into light/mobile wallets, allowing for a complete and lightweight privacy protocol that can be used on the go. As well as security improvements like [deterministic generation of zDOGEC for easy backups.](https://www.reddit.com/r/DogeCash/comments/8gbjf7/how_to_use_deterministic_zerocoin_generation/)
+The goal of DogeCash is to achieve a decentralized sustainable crypto currency with near instant full-time private transactions, fair governance and community intelligence.
+- Anonymized transactions & consensus using the [_Zerocoin Protocol_](http://www.DogeCash.org/zDOGEC) and [zPoS](https://DogeCash.org/zpos/).
+- light/mobile wallet privacy using the [Zerocoin Light Node Protocol](https://DogeCash.org/wp-content/uploads/2018/11/Zerocoin_Light_Node_Protocol.pdf)
 - Fast transactions featuring guaranteed zero confirmation transactions, we call it _SwiftX_.
 - Decentralized blockchain voting utilizing Masternode technology to form a DAO. The blockchain will distribute monthly treasury funds based on successful proposals submitted by the community and voted on by the DAO.
 
-More information at [pivx.org](http://www.pivx.org) Visit our ANN thread at [BitcoinTalk](http://www.bitcointalk.org/index.php?topic=1262920)
+More information at [DogeCash.org](http://www.DogeCash.org) Visit our ANN thread at [BitcoinTalk](http://www.bitcointalk.org/index.php?topic=1262920)
 
 ### Coin Specs
 <table>
@@ -22,14 +22,14 @@ More information at [pivx.org](http://www.pivx.org) Visit our ANN thread at [Bit
 <tr><td>Premine</td><td>60,000 PIV*</td></tr>
 </table>
 
-*60,000 PIV Premine was burned in block [279917](http://www.presstab.pw/phpexplorer/PIVX/block.php?blockhash=206d9cfe859798a0b0898ab00d7300be94de0f5469bb446cecb41c3e173a57e0)
+*60,000 PIV Premine was burned in block [279917](http://www.presstab.pw/phpexplorer/DogeCash/block.php?blockhash=206d9cfe859798a0b0898ab00d7300be94de0f5469bb446cecb41c3e173a57e0)
 
 ### Reward Distribution
 
 <table>
 <th colspan=4>Genesis Block</th>
 <tr><th>Block Height</th><th>Reward Amount</th><th>Notes</th></tr>
-<tr><td>1</td><td>60,000 PIV</td><td>Initial Pre-mine, burnt in block <a href="http://www.presstab.pw/phpexplorer/PIVX/block.php?blockhash=206d9cfe859798a0b0898ab00d7300be94de0f5469bb446cecb41c3e173a57e0">279917</a></td></tr>
+<tr><td>1</td><td>60,000 PIV</td><td>Initial Pre-mine, burnt in block <a href="http://www.presstab.pw/phpexplorer/DogeCash/block.php?blockhash=206d9cfe859798a0b0898ab00d7300be94de0f5469bb446cecb41c3e173a57e0">279917</a></td></tr>
 </table>
 
 ### PoW Rewards Breakdown
@@ -55,5 +55,5 @@ More information at [pivx.org](http://www.pivx.org) Visit our ANN thread at [Bit
 <tr><td>Phase 7</td><td>561600-604799</td><td>15 PIV</td><td>90% (13.5 PIV)</td><td>10% (1.5 PIV)</td></tr>
 <tr><td>Phase 8</td><td>604800-647999</td><td>10 PIV</td><td>90% (9 PIV)</td><td>10% (1 PIV)</td></tr>
 <tr><td>Phase 9</td><td>648000-1154203</td><td>5 PIV</td><td>90% (4.5 PIV)</td><td>10% (0.5 PIV)</td></tr>
-<tr><td>Phase X</td><td>1154203-∞</td><td>6 PIV</td><td>84% (5 PIV/zPIV)</td><td>16% (1 PIV)</td></tr>
+<tr><td>Phase X</td><td>1154203-∞</td><td>6 PIV</td><td>84% (5 PIV/zDOGEC)</td><td>16% (1 PIV)</td></tr>
 </table>

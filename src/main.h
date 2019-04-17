@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The PIVX developers
+// Copyright (c) 2015-2018 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,7 +9,7 @@
 #define BITCOIN_MAIN_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/pivx-config.h"
+#include "config/DogeCash-config.h"
 #endif
 
 #include "amount.h"
@@ -20,7 +20,7 @@
 #include "pow.h"
 #include "primitives/block.h"
 #include "primitives/transaction.h"
-#include "zpiv/zerocoin.h"
+#include "zDOGEC/zerocoin.h"
 #include "script/script.h"
 #include "script/sigcache.h"
 #include "script/standard.h"
@@ -40,7 +40,7 @@
 #include <vector>
 
 #include "libzerocoin/CoinSpend.h"
-#include "lightzpivthread.h"
+#include "lightzDOGECthread.h"
 
 #include <boost/unordered_map.hpp>
 
@@ -129,7 +129,7 @@ static const unsigned char REJECT_DUST = 0x41;
 static const unsigned char REJECT_INSUFFICIENTFEE = 0x42;
 static const unsigned char REJECT_CHECKPOINT = 0x43;
 
-/** zPIV precomputing variables
+/** zDOGEC precomputing variables
  * Set the number of included blocks to precompute per cycle. */
 static const int DEFAULT_PRECOMPUTE_LENGTH = 1000;
 static const int MIN_PRECOMPUTE_LENGTH = 500;
@@ -241,7 +241,7 @@ bool GetTransaction(const uint256& hash, CTransaction& tx, uint256& hashBlock, b
 
 // ***TODO***
 double ConvertBitsToDouble(unsigned int nBits);
-int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount, bool isZPIVStake);
+int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount, bool iszDOGECStake);
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock, bool fProofOfStake);
 
 bool ActivateBestChain(CValidationState& state, CBlock* pblock = NULL, bool fAlreadyChecked = false);
@@ -364,8 +364,8 @@ bool IsTransactionInChain(const uint256& txId, int& nHeightTx);
 bool IsBlockHashInChain(const uint256& hashBlock);
 bool ValidOutPoint(const COutPoint out, int nHeight);
 void AddWrappedSerialsInflation();
-void RecalculateZPIVSpent();
-void RecalculateZPIVMinted();
+void RecalculatezDOGECSpent();
+void RecalculatezDOGECMinted();
 bool RecalculatePIVSupply(int nHeightStart);
 bool ReindexAccumulators(list<uint256>& listMissingCheckpoints, string& strError);
 

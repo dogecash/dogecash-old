@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The PIVX developers
+// Copyright (c) 2015-2018 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -268,11 +268,11 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop PIVX server.");
+            "\nStop DogeCash server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "PIVX server stopping";
+    return "DogeCash server stopping";
 }
 
 
@@ -364,37 +364,37 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true,  true,  false  },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true,  true,  false  },
 
-        /* PIVX features */
-        {"pivx", "masternode", &masternode, true, true, false},
-        {"pivx", "listmasternodes", &listmasternodes, true, true, false},
-        {"pivx", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"pivx", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"pivx", "createmasternodebroadcast", &createmasternodebroadcast, true, true, false},
-        {"pivx", "decodemasternodebroadcast", &decodemasternodebroadcast, true, true, false},
-        {"pivx", "relaymasternodebroadcast", &relaymasternodebroadcast, true, true, false},
-        {"pivx", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"pivx", "masternodedebug", &masternodedebug, true, true, false},
-        {"pivx", "startmasternode", &startmasternode, true, true, false},
-        {"pivx", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"pivx", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"pivx", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"pivx", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"pivx", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"pivx", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"pivx", "mnbudget", &mnbudget, true, true, false},
-        {"pivx", "preparebudget", &preparebudget, true, true, false},
-        {"pivx", "submitbudget", &submitbudget, true, true, false},
-        {"pivx", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"pivx", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"pivx", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"pivx", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"pivx", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"pivx", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"pivx", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"pivx", "checkbudgets", &checkbudgets, true, true, false},
-        {"pivx", "mnsync", &mnsync, true, true, false},
-        {"pivx", "spork", &spork, true, true, false},
-        {"pivx", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* DogeCash features */
+        {"DogeCash", "masternode", &masternode, true, true, false},
+        {"DogeCash", "listmasternodes", &listmasternodes, true, true, false},
+        {"DogeCash", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"DogeCash", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"DogeCash", "createmasternodebroadcast", &createmasternodebroadcast, true, true, false},
+        {"DogeCash", "decodemasternodebroadcast", &decodemasternodebroadcast, true, true, false},
+        {"DogeCash", "relaymasternodebroadcast", &relaymasternodebroadcast, true, true, false},
+        {"DogeCash", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"DogeCash", "masternodedebug", &masternodedebug, true, true, false},
+        {"DogeCash", "startmasternode", &startmasternode, true, true, false},
+        {"DogeCash", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"DogeCash", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"DogeCash", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"DogeCash", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"DogeCash", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"DogeCash", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"DogeCash", "mnbudget", &mnbudget, true, true, false},
+        {"DogeCash", "preparebudget", &preparebudget, true, true, false},
+        {"DogeCash", "submitbudget", &submitbudget, true, true, false},
+        {"DogeCash", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"DogeCash", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"DogeCash", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"DogeCash", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"DogeCash", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"DogeCash", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"DogeCash", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"DogeCash", "checkbudgets", &checkbudgets, true, true, false},
+        {"DogeCash", "mnsync", &mnsync, true, true, false},
+        {"DogeCash", "spork", &spork, true, true, false},
+        {"DogeCash", "getpoolinfo", &getpoolinfo, true, true, false},
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -464,11 +464,11 @@ static const CRPCCommand vRPCCommands[] =
         {"zerocoin", "exportzerocoins", &exportzerocoins, false, false, true},
         {"zerocoin", "reconsiderzerocoins", &reconsiderzerocoins, false, false, true},
         {"zerocoin", "getspentzerocoinamount", &getspentzerocoinamount, false, false, false},
-        {"zerocoin", "getzpivseed", &getzpivseed, false, false, true},
-        {"zerocoin", "setzpivseed", &setzpivseed, false, false, true},
+        {"zerocoin", "getzDOGECseed", &getzDOGECseed, false, false, true},
+        {"zerocoin", "setzDOGECseed", &setzDOGECseed, false, false, true},
         {"zerocoin", "generatemintlist", &generatemintlist, false, false, true},
-        {"zerocoin", "searchdzpiv", &searchdzpiv, false, false, true},
-        {"zerocoin", "dzpivstate", &dzpivstate, false, false, true},
+        {"zerocoin", "searchdzDOGEC", &searchdzDOGEC, false, false, true},
+        {"zerocoin", "dzDOGECstate", &dzDOGECstate, false, false, true},
         {"zerocoin", "clearspendcache", &clearspendcache, false, false, true}
 
 #endif // ENABLE_WALLET
@@ -633,7 +633,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> pivx-cli " + methodname + " " + args + "\n";
+    return "> DogeCash-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)

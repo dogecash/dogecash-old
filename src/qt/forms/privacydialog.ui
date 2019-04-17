@@ -172,7 +172,7 @@
                       <item>
                        <layout class="QHBoxLayout" name="horizontalLayout_3">
                         <item>
-                         <widget class="QLabel" name="labelzPIVActions">
+                         <widget class="QLabel" name="labelzDOGECActions">
                           <property name="font">
                            <font>
                             <pointsize>12</pointsize>
@@ -189,9 +189,9 @@
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="labelzPIVSyncStatus">
+                         <widget class="QLabel" name="labelzDOGECSyncStatus">
                           <property name="toolTip">
-                           <string>The displayed information may be out of date. Your wallet automatically synchronizes with the PIVX network after a connection is established, but this process has not completed yet.</string>
+                           <string>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</string>
                           </property>
                           <property name="styleSheet">
                            <string notr="true">QLabel { color: red; }</string>
@@ -258,7 +258,7 @@
                               </font>
                              </property>
                              <property name="toolTip">
-                              <string>Total Balance including unconfirmed and immature zPIV</string>
+                              <string>Total Balance including unconfirmed and immature zDOGEC</string>
                              </property>
                              <property name="text">
                               <string>Total Zerocoin  Balance:</string>
@@ -283,10 +283,10 @@
                               </font>
                              </property>
                              <property name="toolTip">
-                              <string>Total Balance including unconfirmed and immature zPIV</string>
+                              <string>Total Balance including unconfirmed and immature zDOGEC</string>
                              </property>
                              <property name="text">
-                              <string>0 zPIV</string>
+                              <string>0 zDOGEC</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -335,7 +335,7 @@
                               </font>
                              </property>
                              <property name="text">
-                              <string>0 zPIV</string>
+                              <string>0 zDOGEC</string>
                              </property>
                             </widget>
                            </item>
@@ -357,7 +357,7 @@
                          <item>
                           <widget class="QPushButton" name="pushButtonShowDenoms">
                            <property name="toolTip">
-                            <string>Show zPIV denominations list</string>
+                            <string>Show zDOGEC denominations list</string>
                            </property>
                            <property name="text">
                             <string>Show Denominations</string>
@@ -370,7 +370,7 @@
                       <item>
                        <layout class="QHBoxLayout" name="horizontalLayout_4">
                         <item>
-                         <widget class="QPushButton" name="pushButtonMintzPIV">
+                         <widget class="QPushButton" name="pushButtonMintzDOGEC">
                           <property name="minimumSize">
                            <size>
                             <width>131</width>
@@ -378,7 +378,7 @@
                            </size>
                           </property>
                           <property name="toolTip">
-                           <string>Enter an amount of Piv to convert to zPIV</string>
+                           <string>Enter an amount of Piv to convert to zDOGEC</string>
                           </property>
                           <property name="text">
                            <string>Mint Zerocoin</string>
@@ -402,14 +402,14 @@
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="labelzPIV_2">
+                         <widget class="QLabel" name="labelzDOGEC_2">
                           <property name="text">
-                           <string>zPIV</string>
+                           <string>zDOGEC</string>
                           </property>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="labelzPIVAmountText">
+                         <widget class="QLabel" name="labelzDOGECAmountText">
                           <property name="toolTip">
                            <string>Available for minting are coins which are confirmed and not locked or Masternode collaterals.</string>
                           </property>
@@ -422,7 +422,7 @@
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="labelzPIVAmountValue">
+                         <widget class="QLabel" name="labelzDOGECAmountValue">
                           <property name="font">
                            <font>
                             <weight>75</weight>
@@ -430,7 +430,7 @@
                            </font>
                           </property>
                           <property name="toolTip">
-                           <string>Enter an amount of Piv to convert to zPIV</string>
+                           <string>Enter an amount of Piv to convert to zDOGEC</string>
                           </property>
                           <property name="text">
                            <string>0.000 000 00 PIV</string>
@@ -729,21 +729,21 @@
                          <number>0</number>
                         </property>
                         <item>
-                         <widget class="QPushButton" name="pushButtonZPivControl">
+                         <widget class="QPushButton" name="pushButtonzDOGECControl">
                           <property name="text">
-                           <string>zPIV Control</string>
+                           <string>zDOGEC Control</string>
                           </property>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="labelzPivSelected">
+                         <widget class="QLabel" name="labelzDOGECSelected">
                           <property name="text">
-                           <string>zPIV Selected:</string>
+                           <string>zDOGEC Selected:</string>
                           </property>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="labelzPivSelected_int">
+                         <widget class="QLabel" name="labelzDOGECSelected_int">
                           <property name="text">
                            <string>0</string>
                           </property>
@@ -797,7 +797,7 @@
                       <item>
                        <layout class="QHBoxLayout" name="horizontalLayout_6">
                         <item>
-                         <widget class="QPushButton" name="pushButtonSpendzPIV">
+                         <widget class="QPushButton" name="pushButtonSpendzDOGEC">
                           <property name="minimumSize">
                            <size>
                             <width>131</width>
@@ -813,9 +813,9 @@
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="labelzPIVBalanceText">
+                         <widget class="QLabel" name="labelzDOGECBalanceText">
                           <property name="toolTip">
-                           <string>Available (mature and spendable) zPIV for spending</string>
+                           <string>Available (mature and spendable) zDOGEC for spending</string>
                           </property>
                           <property name="text">
                            <string>Available Balance:</string>
@@ -834,12 +834,12 @@
                            </font>
                           </property>
                           <property name="toolTip">
-                           <string>Available (mature and spendable) zPIV for spending
+                           <string>Available (mature and spendable) zDOGEC for spending
 
-zPIV are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</string>
+zDOGEC are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</string>
                           </property>
                           <property name="text">
-                           <string>0 zPIV</string>
+                           <string>0 zDOGEC</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -902,7 +902,7 @@ zPIV are mature when they have more than 20 confirmations AND more than 2 mints 
                              </size>
                             </property>
                             <property name="toolTip">
-                             <string>The PIVX address to send the payment to. Creates local payment to yourself when empty.</string>
+                             <string>The DogeCash address to send the payment to. Creates local payment to yourself when empty.</string>
                             </property>
                            </widget>
                           </item>
@@ -915,7 +915,7 @@ zPIV are mature when they have more than 20 confirmations AND more than 2 mints 
                              <string/>
                             </property>
                             <property name="icon">
-                             <iconset resource="../pivx.qrc">
+                             <iconset resource="../DogeCash.qrc">
                               <normaloff>:/icons/address-book</normaloff>:/icons/address-book</iconset>
                             </property>
                             <property name="shortcut">
@@ -932,7 +932,7 @@ zPIV are mature when they have more than 20 confirmations AND more than 2 mints 
                              <string/>
                             </property>
                             <property name="icon">
-                             <iconset resource="../pivx.qrc">
+                             <iconset resource="../DogeCash.qrc">
                               <normaloff>:/icons/editpaste</normaloff>:/icons/editpaste</iconset>
                             </property>
                             <property name="shortcut">
@@ -983,7 +983,7 @@ zPIV are mature when they have more than 20 confirmations AND more than 2 mints 
                            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                           </property>
                           <property name="buddy">
-                           <cstring>zPIVpayAmount</cstring>
+                           <cstring>zDOGECpayAmount</cstring>
                           </property>
                          </widget>
                         </item>
@@ -993,10 +993,10 @@ zPIV are mature when they have more than 20 confirmations AND more than 2 mints 
                            <number>0</number>
                           </property>
                           <item>
-                           <widget class="QLineEdit" name="zPIVpayAmount"/>
+                           <widget class="QLineEdit" name="zDOGECpayAmount"/>
                           </item>
                           <item>
-                           <widget class="QLabel" name="labelzPIV">
+                           <widget class="QLabel" name="labelzDOGEC">
                             <property name="minimumSize">
                              <size>
                               <width>55</width>
@@ -1004,7 +1004,7 @@ zPIV are mature when they have more than 20 confirmations AND more than 2 mints 
                              </size>
                             </property>
                             <property name="text">
-                             <string>zPIV</string>
+                             <string>zDOGEC</string>
                             </property>
                             <property name="alignment">
                              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1088,7 +1088,7 @@ zPIV are mature when they have more than 20 confirmations AND more than 2 mints 
                       <item>
                        <layout class="QHBoxLayout" name="horizontalLayout_21">
                         <item>
-                         <widget class="QLabel" name="labelzPIVStats">
+                         <widget class="QLabel" name="labelzDOGECStats">
                           <property name="font">
                            <font>
                             <pointsize>12</pointsize>
@@ -1168,7 +1168,7 @@ zPIV are mature when they have more than 20 confirmations AND more than 2 mints 
                            </font>
                           </property>
                           <property name="toolTip">
-                           <string>Total Balance including unconfirmed and immature zPIV</string>
+                           <string>Total Balance including unconfirmed and immature zDOGEC</string>
                           </property>
                           <property name="text">
                            <string>Total Zerocoin  Balance:</string>
@@ -1206,10 +1206,10 @@ zPIV are mature when they have more than 20 confirmations AND more than 2 mints 
                            </font>
                           </property>
                           <property name="toolTip">
-                           <string>Total Balance including unconfirmed and immature zPIV</string>
+                           <string>Total Balance including unconfirmed and immature zDOGEC</string>
                           </property>
                           <property name="text">
-                           <string>0 zPIV</string>
+                           <string>0 zDOGEC</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1666,14 +1666,14 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
                         <item>
                          <widget class="QLabel" name="label_AutoMintStatus">
                           <property name="toolTip">
-                           <string>Show the current status of automatic zPIV minting.
+                           <string>Show the current status of automatic zDOGEC minting.
 
 To change the status (restart required):
-- enable: add 'enablezeromint=1' to pivx.conf
-- disable: add 'enablezeromint=0' to pivx.conf
+- enable: add 'enablezeromint=1' to DogeCash.conf
+- disable: add 'enablezeromint=0' to DogeCash.conf
 
 To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zPIV
+- menu Settings-&gt;Options-&gt;Percentage of autominted zDOGEC
 
 </string>
                           </property>
@@ -1753,7 +1753,7 @@ To change the percentage (no restart required):
                            </font>
                           </property>
                           <property name="text">
-                           <string>0 zPIV</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -1784,7 +1784,7 @@ To change the percentage (no restart required):
                         <item>
                          <widget class="QLabel" name="labelZsupplyAmount1">
                           <property name="text">
-                           <string>0 zPIV</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -1815,7 +1815,7 @@ To change the percentage (no restart required):
                         <item>
                          <widget class="QLabel" name="labelZsupplyAmount5">
                           <property name="text">
-                           <string>0 zPIV</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -1846,7 +1846,7 @@ To change the percentage (no restart required):
                         <item>
                          <widget class="QLabel" name="labelZsupplyAmount10">
                           <property name="text">
-                           <string>0 zPIV</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -1877,7 +1877,7 @@ To change the percentage (no restart required):
                         <item>
                          <widget class="QLabel" name="labelZsupplyAmount50">
                           <property name="text">
-                           <string>0 zPIV</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -1908,7 +1908,7 @@ To change the percentage (no restart required):
                         <item>
                          <widget class="QLabel" name="labelZsupplyAmount100">
                           <property name="text">
-                           <string>0 zPIV</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -1939,7 +1939,7 @@ To change the percentage (no restart required):
                         <item>
                          <widget class="QLabel" name="labelZsupplyAmount500">
                           <property name="text">
-                           <string>0 zPIV</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -1970,7 +1970,7 @@ To change the percentage (no restart required):
                         <item>
                          <widget class="QLabel" name="labelZsupplyAmount1000">
                           <property name="text">
-                           <string>0 zPIV</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -2001,7 +2001,7 @@ To change the percentage (no restart required):
                         <item>
                          <widget class="QLabel" name="labelZsupplyAmount5000">
                           <property name="text">
-                           <string>0 zPIV</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -2789,7 +2789,7 @@ To change the percentage (no restart required):
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../pivx.qrc"/>
+  <include location="../DogeCash.qrc"/>
  </resources>
  <connections/>
 </ui>

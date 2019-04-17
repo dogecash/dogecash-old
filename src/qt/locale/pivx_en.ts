@@ -80,12 +80,12 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>These are your PIVX addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>These are your PIVX addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -221,7 +221,7 @@
     </message>
     <message>
         <location line="+9"/>
-        <source>PIVX will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -326,12 +326,12 @@
     </message>
     <message>
         <location line="-424"/>
-        <source>Enter a PIVX Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <source>Enter a DogeCash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+31"/>
-        <source>The PIVX address to encrypt</source>
+        <source>The DogeCash address to encrypt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -375,7 +375,7 @@
     </message>
     <message>
         <location line="+18"/>
-        <source>Encrypt the private key for this PIVX address</source>
+        <source>Encrypt the private key for this DogeCash address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -557,7 +557,7 @@
     </message>
     <message>
         <location line="+11"/>
-        <source>Privacy Actions for zPIV</source>
+        <source>Privacy Actions for zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -841,17 +841,17 @@
     <message>
         <location line="-448"/>
         <location line="+938"/>
-        <source>PIVX Core</source>
+        <source>DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-742"/>
-        <source>Send coins to a PIVX address</source>
+        <source>Send coins to a DogeCash address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+11"/>
-        <source>Request payments (generates QR codes and pivx: URIs)</source>
+        <source>Request payments (generates QR codes and DogeCash: URIs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -871,27 +871,27 @@
     </message>
     <message>
         <location line="+43"/>
-        <source>&amp;About PIVX Core</source>
+        <source>&amp;About DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Show information about PIVX Core</source>
+        <source>Show information about DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Modify configuration options for PIVX</source>
+        <source>Modify configuration options for DogeCash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+16"/>
-        <source>Sign messages with your PIVX addresses to prove you own them</source>
+        <source>Sign messages with your DogeCash addresses to prove you own them</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Verify messages to ensure they were signed with specified PIVX addresses</source>
+        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -931,7 +931,7 @@
     </message>
     <message>
         <location line="+17"/>
-        <source>Open a PIVX: URI or payment request</source>
+        <source>Open a DogeCash: URI or payment request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -946,17 +946,17 @@
     </message>
     <message>
         <location line="+4"/>
-        <source>Show the PIVX Core help message to get a list with possible PIVX command-line options</source>
+        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+234"/>
-        <source>PIVX Core client</source>
+        <source>DogeCash Core client</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location line="+219"/>
-        <source>%n active connection(s) to PIVX network</source>
+        <source>%n active connection(s) to DogeCash network</source>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
@@ -1128,8 +1128,8 @@ Address: %4
         <translation>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../pivx.cpp" line="+478"/>
-        <source>A fatal error occurred. PIVX can no longer continue safely and will quit.</source>
+        <location filename="../DogeCash.cpp" line="+478"/>
+        <source>A fatal error occurred. DogeCash can no longer continue safely and will quit.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1167,7 +1167,7 @@ Address: %4
     </message>
     <message>
         <location filename="../blockexplorer.cpp" line="+480"/>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (pivx.conf).</source>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (DogeCash.conf).</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1536,7 +1536,7 @@ Address: %4
     </message>
     <message>
         <location line="+67"/>
-        <source>The entered address &quot;%1&quot; is not a valid PIVX address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid DogeCash address.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1650,7 +1650,7 @@ Address: %4
     </message>
     <message>
         <location line="+0"/>
-        <source>PIVX Core</source>
+        <source>DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1661,7 +1661,7 @@ Address: %4
     </message>
     <message>
         <location line="+4"/>
-        <source>About PIVX Core</source>
+        <source>About DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1719,17 +1719,17 @@ Address: %4
     </message>
     <message>
         <location line="+9"/>
-        <source>Welcome to PIVX Core.</source>
+        <source>Welcome to DogeCash Core.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+26"/>
-        <source>As this is the first time the program is launched, you can choose where PIVX Core will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+10"/>
-        <source>PIVX Core will download and store a copy of the PIVX block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1744,7 +1744,7 @@ Address: %4
     </message>
     <message>
         <location filename="../intro.cpp" line="+77"/>
-        <source>PIVX Core</source>
+        <source>DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1920,8 +1920,8 @@ Address: %4
     </message>
     <message>
         <location line="-106"/>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other PIVX addresses after it matures.
-To Add: enter percentage to give and PIVX address to add to the MultiSend vector.
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other DogeCash addresses after it matures.
+To Add: enter percentage to give and DogeCash address to add to the MultiSend vector.
 To Delete: Enter address to delete and press delete.
 MultiSend will not be activated unless you have clicked Activate</source>
         <translation type="unfinished"></translation>
@@ -2407,17 +2407,17 @@ Please be patient after clicking import.</source>
     </message>
     <message>
         <location line="-27"/>
-        <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening PIVX&apos;s configuration screen.</source>
+        <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening DogeCash&apos;s configuration screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+14"/>
-        <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening PIVX&apos;s configuration screen.</source>
+        <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening DogeCash&apos;s configuration screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+14"/>
-        <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening PIVX&apos;s configuration screen.</source>
+        <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening DogeCash&apos;s configuration screen.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2493,7 +2493,7 @@ Please be patient after clicking import.</source>
     </message>
     <message>
         <location line="+33"/>
-        <source>Automatically open the PIVX client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the DogeCash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2518,12 +2518,12 @@ Please be patient after clicking import.</source>
     </message>
     <message>
         <location line="-227"/>
-        <source>Automatically start PIVX after logging in to the system.</source>
+        <source>Automatically start DogeCash after logging in to the system.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start PIVX on system login</source>
+        <source>&amp;Start DogeCash on system login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2558,13 +2558,13 @@ Please be patient after clicking import.</source>
     </message>
     <message>
         <location line="+192"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting PIVX.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting DogeCash.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+21"/>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+https://www.transifex.com/DogeCash-project/DogeCash-project-translations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2574,17 +2574,17 @@ https://www.transifex.com/pivx-project/pivx-project-translations</source>
     </message>
     <message>
         <location line="-184"/>
-        <source>Enable automatic minting of PIV units to zPIV</source>
+        <source>Enable automatic minting of PIV units to zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Enable zPIV Automint</source>
+        <source>Enable zDOGEC Automint</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Enable automatic zPIV minting from specific addresses</source>
+        <source>Enable automatic zDOGEC minting from specific addresses</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2594,12 +2594,12 @@ https://www.transifex.com/pivx-project/pivx-project-translations</source>
     </message>
     <message>
         <location line="+11"/>
-        <source>Percentage of incoming PIV which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
+        <source>Percentage of incoming PIV which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Percentage of autominted zPIV</source>
+        <source>Percentage of autominted zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2610,7 +2610,7 @@ https://www.transifex.com/pivx-project/pivx-project-translations</source>
     </message>
     <message>
         <location line="-13"/>
-        <source>Preferred Automint zPIV Denomination</source>
+        <source>Preferred Automint zDOGEC Denomination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2620,7 +2620,7 @@ https://www.transifex.com/pivx-project/pivx-project-translations</source>
     </message>
     <message>
         <location line="+98"/>
-        <source>Connect to the PIVX network through a SOCKS5 proxy.</source>
+        <source>Connect to the DogeCash network through a SOCKS5 proxy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2861,19 +2861,19 @@ https://www.transifex.com/pivx-project/pivx-project-translations</source>
     <message>
         <location line="+16"/>
         <location line="+19"/>
-        <source>Your current PIVX balance, unconfirmed and immature transactions included</source>
+        <source>Your current DogeCash balance, unconfirmed and immature transactions included</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+96"/>
-        <source>zPIV Balance</source>
+        <source>zDOGEC Balance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+53"/>
         <location line="+17"/>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zPIV are spendable.</source>
+These zDOGEC are spendable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2888,7 +2888,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
     <message>
         <location line="-725"/>
         <location line="+852"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the PIVX network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2946,7 +2946,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
     <message>
         <location line="+191"/>
         <location line="+19"/>
-        <source>Locked PIV or Masternode collaterals. These are excluded from zPIV minting.</source>
+        <source>Locked PIV or Masternode collaterals. These are excluded from zDOGEC minting.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2962,7 +2962,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
     <message>
         <location line="+58"/>
         <location line="+19"/>
-        <source>Your current zPIV balance, unconfirmed and immature zPIV included.</source>
+        <source>Your current zDOGEC balance, unconfirmed and immature zDOGEC included.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2978,7 +2978,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
     </message>
     <message>
         <location line="+111"/>
-        <source>Current percentage of zPIV.
+        <source>Current percentage of zDOGEC.
 If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
 </source>
         <translation type="unfinished"></translation>
@@ -2990,13 +2990,13 @@ If AutoMint is enabled this percentage will settle around the configured AutoMin
     </message>
     <message>
         <location line="+1"/>
-        <source>To disable AutoMint add &apos;enablezeromint=0&apos; in pivx.conf.</source>
+        <source>To disable AutoMint add &apos;enablezeromint=0&apos; in DogeCash.conf.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
         <source>AutoMint is currently disabled.
-To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1&apos; in pivx.conf</source>
+To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1&apos; in DogeCash.conf</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3036,12 +3036,12 @@ To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1
     </message>
     <message>
         <location line="-104"/>
-        <source>Cannot start pivx: click-to-pay handler</source>
+        <source>Cannot start DogeCash: click-to-pay handler</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+110"/>
-        <source>URI cannot be parsed! This can be caused by an invalid PIVX address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid DogeCash address or malformed URI parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3149,7 +3149,7 @@ To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1
     </message>
     <message>
         <location line="+10"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the PIVX network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3169,7 +3169,7 @@ To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1
     <message>
         <location line="-371"/>
         <location line="+600"/>
-        <source>zPIV</source>
+        <source>zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3235,17 +3235,17 @@ To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1
     <message>
         <location line="+308"/>
         <location line="+52"/>
-        <source>Enter an amount of Piv to convert to zPIV</source>
+        <source>Enter an amount of Piv to convert to zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+301"/>
-        <source>zPIV Control</source>
+        <source>zDOGEC Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>zPIV Selected:</source>
+        <source>zDOGEC Selected:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3271,7 +3271,7 @@ To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1
     </message>
     <message>
         <location line="+7"/>
-        <source>Available (mature and spendable) zPIV for spending</source>
+        <source>Available (mature and spendable) zDOGEC for spending</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3281,9 +3281,9 @@ To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1
     </message>
     <message>
         <location line="+16"/>
-        <source>Available (mature and spendable) zPIV for spending
+        <source>Available (mature and spendable) zDOGEC for spending
 
-zPIV are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
+zDOGEC are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3300,7 +3300,7 @@ zPIV are mature when they have more than 20 confirmations AND more than 2 mints 
         <location line="+31"/>
         <location line="+31"/>
         <location line="+31"/>
-        <source>0 zPIV</source>
+        <source>0 zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3310,7 +3310,7 @@ zPIV are mature when they have more than 20 confirmations AND more than 2 mints 
     </message>
     <message>
         <location line="+27"/>
-        <source>The PIVX address to send the payment to. Creates local payment to yourself when empty.</source>
+        <source>The DogeCash address to send the payment to. Creates local payment to yourself when empty.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3378,7 +3378,7 @@ zPIV are mature when they have more than 20 confirmations AND more than 2 mints 
         <location line="+25"/>
         <location line="+885"/>
         <location line="+38"/>
-        <source>Total Balance including unconfirmed and immature zPIV</source>
+        <source>Total Balance including unconfirmed and immature zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3412,14 +3412,14 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
     </message>
     <message>
         <location line="+40"/>
-        <source>Show the current status of automatic zPIV minting.
+        <source>Show the current status of automatic zDOGEC minting.
 
 To change the status (restart required):
-- enable: add &apos;enablezeromint=1&apos; to pivx.conf
-- disable: add &apos;enablezeromint=0&apos; to pivx.conf
+- enable: add &apos;enablezeromint=1&apos; to DogeCash.conf
+- disable: add &apos;enablezeromint=0&apos; to DogeCash.conf
 
 To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zPIV
+- menu Settings-&gt;Options-&gt;Percentage of autominted zDOGEC
 
 </source>
         <translation type="unfinished"></translation>
@@ -3489,7 +3489,7 @@ To change the percentage (no restart required):
     </message>
     <message>
         <location line="-1273"/>
-        <source>Show zPIV denominations list</source>
+        <source>Show zDOGEC denominations list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3681,12 +3681,12 @@ Maximum allowed: </source>
     </message>
     <message>
         <location line="+34"/>
-        <source>zPIV Spend #: </source>
+        <source>zDOGEC Spend #: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+16"/>
-        <source>zPIV Mint</source>
+        <source>zDOGEC Mint</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3707,13 +3707,13 @@ Maximum allowed: </source>
     <message>
         <location line="+12"/>
         <location line="+4"/>
-        <source>zPIV is currently disabled due to maintenance.</source>
+        <source>zDOGEC is currently disabled due to maintenance.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-645"/>
         <location line="+112"/>
-        <source>zPIV is currently undergoing maintenance.</source>
+        <source>zDOGEC is currently undergoing maintenance.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3824,7 +3824,7 @@ Maximum allowed: </source>
     </message>
     <message>
         <location line="+0"/>
-        <source> zPIV in </source>
+        <source> zDOGEC in </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3860,7 +3860,7 @@ Maximum allowed: </source>
     </message>
     <message>
         <location line="+4"/>
-        <source>Invalid Pivx Address</source>
+        <source>Invalid DogeCash Address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3918,7 +3918,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message numerus="yes">
         <location line="+362"/>
         <source>PrivacyDialog</source>
-        <comment>Enter an amount of PIV to convert to zPIV</comment>
+        <comment>Enter an amount of PIV to convert to zDOGEC</comment>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
@@ -4065,7 +4065,7 @@ Please be patient...</source>
     </message>
     <message>
         <location filename="../guiutil.cpp" line="+105"/>
-        <source>Enter a PIVX address (e.g. %1)</source>
+        <source>Enter a DogeCash address (e.g. %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4125,11 +4125,11 @@ Please be patient...</source>
         <translation>%1 ms</translation>
     </message>
     <message>
-        <location filename="../pivx.cpp" line="+75"/>
+        <location filename="../DogeCash.cpp" line="+75"/>
         <location line="+7"/>
         <location line="+13"/>
         <location line="+19"/>
-        <source>PIVX Core</source>
+        <source>DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4154,7 +4154,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+40"/>
-        <source>PIVX Core didn&apos;t yet exit safely...</source>
+        <source>DogeCash Core didn&apos;t yet exit safely...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4306,7 +4306,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+79"/>
-        <source>Open the PIVX debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <source>Open the DogeCash debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4478,7 +4478,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+29"/>
-        <source>Custom zPIV Backup Path:</source>
+        <source>Custom zDOGEC Backup Path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4578,7 +4578,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="-39"/>
-        <source>Welcome to the PIVX RPC console.</source>
+        <source>Welcome to the DogeCash RPC console.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4763,7 +4763,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+26"/>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the PIVX network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the DogeCash network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4773,7 +4773,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+191"/>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the PIVX network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the DogeCash network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5157,7 +5157,7 @@ Please be patient...</source>
     <message>
         <location line="+33"/>
         <location line="+13"/>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for PIVX transactions than the network can process.</source>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for DogeCash transactions than the network can process.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5277,7 +5277,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+653"/>
-        <source>Warning: Invalid PIVX address</source>
+        <source>Warning: Invalid DogeCash address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5416,7 +5416,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+18"/>
-        <source>The PIVX address to send the payment to</source>
+        <source>The DogeCash address to send the payment to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5470,7 +5470,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+10"/>
-        <source>A message that was attached to the PIVX: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the PIVX network.</source>
+        <source>A message that was attached to the DogeCash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the DogeCash network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5505,7 +5505,7 @@ Please be patient...</source>
     <name>ShutdownWindow</name>
     <message>
         <location filename="../utilitydialog.cpp" line="+75"/>
-        <source>PIVX Core is shutting down...</source>
+        <source>DogeCash Core is shutting down...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5533,7 +5533,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+15"/>
-        <source>The PIVX address to sign the message with</source>
+        <source>The DogeCash address to sign the message with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5575,17 +5575,17 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+18"/>
-        <source>Sign the message to prove you own this PIVX address</source>
+        <source>Sign the message to prove you own this DogeCash address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+103"/>
-        <source>The PIVX address the message was signed with</source>
+        <source>The DogeCash address the message was signed with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+34"/>
-        <source>Verify the message to ensure it was signed with the specified PIVX address</source>
+        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5700,7 +5700,7 @@ Please be patient...</source>
     <name>SplashScreen</name>
     <message>
         <location filename="../splashscreen.cpp" line="+36"/>
-        <source>PIVX Core</source>
+        <source>DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5720,7 +5720,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>The PIVX Core developers</source>
+        <source>The DogeCash Core developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6102,7 +6102,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>zPIV Stake</source>
+        <source>zDOGEC Stake</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6127,37 +6127,37 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+4"/>
-        <source>Converted PIV to zPIV</source>
+        <source>Converted PIV to zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Spent zPIV</source>
+        <source>Spent zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Received PIV from zPIV</source>
+        <source>Received PIV from zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Minted Change as zPIV from zPIV Spend</source>
+        <source>Minted Change as zDOGEC from zDOGEC Spend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Converted zPIV to PIV</source>
+        <source>Converted zDOGEC to PIV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+56"/>
-        <source>Anonymous (zPIV Transaction)</source>
+        <source>Anonymous (zDOGEC Transaction)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Anonymous (zPIV Stake)</source>
+        <source>Anonymous (zDOGEC Stake)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6426,12 +6426,12 @@ Please be patient...</source>
     </message>
     <message>
         <location line="-310"/>
-        <source>Received PIV from zPIV</source>
+        <source>Received PIV from zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Zerocoin Spend, Change in zPIV</source>
+        <source>Zerocoin Spend, Change in zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6516,10 +6516,10 @@ Please be patient...</source>
     </message>
 </context>
 <context>
-    <name>ZPivControlDialog</name>
+    <name>zDOGECControlDialog</name>
     <message>
-        <location filename="../forms/zpivcontroldialog.ui" line="+20"/>
-        <source>Select zPIV to Spend</source>
+        <location filename="../forms/zDOGECcontroldialog.ui" line="+20"/>
+        <source>Select zDOGEC to Spend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6535,7 +6535,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="-7"/>
-        <source>zPIV</source>
+        <source>zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6550,9 +6550,9 @@ Please be patient...</source>
     </message>
 </context>
 <context>
-    <name>pivx-core</name>
+    <name>DogeCash-core</name>
     <message>
-        <location filename="../pivxstrings.cpp" line="+15"/>
+        <location filename="../DogeCashstrings.cpp" line="+15"/>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation type="unfinished">(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</translation>
     </message>
@@ -6583,7 +6583,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Cannot obtain a lock on data directory %s. PIVX Core is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. DogeCash Core is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6623,7 +6623,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Enable automatic wallet backups triggered after each zPIV minting (0-1, default: %u)</source>
+        <source>Enable automatic wallet backups triggered after each zDOGEC minting (0-1, default: %u)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6633,7 +6633,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Enable or disable staking functionality for zPIV inputs (0-1, default: %u)</source>
+        <source>Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6833,7 +6833,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Unable to bind to %s on this computer. PIVX Core is probably already running.</source>
+        <source>Unable to bind to %s on this computer. DogeCash Core is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6868,7 +6868,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong PIVX Core will not work properly.</source>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7073,7 +7073,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
+        <source>Copyright (C) 2015-%i The DogeCash Core Developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7138,7 +7138,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Enable precomputation of zPIV spends and stakes (0-1, default %u)</source>
+        <source>Enable precomputation of zDOGEC spends and stakes (0-1, default %u)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7193,7 +7193,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of PIVX Core</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7348,7 +7348,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Initialization sanity check failed. PIVX Core is shutting down.</source>
+        <source>Initialization sanity check failed. DogeCash Core is shutting down.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7443,17 +7443,17 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Recalculating minted ZPIV...</source>
+        <source>Recalculating minted zDOGEC...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Recalculating spent ZPIV...</source>
+        <source>Recalculating spent zDOGEC...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Reindex the PIV and zPIV money supply statistics</source>
+        <source>Reindex the PIV and zDOGEC money supply statistics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7505,7 +7505,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+38"/>
-        <source>Disable all PIVX specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
+        <source>Disable all DogeCash specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7550,7 +7550,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+27"/>
-        <source>Specify custom backup path to add a copy of any automatic zPIV backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
+        <source>Specify custom backup path to add a copy of any automatic zDOGEC backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8180,7 +8180,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Syncing zPIV wallet...</source>
+        <source>Syncing zDOGEC wallet...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8355,7 +8355,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Value is below the smallest available denomination (= 1) of zPIV</source>
+        <source>Value is below the smallest available denomination (= 1) of zDOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8385,7 +8385,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart PIVX Core to complete</source>
+        <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

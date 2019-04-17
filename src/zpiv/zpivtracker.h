@@ -1,9 +1,9 @@
-// Copyright (c) 2018 The PIVX developers
+// Copyright (c) 2018 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_ZPIVTRACKER_H
-#define PIVX_ZPIVTRACKER_H
+#ifndef DogeCash_zDOGECTRACKER_H
+#define DogeCash_zDOGECTRACKER_H
 
 #include "zerocoin.h"
 #include "witness.h"
@@ -11,9 +11,9 @@
 #include <list>
 
 class CDeterministicMint;
-class CzPIVWallet;
+class CzDOGECWallet;
 
-class CzPIVTracker
+class CzDOGECTracker
 {
 private:
     bool fInitialized;
@@ -23,9 +23,9 @@ private:
     std::map<uint256, std::unique_ptr<CoinWitnessData> > mapStakeCache; //serialhash, witness value, height
     bool UpdateStatusInternal(const std::set<uint256>& setMempool, CMintMeta& mint);
 public:
-    CzPIVTracker(std::string strWalletFile);
-    ~CzPIVTracker();
-    void Add(const CDeterministicMint& dMint, bool isNew = false, bool isArchived = false, CzPIVWallet* zPIVWallet = NULL);
+    CzDOGECTracker(std::string strWalletFile);
+    ~CzDOGECTracker();
+    void Add(const CDeterministicMint& dMint, bool isNew = false, bool isArchived = false, CzDOGECWallet* zDOGECWallet = NULL);
     void Add(const CZerocoinMint& mint, bool isNew = false, bool isArchived = false);
     bool Archive(CMintMeta& meta);
     bool HasPubcoin(const CBigNum& bnValue) const;
@@ -55,4 +55,4 @@ public:
     void Clear();
 };
 
-#endif //PIVX_ZPIVTRACKER_H
+#endif //DogeCash_zDOGECTRACKER_H

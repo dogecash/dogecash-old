@@ -195,9 +195,9 @@
     </message>
     </context>
 <context>
-    <name>ZPivControlDialog</name>
+    <name>zDOGECControlDialog</name>
     </context>
 <context>
-    <name>pivx-core</name>
+    <name>DogeCash-core</name>
     </context>
 </TS>

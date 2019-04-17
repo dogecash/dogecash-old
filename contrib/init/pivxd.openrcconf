@@ -1,25 +1,25 @@
-# /etc/conf.d/pivxd: config file for /etc/init.d/pivxd
+# /etc/conf.d/DogeCashd: config file for /etc/init.d/DogeCashd
 
 # Config file location
-#BITCOIND_CONFIGFILE="/etc/pivx/pivx.conf"
+#BITCOIND_CONFIGFILE="/etc/DogeCash/DogeCash.conf"
 
 # What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
-#BITCOIND_PIDDIR="/var/run/pivxd"
+#BITCOIND_PIDDIR="/var/run/DogeCashd"
 
 # What filename to give the pidfile
-#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/pivxd.pid"
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/DogeCashd.pid"
 
-# Where to write pivxd data (be mindful that the blockchain is large)
-#BITCOIND_DATADIR="/var/lib/pivxd"
+# Where to write DogeCashd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/DogeCashd"
 
-# User and group to own pivxd process
-#BITCOIND_USER="pivx"
-#BITCOIND_GROUP="pivx"
+# User and group to own DogeCashd process
+#BITCOIND_USER="DogeCash"
+#BITCOIND_GROUP="DogeCash"
 
-# Path to pivxd executable
-#BITCOIND_BIN="/usr/bin/pivxd"
+# Path to DogeCashd executable
+#BITCOIND_BIN="/usr/bin/DogeCashd"
 
-# Nice value to run pivxd under
+# Nice value to run DogeCashd under
 #BITCOIND_NICE=0
 
 # Additional options (avoid -conf and -datadir, use flags above)

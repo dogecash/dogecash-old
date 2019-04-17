@@ -1,8 +1,8 @@
-/usr/bin/pivx-cli		--	gen_context(system_u:object_r:pivx_exec_t,s0)
-/usr/sbin/pivxd		--	gen_context(system_u:object_r:pivx_exec_t,s0)
-/usr/lib(64)?/pivx/pivxd		--	gen_context(system_u:object_r:pivx_exec_t,s0)
+/usr/bin/DogeCash-cli		--	gen_context(system_u:object_r:DogeCash_exec_t,s0)
+/usr/sbin/DogeCashd		--	gen_context(system_u:object_r:DogeCash_exec_t,s0)
+/usr/lib(64)?/DogeCash/DogeCashd		--	gen_context(system_u:object_r:DogeCash_exec_t,s0)
 
-/etc/pivx(/.*)?		gen_context(system_u:object_r:pivx_conf_t,s0)
-/var/lib/pivx(/.*)?		gen_context(system_u:object_r:pivx_var_lib_t,s0)
+/etc/DogeCash(/.*)?		gen_context(system_u:object_r:DogeCash_conf_t,s0)
+/var/lib/DogeCash(/.*)?		gen_context(system_u:object_r:DogeCash_var_lib_t,s0)
 
-(/var)?/run/pivxd(/.*)?   gen_context(system_u:object_r:pivx_var_run_t,s0)
+(/var)?/run/DogeCashd(/.*)?   gen_context(system_u:object_r:DogeCash_var_run_t,s0)

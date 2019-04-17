@@ -5,19 +5,19 @@
 # See "man systemd.service" for details.
 
 # Note that almost all daemon options could be specified in
-# /etc/pivx/pivx.conf
+# /etc/DogeCash/DogeCash.conf
 
 [Unit]
-Description=PIVX daemon
+Description=DogeCash daemon
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/pivxd -daemon -conf=/etc/pivx/pivx.conf -pid=/run/pivxd/pivxd.pid
-# Creates /run/pivxd owned by pivx
-RuntimeDirectory=pivxd
-User=pivx
+ExecStart=/usr/bin/DogeCashd -daemon -conf=/etc/DogeCash/DogeCash.conf -pid=/run/DogeCashd/DogeCashd.pid
+# Creates /run/DogeCashd owned by DogeCash
+RuntimeDirectory=DogeCashd
+User=DogeCash
 Type=forking
-PIDFile=/run/pivxd/pivxd.pid
+PIDFile=/run/DogeCashd/DogeCashd.pid
 Restart=on-failure
 
 # Hardening measures

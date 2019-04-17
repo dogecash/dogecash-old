@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The PIVX developers
+// Copyright (c) 2015-2018 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,13 +17,13 @@
 #include "utilmoneystr.h"
 #include "wallet.h"
 #include "walletdb.h"
-#include "zpivchain.h"
+#include "zDOGECchain.h"
 
 #include <stdint.h>
 
 #include "libzerocoin/Coin.h"
 #include "spork.h"
-#include "zpiv/deterministicmint.h"
+#include "zDOGEC/deterministicmint.h"
 #include <boost/assign/list_of.hpp>
 #include <boost/thread/thread.hpp>
 
@@ -85,7 +85,7 @@ UniValue getnewaddress(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "getnewaddress ( \"account\" )\n"
-            "\nReturns a new PIVX address for receiving payments.\n"
+            "\nReturns a new DogeCash address for receiving payments.\n"
             "If 'account' is specified (recommended), it is added to the address book \n"
             "so payments received with the address will be credited to 'account'.\n"
 
@@ -93,7 +93,7 @@ UniValue getnewaddress(const UniValue& params, bool fHelp)
             "1. \"account\"        (string, optional) The account name for the address to be linked to. if not provided, the default account \"\" is used. It can also be set to the empty string \"\" to represent the default account. The account does not need to exist, it will be created if there is no account by the given name.\n"
 
             "\nResult:\n"
-            "\"pivxaddress\"    (string) The new pivx address\n"
+            "\"DogeCashaddress\"    (string) The new DogeCash address\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getnewaddress", "") + HelpExampleCli("getnewaddress", "\"\"") +
@@ -160,13 +160,13 @@ UniValue getaccountaddress(const UniValue& params, bool fHelp)
     if (fHelp || params.size() != 1)
         throw runtime_error(
             "getaccountaddress \"account\"\n"
-            "\nReturns the current PIVX address for receiving payments to this account.\n"
+            "\nReturns the current DogeCash address for receiving payments to this account.\n"
 
             "\nArguments:\n"
             "1. \"account\"       (string, required) The account name for the address. It can also be set to the empty string \"\" to represent the default account. The account does not need to exist, it will be created and a new address created  if there is no account by the given name.\n"
 
             "\nResult:\n"
-            "\"pivxaddress\"   (string) The account pivx address\n"
+            "\"DogeCashaddress\"   (string) The account DogeCash address\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getaccountaddress", "") + HelpExampleCli("getaccountaddress", "\"\"") +
@@ -189,7 +189,7 @@ UniValue getrawchangeaddress(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "getrawchangeaddress\n"
-            "\nReturns a new PIVX address, for receiving change.\n"
+            "\nReturns a new DogeCash address, for receiving change.\n"
             "This is for use with raw transactions, NOT normal use.\n"
 
             "\nResult:\n"
@@ -220,11 +220,11 @@ UniValue setaccount(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
-            "setaccount \"pivxaddress\" \"account\"\n"
+            "setaccount \"DogeCashaddress\" \"account\"\n"
             "\nSets the account associated with the given address.\n"
 
             "\nArguments:\n"
-            "1. \"pivxaddress\"  (string, required) The pivx address to be associated with an account.\n"
+            "1. \"DogeCashaddress\"  (string, required) The DogeCash address to be associated with an account.\n"
             "2. \"account\"         (string, required) The account to assign the address to.\n"
 
             "\nExamples:\n" +
@@ -234,7 +234,7 @@ UniValue setaccount(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DogeCash address");
 
 
     string strAccount;
@@ -261,11 +261,11 @@ UniValue getaccount(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw runtime_error(
-            "getaccount \"pivxaddress\"\n"
+            "getaccount \"DogeCashaddress\"\n"
             "\nReturns the account associated with the given address.\n"
 
             "\nArguments:\n"
-            "1. \"pivxaddress\"  (string, required) The pivx address for account lookup.\n"
+            "1. \"DogeCashaddress\"  (string, required) The DogeCash address for account lookup.\n"
 
             "\nResult:\n"
             "\"accountname\"        (string) the account address\n"
@@ -277,7 +277,7 @@ UniValue getaccount(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DogeCash address");
 
     string strAccount;
     map<CTxDestination, CAddressBookData>::iterator mi = pwalletMain->mapAddressBook.find(address.Get());
@@ -299,7 +299,7 @@ UniValue getaddressesbyaccount(const UniValue& params, bool fHelp)
 
             "\nResult:\n"
             "[                     (json array of string)\n"
-            "  \"pivxaddress\"  (string) a pivx address associated with the given account\n"
+            "  \"DogeCashaddress\"  (string) a DogeCash address associated with the given account\n"
             "  ,...\n"
             "]\n"
 
@@ -337,7 +337,7 @@ void SendMoney(const CTxDestination& address, CAmount nValue, CWalletTx& wtxNew,
         throw JSONRPCError(RPC_WALLET_ERROR, strError);
     }
 
-    // Parse PIVX address
+    // Parse DogeCash address
     CScript scriptPubKey = GetScriptForDestination(address);
 
     // Create and send the transaction
@@ -357,12 +357,12 @@ UniValue sendtoaddress(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 2 || params.size() > 4)
         throw runtime_error(
-            "sendtoaddress \"pivxaddress\" amount ( \"comment\" \"comment-to\" )\n"
+            "sendtoaddress \"DogeCashaddress\" amount ( \"comment\" \"comment-to\" )\n"
             "\nSend an amount to a given address. The amount is a real and is rounded to the nearest 0.00000001\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"pivxaddress\"  (string, required) The pivx address to send to.\n"
+            "1. \"DogeCashaddress\"  (string, required) The DogeCash address to send to.\n"
             "2. \"amount\"      (numeric, required) The amount in PIV to send. eg 0.1\n"
             "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
             "                             This is not part of the transaction, just kept in your wallet.\n"
@@ -382,7 +382,7 @@ UniValue sendtoaddress(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DogeCash address");
 
     // Amount
     CAmount nAmount = AmountFromValue(params[1]);
@@ -405,12 +405,12 @@ UniValue sendtoaddressix(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 2 || params.size() > 4)
         throw runtime_error(
-            "sendtoaddressix \"pivxaddress\" amount ( \"comment\" \"comment-to\" )\n"
+            "sendtoaddressix \"DogeCashaddress\" amount ( \"comment\" \"comment-to\" )\n"
             "\nSend an amount to a given address. The amount is a real and is rounded to the nearest 0.00000001\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"pivxaddress\"  (string, required) The pivx address to send to.\n"
+            "1. \"DogeCashaddress\"  (string, required) The DogeCash address to send to.\n"
             "2. \"amount\"      (numeric, required) The amount in PIV to send. eg 0.1\n"
             "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
             "                             This is not part of the transaction, just kept in your wallet.\n"
@@ -430,7 +430,7 @@ UniValue sendtoaddressix(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DogeCash address");
 
     // Amount
     CAmount nAmount = AmountFromValue(params[1]);
@@ -462,7 +462,7 @@ UniValue listaddressgroupings(const UniValue& params, bool fHelp)
             "[\n"
             "  [\n"
             "    [\n"
-            "      \"pivxaddress\",     (string) The pivx address\n"
+            "      \"DogeCashaddress\",     (string) The DogeCash address\n"
             "      amount,                 (numeric) The amount in PIV\n"
             "      \"account\"             (string, optional) The account\n"
             "    ]\n"
@@ -499,12 +499,12 @@ UniValue signmessage(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
         throw runtime_error(
-            "signmessage \"pivxaddress\" \"message\"\n"
+            "signmessage \"DogeCashaddress\" \"message\"\n"
             "\nSign a message with the private key of an address" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"pivxaddress\"  (string, required) The pivx address to use for the private key.\n"
+            "1. \"DogeCashaddress\"  (string, required) The DogeCash address to use for the private key.\n"
             "2. \"message\"         (string, required) The message to create a signature of.\n"
 
             "\nResult:\n"
@@ -554,11 +554,11 @@ UniValue getreceivedbyaddress(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw std::runtime_error(
-            "getreceivedbyaddress \"pivxaddress\" ( minconf )\n"
-            "\nReturns the total amount received by the given pivxaddress in transactions with at least minconf confirmations.\n"
+            "getreceivedbyaddress \"DogeCashaddress\" ( minconf )\n"
+            "\nReturns the total amount received by the given DogeCashaddress in transactions with at least minconf confirmations.\n"
 
             "\nArguments:\n"
-            "1. \"pivxaddress\"  (string, required) The pivx address for transactions.\n"
+            "1. \"DogeCashaddress\"  (string, required) The DogeCash address for transactions.\n"
             "2. minconf             (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
 
             "\nResult:\n"
@@ -576,10 +576,10 @@ UniValue getreceivedbyaddress(const UniValue& params, bool fHelp)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    // pivx address
+    // DogeCash address
     CBitcoinAddress address = CBitcoinAddress(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DogeCash address");
     CScript scriptPubKey = GetScriptForDestination(address.Get());
     if (!IsMine(*pwalletMain, scriptPubKey))
         throw JSONRPCError(RPC_WALLET_ERROR, "Address not found in wallet");
@@ -854,14 +854,14 @@ UniValue sendfrom(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 3 || params.size() > 6)
         throw runtime_error(
-            "sendfrom \"fromaccount\" \"topivxaddress\" amount ( minconf \"comment\" \"comment-to\" )\n"
-            "\nSent an amount from an account to a pivx address.\n"
+            "sendfrom \"fromaccount\" \"toDogeCashaddress\" amount ( minconf \"comment\" \"comment-to\" )\n"
+            "\nSent an amount from an account to a DogeCash address.\n"
             "The amount is a real and is rounded to the nearest 0.00000001." +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
             "1. \"fromaccount\"       (string, required) The name of the account to send funds from. May be the default account using \"\".\n"
-            "2. \"topivxaddress\"  (string, required) The pivx address to send funds to.\n"
+            "2. \"toDogeCashaddress\"  (string, required) The DogeCash address to send funds to.\n"
             "3. amount                (numeric, required) The amount in PIV. (transaction fee is added on top).\n"
             "4. minconf               (numeric, optional, default=1) Only use funds with at least this many confirmations.\n"
             "5. \"comment\"           (string, optional) A comment used to store what the transaction is for. \n"
@@ -886,7 +886,7 @@ UniValue sendfrom(const UniValue& params, bool fHelp)
     string strAccount = AccountFromValue(params[0]);
     CBitcoinAddress address(params[1].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DogeCash address");
     CAmount nAmount = AmountFromValue(params[2]);
     int nMinDepth = 1;
     if (params.size() > 3)
@@ -924,7 +924,7 @@ UniValue sendmany(const UniValue& params, bool fHelp)
             "1. \"fromaccount\"         (string, required) The account to send the funds from, can be \"\" for the default account\n"
             "2. \"amounts\"             (string, required) A json object with addresses and amounts\n"
             "    {\n"
-            "      \"address\":amount   (numeric) The pivx address is the key, the numeric amount in PIV is the value\n"
+            "      \"address\":amount   (numeric) The DogeCash address is the key, the numeric amount in PIV is the value\n"
             "      ,...\n"
             "    }\n"
             "3. minconf                 (numeric, optional, default=1) Only use the balance confirmed at least this many times.\n"
@@ -963,7 +963,7 @@ UniValue sendmany(const UniValue& params, bool fHelp)
     BOOST_FOREACH(const string& name_, keys) {
         CBitcoinAddress address(name_);
         if (!address.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("Invalid PIVX address: ")+name_);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("Invalid DogeCash address: ")+name_);
 
         if (setAddress.count(address))
             throw JSONRPCError(RPC_INVALID_PARAMETER, string("Invalid parameter, duplicated address: ")+name_);
@@ -1005,20 +1005,20 @@ UniValue addmultisigaddress(const UniValue& params, bool fHelp)
         throw runtime_error(
             "addmultisigaddress nrequired [\"key\",...] ( \"account\" )\n"
             "\nAdd a nrequired-to-sign multisignature address to the wallet.\n"
-            "Each key is a PIVX address or hex-encoded public key.\n"
+            "Each key is a DogeCash address or hex-encoded public key.\n"
             "If 'account' is specified, assign address to that account.\n"
 
             "\nArguments:\n"
             "1. nrequired        (numeric, required) The number of required signatures out of the n keys or addresses.\n"
-            "2. \"keysobject\"   (string, required) A json array of pivx addresses or hex-encoded public keys\n"
+            "2. \"keysobject\"   (string, required) A json array of DogeCash addresses or hex-encoded public keys\n"
             "     [\n"
-            "       \"address\"  (string) pivx address or hex-encoded public key\n"
+            "       \"address\"  (string) DogeCash address or hex-encoded public key\n"
             "       ...,\n"
             "     ]\n"
             "3. \"account\"      (string, optional) An account to assign the addresses to.\n"
 
             "\nResult:\n"
-            "\"pivxaddress\"  (string) A pivx address associated with the keys.\n"
+            "\"DogeCashaddress\"  (string) A DogeCash address associated with the keys.\n"
 
             "\nExamples:\n"
             "\nAdd a multisig address from 2 addresses\n" +
@@ -1342,7 +1342,7 @@ UniValue listtransactions(const UniValue& params, bool fHelp)
             "  {\n"
             "    \"account\":\"accountname\",       (string) The account name associated with the transaction. \n"
             "                                                It will be \"\" for the default account.\n"
-            "    \"address\":\"pivxaddress\",    (string) The pivx address of the transaction. Not present for \n"
+            "    \"address\":\"DogeCashaddress\",    (string) The DogeCash address of the transaction. Not present for \n"
             "                                                move transactions (category = move).\n"
             "    \"category\":\"send|receive|move\", (string) The transaction category. 'move' is a local (off blockchain)\n"
             "                                                transaction between accounts, and not associated with an address,\n"
@@ -1537,7 +1537,7 @@ UniValue listsinceblock(const UniValue& params, bool fHelp)
             "{\n"
             "  \"transactions\": [\n"
             "    \"account\":\"accountname\",       (string) The account name associated with the transaction. Will be \"\" for the default account.\n"
-            "    \"address\":\"pivxaddress\",    (string) The pivx address of the transaction. Not present for move transactions (category = move).\n"
+            "    \"address\":\"DogeCashaddress\",    (string) The DogeCash address of the transaction. Not present for move transactions (category = move).\n"
             "    \"category\":\"send|receive\",     (string) The transaction category. 'send' has negative amounts, 'receive' has positive amounts.\n"
             "    \"amount\": x.xxx,          (numeric) The amount in PIV. This is negative for the 'send' category, and for the 'move' category for moves \n"
             "                                          outbound. It is positive for the 'receive' category, and for the 'move' category for inbound funds.\n"
@@ -1634,7 +1634,7 @@ UniValue gettransaction(const UniValue& params, bool fHelp)
             "  \"details\" : [\n"
             "    {\n"
             "      \"account\" : \"accountname\",  (string) The account name involved in the transaction, can be \"\" for the default account.\n"
-            "      \"address\" : \"pivxaddress\",   (string) The pivx address involved in the transaction\n"
+            "      \"address\" : \"DogeCashaddress\",   (string) The DogeCash address involved in the transaction\n"
             "      \"category\" : \"send|receive\",    (string) The category, either 'send' or 'receive'\n"
             "      \"amount\" : x.xxx                  (numeric) The amount in PIV\n"
             "      \"vout\" : n,                       (numeric) the vout value\n"
@@ -1925,7 +1925,7 @@ UniValue encryptwallet(const UniValue& params, bool fHelp)
             "\nNow set the passphrase to use the wallet, such as for signing or sending PIVs\n" +
             HelpExampleCli("walletpassphrase", "\"my pass phrase\"") +
             "\nNow we can so something like sign\n" +
-            HelpExampleCli("signmessage", "\"pivxaddress\" \"test message\"") +
+            HelpExampleCli("signmessage", "\"DogeCashaddress\" \"test message\"") +
             "\nNow lock the wallet again by removing the passphrase\n" +
             HelpExampleCli("walletlock", "") +
             "\nAs a json rpc call\n" +
@@ -1956,7 +1956,7 @@ UniValue encryptwallet(const UniValue& params, bool fHelp)
     // slack space in .dat files; that is bad if the old data is
     // unencrypted private keys. So:
     StartShutdown();
-    return "wallet encrypted; pivx server stopping, restart to run with encrypted wallet. The keypool has been flushed, you need to make a new backup.";
+    return "wallet encrypted; DogeCash server stopping, restart to run with encrypted wallet. The keypool has been flushed, you need to make a new backup.";
 }
 
 UniValue lockunspent(const UniValue& params, bool fHelp)
@@ -2271,7 +2271,7 @@ UniValue autocombinerewards(const UniValue& params, bool fHelp)
     if (fHelp || params.size() < 1 || (fEnable && params.size() != 2) || params.size() > 2)
         throw runtime_error(
             "autocombinerewards enable ( threshold )\n"
-            "\nWallet will automatically monitor for any coins with value below the threshold amount, and combine them if they reside with the same PIVX address\n"
+            "\nWallet will automatically monitor for any coins with value below the threshold amount, and combine them if they reside with the same DogeCash address\n"
             "When autocombinerewards runs it will create a transaction, and therefore will be subject to transaction fees.\n"
 
             "\nArguments:\n"
@@ -2480,7 +2480,7 @@ UniValue multisend(const UniValue& params, bool fHelp)
             "The MultiSend transaction is sent when the staked coins mature (100 confirmations)\n"
             "****************************************************************\n"
             "TO CREATE OR ADD TO THE MULTISEND VECTOR:\n"
-            "multisend <PIVX Address> <percent>\n"
+            "multisend <DogeCash Address> <percent>\n"
             "This will add a new address to the MultiSend vector\n"
             "Percent is a whole number 1 to 100.\n"
             "****************************************************************\n"
@@ -2544,11 +2544,11 @@ UniValue getzerocoinbalance(const UniValue& params, bool fHelp)
     if (fHelp || params.size() != 0)
         throw runtime_error(
             "getzerocoinbalance\n"
-            "\nReturn the wallet's total zPIV balance.\n" +
+            "\nReturn the wallet's total zDOGEC balance.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult:\n"
-            "amount         (numeric) Total zPIV balance.\n"
+            "amount         (numeric) Total zDOGEC balance.\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getzerocoinbalance", "") + HelpExampleRpc("getzerocoinbalance", ""));
@@ -2572,7 +2572,7 @@ UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 2)
         throw runtime_error(
             "listmintedzerocoins (fVerbose) (fMatureOnly)\n"
-            "\nList all zPIV mints in the wallet.\n" +
+            "\nList all zDOGEC mints in the wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -2590,7 +2590,7 @@ UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
             "  {\n"
             "    \"serial hash\": \"xxx\",   (string) Mint serial hash in hex format.\n"
             "    \"version\": n,   (numeric) Zerocoin version number.\n"
-            "    \"zPIV ID\": \"xxx\",   (string) Pubcoin in hex format.\n"
+            "    \"zDOGEC ID\": \"xxx\",   (string) Pubcoin in hex format.\n"
             "    \"denomination\": n,   (numeric) Coin denomination.\n"
             "    \"mint height\": n     (numeric) Height of the block containing this mint.\n"
             "    \"confirmations\": n   (numeric) Number of confirmations.\n"
@@ -2612,7 +2612,7 @@ UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
     EnsureWalletIsUnlocked(true);
 
     CWalletDB walletdb(pwalletMain->strWalletFile);
-    set<CMintMeta> setMints = pwalletMain->zpivTracker->ListMints(true, fMatureOnly, true);
+    set<CMintMeta> setMints = pwalletMain->zDOGECTracker->ListMints(true, fMatureOnly, true);
 
     int nBestHeight = chainActive.Height();
 
@@ -2623,7 +2623,7 @@ UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
             UniValue objMint(UniValue::VOBJ);
             objMint.push_back(Pair("serial hash", m.hashSerial.GetHex()));  // Serial hash
             objMint.push_back(Pair("version", m.nVersion));                 // Zerocoin version
-            objMint.push_back(Pair("zPIV ID", m.hashPubcoin.GetHex()));     // PubCoin
+            objMint.push_back(Pair("zDOGEC ID", m.hashPubcoin.GetHex()));     // PubCoin
             int denom = libzerocoin::ZerocoinDenominationToInt(m.denom);
             objMint.push_back(Pair("denomination", denom));                 // Denomination
             objMint.push_back(Pair("mint height", m.nHeight));              // Mint Height
@@ -2636,7 +2636,7 @@ UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
                     uint256 hashStake = mint.GetSerialNumber().getuint256();
                     hashStake = Hash(hashStake.begin(), hashStake.end());
                     m.hashStake = hashStake;
-                    pwalletMain->zpivTracker->UpdateState(m);
+                    pwalletMain->zDOGECTracker->UpdateState(m);
                 }
             }
             objMint.push_back(Pair("hash stake", m.hashStake.GetHex()));       // Confirmations
@@ -2677,7 +2677,7 @@ UniValue listzerocoinamounts(const UniValue& params, bool fHelp)
     EnsureWalletIsUnlocked(true);
 
     CWalletDB walletdb(pwalletMain->strWalletFile);
-    set<CMintMeta> setMints = pwalletMain->zpivTracker->ListMints(true, true, true);
+    set<CMintMeta> setMints = pwalletMain->zDOGECTracker->ListMints(true, true, true);
 
     std::map<libzerocoin::CoinDenomination, CAmount> spread;
     for (const auto& denom : libzerocoin::zerocoinDenomList)
@@ -2701,7 +2701,7 @@ UniValue listspentzerocoins(const UniValue& params, bool fHelp)
     if (fHelp || params.size() != 0)
         throw runtime_error(
             "listspentzerocoins\n"
-            "\nList all the spent zPIV mints in the wallet.\n" +
+            "\nList all the spent zDOGEC mints in the wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult:\n"
@@ -2733,11 +2733,11 @@ UniValue mintzerocoin(const UniValue& params, bool fHelp)
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
             "mintzerocoin amount ( utxos )\n"
-            "\nMint the specified zPIV amount\n" +
+            "\nMint the specified zDOGEC amount\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. amount      (numeric, required) Enter an amount of Piv to convert to zPIV\n"
+            "1. amount      (numeric, required) Enter an amount of Piv to convert to zDOGEC\n"
             "2. utxos       (string, optional) A json array of objects.\n"
             "                   Each object needs the txid (string) and vout (numeric)\n"
             "  [\n"
@@ -2781,7 +2781,7 @@ UniValue mintzerocoin(const UniValue& params, bool fHelp)
 
     int64_t nTime = GetTimeMillis();
     if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zPIV is currently disabled due to maintenance.");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zDOGEC is currently disabled due to maintenance.");
 
     EnsureWalletIsUnlocked(true);
 
@@ -2844,7 +2844,7 @@ UniValue spendzerocoin(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 4 || params.size() < 3)
         throw runtime_error(
             "spendzerocoin amount mintchange minimizechange ( \"address\" )\n"
-            "\nSpend zPIV to a PIV address.\n" +
+            "\nSpend zDOGEC to a PIV address.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -2884,18 +2884,18 @@ UniValue spendzerocoin(const UniValue& params, bool fHelp)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zPIV is currently disabled due to maintenance.");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zDOGEC is currently disabled due to maintenance.");
 
     EnsureWalletIsUnlocked();
 
     CAmount nAmount = AmountFromValue(params[0]);   // Spending amount
-    bool fMintChange = params[1].get_bool();        // Mint change to zPIV
+    bool fMintChange = params[1].get_bool();        // Mint change to zDOGEC
     bool fMinimizeChange = params[2].get_bool();    // Minimize change
     std::string address_str = params.size() > 3 ? params[3].get_str() : "";
 
     vector<CZerocoinMint> vMintsSelected;
 
-    return DoZpivSpend(nAmount, fMintChange, fMinimizeChange, vMintsSelected, address_str);
+    return DozDOGECSpend(nAmount, fMintChange, fMinimizeChange, vMintsSelected, address_str);
 }
 
 
@@ -2904,7 +2904,7 @@ UniValue spendzerocoinmints(const UniValue& params, bool fHelp)
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
             "spendzerocoinmints mints_list (\"address\") \n"
-            "\nSpend zPIV mints to a PIV address.\n" +
+            "\nSpend zDOGEC mints to a PIV address.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -2941,7 +2941,7 @@ UniValue spendzerocoinmints(const UniValue& params, bool fHelp)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zPIV is currently disabled due to maintenance.");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zDOGEC is currently disabled due to maintenance.");
 
     std::string address_str = "";
     if (params.size() > 1) {
@@ -2986,14 +2986,14 @@ UniValue spendzerocoinmints(const UniValue& params, bool fHelp)
         // to avoid type confusion from the JSON interpreter
         address = CBitcoinAddress(params[3].get_str());
         if(!address.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DogeCash address");
     }
 
-    return DoZpivSpend(nAmount, false, true, vMintsSelected, address_str);
+    return DozDOGECSpend(nAmount, false, true, vMintsSelected, address_str);
 }
 
 
-extern UniValue DoZpivSpend(const CAmount nAmount, bool fMintChange, bool fMinimizeChange, vector<CZerocoinMint>& vMintsSelected, std::string address_str)
+extern UniValue DozDOGECSpend(const CAmount nAmount, bool fMintChange, bool fMinimizeChange, vector<CZerocoinMint>& vMintsSelected, std::string address_str)
 {
     int64_t nTimeStart = GetTimeMillis();
     CBitcoinAddress address = CBitcoinAddress(); // Optional sending address. Dummy initialization here.
@@ -3004,7 +3004,7 @@ extern UniValue DoZpivSpend(const CAmount nAmount, bool fMintChange, bool fMinim
     if(address_str != "") { // Spend to supplied destination address
         address = CBitcoinAddress(address_str);
         if(!address.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DogeCash address");
         fSuccess = pwalletMain->SpendZerocoin(nAmount, wtx, receipt, vMintsSelected, fMintChange, fMinimizeChange, &address);
     } else                   // Spend to newly generated local address
         fSuccess = pwalletMain->SpendZerocoin(nAmount, wtx, receipt, vMintsSelected, fMintChange, fMinimizeChange);
@@ -3085,8 +3085,8 @@ UniValue resetmintzerocoin(const UniValue& params, bool fHelp)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     CWalletDB walletdb(pwalletMain->strWalletFile);
-    CzPIVTracker* zpivTracker = pwalletMain->zpivTracker.get();
-    set<CMintMeta> setMints = zpivTracker->ListMints(false, false, true);
+    CzDOGECTracker* zDOGECTracker = pwalletMain->zDOGECTracker.get();
+    set<CMintMeta> setMints = zDOGECTracker->ListMints(false, false, true);
     vector<CMintMeta> vMintsToFind(setMints.begin(), setMints.end());
     vector<CMintMeta> vMintsMissing;
     vector<CMintMeta> vMintsToUpdate;
@@ -3097,14 +3097,14 @@ UniValue resetmintzerocoin(const UniValue& params, bool fHelp)
     // update the meta data of mints that were marked for updating
     UniValue arrUpdated(UniValue::VARR);
     for (CMintMeta meta : vMintsToUpdate) {
-        zpivTracker->UpdateState(meta);
+        zDOGECTracker->UpdateState(meta);
         arrUpdated.push_back(meta.hashPubcoin.GetHex());
     }
 
     // delete any mints that were unable to be located on the blockchain
     UniValue arrDeleted(UniValue::VARR);
     for (CMintMeta mint : vMintsMissing) {
-        zpivTracker->Archive(mint);
+        zDOGECTracker->Archive(mint);
         arrDeleted.push_back(mint.hashPubcoin.GetHex());
     }
 
@@ -3138,8 +3138,8 @@ UniValue resetspentzerocoin(const UniValue& params, bool fHelp)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     CWalletDB walletdb(pwalletMain->strWalletFile);
-    CzPIVTracker* zpivTracker = pwalletMain->zpivTracker.get();
-    set<CMintMeta> setMints = zpivTracker->ListMints(false, false, false);
+    CzDOGECTracker* zDOGECTracker = pwalletMain->zDOGECTracker.get();
+    set<CMintMeta> setMints = zDOGECTracker->ListMints(false, false, false);
     list<CZerocoinSpend> listSpends = walletdb.ListSpentCoins();
     list<CZerocoinSpend> listUnconfirmedSpends;
 
@@ -3161,7 +3161,7 @@ UniValue resetspentzerocoin(const UniValue& params, bool fHelp)
     for (CZerocoinSpend spend : listUnconfirmedSpends) {
         for (auto& meta : setMints) {
             if (meta.hashSerial == GetSerialHash(spend.GetSerial())) {
-                zpivTracker->SetPubcoinNotUsed(meta.hashPubcoin);
+                zDOGECTracker->SetPubcoinNotUsed(meta.hashPubcoin);
                 walletdb.EraseZerocoinSpendSerialEntry(spend.GetSerial());
                 RemoveSerialFromDB(spend.GetSerial());
                 UniValue obj(UniValue::VOBJ);
@@ -3243,12 +3243,12 @@ UniValue exportzerocoins(const UniValue& params, bool fHelp)
 
             "\nArguments:\n"
             "1. \"include_spent\"        (bool, required) Include mints that have already been spent\n"
-            "2. \"denomination\"         (integer, optional) Export a specific denomination of zPIV\n"
+            "2. \"denomination\"         (integer, optional) Export a specific denomination of zDOGEC\n"
 
             "\nResult:\n"
             "[                   (array of json object)\n"
             "  {\n"
-            "    \"id\": \"serial hash\",  (string) the mint's zPIV serial hash \n"
+            "    \"id\": \"serial hash\",  (string) the mint's zDOGEC serial hash \n"
             "    \"d\": n,         (numeric) the mint's zerocoin denomination \n"
             "    \"p\": \"pubcoin\", (string) The public coin\n"
             "    \"s\": \"serial\",  (string) The secret serial number\n"
@@ -3256,8 +3256,8 @@ UniValue exportzerocoins(const UniValue& params, bool fHelp)
             "    \"t\": \"txid\",    (string) The txid that the coin was minted in\n"
             "    \"h\": n,         (numeric) The height the tx was added to the blockchain\n"
             "    \"u\": used,      (boolean) Whether the mint has been spent\n"
-            "    \"v\": version,   (numeric) The version of the zPIV\n"
-            "    \"k\": \"privkey\"  (string) The zPIV private key (V2+ zPIV only)\n"
+            "    \"v\": version,   (numeric) The version of the zDOGEC\n"
+            "    \"k\": \"privkey\"  (string) The zDOGEC private key (V2+ zDOGEC only)\n"
             "  }\n"
             "  ,...\n"
             "]\n"
@@ -3276,8 +3276,8 @@ UniValue exportzerocoins(const UniValue& params, bool fHelp)
     if (params.size() == 2)
         denomination = libzerocoin::IntToZerocoinDenomination(params[1].get_int());
 
-    CzPIVTracker* zpivTracker = pwalletMain->zpivTracker.get();
-    set<CMintMeta> setMints = zpivTracker->ListMints(!fIncludeSpent, false, false);
+    CzDOGECTracker* zDOGECTracker = pwalletMain->zDOGECTracker.get();
+    set<CMintMeta> setMints = zDOGECTracker->ListMints(!fIncludeSpent, false, false);
 
     UniValue jsonList(UniValue::VARR);
     for (const CMintMeta& meta : setMints) {
@@ -3328,7 +3328,7 @@ UniValue importzerocoins(const UniValue& params, bool fHelp)
             "\nResult:\n"
             "{\n"
             "  \"added\": n,        (numeric) The quantity of zerocoin mints that were added\n"
-            "  \"value\": amount    (numeric) The total zPIV value of zerocoin mints that were added\n"
+            "  \"value\": amount    (numeric) The total zDOGEC value of zerocoin mints that were added\n"
             "}\n"
 
             "\nExamples\n" +
@@ -3392,7 +3392,7 @@ UniValue importzerocoins(const UniValue& params, bool fHelp)
         CZerocoinMint mint(denom, bnValue, bnRandom, bnSerial, fUsed, nVersion, &privkey);
         mint.SetTxHash(txid);
         mint.SetHeight(nHeight);
-        pwalletMain->zpivTracker->Add(mint, true);
+        pwalletMain->zDOGECTracker->Add(mint, true);
         count++;
         nValue += libzerocoin::ZerocoinDenominationToAmount(denom);
     }
@@ -3408,7 +3408,7 @@ UniValue reconsiderzerocoins(const UniValue& params, bool fHelp)
     if(fHelp || !params.empty())
         throw runtime_error(
             "reconsiderzerocoins\n"
-            "\nCheck archived zPIV list to see if any mints were added to the blockchain.\n" +
+            "\nCheck archived zDOGEC list to see if any mints were added to the blockchain.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult:\n"
@@ -3454,30 +3454,30 @@ UniValue reconsiderzerocoins(const UniValue& params, bool fHelp)
     return arrRet;
 }
 
-UniValue setzpivseed(const UniValue& params, bool fHelp)
+UniValue setzDOGECseed(const UniValue& params, bool fHelp)
 {
     if(fHelp || params.size() != 1)
         throw runtime_error(
-            "setzpivseed \"seed\"\n"
-            "\nSet the wallet's deterministic zpiv seed to a specific value.\n" +
+            "setzDOGECseed \"seed\"\n"
+            "\nSet the wallet's deterministic zDOGEC seed to a specific value.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"seed\"        (string, required) The deterministic zpiv seed.\n"
+            "1. \"seed\"        (string, required) The deterministic zDOGEC seed.\n"
 
             "\nResult\n"
             "\"success\" : b,  (boolean) Whether the seed was successfully set.\n"
 
             "\nExamples\n" +
-            HelpExampleCli("setzpivseed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5") +
-            HelpExampleRpc("setzpivseed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5"));
+            HelpExampleCli("setzDOGECseed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5") +
+            HelpExampleRpc("setzDOGECseed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5"));
 
     EnsureWalletIsUnlocked();
 
     uint256 seed;
     seed.SetHex(params[0].get_str());
 
-    CzPIVWallet* zwallet = pwalletMain->getZWallet();
+    CzDOGECWallet* zwallet = pwalletMain->getZWallet();
     bool fSuccess = zwallet->SetMasterSeed(seed, true);
     if (fSuccess)
         zwallet->SyncWithChain();
@@ -3488,23 +3488,23 @@ UniValue setzpivseed(const UniValue& params, bool fHelp)
     return ret;
 }
 
-UniValue getzpivseed(const UniValue& params, bool fHelp)
+UniValue getzDOGECseed(const UniValue& params, bool fHelp)
 {
     if(fHelp || !params.empty())
         throw runtime_error(
-            "getzpivseed\n"
-            "\nCheck archived zPIV list to see if any mints were added to the blockchain.\n" +
+            "getzDOGECseed\n"
+            "\nCheck archived zDOGEC list to see if any mints were added to the blockchain.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult\n"
-            "\"seed\" : s,  (string) The deterministic zPIV seed.\n"
+            "\"seed\" : s,  (string) The deterministic zDOGEC seed.\n"
 
             "\nExamples\n" +
-            HelpExampleCli("getzpivseed", "") + HelpExampleRpc("getzpivseed", ""));
+            HelpExampleCli("getzDOGECseed", "") + HelpExampleRpc("getzDOGECseed", ""));
 
     EnsureWalletIsUnlocked();
 
-    CzPIVWallet* zwallet = pwalletMain->getZWallet();
+    CzDOGECWallet* zwallet = pwalletMain->getZWallet();
     uint256 seed = zwallet->GetMasterSeed();
 
     UniValue ret(UniValue::VOBJ);
@@ -3518,12 +3518,12 @@ UniValue generatemintlist(const UniValue& params, bool fHelp)
     if(fHelp || params.size() != 2)
         throw runtime_error(
             "generatemintlist\n"
-            "\nShow mints that are derived from the deterministic zPIV seed.\n" +
+            "\nShow mints that are derived from the deterministic zDOGEC seed.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments\n"
-            "1. \"count\"  : n,  (numeric) Which sequential zPIV to start with.\n"
-            "2. \"range\"  : n,  (numeric) How many zPIV to generate.\n"
+            "1. \"count\"  : n,  (numeric) Which sequential zDOGEC to start with.\n"
+            "2. \"range\"  : n,  (numeric) How many zDOGEC to generate.\n"
 
             "\nResult:\n"
             "[\n"
@@ -3543,7 +3543,7 @@ UniValue generatemintlist(const UniValue& params, bool fHelp)
 
     int nCount = params[0].get_int();
     int nRange = params[1].get_int();
-    CzPIVWallet* zwallet = pwalletMain->zwalletMain;
+    CzDOGECWallet* zwallet = pwalletMain->zwalletMain;
 
     UniValue arrRet(UniValue::VARR);
     for (int i = nCount; i < nCount + nRange; i++) {
@@ -3562,28 +3562,28 @@ UniValue generatemintlist(const UniValue& params, bool fHelp)
     return arrRet;
 }
 
-UniValue dzpivstate(const UniValue& params, bool fHelp) {
+UniValue dzDOGECstate(const UniValue& params, bool fHelp) {
     if (fHelp || params.size() != 0)
         throw runtime_error(
-                "dzpivstate\n"
-                        "\nThe current state of the mintpool of the deterministic zPIV wallet.\n" +
+                "dzDOGECstate\n"
+                        "\nThe current state of the mintpool of the deterministic zDOGEC wallet.\n" +
                 HelpRequiringPassphrase() + "\n"
 
                         "\nExamples\n" +
                 HelpExampleCli("mintpoolstatus", "") + HelpExampleRpc("mintpoolstatus", ""));
 
-    CzPIVWallet* zwallet = pwalletMain->zwalletMain;
+    CzDOGECWallet* zwallet = pwalletMain->zwalletMain;
     UniValue obj(UniValue::VOBJ);
     int nCount, nCountLastUsed;
     zwallet->GetState(nCount, nCountLastUsed);
-    obj.push_back(Pair("dzpiv_count", nCount));
+    obj.push_back(Pair("dzDOGEC_count", nCount));
     obj.push_back(Pair("mintpool_count", nCountLastUsed));
 
     return obj;
 }
 
 
-void static SearchThread(CzPIVWallet* zwallet, int nCountStart, int nCountEnd)
+void static SearchThread(CzDOGECWallet* zwallet, int nCountStart, int nCountEnd)
 {
     LogPrintf("%s: start=%d end=%d\n", __func__, nCountStart, nCountEnd);
     CWalletDB walletDB(pwalletMain->strWalletFile);
@@ -3600,7 +3600,7 @@ void static SearchThread(CzPIVWallet* zwallet, int nCountStart, int nCountEnd)
             CBigNum bnSerial;
             CBigNum bnRandomness;
             CKey key;
-            zwallet->SeedToZPIV(zerocoinSeed, bnValue, bnSerial, bnRandomness, key);
+            zwallet->SeedTozDOGEC(zerocoinSeed, bnValue, bnSerial, bnRandomness, key);
 
             uint256 hashPubcoin = GetPubCoinHash(bnValue);
             zwallet->AddToMintPool(make_pair(hashPubcoin, i), true);
@@ -3613,21 +3613,21 @@ void static SearchThread(CzPIVWallet* zwallet, int nCountStart, int nCountEnd)
     }
 }
 
-UniValue searchdzpiv(const UniValue& params, bool fHelp)
+UniValue searchdzDOGEC(const UniValue& params, bool fHelp)
 {
     if(fHelp || params.size() != 3)
         throw runtime_error(
-            "searchdzpiv\n"
-            "\nMake an extended search for deterministically generated zPIV that have not yet been recognized by the wallet.\n" +
+            "searchdzDOGEC\n"
+            "\nMake an extended search for deterministically generated zDOGEC that have not yet been recognized by the wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments\n"
-            "1. \"count\"       (numeric) Which sequential zPIV to start with.\n"
-            "2. \"range\"       (numeric) How many zPIV to generate.\n"
+            "1. \"count\"       (numeric) Which sequential zDOGEC to start with.\n"
+            "2. \"range\"       (numeric) How many zDOGEC to generate.\n"
             "3. \"threads\"     (numeric) How many threads should this operation consume.\n"
 
             "\nExamples\n" +
-            HelpExampleCli("searchdzpiv", "1, 100, 2") + HelpExampleRpc("searchdzpiv", "1, 100, 2"));
+            HelpExampleCli("searchdzDOGEC", "1, 100, 2") + HelpExampleRpc("searchdzDOGEC", "1, 100, 2"));
 
     EnsureWalletIsUnlocked();
 
@@ -3641,9 +3641,9 @@ UniValue searchdzpiv(const UniValue& params, bool fHelp)
 
     int nThreads = params[2].get_int();
 
-    CzPIVWallet* zwallet = pwalletMain->zwalletMain;
+    CzDOGECWallet* zwallet = pwalletMain->zwalletMain;
 
-    boost::thread_group* dzpivThreads = new boost::thread_group();
+    boost::thread_group* dzDOGECThreads = new boost::thread_group();
     int nRangePerThread = nRange / nThreads;
 
     int nPrevThreadEnd = nCount - 1;
@@ -3651,12 +3651,12 @@ UniValue searchdzpiv(const UniValue& params, bool fHelp)
         int nStart = nPrevThreadEnd + 1;;
         int nEnd = nStart + nRangePerThread;
         nPrevThreadEnd = nEnd;
-        dzpivThreads->create_thread(boost::bind(&SearchThread, zwallet, nStart, nEnd));
+        dzDOGECThreads->create_thread(boost::bind(&SearchThread, zwallet, nStart, nEnd));
     }
 
-    dzpivThreads->join_all();
+    dzDOGECThreads->join_all();
 
-    zwallet->RemoveMintsFromPool(pwalletMain->zpivTracker->GetSerialHashes());
+    zwallet->RemoveMintsFromPool(pwalletMain->zDOGECTracker->GetSerialHashes());
     zwallet->SyncWithChain(false);
 
     //todo: better response
@@ -3690,7 +3690,7 @@ UniValue createautomintaddress(const UniValue& params, bool fHelp)
                 HelpRequiringPassphrase() + "\n"
 
                 "\nResult\n"
-                "\"address\"     (string) PIVX address for auto minting\n" +
+                "\"address\"     (string) DogeCash address for auto minting\n" +
                 HelpExampleCli("createautomintaddress", "") +
                 HelpExampleRpc("createautomintaddress", ""));
 
@@ -3712,7 +3712,7 @@ UniValue spendrawzerocoin(const UniValue& params, bool fHelp)
             "2. \"randomnessHex\"    (string, required) A zerocoin randomness value (hex)\n"
             "3. denom                (numeric, required) A zerocoin denomination (decimal)\n"
             "4. \"priv key\"         (string, required) The private key associated with this coin (hex)\n"
-            "5. \"address\"          (string, optional) PIVX address to spend to. If not specified, spend to change add.\n"
+            "5. \"address\"          (string, optional) DogeCash address to spend to. If not specified, spend to change add.\n"
 
             "\nResult:\n"
                 "\"txid\"             (string) The transaction txid in hex\n"
@@ -3724,7 +3724,7 @@ UniValue spendrawzerocoin(const UniValue& params, bool fHelp)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     if (GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-            throw JSONRPCError(RPC_WALLET_ERROR, "zPIV is currently disabled due to maintenance.");
+            throw JSONRPCError(RPC_WALLET_ERROR, "zDOGEC is currently disabled due to maintenance.");
 
     CBigNum serial;
     serial.SetHex(params[0].get_str());
@@ -3758,7 +3758,7 @@ UniValue spendrawzerocoin(const UniValue& params, bool fHelp)
     vector<CZerocoinMint> vMintsSelected = {mint};
     CAmount nAmount = mint.GetDenominationAsAmount();
 
-    return DoZpivSpend(nAmount, false, true, vMintsSelected, address_str);
+    return DozDOGECSpend(nAmount, false, true, vMintsSelected, address_str);
 }
 
 UniValue clearspendcache(const UniValue& params, bool fHelp)
@@ -3766,7 +3766,7 @@ UniValue clearspendcache(const UniValue& params, bool fHelp)
     if(fHelp || params.size() != 0)
         throw runtime_error(
             "clearspendcache\n"
-            "\nClear the pre-computed zPIV spend cache, and database.\n" +
+            "\nClear the pre-computed zDOGEC spend cache, and database.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nExamples\n" +
@@ -3774,14 +3774,14 @@ UniValue clearspendcache(const UniValue& params, bool fHelp)
 
     EnsureWalletIsUnlocked();
 
-    CzPIVTracker* zpivTracker = pwalletMain->zpivTracker.get();
+    CzDOGECTracker* zDOGECTracker = pwalletMain->zDOGECTracker.get();
 
     {
         int nTries = 0;
         while (nTries < 100) {
-            TRY_LOCK(zpivTracker->cs_spendcache, fLocked);
+            TRY_LOCK(zDOGECTracker->cs_spendcache, fLocked);
             if (fLocked) {
-                if (zpivTracker->ClearSpendCache()) {
+                if (zDOGECTracker->ClearSpendCache()) {
                     fClearSpendCache = true;
                     CWalletDB walletdb("precomputes.dat", "cr+");
                     walletdb.EraseAllPrecomputes();

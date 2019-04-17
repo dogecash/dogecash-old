@@ -1,39 +1,39 @@
-// Copyright (c) 2017-2018 The PIVX developers
+// Copyright (c) 2017-2018 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef ZPIVCONTROLDIALOG_H
-#define ZPIVCONTROLDIALOG_H
+#ifndef zDOGECCONTROLDIALOG_H
+#define zDOGECCONTROLDIALOG_H
 
 #include <QDialog>
 #include <QTreeWidgetItem>
-#include "zpiv/zerocoin.h"
+#include "zDOGEC/zerocoin.h"
 #include "privacydialog.h"
 
 class CZerocoinMint;
 class WalletModel;
 
 namespace Ui {
-class ZPivControlDialog;
+class zDOGECControlDialog;
 }
 
-class CZPivControlWidgetItem : public QTreeWidgetItem
+class CzDOGECControlWidgetItem : public QTreeWidgetItem
 {
 public:
-    explicit CZPivControlWidgetItem(QTreeWidget *parent, int type = Type) : QTreeWidgetItem(parent, type) {}
-    explicit CZPivControlWidgetItem(int type = Type) : QTreeWidgetItem(type) {}
-    explicit CZPivControlWidgetItem(QTreeWidgetItem *parent, int type = Type) : QTreeWidgetItem(parent, type) {}
+    explicit CzDOGECControlWidgetItem(QTreeWidget *parent, int type = Type) : QTreeWidgetItem(parent, type) {}
+    explicit CzDOGECControlWidgetItem(int type = Type) : QTreeWidgetItem(type) {}
+    explicit CzDOGECControlWidgetItem(QTreeWidgetItem *parent, int type = Type) : QTreeWidgetItem(parent, type) {}
 
     bool operator<(const QTreeWidgetItem &other) const;
 };
 
-class ZPivControlDialog : public QDialog
+class zDOGECControlDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit ZPivControlDialog(QWidget *parent);
-    ~ZPivControlDialog();
+    explicit zDOGECControlDialog(QWidget *parent);
+    ~zDOGECControlDialog();
 
     void setModel(WalletModel* model);
 
@@ -42,7 +42,7 @@ public:
     static std::vector<CMintMeta> GetSelectedMints();
 
 private:
-    Ui::ZPivControlDialog *ui;
+    Ui::zDOGECControlDialog *ui;
     WalletModel* model;
     PrivacyDialog* privacyDialog;
 
@@ -58,11 +58,11 @@ private:
         COLUMN_CONFIRMATIONS,
         COLUMN_ISSPENDABLE
     };
-    friend class CZPivControlWidgetItem;
+    friend class CzDOGECControlWidgetItem;
 
 private slots:
     void updateSelection(QTreeWidgetItem* item, int column);
     void ButtonAllClicked();
 };
 
-#endif // ZPIVCONTROLDIALOG_H
+#endif // zDOGECCONTROLDIALOG_H
