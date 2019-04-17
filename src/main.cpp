@@ -33,7 +33,7 @@
 #include "util.h"
 #include "utilmoneystr.h"
 #include "validationinterface.h"
-#include "zDOGECchain.h"
+#include "zdogecchain.h"
 
 #include "zDOGEC/zerocoin.h"
 #include "libzerocoin/Denominations.h"
