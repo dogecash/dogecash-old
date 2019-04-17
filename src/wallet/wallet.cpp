@@ -24,12 +24,12 @@
 #include "txdb.h"
 #include "util.h"
 #include "utilmoneystr.h"
-#include "zDOGECchain.h"
+#include "zdogecchain.h"
 
 #include "denomination_functions.h"
 #include "libzerocoin/Denominations.h"
-#include "zDOGEC/zDOGECwallet.h"
-#include "zDOGEC/zDOGECtracker.h"
+#include "zDOGEC/zdogecwallet.h"
+#include "zDOGEC/zdogectracker.h"
 #include "zDOGEC/deterministicmint.h"
 #include <assert.h>
 
