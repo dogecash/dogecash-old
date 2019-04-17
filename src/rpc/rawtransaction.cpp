@@ -12,7 +12,7 @@
 #include "main.h"
 #include "net.h"
 #include "primitives/transaction.h"
-#include "zDOGEC/deterministicmint.h"
+#include "zdogec/deterministicmint.h"
 #include "rpc/server.h"
 #include "script/script.h"
 #include "script/script_error.h"
@@ -21,7 +21,7 @@
 #include "swifttx.h"
 #include "uint256.h"
 #include "utilmoneystr.h"
-#include "zDOGECchain.h"
+#include "zdogecchain.h"
 #ifdef ENABLE_WALLET
 #include "wallet/wallet.h"
 #endif
@@ -936,7 +936,7 @@ UniValue createrawzerocoinstake(const UniValue& params, bool fHelp)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zDOGEC is currently disabled due to maintenance.");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zdogec is currently disabled due to maintenance.");
 
     std::string serial_hash = params[0].get_str();
     if (!IsHex(serial_hash))

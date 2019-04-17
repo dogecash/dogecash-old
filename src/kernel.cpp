@@ -12,7 +12,7 @@
 #include "util.h"
 #include "stakeinput.h"
 #include "utilmoneystr.h"
-#include "zDOGECchain.h"
+#include "zdogecchain.h"
 
 using namespace std;
 

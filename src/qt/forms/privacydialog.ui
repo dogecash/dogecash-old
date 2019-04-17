@@ -993,7 +993,7 @@ zDOGEC are mature when they have more than 20 confirmations AND more than 2 mint
                            <number>0</number>
                           </property>
                           <item>
-                           <widget class="QLineEdit" name="zDOGECpayAmount"/>
+                           <widget class="QLineEdit" name="zdogecpayAmount"/>
                           </item>
                           <item>
                            <widget class="QLabel" name="labelzDOGEC">

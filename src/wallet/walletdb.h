@@ -11,10 +11,10 @@
 #include "wallet/db.h"
 #include "key.h"
 #include "keystore.h"
-#include "zDOGEC/zerocoin.h"
+#include "zdogec/zerocoin.h"
 #include "libzerocoin/Accumulator.h"
 #include "libzerocoin/Denominations.h"
-#include "zDOGEC/zDOGECtracker.h"
+#include "zdogec/zDOGECtracker.h"
 
 #include <list>
 #include <stdint.h>

@@ -11,7 +11,7 @@
 
 #include "init.h"
 
-#include "zDOGEC/accumulators.h"
+#include "zdogec/accumulators.h"
 #include "activemasternode.h"
 #include "addrman.h"
 #include "amount.h"
@@ -39,8 +39,8 @@
 #include "util.h"
 #include "utilmoneystr.h"
 #include "validationinterface.h"
-#include "zDOGEC/accumulatorcheckpoints.h"
-#include "zDOGECchain.h"
+#include "zdogec/accumulatorcheckpoints.h"
+#include "zdogecchain.h"
 
 #ifdef ENABLE_WALLET
 #include "wallet/db.h"

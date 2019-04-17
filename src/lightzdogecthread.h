@@ -9,7 +9,7 @@
 
 #include <atomic>
 #include "genwit.h"
-#include "zDOGEC/accumulators.h"
+#include "zdogec/accumulators.h"
 #include "concurrentqueue.h"
 #include "chainparams.h"
 #include <boost/function.hpp>

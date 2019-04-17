@@ -7,7 +7,7 @@
 
 #include "wallet/wallet.h"
 
-#include "zDOGEC/accumulators.h"
+#include "zdogec/accumulators.h"
 #include "base58.h"
 #include "checkpoints.h"
 #include "coincontrol.h"
@@ -24,13 +24,13 @@
 #include "txdb.h"
 #include "util.h"
 #include "utilmoneystr.h"
-#include "zDOGECchain.h"
+#include "zdogecchain.h"
 
 #include "denomination_functions.h"
 #include "libzerocoin/Denominations.h"
-#include "zDOGEC/zDOGECwallet.h"
-#include "zDOGEC/zDOGECtracker.h"
-#include "zDOGEC/deterministicmint.h"
+#include "zdogec/zDOGECwallet.h"
+#include "zdogec/zDOGECtracker.h"
+#include "zdogec/deterministicmint.h"
 #include <assert.h>
 
 #include <boost/algorithm/string/replace.hpp>

@@ -7,16 +7,16 @@
 #include "chainparams.h"
 #include "main.h"
 #include "txdb.h"
-#include "zDOGEC/deterministicmint.h"
+#include "zdogec/deterministicmint.h"
 #include "key.h"
-#include "zDOGEC/accumulatorcheckpoints.h"
+#include "zdogec/accumulatorcheckpoints.h"
 #include "libzerocoin/bignum.h"
 #include <boost/test/unit_test.hpp>
 #include <iostream>
 #include <zDOGEC/accumulators.h>
 #include "wallet/wallet.h"
-#include "zDOGEC/zDOGECwallet.h"
-#include "zDOGECchain.h"
+#include "zdogec/zDOGECwallet.h"
+#include "zdogecchain.h"
 
 using namespace libzerocoin;
 

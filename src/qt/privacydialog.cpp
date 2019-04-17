@@ -14,7 +14,7 @@
 #include "sendcoinsentry.h"
 #include "walletmodel.h"
 #include "coincontrol.h"
-#include "zDOGECcontroldialog.h"
+#include "zdogeccontroldialog.h"
 #include "spork.h"
 #include "askpassphrasedialog.h"
 
@@ -161,7 +161,7 @@ void PrivacyDialog::on_pushButtonMintzDOGEC_clicked()
 
     if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) {
         QMessageBox::information(this, tr("Mint Zerocoin"),
-                                 tr("zDOGEC is currently undergoing maintenance."), QMessageBox::Ok,
+                                 tr("zdogec is currently undergoing maintenance."), QMessageBox::Ok,
                                  QMessageBox::Ok);
         return;
     }
@@ -273,7 +273,7 @@ void PrivacyDialog::on_pushButtonSpendzDOGEC_clicked()
 
     if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) {
         QMessageBox::information(this, tr("Mint Zerocoin"),
-                                 tr("zDOGEC is currently undergoing maintenance."), QMessageBox::Ok, QMessageBox::Ok);
+                                 tr("zdogec is currently undergoing maintenance."), QMessageBox::Ok, QMessageBox::Ok);
         return;
     }
 
@@ -475,7 +475,7 @@ void PrivacyDialog::sendzDOGEC()
     CAmount nValueIn = 0;
     int nCount = 0;
     for (CZerocoinSpend spend : receipt.GetSpends()) {
-        strStats += tr("zDOGEC Spend #: ") + QString::number(nCount) + ", ";
+        strStats += tr("zdogec Spend #: ") + QString::number(nCount) + ", ";
         strStats += tr("denomination: ") + QString::number(spend.GetDenomination()) + ", ";
         strStats += tr("serial: ") + spend.GetSerial().ToString().c_str() + "\n";
         strStats += tr("Spend is 1 of : ") + QString::number(spend.GetMintCount()) + " mints in the accumulator\n";
@@ -491,7 +491,7 @@ void PrivacyDialog::sendzDOGEC()
         strStats += tr("address: ");
         CTxDestination dest;
         if(txout.scriptPubKey.IsZerocoinMint())
-            strStats += tr("zDOGEC Mint");
+            strStats += tr("zdogec Mint");
         else if(ExtractDestination(txout.scriptPubKey, dest))
             strStats += tr(CBitcoinAddress(dest).ToString().c_str());
         strStats += "\n";
@@ -802,11 +802,11 @@ void PrivacyDialog::updateSPORK16Status()
     if (fMaintenanceMode && fButtonsEnabled) {
         // Mint zDOGEC
         ui->pushButtonMintzDOGEC->setEnabled(false);
-        ui->pushButtonMintzDOGEC->setToolTip(tr("zDOGEC is currently disabled due to maintenance."));
+        ui->pushButtonMintzDOGEC->setToolTip(tr("zdogec is currently disabled due to maintenance."));
 
         // Spend zDOGEC
         ui->pushButtonSpendzDOGEC->setEnabled(false);
-        ui->pushButtonSpendzDOGEC->setToolTip(tr("zDOGEC is currently disabled due to maintenance."));
+        ui->pushButtonSpendzDOGEC->setToolTip(tr("zdogec is currently disabled due to maintenance."));
     } else if (!fMaintenanceMode && !fButtonsEnabled) {
         // Mint zDOGEC
         ui->pushButtonMintzDOGEC->setEnabled(true);
