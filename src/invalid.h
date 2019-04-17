@@ -1,11 +1,11 @@
-// Copyright (c) 2018 The DogeCash developers
+// Copyright (c) 2018 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DogeCash_INVALID_H
-#define DogeCash_INVALID_H
+#ifndef dogecash_INVALID_H
+#define dogecash_INVALID_H
 
-#endif //DogeCash_INVALID_H
+#endif //dogecash_INVALID_H
 
 #include <libzerocoin/bignum.h>
 #include <univalue/include/univalue.h>

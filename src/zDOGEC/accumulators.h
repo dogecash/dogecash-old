@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2018 The DogeCash developers
+// Copyright (c) 2017-2018 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DogeCash_ACCUMULATORS_H
-#define DogeCash_ACCUMULATORS_H
+#ifndef dogecash_ACCUMULATORS_H
+#define dogecash_ACCUMULATORS_H
 
 #include "libzerocoin/Accumulator.h"
 #include "libzerocoin/Coin.h"
@@ -90,5 +90,5 @@ public:
     searchMintHeightException(const string &message) : message(message) {}
 };
 
-#endif //DogeCash_ACCUMULATORS_H
+#endif //dogecash_ACCUMULATORS_H
 

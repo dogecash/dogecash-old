@@ -2,7 +2,7 @@
 # Copyright (c) 2017 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Test DogeCash-cli"""
+"""Test dogecash-cli"""
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import assert_equal, assert_raises_process_error, get_auth_cookie
 import time
@@ -19,19 +19,19 @@ class TestBitcoinCli(BitcoinTestFramework):
         self.log.info("Sleeping 30 seconds...")
         time.sleep(30)
 
-        self.log.info("Compare responses from gewalletinfo RPC and `DogeCash-cli getwalletinfo`")
+        self.log.info("Compare responses from gewalletinfo RPC and `dogecash-cli getwalletinfo`")
         cli_response = self.nodes[0].cli.getwalletinfo()
         rpc_response = self.nodes[0].getwalletinfo()
         assert_equal(cli_response, rpc_response)
 
-        self.log.info("Compare responses from getblockchaininfo RPC and `DogeCash-cli getblockchaininfo`")
+        self.log.info("Compare responses from getblockchaininfo RPC and `dogecash-cli getblockchaininfo`")
         cli_response = self.nodes[0].cli.getblockchaininfo()
         rpc_response = self.nodes[0].getblockchaininfo()
         assert_equal(cli_response, rpc_response)
 
         user, password = get_auth_cookie(self.nodes[0].datadir)
 
-        self.log.info("Compare responses from `DogeCash-cli -getinfo` and the RPCs data is retrieved from.")
+        self.log.info("Compare responses from `dogecash-cli -getinfo` and the RPCs data is retrieved from.")
         cli_get_info = self.nodes[0].cli('getinfo').send_cli()
         wallet_info = self.nodes[0].getwalletinfo()
         network_info = self.nodes[0].getnetworkinfo()

@@ -1,31 +1,31 @@
 #!/bin/bash
 #
-#  DogeCashd The DogeCash core server.
+#  dogecashd The dogecash core server.
 #
 #
 # chkconfig: 345 80 20
-# description: DogeCashd
-# processname: DogeCashd
+# description: dogecashd
+# processname: dogecashd
 #
 
 # Source function library.
 . /etc/init.d/functions
 
-# you can override defaults in /etc/sysconfig/DogeCashd, see below
-if [ -f /etc/sysconfig/DogeCashd ]; then
-        . /etc/sysconfig/DogeCashd
+# you can override defaults in /etc/sysconfig/dogecashd, see below
+if [ -f /etc/sysconfig/dogecashd ]; then
+        . /etc/sysconfig/dogecashd
 fi
 
 RETVAL=0
 
-prog=DogeCashd
-# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/DogeCashd
-lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/DogeCashd}
+prog=dogecashd
+# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/dogecashd
+lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/dogecashd}
 
-# DogeCashd defaults to /usr/bin/DogeCashd, override with BITCOIND_BIN
-bitcoind=${BITCOIND_BIN-/usr/bin/DogeCashd}
+# dogecashd defaults to /usr/bin/dogecashd, override with BITCOIND_BIN
+bitcoind=${BITCOIND_BIN-/usr/bin/dogecashd}
 
-# DogeCashd opts default to -disablewallet, override with BITCOIND_OPTS
+# dogecashd opts default to -disablewallet, override with BITCOIND_OPTS
 bitcoind_opts=${BITCOIND_OPTS}
 
 start() {

@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
-// Copyright (c) 2017-2018 The DogeCash developers
+// Copyright (c) 2017-2018 The dogecash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -50,7 +50,7 @@ public:
         ZeromintPrefDenom,   // int
         HideZeroBalances,    // bool
         HideOrphans,    // bool
-        AnonymizeDogeCashAmount, //int
+        AnonymizedogecashAmount, //int
         ShowMasternodesTab,  // bool
         Listen,              // bool
         StakeSplitThreshold, // int
@@ -104,7 +104,7 @@ signals:
     void zeromintAddressesChanged(bool);
     void zeromintPercentageChanged(int);
     void preferredDenomChanged(int);
-    void anonymizeDogeCashAmountChanged(int);
+    void anonymizedogecashAmountChanged(int);
     void coinControlFeaturesChanged(bool);
     void hideZeroBalancesChanged(bool);
     void hideOrphansChanged(bool);

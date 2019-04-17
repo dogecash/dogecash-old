@@ -1,9 +1,9 @@
-// Copyright (c) 2018 The DogeCash developers
+// Copyright (c) 2018 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DogeCash_ACCUMULATORCHECKPOINTS_H
-#define DogeCash_ACCUMULATORCHECKPOINTS_H
+#ifndef dogecash_ACCUMULATORCHECKPOINTS_H
+#define dogecash_ACCUMULATORCHECKPOINTS_H
 
 #include <libzerocoin/bignum.h>
 #include <univalue/include/univalue.h>
@@ -18,4 +18,4 @@ namespace AccumulatorCheckpoints
     Checkpoint GetClosestCheckpoint(const int& nHeight, int& nHeightCheckpoint);
 }
 
-#endif //DogeCash_ACCUMULATORCHECKPOINTS_H
+#endif //dogecash_ACCUMULATORCHECKPOINTS_H

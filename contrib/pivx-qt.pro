@@ -78,7 +78,7 @@ HEADERS += src/activemasternode.h \
            src/crypter.h \
            src/obfuscation-relay.h \
            src/obfuscation.h \
-           src/DogeCash-config.h \
+           src/dogecash-config.h \
            src/db.h \
            src/eccryptoverify.h \
            src/ecwrapper.h \
@@ -131,7 +131,7 @@ HEADERS += src/activemasternode.h \
            src/wallet_ismine.h \
            src/walletdb.h \
            src/compat/sanity.h \
-           src/config/DogeCash-config.h \
+           src/config/dogecash-config.h \
            src/crypto/common.h \
            src/crypto/hmac_sha256.h \
            src/crypto/hmac_sha512.h \
@@ -332,7 +332,7 @@ HEADERS += src/activemasternode.h \
            src/secp256k1/src/java/org_bitcoin_NativeSecp256k1.h \
            src/crypto/aes_helper.c \
            src/qt/bitcoinamountfield.moc \
-           src/qt/DogeCash.moc \
+           src/qt/dogecash.moc \
            src/qt/intro.moc \
            src/qt/overviewpage.moc \
            src/qt/rpcconsole.moc \
@@ -373,9 +373,9 @@ SOURCES += src/activemasternode.cpp \
            src/crypter.cpp \
            src/obfuscation-relay.cpp \
            src/obfuscation.cpp \
-           src/DogeCash-cli.cpp \
-           src/DogeCash-tx.cpp \
-           src/DogeCash.cpp \
+           src/dogecash-cli.cpp \
+           src/dogecash-tx.cpp \
+           src/dogecash.cpp \
            src/db.cpp \
            src/eccryptoverify.cpp \
            src/ecwrapper.cpp \
@@ -470,8 +470,8 @@ SOURCES += src/activemasternode.cpp \
            src/qt/coincontroltreewidget.cpp \
            src/qt/csvmodelwriter.cpp \
            src/qt/obfuscationconfig.cpp \
-           src/qt/DogeCash.cpp \
-           src/qt/DogeCashstrings.cpp \
+           src/qt/dogecash.cpp \
+           src/qt/dogecashstrings.cpp \
            src/qt/editaddressdialog.cpp \
            src/qt/guiutil.cpp \
            src/qt/intro.cpp \
@@ -549,7 +549,7 @@ SOURCES += src/activemasternode.cpp \
            src/test/sighash_tests.cpp \
            src/test/sigopcount_tests.cpp \
            src/test/skiplist_tests.cpp \
-           src/test/test_DogeCash.cpp \
+           src/test/test_dogecash.cpp \
            src/test/timedata_tests.cpp \
            src/test/transaction_tests.cpp \
            src/test/uint256_tests.cpp \
@@ -640,21 +640,21 @@ SOURCES += src/activemasternode.cpp \
            src/leveldb/helpers/memenv/memenv.cc \
            src/leveldb/helpers/memenv/memenv_test.cc \
            src/secp256k1/src/java/org_bitcoin_NativeSecp256k1.c
-RESOURCES += src/qt/DogeCash.qrc src/qt/DogeCash_locale.qrc
+RESOURCES += src/qt/dogecash.qrc src/qt/dogecash_locale.qrc
 
-TRANSLATIONS += src/qt/locale/DogeCash_bg.ts \
-                src/qt/locale/DogeCash_de.ts \
-                src/qt/locale/DogeCash_en.ts \
-                src/qt/locale/DogeCash_es.ts \
-                src/qt/locale/DogeCash_fi.ts \
-                src/qt/locale/DogeCash_fr.ts \
-                src/qt/locale/DogeCash_it.ts \
-                src/qt/locale/DogeCash_ja.ts \
-                src/qt/locale/DogeCash_pl.ts \
-                src/qt/locale/DogeCash_pt.ts \
-                src/qt/locale/DogeCash_ru.ts \
-                src/qt/locale/DogeCash_sk.ts \
-                src/qt/locale/DogeCash_sv.ts \
-                src/qt/locale/DogeCash_vi.ts \
-                src/qt/locale/DogeCash_zh_CN.ts \
-                src/qt/locale/DogeCash_zh_TW.ts
+TRANSLATIONS += src/qt/locale/dogecash_bg.ts \
+                src/qt/locale/dogecash_de.ts \
+                src/qt/locale/dogecash_en.ts \
+                src/qt/locale/dogecash_es.ts \
+                src/qt/locale/dogecash_fi.ts \
+                src/qt/locale/dogecash_fr.ts \
+                src/qt/locale/dogecash_it.ts \
+                src/qt/locale/dogecash_ja.ts \
+                src/qt/locale/dogecash_pl.ts \
+                src/qt/locale/dogecash_pt.ts \
+                src/qt/locale/dogecash_ru.ts \
+                src/qt/locale/dogecash_sk.ts \
+                src/qt/locale/dogecash_sv.ts \
+                src/qt/locale/dogecash_vi.ts \
+                src/qt/locale/dogecash_zh_CN.ts \
+                src/qt/locale/dogecash_zh_TW.ts

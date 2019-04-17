@@ -1,6 +1,6 @@
-usr/local/bin/DogeCash-qt usr/bin
+usr/local/bin/dogecash-qt usr/bin
 share/pixmaps/bitcoin32.xpm usr/share/pixmaps
 share/pixmaps/bitcoin16.xpm usr/share/pixmaps
 share/pixmaps/bitcoin128.png usr/share/pixmaps
-debian/DogeCash-qt.desktop usr/share/applications
-debian/DogeCash-qt.protocol usr/share/kde4/services/
+debian/dogecash-qt.desktop usr/share/applications
+debian/dogecash-qt.protocol usr/share/kde4/services/

@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "DogeCash"
-            VALUE "FileDescription",    "DogeCashd (OSS daemon/client for DogeCash)"
+            VALUE "CompanyName",        "dogecash"
+            VALUE "FileDescription",    "dogecashd (OSS daemon/client for dogecash)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "DogeCashd"
+            VALUE "InternalName",       "dogecashd"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "DogeCashd.exe"
-            VALUE "ProductName",        "DogeCashd"
+            VALUE "OriginalFilename",   "dogecashd.exe"
+            VALUE "ProductName",        "dogecashd"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

@@ -1,27 +1,27 @@
-DogeCash Core version *3.1.0* is now available from:  <https://github.com/DogeCash-project/DogeCash/releases>
+dogecash Core version *3.1.0* is now available from:  <https://github.com/dogecash-project/dogecash/releases>
 
 This is a new major version release, including various bug fixes and performance improvements, as well as updated translations.
 
-Please report bugs using the issue tracker at github: <https://github.com/DogeCash-project/DogeCash/issues>
+Please report bugs using the issue tracker at github: <https://github.com/dogecash-project/dogecash/issues>
 
 
 Mandatory Update
 ==============
 
-DogeCash Core v3.1.0 is a mandatory update for all users. This release contains new consensus rules and improvements that are not backwards compatible with older versions. Users will have a grace period of one week to update their clients before enforcement of this update is enabled.
+dogecash Core v3.1.0 is a mandatory update for all users. This release contains new consensus rules and improvements that are not backwards compatible with older versions. Users will have a grace period of one week to update their clients before enforcement of this update is enabled.
 
 Users updating from a previous version after Tuesday, May 8, 2018 12:00:00 AM GMT will require a full resync of their local blockchain from either the P2P network or by way of the bootstrap.
 
 How to Upgrade
 ==============
 
-If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/DogeCash-Qt (on Mac) or DogeCashd/DogeCash-qt (on Linux).
+If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/dogecash-Qt (on Mac) or dogecashd/dogecash-qt (on Linux).
 
 
 Compatibility
 ==============
 
-DogeCash Core is extensively tested on multiple operating systems using
+dogecash Core is extensively tested on multiple operating systems using
 the Linux kernel, macOS 10.8+, and Windows Vista and later.
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support),
@@ -29,7 +29,7 @@ No attempt is made to prevent installing or running the software on Windows XP, 
 can still do so at your own risk but be aware that there are known instabilities and issues.
 Please do not report issues about Windows XP to the issue tracker.
 
-DogeCash Core should also work on most other Unix-like systems but is not
+dogecash Core should also work on most other Unix-like systems but is not
 frequently tested on them.
 
 ### :exclamation::exclamation::exclamation: MacOS 10.13 High Sierra :exclamation::exclamation::exclamation:
@@ -45,7 +45,7 @@ zDOGEC Updates
 
 ### zDOGEC Staking
 
-zDOGEC Staking is here! zDOGEC staking will be activated on the morning of the 8th of May 2018. With the release of zDOGEC staking, there are effectively 2 versions of zDOGEC, zDOGEC minted on the 3.0.6 DogeCash wallet or lower, and zDOGEC minted on DogeCash wallet version or higher. New features in this release will require the use of zDOGEC v2, zDOGEC minted on this wallet release 3.1.0 or later. If you currently hold zDOGEC v1 and wish to take advantage of zDOGEC staking and deterministic zDOGEC, you will need to spend the zDOGEC v1 to yourself and remint zDOGEC v2.
+zDOGEC Staking is here! zDOGEC staking will be activated on the morning of the 8th of May 2018. With the release of zDOGEC staking, there are effectively 2 versions of zDOGEC, zDOGEC minted on the 3.0.6 dogecash wallet or lower, and zDOGEC minted on dogecash wallet version or higher. New features in this release will require the use of zDOGEC v2, zDOGEC minted on this wallet release 3.1.0 or later. If you currently hold zDOGEC v1 and wish to take advantage of zDOGEC staking and deterministic zDOGEC, you will need to spend the zDOGEC v1 to yourself and remint zDOGEC v2.
 Note: To find your zDOGEC version, click the privacy tab, then the zDOGEC Control button then expand the arrows next to the desired denomination.
 
 
@@ -70,7 +70,7 @@ DOGEC/zDOGEC Staking and Masternode Rewards
 
 ### DOGEC, zDOGEC and Masternode Payment Schedule
 
-To encourage the use of zDOGEC and increase the DogeCash zerocoin anonymity set, the DogeCash payment schedule has been changed to the following:
+To encourage the use of zDOGEC and increase the dogecash zerocoin anonymity set, the dogecash payment schedule has been changed to the following:
 
 If a user staking zDOGEC wins the reward for their block, the following zDOGEC reward will be: 
 - 3 zDOGEC (3 x 1 denominations) rewarded to the staker, 2 DOGEC rewarded to the masternode owner and 1 DOGEC available for the budget. This is a total block reward of 6 DOGEC, up from 5.
@@ -89,7 +89,7 @@ User Experience
 
 ### Graphical User Interface
 
-The visual layout of the DogeCash Qt wallet has undergone a near-complete overhaul.
+The visual layout of the dogecash Qt wallet has undergone a near-complete overhaul.
 A new 'vertical tab' layout is now being used instead of the prior 'horizontal tab' layout, as well as a completely new icon set.
 The overview tab has been simplified greatly to display only balances that are active or relevant, zero-balance line items are hidden by default to avoid clutter.
 
@@ -97,7 +97,7 @@ The overview tab has been simplified greatly to display only balances that are a
 ### Wallet Options
 
 There have been a number of changes to the tasks that you are able to perform from the wallet options. Users will now have the ability to do the following: 
--	Enable and disable the auto zDOGEC minting feature. This is enabled by default and the enablezeromint=0 setting in the DogeCash.conf file will overwrite the GUI option.
+-	Enable and disable the auto zDOGEC minting feature. This is enabled by default and the enablezeromint=0 setting in the dogecash.conf file will overwrite the GUI option.
 -	The percentage of autominted zDOGEC can now be set from 1 to 100, changed from 10 – 100.
 -	The stake split threshold can now be set VIA the wallet options. This setting is an advanced feature for those wishing to remain staking regular DOGEC.
 -	“Unlock for staking and anonymization only” is now selected by default when unlocking the wallet from the User Interface
@@ -113,7 +113,7 @@ Backup to external devices / locations
 
 ### Summary
 
- The DogeCash wallet can now have user selected directories for automatic backups of the wallet data file (wallet.dat). This can be set by adding the following lines to the DogeCash.conf file, found in the DogeCash data directory.
+ The dogecash wallet can now have user selected directories for automatic backups of the wallet data file (wallet.dat). This can be set by adding the following lines to the dogecash.conf file, found in the dogecash data directory.
 - backuppath = <directory / full path>
 - zDOGECbackuppath = <directory / full path>
 - custombackupthreshold = <backup limit>
@@ -164,19 +164,19 @@ Backing up 4 times will result as shown below
             
 
 
-DogeCash Daemon & Client (RPC Changes)
+dogecash Daemon & Client (RPC Changes)
 --------------
 
 ### RPC Ban Management
 
-The DogeCash client peer bans now have additional RPC commands to manage peers. Peers can be banned and unbanned at will without the need to restart the wallet client. No changes have been made to the conditions resulting in automatic peer bans. New RPC commands: `setban`, `listbanned`, `clearbanned`, and `disconnectnode`
+The dogecash client peer bans now have additional RPC commands to manage peers. Peers can be banned and unbanned at will without the need to restart the wallet client. No changes have been made to the conditions resulting in automatic peer bans. New RPC commands: `setban`, `listbanned`, `clearbanned`, and `disconnectnode`
 
 
 ### Random-cookie RPC authentication
 
 When no `-rpcpassword` is specified, the daemon now uses a special 'cookie' file for authentication. This file is generated with random content when the daemon starts, and deleted when it exits. Its contents are used as authentication token. Read access to this file controls who can access through RPC. By default it is stored in the data directory but its location can be overridden with the option `-rpccookiefile`.
 This is similar to Tor's CookieAuthentication: see https://www.torproject.org/docs/tor-manual.html.en 
-This allows running DogeCashd without having to do any manual configuration.
+This allows running dogecashd without having to do any manual configuration.
 
 
 ### New RPC command
@@ -188,7 +188,7 @@ This allows for a user (such as a third party integration) to query the blockcha
 ### New RPC command 
 `findserial`
 
-Search the zerocoin database for a zerocoinspend transaction that contains the given serial. This will be a helpful tool for the DogeCash support group, which often times sees users say "I didn't spend that zDOGEC". This RPC call allows for support to grab the serial, and then find the spend tx on the chain.
+Search the zerocoin database for a zerocoinspend transaction that contains the given serial. This will be a helpful tool for the dogecash support group, which often times sees users say "I didn't spend that zDOGEC". This RPC call allows for support to grab the serial, and then find the spend tx on the chain.
 
 
 ### New RPC commands 
@@ -206,11 +206,11 @@ Network Layer 2 Changes (Proposals / Budgets / SwiftX)
 
 ### Monthly Budget Increase
 
-As voted on by the DogeCash masternodes, the monthly budget available to be utilised has been increased to 42,000 DOGEC / month. This DOGEC only has the opportunity to be raised once per month (paid to winning proposals) with any unused DOGEC not created by the blockchain.
+As voted on by the dogecash masternodes, the monthly budget available to be utilised has been increased to 42,000 DOGEC / month. This DOGEC only has the opportunity to be raised once per month (paid to winning proposals) with any unused DOGEC not created by the blockchain.
 
 ### Budget Finalization Fee
 
-The DogeCash finalization fee for successful proposals has now been reduced, this fee is now 5 DOGEC down from 50 DOGEC. The total fee outlay for a successful proposal is now a total of 55 DOGEC.
+The dogecash finalization fee for successful proposals has now been reduced, this fee is now 5 DOGEC down from 50 DOGEC. The total fee outlay for a successful proposal is now a total of 55 DOGEC.
 
 
 ### SwiftX Raw Transactions
@@ -251,8 +251,8 @@ Minor Enhancements
 -	Enforced v1 zDOGEC spends to require a security level of 100
 -	Updates to zDOGEC spends to avoid segfaults
 -	Updates to configuration will now reflect on the privacy tab
--	Fixed a  bug that would not start masternodes from the DogeCash-Qt masternodes tab
--	Updated DogeCash-Qt tooltips
+-	Fixed a  bug that would not start masternodes from the dogecash-Qt masternodes tab
+-	Updated dogecash-Qt tooltips
 -	Icon added to the wallet GUI to reflect the status of autominting (active / inactive)
 -	Updated errors causing the blockchain to corrupt when experiencing unexpected wallet shutdowns
 -	Updated RPC help outputs & removed the deprecated obfuscation. 
@@ -263,7 +263,7 @@ Minor Enhancements
 Further Reading: Version 2 Zerocoins
 ==============
 
-Several critical security flaws in the zerocoin protocol and DogeCash's zerocoin implementation have been patched. Enough has changed that new zerocoins are distinct from old zerocoins, and have been labelled as *version 2*. When using the zDOGEC Control dialog in the QT wallet, a user is able to see zDOGEC marked as version 1 or 2.
+Several critical security flaws in the zerocoin protocol and dogecash's zerocoin implementation have been patched. Enough has changed that new zerocoins are distinct from old zerocoins, and have been labelled as *version 2*. When using the zDOGEC Control dialog in the QT wallet, a user is able to see zDOGEC marked as version 1 or 2.
 
 zPoS (zDOGEC staking)
 --------------
@@ -273,7 +273,7 @@ Once a zDOGEC has over 200 confirmations it becomes available to stake. Staking 
 Secure Spending
 --------------
 
-Version 1 zerocoins, as implemented by [Miers et. al](http://zerocoin.org/media/pdf/ZerocoinOakland.pdf), allow for something we describe as *serial trolling*. Spending zerocoins requires that the spender reveal their serial number associated with the zerocoin, and in turn that serial number is used to check for double spending. There is a fringe situation (which is very unlikely to happen within DogeCash's zerocoin implementation due to delayed coin accumulation) where the spender sends the spending transaction, but the transaction does not immediately make it into the blockchain and remains in the mempool for a long enough duration that a *troll* has enough time to see the spender's serial number, mint a new zerocoin with the same serial number, and spend the new zerocoin before the original spender's transaction becomes confirmed. If the timing of this fringe situation worked, then the original spender's coin would be seen as invalid because the troll was able to have the serial recorded into the blockchain first, thus making the original spender's serial appear as a double spend.
+Version 1 zerocoins, as implemented by [Miers et. al](http://zerocoin.org/media/pdf/ZerocoinOakland.pdf), allow for something we describe as *serial trolling*. Spending zerocoins requires that the spender reveal their serial number associated with the zerocoin, and in turn that serial number is used to check for double spending. There is a fringe situation (which is very unlikely to happen within dogecash's zerocoin implementation due to delayed coin accumulation) where the spender sends the spending transaction, but the transaction does not immediately make it into the blockchain and remains in the mempool for a long enough duration that a *troll* has enough time to see the spender's serial number, mint a new zerocoin with the same serial number, and spend the new zerocoin before the original spender's transaction becomes confirmed. If the timing of this fringe situation worked, then the original spender's coin would be seen as invalid because the troll was able to have the serial recorded into the blockchain first, thus making the original spender's serial appear as a double spend.
 
 The serial troll situation is mitigated in version 2 by requiring that the serial number be a hash of a public key. The spend requires an additional signature signed by the private key associated with the public key hash matching the serial number. This work around was conceived by Tim Ruffing, a cryptographer that has studied the zerocoin protocol and done consulting work for the ZCoin project.
 
@@ -285,7 +285,7 @@ Zerocoins, or zDOGEC, are now deterministically generated using a unique 256 bit
 Zerocoin Modulus
 --------------
 
-DogeCash's zerocoin implementation used the same code from the ZCoin project to import the modulus use for the zerocoin protocol. The chosen modulus is the 2048 bit RSA number created for the RSA factoring challenge. The ZCoin project's implementation (which DogeCash used) improperly imported the modulus into the code. This flaw was discovered by user GOAT from the [Civitas Project](https://github.com/eastcoastcrypto/Civitas/), and reported to DogeCash using the bug bounty program. The modulus is now correctly imported and DogeCash's accumulators have been changed to use the new proper modulus.
+dogecash's zerocoin implementation used the same code from the ZCoin project to import the modulus use for the zerocoin protocol. The chosen modulus is the 2048 bit RSA number created for the RSA factoring challenge. The ZCoin project's implementation (which dogecash used) improperly imported the modulus into the code. This flaw was discovered by user GOAT from the [Civitas Project](https://github.com/eastcoastcrypto/Civitas/), and reported to dogecash using the bug bounty program. The modulus is now correctly imported and dogecash's accumulators have been changed to use the new proper modulus.
 
 
 *3.1.0* Change log
@@ -348,7 +348,7 @@ Detailed release notes follow. This overview includes changes that affect behavi
 ### RPC/REST
  - #562 `772160b1b` [Wallet/RPC] Add argument to mint zerocoin from specific UTXO (warrows)
  - #539 `b6a02e9d6` [RPC] Allow watchonly coins to be shown for listunspent (blondfrogs)
- - #543 `e4522ff07` [RPC] Segfault DogeCash-cli getinfo while loading block index (Mrs-X)
+ - #543 `e4522ff07` [RPC] Segfault dogecash-cli getinfo while loading block index (Mrs-X)
  - #524 `2541b5001` [RPC] Add blocksizenotify command (Mrs-X)
  - #495 `4946224c1` [RPC] Show script verification errors in signrawtransaction result (Fuzzbawls)
  - #468 `00b8b8e72` [RPC/REST] Migrate to libevent based httpd server (Fuzzbawls)
@@ -405,4 +405,4 @@ Thanks to everyone who directly contributed to this release:
 - PeterL73
 - Anthony Posselli
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/DogeCash-project-translations/), the QA team during Testing and the Node hosts supporting our Testnet.
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/dogecash-project-translations/), the QA team during Testing and the Node hosts supporting our Testnet.

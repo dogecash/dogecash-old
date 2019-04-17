@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "DogeCash"
-            VALUE "FileDescription",    "DogeCash-tx (CLI DogeCash transaction editor utility)"
+            VALUE "CompanyName",        "dogecash"
+            VALUE "FileDescription",    "dogecash-tx (CLI dogecash transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "DogeCash-tx"
+            VALUE "InternalName",       "dogecash-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "DogeCash-tx.exe"
-            VALUE "ProductName",        "DogeCash-tx"
+            VALUE "OriginalFilename",   "dogecash-tx.exe"
+            VALUE "ProductName",        "dogecash-tx"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

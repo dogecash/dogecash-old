@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2018 The DogeCash developers
+// Copyright (c) 2017-2018 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DogeCash_MINTPOOL_H
-#define DogeCash_MINTPOOL_H
+#ifndef dogecash_MINTPOOL_H
+#define dogecash_MINTPOOL_H
 
 #include <map>
 #include <list>
@@ -50,4 +50,4 @@ public:
 };
 
 
-#endif //DogeCash_MINTPOOL_H
+#endif //dogecash_MINTPOOL_H

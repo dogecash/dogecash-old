@@ -66,15 +66,15 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += DogeCashd
+  bin_PROGRAMS += dogecashd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += DogeCash-cli DogeCash-tx
+  bin_PROGRAMS += dogecash-cli dogecash-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# DogeCash core #
+# dogecash core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrman.h \
@@ -199,7 +199,7 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between DogeCashd and DogeCash-qt
+# server: shared between dogecashd and dogecash-qt
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
@@ -247,7 +247,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between DogeCashd and DogeCash-qt, but only linked
+# wallet: shared between dogecashd and dogecash-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -346,7 +346,7 @@ libzerocoin_libbitcoin_zerocoin_a_SOURCES = \
   libzerocoin/Params.cpp \
   libzerocoin/SerialNumberSignatureOfKnowledge.cpp
 
-# common: shared between DogeCashd, and DogeCash-qt and non-server tools
+# common: shared between dogecashd, and dogecash-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -411,7 +411,7 @@ libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
-# cli: shared between DogeCash-cli and DogeCash-qt
+# cli: shared between dogecash-cli and dogecash-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -421,16 +421,16 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# DogeCashd binary #
-DogeCashd_SOURCES = DogeCashd.cpp
-DogeCashd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-DogeCashd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-DogeCashd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# dogecashd binary #
+dogecashd_SOURCES = dogecashd.cpp
+dogecashd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+dogecashd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+dogecashd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-DogeCashd_SOURCES += DogeCashd-res.rc
+dogecashd_SOURCES += dogecashd-res.rc
 endif
-DogeCashd_LDADD = \
+dogecashd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -444,38 +444,38 @@ DogeCashd_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-DogeCashd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+dogecashd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# DogeCash-cli binary #
-DogeCash_cli_SOURCES = DogeCash-cli.cpp
-DogeCash_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-DogeCash_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-DogeCash_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# dogecash-cli binary #
+dogecash_cli_SOURCES = dogecash-cli.cpp
+dogecash_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+dogecash_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+dogecash_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-DogeCash_cli_SOURCES += DogeCash-cli-res.rc
+dogecash_cli_SOURCES += dogecash-cli-res.rc
 endif
 
-DogeCash_cli_LDADD = \
+dogecash_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-DogeCash_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+dogecash_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# DogeCash-tx binary #
-DogeCash_tx_SOURCES = DogeCash-tx.cpp
-DogeCash_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-DogeCash_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-DogeCash_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# dogecash-tx binary #
+dogecash_tx_SOURCES = dogecash-tx.cpp
+dogecash_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+dogecash_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+dogecash_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-DogeCash_tx_SOURCES += DogeCash-tx-res.rc
+dogecash_tx_SOURCES += dogecash-tx-res.rc
 endif
 
-DogeCash_tx_LDADD = \
+dogecash_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_ZEROCOIN) \
@@ -483,7 +483,7 @@ DogeCash_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-DogeCash_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+dogecash_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #
@@ -532,12 +532,12 @@ CLEANFILES += obj/build.h
 EXTRA_DIST =
 
 
-config/DogeCash-config.h: config/stamp-h1
+config/dogecash-config.h: config/stamp-h1
 	@$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-config/stamp-h1: $(top_srcdir)/$(subdir)/config/DogeCash-config.h.in $(top_builddir)/config.status
+config/stamp-h1: $(top_srcdir)/$(subdir)/config/dogecash-config.h.in $(top_builddir)/config.status
 	$(AM_V_at)$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-$(top_srcdir)/$(subdir)/config/DogeCash-config.h.in:  $(am__configure_deps)
-	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/DogeCash-config.h.in
+$(top_srcdir)/$(subdir)/config/dogecash-config.h.in:  $(am__configure_deps)
+	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/dogecash-config.h.in
 
 clean-local:
 	-$(MAKE) -C secp256k1 clean

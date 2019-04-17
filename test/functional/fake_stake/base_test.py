@@ -17,11 +17,11 @@ from test_framework.util import hash256, bytes_to_hex_str, hex_str_to_bytes, con
 
 from .util import TestNode, create_transaction, utxo_to_stakingPrevOuts, dir_size
 ''' -------------------------------------------------------------------------
-DogeCash_FakeStakeTest CLASS ----------------------------------------------------
+dogecash_FakeStakeTest CLASS ----------------------------------------------------
 
 General Test Class to be extended by individual tests for each attack test
 '''
-class DogeCash_FakeStakeTest(BitcoinTestFramework):
+class dogecash_FakeStakeTest(BitcoinTestFramework):
 
     def set_test_params(self):
         ''' Setup test environment
@@ -180,7 +180,7 @@ class DogeCash_FakeStakeTest(BitcoinTestFramework):
     def spend_utxos(self, utxo_list, address_list = []):
         ''' spend utxos to provided list of addresses or 10 new generate ones.
         :param      utxo_list:      (JSON list) returned from listunspent used as input
-                    address_list:   (string list) [optional] recipient DogeCash addresses. if not set,
+                    address_list:   (string list) [optional] recipient dogecash addresses. if not set,
                                     10 new addresses will be generated from the wallet for each tx.
         :return:    txHashes        (string list) tx hashes
         '''
@@ -206,7 +206,7 @@ class DogeCash_FakeStakeTest(BitcoinTestFramework):
     def stake_amplification_step(self, utxo_list, address_list = []):
         ''' spends a list of utxos providing the list of new outputs
         :param      utxo_list:     (JSON list) returned from listunspent used as input
-                    address_list:  (string list) [optional] recipient DogeCash addresses.
+                    address_list:  (string list) [optional] recipient dogecash addresses.
         :return:    new_utxos:     (JSON list) list of new (valid) inputs after the spends
         '''
         self.log.info("--> Stake Amplification step started with %d UTXOs", len(utxo_list))
@@ -228,7 +228,7 @@ class DogeCash_FakeStakeTest(BitcoinTestFramework):
         ''' performs the "stake amplification" which gives higher chances at finding fake stakes
         :param      utxo_list:    (JSON list) returned from listunspent used as input
                     iterations:   (int) amount of stake amplification steps to perform
-                    address_list: (string list) [optional] recipient DogeCash addresses.
+                    address_list: (string list) [optional] recipient dogecash addresses.
         :return:    all_inputs:   (JSON list) list of all spent inputs
         '''
         self.log.info("** Stake Amplification started with %d UTXOs", len(utxo_list))

@@ -1,25 +1,25 @@
-# /etc/conf.d/DogeCashd: config file for /etc/init.d/DogeCashd
+# /etc/conf.d/dogecashd: config file for /etc/init.d/dogecashd
 
 # Config file location
-#BITCOIND_CONFIGFILE="/etc/DogeCash/DogeCash.conf"
+#BITCOIND_CONFIGFILE="/etc/dogecash/dogecash.conf"
 
 # What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
-#BITCOIND_PIDDIR="/var/run/DogeCashd"
+#BITCOIND_PIDDIR="/var/run/dogecashd"
 
 # What filename to give the pidfile
-#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/DogeCashd.pid"
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/dogecashd.pid"
 
-# Where to write DogeCashd data (be mindful that the blockchain is large)
-#BITCOIND_DATADIR="/var/lib/DogeCashd"
+# Where to write dogecashd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/dogecashd"
 
-# User and group to own DogeCashd process
-#BITCOIND_USER="DogeCash"
-#BITCOIND_GROUP="DogeCash"
+# User and group to own dogecashd process
+#BITCOIND_USER="dogecash"
+#BITCOIND_GROUP="dogecash"
 
-# Path to DogeCashd executable
-#BITCOIND_BIN="/usr/bin/DogeCashd"
+# Path to dogecashd executable
+#BITCOIND_BIN="/usr/bin/dogecashd"
 
-# Nice value to run DogeCashd under
+# Nice value to run dogecashd under
 #BITCOIND_NICE=0
 
 # Additional options (avoid -conf and -datadir, use flags above)

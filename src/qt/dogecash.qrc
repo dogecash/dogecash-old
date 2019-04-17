@@ -43,12 +43,12 @@
         <file alias="tx_input">res/icons/tx_input.png</file>
         <file alias="tx_output">res/icons/tx_output.png</file>
         <file alias="tx_inout">res/icons/tx_inout.png</file>
-        <file alias="unit_DogeCash">res/icons/unit_DogeCash.png</file>
-        <file alias="unit_mDogeCash">res/icons/unit_mDogeCash.png</file>
-        <file alias="unit_uDogeCash">res/icons/unit_uDogeCash.png</file>
-        <file alias="unit_tDogeCash">res/icons/unit_tDogeCash.png</file>
-        <file alias="unit_tmDogeCash">res/icons/unit_tmDogeCash.png</file>
-        <file alias="unit_tuDogeCash">res/icons/unit_tuDogeCash.png</file>
+        <file alias="unit_dogecash">res/icons/unit_dogecash.png</file>
+        <file alias="unit_mdogecash">res/icons/unit_mdogecash.png</file>
+        <file alias="unit_udogecash">res/icons/unit_udogecash.png</file>
+        <file alias="unit_tdogecash">res/icons/unit_tdogecash.png</file>
+        <file alias="unit_tmdogecash">res/icons/unit_tmdogecash.png</file>
+        <file alias="unit_tudogecash">res/icons/unit_tudogecash.png</file>
         <file alias="lock_closed">res/icons/lock_closed.png</file>
         <file alias="lock_open">res/icons/lock_open.png</file>
         <file alias="key">res/icons/key.png</file>
@@ -71,7 +71,7 @@
     </qresource>
     <qresource prefix="/images">
         <file alias="about">res/images/about.png</file>
-        <file alias="DogeCash_logo_horizontal">res/images/DogeCash_logo_horizontal.png</file>
+        <file alias="dogecash_logo_horizontal">res/images/dogecash_logo_horizontal.png</file>
         <file alias="downArrow">res/images/downArrow_dark.png</file>
         <file alias="downArrow_small">res/images/downArrow_small_dark.png</file>
         <file alias="downArrow_small_white">res/images/downArrow_small.png</file>

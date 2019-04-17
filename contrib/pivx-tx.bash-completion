@@ -1,15 +1,15 @@
-# bash programmable completion for DogeCash-tx(1)
+# bash programmable completion for dogecash-tx(1)
 # Copyright (c) 2016 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-_DogeCash_tx() {
+_dogecash_tx() {
     local cur prev words=() cword
-    local DogeCash_tx
+    local dogecash_tx
 
-    # save and use original argument to invoke DogeCash-tx for -help
+    # save and use original argument to invoke dogecash-tx for -help
     # it might not be in $PATH
-    DogeCash_tx="$1"
+    dogecash_tx="$1"
 
     COMPREPLY=()
     _get_comp_words_by_ref -n =: cur prev words cword
@@ -27,15 +27,15 @@ _DogeCash_tx() {
 
     if [[ "$cword" == 1 || ( "$prev" != "-create" && "$prev" == -* ) ]]; then
         # only options (or an uncompletable hex-string) allowed
-        # parse DogeCash-tx -help for options
+        # parse dogecash-tx -help for options
         local helpopts
-        helpopts=$($DogeCash_tx -help | sed -e '/^  -/ p' -e d )
+        helpopts=$($dogecash_tx -help | sed -e '/^  -/ p' -e d )
         COMPREPLY=( $( compgen -W "$helpopts" -- "$cur" ) )
     else
         # only commands are allowed
         # parse -help for commands
         local helpcmds
-        helpcmds=$($DogeCash_tx -help | sed -e '1,/Commands:/d' -e 's/=.*/=/' -e '/^  [a-z]/ p' -e d )
+        helpcmds=$($dogecash_tx -help | sed -e '1,/Commands:/d' -e 's/=.*/=/' -e '/^  [a-z]/ p' -e d )
         COMPREPLY=( $( compgen -W "$helpcmds" -- "$cur" ) )
     fi
 
@@ -46,7 +46,7 @@ _DogeCash_tx() {
 
     return 0
 } &&
-complete -F _DogeCash_tx DogeCash-tx
+complete -F _dogecash_tx dogecash-tx
 
 # Local variables:
 # mode: shell-script

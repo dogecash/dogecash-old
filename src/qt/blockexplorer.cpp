@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2018 The DogeCash developers
+// Copyright (c) 2017-2018 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -477,8 +477,8 @@ void BlockExplorer::showEvent(QShowEvent*)
         updateNavButtons();
 
         if (!GetBoolArg("-txindex", true)) {
-            QString Warning = tr("Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (DogeCash.conf).");
-            QMessageBox::warning(this, "DogeCash Core Blockchain Explorer", Warning, QMessageBox::Ok);
+            QString Warning = tr("Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (dogecash.conf).");
+            QMessageBox::warning(this, "dogecash Core Blockchain Explorer", Warning, QMessageBox::Ok);
         }
     }
 }

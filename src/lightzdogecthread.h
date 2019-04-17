@@ -1,11 +1,11 @@
 //
-// Copyright (c) 2015-2018 The DogeCash developers
+// Copyright (c) 2015-2018 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 //
 
-#ifndef DogeCash_LIGHTzDOGECTHREAD_H
-#define DogeCash_LIGHTzDOGECTHREAD_H
+#ifndef dogecash_LIGHTzDOGECTHREAD_H
+#define dogecash_LIGHTzDOGECTHREAD_H
 
 #include <atomic>
 #include "genwit.h"
@@ -43,7 +43,7 @@ public:
 
     bool addWitWork(CGenWit wit) {
         if (!isWorkerRunning) {
-            LogPrintf("%s not running trying to add wit work \n", "DogeCash-light-thread");
+            LogPrintf("%s not running trying to add wit work \n", "dogecash-light-thread");
             return false;
         }
         requestsQueue.push(wit);
@@ -51,13 +51,13 @@ public:
     }
 
     void StartLightzDOGECThread(boost::thread_group& threadGroup) {
-        LogPrintf("%s thread start\n", "DogeCash-light-thread");
+        LogPrintf("%s thread start\n", "dogecash-light-thread");
         threadIns = boost::thread(boost::bind(&CLightWorker::ThreadLightzDOGECSimplified, this));
     }
 
     void StopLightzDOGECThread() {
         threadIns.interrupt();
-        LogPrintf("%s thread interrupted\n", "DogeCash-light-thread");
+        LogPrintf("%s thread interrupted\n", "dogecash-light-thread");
     }
 
 private:
@@ -68,4 +68,4 @@ private:
 
 };
 
-#endif //DogeCash_LIGHTzDOGECTHREAD_H
+#endif //dogecash_LIGHTzDOGECTHREAD_H

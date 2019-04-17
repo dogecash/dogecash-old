@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2018 The DogeCash developers
+// Copyright (c) 2017-2018 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DogeCash_STAKEINPUT_H
-#define DogeCash_STAKEINPUT_H
+#ifndef dogecash_STAKEINPUT_H
+#define dogecash_STAKEINPUT_H
 
 #include "chain.h"
 #include "streams.h"
@@ -94,4 +94,4 @@ public:
 };
 
 
-#endif //DogeCash_STAKEINPUT_H
+#endif //dogecash_STAKEINPUT_H

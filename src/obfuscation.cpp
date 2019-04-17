@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The DogeCash developers
+// Copyright (c) 2015-2017 The dogecash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -779,7 +779,7 @@ void CObfuscationPool::ChargeRandomFees()
 
                 Being that Obfuscation has "no fees" we need to have some kind of cost associated
                 with using it to stop abuse. Otherwise it could serve as an attack vector and
-                allow endless transaction that would bloat DogeCash and make it unusable. To
+                allow endless transaction that would bloat dogecash and make it unusable. To
                 stop these kinds of attacks 1 in 10 successful transactions are charged. This
                 adds up to a cost of 0.001 DOGEC per transaction on average.
             */
@@ -1436,7 +1436,7 @@ bool CObfuscationPool::DoAutomaticDenominating(bool fDryRun)
         // should have some additional amount for them
         nLowestDenom += OBFUSCATION_COLLATERAL * 4;
 
-    CAmount nBalanceNeedsAnonymized = nAnonymizeDogeCashAmount * COIN - pwalletMain->GetAnonymizedBalance();
+    CAmount nBalanceNeedsAnonymized = nAnonymizedogecashAmount * COIN - pwalletMain->GetAnonymizedBalance();
 
     // if balanceNeedsAnonymized is more than pool max, take the pool max
     if (nBalanceNeedsAnonymized > OBFUSCATION_POOL_MAX) nBalanceNeedsAnonymized = OBFUSCATION_POOL_MAX;
@@ -2288,7 +2288,7 @@ void ThreadCheckObfuScationPool()
     if (fLiteMode) return; //disable all Obfuscation/Masternode related functionality
 
     // Make this thread recognisable as the wallet flushing thread
-    RenameThread("DogeCash-obfuscation");
+    RenameThread("dogecash-obfuscation");
 
     unsigned int c = 0;
 

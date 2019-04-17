@@ -168,7 +168,7 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="../DogeCash.qrc"/>
+  <include location="../dogecash.qrc"/>
  </resources>
  <connections/>
 </ui>

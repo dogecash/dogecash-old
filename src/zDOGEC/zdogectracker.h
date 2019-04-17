@@ -1,9 +1,9 @@
-// Copyright (c) 2018 The DogeCash developers
+// Copyright (c) 2018 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DogeCash_zDOGECTRACKER_H
-#define DogeCash_zDOGECTRACKER_H
+#ifndef dogecash_zDOGECTRACKER_H
+#define dogecash_zDOGECTRACKER_H
 
 #include "zerocoin.h"
 #include "witness.h"
@@ -55,4 +55,4 @@ public:
     void Clear();
 };
 
-#endif //DogeCash_zDOGECTRACKER_H
+#endif //dogecash_zDOGECTRACKER_H

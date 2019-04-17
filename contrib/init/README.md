@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: DogeCashd.service
-Upstart: DogeCashd.conf
-OpenRC:  DogeCashd.openrc
-         DogeCashd.openrcconf
-CentOS:  DogeCashd.init
-macOS:    org.DogeCash.DogeCashd.plist
+SystemD: dogecashd.service
+Upstart: dogecashd.conf
+OpenRC:  dogecashd.openrc
+         dogecashd.openrcconf
+CentOS:  dogecashd.init
+macOS:    org.dogecash.dogecashd.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

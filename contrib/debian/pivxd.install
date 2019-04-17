@@ -1,2 +1,2 @@
-usr/local/bin/DogeCashd usr/bin
-usr/local/bin/DogeCash-cli usr/bin
+usr/local/bin/dogecashd usr/bin
+usr/local/bin/dogecash-cli usr/bin

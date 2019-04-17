@@ -1,11 +1,11 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The DogeCash developers
+// Copyright (c) 2015-2018 The dogecash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/DogeCash-config.h"
+#include "config/dogecash-config.h"
 #endif
 
 #include "optionsmodel.h"
@@ -97,10 +97,10 @@ void OptionsModel::Init()
         settings.setValue("nPreferredDenom", 0);
     nPreferredDenom = settings.value("nPreferredDenom", "0").toLongLong();
 
-    if (!settings.contains("nAnonymizeDogeCashAmount"))
-        settings.setValue("nAnonymizeDogeCashAmount", 1000);
+    if (!settings.contains("nAnonymizedogecashAmount"))
+        settings.setValue("nAnonymizedogecashAmount", 1000);
 
-    nAnonymizeDogeCashAmount = settings.value("nAnonymizeDogeCashAmount").toLongLong();
+    nAnonymizedogecashAmount = settings.value("nAnonymizedogecashAmount").toLongLong();
 
     if (!settings.contains("fShowMasternodesTab"))
         settings.setValue("fShowMasternodesTab", masternodeConfig.getCount());
@@ -176,8 +176,8 @@ void OptionsModel::Init()
         SoftSetArg("-zeromintpercentage", settings.value("nZeromintPercentage").toString().toStdString());
     if (settings.contains("nPreferredDenom"))
         SoftSetArg("-preferredDenom", settings.value("nPreferredDenom").toString().toStdString());
-    if (settings.contains("nAnonymizeDogeCashAmount"))
-        SoftSetArg("-anonymizeDogeCashamount", settings.value("nAnonymizeDogeCashAmount").toString().toStdString());
+    if (settings.contains("nAnonymizedogecashAmount"))
+        SoftSetArg("-anonymizedogecashamount", settings.value("nAnonymizedogecashAmount").toString().toStdString());
 
     language = settings.value("language").toString();
 }
@@ -188,7 +188,7 @@ void OptionsModel::Reset()
 
     // Remove all entries from our QSettings object
     settings.clear();
-    resetSettings = true; // Needed in DogeCash.cpp during shotdown to also remove the window positions
+    resetSettings = true; // Needed in dogecash.cpp during shotdown to also remove the window positions
 
     // default setting for OptionsModel::StartAtStartup - disabled
     if (GUIUtil::GetStartOnSystemStartup())
@@ -272,8 +272,8 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             return QVariant(nZeromintPercentage);
         case ZeromintPrefDenom:
             return QVariant(nPreferredDenom);
-        case AnonymizeDogeCashAmount:
-            return QVariant(nAnonymizeDogeCashAmount);
+        case AnonymizedogecashAmount:
+            return QVariant(nAnonymizedogecashAmount);
         case Listen:
             return settings.value("fListen");
         default:
@@ -410,10 +410,10 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
             settings.setValue("fHideOrphans", fHideOrphans);
             emit hideOrphansChanged(fHideOrphans);
             break;
-        case AnonymizeDogeCashAmount:
-            nAnonymizeDogeCashAmount = value.toInt();
-            settings.setValue("nAnonymizeDogeCashAmount", nAnonymizeDogeCashAmount);
-            emit anonymizeDogeCashAmountChanged(nAnonymizeDogeCashAmount);
+        case AnonymizedogecashAmount:
+            nAnonymizedogecashAmount = value.toInt();
+            settings.setValue("nAnonymizedogecashAmount", nAnonymizedogecashAmount);
+            emit anonymizedogecashAmountChanged(nAnonymizedogecashAmount);
             break;
         case CoinControlFeatures:
             fCoinControlFeatures = value.toBool();

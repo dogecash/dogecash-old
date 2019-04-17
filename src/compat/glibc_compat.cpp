@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2017 The Bitcoin Core developers
-// Copyright (c) 2017 The DogeCash developers
+// Copyright (c) 2017 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/DogeCash-config.h"
+#include "config/dogecash-config.h"
 #endif
 
 #include <cstddef>

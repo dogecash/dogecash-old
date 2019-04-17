@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2018 The DogeCash developers
+// Copyright (c) 2017-2018 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DogeCash_zDOGECWALLET_H
-#define DogeCash_zDOGECWALLET_H
+#ifndef dogecash_zDOGECWALLET_H
+#define dogecash_zDOGECWALLET_H
 
 #include <map>
 #include "libzerocoin/Coin.h"
@@ -46,4 +46,4 @@ private:
     uint512 GetZerocoinSeed(uint32_t n);
 };
 
-#endif //DogeCash_zDOGECWALLET_H
+#endif //dogecash_zDOGECWALLET_H

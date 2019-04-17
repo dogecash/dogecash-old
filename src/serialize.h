@@ -1,11 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2015-2018 The DogeCash developers
+// Copyright (c) 2015-2018 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DogeCash_SERIALIZE_H
-#define DogeCash_SERIALIZE_H
+#ifndef dogecash_SERIALIZE_H
+#define dogecash_SERIALIZE_H
 
 #include <algorithm>
 #include <assert.h>
@@ -936,4 +936,4 @@ public:
     }
 };
 
-#endif // DogeCash_SERIALIZE_H
+#endif // dogecash_SERIALIZE_H

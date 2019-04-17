@@ -1,10 +1,10 @@
 
-## <summary>policy for DogeCash</summary>
+## <summary>policy for dogecash</summary>
 
 
 ########################################
 ## <summary>
-##	Transition to DogeCash.
+##	Transition to dogecash.
 ## </summary>
 ## <param name="domain">
 ## <summary>
@@ -12,19 +12,19 @@
 ## </summary>
 ## </param>
 #
-interface(`DogeCash_domtrans',`
+interface(`dogecash_domtrans',`
 	gen_require(`
-		type DogeCash_t, DogeCash_exec_t;
+		type dogecash_t, dogecash_exec_t;
 	')
 
 	corecmd_search_bin($1)
-	domtrans_pattern($1, DogeCash_exec_t, DogeCash_t)
+	domtrans_pattern($1, dogecash_exec_t, dogecash_t)
 ')
 
 
 ########################################
 ## <summary>
-##	Execute DogeCash server in the DogeCash domain.
+##	Execute dogecash server in the dogecash domain.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -32,18 +32,18 @@ interface(`DogeCash_domtrans',`
 ##	</summary>
 ## </param>
 #
-interface(`DogeCash_initrc_domtrans',`
+interface(`dogecash_initrc_domtrans',`
 	gen_require(`
-		type DogeCash_initrc_exec_t;
+		type dogecash_initrc_exec_t;
 	')
 
-	init_labeled_script_domtrans($1, DogeCash_initrc_exec_t)
+	init_labeled_script_domtrans($1, dogecash_initrc_exec_t)
 ')
 
 
 ########################################
 ## <summary>
-##	Search DogeCash lib directories.
+##	Search dogecash lib directories.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -51,18 +51,18 @@ interface(`DogeCash_initrc_domtrans',`
 ##	</summary>
 ## </param>
 #
-interface(`DogeCash_search_lib',`
+interface(`dogecash_search_lib',`
 	gen_require(`
-		type DogeCash_var_lib_t;
+		type dogecash_var_lib_t;
 	')
 
-	allow $1 DogeCash_var_lib_t:dir search_dir_perms;
+	allow $1 dogecash_var_lib_t:dir search_dir_perms;
 	files_search_var_lib($1)
 ')
 
 ########################################
 ## <summary>
-##	Read DogeCash lib files.
+##	Read dogecash lib files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -70,18 +70,18 @@ interface(`DogeCash_search_lib',`
 ##	</summary>
 ## </param>
 #
-interface(`DogeCash_read_lib_files',`
+interface(`dogecash_read_lib_files',`
 	gen_require(`
-		type DogeCash_var_lib_t;
+		type dogecash_var_lib_t;
 	')
 
 	files_search_var_lib($1)
-	read_files_pattern($1, DogeCash_var_lib_t, DogeCash_var_lib_t)
+	read_files_pattern($1, dogecash_var_lib_t, dogecash_var_lib_t)
 ')
 
 ########################################
 ## <summary>
-##	Manage DogeCash lib files.
+##	Manage dogecash lib files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -89,18 +89,18 @@ interface(`DogeCash_read_lib_files',`
 ##	</summary>
 ## </param>
 #
-interface(`DogeCash_manage_lib_files',`
+interface(`dogecash_manage_lib_files',`
 	gen_require(`
-		type DogeCash_var_lib_t;
+		type dogecash_var_lib_t;
 	')
 
 	files_search_var_lib($1)
-	manage_files_pattern($1, DogeCash_var_lib_t, DogeCash_var_lib_t)
+	manage_files_pattern($1, dogecash_var_lib_t, dogecash_var_lib_t)
 ')
 
 ########################################
 ## <summary>
-##	Manage DogeCash lib directories.
+##	Manage dogecash lib directories.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -108,20 +108,20 @@ interface(`DogeCash_manage_lib_files',`
 ##	</summary>
 ## </param>
 #
-interface(`DogeCash_manage_lib_dirs',`
+interface(`dogecash_manage_lib_dirs',`
 	gen_require(`
-		type DogeCash_var_lib_t;
+		type dogecash_var_lib_t;
 	')
 
 	files_search_var_lib($1)
-	manage_dirs_pattern($1, DogeCash_var_lib_t, DogeCash_var_lib_t)
+	manage_dirs_pattern($1, dogecash_var_lib_t, dogecash_var_lib_t)
 ')
 
 
 ########################################
 ## <summary>
 ##	All of the rules required to administrate
-##	a DogeCash environment
+##	a dogecash environment
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -135,23 +135,23 @@ interface(`DogeCash_manage_lib_dirs',`
 ## </param>
 ## <rolecap/>
 #
-interface(`DogeCash_admin',`
+interface(`dogecash_admin',`
 	gen_require(`
-		type DogeCash_t;
-		type DogeCash_initrc_exec_t;
-		type DogeCash_var_lib_t;
+		type dogecash_t;
+		type dogecash_initrc_exec_t;
+		type dogecash_var_lib_t;
 	')
 
-	allow $1 DogeCash_t:process { ptrace signal_perms };
-	ps_process_pattern($1, DogeCash_t)
+	allow $1 dogecash_t:process { ptrace signal_perms };
+	ps_process_pattern($1, dogecash_t)
 
-	DogeCash_initrc_domtrans($1)
+	dogecash_initrc_domtrans($1)
 	domain_system_change_exemption($1)
-	role_transition $2 DogeCash_initrc_exec_t system_r;
+	role_transition $2 dogecash_initrc_exec_t system_r;
 	allow $2 system_r;
 
 	files_search_var_lib($1)
-	admin_pattern($1, DogeCash_var_lib_t)
+	admin_pattern($1, dogecash_var_lib_t)
 
 ')
 

@@ -1,9 +1,9 @@
-// Copyright (c) 2018 The DogeCash developers
+// Copyright (c) 2018 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DogeCash_SPENDTYPE_H
-#define DogeCash_SPENDTYPE_H
+#ifndef dogecash_SPENDTYPE_H
+#define dogecash_SPENDTYPE_H
 
 #include <cstdint>
 
@@ -16,4 +16,4 @@ namespace libzerocoin {
     };
 }
 
-#endif //DogeCash_SPENDTYPE_H
+#endif //dogecash_SPENDTYPE_H

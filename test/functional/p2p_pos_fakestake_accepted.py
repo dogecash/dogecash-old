@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 The DogeCash Core developers
+# Copyright (c) 2019 The dogecash Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,9 +10,9 @@ but not on the fork branch. These blocks must be accepted.
 
 from time import sleep
 
-from fake_stake.base_test import DogeCash_FakeStakeTest
+from fake_stake.base_test import dogecash_FakeStakeTest
 
-class PoSFakeStakeAccepted(DogeCash_FakeStakeTest):
+class PoSFakeStakeAccepted(dogecash_FakeStakeTest):
 
     def run_test(self):
         self.description = "Covers the scenario of a valid PoS block where the coinstake input prevout is spent on main chain, but not on the fork branch. These blocks must be accepted."

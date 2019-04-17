@@ -1,9 +1,9 @@
-// Copyright (c) 2017 The DogeCash developers
+// Copyright (c) 2017 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DogeCash_QT_MULTISENDDIALOG_H
-#define DogeCash_QT_MULTISENDDIALOG_H
+#ifndef dogecash_QT_MULTISENDDIALOG_H
+#define dogecash_QT_MULTISENDDIALOG_H
 
 #include <QDialog>
 
@@ -38,4 +38,4 @@ private:
     WalletModel* model;
 };
 
-#endif // DogeCash_QT_MULTISENDDIALOG_H
+#endif // dogecash_QT_MULTISENDDIALOG_H

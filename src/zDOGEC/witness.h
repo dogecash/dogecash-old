@@ -1,5 +1,5 @@
-#ifndef DogeCash_WITNESS_H
-#define DogeCash_WITNESS_H
+#ifndef dogecash_WITNESS_H
+#define dogecash_WITNESS_H
 
 
 #include <libzerocoin/Accumulator.h>
@@ -75,4 +75,4 @@ public:
         READWRITE(accumulatorDenom);
     };
 };
-#endif //DogeCash_WITNESS_H
+#endif //dogecash_WITNESS_H

@@ -1,8 +1,8 @@
-/usr/bin/DogeCash-cli		--	gen_context(system_u:object_r:DogeCash_exec_t,s0)
-/usr/sbin/DogeCashd		--	gen_context(system_u:object_r:DogeCash_exec_t,s0)
-/usr/lib(64)?/DogeCash/DogeCashd		--	gen_context(system_u:object_r:DogeCash_exec_t,s0)
+/usr/bin/dogecash-cli		--	gen_context(system_u:object_r:dogecash_exec_t,s0)
+/usr/sbin/dogecashd		--	gen_context(system_u:object_r:dogecash_exec_t,s0)
+/usr/lib(64)?/dogecash/dogecashd		--	gen_context(system_u:object_r:dogecash_exec_t,s0)
 
-/etc/DogeCash(/.*)?		gen_context(system_u:object_r:DogeCash_conf_t,s0)
-/var/lib/DogeCash(/.*)?		gen_context(system_u:object_r:DogeCash_var_lib_t,s0)
+/etc/dogecash(/.*)?		gen_context(system_u:object_r:dogecash_conf_t,s0)
+/var/lib/dogecash(/.*)?		gen_context(system_u:object_r:dogecash_var_lib_t,s0)
 
-(/var)?/run/DogeCashd(/.*)?   gen_context(system_u:object_r:DogeCash_var_run_t,s0)
+(/var)?/run/dogecashd(/.*)?   gen_context(system_u:object_r:dogecash_var_run_t,s0)
