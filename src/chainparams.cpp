@@ -10,6 +10,7 @@
 #include "random.h"
 #include "util.h"
 #include "utilstrencodings.h"
+#include "stdio.h"
 
 #include <assert.h>
 
