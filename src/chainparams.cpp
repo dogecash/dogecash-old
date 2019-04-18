@@ -219,7 +219,7 @@ public:
         printf("Mainnet block.nNonce = %u \n", genesis.nNonce);
         printf("Mainnet block.hashMerkleRoot: %s\n", genesis.hashMerkleRoot.ToString().c_str());
         printf("Mainnet block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-	system("pause")
+	system("pause");
         }
 
 	
@@ -355,7 +355,7 @@ public:
         printf("Testnet block.nNonce = %u \n", genesis.nNonce);
         printf("Testnet block.hashMerkleRoot: %s\n", genesis.hashMerkleRoot.ToString().c_str());
         printf("Testnet block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-	system("pause")
+	system("pause");
         }
 
 	hashGenesisBlock = genesis.GetHash();
@@ -466,7 +466,7 @@ public:
         printf("regtestnet block.nNonce = %u \n", genesis.nNonce);
         printf("regtestnet block.hashMerkleRoot: %s\n", genesis.hashMerkleRoot.ToString().c_str());
         printf("regtestnet block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-	system("pause")
+	system("pause");
         }
 
 	hashGenesisBlock = genesis.GetHash();
