@@ -192,8 +192,8 @@ public:
         genesis.nBits = 0x1e0ffff0;
 	genesis.nNonce = 1383794; 
 	
-	hashGenesisBlock = uint256("0x01")
-if (true && genesis.GetHash() != hashGenesisBlock)
+	hashGenesisBlock = uint256("0x01");
+	if (true && genesis.GetHash() != hashGenesisBlock)
         {
             Logprintf("recalculating params for mainnet.\n");
             Logprintf("old mainnet genesis nonce: %s\n", genesis.nNonce.ToString().c_str());
@@ -313,7 +313,7 @@ public:
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 1383794;
 
-	hashGenesisBlock = uint256("0x01")
+	hashGenesisBlock = uint256("0x01");
 if (true && genesis.GetHash() != hashGenesisBlock)
         {
             Logprintf("recalculating params for mainnet.\n");
@@ -410,7 +410,7 @@ public:
         genesis.nBits = 0x1e0ffff0;
       	genesis.nNonce = 1383794;
 
-	hashGenesisBlock = uint256("0x01")
+	hashGenesisBlock = uint256("0x01");
 if (true && genesis.GetHash() != hashGenesisBlock)
         {
             Logprintf("recalculating params for mainnet.\n");
