@@ -11,6 +11,7 @@
 #include "util.h"
 #include "utilstrencodings.h"
 #include "stdio.h"
+#include <iostream>
 
 #include <assert.h>
 
