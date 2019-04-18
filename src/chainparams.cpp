@@ -144,9 +144,9 @@ public:
         nTargetSpacing = 1 * 60; //dogecash: 1 Min
         nMaturity = 30;
         nMasternodeCountDrift = 20;
-        nMasternodeCollateralLimit = 5000; //MN collateral
+        int nMasternodeCollateralLimit = 5000; //MN collateral
         nMaxMoneyOut = 21000000 * COIN; //21 mill
-        nMinStakeReserve = 100;
+        int nMinStakeReserve = 100;
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 1440;
