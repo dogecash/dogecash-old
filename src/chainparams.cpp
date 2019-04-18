@@ -197,12 +197,12 @@ public:
 	if (true && genesis.GetHash() != hashGenesisBlock)
         {
             LogPrintf("recalculating params for mainnet.\n");
-            LogPrintf("old mainnet genesis nonce: %s\n", (unsigned)genesis.nNonce.ToString().c_str());
+            LogPrintf("old mainnet genesis nonce: %s\n", (unsigned)genesis.(unsigned)nNonce.ToString().c_str());
             LogPrintf("old mainnet genesis hash:  %s\n", (unsigned)hashGenesisBlock.ToString().c_str());
             // deliberately empty for loop finds nonce value.
             for(genesis.nNonce == 0; genesis.GetHash() > bnProofOfWorkLimit; genesis.nNonce++){ } 
             LogPrintf("new mainnet genesis merkle root: %s\n", (unsigned)genesis.hashMerkleRoot.ToString().c_str());
-            LogPrintf("new mainnet genesis nonce: %s\n", (unsigned)genesis.nNonce.ToString().c_str());
+            LogPrintf("new mainnet genesis nonce: %s\n", (unsigned)genesis.(unsigned)nNonce.ToString().c_str());
             LogPrintf("new mainnet genesis hash: %s\n", (unsigned)genesis.GetHash().ToString().c_str());
         }
 	
@@ -318,12 +318,12 @@ public:
 if (true && genesis.GetHash() != hashGenesisBlock)
         {
             LogPrintf("recalculating params for mainnet.\n");
-            LogPrintf("old mainnet genesis nonce: %d\n", (unsigned)genesis.nNonce.ToString().c_str());
+            LogPrintf("old mainnet genesis nonce: %d\n", (unsigned)genesis.(unsigned)nNonce.ToString().c_str());
             LogPrintf("old mainnet genesis hash:  %d\n", (unsigned)hashGenesisBlock.ToString().c_str());
             // deliberately empty for loop finds nonce value.
             for(genesis.nNonce == 0; genesis.GetHash() > bnProofOfWorkLimit; genesis.nNonce++){ } 
             LogPrintf("new mainnet genesis merkle root: %d\n", (unsigned)genesis.hashMerkleRoot.ToString().c_str());
-            LogPrintf("new mainnet genesis nonce: %d\n", (unsigned)genesis.nNonce.ToString().c_str());
+            LogPrintf("new mainnet genesis nonce: %d\n", (unsigned)genesis.(unsigned)nNonce.ToString().c_str());
             LogPrintf("new mainnet genesis hash: %d\n", (unsigned)genesis.GetHash().ToString().c_str());
         }
 
@@ -415,12 +415,12 @@ public:
 if (true && genesis.GetHash() != hashGenesisBlock)
         {
             LogPrintf("recalculating params for mainnet.\n");
-            LogPrintf("old mainnet genesis nonce: %d\n", (unsigned)genesis.nNonce.ToString().c_str());
+            LogPrintf("old mainnet genesis nonce: %d\n", (unsigned)genesis.(unsigned)nNonce.ToString().c_str());
             LogPrintf("old mainnet genesis hash:  %d\n", (unsigned)hashGenesisBlock.ToString().c_str());
             // deliberately empty for loop finds nonce value.
             for(genesis.nNonce == 0; genesis.GetHash() > bnProofOfWorkLimit; genesis.nNonce++){ } 
             LogPrintf("new mainnet genesis merkle root: %d\n", (unsigned)genesis.hashMerkleRoot.ToString().c_str());
-            LogPrintf("new mainnet genesis nonce: %d\n", (unsigned)genesis.nNonce.ToString().c_str());
+            LogPrintf("new mainnet genesis nonce: %d\n", (unsigned)genesis.(unsigned)nNonce.ToString().c_str());
             LogPrintf("new mainnet genesis hash: %d\n", (unsigned)genesis.GetHash().ToString().c_str());
         }
         hashGenesisBlock = genesis.GetHash();
