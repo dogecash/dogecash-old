@@ -443,10 +443,10 @@ public:
         //! Modify the regtest genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1555600835; 
         genesis.nBits = 0x1e0ffff0;
-      	genesis.nNonce = 1383794;
+      	genesis.nNonce = 3443936;
 
 	//hashGenesisBlock = genesis.GetHash();
-        if(genesis.GetHash() != uint256("0x"))
+        if(genesis.GetHash() != uint256("00000a5b5a49366b6ecf86c434de1da4719e8e22daab9a53ec35033ae994e8f1"))
         {
         printf("Searching for genesis block...\n");
         uint256 hashTarget;
@@ -473,8 +473,8 @@ public:
         }
 
 	hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x0000041e482b9b9691d98eefb48473405c0b8ec31b76df3797c74a78680ef818"));
-        //assert(hashGenesisBlock == uint256("0x4f023a2120d9127b21bbad01724fdb79b519f593f2a85b60d3d79160ec5f29df"));
+        assert(hashGenesisBlock == uint256("00000a5b5a49366b6ecf86c434de1da4719e8e22daab9a53ec35033ae994e8f1"));
+        assert(genesis.hashMerkleRoot == uint256("68f329ba0dd150b7921550e94f2dbbd66f6e93d77d4f98dcd7bcad15df7a70b3"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
