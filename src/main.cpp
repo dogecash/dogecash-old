@@ -1903,8 +1903,10 @@ int64_t GetBlockValue(int nHeight)
 
     int64_t nSubsidy = 0;
     if (nHeight == 0) {
-        nSubsidy = 5234548	* COIN;
-	} else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight > 0) { //end PoW
+	    nSubsidy = 0 * COIN;
+    	} else if (nHeight == 1) {
+        nSubsidy = 5000000 * COIN;
+	} else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight > 1) { //end PoW
         nSubsidy = 12 * COIN;
 	} else if (nHeight <= 238620 && nHeight > Params().LAST_POW_BLOCK()) { //Start PoS
         nSubsidy = 12 * COIN;
