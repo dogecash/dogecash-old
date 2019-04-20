@@ -641,8 +641,8 @@
         <translation>Панель вкладок</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Send coins to a dogecash address</source>
@@ -665,12 +665,12 @@
         <translation>Обзор мастернод</translation>
     </message>
     <message>
-        <source>&amp;About DogeCash Core</source>
-        <translation>&amp;О DogeCash Core</translation>
+        <source>&amp;About dogecash Core</source>
+        <translation>&amp;О dogecash Core</translation>
     </message>
     <message>
-        <source>Show information about DogeCash Core</source>
-        <translation>Показать информацию о DogeCash Core</translation>
+        <source>Show information about dogecash Core</source>
+        <translation>Показать информацию о dogecash Core</translation>
     </message>
     <message>
         <source>Modify configuration options for dogecash</source>
@@ -725,12 +725,12 @@
         <translation>Окно обзора блока</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
+        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
         <translation>Смотрите помощь к программе, чтобы получить документацию ко всем возможным опциям комманды dogecash</translation>
     </message>
     <message>
-        <source>DogeCash Core client</source>
-        <translation>Клиент DogeCash Core</translation>
+        <source>dogecash Core client</source>
+        <translation>Клиент dogecash Core</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -1218,16 +1218,16 @@ MultiSend: %1</translation>
         <translation>версия</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-бит)</translation>
     </message>
     <message>
-        <source>About DogeCash Core</source>
-        <translation>О DogeCash Core</translation>
+        <source>About dogecash Core</source>
+        <translation>О dogecash Core</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1273,16 +1273,16 @@ MultiSend: %1</translation>
         <translation>Добро пожаловать</translation>
     </message>
     <message>
-        <source>Welcome to DogeCash Core.</source>
-        <translation>Добро пожаловать в DogeCash Core.</translation>
+        <source>Welcome to dogecash Core.</source>
+        <translation>Добро пожаловать в dogecash Core.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
-        <translation>Поскольку это первый запуск программы, вы можете выбрать, где будут храниться данные DogeCash Core.</translation>
+        <source>As this is the first time the program is launched, you can choose where dogecash Core will store its data.</source>
+        <translation>Поскольку это первый запуск программы, вы можете выбрать, где будут храниться данные dogecash Core.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>DogeCash Core загрузит и сохранит копию цепочки блоков dogecash. Каталог будет занимать около %1GB и со временем размер будет увеличиваться. Кроме того, в этом каталоге будет храниться кошелек.</translation>
+        <source>dogecash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>dogecash Core загрузит и сохранит копию цепочки блоков dogecash. Каталог будет занимать около %1GB и со временем размер будет увеличиваться. Кроме того, в этом каталоге будет храниться кошелек.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1293,8 +1293,8 @@ MultiSend: %1</translation>
         <translation>Использовать другой каталог данных:</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -2986,8 +2986,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>%1 мс</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     </context>
 <context>
@@ -3995,8 +3995,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>DogeCash Core is shutting down...</source>
-        <translation>DogeCash Core выключается...</translation>
+        <source>dogecash Core is shutting down...</source>
+        <translation>dogecash Core выключается...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4145,8 +4145,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -4161,8 +4161,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Разработчики Dash Core</translation>
     </message>
     <message>
-        <source>The DogeCash Core developers</source>
-        <translation>Разработчики DogeCash Core</translation>
+        <source>The dogecash Core developers</source>
+        <translation>Разработчики dogecash Core</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -4806,8 +4806,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Расчетная контрольная точка  не является тем, что регистрируется блочным индексом</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. DogeCash Core is probably already running.</source>
-        <translation>Не удается получить блокировку в каталоге данных %s. DogeCash Core, вероятно, уже запущен.</translation>
+        <source>Cannot obtain a lock on data directory %s. dogecash Core is probably already running.</source>
+        <translation>Не удается получить блокировку в каталоге данных %s. dogecash Core, вероятно, уже запущен.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4982,8 +4982,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Этот продукт включает программное обеспечение, разработанное OpenSSL Project для использования в OpenSSL Toolkit &lt;https://www.openssl.org/&gt; и криптографическом программном обеспечении, написанном Эриком Яном и программным обеспечением UPnP, написанным Томасом Бернардом.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. DogeCash Core is probably already running.</source>
-        <translation>Не удалось привязать к %s на этом компьютере. DogeCash Core, вероятно, уже запущен.</translation>
+        <source>Unable to bind to %s on this computer. dogecash Core is probably already running.</source>
+        <translation>Не удалось привязать к %s на этом компьютере. dogecash Core, вероятно, уже запущен.</translation>
     </message>
     <message>
         <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
@@ -5010,8 +5010,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Предупреждение: -paytxfee установлен очень высоко! Это комиссия за транзакцию, которую вы заплатите, если вы отправляете транзакцию.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
-        <translation>Внимание: проверьте правильность даты и времени вашего компьютера! Если ваши часы ошибочны, DogeCash Core не будет работать должным образом.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong dogecash Core will not work properly.</source>
+        <translation>Внимание: проверьте правильность даты и времени вашего компьютера! Если ваши часы ошибочны, dogecash Core не будет работать должным образом.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5162,8 +5162,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Copyright (C) 2014-%i Разработчики Dash Core</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The DogeCash Core Developers</source>
-        <translation>Copyright (C) 2015-%i Разработчики DogeCash Core</translation>
+        <source>Copyright (C) 2015-%i The dogecash Core Developers</source>
+        <translation>Copyright (C) 2015-%i Разработчики dogecash Core</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -5250,8 +5250,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Ошибка при загрузке wallet.dat: Кошелек поврежден</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
-        <translation>Ошибка загрузки wallet.dat: Кошелек требует более новой версии DogeCash Core</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of dogecash Core</source>
+        <translation>Ошибка загрузки wallet.dat: Кошелек требует более новой версии dogecash Core</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -5374,8 +5374,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Информация</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. DogeCash Core is shutting down.</source>
-        <translation>Инициализация проверки работоспособности не удалась. DogeCash Core отключается.</translation>
+        <source>Initialization sanity check failed. dogecash Core is shutting down.</source>
+        <translation>Инициализация проверки работоспособности не удалась. dogecash Core отключается.</translation>
     </message>
     <message>
         <source>Input is not valid.</source>
@@ -6182,8 +6182,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Кошелек заблокирован.</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
-        <translation>Кошелек необходимо переписать: перезапустите DogeCash Core, чтобы завершить</translation>
+        <source>Wallet needed to be rewritten: restart dogecash Core to complete</source>
+        <translation>Кошелек необходимо переписать: перезапустите dogecash Core, чтобы завершить</translation>
     </message>
     <message>
         <source>Wallet options:</source>

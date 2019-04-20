@@ -27,13 +27,13 @@ When a wallet SwiftX transaction is successfully locked a shell command provided
 
 Details pertaining to an observed "Transaction Lock" can also be retrieved through RPC, it’s important however to understand the underlying mechanism.
 
-By default, the DogeCash Core daemon will launch using the following constant:
+By default, the dogecash Core daemon will launch using the following constant:
 
 ```
 static const int DEFAULT_SWIFTTX_DEPTH = 5;
 ```
 
-This value can be overridden by passing the following argument to the DogeCash Core daemon:
+This value can be overridden by passing the following argument to the dogecash Core daemon:
 
 ```
 -swifttxdepth=<n>

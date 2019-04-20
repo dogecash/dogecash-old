@@ -557,8 +557,8 @@
         <translation>Tabs 工具列</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Send coins to a dogecash address</source>
@@ -577,12 +577,12 @@
         <translation>瀏覽 Masternodes</translation>
     </message>
     <message>
-        <source>&amp;About DogeCash Core</source>
-        <translation>&amp;關於 DogeCash Core</translation>
+        <source>&amp;About dogecash Core</source>
+        <translation>&amp;關於 dogecash Core</translation>
     </message>
     <message>
-        <source>Show information about DogeCash Core</source>
-        <translation>顯示 DogeCash Core 相關資訊</translation>
+        <source>Show information about dogecash Core</source>
+        <translation>顯示 dogecash Core 相關資訊</translation>
     </message>
     <message>
         <source>Modify configuration options for dogecash</source>
@@ -637,12 +637,12 @@
         <translation>區塊鏈瀏覽視窗</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>顯示 DogeCash Core 幫助訊息以取得 dogecash 命令列表選項</translation>
+        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
+        <translation>顯示 dogecash Core 幫助訊息以取得 dogecash 命令列表選項</translation>
     </message>
     <message>
-        <source>DogeCash Core client</source>
-        <translation>DogeCash Core 客戶端</translation>
+        <source>dogecash Core client</source>
+        <translation>dogecash Core 客戶端</translation>
     </message>
     </context>
 <context>
@@ -674,15 +674,15 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     </context>
 <context>
     <name>Intro</name>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     </context>
 <context>
@@ -757,8 +757,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     </context>
 <context>
@@ -907,8 +907,8 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     </context>
 <context>

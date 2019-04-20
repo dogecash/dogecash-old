@@ -18,7 +18,7 @@ BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/dogecashd}
 BITCOIND_NICE=${BITCOIND_NICE:-${NICELEVEL:-0}}
 BITCOIND_OPTS="${BITCOIND_OPTS:-${BITCOIN_OPTS}}"
 
-name="DogeCash Core Daemon"
+name="dogecash Core Daemon"
 description="dogecash crypto-currency p2p network daemon"
 
 command="/usr/bin/dogecashd"

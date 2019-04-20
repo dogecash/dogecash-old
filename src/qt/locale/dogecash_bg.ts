@@ -641,7 +641,7 @@
         <translation>Колан с инструменти</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
+        <source>dogecash Core</source>
         <translation>dogecash Ядро</translation>
     </message>
     <message>
@@ -665,11 +665,11 @@
         <translation>Разгледай мастърноудове</translation>
     </message>
     <message>
-        <source>&amp;About DogeCash Core</source>
+        <source>&amp;About dogecash Core</source>
         <translation>&amp;Относно dogecash Ядрото</translation>
     </message>
     <message>
-        <source>Show information about DogeCash Core</source>
+        <source>Show information about dogecash Core</source>
         <translation>Информациза за dogecash Ядрото</translation>
     </message>
     <message>
@@ -725,11 +725,11 @@
         <translation>Прозорец на блок сондата</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
+        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
         <translation>Разкрийте Помощ за dogecash Ядрото, за да видите списък с възможни писмени команди.</translation>
     </message>
     <message>
-        <source>DogeCash Core client</source>
+        <source>dogecash Core client</source>
         <translation>Клиент dogecash Ядро</translation>
     </message>
     <message>
@@ -1218,7 +1218,7 @@ Address: %4
         <translation>версия</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
+        <source>dogecash Core</source>
         <translation>dogecash Ядро</translation>
     </message>
     <message>
@@ -1226,7 +1226,7 @@ Address: %4
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About DogeCash Core</source>
+        <source>About dogecash Core</source>
         <translation>Относно dogecash Ядрото</translation>
     </message>
     <message>
@@ -1273,15 +1273,15 @@ Address: %4
         <translation>Привет</translation>
     </message>
     <message>
-        <source>Welcome to DogeCash Core.</source>
+        <source>Welcome to dogecash Core.</source>
         <translation>Добре Дошли в dogecash Ядрото</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where dogecash Core will store its data.</source>
         <translation>Тъй като това е първия път, в който стартирате програмата, имате възможността да изберете къде dogecash Ядрото ще съхранява своите данни.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>dogecash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>dogecash Ядрото ще изтегли и запише копие на целия dogecash блокчейн. Поне %1 гигабайта ще бъдат съхранявани в тази папка, като тенденцията е файла да расте. Портфейла също ще бъде запазен в тази папка.</translation>
     </message>
     <message>
@@ -1293,7 +1293,7 @@ Address: %4
         <translation>Задай своя папка за данни:</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
+        <source>dogecash Core</source>
         <translation>dogecash Ядро</translation>
     </message>
     <message>
@@ -2980,7 +2980,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>%1 милисек.</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
+        <source>dogecash Core</source>
         <translation>dogecash Ядро</translation>
     </message>
     </context>
@@ -3988,7 +3988,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>DogeCash Core is shutting down...</source>
+        <source>dogecash Core is shutting down...</source>
         <translation>Изключване на dogecash Ядрото...</translation>
     </message>
     <message>
@@ -4138,7 +4138,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>DogeCash Core</source>
+        <source>dogecash Core</source>
         <translation>dogecash Ядро</translation>
     </message>
     <message>
@@ -4154,8 +4154,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Dash Core разработчици</translation>
     </message>
     <message>
-        <source>The DogeCash Core developers</source>
-        <translation>DogeCash Core разработчици</translation>
+        <source>The dogecash Core developers</source>
+        <translation>dogecash Core разработчици</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -4799,7 +4799,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Изчисления чекпойнт на акумулатора не е същия като записания в блок индекса.</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. DogeCash Core is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. dogecash Core is probably already running.</source>
         <translation>Не може да заключи папката с данни %s. dogecash Портфейла вероятно вече е стартиран.</translation>
     </message>
     <message>
@@ -4971,7 +4971,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Този продукт включва софтуер разработен от OpenSSL Project &lt;https://www.openssl.org/&gt; и крипто софтуер написан от Ерик Юнг и UPnP софтуер от Томас Бернард.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. DogeCash Core is probably already running.</source>
+        <source>Unable to bind to %s on this computer. dogecash Core is probably already running.</source>
         <translation>Не може да се прикачи към %s на този компютър. dogecash Портфейла вероятно вече е стартиран.</translation>
     </message>
     <message>
@@ -4999,7 +4999,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Внимание: -paytxfee е зададена твърде голяма! Това е преводната такса, която ще платите ако изпратите този превод.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong dogecash Core will not work properly.</source>
         <translation>Внимание: Проверете дали датата и часа на компютъра са верни! Ако Вашият часовник греши, dogecash Портфейла няма да работи правилно.</translation>
     </message>
     <message>
@@ -5151,8 +5151,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Всички права запазени (c) 2014-%i Dash Core разработчици</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The DogeCash Core Developers</source>
-        <translation>Всички права запазени (c) 2015-%i DogeCash Core разработчици</translation>
+        <source>Copyright (C) 2015-%i The dogecash Core Developers</source>
+        <translation>Всички права запазени (c) 2015-%i dogecash Core разработчици</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -5239,7 +5239,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Грешка в зареждането на wallet.dat: Портфейла е повреден</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of dogecash Core</source>
         <translation>Грешка в зареждането на wallet.dat: Портфейла изисква по-нова версия</translation>
     </message>
     <message>
@@ -5355,7 +5355,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Информация</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. DogeCash Core is shutting down.</source>
+        <source>Initialization sanity check failed. dogecash Core is shutting down.</source>
         <translation>Стартирането на проверка на здравословното състояние на портфейла се провали. Изключваме Портфейла.</translation>
     </message>
     <message>
@@ -6163,7 +6163,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Портфейла е заключен.</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
+        <source>Wallet needed to be rewritten: restart dogecash Core to complete</source>
         <translation>Портфейла трябва да се пренапише: рестартирайте програмата за завършване на процеса</translation>
     </message>
     <message>

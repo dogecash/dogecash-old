@@ -649,8 +649,8 @@
         <translation>Tabblad werkbalk</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Send coins to a dogecash address</source>
@@ -673,11 +673,11 @@
         <translation>Bekijk masternodes</translation>
     </message>
     <message>
-        <source>&amp;About DogeCash Core</source>
-        <translation>&amp;Over DogeCash Core</translation>
+        <source>&amp;About dogecash Core</source>
+        <translation>&amp;Over dogecash Core</translation>
     </message>
     <message>
-        <source>Show information about DogeCash Core</source>
+        <source>Show information about dogecash Core</source>
         <translation>Toon informatie over dogecash Kern</translation>
     </message>
     <message>
@@ -733,12 +733,12 @@
         <translation>Block verkenner venster</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>Toon het DogeCash Core help bericht om een ​​lijst te krijgen met mogelijke dogecash command line opties</translation>
+        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
+        <translation>Toon het dogecash Core help bericht om een ​​lijst te krijgen met mogelijke dogecash command line opties</translation>
     </message>
     <message>
-        <source>DogeCash Core client</source>
-        <translation>DogeCash Core client</translation>
+        <source>dogecash Core client</source>
+        <translation>dogecash Core client</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to dogecash network</source>
@@ -1242,16 +1242,16 @@ MultiSend: %1</translation>
         <translation>versie</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About DogeCash Core</source>
-        <translation>Over DogeCash Core</translation>
+        <source>About dogecash Core</source>
+        <translation>Over dogecash Core</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1297,16 +1297,16 @@ MultiSend: %1</translation>
         <translation>Welkom</translation>
     </message>
     <message>
-        <source>Welcome to DogeCash Core.</source>
-        <translation>Welkom bij DogeCash Core.</translation>
+        <source>Welcome to dogecash Core.</source>
+        <translation>Welkom bij dogecash Core.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
-        <translation>Aangezien dit de eerste keer is dat het programma is gestart, kun je kiezen waar DogeCash Core zijn data opslaat.</translation>
+        <source>As this is the first time the program is launched, you can choose where dogecash Core will store its data.</source>
+        <translation>Aangezien dit de eerste keer is dat het programma is gestart, kun je kiezen waar dogecash Core zijn data opslaat.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>DogeCash Core zal een kopie van de dogecash blockchain downloaden en opslaan. Tenminste %1GB aan data zal worden opgeslagen in deze map en het zal over de tijd groeien. De portemonnee zal ook in deze map worden opgeslagen.</translation>
+        <source>dogecash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>dogecash Core zal een kopie van de dogecash blockchain downloaden en opslaan. Tenminste %1GB aan data zal worden opgeslagen in deze map en het zal over de tijd groeien. De portemonnee zal ook in deze map worden opgeslagen.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1317,8 +1317,8 @@ MultiSend: %1</translation>
         <translation>Gebruik een aangepaste data directory:</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -3103,8 +3103,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     </context>
 <context>
@@ -4127,8 +4127,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>DogeCash Core is shutting down...</source>
-        <translation>DogeCash Core is aan het afsluiten...</translation>
+        <source>dogecash Core is shutting down...</source>
+        <translation>dogecash Core is aan het afsluiten...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4277,8 +4277,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -4293,7 +4293,7 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>De Dash Kernontwikkelaars</translation>
     </message>
     <message>
-        <source>The DogeCash Core developers</source>
+        <source>The dogecash Core developers</source>
         <translation>De dogecash Kernontwikkelaars</translation>
     </message>
     <message>
@@ -4958,8 +4958,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Het berekende accumulatie controlepunt is niet wat wordt geregistreerd door de blokindex</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. DogeCash Core is probably already running.</source>
-        <translation>Kan geen vergrendeling op data directory %s verkrijgen. DogeCash Core loopt waarschijnlijk al.</translation>
+        <source>Cannot obtain a lock on data directory %s. dogecash Core is probably already running.</source>
+        <translation>Kan geen vergrendeling op data directory %s verkrijgen. dogecash Core loopt waarschijnlijk al.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5134,8 +5134,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Dit product bevat software ontwikkeld door het OpenSSL Project voor gebruik in de OpenSSL Toolkit &lt;https://www.openssl.org/&gt; en cryptografische software geschreven door Eric Young en UPnP software geschreven door Thomas Bernard.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. DogeCash Core is probably already running.</source>
-        <translation>Niet mogelijk te binden aan %s op deze computer. DogeCash Core loopt waarschijnlijk al.</translation>
+        <source>Unable to bind to %s on this computer. dogecash Core is probably already running.</source>
+        <translation>Niet mogelijk te binden aan %s op deze computer. dogecash Core loopt waarschijnlijk al.</translation>
     </message>
     <message>
         <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
@@ -5162,8 +5162,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Waarschuwing: -paytxfee is zeer hoog ingesteld! Dit zijn de transactie kosten die je betaalt als je een transactie verstuurt.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
-        <translation>Waarschuwing: Controleer of de datum en tijd van je computer juist zijn! Als je klok verkeerd staat, werkt DogeCash Core niet goed.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong dogecash Core will not work properly.</source>
+        <translation>Waarschuwing: Controleer of de datum en tijd van je computer juist zijn! Als je klok verkeerd staat, werkt dogecash Core niet goed.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5318,7 +5318,7 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Copyright (C) 2014-%i The Dash Kernontwikkelaars</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The DogeCash Core Developers</source>
+        <source>Copyright (C) 2015-%i The dogecash Core Developers</source>
         <translation>Copyright (C) 2015-%i The dogecash Kernontwikkelaars</translation>
     </message>
     <message>
@@ -5406,8 +5406,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Error tijdens het laden van wallet.dat: Portemonnee corrupt</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
-        <translation>Fout bij het laden van wallet.dat: Portemonnee vereist een nieuwere versie van DogeCash Core</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of dogecash Core</source>
+        <translation>Fout bij het laden van wallet.dat: Portemonnee vereist een nieuwere versie van dogecash Core</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -5530,8 +5530,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Informatie</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. DogeCash Core is shutting down.</source>
-        <translation>Initialisatie saniteitscontrole mislukt. DogeCash Core wordt afgesloten.</translation>
+        <source>Initialization sanity check failed. dogecash Core is shutting down.</source>
+        <translation>Initialisatie saniteitscontrole mislukt. dogecash Core wordt afgesloten.</translation>
     </message>
     <message>
         <source>Input is not valid.</source>
@@ -6342,8 +6342,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Portemonnee is vergrendeld.</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
-        <translation>Wallet moest worden herschreven: start DogeCash Core opnieuw om te voltooien</translation>
+        <source>Wallet needed to be rewritten: restart dogecash Core to complete</source>
+        <translation>Wallet moest worden herschreven: start dogecash Core opnieuw om te voltooien</translation>
     </message>
     <message>
         <source>Wallet options:</source>

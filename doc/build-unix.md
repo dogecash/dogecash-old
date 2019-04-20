@@ -54,7 +54,7 @@ System requirements
 --------------------
 
 C++ compilers are memory-hungry. It is recommended to have at least 1 GB of
-memory available when compiling DogeCash Core. With 512MB of memory or less
+memory available when compiling dogecash Core. With 512MB of memory or less
 compilation will take much longer due to swap thrashing.
 
 ## Linux Distribution Specific Instructions
@@ -72,7 +72,7 @@ Now, you can either build from self-compiled [depends](/depends/README.md) or in
     sudo apt-get install libssl-dev libgmp-dev libevent-dev libboost-all-dev
 
 **Note:** For Ubuntu versions starting with Bionic (18.04), or Debian versions starting with Stretch, use `libssl1.0-dev`
-above instead of `libssl-dev`. DogeCash Core does not support the use of OpenSSL 1.1, though compilation is still possible
+above instead of `libssl-dev`. dogecash Core does not support the use of OpenSSL 1.1, though compilation is still possible
 by passing `--with-incompatible-ssl` to configure (NOT RECOMMENDED!).
 
 BerkeleyDB is required for the wallet.
@@ -189,7 +189,7 @@ cd db-4.8.30.NC/build_unix/
 ../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX
 make install
 
-# Configure DogeCash Core to use our own-built instance of BDB
+# Configure dogecash Core to use our own-built instance of BDB
 cd $dogecash_ROOT
 ./configure (other args...) LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/"
 ```
@@ -254,7 +254,7 @@ Disable-wallet mode
 --------------------
 **Note:** This functionality is not yet completely implemented, and compilation using the below option will currently fail.
 
-When the intention is to run only a P2P node without a wallet, DogeCash Core may be compiled in
+When the intention is to run only a P2P node without a wallet, dogecash Core may be compiled in
 disable-wallet mode with:
 
     ./configure --disable-wallet

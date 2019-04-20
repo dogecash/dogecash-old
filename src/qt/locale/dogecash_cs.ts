@@ -601,8 +601,8 @@
         <translation>Nástrojová lišta záložek</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Send coins to a dogecash address</source>
@@ -625,12 +625,12 @@
         <translation>Procházet masternody</translation>
     </message>
     <message>
-        <source>&amp;About DogeCash Core</source>
-        <translation>&amp;O DogeCash Core</translation>
+        <source>&amp;About dogecash Core</source>
+        <translation>&amp;O dogecash Core</translation>
     </message>
     <message>
-        <source>Show information about DogeCash Core</source>
-        <translation>Zobraz informace o DogeCash Core</translation>
+        <source>Show information about dogecash Core</source>
+        <translation>Zobraz informace o dogecash Core</translation>
     </message>
     <message>
         <source>Modify configuration options for dogecash</source>
@@ -685,12 +685,12 @@
         <translation>Okno blokového průzkumníka</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>Zobrazit DogeCash Core pomocnou zpráv pro získání seznamu možných parametrů dogecash pro příkazy do příkazové řádky</translation>
+        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
+        <translation>Zobrazit dogecash Core pomocnou zpráv pro získání seznamu možných parametrů dogecash pro příkazy do příkazové řádky</translation>
     </message>
     <message>
-        <source>DogeCash Core client</source>
-        <translation>DogeCash Core klient</translation>
+        <source>dogecash Core client</source>
+        <translation>dogecash Core klient</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -1138,12 +1138,12 @@ MultiSend: %1</translation>
         <translation>verze</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
-        <source>About DogeCash Core</source>
-        <translation>O DogeCash Core</translation>
+        <source>About dogecash Core</source>
+        <translation>O dogecash Core</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1177,16 +1177,16 @@ MultiSend: %1</translation>
         <translation>Vítejte</translation>
     </message>
     <message>
-        <source>Welcome to DogeCash Core.</source>
-        <translation>Vítejte v DogeCash Core.</translation>
+        <source>Welcome to dogecash Core.</source>
+        <translation>Vítejte v dogecash Core.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
-        <translation>Při prvním spuštění programu si můžete vybrat, kam bude DogeCash Core ukládat svá data.</translation>
+        <source>As this is the first time the program is launched, you can choose where dogecash Core will store its data.</source>
+        <translation>Při prvním spuštění programu si můžete vybrat, kam bude dogecash Core ukládat svá data.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>DogeCash Core stáhne a uloží kopii dogecash blockchainu. Nejméně %1GB dat bude do této složky uloženo a v průběhu času bude ukládat další data. Peněženka bude v této složce uložena také.</translation>
+        <source>dogecash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>dogecash Core stáhne a uloží kopii dogecash blockchainu. Nejméně %1GB dat bude do této složky uloženo a v průběhu času bude ukládat další data. Peněženka bude v této složce uložena také.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1197,8 +1197,8 @@ MultiSend: %1</translation>
         <translation>Použít vlastní složku pro data</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1753,8 +1753,8 @@ MultiSend: %1</translation>
         <translation>N/A</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     </context>
 <context>
@@ -2283,8 +2283,8 @@ MultiSend: %1</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     </context>
 <context>

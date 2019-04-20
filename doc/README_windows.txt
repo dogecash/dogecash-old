@@ -1,4 +1,4 @@
-DogeCash Core
+dogecash Core
 =====================
 
 Intro
@@ -13,7 +13,7 @@ Setup
 -----
 Unpack the files into a directory and run dogecash-qt.exe.
 
-DogeCash Core is the original dogecash client and it builds the backbone of the network.
+dogecash Core is the original dogecash client and it builds the backbone of the network.
 However, it downloads and stores the entire history of dogecash transactions;
 depending on the speed of your computer and network connection, the synchronization
 process can take anywhere from a few hours to a day or more.

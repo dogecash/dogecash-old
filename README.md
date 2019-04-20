@@ -1,4 +1,4 @@
-DogeCash Core integration/staging repository
+dogecash Core integration/staging repository
 =====================================
 
 [![Build Status](https://travis-ci.org/dogecash-Project/dogecash.svg?branch=master)](https://travis-ci.org/dogecash-Project/dogecash) [![GitHub version](https://badge.fury.io/gh/dogecash-Project%2Fdogecash.svg)](https://badge.fury.io/gh/dogecash-Project%2Fdogecash)

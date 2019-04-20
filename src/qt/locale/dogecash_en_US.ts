@@ -602,8 +602,8 @@
         <translation>Tabs toolbar</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Send coins to a dogecash address</source>
@@ -622,12 +622,12 @@
         <translation>Browse masternodes</translation>
     </message>
     <message>
-        <source>&amp;About DogeCash Core</source>
-        <translation>&amp;About DogeCash Core</translation>
+        <source>&amp;About dogecash Core</source>
+        <translation>&amp;About dogecash Core</translation>
     </message>
     <message>
-        <source>Show information about DogeCash Core</source>
-        <translation>Show information about DogeCash Core</translation>
+        <source>Show information about dogecash Core</source>
+        <translation>Show information about dogecash Core</translation>
     </message>
     <message>
         <source>Modify configuration options for dogecash</source>
@@ -682,12 +682,12 @@
         <translation>Block explorer window</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>Show the DogeCash Core help message to get a list with possible dogecash command-line options</translation>
+        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
+        <translation>Show the dogecash Core help message to get a list with possible dogecash command-line options</translation>
     </message>
     <message>
-        <source>DogeCash Core client</source>
-        <translation>DogeCash Core client</translation>
+        <source>dogecash Core client</source>
+        <translation>dogecash Core client</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to dogecash network</source>
@@ -1184,16 +1184,16 @@ Address: %4
         <translation>version</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About DogeCash Core</source>
-        <translation>About DogeCash Core</translation>
+        <source>About dogecash Core</source>
+        <translation>About dogecash Core</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1239,16 +1239,16 @@ Address: %4
         <translation>Welcome</translation>
     </message>
     <message>
-        <source>Welcome to DogeCash Core.</source>
-        <translation>Welcome to DogeCash Core.</translation>
+        <source>Welcome to dogecash Core.</source>
+        <translation>Welcome to dogecash Core.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
-        <translation>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</translation>
+        <source>As this is the first time the program is launched, you can choose where dogecash Core will store its data.</source>
+        <translation>As this is the first time the program is launched, you can choose where dogecash Core will store its data.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</translation>
+        <source>dogecash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>dogecash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1259,8 +1259,8 @@ Address: %4
         <translation>Use a custom data directory:</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -3126,8 +3126,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>DogeCash Core is shutting down...</source>
-        <translation>DogeCash Core is shutting down...</translation>
+        <source>dogecash Core is shutting down...</source>
+        <translation>dogecash Core is shutting down...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -3276,8 +3276,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -3292,8 +3292,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>The Dash Core developers</translation>
     </message>
     <message>
-        <source>The DogeCash Core developers</source>
-        <translation>The DogeCash Core developers</translation>
+        <source>The dogecash Core developers</source>
+        <translation>The dogecash Core developers</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -3910,8 +3910,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Bind to given address to listen for JSON-RPC connections. Use [host]:port notation for IPv6. This option can be specified multiple times (default: bind to all interfaces)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. DogeCash Core is probably already running.</source>
-        <translation>Cannot obtain a lock on data directory %s. DogeCash Core is probably already running.</translation>
+        <source>Cannot obtain a lock on data directory %s. dogecash Core is probably already running.</source>
+        <translation>Cannot obtain a lock on data directory %s. dogecash Core is probably already running.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4106,8 +4106,8 @@ for example: alertnotify=echo %%s | mail -s "dogecash Alert" admin@foo.com
 </translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. DogeCash Core is probably already running.</source>
-        <translation>Unable to bind to %s on this computer. DogeCash Core is probably already running.</translation>
+        <source>Unable to bind to %s on this computer. dogecash Core is probably already running.</source>
+        <translation>Unable to bind to %s on this computer. dogecash Core is probably already running.</translation>
     </message>
     <message>
         <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
@@ -4134,8 +4134,8 @@ for example: alertnotify=echo %%s | mail -s "dogecash Alert" admin@foo.com
         <translation>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
-        <translation>Warning: Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong dogecash Core will not work properly.</source>
+        <translation>Warning: Please check that your computer's date and time are correct! If your clock is wrong dogecash Core will not work properly.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -4282,8 +4282,8 @@ for example: alertnotify=echo %%s | mail -s "dogecash Alert" admin@foo.com
         <translation>Copyright (C) 2014-%i The Dash Core Developers</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The DogeCash Core Developers</source>
-        <translation>Copyright (C) 2015-%i The DogeCash Core Developers</translation>
+        <source>Copyright (C) 2015-%i The dogecash Core Developers</source>
+        <translation>Copyright (C) 2015-%i The dogecash Core Developers</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -4354,8 +4354,8 @@ for example: alertnotify=echo %%s | mail -s "dogecash Alert" admin@foo.com
         <translation>Error loading wallet.dat: Wallet corrupted</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
-        <translation>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of dogecash Core</source>
+        <translation>Error loading wallet.dat: Wallet requires newer version of dogecash Core</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -4466,8 +4466,8 @@ for example: alertnotify=echo %%s | mail -s "dogecash Alert" admin@foo.com
         <translation>Information</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. DogeCash Core is shutting down.</source>
-        <translation>Initialization sanity check failed. DogeCash Core is shutting down.</translation>
+        <source>Initialization sanity check failed. dogecash Core is shutting down.</source>
+        <translation>Initialization sanity check failed. dogecash Core is shutting down.</translation>
     </message>
     <message>
         <source>Input is not valid.</source>
@@ -5086,8 +5086,8 @@ for example: alertnotify=echo %%s | mail -s "dogecash Alert" admin@foo.com
         <translation>Wallet is locked.</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
-        <translation>Wallet needed to be rewritten: restart DogeCash Core to complete</translation>
+        <source>Wallet needed to be rewritten: restart dogecash Core to complete</source>
+        <translation>Wallet needed to be rewritten: restart dogecash Core to complete</translation>
     </message>
     <message>
         <source>Wallet options:</source>

@@ -617,8 +617,8 @@
         <translation>Alatna traka kartica</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Send coins to a dogecash address</source>
@@ -641,11 +641,11 @@
         <translation>Pregledajte masternode</translation>
     </message>
     <message>
-        <source>&amp;About DogeCash Core</source>
+        <source>&amp;About dogecash Core</source>
         <translation>&amp; O dogecash Coreu</translation>
     </message>
     <message>
-        <source>Show information about DogeCash Core</source>
+        <source>Show information about dogecash Core</source>
         <translation>Prikaz informacija o dogecash Coreu</translation>
     </message>
     <message>
@@ -685,8 +685,8 @@
         <translation>Otvori konfiguracijsku datoteku za Masternode</translation>
     </message>
     <message>
-        <source>DogeCash Core client</source>
-        <translation>DogeCash Core klijent</translation>
+        <source>dogecash Core client</source>
+        <translation>dogecash Core klijent</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -922,15 +922,15 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     </context>
 <context>
     <name>Intro</name>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1077,8 +1077,8 @@
         <translation>N/A</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     </context>
 <context>
@@ -1341,8 +1341,8 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>DogeCash Core is shutting down...</source>
-        <translation>DogeCash Core se gasi...</translation>
+        <source>dogecash Core is shutting down...</source>
+        <translation>dogecash Core se gasi...</translation>
     </message>
     </context>
 <context>
@@ -1427,8 +1427,8 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Version %1</source>

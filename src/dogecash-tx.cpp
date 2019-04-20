@@ -47,7 +47,7 @@ static bool AppInitRawTx(int argc, char* argv[])
 
     if (argc < 2 || mapArgs.count("-?") || mapArgs.count("-help")) {
         // First part of help message is specific to this utility
-        std::string strUsage = _("DogeCash Core dogecash-tx utility version") + " " + FormatFullVersion() + "\n\n" +
+        std::string strUsage = _("dogecash Core dogecash-tx utility version") + " " + FormatFullVersion() + "\n\n" +
                                _("Usage:") + "\n" +
                                "  dogecash-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded dogecash transaction") + "\n" +
                                "  dogecash-tx [options] -create [commands]   " + _("Create hex-encoded dogecash transaction") + "\n" +

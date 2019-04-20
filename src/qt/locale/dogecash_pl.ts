@@ -659,7 +659,7 @@ odszyfrowany i aktualnie odblokowany tylko do anonimizacji i stakingu</translati
         <translation>Pasek narzędzi</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
+        <source>dogecash Core</source>
         <translation>Rdzeń dogecash</translation>
     </message>
     <message>
@@ -683,12 +683,12 @@ odszyfrowany i aktualnie odblokowany tylko do anonimizacji i stakingu</translati
         <translation>Przeglądaj masternodes</translation>
     </message>
     <message>
-        <source>&amp;About DogeCash Core</source>
-        <translation>&amp;O DogeCash Core</translation>
+        <source>&amp;About dogecash Core</source>
+        <translation>&amp;O dogecash Core</translation>
     </message>
     <message>
-        <source>Show information about DogeCash Core</source>
-        <translation>Pokaż informacje o DogeCash Core</translation>
+        <source>Show information about dogecash Core</source>
+        <translation>Pokaż informacje o dogecash Core</translation>
     </message>
     <message>
         <source>Modify configuration options for dogecash</source>
@@ -743,12 +743,12 @@ odszyfrowany i aktualnie odblokowany tylko do anonimizacji i stakingu</translati
         <translation>Okno eksplorera bloków</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
+        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
         <translation>Pokaż wiadomość pomocy rdzenia dogecash, aby dostać listę możliwych opcji dogecash command-line</translation>
     </message>
     <message>
-        <source>DogeCash Core client</source>
-        <translation>DogeCash Core klient</translation>
+        <source>dogecash Core client</source>
+        <translation>dogecash Core klient</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to dogecash network</source>
@@ -1292,7 +1292,7 @@ MultiWysyłlka: %1</translation>
         <translation>Wersja</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
+        <source>dogecash Core</source>
         <translation>Rdzeń dogecash</translation>
     </message>
     <message>
@@ -1300,8 +1300,8 @@ MultiWysyłlka: %1</translation>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About DogeCash Core</source>
-        <translation>O DogeCash Core</translation>
+        <source>About dogecash Core</source>
+        <translation>O dogecash Core</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1347,16 +1347,16 @@ MultiWysyłlka: %1</translation>
         <translation>Zapraszamy</translation>
     </message>
     <message>
-        <source>Welcome to DogeCash Core.</source>
-        <translation>Zapraszamy do DogeCash Core</translation>
+        <source>Welcome to dogecash Core.</source>
+        <translation>Zapraszamy do dogecash Core</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
-        <translation>Ponieważ program jest uruchamiany po raz pierwszy, możesz wybrać miejsce, w którym DogeCash Core będzie przechowywać swoje dane.</translation>
+        <source>As this is the first time the program is launched, you can choose where dogecash Core will store its data.</source>
+        <translation>Ponieważ program jest uruchamiany po raz pierwszy, możesz wybrać miejsce, w którym dogecash Core będzie przechowywać swoje dane.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>DogeCash Core pobierze i zapisze kopię łańcucha bloków dogecash. Przynajmniej %1 GB danych zostanie zapisanych w tym katalogu, a jego liczba będzie rosnąć z czasem. Portfel zostanie również zapisany w tym katalogu.</translation>
+        <source>dogecash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>dogecash Core pobierze i zapisze kopię łańcucha bloków dogecash. Przynajmniej %1 GB danych zostanie zapisanych w tym katalogu, a jego liczba będzie rosnąć z czasem. Portfel zostanie również zapisany w tym katalogu.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1367,7 +1367,7 @@ MultiWysyłlka: %1</translation>
         <translation>Użyj niestandardowej ścieżki danych</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
+        <source>dogecash Core</source>
         <translation>Rdzeń dogecash</translation>
     </message>
     <message>
@@ -3239,8 +3239,8 @@ Proszę być cierpliwym...</translation>
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -3259,8 +3259,8 @@ Proszę być cierpliwym...</translation>
         <translation>Błąd odczytu pliku konfiguracyjnego masternode: %1</translation>
     </message>
     <message>
-        <source>DogeCash Core didn't yet exit safely...</source>
-        <translation>DogeCash Core nie zamkną się jeszcze bezpiecznie ...</translation>
+        <source>dogecash Core didn't yet exit safely...</source>
+        <translation>dogecash Core nie zamkną się jeszcze bezpiecznie ...</translation>
     </message>
 </context>
 <context>
@@ -4299,8 +4299,8 @@ Proszę być cierpliwym...</translation>
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>DogeCash Core is shutting down...</source>
-        <translation>DogeCash Core się wyłącza ...</translation>
+        <source>dogecash Core is shutting down...</source>
+        <translation>dogecash Core się wyłącza ...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4449,8 +4449,8 @@ Proszę być cierpliwym...</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -4465,8 +4465,8 @@ Proszę być cierpliwym...</translation>
         <translation>Twórcy Dash Core</translation>
     </message>
     <message>
-        <source>The DogeCash Core developers</source>
-        <translation>Twórcy DogeCash Core</translation>
+        <source>The dogecash Core developers</source>
+        <translation>Twórcy dogecash Core</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -5134,8 +5134,8 @@ Proszę być cierpliwym...</translation>
         <translation>Obliczony punkt kontrolny akumulatora nie jest tym, co jest rejestrowane przez indeks bloku</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. DogeCash Core is probably already running.</source>
-        <translation>Nie można uzyskać dostępu do katalogu danych %s. DogeCash Core prawdopodobnie już działa.</translation>
+        <source>Cannot obtain a lock on data directory %s. dogecash Core is probably already running.</source>
+        <translation>Nie można uzyskać dostępu do katalogu danych %s. dogecash Core prawdopodobnie już działa.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5250,8 +5250,8 @@ Proszę być cierpliwym...</translation>
         <translation>Utrzymuj pełny indeks transakcji, używany przez wywołanie getrawtransaction rpc (domyślnie:%u)</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. DogeCash Core is probably already running.</source>
-        <translation>Nie można podłączyć %s na tym komputerze. DogeCash Core prawdopodobnie już działa.</translation>
+        <source>Unable to bind to %s on this computer. dogecash Core is probably already running.</source>
+        <translation>Nie można podłączyć %s na tym komputerze. dogecash Core prawdopodobnie już działa.</translation>
     </message>
     <message>
         <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
@@ -5330,8 +5330,8 @@ Proszę być cierpliwym...</translation>
         <translation>Copyright (C) 2014-%i The Dash Core Developers</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The DogeCash Core Developers</source>
-        <translation>Copyright (C) 2015-%i The DogeCash Core Developers</translation>
+        <source>Copyright (C) 2015-%i The dogecash Core Developers</source>
+        <translation>Copyright (C) 2015-%i The dogecash Core Developers</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -5390,8 +5390,8 @@ Proszę być cierpliwym...</translation>
         <translation>Wystąpił błąd podczas ładowania pliku wallet.dat: Portfel uszkodzony</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
-        <translation>Błąd ładowania pliku wallet.dat: Portfel wymaga nowszej wersji DogeCash Core</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of dogecash Core</source>
+        <translation>Błąd ładowania pliku wallet.dat: Portfel wymaga nowszej wersji dogecash Core</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -5858,8 +5858,8 @@ Proszę być cierpliwym...</translation>
         <translation>Portfel jest zablokowany.</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
-        <translation>Portfel musiał zostać przepisany: zrestartuj DogeCash Core, aby zakończyć</translation>
+        <source>Wallet needed to be rewritten: restart dogecash Core to complete</source>
+        <translation>Portfel musiał zostać przepisany: zrestartuj dogecash Core, aby zakończyć</translation>
     </message>
     <message>
         <source>Wallet options:</source>
