@@ -62,12 +62,12 @@
         <translation>Adres odbiorczy</translation>
     </message>
     <message>
-        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>To są twoje adresy DogeCash do wysyłania płatności. Zawsze sprawdzaj kwotę i adres odbiorcy przed wysłaniem monet.</translation>
+        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>To są twoje adresy dogecash do wysyłania płatności. Zawsze sprawdzaj kwotę i adres odbiorcy przed wysłaniem monet.</translation>
     </message>
     <message>
-        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>To są twoje adresy DogeCash do otrzymywania płatności. Zaleca się użycie nowego adresu odbiorczego dla każdej transakcji.</translation>
+        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>To są twoje adresy dogecash do otrzymywania płatności. Zaleca się użycie nowego adresu odbiorczego dla każdej transakcji.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -177,8 +177,8 @@ Użyj hasła składającego się z dziesięciu lub więcej losowych znaków lub 
         <translation>Potwierdź szyfrowanie portfela</translation>
     </message>
     <message>
-        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
-        <translation>DogeCash zamknie się teraz, aby zakończyć proces szyfrowania. Pamiętaj, że zaszyfrowanie portfela nie chroni w pełni Twoich DOGEC przed kradzieżą przez złośliwe oprogramowanie infekujące Twój komputer.</translation>
+        <source>dogecash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>dogecash zamknie się teraz, aby zakończyć proces szyfrowania. Pamiętaj, że zaszyfrowanie portfela nie chroni w pełni Twoich DOGEC przed kradzieżą przez złośliwe oprogramowanie infekujące Twój komputer.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -255,12 +255,12 @@ Użyj hasła składającego się z dziesięciu lub więcej losowych znaków lub 
         <translation>Adres:</translation>
     </message>
     <message>
-        <source>Enter a DogeCash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Wprowadź adres DogeCash, który chcesz zaszyfrować za pomocą BIP 38. Wprowadź hasło w środkowym polu. Naciśnij przycisk szyfrowania, aby obliczyć zaszyfrowany klucz prywatny.</translation>
+        <source>Enter a dogecash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>Wprowadź adres dogecash, który chcesz zaszyfrować za pomocą BIP 38. Wprowadź hasło w środkowym polu. Naciśnij przycisk szyfrowania, aby obliczyć zaszyfrowany klucz prywatny.</translation>
     </message>
     <message>
-        <source>The DogeCash address to encrypt</source>
-        <translation>Adres DogeCash do zaszyfrowania</translation>
+        <source>The dogecash address to encrypt</source>
+        <translation>Adres dogecash do zaszyfrowania</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -291,8 +291,8 @@ Użyj hasła składającego się z dziesięciu lub więcej losowych znaków lub 
         <translation>Skopiuj bieżący podpis do schowka systemowego</translation>
     </message>
     <message>
-        <source>Encrypt the private key for this DogeCash address</source>
-        <translation>Zaszyfruj klucz prywatny dla tego adresu DogeCash</translation>
+        <source>Encrypt the private key for this dogecash address</source>
+        <translation>Zaszyfruj klucz prywatny dla tego adresu dogecash</translation>
     </message>
     <message>
         <source>Reset all fields</source>
@@ -659,16 +659,16 @@ odszyfrowany i aktualnie odblokowany tylko do anonimizacji i stakingu</translati
         <translation>Pasek narzędzi</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>Rdzeń DogeCash</translation>
+        <source>dogecash Core</source>
+        <translation>Rdzeń dogecash</translation>
     </message>
     <message>
-        <source>Send coins to a DogeCash address</source>
-        <translation>Wyślij monety do adresu DogeCash</translation>
+        <source>Send coins to a dogecash address</source>
+        <translation>Wyślij monety do adresu dogecash</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and DogeCash: URIs)</source>
-        <translation>Zarządaj płatności (generuje kod QR i DogeCash:URI)</translation>
+        <source>Request payments (generates QR codes and dogecash: URIs)</source>
+        <translation>Zarządaj płatności (generuje kod QR i dogecash:URI)</translation>
     </message>
     <message>
         <source>&amp;Privacy</source>
@@ -683,24 +683,24 @@ odszyfrowany i aktualnie odblokowany tylko do anonimizacji i stakingu</translati
         <translation>Przeglądaj masternodes</translation>
     </message>
     <message>
-        <source>&amp;About DogeCash Core</source>
-        <translation>&amp;O DogeCash Core</translation>
+        <source>&amp;About dogecash Core</source>
+        <translation>&amp;O dogecash Core</translation>
     </message>
     <message>
-        <source>Show information about DogeCash Core</source>
-        <translation>Pokaż informacje o DogeCash Core</translation>
+        <source>Show information about dogecash Core</source>
+        <translation>Pokaż informacje o dogecash Core</translation>
     </message>
     <message>
-        <source>Modify configuration options for DogeCash</source>
-        <translation>Modyfikuj opcje konfiguracji DogeCash</translation>
+        <source>Modify configuration options for dogecash</source>
+        <translation>Modyfikuj opcje konfiguracji dogecash</translation>
     </message>
     <message>
-        <source>Sign messages with your DogeCash addresses to prove you own them</source>
-        <translation>Zatwierdź wiadomość z twoimi adresami DogeCash, by udowodnić, że jesteś w ich posiadaniu</translation>
+        <source>Sign messages with your dogecash addresses to prove you own them</source>
+        <translation>Zatwierdź wiadomość z twoimi adresami dogecash, by udowodnić, że jesteś w ich posiadaniu</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
-        <translation>Zweryfikuj wiadomości by upewnić się, że zostały zatwierdzone z podanego adresu DogeCash</translation>
+        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
+        <translation>Zweryfikuj wiadomości by upewnić się, że zostały zatwierdzone z podanego adresu dogecash</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -731,8 +731,8 @@ odszyfrowany i aktualnie odblokowany tylko do anonimizacji i stakingu</translati
         <translation>Otwórz plik konfiguracyjny Masternode</translation>
     </message>
     <message>
-        <source>Open a DogeCash: URI or payment request</source>
-        <translation>Otwórz DogeCash: URI i żądanie zapłaty</translation>
+        <source>Open a dogecash: URI or payment request</source>
+        <translation>Otwórz dogecash: URI i żądanie zapłaty</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -743,16 +743,16 @@ odszyfrowany i aktualnie odblokowany tylko do anonimizacji i stakingu</translati
         <translation>Okno eksplorera bloków</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
-        <translation>Pokaż wiadomość pomocy rdzenia DogeCash, aby dostać listę możliwych opcji DogeCash command-line</translation>
+        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
+        <translation>Pokaż wiadomość pomocy rdzenia dogecash, aby dostać listę możliwych opcji dogecash command-line</translation>
     </message>
     <message>
-        <source>DogeCash Core client</source>
-        <translation>DogeCash Core klient</translation>
+        <source>dogecash Core client</source>
+        <translation>dogecash Core klient</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to DogeCash network</source>
-        <translation><numerusform>%n aktywne połączenie z siecią DogeCash()</numerusform><numerusform>%n aktywnych połączeń z siecią DogeCash()</numerusform><numerusform>%n aktywnych połączeń z siecią DogeCash()</numerusform><numerusform>%n aktywnych połączeń z siecią DogeCash()</numerusform></translation>
+        <source>%n active connection(s) to dogecash network</source>
+        <translation><numerusform>%n aktywne połączenie z siecią dogecash()</numerusform><numerusform>%n aktywnych połączeń z siecią dogecash()</numerusform><numerusform>%n aktywnych połączeń z siecią dogecash()</numerusform><numerusform>%n aktywnych połączeń z siecią dogecash()</numerusform></translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -879,8 +879,8 @@ MultiWysyłlka: %1</translation>
         <translation>Portfel jest zaszyfrowany i obecnie zablokowany</translation>
     </message>
     <message>
-        <source>A fatal error occurred. DogeCash can no longer continue safely and will quit.</source>
-        <translation>Wystąpił błąd krytyczny. DogeCash nie może już działać bezpiecznie i zakończy działanie.</translation>
+        <source>A fatal error occurred. dogecash can no longer continue safely and will quit.</source>
+        <translation>Wystąpił błąd krytyczny. dogecash nie może już działać bezpiecznie i zakończy działanie.</translation>
     </message>
 </context>
 <context>
@@ -910,8 +910,8 @@ MultiWysyłlka: %1</translation>
         <translation>TekstZakładka</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (DogeCash.conf).</source>
-        <translation>Nie wszystkie transakcje zostaną pokazane. Aby wyświetlić wszystkie transakcje, musisz ustawić txindex=1 w pliku konfiguracyjnym (DogeCash.conf).</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (dogecash.conf).</source>
+        <translation>Nie wszystkie transakcje zostaną pokazane. Aby wyświetlić wszystkie transakcje, musisz ustawić txindex=1 w pliku konfiguracyjnym (dogecash.conf).</translation>
     </message>
 </context>
 <context>
@@ -1203,8 +1203,8 @@ MultiWysyłlka: %1</translation>
         <translation>Edytuj adres wysyłania</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid DogeCash address.</source>
-        <translation>Wprowadzony adres "%1" nie jest prawidłowym adresem DogeCash.</translation>
+        <source>The entered address "%1" is not a valid dogecash address.</source>
+        <translation>Wprowadzony adres "%1" nie jest prawidłowym adresem dogecash.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1292,16 +1292,16 @@ MultiWysyłlka: %1</translation>
         <translation>Wersja</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>Rdzeń DogeCash</translation>
+        <source>dogecash Core</source>
+        <translation>Rdzeń dogecash</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About DogeCash Core</source>
-        <translation>O DogeCash Core</translation>
+        <source>About dogecash Core</source>
+        <translation>O dogecash Core</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1347,16 +1347,16 @@ MultiWysyłlka: %1</translation>
         <translation>Zapraszamy</translation>
     </message>
     <message>
-        <source>Welcome to DogeCash Core.</source>
-        <translation>Zapraszamy do DogeCash Core</translation>
+        <source>Welcome to dogecash Core.</source>
+        <translation>Zapraszamy do dogecash Core</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
-        <translation>Ponieważ program jest uruchamiany po raz pierwszy, możesz wybrać miejsce, w którym DogeCash Core będzie przechowywać swoje dane.</translation>
+        <source>As this is the first time the program is launched, you can choose where dogecash Core will store its data.</source>
+        <translation>Ponieważ program jest uruchamiany po raz pierwszy, możesz wybrać miejsce, w którym dogecash Core będzie przechowywać swoje dane.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>DogeCash Core pobierze i zapisze kopię łańcucha bloków DogeCash. Przynajmniej %1 GB danych zostanie zapisanych w tym katalogu, a jego liczba będzie rosnąć z czasem. Portfel zostanie również zapisany w tym katalogu.</translation>
+        <source>dogecash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>dogecash Core pobierze i zapisze kopię łańcucha bloków dogecash. Przynajmniej %1 GB danych zostanie zapisanych w tym katalogu, a jego liczba będzie rosnąć z czasem. Portfel zostanie również zapisany w tym katalogu.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1367,8 +1367,8 @@ MultiWysyłlka: %1</translation>
         <translation>Użyj niestandardowej ścieżki danych</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>Rdzeń DogeCash</translation>
+        <source>dogecash Core</source>
+        <translation>Rdzeń dogecash</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1509,11 +1509,11 @@ MultiWysyłlka: %1</translation>
         <translation>Wprowadź adres do wysłania</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other DogeCash addresses after it matures.
-To Add: enter percentage to give and DogeCash address to add to the MultiSend vector.
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other dogecash addresses after it matures.
+To Add: enter percentage to give and dogecash address to add to the MultiSend vector.
 To Delete: Enter address to delete and press delete.
 MultiSend will not be activated unless you have clicked Activate</source>
-        <translation>MultiSend pozwala na automatyczne przesłanie do 100% swojej nagrody za staking lub masternoda na listę innych adresów DogeCash po osiągnięciu dojrzałości. Aby dodać: wpisz procent  i adres DogeCash, żeby dodać do wektora MultiSend. Aby usunąć: Enter adres do usunięcia i naciśnij Usuń. MultiSend nie zostanie aktywowany, dopóki nie klikniesz Aktywuj</translation>
+        <translation>MultiSend pozwala na automatyczne przesłanie do 100% swojej nagrody za staking lub masternoda na listę innych adresów dogecash po osiągnięciu dojrzałości. Aby dodać: wpisz procent  i adres dogecash, żeby dodać do wektora MultiSend. Aby usunąć: Enter adres do usunięcia i naciśnij Usuń. MultiSend nie zostanie aktywowany, dopóki nie klikniesz Aktywuj</translation>
     </message>
     <message>
         <source>Add to MultiSend Vector</source>
@@ -1898,16 +1898,16 @@ Please be patient after clicking import.</source>
         <translation>Skonfiguruj Zaciemnianie</translation>
     </message>
     <message>
-        <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening DogeCash's configuration screen.</source>
-        <translation>Zaciemnianie zostało z powodzeniem ustawione na podstawową wartość (%1 i 2 rundy). Możesz to zmienić w dowolnym momencie, otwierając ekran konfiguracji DogeCash.</translation>
+        <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
+        <translation>Zaciemnianie zostało z powodzeniem ustawione na podstawową wartość (%1 i 2 rundy). Możesz to zmienić w dowolnym momencie, otwierając ekran konfiguracji dogecash.</translation>
     </message>
     <message>
-        <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening DogeCash's configuration screen.</source>
-        <translation>Zaciemnianie zostało z powodzeniem ustawiona na wysoką wartość (%1 i 8 rund). Możesz to zmienić w dowolnym momencie, otwierając ekran konfiguracji DogeCash.</translation>
+        <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
+        <translation>Zaciemnianie zostało z powodzeniem ustawiona na wysoką wartość (%1 i 8 rund). Możesz to zmienić w dowolnym momencie, otwierając ekran konfiguracji dogecash.</translation>
     </message>
     <message>
-        <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening DogeCash's configuration screen.</source>
-        <translation>Zaciemnianie zostało z powodzeniem ustawione na makszmalną wartość (%1 i 16 rund). Możesz to zmienić w dowolnym momencie, otwierając ekran konfiguracji DogeCash.</translation>
+        <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
+        <translation>Zaciemnianie zostało z powodzeniem ustawione na makszmalną wartość (%1 i 16 rund). Możesz to zmienić w dowolnym momencie, otwierając ekran konfiguracji dogecash.</translation>
     </message>
 </context>
 <context>
@@ -1968,8 +1968,8 @@ Please be patient after clicking import.</source>
         <translation>Jeśli wyłączysz wydawanie niepotwierdzonych reszt, reszta z transakcji nie może być użyta, dopóki transakcja nie uzyska co najmniej jednego potwierdzenia. Ma to również wpływ na sposób obliczania salda.</translation>
     </message>
     <message>
-        <source>Automatically open the DogeCash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatycznie otwórz port klienta DogeCash na routerze. Działa to tylko wtedy, gdy twój router obsługuje UPnP i jest włączony.</translation>
+        <source>Automatically open the dogecash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatycznie otwórz port klienta dogecash na routerze. Działa to tylko wtedy, gdy twój router obsługuje UPnP i jest włączony.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1988,12 +1988,12 @@ Please be patient after clicking import.</source>
         <translation>Ekspert</translation>
     </message>
     <message>
-        <source>Automatically start DogeCash after logging in to the system.</source>
-        <translation>Automatycznie uruchom DogeCash po zalogowaniu do systemu</translation>
+        <source>Automatically start dogecash after logging in to the system.</source>
+        <translation>Automatycznie uruchom dogecash po zalogowaniu do systemu</translation>
     </message>
     <message>
-        <source>&amp;Start DogeCash on system login</source>
-        <translation>&amp;Uruchom DogeCash podczas logowania do systemu</translation>
+        <source>&amp;Start dogecash on system login</source>
+        <translation>&amp;Uruchom dogecash podczas logowania do systemu</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -2020,14 +2020,14 @@ Please be patient after clicking import.</source>
         <translation>&amp;Sieć</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting DogeCash.</source>
-        <translation>Język interfejsu użytkownika może być wybrany tutaj. Ustawienia ulegną zmianie po restarcie DogeCash</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting dogecash.</source>
+        <translation>Język interfejsu użytkownika może być wybrany tutaj. Ustawienia ulegną zmianie po restarcie dogecash</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/DogeCash-project/DogeCash-project-translations</source>
+https://www.transifex.com/dogecash-project/dogecash-project-translations</source>
         <translation>Brakuje języka bądź nieukończona pełnego tłumaczenia? Pomóż w tłumaczeniu tutaj:
-https://www.transifex.com/DogeCash-project/DogeCash-project-translations </translation>
+https://www.transifex.com/dogecash-project/dogecash-project-translations </translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -2070,8 +2070,8 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations </trans
         <translation>Próg podziału stawki -stake- :</translation>
     </message>
     <message>
-        <source>Connect to the DogeCash network through a SOCKS5 proxy.</source>
-        <translation>Połącz z siecią DogeCash poprzez SOCKS5 proxy.</translation>
+        <source>Connect to the dogecash network through a SOCKS5 proxy.</source>
+        <translation>Połącz z siecią dogecash poprzez SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2257,8 +2257,8 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations </trans
         <translation>Aktualne zablokowane saldo na testowych adresach</translation>
     </message>
     <message>
-        <source>Your current DogeCash balance, unconfirmed and immature transactions included</source>
-        <translation>Twoje bieżące saldo DogeCash, niepotwierdzone transakcje zostały uwzględnione</translation>
+        <source>Your current dogecash balance, unconfirmed and immature transactions included</source>
+        <translation>Twoje bieżące saldo dogecash, niepotwierdzone transakcje zostały uwzględnione</translation>
     </message>
     <message>
         <source>zdogec Balance</source>
@@ -2277,8 +2277,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Niedojrzały: potwierdzony, ale mniej niż 1 mint o tym samym nominale po wybiciu</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
-        <translation>Wyświetlane informacje mogą być nieaktualne. Twój portfel automatycznie synchronizuje się z siecią DogeCash po nawiązaniu połączenia, ale ten proces jeszcze się nie zakończył.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
+        <translation>Wyświetlane informacje mogą być nieaktualne. Twój portfel automatycznie synchronizuje się z siecią dogecash po nawiązaniu połączenia, ale ten proces jeszcze się nie zakończył.</translation>
     </message>
     <message>
         <source>OVERVIEW</source>
@@ -2357,14 +2357,14 @@ Jeśli włączona jest funkcja AutoMint, procent ten ustabilizuje się wokół s
         <translation>AutoMint jest obecnie włączony i ustawiony na</translation>
     </message>
     <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in DogeCash.conf.</source>
-        <translation>Aby wyłączyć AutoMint, dodaj "enablezeromint = 0" w pliku DogeCash.conf.</translation>
+        <source>To disable AutoMint add 'enablezeromint=0' in dogecash.conf.</source>
+        <translation>Aby wyłączyć AutoMint, dodaj "enablezeromint = 0" w pliku dogecash.conf.</translation>
     </message>
     <message>
         <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in DogeCash.conf</source>
+To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in dogecash.conf</source>
         <translation>Funkcja AutoMint jest obecnie wyłączona.
-Aby włączyć AutoMint zmień "enablezeromint = 0" na "enablezeromint = 1" w pliku DogeCash.conf</translation>
+Aby włączyć AutoMint zmień "enablezeromint = 0" na "enablezeromint = 1" w pliku dogecash.conf</translation>
     </message>
 </context>
 <context>
@@ -2390,12 +2390,12 @@ Aby włączyć AutoMint zmień "enablezeromint = 0" na "enablezeromint = 1" w pl
         <translation>Nieprawidłowy adres płatności %1</translation>
     </message>
     <message>
-        <source>Cannot start DogeCash: click-to-pay handler</source>
-        <translation>Nie można uruchomić DogeCash: click-to-pay handler</translation>
+        <source>Cannot start dogecash: click-to-pay handler</source>
+        <translation>Nie można uruchomić dogecash: click-to-pay handler</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid DogeCash address or malformed URI parameters.</source>
-        <translation>Nie można przeanalizować identyfikatora URI! Może to być spowodowane nieprawidłowym adresem DogeCash lub nieprawidłowymi parametrami URI.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid dogecash address or malformed URI parameters.</source>
+        <translation>Nie można przeanalizować identyfikatora URI! Może to być spowodowane nieprawidłowym adresem dogecash lub nieprawidłowymi parametrami URI.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2480,8 +2480,8 @@ Aby włączyć AutoMint zmień "enablezeromint = 0" na "enablezeromint = 1" w pl
         <translation>Działania Zerocoin:</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
-        <translation>Wyświetlane informacje mogą być nieaktualne. Twój portfel automatycznie synchronizuje się z siecią DogeCash po nawiązaniu połączenia, ale ten proces jeszcze się nie zakończył.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
+        <translation>Wyświetlane informacje mogą być nieaktualne. Twój portfel automatycznie synchronizuje się z siecią dogecash po nawiązaniu połączenia, ale ten proces jeszcze się nie zakończył.</translation>
     </message>
     <message>
         <source>Mint Zerocoin</source>
@@ -2592,8 +2592,8 @@ zdogec są dojrzałe, gdy mają więcej niż 20 potwierdzeń I więcej niż 2 mi
         <translation>&amp;Zapłać</translation>
     </message>
     <message>
-        <source>The DogeCash address to send the payment to. Creates local payment to yourself when empty.</source>
-        <translation>Adres DogeCash do wysłania płatności do. Tworzy lokalną płatność dla siebie, gdy jest pusta.</translation>
+        <source>The dogecash address to send the payment to. Creates local payment to yourself when empty.</source>
+        <translation>Adres dogecash do wysłania płatności do. Tworzy lokalną płatność dla siebie, gdy jest pusta.</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2669,8 +2669,8 @@ Niedojrzały: potwierdzony, ale mniej niż 1 mint o tym samym nominale po wybici
         <source>Show the current status of automatic zdogec minting.
 
 To change the status (restart required):
-- enable: add 'enablezeromint=1' to DogeCash.conf
-- disable: add 'enablezeromint=0' to DogeCash.conf
+- enable: add 'enablezeromint=1' to dogecash.conf
+- disable: add 'enablezeromint=0' to dogecash.conf
 
 To change the percentage (no restart required):
 - menu Settings-&gt;Options-&gt;Percentage of autominted zdogec
@@ -2679,8 +2679,8 @@ To change the percentage (no restart required):
         <translation>Pokaż aktualny status automatycznego mint zdogec.
 
 Aby zmienić status (wymagany restart):
-- włącz: dodaj "enablezeromint = 1" do pliku DogeCash.conf
-- wyłącz: dodaj "enablezeromint = 0" do pliku DogeCash.conf
+- włącz: dodaj "enablezeromint = 1" do pliku dogecash.conf
+- wyłącz: dodaj "enablezeromint = 0" do pliku dogecash.conf
 
 Aby zmienić procent (bez ponownego uruchamiania):
 - menu Ustawienia-&gt; Opcje-&gt; Procent autominted zdogec
@@ -3024,8 +3024,8 @@ Maksymalna dozwolona:</translation>
         <translation>Nie podano adresu "Zapłać do", tworząc płatność lokalną</translation>
     </message>
     <message>
-        <source>Invalid DogeCash Address</source>
-        <translation>Nieprawidłowy adres DogeCash</translation>
+        <source>Invalid dogecash Address</source>
+        <translation>Nieprawidłowy adres dogecash</translation>
     </message>
     <message>
         <source>Invalid Send Amount</source>
@@ -3191,8 +3191,8 @@ Proszę być cierpliwym...</translation>
         <translation>Ilość</translation>
     </message>
     <message>
-        <source>Enter a DogeCash address (e.g. %1)</source>
-        <translation>Wprowadź adres DogeCash (np. %1)</translation>
+        <source>Enter a dogecash address (e.g. %1)</source>
+        <translation>Wprowadź adres dogecash (np. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -3239,8 +3239,8 @@ Proszę być cierpliwym...</translation>
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -3259,8 +3259,8 @@ Proszę być cierpliwym...</translation>
         <translation>Błąd odczytu pliku konfiguracyjnego masternode: %1</translation>
     </message>
     <message>
-        <source>DogeCash Core didn't yet exit safely...</source>
-        <translation>DogeCash Core nie zamkną się jeszcze bezpiecznie ...</translation>
+        <source>dogecash Core didn't yet exit safely...</source>
+        <translation>dogecash Core nie zamkną się jeszcze bezpiecznie ...</translation>
     </message>
 </context>
 <context>
@@ -3357,8 +3357,8 @@ Proszę być cierpliwym...</translation>
         <translation>Łańcuch bloków</translation>
     </message>
     <message>
-        <source>Open the DogeCash debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Otwórz plik dziennika debugowania DogeCash z bieżącego katalogu danych. Może to potrwać kilka sekund w przypadku dużych plików dziennika.</translation>
+        <source>Open the dogecash debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Otwórz plik dziennika debugowania dogecash z bieżącego katalogu danych. Może to potrwać kilka sekund w przypadku dużych plików dziennika.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -3573,8 +3573,8 @@ Proszę być cierpliwym...</translation>
         <translation>Z</translation>
     </message>
     <message>
-        <source>Welcome to the DogeCash RPC console.</source>
-        <translation>Witamy w konsoli DogeCash RPC.</translation>
+        <source>Welcome to the dogecash RPC console.</source>
+        <translation>Witamy w konsoli dogecash RPC.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -3716,16 +3716,16 @@ Proszę być cierpliwym...</translation>
         <translation>&amp;Ilość:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the DogeCash network.</source>
-        <translation>Opcjonalna wiadomość dołączana do żądania zapłaty, która zostanie wyświetlona przy otwarciu żądania. Uwaga: Wiadomość nie będzie wysłana przez sieć DogeCash.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the dogecash network.</source>
+        <translation>Opcjonalna wiadomość dołączana do żądania zapłaty, która zostanie wyświetlona przy otwarciu żądania. Uwaga: Wiadomość nie będzie wysłana przez sieć dogecash.</translation>
     </message>
     <message>
         <source>RECEIVE</source>
         <translation>OTRZYMASZ</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the DogeCash network.</source>
-        <translation>Opcjonalna wiadomość dołączana do żądania zapłaty, która zostanie wyświetlona po otwarciu żądania.&lt;br&gt;Uwaga: Wiadomość nie będzie wysłana przez sieć DogeCash.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the dogecash network.</source>
+        <translation>Opcjonalna wiadomość dołączana do żądania zapłaty, która zostanie wyświetlona po otwarciu żądania.&lt;br&gt;Uwaga: Wiadomość nie będzie wysłana przez sieć dogecash.</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
@@ -4029,7 +4029,7 @@ Proszę być cierpliwym...</translation>
         <translation>Jeśli opłata trasakcyjna jest ustawiona na 1000 uDOGEC i transakcja ma tylko 250 bajtów, to płaci się tylko 250 uDOGEC, &lt;br /&gt; W przypadku transakcji większych niż kilobajt płacisz za kilobajta.</translation>
     </message>
     <message>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for DogeCash transactions than the network can process.</source>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for dogecash transactions than the network can process.</source>
         <translation>Płacenie tylko minimalnej opłaty jest w porządku, o ile w blokach jest mniejsza ilość transakcji niż miejsca&lt;br /&gt;Ale pamiętaj, że może to skończyć się niepotwierdzoną transakcją, gdy pojawi się większe ruch niż sieć może przetworzyć.</translation>
     </message>
     <message>
@@ -4125,8 +4125,8 @@ Proszę być cierpliwym...</translation>
         <translation>Narzędzie podzielonego bloku nie działa z wieloma adresami. Spróbuj ponownie.</translation>
     </message>
     <message>
-        <source>Warning: Invalid DogeCash address</source>
-        <translation>Ostrzeżenie: Nieprawidłowy adres DogeCash</translation>
+        <source>Warning: Invalid dogecash address</source>
+        <translation>Ostrzeżenie: Nieprawidłowy adres dogecash</translation>
     </message>
     <message>
         <source>%1 to %2</source>
@@ -4232,8 +4232,8 @@ Proszę być cierpliwym...</translation>
         <translation>&amp;Zapłać</translation>
     </message>
     <message>
-        <source>The DogeCash address to send the payment to</source>
-        <translation>Adres DogeCash do wysłania płatności do</translation>
+        <source>The dogecash address to send the payment to</source>
+        <translation>Adres dogecash do wysłania płatności do</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -4272,8 +4272,8 @@ Proszę być cierpliwym...</translation>
         <translation>Wiadomość:</translation>
     </message>
     <message>
-        <source>A message that was attached to the DogeCash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the DogeCash network.</source>
-        <translation>Komunikat dołączony do identyfikatora DogeCash: URI, który będzie przechowywany wraz z transakcją w celach informacyjnych. Uwaga: ten komunikat nie zostanie wysłany przez sieć DogeCash.</translation>
+        <source>A message that was attached to the dogecash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the dogecash network.</source>
+        <translation>Komunikat dołączony do identyfikatora dogecash: URI, który będzie przechowywany wraz z transakcją w celach informacyjnych. Uwaga: ten komunikat nie zostanie wysłany przez sieć dogecash.</translation>
     </message>
     <message>
         <source>This is an unverified payment request.</source>
@@ -4299,8 +4299,8 @@ Proszę być cierpliwym...</translation>
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>DogeCash Core is shutting down...</source>
-        <translation>DogeCash Core się wyłącza ...</translation>
+        <source>dogecash Core is shutting down...</source>
+        <translation>dogecash Core się wyłącza ...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4322,8 +4322,8 @@ Proszę być cierpliwym...</translation>
         <translation>Możesz podpisywać wiadomości ze swoimi adresami, aby udowodnić, że je posiadasz. Uważaj, aby nie podpisać niczego niejasnego, ponieważ ataki phishingowe mogą skłonić Cię do podpisania Twojej tożsamości. Podawaj tylko w pełni szczegółowe oświadczenia, na które wyrażasz zgodę.</translation>
     </message>
     <message>
-        <source>The DogeCash address to sign the message with</source>
-        <translation>Adres DogeCash do podpisania wiadomości za pomocą</translation>
+        <source>The dogecash address to sign the message with</source>
+        <translation>Adres dogecash do podpisania wiadomości za pomocą</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -4354,16 +4354,16 @@ Proszę być cierpliwym...</translation>
         <translation>Skopiuj bieżący podpis do schowka systemowego</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this DogeCash address</source>
-        <translation>Zatwierdź wiadomość, aby udowodnić, że podany adres DogeCash jest w twoim posiadaniu</translation>
+        <source>Sign the message to prove you own this dogecash address</source>
+        <translation>Zatwierdź wiadomość, aby udowodnić, że podany adres dogecash jest w twoim posiadaniu</translation>
     </message>
     <message>
-        <source>The DogeCash address the message was signed with</source>
-        <translation>Adres DogeCash, z którym została podpisana wiadomość</translation>
+        <source>The dogecash address the message was signed with</source>
+        <translation>Adres dogecash, z którym została podpisana wiadomość</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
-        <translation>Sprawdź komunikat, aby upewnić się, że został podpisany podanym adresem DogeCash</translation>
+        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
+        <translation>Sprawdź komunikat, aby upewnić się, że został podpisany podanym adresem dogecash</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -4449,8 +4449,8 @@ Proszę być cierpliwym...</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>DogeCash Core</source>
-        <translation>DogeCash Core</translation>
+        <source>dogecash Core</source>
+        <translation>dogecash Core</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -4465,8 +4465,8 @@ Proszę być cierpliwym...</translation>
         <translation>Twórcy Dash Core</translation>
     </message>
     <message>
-        <source>The DogeCash Core developers</source>
-        <translation>Twórcy DogeCash Core</translation>
+        <source>The dogecash Core developers</source>
+        <translation>Twórcy dogecash Core</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -5108,7 +5108,7 @@ Proszę być cierpliwym...</translation>
     </message>
 </context>
 <context>
-    <name>DogeCash-core</name>
+    <name>dogecash-core</name>
     <message>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation>(1 = zachowaj tx meta dane np. Właściciel konta i informacje o żądaniu płatności, 2 = porzuć tx meta dane)</translation>
@@ -5134,8 +5134,8 @@ Proszę być cierpliwym...</translation>
         <translation>Obliczony punkt kontrolny akumulatora nie jest tym, co jest rejestrowane przez indeks bloku</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. DogeCash Core is probably already running.</source>
-        <translation>Nie można uzyskać dostępu do katalogu danych %s. DogeCash Core prawdopodobnie już działa.</translation>
+        <source>Cannot obtain a lock on data directory %s. dogecash Core is probably already running.</source>
+        <translation>Nie można uzyskać dostępu do katalogu danych %s. dogecash Core prawdopodobnie już działa.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5250,8 +5250,8 @@ Proszę być cierpliwym...</translation>
         <translation>Utrzymuj pełny indeks transakcji, używany przez wywołanie getrawtransaction rpc (domyślnie:%u)</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. DogeCash Core is probably already running.</source>
-        <translation>Nie można podłączyć %s na tym komputerze. DogeCash Core prawdopodobnie już działa.</translation>
+        <source>Unable to bind to %s on this computer. dogecash Core is probably already running.</source>
+        <translation>Nie można podłączyć %s na tym komputerze. dogecash Core prawdopodobnie już działa.</translation>
     </message>
     <message>
         <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
@@ -5330,8 +5330,8 @@ Proszę być cierpliwym...</translation>
         <translation>Copyright (C) 2014-%i The Dash Core Developers</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The DogeCash Core Developers</source>
-        <translation>Copyright (C) 2015-%i The DogeCash Core Developers</translation>
+        <source>Copyright (C) 2015-%i The dogecash Core Developers</source>
+        <translation>Copyright (C) 2015-%i The dogecash Core Developers</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -5390,8 +5390,8 @@ Proszę być cierpliwym...</translation>
         <translation>Wystąpił błąd podczas ładowania pliku wallet.dat: Portfel uszkodzony</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
-        <translation>Błąd ładowania pliku wallet.dat: Portfel wymaga nowszej wersji DogeCash Core</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of dogecash Core</source>
+        <translation>Błąd ładowania pliku wallet.dat: Portfel wymaga nowszej wersji dogecash Core</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -5534,8 +5534,8 @@ Proszę być cierpliwym...</translation>
 </translation>
     </message>
     <message>
-        <source>Disable all DogeCash specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Wyłącz wszystkie funkcje specyficzne dla DogeCash (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, domyślnie: %u)</translation>
+        <source>Disable all dogecash specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
+        <translation>Wyłącz wszystkie funkcje specyficzne dla dogecash (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, domyślnie: %u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
@@ -5858,8 +5858,8 @@ Proszę być cierpliwym...</translation>
         <translation>Portfel jest zablokowany.</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
-        <translation>Portfel musiał zostać przepisany: zrestartuj DogeCash Core, aby zakończyć</translation>
+        <source>Wallet needed to be rewritten: restart dogecash Core to complete</source>
+        <translation>Portfel musiał zostać przepisany: zrestartuj dogecash Core, aby zakończyć</translation>
     </message>
     <message>
         <source>Wallet options:</source>

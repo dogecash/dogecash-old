@@ -7,10 +7,10 @@ reset-files.bash
 *.tar.gz
 
 *.exe
-src/DogeCash
+src/dogecash
 src/dogecashd
-src/DogeCash-cli
-src/DogeCash-tx
+src/dogecash-cli
+src/dogecash-tx
 src/test/test_dogecash
 src/qt/test/test_dogecash-qt
 
@@ -38,8 +38,8 @@ confdefs.h
 conftest.cpp
 conftest.err
 libtool
-src/config/DogeCash-config.h
-src/config/DogeCash-config.h.in
+src/config/dogecash-config.h
+src/config/dogecash-config.h.in
 src/config/stamp-h1
 share/setup.nsi
 share/qt/Info.plist
@@ -65,7 +65,7 @@ src/qt/test/moc*.cpp
 *.o
 *.o-*
 *.patch
-.DogeCash
+.dogecash
 *.a
 *.pb.cc
 *.pb.h
@@ -84,13 +84,13 @@ src/qt/test/moc*.cpp
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-DogeCash-qt
-DogeCash-Qt.app
+dogecash-qt
+dogecash-Qt.app
 background.tiff*
 
 # Unit-tests
 Makefile.test
-DogeCash-qt_test
+dogecash-qt_test
 src/test/buildenv.py
 
 # Resources cpp

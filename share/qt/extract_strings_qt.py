@@ -78,6 +78,6 @@ f.write('static const char UNUSED *dogecash_strings[] = {\n')
 messages.sort(key=operator.itemgetter(0))
 for (msgid, msgstr) in messages:
     if msgid != EMPTY:
-        f.write('QT_TRANSLATE_NOOP("DogeCash-core", %s),\n' % ('\n'.join(msgid)))
+        f.write('QT_TRANSLATE_NOOP("dogecash-core", %s),\n' % ('\n'.join(msgid)))
 f.write('};\n')
 f.close()

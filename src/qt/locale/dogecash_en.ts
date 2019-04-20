@@ -80,12 +80,12 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -221,7 +221,7 @@
     </message>
     <message>
         <location line="+9"/>
-        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <source>dogecash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -326,12 +326,12 @@
     </message>
     <message>
         <location line="-424"/>
-        <source>Enter a DogeCash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <source>Enter a dogecash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+31"/>
-        <source>The DogeCash address to encrypt</source>
+        <source>The dogecash address to encrypt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -375,7 +375,7 @@
     </message>
     <message>
         <location line="+18"/>
-        <source>Encrypt the private key for this DogeCash address</source>
+        <source>Encrypt the private key for this dogecash address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -841,17 +841,17 @@
     <message>
         <location line="-448"/>
         <location line="+938"/>
-        <source>DogeCash Core</source>
+        <source>dogecash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-742"/>
-        <source>Send coins to a DogeCash address</source>
+        <source>Send coins to a dogecash address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+11"/>
-        <source>Request payments (generates QR codes and DogeCash: URIs)</source>
+        <source>Request payments (generates QR codes and dogecash: URIs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -871,27 +871,27 @@
     </message>
     <message>
         <location line="+43"/>
-        <source>&amp;About DogeCash Core</source>
+        <source>&amp;About dogecash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Show information about DogeCash Core</source>
+        <source>Show information about dogecash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Modify configuration options for DogeCash</source>
+        <source>Modify configuration options for dogecash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+16"/>
-        <source>Sign messages with your DogeCash addresses to prove you own them</source>
+        <source>Sign messages with your dogecash addresses to prove you own them</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
+        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -931,7 +931,7 @@
     </message>
     <message>
         <location line="+17"/>
-        <source>Open a DogeCash: URI or payment request</source>
+        <source>Open a dogecash: URI or payment request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -946,17 +946,17 @@
     </message>
     <message>
         <location line="+4"/>
-        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
+        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+234"/>
-        <source>DogeCash Core client</source>
+        <source>dogecash Core client</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location line="+219"/>
-        <source>%n active connection(s) to DogeCash network</source>
+        <source>%n active connection(s) to dogecash network</source>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
@@ -1128,8 +1128,8 @@ Address: %4
         <translation>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../DogeCash.cpp" line="+478"/>
-        <source>A fatal error occurred. DogeCash can no longer continue safely and will quit.</source>
+        <location filename="../dogecash.cpp" line="+478"/>
+        <source>A fatal error occurred. dogecash can no longer continue safely and will quit.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1167,7 +1167,7 @@ Address: %4
     </message>
     <message>
         <location filename="../blockexplorer.cpp" line="+480"/>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (DogeCash.conf).</source>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (dogecash.conf).</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1536,7 +1536,7 @@ Address: %4
     </message>
     <message>
         <location line="+67"/>
-        <source>The entered address &quot;%1&quot; is not a valid DogeCash address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid dogecash address.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1650,7 +1650,7 @@ Address: %4
     </message>
     <message>
         <location line="+0"/>
-        <source>DogeCash Core</source>
+        <source>dogecash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1661,7 +1661,7 @@ Address: %4
     </message>
     <message>
         <location line="+4"/>
-        <source>About DogeCash Core</source>
+        <source>About dogecash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1719,17 +1719,17 @@ Address: %4
     </message>
     <message>
         <location line="+9"/>
-        <source>Welcome to DogeCash Core.</source>
+        <source>Welcome to dogecash Core.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+26"/>
-        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where dogecash Core will store its data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+10"/>
-        <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>dogecash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1744,7 +1744,7 @@ Address: %4
     </message>
     <message>
         <location filename="../intro.cpp" line="+77"/>
-        <source>DogeCash Core</source>
+        <source>dogecash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1920,8 +1920,8 @@ Address: %4
     </message>
     <message>
         <location line="-106"/>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other DogeCash addresses after it matures.
-To Add: enter percentage to give and DogeCash address to add to the MultiSend vector.
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other dogecash addresses after it matures.
+To Add: enter percentage to give and dogecash address to add to the MultiSend vector.
 To Delete: Enter address to delete and press delete.
 MultiSend will not be activated unless you have clicked Activate</source>
         <translation type="unfinished"></translation>
@@ -2407,17 +2407,17 @@ Please be patient after clicking import.</source>
     </message>
     <message>
         <location line="-27"/>
-        <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening DogeCash&apos;s configuration screen.</source>
+        <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening dogecash&apos;s configuration screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+14"/>
-        <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening DogeCash&apos;s configuration screen.</source>
+        <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening dogecash&apos;s configuration screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+14"/>
-        <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening DogeCash&apos;s configuration screen.</source>
+        <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening dogecash&apos;s configuration screen.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2493,7 +2493,7 @@ Please be patient after clicking import.</source>
     </message>
     <message>
         <location line="+33"/>
-        <source>Automatically open the DogeCash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the dogecash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2518,12 +2518,12 @@ Please be patient after clicking import.</source>
     </message>
     <message>
         <location line="-227"/>
-        <source>Automatically start DogeCash after logging in to the system.</source>
+        <source>Automatically start dogecash after logging in to the system.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start DogeCash on system login</source>
+        <source>&amp;Start dogecash on system login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2558,13 +2558,13 @@ Please be patient after clicking import.</source>
     </message>
     <message>
         <location line="+192"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting DogeCash.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting dogecash.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+21"/>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/DogeCash-project/DogeCash-project-translations</source>
+https://www.transifex.com/dogecash-project/dogecash-project-translations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2620,7 +2620,7 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations</source
     </message>
     <message>
         <location line="+98"/>
-        <source>Connect to the DogeCash network through a SOCKS5 proxy.</source>
+        <source>Connect to the dogecash network through a SOCKS5 proxy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2861,7 +2861,7 @@ https://www.transifex.com/DogeCash-project/DogeCash-project-translations</source
     <message>
         <location line="+16"/>
         <location line="+19"/>
-        <source>Your current DogeCash balance, unconfirmed and immature transactions included</source>
+        <source>Your current dogecash balance, unconfirmed and immature transactions included</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2888,7 +2888,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
     <message>
         <location line="-725"/>
         <location line="+852"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2990,13 +2990,13 @@ If AutoMint is enabled this percentage will settle around the configured AutoMin
     </message>
     <message>
         <location line="+1"/>
-        <source>To disable AutoMint add &apos;enablezeromint=0&apos; in DogeCash.conf.</source>
+        <source>To disable AutoMint add &apos;enablezeromint=0&apos; in dogecash.conf.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
         <source>AutoMint is currently disabled.
-To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1&apos; in DogeCash.conf</source>
+To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1&apos; in dogecash.conf</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3036,12 +3036,12 @@ To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1
     </message>
     <message>
         <location line="-104"/>
-        <source>Cannot start DogeCash: click-to-pay handler</source>
+        <source>Cannot start dogecash: click-to-pay handler</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+110"/>
-        <source>URI cannot be parsed! This can be caused by an invalid DogeCash address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid dogecash address or malformed URI parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3149,7 +3149,7 @@ To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1
     </message>
     <message>
         <location line="+10"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3310,7 +3310,7 @@ zdogec are mature when they have more than 20 confirmations AND more than 2 mint
     </message>
     <message>
         <location line="+27"/>
-        <source>The DogeCash address to send the payment to. Creates local payment to yourself when empty.</source>
+        <source>The dogecash address to send the payment to. Creates local payment to yourself when empty.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3415,8 +3415,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <source>Show the current status of automatic zdogec minting.
 
 To change the status (restart required):
-- enable: add &apos;enablezeromint=1&apos; to DogeCash.conf
-- disable: add &apos;enablezeromint=0&apos; to DogeCash.conf
+- enable: add &apos;enablezeromint=1&apos; to dogecash.conf
+- disable: add &apos;enablezeromint=0&apos; to dogecash.conf
 
 To change the percentage (no restart required):
 - menu Settings-&gt;Options-&gt;Percentage of autominted zdogec
@@ -3860,7 +3860,7 @@ Maximum allowed: </source>
     </message>
     <message>
         <location line="+4"/>
-        <source>Invalid DogeCash Address</source>
+        <source>Invalid dogecash Address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4065,7 +4065,7 @@ Please be patient...</source>
     </message>
     <message>
         <location filename="../guiutil.cpp" line="+105"/>
-        <source>Enter a DogeCash address (e.g. %1)</source>
+        <source>Enter a dogecash address (e.g. %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4125,11 +4125,11 @@ Please be patient...</source>
         <translation>%1 ms</translation>
     </message>
     <message>
-        <location filename="../DogeCash.cpp" line="+75"/>
+        <location filename="../dogecash.cpp" line="+75"/>
         <location line="+7"/>
         <location line="+13"/>
         <location line="+19"/>
-        <source>DogeCash Core</source>
+        <source>dogecash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4154,7 +4154,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+40"/>
-        <source>DogeCash Core didn&apos;t yet exit safely...</source>
+        <source>dogecash Core didn&apos;t yet exit safely...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4306,7 +4306,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+79"/>
-        <source>Open the DogeCash debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <source>Open the dogecash debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4578,7 +4578,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="-39"/>
-        <source>Welcome to the DogeCash RPC console.</source>
+        <source>Welcome to the dogecash RPC console.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4763,7 +4763,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+26"/>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the DogeCash network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the dogecash network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4773,7 +4773,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+191"/>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the DogeCash network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the dogecash network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5157,7 +5157,7 @@ Please be patient...</source>
     <message>
         <location line="+33"/>
         <location line="+13"/>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for DogeCash transactions than the network can process.</source>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for dogecash transactions than the network can process.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5277,7 +5277,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+653"/>
-        <source>Warning: Invalid DogeCash address</source>
+        <source>Warning: Invalid dogecash address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5416,7 +5416,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+18"/>
-        <source>The DogeCash address to send the payment to</source>
+        <source>The dogecash address to send the payment to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5470,7 +5470,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+10"/>
-        <source>A message that was attached to the DogeCash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the DogeCash network.</source>
+        <source>A message that was attached to the dogecash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the dogecash network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5505,7 +5505,7 @@ Please be patient...</source>
     <name>ShutdownWindow</name>
     <message>
         <location filename="../utilitydialog.cpp" line="+75"/>
-        <source>DogeCash Core is shutting down...</source>
+        <source>dogecash Core is shutting down...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5533,7 +5533,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+15"/>
-        <source>The DogeCash address to sign the message with</source>
+        <source>The dogecash address to sign the message with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5575,17 +5575,17 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+18"/>
-        <source>Sign the message to prove you own this DogeCash address</source>
+        <source>Sign the message to prove you own this dogecash address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+103"/>
-        <source>The DogeCash address the message was signed with</source>
+        <source>The dogecash address the message was signed with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+34"/>
-        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
+        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5700,7 +5700,7 @@ Please be patient...</source>
     <name>SplashScreen</name>
     <message>
         <location filename="../splashscreen.cpp" line="+36"/>
-        <source>DogeCash Core</source>
+        <source>dogecash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5720,7 +5720,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>The DogeCash Core developers</source>
+        <source>The dogecash Core developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6550,7 +6550,7 @@ Please be patient...</source>
     </message>
 </context>
 <context>
-    <name>DogeCash-core</name>
+    <name>dogecash-core</name>
     <message>
         <location filename="../dogecashstrings.cpp" line="+15"/>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
@@ -6583,7 +6583,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Cannot obtain a lock on data directory %s. DogeCash Core is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. dogecash Core is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6833,7 +6833,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Unable to bind to %s on this computer. DogeCash Core is probably already running.</source>
+        <source>Unable to bind to %s on this computer. dogecash Core is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6868,7 +6868,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong dogecash Core will not work properly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7073,7 +7073,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Copyright (C) 2015-%i The DogeCash Core Developers</source>
+        <source>Copyright (C) 2015-%i The dogecash Core Developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7193,7 +7193,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of dogecash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7348,7 +7348,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Initialization sanity check failed. DogeCash Core is shutting down.</source>
+        <source>Initialization sanity check failed. dogecash Core is shutting down.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7505,7 +7505,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+38"/>
-        <source>Disable all DogeCash specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
+        <source>Disable all dogecash specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8385,7 +8385,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
+        <source>Wallet needed to be rewritten: restart dogecash Core to complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

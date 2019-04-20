@@ -1,4 +1,4 @@
-policy_module(DogeCash, 1.100.1)
+policy_module(dogecash, 1.100.1)
 
 ########################################
 #
@@ -28,7 +28,7 @@ corenet_port(dogecash_port_t)
 
 ########################################
 #
-# DogeCash local policy
+# dogecash local policy
 #
 allow dogecash_t self:process { fork };
 

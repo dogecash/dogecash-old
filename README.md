@@ -1,10 +1,10 @@
-DogeCash Core integration/staging repository
+dogecash Core integration/staging repository
 =====================================
 
-[![Build Status](https://travis-ci.org/DogeCash-Project/DogeCash.svg?branch=master)](https://travis-ci.org/DogeCash-Project/DogeCash) [![GitHub version](https://badge.fury.io/gh/DogeCash-Project%2Fdogecash.svg)](https://badge.fury.io/gh/DogeCash-Project%2Fdogecash)
+[![Build Status](https://travis-ci.org/dogecash-Project/dogecash.svg?branch=master)](https://travis-ci.org/dogecash-Project/dogecash) [![GitHub version](https://badge.fury.io/gh/dogecash-Project%2Fdogecash.svg)](https://badge.fury.io/gh/dogecash-Project%2Fdogecash)
 
-DogeCash is an open source crypto-currency focused on fast private transactions using the Zerocoin protocol, with low transaction fees & environmental footprint.  It utilizes the first ever anonymous proof of stake protocol, called zPoS, combined with regular PoS and masternodes for securing its network. zPoS incentivises using the privacy features available in DogeCash by granting a higher block reward for zPoS over regular PoS and masternodes. In practice DogeCash has between 4 to 10 times higher use of it's privacy features in comparison to other coins that combine public and private transactions. This is thanks to innovations like zPoS and integrating the Zerocoin protocol into light/mobile wallets, allowing for a complete and lightweight privacy protocol that can be used on the go. As well as security improvements like [deterministic generation of zdogec for easy backups.](https://www.reddit.com/r/DogeCash/comments/8gbjf7/how_to_use_deterministic_zerocoin_generation/)
-The goal of DogeCash is to achieve a decentralized sustainable crypto currency with near instant full-time private transactions, fair governance and community intelligence.
+dogecash is an open source crypto-currency focused on fast private transactions using the Zerocoin protocol, with low transaction fees & environmental footprint.  It utilizes the first ever anonymous proof of stake protocol, called zPoS, combined with regular PoS and masternodes for securing its network. zPoS incentivises using the privacy features available in dogecash by granting a higher block reward for zPoS over regular PoS and masternodes. In practice dogecash has between 4 to 10 times higher use of it's privacy features in comparison to other coins that combine public and private transactions. This is thanks to innovations like zPoS and integrating the Zerocoin protocol into light/mobile wallets, allowing for a complete and lightweight privacy protocol that can be used on the go. As well as security improvements like [deterministic generation of zdogec for easy backups.](https://www.reddit.com/r/dogecash/comments/8gbjf7/how_to_use_deterministic_zerocoin_generation/)
+The goal of dogecash is to achieve a decentralized sustainable crypto currency with near instant full-time private transactions, fair governance and community intelligence.
 - Anonymized transactions & consensus using the [_Zerocoin Protocol_](http://www.dogec.io/zdogec) and [zPoS](https://dogec.io/zpos/).
 - light/mobile wallet privacy using the [Zerocoin Light Node Protocol](https://dogec.io/wp-content/uploads/2018/11/Zerocoin_Light_Node_Protocol.pdf)
 - Fast transactions featuring guaranteed zero confirmation transactions, we call it _SwiftX_.
@@ -22,14 +22,14 @@ More information at [dogec.io](http://www.dogec.io) Visit our ANN thread at [Bit
 <tr><td>Premine</td><td>60,000 DOGEC*</td></tr>
 </table>
 
-*60,000 DOGEC Premine was burned in block [279917](http://www.presstab.pw/phpexplorer/DogeCash/block.php?blockhash=206d9cfe859798a0b0898ab00d7300be94de0f5469bb446cecb41c3e173a57e0)
+*60,000 DOGEC Premine was burned in block [279917](http://www.presstab.pw/phpexplorer/dogecash/block.php?blockhash=206d9cfe859798a0b0898ab00d7300be94de0f5469bb446cecb41c3e173a57e0)
 
 ### Reward Distribution
 
 <table>
 <th colspan=4>Genesis Block</th>
 <tr><th>Block Height</th><th>Reward Amount</th><th>Notes</th></tr>
-<tr><td>1</td><td>60,000 DOGEC</td><td>Initial Pre-mine, burnt in block <a href="http://www.presstab.pw/phpexplorer/DogeCash/block.php?blockhash=206d9cfe859798a0b0898ab00d7300be94de0f5469bb446cecb41c3e173a57e0">279917</a></td></tr>
+<tr><td>1</td><td>60,000 DOGEC</td><td>Initial Pre-mine, burnt in block <a href="http://www.presstab.pw/phpexplorer/dogecash/block.php?blockhash=206d9cfe859798a0b0898ab00d7300be94de0f5469bb446cecb41c3e173a57e0">279917</a></td></tr>
 </table>
 
 ### PoW Rewards Breakdown

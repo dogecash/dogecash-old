@@ -1,7 +1,7 @@
 # /etc/conf.d/dogecashd: config file for /etc/init.d/dogecashd
 
 # Config file location
-#BITCOIND_CONFIGFILE="/etc/DogeCash/DogeCash.conf"
+#BITCOIND_CONFIGFILE="/etc/dogecash/dogecash.conf"
 
 # What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
 #BITCOIND_PIDDIR="/var/run/dogecashd"
@@ -13,8 +13,8 @@
 #BITCOIND_DATADIR="/var/lib/dogecashd"
 
 # User and group to own dogecashd process
-#BITCOIND_USER="DogeCash"
-#BITCOIND_GROUP="DogeCash"
+#BITCOIND_USER="dogecash"
+#BITCOIND_GROUP="dogecash"
 
 # Path to dogecashd executable
 #BITCOIND_BIN="/usr/bin/dogecashd"

@@ -6,16 +6,16 @@ define(_CLIENT_VERSION_REVISION, 99)
 define(_CLIENT_VERSION_BUILD, 0)
 define(_CLIENT_VERSION_IS_RELEASE, false)
 define(_COPYRIGHT_YEAR, 2018)
-AC_INIT([DogeCash Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[www.dogec.io],[DogeCash])
+AC_INIT([dogecash Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[www.dogec.io],[dogecash])
 AC_CONFIG_SRCDIR([src/main.cpp])
-AC_CONFIG_HEADERS([src/config/DogeCash-config.h])
+AC_CONFIG_HEADERS([src/config/dogecash-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
 BITCOIN_DAEMON_NAME=dogecashd
-BITCOIN_GUI_NAME=DogeCash-qt
-BITCOIN_CLI_NAME=DogeCash-cli
-BITCOIN_TX_NAME=DogeCash-tx
+BITCOIN_GUI_NAME=dogecash-qt
+BITCOIN_CLI_NAME=dogecash-cli
+BITCOIN_TX_NAME=dogecash-tx
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])
@@ -400,7 +400,7 @@ CPPFLAGS="$CPPFLAGS -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS"
 
 AC_ARG_WITH([utils],
   [AS_HELP_STRING([--with-utils],
-  [build DogeCash-cli DogeCash-tx (default=yes)])],
+  [build dogecash-cli dogecash-tx (default=yes)])],
   [build_bitcoin_utils=$withval],
   [build_bitcoin_utils=yes])
 
@@ -626,7 +626,7 @@ AC_C_BIGENDIAN
 dnl Check for pthread compile/link requirements
 AX_PTHREAD
 
-# The following macro will add the necessary defines to DogeCash-config.h, but
+# The following macro will add the necessary defines to dogecash-config.h, but
 # they also need to be passed down to any subprojects. Pull the results out of
 # the cache and add them to CPPFLAGS.
 AC_SYS_LARGEFILE
@@ -1159,7 +1159,7 @@ AC_MSG_CHECKING([whether to build dogecashd])
 AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_bitcoind = xyes])
 AC_MSG_RESULT($build_bitcoind)
 
-AC_MSG_CHECKING([whether to build utils (DogeCash-cli DogeCash-tx)])
+AC_MSG_CHECKING([whether to build utils (dogecash-cli dogecash-tx)])
 AM_CONDITIONAL([BUILD_BITCOIN_UTILS], [test x$build_bitcoin_utils = xyes])
 AC_MSG_RESULT($build_bitcoin_utils)
 

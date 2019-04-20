@@ -881,12 +881,12 @@ QDialog#HelpMessageDialog QScrollBar:vertical, QDialog#HelpMessageDialog QScroll
 border:0;
 }
 
-/* About DogeCash Dialog */
-QDialog#AboutDialog QLabel#label, QDialog#AboutDialog QLabel#copyrightLabel, QDialog#AboutDialog QLabel#label_2 { /* About DogeCash Contents */
+/* About dogecash Dialog */
+QDialog#AboutDialog QLabel#label, QDialog#AboutDialog QLabel#copyrightLabel, QDialog#AboutDialog QLabel#label_2 { /* About dogecash Contents */
 margin-left:10px;
 }
 
-QDialog#AboutDialog QLabel#label_2 { /* Margin for About DogeCash text */
+QDialog#AboutDialog QLabel#label_2 { /* Margin for About dogecash text */
 margin-right:10px;
 }
 
@@ -917,7 +917,7 @@ background-image: url(':/images/dogecash_logo_horizontal');
 background-repeat: no-repeat;
 }
 
-QWidget .QFrame#frame_Header { /* Header with Page-Title and DogeCash-image */
+QWidget .QFrame#frame_Header { /* Header with Page-Title and dogecash-image */
 min-width:400px;
 background-color:#ffffff;
 }

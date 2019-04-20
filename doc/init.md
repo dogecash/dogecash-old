@@ -13,7 +13,7 @@ can be found in the contrib/init folder.
 1. Service User
 ---------------------------------
 
-All three startup configurations assume the existence of a "DogeCash" user
+All three startup configurations assume the existence of a "dogecash" user
 and group.  They must be created before attempting to use these scripts.
 
 2. Configuration
@@ -35,10 +35,10 @@ generate one from the shell yourself like this:
 
 bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'
 
-Once you have a password in hand, set rpcpassword= in /etc/DogeCash/DogeCash.conf
+Once you have a password in hand, set rpcpassword= in /etc/dogecash/dogecash.conf
 
 For an example configuration file that describes the configuration settings,
-see contrib/debian/examples/DogeCash.conf.
+see contrib/debian/examples/dogecash.conf.
 
 3. Paths
 ---------------------------------
@@ -46,15 +46,15 @@ see contrib/debian/examples/DogeCash.conf.
 All three configurations assume several paths that might need to be adjusted.
 
 Binary:              /usr/bin/dogecashd
-Configuration file:  /etc/DogeCash/DogeCash.conf
+Configuration file:  /etc/dogecash/dogecash.conf
 Data directory:      /var/lib/dogecashd
 PID file:            /var/run/dogecashd/dogecashd.pid (OpenRC and Upstart)
                      /var/lib/dogecashd/dogecashd.pid (systemd)
 
 The configuration file, PID directory (if applicable) and data directory
-should all be owned by the DogeCash user and group.  It is advised for security
+should all be owned by the dogecash user and group.  It is advised for security
 reasons to make the configuration file and data directory only readable by the
-DogeCash user and group.  Access to DogeCash-cli and other dogecashd rpc clients
+dogecash user and group.  Access to dogecash-cli and other dogecashd rpc clients
 can then be controlled by group membership.
 
 4. Installing Service Configuration

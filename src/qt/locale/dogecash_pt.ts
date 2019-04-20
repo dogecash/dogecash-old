@@ -62,12 +62,12 @@
         <translation>Endereços de recebimento</translation>
     </message>
     <message>
-        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Esses são seus endereços DogeCash para onde enviar pagamentos. Confira sempre o montante e os endereços de destino antes de enviar moedas.</translation>
+        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Esses são seus endereços dogecash para onde enviar pagamentos. Confira sempre o montante e os endereços de destino antes de enviar moedas.</translation>
     </message>
     <message>
-        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Esses são seus endereços DogeCash onde receber pagamentos. Recomenda-se o uso de um novo endereço para cada transacção.</translation>
+        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Esses são seus endereços dogecash onde receber pagamentos. Recomenda-se o uso de um novo endereço para cada transacção.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -172,8 +172,8 @@
         <translation>Confirmar encriptação da carteira</translation>
     </message>
     <message>
-        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
-        <translation>DogeCash encerrará para terminar o processo de encriptação. Lembre-se que encriptar sua carteira não protege completamente suas DOGECs contra roubo por malware infectando seu computador.</translation>
+        <source>dogecash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>dogecash encerrará para terminar o processo de encriptação. Lembre-se que encriptar sua carteira não protege completamente suas DOGECs contra roubo por malware infectando seu computador.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -676,8 +676,8 @@
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The DogeCash address to sign the message with</source>
-        <translation>Um endereço DogeCash para assinar a mensagem</translation>
+        <source>The dogecash address to sign the message with</source>
+        <translation>Um endereço dogecash para assinar a mensagem</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -708,12 +708,12 @@
         <translation>Copiar a assinatura para a area de trabalho</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this DogeCash address</source>
-        <translation>Assinar a Mensagem para provar que você e dono desse endereço DogeCash.</translation>
+        <source>Sign the message to prove you own this dogecash address</source>
+        <translation>Assinar a Mensagem para provar que você e dono desse endereço dogecash.</translation>
     </message>
     <message>
-        <source>The DogeCash address the message was signed with</source>
-        <translation>O endereço DogeCash que foi assinado com</translation>
+        <source>The dogecash address the message was signed with</source>
+        <translation>O endereço dogecash que foi assinado com</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>
@@ -914,7 +914,7 @@
     <name>zdogecControlDialog</name>
     </context>
 <context>
-    <name>DogeCash-core</name>
+    <name>dogecash-core</name>
     <message>
         <source>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</source>
         <translation>Deletar todas as transações da carteira e somente recuperar aquelas partes do blockchain através de -rescan na inicialização</translation>
@@ -1260,8 +1260,8 @@
         <translation>Carteira esta bloqueada.</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
-        <translation>Carteira precisa ser reescrita: reinicie o DogeCash Core para completar.</translation>
+        <source>Wallet needed to be rewritten: restart dogecash Core to complete</source>
+        <translation>Carteira precisa ser reescrita: reinicie o dogecash Core para completar.</translation>
     </message>
     <message>
         <source>Wallet options:</source>

@@ -198,6 +198,6 @@
     <name>zdogecControlDialog</name>
     </context>
 <context>
-    <name>DogeCash-core</name>
+    <name>dogecash-core</name>
     </context>
 </TS>

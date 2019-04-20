@@ -7,7 +7,7 @@
 #  spendfrom.py  # Lists available funds
 #  spendfrom.py --from=ADDRESS --to=ADDRESS --amount=11.00
 #
-# Assumes it will talk to a dogecashd or DogeCash-Qt running
+# Assumes it will talk to a dogecashd or dogecash-Qt running
 # on localhost.
 #
 # Depends on jsonrpc
@@ -33,15 +33,15 @@ def check_json_precision():
         raise RuntimeError("JSON encode/decode loses precision")
 
 def determine_db_dir():
-    """Return the default location of the DogeCash data directory"""
+    """Return the default location of the dogecash data directory"""
     if platform.system() == "Darwin":
-        return os.path.expanduser("~/Library/Application Support/DogeCash/")
+        return os.path.expanduser("~/Library/Application Support/dogecash/")
     elif platform.system() == "Windows":
-        return os.path.join(os.environ['APPDATA'], "DogeCash")
-    return os.path.expanduser("~/.DogeCash")
+        return os.path.join(os.environ['APPDATA'], "dogecash")
+    return os.path.expanduser("~/.dogecash")
 
 def read_bitcoin_config(dbdir):
-    """Read the DogeCash.conf file from dbdir, returns dictionary of settings"""
+    """Read the dogecash.conf file from dbdir, returns dictionary of settings"""
     from ConfigParser import SafeConfigParser
 
     class FakeSecHead(object):
@@ -59,11 +59,11 @@ def read_bitcoin_config(dbdir):
                 return s
 
     config_parser = SafeConfigParser()
-    config_parser.readfp(FakeSecHead(open(os.path.join(dbdir, "DogeCash.conf"))))
+    config_parser.readfp(FakeSecHead(open(os.path.join(dbdir, "dogecash.conf"))))
     return dict(config_parser.items("all"))
 
 def connect_JSON(config):
-    """Connect to a DogeCash JSON-RPC server"""
+    """Connect to a dogecash JSON-RPC server"""
     testnet = config.get('testnet', '0')
     testnet = (int(testnet) > 0)  # 0/1 in config file, convert to True/False
     if not 'rpcport' in config:
@@ -110,7 +110,7 @@ def list_available(dogecashd):
         vout = rawtx["vout"][output['vout']]
         pk = vout["scriptPubKey"]
 
-        # This code only deals with ordinary pay-to-DogeCash-address
+        # This code only deals with ordinary pay-to-dogecash-address
         # or pay-to-script-hash outputs right now; anything exotic is ignored.
         if pk["type"] != "pubkeyhash" and pk["type"] != "scripthash":
             continue
@@ -229,7 +229,7 @@ def main():
     parser.add_option("--fee", dest="fee", default="0.0",
                       help="fee to include")
     parser.add_option("--datadir", dest="datadir", default=determine_db_dir(),
-                      help="location of DogeCash.conf file with RPC username/password (default: %default)")
+                      help="location of dogecash.conf file with RPC username/password (default: %default)")
     parser.add_option("--testnet", dest="testnet", default=False, action="store_true",
                       help="Use the test network")
     parser.add_option("--dry_run", dest="dry_run", default=False, action="store_true",

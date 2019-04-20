@@ -1,4 +1,4 @@
-Source: DogeCash
+Source: dogecash
 Section: utils
 Priority: optional
 Maintainer: Jonas Smedegaard <dr@jones.dk> ***TODO***
@@ -23,14 +23,14 @@ Build-Depends: debhelper,
  libprotobuf-dev, protobuf-compiler
 Standards-Version: 3.9.2
 Homepage: http://www.dogec.io
-Vcs-Git: git://github.com/DogeCash-Project/DogeCash.git
-Vcs-Browser: http://github.com/DogeCash-Project/DogeCash
+Vcs-Git: git://github.com/dogecash-Project/dogecash.git
+Vcs-Browser: http://github.com/dogecash-Project/dogecash
 
 Package: dogecashd
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
- DogeCash is a free open source peer-to-peer electronic cash system that
+ dogecash is a free open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
@@ -40,13 +40,13 @@ Description: peer-to-peer network based digital currency - daemon
  requires 1+ GB of space, slowly growing.
  .
  This package provides the daemon, dogecashd, and the CLI tool
- DogeCash-cli to interact with the daemon.
+ dogecash-cli to interact with the daemon.
 
-Package: DogeCash-qt
+Package: dogecash-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI
- DogeCash is a free open source peer-to-peer electronic cash system that
+ dogecash is a free open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
@@ -55,4 +55,4 @@ Description: peer-to-peer network based digital currency - Qt GUI
  Full transaction history is stored locally at each client.  This
  requires 1+ GB of space, slowly growing.
  .
- This package provides DogeCash-Qt, a GUI for DogeCash based on Qt.
+ This package provides dogecash-Qt, a GUI for dogecash based on Qt.

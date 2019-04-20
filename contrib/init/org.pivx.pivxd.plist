@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>org.DogeCash.dogecashd</string>
+	<string>org.dogecash.dogecashd</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/usr/local/bin/dogecashd</string>

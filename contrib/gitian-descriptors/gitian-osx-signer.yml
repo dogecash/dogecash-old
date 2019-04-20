@@ -1,5 +1,5 @@
 ---
-name: "DogeCash-dmg-signer"
+name: "dogecash-dmg-signer"
 suites:
 - "bionic"
 architectures:
@@ -7,10 +7,10 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/DogeCash-project/DogeCash-detached-sigs.git"
+- "url": "https://github.com/dogecash-project/dogecash-detached-sigs.git"
   "dir": "signature"
 files:
-- "DogeCash-osx-unsigned.tar.gz"
+- "dogecash-osx-unsigned.tar.gz"
 script: |
   WRAP_DIR=$HOME/wrapped
   mkdir -p ${WRAP_DIR}
@@ -27,8 +27,8 @@ script: |
     chmod +x ${WRAP_DIR}/${prog}
   done
 
-  UNSIGNED=DogeCash-osx-unsigned.tar.gz
-  SIGNED=DogeCash-osx-signed.dmg
+  UNSIGNED=dogecash-osx-unsigned.tar.gz
+  SIGNED=dogecash-osx-signed.dmg
 
   tar -xf ${UNSIGNED}
   OSX_VOLNAME="$(cat osx_volname)"
