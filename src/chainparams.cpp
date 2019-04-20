@@ -185,7 +185,7 @@ public:
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-        txNew.vout[0].nValue = 50 * COIN;
+        txNew.vout[0].nValue = 0 * COIN;
         txNew.vout[0].scriptPubKey = CScript() << ParseHex("040818ca42a8634c010ba1025a8d8a10a03ea286456f341df6a4a0aad1f123833695a662be2dc983a8da5fed7380bc9e1c3433e94422d36746cdd8e21a5f97b749") << OP_CHECKSIG; 
 	genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
@@ -195,7 +195,7 @@ public:
         genesis.nBits = 0x1e0ffff0;
 	genesis.nNonce = 3443936; 
 	
-	//hashGenesisBlock = genesis.GetHash();
+	hashGenesisBlock = uint256("0x01");
         if(genesis.GetHash() != uint256("00000a5b5a49366b6ecf86c434de1da4719e8e22daab9a53ec35033ae994e8f1"))
         {
         printf("MSearching for genesis block...\n");
@@ -333,7 +333,7 @@ public:
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 3443936;
 
-	//hashGenesisBlock = genesis.GetHash();
+	hashGenesisBlock = uint256("0x01");
         if(genesis.GetHash() != uint256("00000a5b5a49366b6ecf86c434de1da4719e8e22daab9a53ec35033ae994e8f1"))
         {
         printf("Searching for genesis block...\n");
@@ -369,15 +369,15 @@ public:
        // vSeeds.push_back(CDNSSeedData("testnet.dogecash.io", "testnet.dogecash.io"));         // Single node address
        // vSeeds.push_back(CDNSSeedData("testnet1.dogecash.io", "testnet1.dogecash.io"));       // Single node address
        // vSeeds.push_back(CDNSSeedData("testnet2.dogecash.io", "testnet2.dogecash.io"));
-	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 65);
+	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30);
 	base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
-	base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
+	base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 122);
 	base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
-	base58Prefixes[EXT_SECRET_KEY] = list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();	
-        // Testnet dogecash BIP44 coin type is '1' (All coin's testnet default)
-        base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
+	base58Prefixes[EXT_SECRET_KEY] = list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
+        // 	BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
+        base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0xbc).convert_to_container<std::vector<unsigned char> >();
 
-        convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
+	convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
 
         fMiningRequiresPeers = true;
         fAllowMinDifficultyBlocks = true;
@@ -445,7 +445,7 @@ public:
         genesis.nBits = 0x1e0ffff0;
       	genesis.nNonce = 3443936;
 
-	//hashGenesisBlock = genesis.GetHash();
+	hashGenesisBlock = uint256("0x01");
         if(genesis.GetHash() != uint256("00000a5b5a49366b6ecf86c434de1da4719e8e22daab9a53ec35033ae994e8f1"))
         {
         printf("Searching for genesis block...\n");
