@@ -44,8 +44,8 @@ Instructions: Homebrew
 
 1. Clone the github tree to get the source code and go into the directory.
 
-        git clone https://github.com/dogecash-Project/dogecash.git
-        cd dogecash
+        git clone https://github.com/DogeCash-Project/DogeCash.git
+        cd DogeCash
 
 2.  Make the Homebrew OpenSSL headers visible to the configure script  (do ```brew info openssl``` to find out why this is necessary, or if you use Homebrew with installation folders different from the default).
 
@@ -74,7 +74,7 @@ Download Qt Creator from http://www.qt.io/download/. Download the "community edi
 1. Make sure you installed everything through homebrew mentioned above
 2. Do a proper ./configure --with-gui=qt5 --enable-debug
 3. In Qt Creator do "New Project" -> Import Project -> Import Existing Project
-4. Enter "dogecash-qt" as project name, enter src/qt as location
+4. Enter "DogeCash-qt" as project name, enter src/qt as location
 5. Leave the file selection as it is
 6. Confirm the "summary page"
 7. In the "Projects" tab select "Manage Kits..."
@@ -86,9 +86,9 @@ Creating a release build
 ------------------------
 You can ignore this section if you are building `dogecashd` for your own use.
 
-dogecashd/dogecash-cli binaries are not included in the dogecash-Qt.app bundle.
+dogecashd/DogeCash-cli binaries are not included in the DogeCash-Qt.app bundle.
 
-If you are building `dogecashd` or `dogecash-qt` for others, your build machine should be set up
+If you are building `dogecashd` or `DogeCash-qt` for others, your build machine should be set up
 as follows for maximum compatibility:
 
 All dependencies should be compiled with these flags:
@@ -97,7 +97,7 @@ All dependencies should be compiled with these flags:
  -arch x86_64
  -isysroot $(xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk
 
-Once dependencies are compiled, see release-process.md for how the dogecash-Qt.app
+Once dependencies are compiled, see release-process.md for how the DogeCash-Qt.app
 bundle is packaged and signed to create the .dmg disk image that is distributed.
 
 Running
@@ -109,18 +109,18 @@ directory. We have to first create the RPC configuration file, though.
 Run `./dogecashd` to get the filename where it should be put, or just try these
 commands:
 
-    echo -e "rpcuser=dogecashrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/dogecash/dogecash.conf"
-    chmod 600 "/Users/${USER}/Library/Application Support/dogecash/dogecash.conf"
+    echo -e "rpcuser=dogecashrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/DogeCash/DogeCash.conf"
+    chmod 600 "/Users/${USER}/Library/Application Support/DogeCash/DogeCash.conf"
 
 The next time you run it, it will start downloading the blockchain, but it won't
 output anything while it's doing this. This process may take several hours;
 you can monitor its process by looking at the debug.log file, like this:
 
-    tail -f $HOME/Library/Application\ Support/dogecash/debug.log
+    tail -f $HOME/Library/Application\ Support/DogeCash/debug.log
 
 Other commands:
 -------
 
-    ./dogecashd -daemon # to start the dogecash daemon.
-    ./dogecash-cli --help  # for a list of command-line options.
-    ./dogecash-cli help    # When the daemon is running, to get a list of RPC commands
+    ./dogecashd -daemon # to start the DogeCash daemon.
+    ./DogeCash-cli --help  # for a list of command-line options.
+    ./DogeCash-cli help    # When the daemon is running, to get a list of RPC commands

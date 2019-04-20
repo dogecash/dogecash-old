@@ -62,12 +62,12 @@
         <translation>Vastaanottavat osoitteet</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Nämä ovat sinun dogecash osoitteesi maksujen lähetystä varten. Tarkista aina määrä ja vastaanottava osoite ennen kolikoiden lähettämistä.</translation>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Nämä ovat sinun DogeCash osoitteesi maksujen lähetystä varten. Tarkista aina määrä ja vastaanottava osoite ennen kolikoiden lähettämistä.</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Nämä ovat sinun dogecash osoitteesi maksujen vastaanottamista varten. On suositeltavaa käyttää uutta vastaanottavaa osoitetta jokaiselle uudelle rahansiirrolle.</translation>
+        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Nämä ovat sinun DogeCash osoitteesi maksujen vastaanottamista varten. On suositeltavaa käyttää uutta vastaanottavaa osoitetta jokaiselle uudelle rahansiirrolle.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -172,8 +172,8 @@
         <translation>Vahvista lompakon salaus</translation>
     </message>
     <message>
-        <source>dogecash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
-        <translation>dogecash sulkeutuu salausprosessin ajaksi. Muista, että lompakon salaus ei voi täysin suojella DOGECien varkaudelta, jos tietokoneesi sisältää haittaohjelmia.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash sulkeutuu salausprosessin ajaksi. Muista, että lompakon salaus ei voi täysin suojella DOGECien varkaudelta, jos tietokoneesi sisältää haittaohjelmia.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -565,16 +565,16 @@
         <translation>&amp;Apua</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Ydin</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Ydin</translation>
     </message>
     <message>
-        <source>Send coins to a dogecash address</source>
-        <translation>Lähetä kolikkoja dogecash osoitteeseen</translation>
+        <source>Send coins to a DogeCash address</source>
+        <translation>Lähetä kolikkoja DogeCash osoitteeseen</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and dogecash: URIs)</source>
-        <translation>Pyydä maksuja (Generoi QR koodeja ja dogecash: URIja)</translation>
+        <source>Request payments (generates QR codes and DogeCash: URIs)</source>
+        <translation>Pyydä maksuja (Generoi QR koodeja ja DogeCash: URIja)</translation>
     </message>
     <message>
         <source>&amp;Masternodes</source>
@@ -585,24 +585,24 @@
         <translation>Selaa masternodeja</translation>
     </message>
     <message>
-        <source>&amp;About dogecash Core</source>
-        <translation>dogecash Core &amp;ytimestä</translation>
+        <source>&amp;About DogeCash Core</source>
+        <translation>DogeCash Core &amp;ytimestä</translation>
     </message>
     <message>
-        <source>Show information about dogecash Core</source>
-        <translation>Näytä tietoja dogecash Ytimestä</translation>
+        <source>Show information about DogeCash Core</source>
+        <translation>Näytä tietoja DogeCash Ytimestä</translation>
     </message>
     <message>
-        <source>Modify configuration options for dogecash</source>
-        <translation>Muokkaa konfiguraatio vaihtoehtoja dogecash:lle</translation>
+        <source>Modify configuration options for DogeCash</source>
+        <translation>Muokkaa konfiguraatio vaihtoehtoja DogeCash:lle</translation>
     </message>
     <message>
-        <source>Sign messages with your dogecash addresses to prove you own them</source>
+        <source>Sign messages with your DogeCash addresses to prove you own them</source>
         <translation>Allekirjoita viestejä todistaaksesi, että omistat ne.</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
-        <translation>Vahvista viestit varmistaaksesi, että ne allekirjoitettiin tietyllä dogecash osoiteella.</translation>
+        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
+        <translation>Vahvista viestit varmistaaksesi, että ne allekirjoitettiin tietyllä DogeCash osoiteella.</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -633,8 +633,8 @@
         <translation>Avaa Masternode konfiguraatiotiedosto</translation>
     </message>
     <message>
-        <source>Open a dogecash: URI or payment request</source>
-        <translation>Avaa dogecash: URI tai pyydä maksua</translation>
+        <source>Open a DogeCash: URI or payment request</source>
+        <translation>Avaa DogeCash: URI tai pyydä maksua</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -645,12 +645,12 @@
         <translation>Lohkon tutkija näkymä</translation>
     </message>
     <message>
-        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>Näytä dogecash Ydin apuviesti saadaksesi lista mahdollisista dogecash komentolinja komennoista.</translation>
+        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
+        <translation>Näytä DogeCash Ydin apuviesti saadaksesi lista mahdollisista DogeCash komentolinja komennoista.</translation>
     </message>
     <message>
-        <source>dogecash Core client</source>
-        <translation>dogecash Ydin asiakasohjelma</translation>
+        <source>DogeCash Core client</source>
+        <translation>DogeCash Ydin asiakasohjelma</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -919,8 +919,8 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Ydin</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Ydin</translation>
     </message>
     <message>
         <source>Usage:</source>
@@ -938,12 +938,12 @@
         <translation>Tervetuloa</translation>
     </message>
     <message>
-        <source>Welcome to dogecash Core.</source>
-        <translation>Tervetuloa dogecash Ytimeen.</translation>
+        <source>Welcome to DogeCash Core.</source>
+        <translation>Tervetuloa DogeCash Ytimeen.</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Ydin</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Ydin</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1111,11 +1111,11 @@
     </message>
     <message>
         <source>Use 2 separate masternodes to mix funds up to 10000 DOGEC</source>
-        <translation>Käytä 2 erillistä masternodea sekoittaaksesi enintään 10000 dogecash</translation>
+        <translation>Käytä 2 erillistä masternodea sekoittaaksesi enintään 10000 DogeCash</translation>
     </message>
     <message>
         <source>Use 8 separate masternodes to mix funds up to 10000 DOGEC</source>
-        <translation>Käytä 8 erillistä masternodea sekoittaaksesi enintään 10000 dogecash</translation>
+        <translation>Käytä 8 erillistä masternodea sekoittaaksesi enintään 10000 DogeCash</translation>
     </message>
     <message>
         <source>Use 16 separate masternodes</source>
@@ -1123,11 +1123,11 @@
     </message>
     <message>
         <source>This option is the quickest and will cost about ~0.025 DOGEC to anonymize 10000 DOGEC</source>
-        <translation>Tämä vaihtoehto on nopein ja maksaa noin ~0.025 DOGEC anonymoidaksesi 10000 dogecash</translation>
+        <translation>Tämä vaihtoehto on nopein ja maksaa noin ~0.025 DOGEC anonymoidaksesi 10000 DogeCash</translation>
     </message>
     <message>
         <source>This option is moderately fast and will cost about 0.05 DOGEC to anonymize 10000 DOGEC</source>
-        <translation>Tämä vaihtoehto on suhteellisen nopea ja maksaa 0.05 dogecash anonymoidaksesi 10000 dogecash</translation>
+        <translation>Tämä vaihtoehto on suhteellisen nopea ja maksaa 0.05 DogeCash anonymoidaksesi 10000 DogeCash</translation>
     </message>
     <message>
         <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
@@ -1135,7 +1135,7 @@
     </message>
     <message>
         <source>0.1 DOGEC per 10000 DOGEC you anonymize.</source>
-        <translation>0.1 per 10000 dogecash, jotka anonymisoit.</translation>
+        <translation>0.1 per 10000 DogeCash, jotka anonymisoit.</translation>
     </message>
     <message>
         <source>Obfuscation Configuration</source>
@@ -1184,12 +1184,12 @@
         <translation>Ekspertti</translation>
     </message>
     <message>
-        <source>Automatically start dogecash after logging in to the system.</source>
-        <translation>Automaattisesti käynnistä dogecash kun kirjaudut sisään.</translation>
+        <source>Automatically start DogeCash after logging in to the system.</source>
+        <translation>Automaattisesti käynnistä DogeCash kun kirjaudut sisään.</translation>
     </message>
     <message>
-        <source>&amp;Start dogecash on system login</source>
-        <translation>&amp;Aloita dogecash järjestelmän kirjautumisessa</translation>
+        <source>&amp;Start DogeCash on system login</source>
+        <translation>&amp;Aloita DogeCash järjestelmän kirjautumisessa</translation>
     </message>
     <message>
         <source>Enable coin &amp;control features</source>
@@ -1208,12 +1208,12 @@
         <translation>&amp;Verkko</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting dogecash.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting DogeCash.</source>
         <translation>Käyttöliittymän kielen voi säätää täällä. Tämä asetus tulee voimaan uudelleenkäynnistettyäsi lompakon.</translation>
     </message>
     <message>
-        <source>Connect to the dogecash network through a SOCKS5 proxy.</source>
-        <translation>Yhdistä dogecash verkkoon SOCKS5 proxyn kautta</translation>
+        <source>Connect to the DogeCash network through a SOCKS5 proxy.</source>
+        <translation>Yhdistä DogeCash verkkoon SOCKS5 proxyn kautta</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1466,8 +1466,8 @@
         <translation>Määrä</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Ydin</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Ydin</translation>
     </message>
     </context>
 <context>
@@ -1524,8 +1524,8 @@
         <translation>Lohko ketju</translation>
     </message>
     <message>
-        <source>Open the dogecash debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Avaa dogecash debug loki nykyisestä sijainnista. Tämä voi kestää muutaman sekunnin suurille lokeille</translation>
+        <source>Open the DogeCash debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Avaa DogeCash debug loki nykyisestä sijainnista. Tämä voi kestää muutaman sekunnin suurille lokeille</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -1636,8 +1636,8 @@
         <translation>Ulos:</translation>
     </message>
     <message>
-        <source>Welcome to the dogecash RPC console.</source>
-        <translation>Tervetuloa dogecash RPC konsoliin.</translation>
+        <source>Welcome to the DogeCash RPC console.</source>
+        <translation>Tervetuloa DogeCash RPC konsoliin.</translation>
     </message>
     <message>
         <source>never</source>
@@ -1679,12 +1679,12 @@
         <translation>M&amp;äärä:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the dogecash network.</source>
-        <translation>Vaihtoehtoinen viesti joka liitetään maksupyyntöön, joka näytetään kun pyyntö avataan. Huomio: Viestiä ei lähetetä maksun mukana dogecash verkolle.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the DogeCash network.</source>
+        <translation>Vaihtoehtoinen viesti joka liitetään maksupyyntöön, joka näytetään kun pyyntö avataan. Huomio: Viestiä ei lähetetä maksun mukana DogeCash verkolle.</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the dogecash network.</source>
-        <translation>Vaihtoehtoinen viesti, joka liitetään maksupyyntöö, joka näytetään kun pyyntö avataan. &lt;br&gt; Huomio: Tätä viestiä ei lähetetä maksun mukana dogecash  verkolle.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the DogeCash network.</source>
+        <translation>Vaihtoehtoinen viesti, joka liitetään maksupyyntöö, joka näytetään kun pyyntö avataan. &lt;br&gt; Huomio: Tätä viestiä ei lähetetä maksun mukana DogeCash  verkolle.</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
@@ -1960,8 +1960,8 @@
         <translation>Kopioi taksa</translation>
     </message>
     <message>
-        <source>Warning: Invalid dogecash address</source>
-        <translation>Varoitus: Virheellinen dogecash osoite</translation>
+        <source>Warning: Invalid DogeCash address</source>
+        <translation>Varoitus: Virheellinen DogeCash osoite</translation>
     </message>
     <message>
         <source>Are you sure you want to send?</source>
@@ -2011,8 +2011,8 @@
         <translation>Tämä on normaali maksu.</translation>
     </message>
     <message>
-        <source>The dogecash address to send the payment to</source>
-        <translation>dogecash osoite johon maksu lähetetään</translation>
+        <source>The DogeCash address to send the payment to</source>
+        <translation>DogeCash osoite johon maksu lähetetään</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2054,8 +2054,8 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>dogecash Core is shutting down...</source>
-        <translation>dogecash core sammuu...</translation>
+        <source>DogeCash Core is shutting down...</source>
+        <translation>DogeCash core sammuu...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -2073,8 +2073,8 @@
         <translation>Voit allekirjoittaa viestejä osoitteillasi todistaaksesi, että omistat ne. Ole varovainen ettet allekirjoita mitään kummallista, sillä kalasteluyritykset saattavat yrittää huijata sinut luovuttamaan tietoja. Allekirjoita vain täysin yksityiskohtaisia sanomia, jotka hyväksyt.</translation>
     </message>
     <message>
-        <source>The dogecash address to sign the message with</source>
-        <translation>dogecash osoite, jolla viesti allekirjoitetaan</translation>
+        <source>The DogeCash address to sign the message with</source>
+        <translation>DogeCash osoite, jolla viesti allekirjoitetaan</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2105,16 +2105,16 @@
         <translation>Kopioi nykyinen allekirjoitus järjestelmän leikepöydälle</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this dogecash address</source>
-        <translation>Allekirjoita viesti todistaaksesi, että omistat tämän dogecash osoitteen</translation>
+        <source>Sign the message to prove you own this DogeCash address</source>
+        <translation>Allekirjoita viesti todistaaksesi, että omistat tämän DogeCash osoitteen</translation>
     </message>
     <message>
-        <source>The dogecash address the message was signed with</source>
-        <translation>dogecash osoite, jolla viesti allekirjoitettiin</translation>
+        <source>The DogeCash address the message was signed with</source>
+        <translation>DogeCash osoite, jolla viesti allekirjoitettiin</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
-        <translation>Vahvista että viesti on allekirjoitettu kyseessä olevalla dogecash osoitteella.</translation>
+        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
+        <translation>Vahvista että viesti on allekirjoitettu kyseessä olevalla DogeCash osoitteella.</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2196,8 +2196,8 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Ydin</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Ydin</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -2212,8 +2212,8 @@
         <translation>Dash Core kehittäjät</translation>
     </message>
     <message>
-        <source>The dogecash Core developers</source>
-        <translation>dogecash core kehittäjät</translation>
+        <source>The DogeCash Core developers</source>
+        <translation>DogeCash core kehittäjät</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2515,7 +2515,7 @@
     </message>
     </context>
 <context>
-    <name>dogecash-core</name>
+    <name>DogeCash-core</name>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
         <translation>Varoitus: Verkko ei näytä olevan samaa mieltä! Jotkin mainaajat saattavat kokea ongelmia.</translation>
@@ -2565,8 +2565,8 @@
         <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko korruptoitunut</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of dogecash Core</source>
-        <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko vaatii uudemman version dogecash Coresta</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
+        <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko vaatii uudemman version DogeCash Coresta</translation>
     </message>
     <message>
         <source>Error reading from database, shutting down.</source>

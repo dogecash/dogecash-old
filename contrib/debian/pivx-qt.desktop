@@ -1,12 +1,12 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=dogecash
-Comment=dogecash P2P Cryptocurrency
-Comment[fr]=dogecash, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=dogecash, eşten eşe kriptografik sanal para birimi
-Exec=dogecash-qt %u
+Name=DogeCash
+Comment=DogeCash P2P Cryptocurrency
+Comment[fr]=DogeCash, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=DogeCash, eşten eşe kriptografik sanal para birimi
+Exec=DogeCash-qt %u
 Terminal=false
 Type=Application
 Icon=dogecash128
-MimeType=x-scheme-handler/dogecash;
+MimeType=x-scheme-handler/DogeCash;
 Categories=Office;Finance;

@@ -1,9 +1,9 @@
-# bash programmable completion for dogecash-cli(1)
+# bash programmable completion for DogeCash-cli(1)
 # Copyright (c) 2012-2016 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-# call $dogecash-cli for RPC
+# call $DogeCash-cli for RPC
 _dogecash_rpc() {
     # determine already specified args necessary for RPC
     local rpcargs=()
@@ -28,8 +28,8 @@ _dogecash_cli() {
     local cur prev words=() cword
     local dogecash_cli
 
-    # save and use original argument to invoke dogecash-cli for -help, help and RPC
-    # as dogecash-cli might not be in $PATH
+    # save and use original argument to invoke DogeCash-cli for -help, help and RPC
+    # as DogeCash-cli might not be in $PATH
     dogecash_cli="$1"
 
     COMPREPLY=()
@@ -143,7 +143,7 @@ _dogecash_cli() {
             ;;
     esac
 } &&
-complete -F _dogecash_cli dogecash-cli
+complete -F _dogecash_cli DogeCash-cli
 
 # Local variables:
 # mode: shell-script

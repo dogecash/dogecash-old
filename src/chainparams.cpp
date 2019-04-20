@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2015-2018 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -135,15 +135,15 @@ public:
         pchMessageStart[3] = 0x6f;
         vAlertPubKey = ParseHex("04e70ca66d0bc8bd6c105952488fcdbd9f809d459af257646e35c5ec36f5e03158c916442aaa9592e63eeca8afa9660e505b160ee599c8efcc0a5f111058ba8c74");
         nDefaultPort = 6740;
-        bnProofOfWorkLimit = ~uint256(0) >> 20; // dogecash starting difficulty is 1 / 2^12
+        bnProofOfWorkLimit = ~uint256(0) >> 20; // DogeCash starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 8100; // 75%
         nRejectBlockOutdatedMajority = 10260; // 95%
         nToCheckBlockUpgradeMajority = 10800; // Approximate expected amount of blocks in 7 days (1440*7.5)
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // dogecash: 1 day  
-        nTargetSpacing = 1 * 60; //dogecash: 1 Min
+        nTargetTimespan = 1 * 60; // DogeCash: 1 day  
+        nTargetSpacing = 1 * 60; //DogeCash: 1 Min
         nMaturity = 30;
         nMasternodeCountDrift = 20;
         int nMasternodeCollateralLimit = 5000; //MN collateral
@@ -180,7 +180,7 @@ public:
          *     CTxOut(nValue=50.00000000, scriptPubKey=0xA9037BAC7050C479B121CF)
          *   vMerkleTree: e0028e
          */
-        const char* pszTimestamp = "dogecash MainNet Launch - 1st October";
+        const char* pszTimestamp = "DogeCash MainNet Launch - 1st October";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -229,8 +229,8 @@ public:
 
 vFixedSeeds.clear();
         vSeeds.clear();
-      //  vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "dogecash.seed.fuzzbawls.pw"));     // Primary DNS Seeder from Fuzzbawls
-      //  vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "dogecash.seed2.fuzzbawls.pw"));    // Secondary DNS Seeder from Fuzzbawls
+      //  vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "DogeCash.seed.fuzzbawls.pw"));     // Primary DNS Seeder from Fuzzbawls
+      //  vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "DogeCash.seed2.fuzzbawls.pw"));    // Secondary DNS Seeder from Fuzzbawls
        // vSeeds.push_back(CDNSSeedData("coin-server.com", "coin-server.com"));         // Single node address
        // vSeeds.push_back(CDNSSeedData("s3v3nh4cks.ddns.net", "s3v3nh4cks.ddns.net")); // Single node address
        // vSeeds.push_back(CDNSSeedData("178.254.23.111", "178.254.23.111"));           // Single node address
@@ -305,8 +305,8 @@ public:
         nRejectBlockOutdatedMajority = 5472; // 95%
         nToCheckBlockUpgradeMajority = 5760; // 4 days
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // dogecash: 1 day
-        nTargetSpacing = 1 * 60;  // dogecash: 1 minute
+        nTargetTimespan = 1 * 60; // DogeCash: 1 day
+        nTargetSpacing = 1 * 60;  // DogeCash: 1 minute
         nLastPOWBlock = 200;
         nMaturity = 15;
         nMasternodeCountDrift = 4;
@@ -366,15 +366,15 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-       // vSeeds.push_back(CDNSSeedData("testnet.dogecash.io", "testnet.dogecash.io"));         // Single node address
-       // vSeeds.push_back(CDNSSeedData("testnet1.dogecash.io", "testnet1.dogecash.io"));       // Single node address
-       // vSeeds.push_back(CDNSSeedData("testnet2.dogecash.io", "testnet2.dogecash.io"));
+       // vSeeds.push_back(CDNSSeedData("testnet.DogeCash.io", "testnet.DogeCash.io"));         // Single node address
+       // vSeeds.push_back(CDNSSeedData("testnet1.DogeCash.io", "testnet1.DogeCash.io"));       // Single node address
+       // vSeeds.push_back(CDNSSeedData("testnet2.DogeCash.io", "testnet2.DogeCash.io"));
 	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 65);
 	base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
 	base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
 	base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
 	base58Prefixes[EXT_SECRET_KEY] = list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();	
-        // Testnet dogecash BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet DogeCash BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
@@ -421,8 +421,8 @@ public:
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-        nTargetTimespan = 24 * 60 * 60; // dogecash: 1 day
-        nTargetSpacing = 1 * 60;        // dogecash: 1 minutes
+        nTargetTimespan = 24 * 60 * 60; // DogeCash: 1 day
+        nTargetSpacing = 1 * 60;        // DogeCash: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         nLastPOWBlock = 250;
         nMaturity = 100;

@@ -5,7 +5,7 @@ Upstart: dogecashd.conf
 OpenRC:  dogecashd.openrc
          dogecashd.openrcconf
 CentOS:  dogecashd.init
-macOS:    org.dogecash.dogecashd.plist
+macOS:    org.DogeCash.dogecashd.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

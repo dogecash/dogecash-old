@@ -282,6 +282,6 @@
     <name>zdogecControlDialog</name>
     </context>
 <context>
-    <name>dogecash-core</name>
+    <name>DogeCash-core</name>
     </context>
 </TS>

@@ -62,12 +62,12 @@
         <translation>Prijímacia adresa</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Toto sú vaše dogecash adresy na odosielanie platieb. Pred odoslaním vždy skontrolujte výšku a adresu prijemcu.</translation>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Toto sú vaše DogeCash adresy na odosielanie platieb. Pred odoslaním vždy skontrolujte výšku a adresu prijemcu.</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Toto sú vaše dogecash adresy na prijímanie platieb. Pre každú transakciu sa odporúča použiť novú prijímaciu adresu.</translation>
+        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Toto sú vaše DogeCash adresy na prijímanie platieb. Pre každú transakciu sa odporúča použiť novú prijímaciu adresu.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -172,8 +172,8 @@
         <translation>Potvrďte šifrovanie peňaženky</translation>
     </message>
     <message>
-        <source>dogecash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
-        <translation>dogecash sa teraz ukončí, aby dokončil proces šifrovania. Nezabudnite, že šifrovanie peňaženky nemôže úplne ochrániť vaše DOGEC pred odcudzením škodlivým softvérom, ktorý infikuje váš počítač.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash sa teraz ukončí, aby dokončil proces šifrovania. Nezabudnite, že šifrovanie peňaženky nemôže úplne ochrániť vaše DOGEC pred odcudzením škodlivým softvérom, ktorý infikuje váš počítač.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -569,16 +569,16 @@
         <translation>Panel nástrojov Záložky</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
-        <source>Send coins to a dogecash address</source>
-        <translation>Odoslať mince na adresu dogecash</translation>
+        <source>Send coins to a DogeCash address</source>
+        <translation>Odoslať mince na adresu DogeCash</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and dogecash: URIs)</source>
-        <translation>Vyžiadať platby (generuje QR kódy a dogecash: identifikátory URI)</translation>
+        <source>Request payments (generates QR codes and DogeCash: URIs)</source>
+        <translation>Vyžiadať platby (generuje QR kódy a DogeCash: identifikátory URI)</translation>
     </message>
     <message>
         <source>&amp;Masternodes</source>
@@ -589,24 +589,24 @@
         <translation>Prezrieť masternody</translation>
     </message>
     <message>
-        <source>&amp;About dogecash Core</source>
-        <translation>O dogecash Core</translation>
+        <source>&amp;About DogeCash Core</source>
+        <translation>O DogeCash Core</translation>
     </message>
     <message>
-        <source>Show information about dogecash Core</source>
-        <translation>Zobraziť informácie o dogecash Core</translation>
+        <source>Show information about DogeCash Core</source>
+        <translation>Zobraziť informácie o DogeCash Core</translation>
     </message>
     <message>
-        <source>Modify configuration options for dogecash</source>
-        <translation>Zmeňte možnosti konfigurácie pre dogecash</translation>
+        <source>Modify configuration options for DogeCash</source>
+        <translation>Zmeňte možnosti konfigurácie pre DogeCash</translation>
     </message>
     <message>
-        <source>Sign messages with your dogecash addresses to prove you own them</source>
-        <translation>Podpíšte správy pomocou adresy dogecash, aby ste preukázali, že ich vlastníte</translation>
+        <source>Sign messages with your DogeCash addresses to prove you own them</source>
+        <translation>Podpíšte správy pomocou adresy DogeCash, aby ste preukázali, že ich vlastníte</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
-        <translation>Overte správy, aby sa zabezpečilo, že boli podpísané zadanými dogecash adresami</translation>
+        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
+        <translation>Overte správy, aby sa zabezpečilo, že boli podpísané zadanými DogeCash adresami</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -637,8 +637,8 @@
         <translation>Otvoriť konfiguračný súbor masternodu</translation>
     </message>
     <message>
-        <source>Open a dogecash: URI or payment request</source>
-        <translation>Otvorte dogecash: URI alebo žiadosť o platbu</translation>
+        <source>Open a DogeCash: URI or payment request</source>
+        <translation>Otvorte DogeCash: URI alebo žiadosť o platbu</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -649,12 +649,12 @@
         <translation>Okno blockchain prehliadača</translation>
     </message>
     <message>
-        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>Zobraziť pomocnú správu programu dogecash Core a získajte zoznam možností príkazového riadka dogecash</translation>
+        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
+        <translation>Zobraziť pomocnú správu programu DogeCash Core a získajte zoznam možností príkazového riadka DogeCash</translation>
     </message>
     <message>
-        <source>dogecash Core client</source>
-        <translation>dogecash Core klient</translation>
+        <source>DogeCash Core client</source>
+        <translation>DogeCash Core klient</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -776,8 +776,8 @@ MultiSend: %1</translation>
         <translation>TextLabel</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (dogecash.conf).</source>
-        <translation>Nie všetky transakcie sa zobrazia. Ak chcete zobraziť všetky transakcie, musíte v konfiguračnom súbore (dogecash.conf) nastaviť txindex = 1.</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (DogeCash.conf).</source>
+        <translation>Nie všetky transakcie sa zobrazia. Ak chcete zobraziť všetky transakcie, musíte v konfiguračnom súbore (DogeCash.conf) nastaviť txindex = 1.</translation>
     </message>
 </context>
 <context>
@@ -870,15 +870,15 @@ MultiSend: %1</translation>
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     </context>
 <context>
     <name>Intro</name>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Error</source>
@@ -997,8 +997,8 @@ MultiSend: %1</translation>
         <translation>Suma</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     </context>
 <context>
@@ -1132,8 +1132,8 @@ MultiSend: %1</translation>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The dogecash address to sign the message with</source>
-        <translation>Adresa dogecash, ktorou chcete správu podpísať</translation>
+        <source>The DogeCash address to sign the message with</source>
+        <translation>Adresa DogeCash, ktorou chcete správu podpísať</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1156,16 +1156,16 @@ MultiSend: %1</translation>
         <translation>Skopírujte aktuálny podpis do schránky</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this dogecash address</source>
-        <translation>Podpíšte správu, aby ste preukázali, že ste vlastníkom tejto dogecash adresy</translation>
+        <source>Sign the message to prove you own this DogeCash address</source>
+        <translation>Podpíšte správu, aby ste preukázali, že ste vlastníkom tejto DogeCash adresy</translation>
     </message>
     <message>
-        <source>The dogecash address the message was signed with</source>
-        <translation>dogecash adresa, ktorou bola správa podpísaná</translation>
+        <source>The DogeCash address the message was signed with</source>
+        <translation>DogeCash adresa, ktorou bola správa podpísaná</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
-        <translation>Skontrolujte správu, aby ste sa uistili, že bola podpísaná zadanou dogecash adresou</translation>
+        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
+        <translation>Skontrolujte správu, aby ste sa uistili, že bola podpísaná zadanou DogeCash adresou</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>
@@ -1203,8 +1203,8 @@ MultiSend: %1</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     </context>
 <context>
@@ -1302,7 +1302,7 @@ MultiSend: %1</translation>
     <name>zdogecControlDialog</name>
     </context>
 <context>
-    <name>dogecash-core</name>
+    <name>DogeCash-core</name>
     <message>
         <source>Error</source>
         <translation>Chyba</translation>

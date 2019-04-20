@@ -1,5 +1,5 @@
 // Copyright (c) 2012-2017 The Bitcoin Core developers
-// Copyright (c) 2016-2017 The dogecash developers
+// Copyright (c) 2016-2017 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both dogecashd and dogecash-qt, to make it harder for attackers to
+ * for both dogecashd and DogeCash-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("dogecash Core");
+const std::string CLIENT_NAME("DogeCash Core");
 
 /**
  * Client version number

@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2015-2018 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -268,11 +268,11 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop dogecash server.");
+            "\nStop DogeCash server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "dogecash server stopping";
+    return "DogeCash server stopping";
 }
 
 
@@ -364,37 +364,37 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true,  true,  false  },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true,  true,  false  },
 
-        /* dogecash features */
-        {"dogecash", "masternode", &masternode, true, true, false},
-        {"dogecash", "listmasternodes", &listmasternodes, true, true, false},
-        {"dogecash", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"dogecash", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"dogecash", "createmasternodebroadcast", &createmasternodebroadcast, true, true, false},
-        {"dogecash", "decodemasternodebroadcast", &decodemasternodebroadcast, true, true, false},
-        {"dogecash", "relaymasternodebroadcast", &relaymasternodebroadcast, true, true, false},
-        {"dogecash", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"dogecash", "masternodedebug", &masternodedebug, true, true, false},
-        {"dogecash", "startmasternode", &startmasternode, true, true, false},
-        {"dogecash", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"dogecash", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"dogecash", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"dogecash", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"dogecash", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"dogecash", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"dogecash", "mnbudget", &mnbudget, true, true, false},
-        {"dogecash", "preparebudget", &preparebudget, true, true, false},
-        {"dogecash", "submitbudget", &submitbudget, true, true, false},
-        {"dogecash", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"dogecash", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"dogecash", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"dogecash", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"dogecash", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"dogecash", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"dogecash", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"dogecash", "checkbudgets", &checkbudgets, true, true, false},
-        {"dogecash", "mnsync", &mnsync, true, true, false},
-        {"dogecash", "spork", &spork, true, true, false},
-        {"dogecash", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* DogeCash features */
+        {"DogeCash", "masternode", &masternode, true, true, false},
+        {"DogeCash", "listmasternodes", &listmasternodes, true, true, false},
+        {"DogeCash", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"DogeCash", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"DogeCash", "createmasternodebroadcast", &createmasternodebroadcast, true, true, false},
+        {"DogeCash", "decodemasternodebroadcast", &decodemasternodebroadcast, true, true, false},
+        {"DogeCash", "relaymasternodebroadcast", &relaymasternodebroadcast, true, true, false},
+        {"DogeCash", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"DogeCash", "masternodedebug", &masternodedebug, true, true, false},
+        {"DogeCash", "startmasternode", &startmasternode, true, true, false},
+        {"DogeCash", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"DogeCash", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"DogeCash", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"DogeCash", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"DogeCash", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"DogeCash", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"DogeCash", "mnbudget", &mnbudget, true, true, false},
+        {"DogeCash", "preparebudget", &preparebudget, true, true, false},
+        {"DogeCash", "submitbudget", &submitbudget, true, true, false},
+        {"DogeCash", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"DogeCash", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"DogeCash", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"DogeCash", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"DogeCash", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"DogeCash", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"DogeCash", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"DogeCash", "checkbudgets", &checkbudgets, true, true, false},
+        {"DogeCash", "mnsync", &mnsync, true, true, false},
+        {"DogeCash", "spork", &spork, true, true, false},
+        {"DogeCash", "getpoolinfo", &getpoolinfo, true, true, false},
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -633,7 +633,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> dogecash-cli " + methodname + " " + args + "\n";
+    return "> DogeCash-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)

@@ -62,7 +62,7 @@ class TestNode():
         self.extra_args = extra_args
         self.args = [self.binary, "-datadir=" + self.datadir, "-server", "-keypool=1", "-discover=0", "-rest", "-logtimemicros", "-debug", "-debugexclude=libevent", "-debugexclude=leveldb", "-mocktime=" + str(mocktime), "-uacomment=testnode%d" % i]
 
-        self.cli = TestNodeCLI(os.getenv("BITCOINCLI", "dogecash-cli"), self.datadir)
+        self.cli = TestNodeCLI(os.getenv("BITCOINCLI", "DogeCash-cli"), self.datadir)
         self.use_cli = use_cli
 
         self.running = False
@@ -229,7 +229,7 @@ class TestNodeCLIAttr:
         return lambda: self(*args, **kwargs)
 
 class TestNodeCLI():
-    """Interface to dogecash-cli for an individual node"""
+    """Interface to DogeCash-cli for an individual node"""
 
     def __init__(self, binary, datadir):
         self.options = []
@@ -239,7 +239,7 @@ class TestNodeCLI():
         self.log = logging.getLogger('TestFramework.bitcoincli')
 
     def __call__(self, *options, input=None):
-        # TestNodeCLI is callable with dogecash-cli command-line options
+        # TestNodeCLI is callable with DogeCash-cli command-line options
         cli = TestNodeCLI(self.binary, self.datadir)
         cli.options = [str(o) for o in options]
         cli.input = input
@@ -258,11 +258,11 @@ class TestNodeCLI():
         return results
 
     def send_cli(self, command=None, *args, **kwargs):
-        """Run dogecash-cli command. Deserializes returned string as python object."""
+        """Run DogeCash-cli command. Deserializes returned string as python object."""
 
         pos_args = [str(arg) for arg in args]
         named_args = [str(key) + "=" + str(value) for (key, value) in kwargs.items()]
-        assert not (pos_args and named_args), "Cannot use positional arguments and named arguments in the same dogecash-cli call"
+        assert not (pos_args and named_args), "Cannot use positional arguments and named arguments in the same DogeCash-cli call"
         p_args = [self.binary, "-datadir=" + self.datadir] + self.options
         if named_args:
             p_args += ["-named"]

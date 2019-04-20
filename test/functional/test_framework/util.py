@@ -288,7 +288,7 @@ def initialize_datadir(dirname, n):
     if not os.path.isdir(datadir):
         os.makedirs(datadir)
     rpc_u, rpc_p = rpc_auth_pair(n)
-    with open(os.path.join(datadir, "dogecash.conf"), 'w', encoding='utf8') as f:
+    with open(os.path.join(datadir, "DogeCash.conf"), 'w', encoding='utf8') as f:
         f.write("regtest=1\n")
         f.write("rpcuser=" + rpc_u + "\n")
         f.write("rpcpassword=" + rpc_p + "\n")
@@ -311,8 +311,8 @@ def get_datadir_path(dirname, n):
 def get_auth_cookie(datadir):
     user = None
     password = None
-    if os.path.isfile(os.path.join(datadir, "dogecash.conf")):
-        with open(os.path.join(datadir, "dogecash.conf"), 'r', encoding='utf8') as f:
+    if os.path.isfile(os.path.join(datadir, "DogeCash.conf")):
+        with open(os.path.join(datadir, "DogeCash.conf"), 'r', encoding='utf8') as f:
             for line in f:
                 if line.startswith("rpcuser="):
                     assert user is None  # Ensure that there is only one rpcuser line

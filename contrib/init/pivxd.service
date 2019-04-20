@@ -5,17 +5,17 @@
 # See "man systemd.service" for details.
 
 # Note that almost all daemon options could be specified in
-# /etc/dogecash/dogecash.conf
+# /etc/DogeCash/DogeCash.conf
 
 [Unit]
-Description=dogecash daemon
+Description=DogeCash daemon
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/dogecashd -daemon -conf=/etc/dogecash/dogecash.conf -pid=/run/dogecashd/dogecashd.pid
-# Creates /run/dogecashd owned by dogecash
+ExecStart=/usr/bin/dogecashd -daemon -conf=/etc/DogeCash/DogeCash.conf -pid=/run/dogecashd/dogecashd.pid
+# Creates /run/dogecashd owned by DogeCash
 RuntimeDirectory=dogecashd
-User=dogecash
+User=DogeCash
 Type=forking
 PIDFile=/run/dogecashd/dogecashd.pid
 Restart=on-failure

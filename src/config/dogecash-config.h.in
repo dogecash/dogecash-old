@@ -1,4 +1,4 @@
-/* src/config/dogecash-config.h.in.  Generated from configure.ac by autoheader.  */
+/* src/config/DogeCash-config.h.in.  Generated from configure.ac by autoheader.  */
 
 #ifndef DogeCash_CONFIG_H
 

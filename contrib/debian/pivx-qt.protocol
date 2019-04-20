@@ -1,6 +1,6 @@
 [Protocol]
-exec=dogecash-qt '%u'
-protocol=dogecash
+exec=DogeCash-qt '%u'
+protocol=DogeCash
 input=none
 output=none
 helper=true
