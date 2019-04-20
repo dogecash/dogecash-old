@@ -75,7 +75,7 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (1686229, uint256("bb42bf1e886a7c23474634c90893dd3d68a6ccbfea4ac92a98da5cad0c6a6cb7")); //!< Last block in the "wrapped" serial attack range **/
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1555600835, // * UNIX timestamp of last checkpoint block
+    1555802195, // * UNIX timestamp of last checkpoint block
     4036872,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
@@ -86,7 +86,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
     (0, uint256("0x001"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1555600835,
+    1555802195,
     2305594,
     250};
 
@@ -94,7 +94,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
     boost::assign::map_list_of(0, uint256("0x001"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1555600835,
+    1555802195,
     0,
     100};
 
@@ -191,7 +191,7 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1555600835; 
+        genesis.nTime = 1555802195; 
         genesis.nBits = 0x1e0ffff0;
 	genesis.nNonce = 3443936; 
 	
@@ -329,7 +329,7 @@ public:
         nSupplyBeforeFakeSerial = 0;
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1555600835; 
+        genesis.nTime = 1555802195; 
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 3443936;
 
@@ -441,7 +441,7 @@ public:
         nFakeSerialBlockheightEnd = -1;
 
         //! Modify the regtest genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1555600835; 
+        genesis.nTime = 1555802195; 
         genesis.nBits = 0x1e0ffff0;
       	genesis.nNonce = 3443936;
 
