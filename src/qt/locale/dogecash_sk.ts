@@ -569,8 +569,8 @@
         <translation>Panel nástrojov Záložky</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Send coins to a dogecash address</source>
@@ -589,12 +589,12 @@
         <translation>Prezrieť masternody</translation>
     </message>
     <message>
-        <source>&amp;About dogecash Core</source>
-        <translation>O dogecash Core</translation>
+        <source>&amp;About DogeCash Core</source>
+        <translation>O DogeCash Core</translation>
     </message>
     <message>
-        <source>Show information about dogecash Core</source>
-        <translation>Zobraziť informácie o dogecash Core</translation>
+        <source>Show information about DogeCash Core</source>
+        <translation>Zobraziť informácie o DogeCash Core</translation>
     </message>
     <message>
         <source>Modify configuration options for dogecash</source>
@@ -649,12 +649,12 @@
         <translation>Okno blockchain prehliadača</translation>
     </message>
     <message>
-        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>Zobraziť pomocnú správu programu dogecash Core a získajte zoznam možností príkazového riadka dogecash</translation>
+        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
+        <translation>Zobraziť pomocnú správu programu DogeCash Core a získajte zoznam možností príkazového riadka dogecash</translation>
     </message>
     <message>
-        <source>dogecash Core client</source>
-        <translation>dogecash Core klient</translation>
+        <source>DogeCash Core client</source>
+        <translation>DogeCash Core klient</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -870,15 +870,15 @@ MultiSend: %1</translation>
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     </context>
 <context>
     <name>Intro</name>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Error</source>
@@ -997,8 +997,8 @@ MultiSend: %1</translation>
         <translation>Suma</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     </context>
 <context>
@@ -1203,8 +1203,8 @@ MultiSend: %1</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     </context>
 <context>

@@ -645,7 +645,7 @@
         <translation>Værktøjslinier</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation>dogecash kerne</translation>
     </message>
     <message>
@@ -669,11 +669,11 @@
         <translation>Vis masternoder</translation>
     </message>
     <message>
-        <source>&amp;About dogecash Core</source>
+        <source>&amp;About DogeCash Core</source>
         <translation>&amp;Om dogecash kerne</translation>
     </message>
     <message>
-        <source>Show information about dogecash Core</source>
+        <source>Show information about DogeCash Core</source>
         <translation>Vis information om dogecash kerne</translation>
     </message>
     <message>
@@ -729,11 +729,11 @@
         <translation>Blockexplorer vindue</translation>
     </message>
     <message>
-        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
+        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
         <translation>Vis hjelpetekster fra dogecash kernen for at få en liste med mulige dogecash kommandolinie-startparametre</translation>
     </message>
     <message>
-        <source>dogecash Core client</source>
+        <source>DogeCash Core client</source>
         <translation>dogecash kerneklient</translation>
     </message>
     <message numerus="yes">
@@ -1242,7 +1242,7 @@ Adresse: %4
         <translation>version</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation>dogecash kerne</translation>
     </message>
     <message>
@@ -1250,7 +1250,7 @@ Adresse: %4
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About dogecash Core</source>
+        <source>About DogeCash Core</source>
         <translation>om dogecash kerne</translation>
     </message>
     <message>
@@ -1297,15 +1297,15 @@ Adresse: %4
         <translation>Velkommen</translation>
     </message>
     <message>
-        <source>Welcome to dogecash Core.</source>
+        <source>Welcome to DogeCash Core.</source>
         <translation>Velkommen til dogecash kerne</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where dogecash Core will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
         <translation>Da det er første gang programmet startes, kan De vælge hvor dogecash kernen skal lagre sine data</translation>
     </message>
     <message>
-        <source>dogecash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>dogecash kernen vil nu hente og gemme en kopi af dogecash blockchain. Der skal være mindst %1GB ledigt på lagermediet, og behovet vil stige efterhånden som tiden går. Selve tegnebogen vil også blive gemt her.</translation>
     </message>
     <message>
@@ -1317,7 +1317,7 @@ Adresse: %4
         <translation>Anvend en mappe valgt af brugeren</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation>dogecash kerne</translation>
     </message>
     <message>
@@ -3034,7 +3034,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation>dogecash kerne</translation>
     </message>
     </context>
@@ -4050,7 +4050,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>dogecash Core is shutting down...</source>
+        <source>DogeCash Core is shutting down...</source>
         <translation>dogecash kernen lukker ned</translation>
     </message>
     <message>
@@ -4200,7 +4200,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation>dogecash kerne</translation>
     </message>
     <message>
@@ -4216,7 +4216,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>DASH "core" udviklerne</translation>
     </message>
     <message>
-        <source>The dogecash Core developers</source>
+        <source>The DogeCash Core developers</source>
         <translation>dogecash "core" udviklerne</translation>
     </message>
     <message>
@@ -4877,7 +4877,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Beregnet akkumulator kontrolpunkt er ikke det, der er registreret af blok indeks</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. dogecash Core is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. DogeCash Core is probably already running.</source>
         <translation>Kan ikke låse datamappen %s. dogecash core kører sandsynligvis allerede.</translation>
     </message>
     <message>
@@ -5054,7 +5054,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Dette produkt anvender software udviklet i OpenSSL projektet til brug i OpenSSL værktøjssættet &lt;https://www.openssl.org/&gt; og kryptosoftware skrevet afEric Young og UPnP software skrevet af Thomas Bernard.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. dogecash Core is probably already running.</source>
+        <source>Unable to bind to %s on this computer. DogeCash Core is probably already running.</source>
         <translation>Det var ikke muligt at forbinde %s på denne computer. dogecash kører sandsynligvis allerede.</translation>
     </message>
     <message>
@@ -5082,7 +5082,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Advarsel! -paytxfee er sat meget højt. Det er dette gebyr De kommer til at betale for transaktionen, hvis De gennemfører. </translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong dogecash Core will not work properly.</source>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
         <translation>Advarsel! Kontroller at computerens dato og tid er korrekt indstillet. Hvis tiden ikke er rigtig, vil dogecash core ikke fungere ordentligt.</translation>
     </message>
     <message>
@@ -5234,8 +5234,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Copyright (C) 2014-%i The Dash Core Developers </translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The dogecash Core Developers</source>
-        <translation>Copyright (C) 2015-%i The dogecash Core Developers</translation>
+        <source>Copyright (C) 2015-%i The DogeCash Core Developers</source>
+        <translation>Copyright (C) 2015-%i The DogeCash Core Developers</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -5322,7 +5322,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Fejl ved indlæsning af wallet.dat: Tegnebogen er beskadiget</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of dogecash Core</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
         <translation>Fejl ved indlæsning af wallet.dat: Tegnebogen kræver en nyere version af dogecash core</translation>
     </message>
     <message>
@@ -5446,7 +5446,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Info:</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. dogecash Core is shutting down.</source>
+        <source>Initialization sanity check failed. DogeCash Core is shutting down.</source>
         <translation>Initiering af sanitetskontrollen fejlede. dogecash core lukker ned. </translation>
     </message>
     <message>
@@ -6254,7 +6254,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Tegnebogen er låst</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart dogecash Core to complete</source>
+        <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
         <translation>Tegnebogen måtte genskrives. Genstart dogecash core for at gøre færdig</translation>
     </message>
     <message>

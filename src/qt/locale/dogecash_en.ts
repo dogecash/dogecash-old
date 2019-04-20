@@ -841,7 +841,7 @@
     <message>
         <location line="-448"/>
         <location line="+938"/>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -871,12 +871,12 @@
     </message>
     <message>
         <location line="+43"/>
-        <source>&amp;About dogecash Core</source>
+        <source>&amp;About DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Show information about dogecash Core</source>
+        <source>Show information about DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -946,12 +946,12 @@
     </message>
     <message>
         <location line="+4"/>
-        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
+        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+234"/>
-        <source>dogecash Core client</source>
+        <source>DogeCash Core client</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
@@ -1650,7 +1650,7 @@ Address: %4
     </message>
     <message>
         <location line="+0"/>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1661,7 +1661,7 @@ Address: %4
     </message>
     <message>
         <location line="+4"/>
-        <source>About dogecash Core</source>
+        <source>About DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1719,17 +1719,17 @@ Address: %4
     </message>
     <message>
         <location line="+9"/>
-        <source>Welcome to dogecash Core.</source>
+        <source>Welcome to DogeCash Core.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+26"/>
-        <source>As this is the first time the program is launched, you can choose where dogecash Core will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+10"/>
-        <source>dogecash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1744,7 +1744,7 @@ Address: %4
     </message>
     <message>
         <location filename="../intro.cpp" line="+77"/>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4129,7 +4129,7 @@ Please be patient...</source>
         <location line="+7"/>
         <location line="+13"/>
         <location line="+19"/>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4154,7 +4154,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+40"/>
-        <source>dogecash Core didn&apos;t yet exit safely...</source>
+        <source>DogeCash Core didn&apos;t yet exit safely...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5505,7 +5505,7 @@ Please be patient...</source>
     <name>ShutdownWindow</name>
     <message>
         <location filename="../utilitydialog.cpp" line="+75"/>
-        <source>dogecash Core is shutting down...</source>
+        <source>DogeCash Core is shutting down...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5700,7 +5700,7 @@ Please be patient...</source>
     <name>SplashScreen</name>
     <message>
         <location filename="../splashscreen.cpp" line="+36"/>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5720,7 +5720,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>The dogecash Core developers</source>
+        <source>The DogeCash Core developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6583,7 +6583,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Cannot obtain a lock on data directory %s. dogecash Core is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. DogeCash Core is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6833,7 +6833,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Unable to bind to %s on this computer. dogecash Core is probably already running.</source>
+        <source>Unable to bind to %s on this computer. DogeCash Core is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6868,7 +6868,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong dogecash Core will not work properly.</source>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7073,7 +7073,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Copyright (C) 2015-%i The dogecash Core Developers</source>
+        <source>Copyright (C) 2015-%i The DogeCash Core Developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7193,7 +7193,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of dogecash Core</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7348,7 +7348,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Initialization sanity check failed. dogecash Core is shutting down.</source>
+        <source>Initialization sanity check failed. DogeCash Core is shutting down.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8385,7 +8385,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart dogecash Core to complete</source>
+        <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

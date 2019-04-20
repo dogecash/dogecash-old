@@ -641,8 +641,8 @@
         <translation>Schede degli strumenti</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Send coins to a dogecash address</source>
@@ -665,12 +665,12 @@
         <translation>Esplora i masternodes</translation>
     </message>
     <message>
-        <source>&amp;About dogecash Core</source>
-        <translation>&amp;Informazioni dogecash Core</translation>
+        <source>&amp;About DogeCash Core</source>
+        <translation>&amp;Informazioni DogeCash Core</translation>
     </message>
     <message>
-        <source>Show information about dogecash Core</source>
-        <translation>Visualizza informazioni su dogecash Core</translation>
+        <source>Show information about DogeCash Core</source>
+        <translation>Visualizza informazioni su DogeCash Core</translation>
     </message>
     <message>
         <source>Modify configuration options for dogecash</source>
@@ -725,12 +725,12 @@
         <translation>Finestra Block Explorer</translation>
     </message>
     <message>
-        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>Mostra il messaggio di aiuto dogecash Core per ottenere un elenco con le possibili opzioni di riga di comando dogecash</translation>
+        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
+        <translation>Mostra il messaggio di aiuto DogeCash Core per ottenere un elenco con le possibili opzioni di riga di comando dogecash</translation>
     </message>
     <message>
-        <source>dogecash Core client</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core client</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -1206,16 +1206,16 @@ MultiSend: %1</translation>
         <translation>versione</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About dogecash Core</source>
-        <translation>Informazioni su dogecash Core</translation>
+        <source>About DogeCash Core</source>
+        <translation>Informazioni su DogeCash Core</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1261,16 +1261,16 @@ MultiSend: %1</translation>
         <translation>Benvenuto</translation>
     </message>
     <message>
-        <source>Welcome to dogecash Core.</source>
+        <source>Welcome to DogeCash Core.</source>
         <translation>Benvenuto in DOGECIX Core.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where dogecash Core will store its data.</source>
-        <translation>Essendo il primo avvio dell'applicazione, puoi scegliere dove dogecash Core salverà i propri dati.</translation>
+        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
+        <translation>Essendo il primo avvio dell'applicazione, puoi scegliere dove DogeCash Core salverà i propri dati.</translation>
     </message>
     <message>
-        <source>dogecash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>dogecash Core scaricherà e salverà una copia della blockchain dogecash. Verranno salvati almeno %1GB di dati in questa cartella, che cresceranno nel tempo. In questa cartella verrà salvato anche il portafoglio.</translation>
+        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DogeCash Core scaricherà e salverà una copia della blockchain dogecash. Verranno salvati almeno %1GB di dati in questa cartella, che cresceranno nel tempo. In questa cartella verrà salvato anche il portafoglio.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1281,8 +1281,8 @@ MultiSend: %1</translation>
         <translation>Utilizza una cartella dati personalizzata:</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -2199,8 +2199,8 @@ Per cambiare la percentuale (riavvio non necessario):
         <translation>Ammontare</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     </context>
 <context>
@@ -2533,8 +2533,8 @@ Per cambiare la percentuale (riavvio non necessario):
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     </context>
 <context>

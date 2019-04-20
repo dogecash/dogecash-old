@@ -1,6 +1,6 @@
 (note: this is a temporary file, to be added-to by anybody, and moved to release-notes at release time)
 
-dogecash Core version *version* is now available from:  <https://github.com/dogecash-project/dogecash/releases>
+DogeCash Core version *version* is now available from:  <https://github.com/dogecash-project/dogecash/releases>
 
 This is a new major version release, including various bug fixes and performance improvements, as well as updated translations.
 
@@ -20,13 +20,13 @@ If you are running an older version, shut it down. Wait until it has completely 
 Compatibility
 ==============
 
-dogecash Core is extensively tested on multiple operating systems using the Linux kernel, macOS 10.10+, and Windows 7 and later.
+DogeCash Core is extensively tested on multiple operating systems using the Linux kernel, macOS 10.10+, and Windows 7 and later.
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support), No attempt is made to prevent installing or running the software on Windows XP, you can still do so at your own risk but be aware that there are known instabilities and issues. Please do not report issues about Windows XP to the issue tracker.
 
-Apple released it's last Mountain Lion update August 13, 2015, and officially ended support on [December 14, 2015](http://news.fnal.gov/2015/10/mac-os-x-mountain-lion-10-8-end-of-life-december-14/). dogecash Core software starting with v3.2.0 will no longer run on MacOS versions prior to Yosemite (10.10). Please do not report issues about MacOS versions prior to Yosemite to the issue tracker.
+Apple released it's last Mountain Lion update August 13, 2015, and officially ended support on [December 14, 2015](http://news.fnal.gov/2015/10/mac-os-x-mountain-lion-10-8-end-of-life-december-14/). DogeCash Core software starting with v3.2.0 will no longer run on MacOS versions prior to Yosemite (10.10). Please do not report issues about MacOS versions prior to Yosemite to the issue tracker.
 
-dogecash Core should also work on most other Unix-like systems but is not frequently tested on them.
+DogeCash Core should also work on most other Unix-like systems but is not frequently tested on them.
 
  
 Notable Changes
@@ -35,7 +35,7 @@ Notable Changes
 Minimum Supported MacOS Version
 ------
 
-The minimum supported version of MacOS (OSX) has been moved from 10.8 Mountain Lion to 10.10 Yosemite. Users still running a MacOS version prior to Yosemite will need to upgrade their OS if they wish to continue using the latest version(s) of the dogecash Core wallet.
+The minimum supported version of MacOS (OSX) has been moved from 10.8 Mountain Lion to 10.10 Yosemite. Users still running a MacOS version prior to Yosemite will need to upgrade their OS if they wish to continue using the latest version(s) of the DogeCash Core wallet.
 
 Attacks, Exploits, and Mitigations
 ------
@@ -59,7 +59,7 @@ Major New Features
 
 ### BIP65 (CHECKLOCKTIMEVERIFY) Soft-Fork
 
-dogecash Core v3.2.0 introduces new consensus rules for scripting pathways to support the [BIP65](https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki) standard. This is being carried out as a soft-fork in order to provide ample time for stakers to update their wallet version.
+DogeCash Core v3.2.0 introduces new consensus rules for scripting pathways to support the [BIP65](https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki) standard. This is being carried out as a soft-fork in order to provide ample time for stakers to update their wallet version.
 
 ### Automint Addresses
 
@@ -171,7 +171,7 @@ Build System Changes
 
 ### Completely Disallow Qt4
 
-Compiling the dogecash Core wallet against Qt4 hasn't been supported for quite some time now, but the build system still recognized Qt4 as a valid option if Qt5 couldn't be found. This has now been remedied and Qt4 will no longer be considered valid during the `configure` pre-compilation phase.
+Compiling the DogeCash Core wallet against Qt4 hasn't been supported for quite some time now, but the build system still recognized Qt4 as a valid option if Qt5 couldn't be found. This has now been remedied and Qt4 will no longer be considered valid during the `configure` pre-compilation phase.
 
 ### Further OpenSSL Deprecation
 

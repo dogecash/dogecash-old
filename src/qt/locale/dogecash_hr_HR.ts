@@ -641,8 +641,8 @@
         <translation>Alatna traka kartica</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Send coins to a dogecash address</source>
@@ -665,12 +665,12 @@
         <translation>Pretraži masternodes</translation>
     </message>
     <message>
-        <source>&amp;About dogecash Core</source>
-        <translation>O dogecash Core</translation>
+        <source>&amp;About DogeCash Core</source>
+        <translation>O DogeCash Core</translation>
     </message>
     <message>
-        <source>Show information about dogecash Core</source>
-        <translation>Prikaz informacija o dogecash Core-u</translation>
+        <source>Show information about DogeCash Core</source>
+        <translation>Prikaz informacija o DogeCash Core-u</translation>
     </message>
     <message>
         <source>Modify configuration options for dogecash</source>
@@ -725,11 +725,11 @@
         <translation>Prozor Block preglednika</translation>
     </message>
     <message>
-        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>Pokažite poruku dogecash Core pomoći da biste dobili popis s mogućim dogecash opcijama naredbenog retka</translation>
+        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
+        <translation>Pokažite poruku DogeCash Core pomoći da biste dobili popis s mogućim dogecash opcijama naredbenog retka</translation>
     </message>
     <message>
-        <source>dogecash Core client</source>
+        <source>DogeCash Core client</source>
         <translation>DOGECIX Core Klijent</translation>
     </message>
     <message>
@@ -1218,16 +1218,16 @@ Višestruko slanje: %1</translation>
         <translation>verzija</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About dogecash Core</source>
-        <translation>O dogecash Core</translation>
+        <source>About DogeCash Core</source>
+        <translation>O DogeCash Core</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1273,16 +1273,16 @@ Višestruko slanje: %1</translation>
         <translation>Dobrodošli</translation>
     </message>
     <message>
-        <source>Welcome to dogecash Core.</source>
-        <translation>Dobrodošli u dogecash Core.</translation>
+        <source>Welcome to DogeCash Core.</source>
+        <translation>Dobrodošli u DogeCash Core.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where dogecash Core will store its data.</source>
-        <translation>Budući da je prvi put pokrenut program, možete odabrati gdje će dogecash Core pohraniti svoje podatke.</translation>
+        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
+        <translation>Budući da je prvi put pokrenut program, možete odabrati gdje će DogeCash Core pohraniti svoje podatke.</translation>
     </message>
     <message>
-        <source>dogecash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>dogecash Core preuzima i pohranjuje kopiju dogecash blok-lanca. Barem će %1GB podataka biti pohranjeno u ovom direktoriju i to će s vremenom rasti. Novčanik će također biti pohranjena u ovom direktoriju.</translation>
+        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DogeCash Core preuzima i pohranjuje kopiju dogecash blok-lanca. Barem će %1GB podataka biti pohranjeno u ovom direktoriju i to će s vremenom rasti. Novčanik će također biti pohranjena u ovom direktoriju.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1293,8 +1293,8 @@ Višestruko slanje: %1</translation>
         <translation>Koristite prilagođeni direktorij podataka:</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -2987,8 +2987,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     </context>
 <context>
@@ -3999,8 +3999,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>dogecash Core is shutting down...</source>
-        <translation>dogecash Core se zatvara ...</translation>
+        <source>DogeCash Core is shutting down...</source>
+        <translation>DogeCash Core se zatvara ...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4149,8 +4149,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -4165,8 +4165,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Dash Core programeri</translation>
     </message>
     <message>
-        <source>The dogecash Core developers</source>
-        <translation>dogecash Core programeri</translation>
+        <source>The DogeCash Core developers</source>
+        <translation>DogeCash Core programeri</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -4811,8 +4811,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Izračunata kontrolna točka akumulatora nije ono što se bilježi indeksom blokova</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. dogecash Core is probably already running.</source>
-        <translation>Nije moguće dobiti zaključavanje na direktoriju podataka %s. dogecash Core vjerojatno već radi.</translation>
+        <source>Cannot obtain a lock on data directory %s. DogeCash Core is probably already running.</source>
+        <translation>Nije moguće dobiti zaključavanje na direktoriju podataka %s. DogeCash Core vjerojatno već radi.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4987,8 +4987,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Ovaj proizvod uključuje softver razvijen od strane OpenSSL projekta za uporabu u OpenSSL Toolkitu i kriptografskom softveru kojeg je napisao Eric Young i UPnP softver koji je napisao Thomas Bernard.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. dogecash Core is probably already running.</source>
-        <translation>Nije moguće vezati se na %s na ovom računalu. dogecash Core vjerojatno već radi.</translation>
+        <source>Unable to bind to %s on this computer. DogeCash Core is probably already running.</source>
+        <translation>Nije moguće vezati se na %s na ovom računalu. DogeCash Core vjerojatno već radi.</translation>
     </message>
     <message>
         <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
@@ -5015,8 +5015,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Upozorenje: -paytxfee je vrlo visoka! To je transakcijska naknada koju ćete platiti ako šaljete transakciju.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong dogecash Core will not work properly.</source>
-        <translation>Upozorenje: Provjerite jesu li datum i vrijeme vašeg računala točni! Ako je vaš sat pogrešan, dogecash Core neće raditi ispravno.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
+        <translation>Upozorenje: Provjerite jesu li datum i vrijeme vašeg računala točni! Ako je vaš sat pogrešan, DogeCash Core neće raditi ispravno.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5167,8 +5167,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Autorska prava (C) 2014-%i The Dash Core Developers</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The dogecash Core Developers</source>
-        <translation>Autorska prava (C) 2015-%i The dogecash Core Developers</translation>
+        <source>Copyright (C) 2015-%i The DogeCash Core Developers</source>
+        <translation>Autorska prava (C) 2015-%i The DogeCash Core Developers</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -5256,7 +5256,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Pogreška pri učitavanju wallet.dat: novčanik oštećen</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of dogecash Core</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
         <translation>Pogreška prilikom učitavanja wallet.dat: Novčanik zahtijeva noviju verziju dogecash jezgre</translation>
     </message>
     <message>
@@ -5376,8 +5376,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Informacije</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. dogecash Core is shutting down.</source>
-        <translation>Provjera ispravnosti inicijalizacije nije uspjela. dogecash Core se zatvara.</translation>
+        <source>Initialization sanity check failed. DogeCash Core is shutting down.</source>
+        <translation>Provjera ispravnosti inicijalizacije nije uspjela. DogeCash Core se zatvara.</translation>
     </message>
     <message>
         <source>Input is not valid.</source>
@@ -6183,8 +6183,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Novčanik zaključan.</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart dogecash Core to complete</source>
-        <translation>Potrebno je prepisati novčanik: ponovo pokrenite dogecash Core</translation>
+        <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
+        <translation>Potrebno je prepisati novčanik: ponovo pokrenite DogeCash Core</translation>
     </message>
     <message>
         <source>Wallet options:</source>

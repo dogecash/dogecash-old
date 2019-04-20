@@ -13,7 +13,7 @@
  * for both dogecashd and dogecash-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("dogecash Core");
+const std::string CLIENT_NAME("DogeCash Core");
 
 /**
  * Client version number

@@ -565,7 +565,7 @@
         <translation>&amp;Apua</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation>dogecash Ydin</translation>
     </message>
     <message>
@@ -585,11 +585,11 @@
         <translation>Selaa masternodeja</translation>
     </message>
     <message>
-        <source>&amp;About dogecash Core</source>
-        <translation>dogecash Core &amp;ytimestä</translation>
+        <source>&amp;About DogeCash Core</source>
+        <translation>DogeCash Core &amp;ytimestä</translation>
     </message>
     <message>
-        <source>Show information about dogecash Core</source>
+        <source>Show information about DogeCash Core</source>
         <translation>Näytä tietoja dogecash Ytimestä</translation>
     </message>
     <message>
@@ -645,11 +645,11 @@
         <translation>Lohkon tutkija näkymä</translation>
     </message>
     <message>
-        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
+        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
         <translation>Näytä dogecash Ydin apuviesti saadaksesi lista mahdollisista dogecash komentolinja komennoista.</translation>
     </message>
     <message>
-        <source>dogecash Core client</source>
+        <source>DogeCash Core client</source>
         <translation>dogecash Ydin asiakasohjelma</translation>
     </message>
     <message>
@@ -919,7 +919,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation>dogecash Ydin</translation>
     </message>
     <message>
@@ -938,11 +938,11 @@
         <translation>Tervetuloa</translation>
     </message>
     <message>
-        <source>Welcome to dogecash Core.</source>
+        <source>Welcome to DogeCash Core.</source>
         <translation>Tervetuloa dogecash Ytimeen.</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation>dogecash Ydin</translation>
     </message>
     <message>
@@ -1466,7 +1466,7 @@
         <translation>Määrä</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation>dogecash Ydin</translation>
     </message>
     </context>
@@ -2054,7 +2054,7 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>dogecash Core is shutting down...</source>
+        <source>DogeCash Core is shutting down...</source>
         <translation>dogecash core sammuu...</translation>
     </message>
     <message>
@@ -2196,7 +2196,7 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation>dogecash Ydin</translation>
     </message>
     <message>
@@ -2212,7 +2212,7 @@
         <translation>Dash Core kehittäjät</translation>
     </message>
     <message>
-        <source>The dogecash Core developers</source>
+        <source>The DogeCash Core developers</source>
         <translation>dogecash core kehittäjät</translation>
     </message>
     <message>
@@ -2565,7 +2565,7 @@
         <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko korruptoitunut</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of dogecash Core</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
         <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko vaatii uudemman version dogecash Coresta</translation>
     </message>
     <message>
