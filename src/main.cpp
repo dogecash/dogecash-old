@@ -1903,6 +1903,19 @@ int64_t GetBlockValue(int nHeight)
 
     int64_t nSubsidy = 0;
     if (nHeight == 0) {
+        nSubsidy = 5234548	* COIN;
+	} else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight > 0) { //end PoW
+        nSubsidy = 12 * COIN;
+	} else if (nHeight <= 238620 && nHeight > Params().LAST_POW_BLOCK()) { //Start PoS
+        nSubsidy = 12 * COIN;
+	} else if (nHeight <= 764221 && nHeight >= 238621) {
+        nSubsidy = 10 * COIN;
+	} else if (nHeight <= 1289222 && nHeight >= 764222) {
+        nSubsidy = 6 * COIN;
+	}    else {
+        nSubsidy = 6* COIN;
+	}
+/*    if (nHeight == 0) {
         nSubsidy = 60001 * COIN;
     } else if (nHeight < 86400 && nHeight > 0) {
         nSubsidy = 250 * COIN;
@@ -1932,7 +1945,7 @@ int64_t GetBlockValue(int nHeight)
         nSubsidy = 4.5 * COIN;
     } else {
         nSubsidy = 5 * COIN;
-    }
+    }*/
     return nSubsidy;
 }
 
