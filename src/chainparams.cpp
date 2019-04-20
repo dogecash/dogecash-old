@@ -445,7 +445,7 @@ public:
         genesis.nBits = 0x1e0ffff0;
       	genesis.nNonce = 3989257;
 
-	hashGenesisBlock = uint256("000006da71cd1e7a0f795b99c5ee7478dc85808386a5f584bf7bd2211c5fa4fd");
+	//hashGenesisBlock = uint256("000006da71cd1e7a0f795b99c5ee7478dc85808386a5f584bf7bd2211c5fa4fd");
         if(genesis.GetHash() != uint256("000006da71cd1e7a0f795b99c5ee7478dc85808386a5f584bf7bd2211c5fa4fd"))
         {
         printf("Searching for genesis block...\n");
