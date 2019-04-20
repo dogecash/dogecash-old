@@ -153,8 +153,8 @@ public:
         /** Height or Time Based Activations **/
         nLastPOWBlock = 1440;
         nModifierUpdateBlock = 0;
-        nZerocoinStartHeight = 0;
-        nZerocoinStartTime = 0; // October 17, 2017 4:30:00 AM
+        nZerocoinStartHeight = INT_MAX;
+        nZerocoinStartTime = INT_MAX; // October 17, 2017 4:30:00 AM
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
         nBlockRecalculateAccumulators = ~1; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = ~1; //First block that bad serials emerged
@@ -312,8 +312,8 @@ public:
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 43199500 * COIN;
-        nZerocoinStartHeight = 201576;
-        nZerocoinStartTime = 1601776000;
+        nZerocoinStartHeight = INT_MAX;
+        nZerocoinStartTime = INT_MAX;
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
         nBlockRecalculateAccumulators = 9908000; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = 9891737; //First block that bad serials emerged
@@ -429,9 +429,9 @@ public:
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 0; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 43199500 * COIN;
-        nZerocoinStartHeight = 300;
+        nZerocoinStartHeight = INT_MAX;
         nBlockZerocoinV2 = 300;
-        nZerocoinStartTime = 1501776000;
+        nZerocoinStartTime = INT_MAX;
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
         nBlockRecalculateAccumulators = 999999999; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = 999999999; //First block that bad serials emerged
