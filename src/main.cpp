@@ -1891,19 +1891,45 @@ double ConvertBitsToDouble(unsigned int nBits)
 int64_t GetBlockValue(int nHeight)
 {
     if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        if (nHeight < 200 && nHeight > 0)
-            return 250000 * COIN;
+        if (nHeight == 0) {
+	nSubsidy = 0 * COIN;
+    	} else if (nHeight == 1) {
+        nSubsidy = 5000000 * COIN;
+	} else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight > 1) { //end PoW
+        nSubsidy = 12 * COIN;
+	} else if (nHeight <= 238620 && nHeight > Params().LAST_POW_BLOCK()) { //Start PoS
+        nSubsidy = 12 * COIN;
+	} else if (nHeight <= 764221 && nHeight >= 238621) {
+        nSubsidy = 10 * COIN;
+	} else if (nHeight <= 1289222 && nHeight >= 764222) {
+        nSubsidy = 6 * COIN;
+	}    else {
+        nSubsidy = 6* COIN;
+	}
     }
 
     if (Params().NetworkID() == CBaseChainParams::REGTEST) {
-        if (nHeight == 0)
-            return 250 * COIN;
+        if (nHeight == 0) {
+	nSubsidy = 0 * COIN;
+    	} else if (nHeight == 1) {
+        nSubsidy = 5000000 * COIN;
+	} else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight > 1) { //end PoW
+        nSubsidy = 12 * COIN;
+	} else if (nHeight <= 238620 && nHeight > Params().LAST_POW_BLOCK()) { //Start PoS
+        nSubsidy = 12 * COIN;
+	} else if (nHeight <= 764221 && nHeight >= 238621) {
+        nSubsidy = 10 * COIN;
+	} else if (nHeight <= 1289222 && nHeight >= 764222) {
+        nSubsidy = 6 * COIN;
+	}    else {
+        nSubsidy = 6* COIN;
+	};
 
     }
 
     int64_t nSubsidy = 0;
     if (nHeight == 0) {
-	    nSubsidy = 0 * COIN;
+	nSubsidy = 0 * COIN;
     	} else if (nHeight == 1) {
         nSubsidy = 5000000 * COIN;
 	} else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight > 1) { //end PoW
