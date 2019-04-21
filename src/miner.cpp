@@ -492,8 +492,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 	        }
 	    }
 	}
-	
-	LogPrintf("CreateNewBlock nAccumulatorCheckpoint \n"); 	
+}	
 
 	LogPrintf("CreateNewBlock nAccumulatorCheckpoint \n"); 
 
