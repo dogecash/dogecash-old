@@ -155,10 +155,10 @@ public:
         nModifierUpdateBlock = 0;
         nZerocoinStartHeight = INT_MAX;
         nZerocoinStartTime = INT_MAX; // October 17, 2017 4:30:00 AM
-        nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
+        nBlockEnforceSerialRange = 100; //Enforce serial range starting this block
         nBlockRecalculateAccumulators = ~1; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = ~1; //First block that bad serials emerged
-        nBlockLastGoodCheckpoint = ~1; //Last valid accumulator checkpoint
+        nBlockLastGoodCheckpoint = 0; //Last valid accumulator checkpoint
         nBlockEnforceInvalidUTXO = 902850; //Start enforcing the invalid UTXO's
         //nInvalidAmountFiltered = 268200*COIN; //Amount of invalid coins filtered through exchanges, that should be considered valid
         nBlockZerocoinV2 = INT_MAX; //!> The block that zerocoin v2 becomes active - roughly Tuesday, May 8, 2018 4:00:00 AM GMT
@@ -272,7 +272,7 @@ vFixedSeeds.clear();
         nMintRequiredConfirmations = 20; //the maximum amount of confirmations until accumulated in 19
         nRequiredAccumulation = 1;
         nDefaultSecurityLevel = 100; //full security level for accumulators
-        nZerocoinHeaderVersion = 4; //Block headers must be this version once zerocoin is active
+        nZerocoinHeaderVersion = INT_MAX; //Block headers must be this version once zerocoin is active
         nZerocoinRequiredStakeDepth = 200; //The required confirmations for a zdogec to be stakable
 
         nBudget_Fee_Confirmations = 6; // Number of confirmations for the finalization fee
