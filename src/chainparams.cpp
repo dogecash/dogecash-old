@@ -307,7 +307,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // dogecash: 1 day
         nTargetSpacing = 1 * 60;  // dogecash: 1 minute
-        nLastPOWBlock = 200;
+        nLastPOWBlock = 2000;
         nMaturity = 15;
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
@@ -424,7 +424,7 @@ public:
         nTargetTimespan = 24 * 60 * 60; // dogecash: 1 day
         nTargetSpacing = 1 * 60;        // dogecash: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
-        nLastPOWBlock = 250;
+        nLastPOWBlock = 2500;
         nMaturity = 100;
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 0; //approx Mon, 17 Apr 2017 04:00:00 GMT
