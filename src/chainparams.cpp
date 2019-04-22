@@ -144,7 +144,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // dogecash: 1 day  
         nTargetSpacing = 1 * 60; //dogecash: 1 Min
-        nMaturity = 30;
+        nMaturity = 32;
         nMasternodeCountDrift = 20;
         int nMasternodeCollateralLimit = 5000; //MN collateral
         nMaxMoneyOut = 21000000 * COIN; //21 mill
@@ -156,9 +156,9 @@ public:
         nZerocoinStartHeight = INT_MAX;
         nZerocoinStartTime = INT_MAX; // October 17, 2017 4:30:00 AM
         nBlockEnforceSerialRange = 100; //Enforce serial range starting this block
-        nBlockRecalculateAccumulators = ~1; //Trigger a recalculation of accumulators
-        nBlockFirstFraudulent = ~1; //First block that bad serials emerged
-        nBlockLastGoodCheckpoint = 0; //Last valid accumulator checkpoint
+        nBlockRecalculateAccumulators = INT_MAX; //Trigger a recalculation of accumulators
+        nBlockFirstFraudulent = INT_MAX; //First block that bad serials emerged
+        nBlockLastGoodCheckpoint = INT_MAX; //Last valid accumulator checkpoint
         nBlockEnforceInvalidUTXO = 902850; //Start enforcing the invalid UTXO's
         //nInvalidAmountFiltered = 268200*COIN; //Amount of invalid coins filtered through exchanges, that should be considered valid
         nBlockZerocoinV2 = INT_MAX; //!> The block that zerocoin v2 becomes active - roughly Tuesday, May 8, 2018 4:00:00 AM GMT
@@ -188,8 +188,8 @@ public:
         txNew.vout[0].nValue = 0 * COIN;
         txNew.vout[0].scriptPubKey = CScript() << ParseHex("040818ca42a8634c010ba1025a8d8a10a03ea286456f341df6a4a0aad1f123833695a662be2dc983a8da5fed7380bc9e1c3433e94422d36746cdd8e21a5f97b749") << OP_CHECKSIG; 
 	genesis.vtx.push_back(txNew);
-        genesis.hashPrevBlock = 0;
-        genesis.hashMerkleRoot = genesis.BuildMerkleTree();
+        //genesis.hashPrevBlock = 0;
+        //genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
         genesis.nTime = 1555802195; 
         genesis.nBits = 0x1e0ffff0;
@@ -308,7 +308,7 @@ public:
         nTargetTimespan = 1 * 60; // dogecash: 1 day
         nTargetSpacing = 1 * 60;  // dogecash: 1 minute
         nLastPOWBlock = 2000;
-        nMaturity = 15;
+        nMaturity = 32;
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 21000000 * COIN;
