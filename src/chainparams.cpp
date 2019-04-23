@@ -230,7 +230,7 @@ public:
 
 vFixedSeeds.clear();
         vSeeds.clear();
-      //  vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "dogecash.seed.fuzzbawls.pw"));     // Primary DNS Seeder from Fuzzbawls
+      vSeeds.push_back(CDNSSeedData("96.30.197.146", "96.30.197.146"));     // Primary DNS Seeder from Fuzzbawls
       //  vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "dogecash.seed2.fuzzbawls.pw"));    // Secondary DNS Seeder from Fuzzbawls
        // vSeeds.push_back(CDNSSeedData("coin-server.com", "coin-server.com"));         // Single node address
        // vSeeds.push_back(CDNSSeedData("s3v3nh4cks.ddns.net", "s3v3nh4cks.ddns.net")); // Single node address
