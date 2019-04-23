@@ -30,10 +30,10 @@
        <item>
         <widget class="QCheckBox" name="bitcoinAtStartup">
          <property name="toolTip">
-          <string>Automatically start dogecash after logging in to the system.</string>
+          <string>Automatically start DogeCash after logging in to the system.</string>
          </property>
          <property name="text">
-          <string>&amp;Start dogecash on system login</string>
+          <string>&amp;Start DogeCash on system login</string>
          </property>
         </widget>
        </item>
@@ -135,7 +135,7 @@
          <item>
           <widget class="QCheckBox" name="checkBoxZeromintEnable">
            <property name="toolTip">
-            <string>Enable automatic minting of DOGEC units to zdogec</string>
+            <string>Enable automatic minting of DOGEC units to zDOGEC</string>
            </property>
            <property name="layoutDirection">
             <enum>Qt::LeftToRight</enum>
@@ -148,7 +148,7 @@
          <item>
           <widget class="QCheckBox" name="checkBoxZeromintAddresses">
            <property name="toolTip">
-            <string>Enable automatic zdogec minting from specific addresses</string>
+            <string>Enable automatic zDOGEC minting from specific addresses</string>
            </property>
            <property name="layoutDirection">
             <enum>Qt::LeftToRight</enum>
@@ -165,10 +165,10 @@
          <item>
           <widget class="QLabel" name="percentage_label">
            <property name="toolTip">
-            <string>Percentage of incoming DOGEC which get automatically converted to zdogec via Zerocoin Protocol (min: 10%)</string>
+            <string>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</string>
            </property>
            <property name="text">
-            <string>Percentage of autominted zdogec</string>
+            <string>Percentage of autominted zDOGEC</string>
            </property>
           </widget>
          </item>
@@ -201,7 +201,7 @@
             <string>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</string>
            </property>
            <property name="text">
-            <string>Preferred Automint zdogec Denomination</string>
+            <string>Preferred Automint zDOGEC Denomination</string>
            </property>
           </widget>
          </item>
@@ -273,7 +273,7 @@
           <item>
            <widget class="QCheckBox" name="showMasternodesTab">
             <property name="toolTip">
-             <string>Show additional tab listing all your masternodes in first sub-tab&lt;br/&gt;and all masternodes on the network in second sub-tab.</string>
+             <string>Show additional tab listing all your Dogenodes in first sub-tab&lt;br/&gt;and all masternodes on the network in second sub-tab.</string>
             </property>
             <property name="text">
              <string>Show Masternodes Tab</string>
@@ -316,7 +316,7 @@
        <item>
         <widget class="QCheckBox" name="mapPortUpnp">
          <property name="toolTip">
-          <string>Automatically open the dogecash client port on the router. This only works when your router supports UPnP and it is enabled.</string>
+          <string>Automatically open the DogeCash client port on the router. This only works when your router supports UPnP and it is enabled.</string>
          </property>
          <property name="text">
           <string>Map port using &amp;UPnP</string>
@@ -336,7 +336,7 @@
        <item>
         <widget class="QCheckBox" name="connectSocks">
          <property name="toolTip">
-          <string>Connect to the dogecash network through a SOCKS5 proxy.</string>
+          <string>Connect to the DogeCash network through a SOCKS5 proxy.</string>
          </property>
          <property name="text">
           <string>&amp;Connect through SOCKS5 proxy (default proxy):</string>
