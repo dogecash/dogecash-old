@@ -23,7 +23,7 @@ packages:
 - "python"
 - "rename"
 remotes:
-- "url": "https://github.com/dogecash-project/dogecash.git"
+- "url": "https://github.com/Liquid369/dogecash.git"
   "dir": "dogecash"
 files: []
 script: |
