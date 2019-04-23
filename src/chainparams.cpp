@@ -75,8 +75,8 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (1686229, uint256("bb42bf1e886a7c23474634c90893dd3d68a6ccbfea4ac92a98da5cad0c6a6cb7")); //!< Last block in the "wrapped" serial attack range **/
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1555802195, // * UNIX timestamp of last checkpoint block
-    4036872,    // * total number of transactions between genesis and last checkpoint
+    1556021190, // * UNIX timestamp of last checkpoint block
+    4000,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
 };
@@ -86,7 +86,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
     (0, uint256("0x01"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1555802197,
+    1556021090,
     2305594,
     250};
 
@@ -94,7 +94,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
     boost::assign::map_list_of(0, uint256("0x01"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1555802195,
+    1556020190,
     0,
     100};
 
@@ -188,17 +188,17 @@ public:
         txNew.vout[0].nValue = 0 * COIN;
         txNew.vout[0].scriptPubKey = CScript() << ParseHex("040818ca42a8634c010ba1025a8d8a10a03ea286456f341df6a4a0aad1f123833695a662be2dc983a8da5fed7380bc9e1c3433e94422d36746cdd8e21a5f97b749") << OP_CHECKSIG; 
 	genesis.vtx.push_back(txNew);
-        //genesis.hashPrevBlock = 0;
-        //genesis.hashMerkleRoot = genesis.BuildMerkleTree();
+        genesis.hashPrevBlock = 0;
+        genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1555802195; 
+        genesis.nTime = 1556021190; 
         genesis.nBits = 0x1e0ffff0;
 	genesis.nNonce = 3989257; 
 	
-	//hashGenesisBlock = uint256("0x01");
-       /* if(genesis.GetHash() != uint256("000006da71cd1e7a0f795b99c5ee7478dc85808386a5f584bf7bd2211c5fa4fd"))
+	hashGenesisBlock = uint256("0x01");
+        if(genesis.GetHash() != uint256("000006da71cd1e7a0f795b99c5ee7478dc85808386a5f584bf7bd2211c5fa4fd"))
         {
-        printf("MSearching for genesis block...\n");
+        printf("Searching for genesis block...\n");
         uint256 hashTarget;
         hashTarget.SetCompact(genesis.nBits);
         while(uint256(genesis.GetHash()) > uint256(hashTarget))
