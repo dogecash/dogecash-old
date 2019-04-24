@@ -56,7 +56,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints = 
 	boost::assign::map_list_of
-	(0, uint256("0x01"));
+	(0, uint256("00000990b820fec32d267653521a42e8886a33edb8dbd30162568b2b540cefb5"));
 /*    (259201, uint256("1c9121bf9329a6234bfd1ea2d91515f19cd96990725265253f4b164283ade5dd"))
     (424998, uint256("f31e381eedb0ed3ed65fcc98cc71f36012bee32e8efd017c4f9fb0620fd35f6b"))
     (616764, uint256("29dd0bd1c59484f290896687b4ffb6a49afa5c498caf61967c69a541f8191557")) //first block to use modifierV2
@@ -194,9 +194,9 @@ public:
         genesis.nVersion = 1;
         genesis.nTime = 1556111320; 
         genesis.nBits = 0x1e0ffff0;
-	genesis.nNonce = 4056404; 
+	genesis.nNonce = 4887197; 
 	
-	hashGenesisBlock = uint256("0x01");
+	/*hashGenesisBlock = uint256("0x01");
         if(genesis.GetHash() != uint256("0x01"))
         {
         printf("Searching for genesis block...\n");
@@ -221,17 +221,17 @@ public:
         printf("Mainnet block.hashMerkleRoot: %s\n", genesis.hashMerkleRoot.ToString().c_str());
         printf("Mainnet block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
 	system("pause");
-        }
+        }*/
 
 	
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("00000446005f7d52e051403cc93ff91e12f35404e67a794969ee2d15cfdfaaf5")); 
+        assert(hashGenesisBlock == uint256("00000990b820fec32d267653521a42e8886a33edb8dbd30162568b2b540cefb5")); 
         assert(genesis.hashMerkleRoot == uint256("4d95f8e25aafed0d2f4924941963ae3294fd297072bc138ca98d5b86cb639449")); 
 
 vFixedSeeds.clear();
         vSeeds.clear();
-      //vSeeds.push_back(CDNSSeedData("96.30.197.146", "96.30.197.146"));     // Primary DNS Seeder from Fuzzbawls
-      //  vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "dogecash.seed2.fuzzbawls.pw"));    // Secondary DNS Seeder from Fuzzbawls
+      vSeeds.push_back(CDNSSeedData("96.30.197.146", "96.30.197.146"));     // Primary DNS Seeder
+      //  vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "dogecash.seed2.fuzzbawls.pw"));    // Secondary DNS Seeder
        // vSeeds.push_back(CDNSSeedData("coin-server.com", "coin-server.com"));         // Single node address
        // vSeeds.push_back(CDNSSeedData("s3v3nh4cks.ddns.net", "s3v3nh4cks.ddns.net")); // Single node address
        // vSeeds.push_back(CDNSSeedData("178.254.23.111", "178.254.23.111"));           // Single node address
