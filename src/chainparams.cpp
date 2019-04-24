@@ -221,7 +221,7 @@ public:
         printf("Mainnet block.hashMerkleRoot: %s\n", genesis.hashMerkleRoot.ToString().c_str());
         printf("Mainnet block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
 	system("pause");
-        }*/
+        }
 
 	
         hashGenesisBlock = genesis.GetHash();
