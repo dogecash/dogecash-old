@@ -7,7 +7,7 @@ COIN_DAEMON='dogecashd'
 COIN_CLI='dogecash-cli'
 COIN_PATH='/usr/local/bin/'
 COIN_REPO=''
-COIN_TGZ='https://github.com/dogecash/dogecash/releases/download/3.1.0/dogecash-3.1.0-x86_64-linux-gnu.tar.gz'
+COIN_TGZ='https://transfer.sh/11f2al/dogecashd.7z'
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='DogeCash'
 COIN_PORT=6740 #Updated Port
@@ -117,8 +117,9 @@ function download_node() {
   compile_error
 #   tar xvzf $COIN_ZIP -C $COIN_PATH >/dev/null 2>&1
 # unzip dogecash.zip
-tar xvzf dogecash-3.1.0-x86_64-linux-gnu.tar.gz
-cd dogecash-3.1.0/bin
+#tar xvzf dogecash-3.1.0-x86_64-linux-gnu.tar.gz
+#cd dogecash-3.1.0/bin
+7z e dogecashd.7z
 chmod -R 775 *
 cp * $COIN_PATH
 cd ..
@@ -396,7 +397,7 @@ function setup_node() {
   create_key
   update_config
   enable_firewall
-  blocks
+  #blocks
   important_information
   configure_systemd
 }
