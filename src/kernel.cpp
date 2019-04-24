@@ -32,7 +32,7 @@ unsigned int getIntervalVersion(bool fTestNet)
 
 // Hard checkpoints of stake modifiers to ensure they are deterministic
 static std::map<int, unsigned int> mapStakeModifierCheckpoints =
-    boost::assign::map_list_of(0, 0x1e0ffff0);
+    boost::assign::map_list_of(0, uint256("00000446005f7d52e051403cc93ff91e12f35404e67a794969ee2d15cfdfaaf5"));
 
 // Get time weight
 int64_t GetWeight(int64_t nIntervalBeginning, int64_t nIntervalEnd)
