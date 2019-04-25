@@ -56,7 +56,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints = 
 	boost::assign::map_list_of
-	(0, uint256("00000990b820fec32d267653521a42e8886a33edb8dbd30162568b2b540cefb5"));
+	(0, uint256("0x01"));
 /*    (259201, uint256("1c9121bf9329a6234bfd1ea2d91515f19cd96990725265253f4b164283ade5dd"))
     (424998, uint256("f31e381eedb0ed3ed65fcc98cc71f36012bee32e8efd017c4f9fb0620fd35f6b"))
     (616764, uint256("29dd0bd1c59484f290896687b4ffb6a49afa5c498caf61967c69a541f8191557")) //first block to use modifierV2
@@ -76,7 +76,7 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (1686229, uint256("bb42bf1e886a7c23474634c90893dd3d68a6ccbfea4ac92a98da5cad0c6a6cb7")); //!< Last block in the "wrapped" serial attack range **/
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1556111320, // * UNIX timestamp of last checkpoint block
+    1556194222, // * UNIX timestamp of last checkpoint block
     4000,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
@@ -87,7 +87,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
     (0, uint256("0x01"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1556111320,
+    1556194222,dat
     2305594,
     250};
 
@@ -95,7 +95,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
     boost::assign::map_list_of(0, uint256("0x01"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1556020190,
+    1556194222,
     0,
     100};
 
@@ -145,7 +145,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // dogecash: 1 day  
         nTargetSpacing = 1 * 60; //dogecash: 1 Min
-        nMaturity = 32;
+        nMaturity = 31;
         nMasternodeCountDrift = 20;
         int nMasternodeCollateralLimit = 5000; //MN collateral
         nMaxMoneyOut = 21000000 * COIN; //21 mill
@@ -186,17 +186,17 @@ public:
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-        txNew.vout[0].nValue = 0 * COIN;
+        txNew.vout[0].nValue = 1 * COIN;
         txNew.vout[0].scriptPubKey = CScript() << ParseHex("040818ca42a8634c010ba1025a8d8a10a03ea286456f341df6a4a0aad1f123833695a662be2dc983a8da5fed7380bc9e1c3433e94422d36746cdd8e21a5f97b749") << OP_CHECKSIG; 
 	genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1556111320; 
+        genesis.nTime = 1556194222; 
         genesis.nBits = 0x1e0ffff0;
 	genesis.nNonce = 4887197; 
 	
-	/*hashGenesisBlock = uint256("0x01");
+	hashGenesisBlock = uint256("0x01");
         if(genesis.GetHash() != uint256("0x01"))
         {
         printf("Searching for genesis block...\n");
@@ -221,18 +221,18 @@ public:
         printf("Mainnet block.hashMerkleRoot: %s\n", genesis.hashMerkleRoot.ToString().c_str());
         printf("Mainnet block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
 	system("pause");
-        }*/
+        }
 
 	
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("00000990b820fec32d267653521a42e8886a33edb8dbd30162568b2b540cefb5")); 
+        assert(hashGenesisBlock == uint256("0x000")); 
         assert(genesis.hashMerkleRoot == uint256("4d95f8e25aafed0d2f4924941963ae3294fd297072bc138ca98d5b86cb639449")); 
 
-vFixedSeeds.clear();
+	vFixedSeeds.clear();
         vSeeds.clear();
-      vSeeds.push_back(CDNSSeedData("96.30.197.146", "96.30.197.146"));     // Primary DNS Seeder
-      //  vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "dogecash.seed2.fuzzbawls.pw"));    // Secondary DNS Seeder
-       // vSeeds.push_back(CDNSSeedData("coin-server.com", "coin-server.com"));         // Single node address
+        //vSeeds.push_back(CDNSSeedData("96.30.197.146", "96.30.197.146"));     // Primary DNS Seeder
+      //  vSeeds.push_back(CDNSSeedData("80.240.30.55", "80.240.30.55"));    // Secondary DNS Seeder
+       // vSeeds.push_back(CDNSSeedData("45.63.91.15", "45.63.91.15"));         // Single node address
        // vSeeds.push_back(CDNSSeedData("s3v3nh4cks.ddns.net", "s3v3nh4cks.ddns.net")); // Single node address
        // vSeeds.push_back(CDNSSeedData("178.254.23.111", "178.254.23.111"));           // Single node address
 
@@ -250,7 +250,7 @@ vFixedSeeds.clear();
         fAllowMinDifficultyBlocks = true;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
-        fMineBlocksOnDemand = true;
+        fMineBlocksOnDemand = false;
         fSkipProofOfWorkCheck = true;
         fTestnetToBeDeprecatedFieldRPC = false;
         fHeadersFirstSyncingActive = false;
