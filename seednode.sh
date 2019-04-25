@@ -1,6 +1,5 @@
 function prepare_system() {
 echo -e "Prepare the system to install ${GREEN}$COIN_NAME${NC} seednode."
-rm /usr/local/bin/doge*
 apt-get update >/dev/null 2>&1
 DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null 2>&1
 DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y -qq upgrade >/dev/null 2>&1
@@ -45,6 +44,7 @@ function create_swap() {
  fi
  clear
 }
+rm /usr/local/bin/doge*
 git clone https://github.com/Liquid369/dogecash
 cd dogecash
 prepare_system
