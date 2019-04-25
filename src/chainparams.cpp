@@ -196,7 +196,7 @@ public:
         genesis.nBits = 0x1e0ffff0;
 	genesis.nNonce = 5002474; 
 	
-	hashGenesisBlock = uint256("0x01");
+	/*hashGenesisBlock = uint256("0x01");
         if(genesis.GetHash() != uint256("0x01"))
         {
         printf("Searching for genesis block...\n");
@@ -221,7 +221,7 @@ public:
         printf("Mainnet block.hashMerkleRoot: %s\n", genesis.hashMerkleRoot.ToString().c_str());
         printf("Mainnet block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
 	system("pause");
-        }
+        }*/
 
 	
         hashGenesisBlock = genesis.GetHash();
@@ -230,11 +230,11 @@ public:
 
 	vFixedSeeds.clear();
         vSeeds.clear();
-        //vSeeds.push_back(CDNSSeedData("96.30.197.146", "96.30.197.146"));     // Primary DNS Seeder
-      //  vSeeds.push_back(CDNSSeedData("80.240.30.55", "80.240.30.55"));    // Secondary DNS Seeder
-       // vSeeds.push_back(CDNSSeedData("45.63.91.15", "45.63.91.15"));         // Single node address
-       // vSeeds.push_back(CDNSSeedData("s3v3nh4cks.ddns.net", "s3v3nh4cks.ddns.net")); // Single node address
-       // vSeeds.push_back(CDNSSeedData("178.254.23.111", "178.254.23.111"));           // Single node address
+        vSeeds.push_back(CDNSSeedData("96.30.197.146", "96.30.197.146"));     // Primary DNS Seeder
+        vSeeds.push_back(CDNSSeedData("80.240.30.55", "80.240.30.55"));    // Secondary DNS Seeder
+        vSeeds.push_back(CDNSSeedData("45.63.91.15", "45.63.91.15"));         // Single node address
+       // vSeeds.push_back(CDNSSeedData("", "")); // Single node address
+       // vSeeds.push_back(CDNSSeedData("", ""));           // Single node address
 
 	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30);
 	base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
