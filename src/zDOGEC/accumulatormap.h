@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef dogecash_ACCUMULATORMAP_H
-#define dogecash_ACCUMULATORMAP_H
+#ifndef DOGEC_ACCUMULATORMAP_H
+#define DOGEC_ACCUMULATORMAP_H
 
 #include "libzerocoin/Accumulator.h"
 #include "libzerocoin/Coin.h"
@@ -26,4 +26,4 @@ public:
     void Reset();
     void Reset(libzerocoin::ZerocoinParams* params2);
 };
-#endif //dogecash_ACCUMULATORMAP_H
+#endif //DOGEC_ACCUMULATORMAP_H

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef dogecash_ZEROCOIN_H
-#define dogecash_ZEROCOIN_H
+#ifndef DOGEC_ZEROCOIN_H
+#define DOGEC_ZEROCOIN_H
 
 #include <amount.h>
 #include <limits.h>
