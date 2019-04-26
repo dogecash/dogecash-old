@@ -27,7 +27,7 @@ read choice
 if (($choice == 1 )) 
  then
 	cleanup_mess
-	checks
+	#checks
 	prepare_system
 	#ask_permission
 	#if [[ "$ZOLDUR" == "YES" ]]; then
