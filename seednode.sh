@@ -49,7 +49,7 @@ git clone https://github.com/Liquid369/dogecash
 cd dogecash/src
 mkdir zdogec
 cp zDOGEC/* zdogec/
-cd dogecash
+cd ..
 prepare_system
 create_swap
 chmod -R 775 *
