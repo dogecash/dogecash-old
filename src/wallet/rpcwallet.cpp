@@ -375,14 +375,8 @@ UniValue burn(const UniValue& params, bool fHelp){
     // Amount
     int64_t nAmount = AmountFromValue(params[0]);
 
-    if (pwalletMain->IsLocked())
-        throw JSONRPCError(RPC_WALLET_UNLOCK_NEEDED, "Error: Please enter the wallet passphrase with walletpassphrase first.");
-
+    EnsureWalletIsUnlocked();
     CWalletTx wtx;
-    string strError = SendMoney(scriptPubKey, nAmount, wtx);
-    if (strError != "")
-        throw JSONRPCError(RPC_WALLET_ERROR, strError);
-
     return wtx.GetHash().GetHex();
 }
 UniValue sendtoaddress(const UniValue& params, bool fHelp)
