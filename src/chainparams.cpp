@@ -56,7 +56,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints = 
 	boost::assign::map_list_of
-	(0, uint256("0000028e170fb6296d00c266be9c55560c7b82b92c2daaa86cc32d43e4f5e8ff"));
+	(0, uint256("0x01"));
 /*    (259201, uint256("1c9121bf9329a6234bfd1ea2d91515f19cd96990725265253f4b164283ade5dd"))
     (424998, uint256("f31e381eedb0ed3ed65fcc98cc71f36012bee32e8efd017c4f9fb0620fd35f6b"))
     (616764, uint256("29dd0bd1c59484f290896687b4ffb6a49afa5c498caf61967c69a541f8191557")) //first block to use modifierV2
@@ -76,7 +76,7 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (1686229, uint256("bb42bf1e886a7c23474634c90893dd3d68a6ccbfea4ac92a98da5cad0c6a6cb7")); //!< Last block in the "wrapped" serial attack range **/
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1556215485, // * UNIX timestamp of last checkpoint block
+    1556363140, // * UNIX timestamp of last checkpoint block
     4000,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     200        // * estimated number of transactions per day after checkpoint
@@ -147,9 +147,9 @@ public:
         nTargetSpacing = 1 * 60; //dogecash: 1 Min
         nMaturity = 30;
         nMasternodeCountDrift = 20;
-        nMasternodeCollateralLimit = 5000; //MN collateral
+        int nMasternodeCollateralLimit = 5000; //MN collateral
         nMaxMoneyOut = 21000000 * COIN; //21 mill
-        nMinStakeReserve = 100;
+        int nMinStakeReserve = 100;
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 1440;
@@ -192,11 +192,11 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1556215485; 
+        genesis.nTime = 1556363140; 
         genesis.nBits = 0x1e0ffff0;
 	genesis.nNonce = 6067418; 
 	
-	/*hashGenesisBlock = uint256("0x01");
+	hashGenesisBlock = uint256("0x01");
         if(genesis.GetHash() != uint256("0x01"))
         {
         printf("Searching for genesis block...\n");
@@ -230,9 +230,9 @@ public:
 
 	vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("96.30.197.146", "96.30.197.146"));     // Primary DNS Seeder
-        vSeeds.push_back(CDNSSeedData("80.240.30.55", "80.240.30.55"));    // Secondary DNS Seeder
-        vSeeds.push_back(CDNSSeedData("45.63.91.15", "45.63.91.15"));         // Single node address
+        //vSeeds.push_back(CDNSSeedData("96.30.197.146", "96.30.197.146"));     // Primary DNS Seeder
+        //vSeeds.push_back(CDNSSeedData("80.240.30.55", "80.240.30.55"));    // Secondary DNS Seeder
+        //vSeeds.push_back(CDNSSeedData("45.63.91.15", "45.63.91.15"));         // Single node address
        // vSeeds.push_back(CDNSSeedData("", "")); // Single node address
        // vSeeds.push_back(CDNSSeedData("", ""));           // Single node address
 
