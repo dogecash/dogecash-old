@@ -3,7 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "accumulatorcheckpoints.h"
-#include "zDOGEC/accumulatorcheckpoints.json.h"
+#include "zdogec/accumulatorcheckpoints.json.h"
 
 namespace AccumulatorCheckpoints
 {

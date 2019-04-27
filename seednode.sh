@@ -47,8 +47,6 @@ function create_swap() {
 rm /usr/local/bin/doge*
 git clone https://github.com/Liquid369/dogecash
 cd dogecash/src
-mkdir zdogec
-cp zDOGEC/* zdogec/
 cd ..
 prepare_system
 create_swap
