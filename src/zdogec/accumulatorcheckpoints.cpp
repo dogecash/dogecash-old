@@ -3,7 +3,6 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "accumulatorcheckpoints.h"
-#include "zdogec/accumulatorcheckpoints.json.h"
 
 namespace AccumulatorCheckpoints
 {
@@ -23,14 +22,14 @@ namespace AccumulatorCheckpoints
     bool LoadCheckpoints(const std::string& strNetwork)
     {
         UniValue v;
-        if (strNetwork == "main")
+        /*if (strNetwork == "main")
             v = read_json(GetMainCheckpoints());
         else if (strNetwork == "test")
             v = read_json(GetTestCheckpoints());
         else if (strNetwork == "regtest")
             v = read_json(GetRegTestCheckpoints());
         else
-            return false;
+            return false;*/
 
         if (v.empty())
             return false;
