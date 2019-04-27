@@ -1,7 +1,7 @@
-Contributing to dogecash Core
+Contributing to DogeCash Core
 ============================
 
-The dogecash Core project operates an open contributor model where anyone is
+The DogeCash Core project operates an open contributor model where anyone is
 welcome to contribute towards development in the form of peer review, testing
 and patches. This document explains the practical process and guidelines for
 contributing.
@@ -157,10 +157,10 @@ where possible keep them short, un-complex and easy to verify.
 "Decision Making" Process
 -------------------------
 
-The following applies to code changes to the dogecash Core project, and is not to be
-confused with overall dogecash Network Protocol consensus changes.
+The following applies to code changes to the DogeCash Core project, and is not to be
+confused with overall DogeCash Network Protocol consensus changes.
 
-Whether a pull request is merged into dogecash Core rests with the project merge
+Whether a pull request is merged into DogeCash Core rests with the project merge
 maintainers and ultimately the project lead.
 
 Maintainers will take into consideration if a patch is in line with the general
@@ -214,8 +214,8 @@ higher in terms of discussion and peer review requirements, keeping in mind that
 mistakes could be very costly to the wider community. This includes refactoring
 of consensus critical code.
 
-Where a patch set proposes to change the dogecash consensus, it must have been
-discussed extensively on the forums and Slack, be accompanied by a widely
+Where a patch set proposes to change the DogeCash consensus, it must have been
+discussed extensively on the forums and Discord, be accompanied by a widely
 discussed Proposal and have a generally widely perceived technical consensus of being
 a worthwhile change based on the judgement of the maintainers.
 
@@ -237,7 +237,7 @@ about:
     that personally, though! Instead, take another critical look at what you are suggesting
     and see if it: changes too much, is too broad, doesn't adhere to the
     [developer notes](doc/developer-notes.md), is dangerous or insecure, is messily written, etc.
-    Identify and address any of the issues you find. Then ask e.g. on Slack if someone could give
+    Identify and address any of the issues you find. Then ask e.g. on Discord if someone could give
     their opinion on the concept itself.
   - It may be because your code is too complex for all but a few people. And those people
     may not have realized your pull request even exists. A great way to find people who
@@ -245,7 +245,7 @@ about:
     [Git Blame feature](https://help.github.com/articles/tracing-changes-in-a-file/). Simply
     find the person touching the code you are touching before you and see if you can find
     them and give them a nudge. Don't be incessant about the nudging though.
-  - Finally, if all else fails, ask on Slack or elsewhere for someone to give your pull request
+  - Finally, if all else fails, ask on Discord or elsewhere for someone to give your pull request
     a look. If you think you've been waiting an unreasonably long amount of time (month+) for
     no particular reason (few lines changed, etc), this is totally fine. Try to return the favor
     when someone else is asking for feedback on their code, and universe balances out.
@@ -254,7 +254,7 @@ about:
 Release Policy
 --------------
 
-The project leader is the release manager for each dogecash Core release.
+The project leader is the release manager for each DogeCash Core release.
 
 Copyright
 ---------
