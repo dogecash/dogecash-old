@@ -56,7 +56,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints = 
 	boost::assign::map_list_of
-	(0, uint256("000001fcfe9c3025dc3d8a7cd5a9536863a979690057707ed0123df7911e544f"));
+	(0, uint256("0000029c58096881a80a17fe71b0398b11733d8e29fea4fa02e12d6c6d3ab65e"));
 /*    (259201, uint256("1c9121bf9329a6234bfd1ea2d91515f19cd96990725265253f4b164283ade5dd"))
     (424998, uint256("f31e381eedb0ed3ed65fcc98cc71f36012bee32e8efd017c4f9fb0620fd35f6b"))
     (616764, uint256("29dd0bd1c59484f290896687b4ffb6a49afa5c498caf61967c69a541f8191557")) //first block to use modifierV2
@@ -76,7 +76,7 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (1686229, uint256("bb42bf1e886a7c23474634c90893dd3d68a6ccbfea4ac92a98da5cad0c6a6cb7")); //!< Last block in the "wrapped" serial attack range **/
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1556449740, // * UNIX timestamp of last checkpoint block
+    1556453495, // * UNIX timestamp of last checkpoint block
     4000,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     200        // * estimated number of transactions per day after checkpoint
@@ -187,14 +187,14 @@ public:
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 1 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("040818ca42a8634c010ba1025a8d8a10a03ea286456f341df6a4a0aad1f123833695a662be2dc983a8da5fed7380bc9e1c3433e94422d36746cdd8e21a5f97b749") << OP_CHECKSIG; 
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG; 
 	genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1556449740; 
+        genesis.nTime = 1556453495; 
         genesis.nBits = 0x1e0ffff0;
-	genesis.nNonce = 8873892; 
+	genesis.nNonce = 964120; 
 	
 	/*hashGenesisBlock = uint256("0x01");
         if(genesis.GetHash() != uint256("0x01"))
@@ -226,8 +226,8 @@ public:
 
 	
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("000001fcfe9c3025dc3d8a7cd5a9536863a979690057707ed0123df7911e544f")); 
-        assert(genesis.hashMerkleRoot == uint256("9d0728cfcb789dd4f8ea183db9ad208c3e6425b6abdf368045960f63693a160c")); 
+        assert(hashGenesisBlock == uint256("0000029c58096881a80a17fe71b0398b11733d8e29fea4fa02e12d6c6d3ab65e")); 
+        assert(genesis.hashMerkleRoot == uint256("77fc7d6cfbc4ec91703444a515955092d4b7c04dbb8f23be59deb42a39ec0057")); 
 
 	vFixedSeeds.clear();
         vSeeds.clear();
@@ -252,7 +252,7 @@ public:
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
-        fSkipProofOfWorkCheck = true;
+        fSkipProofOfWorkCheck = false;
         fTestnetToBeDeprecatedFieldRPC = false;
         fHeadersFirstSyncingActive = false;
 
