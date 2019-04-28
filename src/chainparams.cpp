@@ -181,20 +181,20 @@ public:
          *     CTxOut(nValue=50.00000000, scriptPubKey=0xA9037BAC7050C479B121CF)
          *   vMerkleTree: e0028e
          */
-        const char* pszTimestamp = "dogecash MainNet Launch - 1st October";
+        const char* pszTimestamp = "DogeCash Repowered Launch - akshaynexus";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-        txNew.vout[0].nValue = 1 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("040818ca42a8634c010ba1025a8d8a10a03ea286456f341df6a4a0aad1f123833695a662be2dc983a8da5fed7380bc9e1c3433e94422d36746cdd8e21a5f97b749") << OP_CHECKSIG; 
-	genesis.vtx.push_back(txNew);
+        txNew.vout[0].nValue = 0 * COIN;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("047a7df379bd5e6b93b164968c10fcbb141ecb3c6dc1a5e181c2a62328405cf82311dd5b40bf45430320a4f30add05c8e3e16dd56c52d65f7abe475189564bf2b1") << OP_CHECKSIG; 
+        genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1556455035; 
+        genesis.nTime = 1556459762; 
         genesis.nBits = 0x1e0ffff0;
-	genesis.nNonce = 434329; 
+	    genesis.nNonce = 895320; 
 	
 	/*hashGenesisBlock = uint256("0x01");
         if(genesis.GetHash() != uint256("0x01"))
@@ -227,8 +227,8 @@ public:
 	
         hashGenesisBlock = genesis.GetHash();
 	std::cout << "genesisinfo \n " << genesis.ToString();
-        assert(hashGenesisBlock == uint256("000002b140b8a437dfe651b7b1a2ab15f04db6be15830afe556a021ff95f87f3")); 
-        assert(genesis.hashMerkleRoot == uint256("48bd6552fe8f80ddba5239432cf2006992e23329ef7c20e722619c60874ca1d5")); 
+        assert(hashGenesisBlock == uint256("0000037fea2da24e8aab18b3b498dc5df66614992ac9e3532b17579844d3c10b")); 
+        assert(genesis.hashMerkleRoot == uint256("27030c3834508a6a73e8792e779253630b7646a818526cf9958717316e8aefbc")); 
 
 	vFixedSeeds.clear();
         vSeeds.clear();
