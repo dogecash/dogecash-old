@@ -56,7 +56,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints = 
 	boost::assign::map_list_of
-	(0, uint256("0000029c58096881a80a17fe71b0398b11733d8e29fea4fa02e12d6c6d3ab65e"));
+	(0, uint256("00000b65220a731aedbe28aa6dd840fa15e1f204c83ef93feaf8536e9f9d1877"));
 /*    (259201, uint256("1c9121bf9329a6234bfd1ea2d91515f19cd96990725265253f4b164283ade5dd"))
     (424998, uint256("f31e381eedb0ed3ed65fcc98cc71f36012bee32e8efd017c4f9fb0620fd35f6b"))
     (616764, uint256("29dd0bd1c59484f290896687b4ffb6a49afa5c498caf61967c69a541f8191557")) //first block to use modifierV2
@@ -194,7 +194,7 @@ public:
         genesis.nVersion = 1;
         genesis.nTime = 1556453495; 
         genesis.nBits = 0x1e0ffff0;
-	genesis.nNonce = 964120; 
+	genesis.nNonce = 288640; 
 	
 	/*hashGenesisBlock = uint256("0x01");
         if(genesis.GetHash() != uint256("0x01"))
@@ -226,8 +226,8 @@ public:
 
 	
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0000029c58096881a80a17fe71b0398b11733d8e29fea4fa02e12d6c6d3ab65e")); 
-        assert(genesis.hashMerkleRoot == uint256("77fc7d6cfbc4ec91703444a515955092d4b7c04dbb8f23be59deb42a39ec0057")); 
+        assert(hashGenesisBlock == uint256("00000b65220a731aedbe28aa6dd840fa15e1f204c83ef93feaf8536e9f9d1877")); 
+        assert(genesis.hashMerkleRoot == uint256("ba5befc54e5f0b858b3313d7a68f7acafc923aaac2ae638bc11a67bb54cd4dcd")); 
 
 	vFixedSeeds.clear();
         vSeeds.clear();
