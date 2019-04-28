@@ -187,7 +187,7 @@ public:
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 1 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04e70ca66d0bc8bd6c105952488fcdbd9f809d459af257646e35c5ec36f5e03158c916442aaa9592e63eeca8afa9660e505b160ee599c8efcc0a5f111058ba8c74") << OP_CHECKSIG; 
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("040818ca42a8634c010ba1025a8d8a10a03ea286456f341df6a4a0aad1f123833695a662be2dc983a8da5fed7380bc9e1c3433e94422d36746cdd8e21a5f97b749") << OP_CHECKSIG; 
 	genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
