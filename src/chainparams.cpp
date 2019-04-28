@@ -227,8 +227,8 @@ public:
 	
         hashGenesisBlock = genesis.GetHash();
 	std::cout << "genesisinfo \n " << genesis.ToString();
-        assert(hashGenesisBlock == uint256("0000037fea2da24e8aab18b3b498dc5df66614992ac9e3532b17579844d3c10b")); 
-        assert(genesis.hashMerkleRoot == uint256("27030c3834508a6a73e8792e779253630b7646a818526cf9958717316e8aefbc")); 
+        assert(hashGenesisBlock == uint256("0x0000037fea2da24e8aab18b3b498dc5df66614992ac9e3532b17579844d3c10b")); 
+        assert(genesis.hashMerkleRoot == uint256("0x27030c3834508a6a73e8792e779253630b7646a818526cf9958717316e8aefbc")); 
 
 	vFixedSeeds.clear();
         vSeeds.clear();
