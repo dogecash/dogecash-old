@@ -98,7 +98,31 @@ static const Checkpoints::CCheckpointData dataRegtest = {
     1556194222,
     0,
     100};
-
+void MineGenesis(CBlock genesis) {
+if(genesis.GetHash() != uint256("0x"))
+        {
+            printf("Looking for genesis block...\n");
+            uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
+            while(uint256(genesis.GetHash()) > hashTarget)
+            {
+                ++genesis.nNonce;
+                if (genesis.nNonce == 0)
+                {
+                    printf("NONCE WRAPPED, incrementing time");
+                    std::cout << std::string("NONCE WRAPPED, incrementing time:\n");
+                    ++genesis.nTime;
+                }
+                if (genesis.nNonce % 10000 == 0)
+                {
+                    printf("Mainnet: nonce %08u: hash = %s \n", genesis.nNonce, genesis.GetHash().ToString().c_str());
+                }
+            }
+            printf("merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+            printf("block.nTime = %u \n", genesis.nTime);
+            printf("block.nNonce = %u \n", genesis.nNonce);
+            printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+        }
+}
 libzerocoin::ZerocoinParams* CChainParams::Zerocoin_Params(bool useModulusV1) const
 {
     assert(this);
@@ -195,38 +219,10 @@ public:
         genesis.nTime = 1556459762; 
         genesis.nBits = 0x1e0ffff0;
 	    genesis.nNonce = 895320; 
-	
-	/*hashGenesisBlock = uint256("0x01");
-        if(genesis.GetHash() != uint256("0x01"))
-        {
-        printf("Searching for genesis block...\n");
-        uint256 hashTarget;
-        hashTarget.SetCompact(genesis.nBits);
-        while(uint256(genesis.GetHash()) > uint256(hashTarget))
-        {
-            ++genesis.nNonce;
-            if (genesis.nNonce == 0)
-            {
-                printf("Mainnet NONCE WRAPPED, incrementing time");
-                std::cout << std::string("Mainnet NONCE WRAPPED, incrementing time:\n");
-                ++genesis.nTime;
-            }
-            if (genesis.nNonce % 10000 == 0)
-            {
-               printf("Mainnet: nonce %08u: hash = %s \n", genesis.nNonce, genesis.GetHash().ToString().c_str());
-            }
-        }
-        printf("Mainnet block.nTime = %u \n", genesis.nTime);
-        printf("Mainnet block.nNonce = %u \n", genesis.nNonce);
-	printf("Mainnet block.nBits = %u \n", genesis.nBits);
-        printf("Mainnet block.hashMerkleRoot: %s\n", genesis.hashMerkleRoot.ToString().c_str());
-        printf("Mainnet block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-	system("pause");
-        }*/
-
-	
         hashGenesisBlock = genesis.GetHash();
-	std::cout << "genesisinfo \n " << genesis.ToString();
+        MineGenesis(genesis);
+        //debug code
+	    std::cout << "genesisinfo \n " << genesis.ToString();
         assert(hashGenesisBlock == uint256("0x0000037fea2da24e8aab18b3b498dc5df66614992ac9e3532b17579844d3c10b")); 
         assert(genesis.hashMerkleRoot == uint256("0x27030c3834508a6a73e8792e779253630b7646a818526cf9958717316e8aefbc")); 
 
