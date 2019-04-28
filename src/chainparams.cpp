@@ -226,6 +226,7 @@ public:
 
 	
         hashGenesisBlock = genesis.GetHash();
+	std::cout << "genesisinfo \n " << genesis.ToString();
         assert(hashGenesisBlock == uint256("000002b140b8a437dfe651b7b1a2ab15f04db6be15830afe556a021ff95f87f3")); 
         assert(genesis.hashMerkleRoot == uint256("48bd6552fe8f80ddba5239432cf2006992e23329ef7c20e722619c60874ca1d5")); 
 
