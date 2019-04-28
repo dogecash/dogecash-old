@@ -1,17 +1,17 @@
 /****************************************************************************************/
 /* Global color codes:                                                                  */
 /* dark-purple:        #382f44                                                          */
-/* transparent-purple: #e9e7ef (for inactive backgrounds)                               */
+/* transparent-purple: #ffdc96 (for inactive backgrounds)                               */
 /*                                                                                      */
-/* light-purple1:      #b396f6 (main purple for white backgrounds)                      */
-/* light-purple2:      #9179c7 (sligtly darker for gradients)                           */
+/* light-purple1:      #f2cc93 (main purple for white backgrounds)                      */
+/* light-purple2:      #e09155 (sligtly darker for gradients)                           */
 /*                                                                                      */
 /* medium-purple1:     #6f5ca3 (on hover)                                               */
 /* medium-purple1:     #ce5310 (main purple for dark backgrounds)                       */
 /* medium-purple2:     #5b4c86 (sligtly darker for gradients)                           */
 /*                                                                                      */
 /* fuchsia:            #df1cca                                                          */
-/* background:         #f8f6f6                                                          */
+/* background:         #667                                                          */
 /* input fields:       #e7e7e7                                                          */
 /****************************************************************************************/
 /*                                                                                      */
@@ -47,11 +47,11 @@ color:#333;
 }
 
 QMenuBar::item:selected {
-background-color:#f8f6f6;
+background-color:#667;
 }
 
 QMenu {
-background-color:#f8f6f6;
+background-color:#667;
 }
 
 QMenu::item {
@@ -251,7 +251,7 @@ QPushButton:focus {
 QPushButton:pressed {
 background-color: #ce5310;
 border:1px solid #000000;
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #00ff00, stop: 0.1 #00ff00, stop: 0.101 #6f5ca3, stop: 0.9 #6f5ca3, stop: 0.901 #00ff00, stop: 1 #00ff00);
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #a4a5a4, stop: 0.1 #a4a5a4, stop: 0.101 #6f5ca3, stop: 0.9 #6f5ca3, stop: 0.901 #a4a5a4, stop: 1 #a4a5a4);
 }
 
 /* Special handling for statusbar-icons (which are partly QPushButtons) */
@@ -491,7 +491,7 @@ min-height:10px;
 }
 
 QScrollBar::handle:vertical:pressed { /* Scroll Bar Slider - vertical */
-background:#9179c7;
+background:#e09155;
 min-height:10px;
 }
 
@@ -501,16 +501,16 @@ min-width:10px;
 }
 
 QScrollBar::handle:horizontal:pressed { /* Scroll Bar Slider - horizontal */
-background:#9179c7;
+background:#e09155;
 min-width:10px;
 }
 
 QScrollBar::add-page, QScrollBar::sub-page { /* Scroll Bar Background */
-background:#F8F6F6;
+background:#667;
 }
 
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical, QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal { /* Define Arrow Button Dimensions */
-background-color:#F8F6F6;
+background-color:#667;
 border: 1px solid #f2f0f0;
 width:16px;
 height:16px;
@@ -570,21 +570,21 @@ border-radius: 4px;
 
 QSlider::sub-page:horizontal {
 /* background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #5B4C86, stop: 1 #7b67a9); */
-background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #9179c7, stop: 1 #b396f6);
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #e09155, stop: 1 #f2cc93);
 border: 1px solid #333;
 height: 10px;
 border-radius: 4px;
 }
 
 QSlider::add-page:horizontal {
-background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #ce5310, stop: 1 #9179c7);
+background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #ce5310, stop: 1 #e09155);
 border: 1px solid #333;
 height: 10px;
 border-radius: 4px;
 }
 
 QSlider::handle:horizontal {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #a9a9a9, stop:1 #f8f6f6);
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #a9a9a9, stop:1 #667);
 border: 1px solid #333;
 width: 18px;
 height: 18px;
@@ -622,7 +622,7 @@ border: 1px solid #d7d7d7;
 }
 
 QDialog .QTabWidget QTabBar::tab {
-background-color:#f8f6f6;
+background-color:#667;
 color:#333;
 padding-left:10px;
 padding-right:10px;
@@ -703,7 +703,7 @@ border:1px solid #ce5310;
 /**************************** SEND AND RECEIVE ADDRESSES DIALOG *****************************/
 
 QWidget#AddressBookPage {
-background-color:#F8F6F6;
+background-color:#667;
 }
 
 /* QWidget#AddressBookPage QPushButton#newAddress { /* New Address Button */
@@ -924,19 +924,19 @@ background-color:#667;
 
 QWidget .QFrame#frame_BG { /* Background */
 min-width:400px;
-background-color:#f8f6f6;
+background-color:#667;
 }
 
 /**************************** OVERVIEW SCREEN *******************************************/
 
 QWidget .QFrame#frame_Space { /* Space between Header and Content */
 min-width:400px;
-background-color:#f8f6f6;
+background-color:#667;
 }
 
 QWidget .QFrame#frame_Content { /* Actual Content */
 min-width:400px;
-background-color:#f8f6f6;
+background-color:#667;
 }
 
 QWidget .QFrame#frame_Balances { /* Upper left side */
@@ -1655,7 +1655,7 @@ border:1px solid #ce5310;
 }
 
 QWidget#PrivacyDialog .QFrame#frame_Content {
-background-color:#f8f6f6;
+background-color:#667;
 }
 
 QWidget#PrivacyDialog .QFrame#verticalFrameLeft {
@@ -1713,8 +1713,8 @@ QWidget#GovernancePage .ProposalFrame {
 }
 
 QWidget#GovernancePage .ProposalFrame#proposalFrame {
-    background-color:qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #9179c7, stop: 1 #b396f6);
-    border:1px solid #b396f6;
+    background-color:qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #e09155, stop: 1 #f2cc93);
+    border:1px solid #f2cc93;
 }
 
 QWidget#GovernancePage .ProposalFrame#proposalFramePassing {
