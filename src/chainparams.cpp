@@ -13,7 +13,7 @@
 #include "utilstrencodings.h"
 #include "stdio.h"
 #include <iostream>
-
+#include <libzerocoin/bignum.h>
 #include <assert.h>
 
 #include <boost/assign/list_of.hpp>
