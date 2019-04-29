@@ -232,7 +232,7 @@ public:
         vSeeds.push_back(CDNSSeedData("96.30.197.146", "96.30.197.146"));     // Primary DNS Seeder
         vSeeds.push_back(CDNSSeedData("80.240.30.55", "80.240.30.55"));    // Secondary DNS Seeder
         vSeeds.push_back(CDNSSeedData("45.63.91.15", "45.63.91.15"));         // Single node address
-	vSeeds.push_back(CDNSSeedData("149.28.32.191", 149.28.32.191"));
+	vSeeds.push_back(CDNSSeedData("149.28.32.191", "149.28.32.191"));
        // vSeeds.push_back(CDNSSeedData("", "")); // Single node address
        // vSeeds.push_back(CDNSSeedData("", ""));           // Single node address
 
