@@ -102,7 +102,8 @@ void MineGenesis(CBlock genesis) {
 if(genesis.GetHash() != uint256("0x01"))
         {
             printf("Looking for genesis block...\n");
-            uint256 hashTarget = SetCompact(genesis.nBits);
+            uint256 hashTarget;
+	    hashTarget.SetCompact(genesis.nBits);
             while(uint256(genesis.GetHash()) > hashTarget)
             {
                 ++genesis.nNonce;
