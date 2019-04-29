@@ -13,7 +13,7 @@
 /* fuchsia:            #D8CBB5                                                          */
 /* background:         #000000                                                             */
 /* input fields:       #e7e7e7                    
-/* very-dark-gray      #333                                      */
+/* very-dark-gray      #d6d6d6                                      */
 /* light-grey border    #000000                                   
 
 dark-gray      #d7d7d7	Main Text Buttons
@@ -52,7 +52,7 @@ background-color:#000000;
 
 QMenuBar::item {
 background-color:#000000;
-color:#333;
+color:#d6d6d6;
 }
 
 QMenuBar::item:selected {
@@ -64,17 +64,17 @@ background-color:#000000;
 }
 
 QMenu::item {
-color:#333;
+color:#d6d6d6;
 }
 
 QMenu::item:selected {
 background-color:#f2f0f0;
-color:#333;
+color:#d6d6d6;
 }
 
 QToolBar {
 background-color: qlineargradient(y1:0, y2: 1, stop: 0 #5B2901, stop: 0.75 #5B2901, stop: 0.99 #000000, stop: 1 #000000);
-border:0px solid #333;
+border:0px solid #d6d6d6;
 padding:1;
 margin:0;
 width: 70px;
@@ -121,7 +121,7 @@ background-color:#000000;
 }
 
 QProgressBar {
-color: #d6d6d6AAA;
+color: #d6d6d6;
 border:0px solid grey;
 border-radius:5px;
 background-color:transparent;
@@ -152,7 +152,7 @@ border:1px solid #000000;
 
 QTabBar {
 background-color:#f2f2f2;
-color:#333;
+color:#d6d6d6;
 }
 
 QTabBar::tab:hover:!selected {
@@ -167,12 +167,12 @@ outline:0; /* Remove Annoying Focus Rectangle */
 
 QGroupBox {
 background-color:#fcfcfc;
-color:#333;
+color:#d6d6d6;
 }
 
 QToolTip {
 background-color:#dedbe5;
-color:#333;
+color:#d6d6d6;
 }
 
 /****************************************************************************************/
@@ -199,7 +199,7 @@ min-height:25px;
 outline:0;
 padding:3px;
 border:0px;
-color:#333;
+color:#d6d6d6;
 background-color:#f2f2f2;
 }
 
@@ -298,7 +298,7 @@ background:#f2f2f2;
 
 QComboBox:editable {
 background:#D8CBB5;
-color:#616161;
+color:#d6d6d6;
 border:0px solid transparent;
 }
 
@@ -313,7 +313,7 @@ border-image: url(':/images/downArrow') 0 0 0 0 stretch stretch;
 
 QComboBox QListView {
 background:#000000;
-border:1px solid #333;
+border:1px solid #d6d6d6;
 padding-right:1px;
 padding-left:1px;
 color:#d6d6d6;
@@ -351,7 +351,7 @@ min-height:25px;
 outline:0;
 padding:3px;
 border:0px;
-color:#333;
+color:#d6d6d6;
 background-color:#f2f2f2;
 }
 
@@ -396,7 +396,7 @@ min-height:25px;
 outline:0;
 padding:3px;
 border:0px;
-color:#333;
+color:#d6d6d6;
 background-color:#f2f2f2;
 }
 
@@ -446,7 +446,7 @@ border:0;
 
 .QTableView { /* Table - has to be selected as a class otherwise it throws off QCalendarWidget */
 background:transparent;
-border:1px solid #333;
+border:1px solid #d6d6d6;
 }
 
 QTableView::item { /* Table Item */
@@ -462,7 +462,7 @@ color:#000000;
 QTableWidget { /* Table Background */
 background-color: #fcfcfc;
 alternate-background-color: yellow;
-border:1px solid #333;
+border:1px solid #d6d6d6;
 }
 
 QTableWidget:focus, QTableView, QTableView:focus { /* Remove focus outline */
@@ -473,7 +473,7 @@ background:transparent;
 QTreeWidget { /* Tree Background */
 background-color:#fcfcfc;
 alternate-background-color:#f2f2f2;
-color:#333;
+color:#d6d6d6;
 }
 
 QScrollBar { /* Scroll Bar */
@@ -580,21 +580,21 @@ border-radius: 4px;
 QSlider::sub-page:horizontal {
 /* background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #5B2901, stop: 1 #7b67a9); */
 background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #e09155, stop: 1 #f2cc93);
-border: 1px solid #333;
+border: 1px solid #d6d6d6;
 height: 10px;
 border-radius: 4px;
 }
 
 QSlider::add-page:horizontal {
 background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #5B2901, stop: 1 #e09155);
-border: 1px solid #333;
+border: 1px solid #d6d6d6;
 height: 10px;
 border-radius: 4px;
 }
 
 QSlider::handle:horizontal {
 background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #000000, stop:1 #000000);
-border: 1px solid #333;
+border: 1px solid #d6d6d6;
 width: 18px;
 height: 18px;
 margin-top: -6px;
@@ -604,7 +604,7 @@ border-radius: 9px;
 
 QSlider::handle:horizontal:hover {
 background-color: qradialgradient(cx: 0.5, cy: 0.5, fx: 0.5, fy: 0.5, radius: 0.7, stop: 0 #5B2901, stop: 0.7 #000000);
-border: 2px solid #333;
+border: 2px solid #d6d6d6;
 width: 16px;
 height: 16px;
 margin-top: -6px;
@@ -623,7 +623,7 @@ background-color: #000000;
 
 
 QDialog .QTabWidget {
-border-bottom:1px solid #333;
+border-bottom:1px solid #d6d6d6;
 }
 
 QDialog .QTabWidget::pane {
@@ -632,7 +632,7 @@ border: 1px solid #d7d7d7;
 
 QDialog .QTabWidget QTabBar::tab {
 background-color:#000000;
-color:#333;
+color:#d6d6d6;
 padding-left:10px;
 padding-right:10px;
 padding-top:5px;
@@ -650,12 +650,12 @@ border-right: 1px solid #d7d7d7;
 
 QDialog .QTabWidget QTabBar::tab:selected, QDialog .QTabWidget QTabBar::tab:hover {
 background-color:#000000;
-color:#333;
+color:#d6d6d6;
 }
 
 QDialog .QTabWidget .QWidget {
 background-color:#000000;
-color:#333;
+color:#d6d6d6;
 }
 
 QDialog .QTabWidget .QWidget QAbstractSpinBox {
@@ -684,14 +684,14 @@ font-weight:bold;
 QDialog#OpenURIDialog QPushButton#selectFileButton { /* ... Button */
 background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #ebebeb);
 border:1px solid #d2d2d2;
-color:#616161;
+color:#d6d6d6;
 padding-left:10px;
 padding-right:10px;
 }
 
 QDialog#OpenURIDialog QPushButton#selectFileButton:hover {
 background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #ebebeb);
-color:#333;
+color:#d6d6d6;
 }
 
 QDialog#OpenURIDialog QPushButton#selectFileButton:pressed {
@@ -848,7 +848,7 @@ color:#D8CBB5;
 }
 
 QDialog#RPCConsole QTableView#peerWidget::item { /* Peers Table Items */
-color:#333;
+color:#d6d6d6;
 }
 
 QDialog#RPCConsole QPushButton#openDebugLogfileButton {
@@ -858,7 +858,7 @@ max-width:60px;
 QDialog#RPCConsole QTextEdit#messagesWidget { /* Console Messages Window */
 border:0;
 background-color:#fcfcfc;
-color:#333;
+color:#d6d6d6;
 }
 
 QDialog#RPCConsole QLineEdit#lineEdit { /* Console Input */
@@ -1371,7 +1371,7 @@ background-color:#000000;
 
 
 QDialog#SendCoinsDialog .QCheckBox#checkUseObfuscation { /* Obfuscation Checkbox */
-color:#616161;
+color:#d6d6d6;
 font-weight:bold;
 /*background: qradialgradient(cx:0.5, cy:0.5, radius: 0.5, fx:0.5, fy:0.5, stop:0 rgba(248, 246, 246, 128), stop: 1 rgba(0, 0, 0, 0));*/
 border-radius:5px;
@@ -1380,7 +1380,7 @@ padding-bottom:18px;
 }
 
 QDialog#SendCoinsDialog .QCheckBox#checkSwiftTX { /* SwiftTX Checkbox */
-color:#616161;
+color:#d6d6d6;
 font-weight:bold;
 /*background: qradialgradient(cx:0.5, cy:0.5, radius: 0.5, fx:0.5, fy:0.5, stop:0 rgba(248, 246, 246, 128), stop: 1 rgba(0, 0, 0, 0));*/
 border-radius:5px;
@@ -1525,7 +1525,7 @@ color:transparent;
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget { /* Coin Control Widget Container */
 outline:0;
 background-color:#000000;
-border:1px solid #333;
+border:1px solid #d6d6d6;
 }
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item {
@@ -1546,7 +1546,7 @@ background-image: url(':/images/qtreeview_selected');
 background-repeat:no-repeat;
 background-position:center;
 background-color:#f7f7f7;
-color:#333;
+color:#d6d6d6;
 }
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::branch:checked { /* Coin Control Branch Icon */
@@ -1554,7 +1554,7 @@ background-image: url(':/images/qtreeview_selected');
 background-repeat:no-repeat;
 background-position:center;
 background-color:#f7f7f7;
-color:#333;
+color:#d6d6d6;
 }
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::seperator {
@@ -1568,7 +1568,7 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::indicator { /* Coin
 QDialog#zdogecControlDialog .QTreeWidget#treeWidget { /* zdogec Control Widget Container */
 outline:0;
 background-color:#000000;
-border:1px solid #333;
+border:1px solid #d6d6d6;
 }
 
 /**************************** RECEIVE COINS *********************************************/
@@ -1690,7 +1690,7 @@ background-color:#000000;
 /********************************* CALENDAR WIDGET **************************************/
 
 QCalendarView {
-border:1px solid #333;
+border:1px solid #d6d6d6;
 }
 
 QCalendarWidget QWidget#qt_calendar_navigationbar { /* Calendar widget navigation bar */
@@ -1704,7 +1704,7 @@ background-color:#000000;
 }
 
 QCalendarWidget QAbstractItemView:enabled { /* Calendar widget weekdays in month */
-color:#333;
+color:#d6d6d6;
 }
 
 QCalendarWidget QAbstractItemView:disabled { /* Calendar widget days not in month */
