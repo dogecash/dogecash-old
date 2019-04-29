@@ -1,6 +1,6 @@
 /****************************************************************************************/
 /* Global color codes:                                                                  */
-/* dark-purple:        #382f44                                                          */
+/* dark-purple:        #D8CBB5                                                          */
 /* transparent-purple: #ffdc96 (for inactive backgrounds)                               */
 /*                                                                                      */
 /* light-purple1:      #f2cc93 (main purple for white backgrounds)                      */
@@ -10,7 +10,7 @@
 /* medium-purple1:     #5B2901 (main purple for dark backgrounds)                       */
 /* medium-purple2:     #5B2901 (sligtly darker for gradients)                           */
 /*                                                                                      */
-/* fuchsia:            #df1cca                                                          */
+/* fuchsia:            #D8CBB5                                                          */
 /* background:         #000000                                                             */
 /* input fields:       #e7e7e7                    
 /* very-dark-gray      #333                                      */
@@ -135,7 +135,7 @@ width: 20px;
 
 QLabel#progressBarLabel {
 background-color:transparent;
-color: #382f44;
+color: #D8CBB5;
 padding-left:5px;
 padding-right:5px;
 }
@@ -234,7 +234,7 @@ QPushButton { /* Global Button Style */
 background-color: #5B2901;
 border-width: 1px;
 border-style: outset;
-border-color: #382f44;
+border-color: #D8CBB5;
 border-radius: 2px;
 color:#000000;
 font-size:12px;
@@ -296,7 +296,7 @@ background:#f2f2f2;
 }
 
 QComboBox:editable {
-background:#382f44;
+background:#D8CBB5;
 color:#616161;
 border:0px solid transparent;
 }
@@ -780,7 +780,7 @@ color:#818181;
 }
 
 QWidget#PrivacyDialog QProgressBar#obfuscationProgress::chunk {
-background-color: #382f44;
+background-color: #D8CBB5;
 width:1px;
 }
 
@@ -843,7 +843,7 @@ min-width:180px;
 }
 
 QDialog#RPCConsole QWidget#tab_peers QLabel#peerHeading { /* Peers Info Header */
-color:#382f44;
+color:#D8CBB5;
 }
 
 QDialog#RPCConsole QTableView#peerWidget::item { /* Peers Table Items */
@@ -977,7 +977,7 @@ QWidget .QFrame#frame_Balances .QLabel#label_5 { /* DOGEC Balances Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
 background-color:transparent;
-color:#382F44;
+color:#D8CBB5;
 font-weight:bold;
 font-size:14px;
 margin-right:5px;
@@ -1127,7 +1127,7 @@ QWidget .QFrame#frame_ZerocoinBalances .QLabel#label_5z_3 { /* Zerocoin Balance 
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
 background-color:transparent;
-color:#382F44;
+color:#D8CBB5;
 font-weight:bold;
 font-size:14px;
 margin-right:5px;
@@ -1210,7 +1210,7 @@ QWidget .QFrame#frame_CombinedBalances .QLabel#label_5z { /* Combined Balance La
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
 background-color:transparent;
-color:#382F44;
+color:#D8CBB5;
 font-weight:bold;
 font-size:14px;
 margin-right:5px;
@@ -1282,7 +1282,7 @@ QWidget .QFrame#frame_RecentTransactions .QLabel#label_4 { /* Recent Transaction
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:180px;
 background-color:transparent;
-color:#382F44;
+color:#D8CBB5;
 font-weight:bold;
 font-size:14px;
 margin-right:5px;
@@ -1339,7 +1339,7 @@ QDialog#SendCoinsDialog .QFrame#frameCoinControl .QLabel#labelCoinControlFeature
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
 background-color:transparent;
-color:#382F44;
+color:#D8CBB5;
 font-weight:bold;
 font-size:14px;
 margin-right:5px;
@@ -1614,7 +1614,7 @@ border:1px solid #5B2901;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame .QLabel#label_6 { /* Requested Payments History Label */
-color:#382f44;
+color:#D8CBB5;
 font-weight:bold;
 font-size:14px;
 }
