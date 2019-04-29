@@ -7,17 +7,17 @@
 /* light-purple2:      #e09155 (sligtly darker for gradients)                           */
 /*                                                                                      */
 /* medium-purple1:     #6f5ca3 (on hover)                                               */
-/* medium-purple1:     #f7981c (main purple for dark backgrounds)                       */
-/* medium-purple2:     #f7981c (sligtly darker for gradients)                           */
+/* medium-purple1:     #5B2901 (main purple for dark backgrounds)                       */
+/* medium-purple2:     #5B2901 (sligtly darker for gradients)                           */
 /*                                                                                      */
 /* fuchsia:            #df1cca                                                          */
-/* background:         #c2c2c2                                                             */
+/* background:         #2d2113                                                             */
 /* input fields:       #e7e7e7                    
 /* very-dark-gray      #333                                      */
 /* light-grey border    #a9a9a9                                   
 
 dark-gray      #333333	Main Text Buttons
-orange         #f7981c  Balances/Input Fields
+orange         #5B2901  Balances/Input Fields
 light-gray     #d7d7d7  Balances/Input Fields
 green          #00a300  OnButtonPress 
                       */
@@ -30,14 +30,14 @@ green          #00a300  OnButtonPress
 /****************************************************************************************/
 
 WalletFrame {
-background-color:#c2c2c2;
+background-color:#2d2113;
 border-top:0px solid #000;
 margin:0;
 padding:0;
 }
 
 QStatusBar {
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 .QFrame {
@@ -55,11 +55,11 @@ color:#333;
 }
 
 QMenuBar::item:selected {
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QMenu {
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QMenu::item {
@@ -72,7 +72,7 @@ color:#333;
 }
 
 QToolBar {
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #f7981c, stop: 0.75 #f7981c, stop: 0.99 #c2c2c2, stop: 1 #c2c2c2);
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #5B2901, stop: 0.75 #5B2901, stop: 0.99 #2d2113, stop: 1 #2d2113);
 border:0px solid #333;
 padding:1;
 margin:0;
@@ -81,7 +81,7 @@ width: 70px;
 
 QToolBar > QToolButton {
 Alignment: left;
-background-color: #f7981c;
+background-color: #5B2901;
 selection-background-color:transparent;
 border:0.5px solid #888;
 border-left: 0px;
@@ -96,22 +96,22 @@ height: 60px;
 }
 
 QToolBar > QToolButton:checked {
-background-color: qlineargradient(x1:0, x2: 1, stop: 0 #c2c2c2, stop: 0.07 #c2c2c2, stop: 0.0701 #f7981c, stop: 1 #f7981c);
+background-color: qlineargradient(x1:0, x2: 1, stop: 0 #2d2113, stop: 0.07 #2d2113, stop: 0.0701 #5B2901, stop: 1 #5B2901);
 color:#a9a9a9;
 }
 
 /* QToolBar > QToolButton:hover:!selected { */
 QToolBar > QToolButton:hover {
-background-color: qlineargradient(x1:0, x2: 1, stop: 0 #c2c2c2, stop: 0.07 #c2c2c2, stop: 0.0701 #f7981c, stop: 1 #f7981c);
+background-color: qlineargradient(x1:0, x2: 1, stop: 0 #2d2113, stop: 0.07 #2d2113, stop: 0.0701 #5B2901, stop: 1 #5B2901);
 color:#a9a9a9;
 }
 
 QToolBar > QToolButton#ToolbarSpacer:hover:!selected {
-background-color: #f7981c; /* Do not highlight placeholder on hover */
+background-color: #5B2901; /* Do not highlight placeholder on hover */
 }
 
 QToolBar > QToolButton:pressed {
-background-color: qlineargradient(x1:0, x2: 1, stop: 0 #00a300, stop: 0.07 #00a300, stop: 0.0701 #f7981c, stop: 1 #f7981c);
+background-color: qlineargradient(x1:0, x2: 1, stop: 0 #00a300, stop: 0.07 #00a300, stop: 0.0701 #5B2901, stop: 1 #5B2901);
 color:#a9a9a9;
 }
 
@@ -129,7 +129,7 @@ padding-right:0px;
 }
 
 QProgressBar::chunk {
-background-color:#f7981c;
+background-color:#5B2901;
 width: 20px;
 }
 
@@ -146,7 +146,7 @@ background-color:#f2f2f2;
 
 QTabWidget::pane {
 background-color:#f2f2f2;
-border:1px solid #c2c2c2;
+border:1px solid #2d2113;
 }
 
 QTabBar {
@@ -159,7 +159,7 @@ background-color:#dedbe5;
 }
 
 QWidget {
-selection-background-color:#f7981c; /* Object highlight color */
+selection-background-color:#5B2901; /* Object highlight color */
 selection-color:#a9a9a9;
 outline:0; /* Remove Annoying Focus Rectangle */
 }
@@ -203,24 +203,24 @@ background-color:#f2f2f2;
 }
 
 .QValidatedLineEdit:!focus {
-color:#f7981c;
+color:#5B2901;
 background-color:#e7e7e7;
 }
 
 .QLineEdit:!focus {
-color:#f7981c;
+color:#5B2901;
 background-color:#e7e7e7;
 }
 
 .QTextEdit:!focus {
-color:#f7981c;
+color:#5B2901;
 background-color:#e7e7e7;
 }
 
 /* .QValidatedLineEdit:checked, .QLineEdit:checked */
 
 .QValidatedLineEdit:disabled, .QLineEdit:disabled, .QTextEdit:disabled {
-color: #f7981c;
+color: #5B2901;
 background-color:#f2f2f2;
 }
 
@@ -231,12 +231,12 @@ background-color:#f2f2f2;
 /***************************** Global Qt Objects ***********************************************************/
 
 QPushButton { /* Global Button Style */
-background-color: #f7981c;
+background-color: #5B2901;
 border-width: 1px;
 border-style: outset;
 border-color: #382f44;
 border-radius: 2px;
-color:#c2c2c2;
+color:#2d2113;
 font-size:12px;
 font-weight:bold;
 padding-left:25px;
@@ -248,7 +248,7 @@ margin: 2px;
 }
 
 QPushButton:hover {
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #c2c2c2, stop: 0.1 #c2c2c2, stop: 0.101 #6f5ca3, stop: 0.9 #6f5ca3, stop: 0.901 #c2c2c2, stop: 1 #c2c2c2);
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #2d2113, stop: 0.1 #2d2113, stop: 0.101 #6f5ca3, stop: 0.9 #6f5ca3, stop: 0.901 #2d2113, stop: 1 #2d2113);
 }
 
 QPushButton:focus {
@@ -257,7 +257,7 @@ QPushButton:focus {
 }
 
 QPushButton:pressed {
-background-color: #f7981c;
+background-color: #5B2901;
 border:1px solid #000000;
 background-color: qlineargradient(y1:0, y2: 1, stop: 0 #a4a5a4, stop: 0.1 #a4a5a4, stop: 0.101 #6f5ca3, stop: 0.9 #6f5ca3, stop: 0.901 #a4a5a4, stop: 1 #a4a5a4);
 }
@@ -284,7 +284,7 @@ background-color: #f2f2f2;
 }
 
 QComboBox { /* Dropdown Menus */
-border:1px solid #f7981c;
+border:1px solid #5B2901;
 padding: 3px 5px 3px 5px;
 background:#fcfcfc;
 min-height:25px;
@@ -355,7 +355,7 @@ background-color:#f2f2f2;
 }
 
 QAbstractSpinBox:!focus {
-color:#f7981c;
+color:#5B2901;
 background-color:#e7e7e7;
 }
 
@@ -400,7 +400,7 @@ background-color:#f2f2f2;
 }
 
 QValueComboBox:!focus {
-color:#f7981c;
+color:#5B2901;
 background-color:#e7e7e7;
 }
 
@@ -413,7 +413,7 @@ outline:0;
 
 QHeaderView::section { /* Table Header Sections */
 qproperty-alignment:center;
-background-color: #f7981c;
+background-color: #5B2901;
 color:#a9a9a9;
 min-height:25px;
 font-weight:bold;
@@ -454,7 +454,7 @@ font-size:12px;
 }
 
 QTableView::item:selected { /* Table Item Selected */
-background-color:#f7981c;
+background-color:#5B2901;
 color:#a9a9a9;
 }
 
@@ -481,20 +481,20 @@ QScrollBar { /* Scroll Bar */
 
 QScrollBar:vertical { /* Vertical Scroll Bar Attributes */
 border:0;
-background:#f7981c;
+background:#5B2901;
 width:18px;
 margin:18px 0px 18px 0px;
 }
 
 QScrollBar:horizontal { /* Horizontal Scroll Bar Attributes */
 border:0;
-background:#f7981c;
+background:#5B2901;
 height:18px;
 margin:0px 18px 0px 18px;
 }
 
 QScrollBar::handle:vertical { /* Scroll Bar Slider - vertical */
-background:#f7981c;
+background:#5B2901;
 min-height:10px;
 }
 
@@ -504,7 +504,7 @@ min-height:10px;
 }
 
 QScrollBar::handle:horizontal { /* Scroll Bar Slider - horizontal */
-background:#f7981c;
+background:#5B2901;
 min-width:10px;
 }
 
@@ -514,11 +514,11 @@ min-width:10px;
 }
 
 QScrollBar::add-page, QScrollBar::sub-page { /* Scroll Bar Background */
-background:#c2c2c2;
+background:#2d2113;
 }
 
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical, QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal { /* Define Arrow Button Dimensions */
-background-color:#c2c2c2;
+background-color:#2d2113;
 border: 1px solid #f2f0f0;
 width:16px;
 height:16px;
@@ -577,7 +577,7 @@ border-radius: 4px;
 }
 
 QSlider::sub-page:horizontal {
-/* background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #f7981c, stop: 1 #7b67a9); */
+/* background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #5B2901, stop: 1 #7b67a9); */
 background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #e09155, stop: 1 #f2cc93);
 border: 1px solid #333;
 height: 10px;
@@ -585,14 +585,14 @@ border-radius: 4px;
 }
 
 QSlider::add-page:horizontal {
-background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #f7981c, stop: 1 #e09155);
+background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #5B2901, stop: 1 #e09155);
 border: 1px solid #333;
 height: 10px;
 border-radius: 4px;
 }
 
 QSlider::handle:horizontal {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #a9a9a9, stop:1 #c2c2c2);
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #a9a9a9, stop:1 #2d2113);
 border: 1px solid #333;
 width: 18px;
 height: 18px;
@@ -602,7 +602,7 @@ border-radius: 9px;
 }
 
 QSlider::handle:horizontal:hover {
-background-color: qradialgradient(cx: 0.5, cy: 0.5, fx: 0.5, fy: 0.5, radius: 0.7, stop: 0 #f7981c, stop: 0.7 #c2c2c2);
+background-color: qradialgradient(cx: 0.5, cy: 0.5, fx: 0.5, fy: 0.5, radius: 0.7, stop: 0 #5B2901, stop: 0.7 #2d2113);
 border: 2px solid #333;
 width: 16px;
 height: 16px;
@@ -630,7 +630,7 @@ border: 1px solid #d7d7d7;
 }
 
 QDialog .QTabWidget QTabBar::tab {
-background-color:#c2c2c2;
+background-color:#2d2113;
 color:#333;
 padding-left:10px;
 padding-right:10px;
@@ -648,7 +648,7 @@ border-right: 1px solid #d7d7d7;
 }
 
 QDialog .QTabWidget QTabBar::tab:selected, QDialog .QTabWidget QTabBar::tab:hover {
-background-color:#c2c2c2;
+background-color:#2d2113;
 color:#333;
 }
 
@@ -694,7 +694,7 @@ color:#333;
 }
 
 QDialog#OpenURIDialog QPushButton#selectFileButton:pressed {
-border:1px solid #f7981c;
+border:1px solid #5B2901;
 }
 
 /**************************** SIGN/ VERIFY MESSAGE DIALOG *******************************/
@@ -711,7 +711,7 @@ border:1px solid #f7981c;
 /**************************** SEND AND RECEIVE ADDRESSES DIALOG *****************************/
 
 QWidget#AddressBookPage {
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 /* QWidget#AddressBookPage QPushButton#newAddress { /* New Address Button */
@@ -750,14 +750,14 @@ border:0px solid #000;
 
 QWidget#PrivacyDialog QLabel#zdogecLabel {
 font-size:14px;
-color:#c2c2c2;
-background-color:#f7981c;
+color:#2d2113;
+background-color:#5B2901;
 }
 
 QWidget#PrivacyDialog QLabel#oDOGECLabel {
 font-size:14px;
-color:#c2c2c2;
-background-color:#f7981c;
+color:#2d2113;
+background-color:#5B2901;
 }
 
 QWidget#PrivacyDialog QPushButton {
@@ -871,7 +871,7 @@ padding-right:10px;
 }
 
 QDialog#RPCConsole .QGroupBox #line { /* Network In Line */
-background-color:#f7981c;
+background-color:#5B2901;
 }
 
 QDialog#RPCConsole .QGroupBox #line_2 { /* Network Out Line */
@@ -909,14 +909,14 @@ padding-right:5px;
 /* Header design for ALL tabs/pages *****************************************************/
 /* Horizontal lines */
 QFrame[frameShape="4"] { /* QFrame::HLine == 0x0004 */
-border:1px solid #f7981c;
+border:1px solid #5B2901;
 }
 
 /* Headers */
 QLabel#labelOverviewHeaderLeft {
 font-weight:bold;
 font-size:20px;
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QLabel#labelOverviewHeaderRight {
@@ -927,44 +927,44 @@ background-repeat: no-repeat;
 
 QWidget .QFrame#frame_Header { /* Header with Page-Title and dogecash-image */
 min-width:400px;
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QWidget .QFrame#frame_BG { /* Background */
 min-width:400px;
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 /**************************** OVERVIEW SCREEN *******************************************/
 
 QWidget .QFrame#frame_Space { /* Space between Header and Content */
 min-width:400px;
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QWidget .QFrame#frame_Content { /* Actual Content */
 min-width:400px;
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QWidget .QFrame#frame_Balances { /* Upper left side */
 min-width:400px;
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QWidget .QFrame#frame_ZerocoinBalances { /* Lower left side */
 min-width:400px;
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QWidget .QFrame#frame_CombinedBalances { /* Lower left side */
 min-width:400px;
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QWidget .QFrame#frame_RecentTransactions { /* Right side */
 min-width:400px;
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QWidget .QFrame#frame_Balances > .QLabel {
@@ -1004,7 +1004,7 @@ margin-left:16px;
 QWidget .QFrame#frame_Balances .QLabel#labelBalanceText { /* Available Balance Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#f7981c;
+color:#5B2901;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1015,7 +1015,7 @@ QWidget .QFrame#frame_Balances .QLabel#labelBalance { /* Available Balance */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 font-size:12px;
 font-weight:bold;
-color:#f7981c;
+color:#5B2901;
 margin-left:0px;
 }
 
@@ -1028,7 +1028,7 @@ margin-left:16px;
 QWidget .QFrame#frame_Balances .QLabel#labelPendingText { /* Pending Balance Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#f7981c;
+color:#5B2901;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1039,7 +1039,7 @@ QWidget .QFrame#frame_Balances .QLabel#labelUnconfirmed { /* Pending Balance */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 font-size:12px;
 font-weight:bold;
-color:#f7981c;
+color:#5B2901;
 margin-left:0px;
 }
 
@@ -1052,7 +1052,7 @@ margin-left:16px;
 QWidget .QFrame#frame_Balances .QLabel#labelImmatureText { /* Immature Balance Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#f7981c;
+color:#5B2901;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1063,7 +1063,7 @@ QWidget .QFrame#frame_Balances .QLabel#labelImmature { /* Immature Balance */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 font-size:12px;
 font-weight:bold;
-color:#f7981c;
+color:#5B2901;
 margin-left:0px;
 }
 
@@ -1076,7 +1076,7 @@ margin-left:16px;
 QWidget .QFrame#frame_Balances .QLabel#labelTotalText { /* Total Balance Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#f7981c;
+color:#5B2901;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1087,7 +1087,7 @@ QWidget .QFrame#frame_Balances .QLabel#labelTotal { /* Total Balance */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 font-size:12px;
 font-weight:bold;
-color:#f7981c;
+color:#5B2901;
 margin-left:0px;
 }
 
@@ -1100,7 +1100,7 @@ margin-left:16px;
 QWidget .QFrame#frame_Balances .QLabel#labelLockedBalanceText { /* Available zdogec Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#f7981c;
+color:#5B2901;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1111,7 +1111,7 @@ QWidget .QFrame#frame_Balances .QLabel#labelLockedBalance { /* Available zdogec 
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 font-size:12px;
 font-weight:bold;
-color:#f7981c;
+color:#5B2901;
 margin-left:0px;
 }
 
@@ -1137,7 +1137,7 @@ padding-right:5px;
 QWidget .QFrame#frame_ZerocoinBalances .QLabel#labelzBalanceText { /* Available zdogec Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#f7981c;
+color:#5B2901;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1148,14 +1148,14 @@ QWidget .QFrame#frame_ZerocoinBalances .QLabel#labelzBalance { /* Available zdog
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 font-size:12px;
 font-weight:bold;
-color:#f7981c;
+color:#5B2901;
 margin-left:0px;
 }
 
 QWidget .QFrame#frame_ZerocoinBalances .QLabel#labelzBalanceUnconfirmedText { /* Unconfirmed zdogec Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#f7981c;
+color:#5B2901;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1166,14 +1166,14 @@ QWidget .QFrame#frame_ZerocoinBalances .QLabel#labelzBalanceUnconfirmed { /* Unc
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 font-size:12px;
 font-weight:bold;
-color:#f7981c;
+color:#5B2901;
 margin-left:0px;
 }
 
 QWidget .QFrame#frame_ZerocoinBalances .QLabel#labelzBalanceMatureText { /* Mature zdogec Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#f7981c;
+color:#5B2901;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1184,14 +1184,14 @@ QWidget .QFrame#frame_ZerocoinBalances .QLabel#labelzBalanceMature { /* Mature z
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 font-size:12px;
 font-weight:bold;
-color:#f7981c;
+color:#5B2901;
 margin-left:0px;
 }
 
 QWidget .QFrame#frame_ZerocoinBalances .QLabel#labelzBalanceImmatureText { /* Immature zdogec Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#f7981c;
+color:#5B2901;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1202,7 +1202,7 @@ QWidget .QFrame#frame_ZerocoinBalances .QLabel#labelzBalanceImmature { /* Immatu
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 font-size:12px;
 font-weight:bold;
-color:#f7981c;
+color:#5B2901;
 margin-left:0px;
 }
 
@@ -1220,7 +1220,7 @@ padding-right:5px;
 QWidget .QFrame#frame_CombinedBalances .QLabel#labelBalanceTextz { /* Available DOGEC Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#f7981c;
+color:#5B2901;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1231,13 +1231,13 @@ QWidget .QFrame#frame_CombinedBalances .QLabel#labelBalancez { /* Available DOGE
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 font-size:26px;
 font-weight:normal;
-color:#f7981c;
+color:#5B2901;
 }
 
 QWidget .QFrame#frame_CombinedBalances .QLabel#labelzBalanceTextz { /* Available zdogec Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#f7981c;
+color:#5B2901;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1248,14 +1248,14 @@ QWidget .QFrame#frame_CombinedBalances .QLabel#labelzBalancez { /* Available zdo
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 font-size:12px;
 font-weight:bold;
-color:#f7981c;
+color:#5B2901;
 margin-left:0px;
 }
 
 QWidget .QFrame#frame_CombinedBalances .QLabel#labelTotalTextz { /* Available total Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#f7981c;
+color:#5B2901;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1266,7 +1266,7 @@ QWidget .QFrame#frame_CombinedBalances .QLabel#labelTotalz { /* Available total 
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 font-size:26px;
 font-weight:normal;
-color:#f7981c;
+color:#5B2901;
 }
 
 /**************************** RECENT TRANSACTIONS ***************************************/
@@ -1309,15 +1309,15 @@ background-color:#a9a9a9;
 }
 
 QDialog#SendCoinsDialog .QFrame#frameCoinControl { /* Coin Control Section */
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QDialog#SendCoinsDialog .QFrame#frameFee { /* Coin Control Section */
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QDialog#SendCoinsDialog .QFrame#frame_Send { /* Coin Control Section */
-background-color:#c2c2c2;
+background-color:#2d2113;
 margin-bottom:6px;
 }
 
@@ -1364,7 +1364,7 @@ font-weight:normal;
 }
 
 QDialog#SendCoinsDialog .QScrollArea#scrollArea .QWidget#scrollAreaWidgetContents { /* Send To Widget */
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 
@@ -1523,7 +1523,7 @@ color:transparent;
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget { /* Coin Control Widget Container */
 outline:0;
-background-color:#c2c2c2;
+background-color:#2d2113;
 border:1px solid #333;
 }
 
@@ -1531,7 +1531,7 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item {
 }
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item:selected { /* Coin Control Item (selected) */
-background-color:#f7981c;
+background-color:#5B2901;
 color:#a9a9a9;
 }
 
@@ -1566,7 +1566,7 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::indicator { /* Coin
 
 QDialog#zdogecControlDialog .QTreeWidget#treeWidget { /* zdogec Control Widget Container */
 outline:0;
-background-color:#c2c2c2;
+background-color:#2d2113;
 border:1px solid #333;
 }
 
@@ -1577,11 +1577,11 @@ background-color:#a9a9a9;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame {
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame2 {
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame2  > .QLabel { /* Receive Coin Labels */
@@ -1601,7 +1601,7 @@ padding-right:10px;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton:pressed {
-border:1px solid #f7981c;
+border:1px solid #5B2901;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame2 QPushButton { /* Clear Button */
@@ -1610,7 +1610,7 @@ padding-right:10px;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame2 QPushButton:pressed {
-border:1px solid #f7981c;
+border:1px solid #5B2901;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame .QLabel#label_6 { /* Requested Payments History Label */
@@ -1659,19 +1659,19 @@ border:1px solid #d7d7d7;
 /* QWidget#PrivacyDialog */
 
 QWidget#PrivacyDialog .QFrame[frameShape="4"] { /* QFrame::HLine == 0x0004 */
-border:1px solid #f7981c;
+border:1px solid #5B2901;
 }
 
 QWidget#PrivacyDialog .QFrame#frame_Content {
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QWidget#PrivacyDialog .QFrame#verticalFrameLeft {
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QWidget#PrivacyDialog .QFrame#verticalFrameRight {
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 QWidget#PrivacyDialog .QToolButton {
@@ -1682,7 +1682,7 @@ min-width: 24px;
 
 /**************************** MASTERNODE LIST *******************************************/
 QWidget#MasternodeList .QFrame#frameList {
-background-color:#c2c2c2;
+background-color:#2d2113;
 }
 
 
@@ -1693,7 +1693,7 @@ border:1px solid #333;
 }
 
 QCalendarWidget QWidget#qt_calendar_navigationbar { /* Calendar widget navigation bar */
-background-color:#f7981c;
+background-color:#5B2901;
 font-weight:bold;
 }
 
@@ -1711,7 +1711,7 @@ color:#818181;
 }
 
 QWidget#GovernancePage .QFrame#frame_Content {
-    background-color:#c2c2c2;
+    background-color:#2d2113;
 }
 
 QWidget#GovernancePage .ProposalFrame {
