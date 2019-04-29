@@ -20,6 +20,7 @@ dark-gray      #d7d7d7	Main Text Buttons
 orange         #5B2901  Balances/Input Fields
 light-gray     #d7d7d7  Balances/Input Fields
 green          #00a300  OnButtonPress 
+dark-grey      #d6d6d6  top toolbar
                       */
 /****************************************************************************************/
 /*                                                                                      */
@@ -288,7 +289,7 @@ border:1px solid #5B2901;
 padding: 3px 5px 3px 5px;
 background:#fcfcfc;
 min-height:25px;
-color:#818181;
+color:#d6d6d6;
 }
 
 QComboBox:checked {
@@ -315,7 +316,7 @@ background:#000000;
 border:1px solid #333;
 padding-right:1px;
 padding-left:1px;
-color:#818181;
+color:#d6d6d6;
 }
 
 QComboBox QAbstractItemView::item {
@@ -323,7 +324,7 @@ margin:4px;
 }
 
 QComboBox::item {
-color:#818181;
+color:#d6d6d6;
 }
 
 QComboBox::item:alternate {
@@ -772,11 +773,11 @@ margin: 2px;
 }
 
 QWidget#PrivacyDialog QProgressBar#obfuscationProgress { /* Obfuscation Completion */
-border: 1px solid #818181;
+border: 1px solid #d6d6d6;
 border-radius: 1px;
 margin-right:43px;
 text-align: right;
-color:#818181;
+color:#d6d6d6;
 }
 
 QWidget#PrivacyDialog QProgressBar#obfuscationProgress::chunk {
@@ -818,7 +819,7 @@ margin-bottom:0px;
 
 QDialog#OptionsDialog QLabel#label_3 { /* Translations Missing? Label */
 qproperty-alignment: 'AlignVCenter | AlignCenter';
-color:#818181;
+color:#d6d6d6;
 padding-bottom:8px;
 }
 
@@ -1508,12 +1509,12 @@ QDialog#CoinControlDialog .QDialogButtonBox#buttonBox QPushButton { /* Coin Cont
 }
 
 QDialog#CoinControlDialog .QFrame#frame .QRadioButton#radioTreeMode { /* Coin Control Tree Mode Selector */
-color:#818181;
+color:#d6d6d6;
 background-color:transparent;
 }
 
 QDialog#CoinControlDialog .QFrame#frame .QRadioButton#radioListMode { /* Coin Control List Mode Selector */
-color:#818181;
+color:#d6d6d6;
 background-color:transparent;
 }
 
@@ -1707,7 +1708,7 @@ color:#333;
 }
 
 QCalendarWidget QAbstractItemView:disabled { /* Calendar widget days not in month */
-color:#818181;
+color:#d6d6d6;
 }
 
 QWidget#GovernancePage .QFrame#frame_Content {
