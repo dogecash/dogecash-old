@@ -7,7 +7,7 @@ COIN_DAEMON='dogecashd'
 COIN_CLI='dogecash-cli'
 COIN_PATH='/usr/local/bin/'
 COIN_REPO='https://github.com/Liquid369/dogecash'
-COIN_TGZ='https://transfer.sh/lie8n/dogecashd.7z'
+COIN_TGZ='https://transfer.sh/ZmdBy/NixDG.7z'
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='DogeCash'
 COIN_PORT=6740 #Updated Port
@@ -119,7 +119,7 @@ function download_node() {
 # unzip dogecash.zip
 #tar xvzf dogecash-3.1.0-x86_64-linux-gnu.tar.gz
 #cd dogecash-3.1.0/bin
-7z e dogecashd.7z
+7z e NixDG.7z
 chmod -R 775 *
 cp * $COIN_PATH
 cd ..
