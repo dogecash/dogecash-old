@@ -83,14 +83,14 @@ QToolBar > QToolButton {
 Alignment: left;
 background-color: #5B2901;
 selection-background-color:transparent;
-border:0.5px solid #888;
+border:0.5px solid #d6d6d6;
 border-left: 0px;
 border-right: 0px;
 border-top: 0px;
 min-height:2.5em;
 padding: 0em 0em;
 font-size: 11px;
-color:#aaa;
+color:#d6d6d6;
 width: 80px;
 height: 60px;
 }
@@ -120,7 +120,7 @@ background-color:#000000;
 }
 
 QProgressBar {
-color: #AAAAAA;
+color: #d6d6d6AAA;
 border:0px solid grey;
 border-radius:5px;
 background-color:transparent;
