@@ -938,6 +938,7 @@ CAmount CBudgetManager::GetTotalBudget(int nHeight)
     }*/
 	    return 0;
     }
+	return 0;
 }
 
 void CBudgetManager::NewBlock()
