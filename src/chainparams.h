@@ -154,6 +154,7 @@ protected:
     int64_t nTargetTimespan;
     int64_t nTargetSpacing;
     int nLastPOWBlock;
+    int nMinStakeReserve;
     int nMasternodeCollateralLimit;
     int nMasternodeCountDrift;
     int nMaturity;
