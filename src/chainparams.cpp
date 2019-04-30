@@ -174,8 +174,6 @@ public:
         nMasternodeCountDrift = 20;
         int nMasternodeCollateralLimit = 5000; //MN collateral
         nMaxMoneyOut = 21000000 * COIN; //21 mill
-        int nMinStakeReserve = 100;
-
         /** Height or Time Based Activations **/
         nLastPOWBlock = 1440;
         nModifierUpdateBlock = INT_MAX;
