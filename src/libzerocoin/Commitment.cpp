@@ -12,6 +12,7 @@
 // Copyright (c) 2017-2018 The dogecash developers
 
 #include "Commitment.h"
+#include "bignum.h"
 #include "hash.h"
 
 namespace libzerocoin {
