@@ -11,6 +11,8 @@
 **/
 // Copyright (c) 2017 The dogecash developers
 
+
+#include "bignum.h"
 #include "Params.h"
 #include "ParamGeneration.h"
 
