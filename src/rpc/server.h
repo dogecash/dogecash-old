@@ -180,7 +180,7 @@ extern std::string HelpExampleRpc(std::string methodname, std::string args);
 
 extern void EnsureWalletIsUnlocked(bool fAllowAnonOnly = false);
 extern UniValue DozdogecSpend(const CAmount nAmount, bool fMintChange, bool fMinimizeChange, vector<CZerocoinMint>& vMintsSelected, std::string address_str);
-extern UniValue masternode(const UniValue& params, bool fHelp);
+//extern UniValue masternode(const UniValue& params, bool fHelp);
 extern UniValue getconnectioncount(const UniValue& params, bool fHelp); // in rpc/net.cpp
 extern UniValue getpeerinfo(const UniValue& params, bool fHelp);
 extern UniValue ping(const UniValue& params, bool fHelp);
