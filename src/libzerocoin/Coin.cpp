@@ -13,6 +13,7 @@
 
 #include <stdexcept>
 #include <iostream>
+#include "bignum.h"
 #include "Coin.h"
 #include "Commitment.h"
 #include "pubkey.h"
