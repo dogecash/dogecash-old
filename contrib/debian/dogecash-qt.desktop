@@ -10,3 +10,4 @@ Type=Application
 Icon=dogecash128
 MimeType=x-scheme-handler/dogecash;
 Categories=Office;Finance;
+StartupWMClass=Pivx-qt

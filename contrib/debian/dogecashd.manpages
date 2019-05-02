@@ -1,2 +1,2 @@
-debian/manpages/dogecashd.1
-debian/manpages/dogecash.conf.5
+doc/man/dogecashd.1
+doc/man/dogecash-cli.1

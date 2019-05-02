@@ -381,7 +381,6 @@ static const CRPCCommand vRPCCommands[] =
         {"dogecash", "getmasternodestatus", &getmasternodestatus, true, true, false},
         {"dogecash", "getmasternodewinners", &getmasternodewinners, true, true, false},
         {"dogecash", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"dogecash", "mnbudget", &mnbudget, true, true, false},
         {"dogecash", "preparebudget", &preparebudget, true, true, false},
         {"dogecash", "submitbudget", &submitbudget, true, true, false},
         {"dogecash", "mnbudgetvote", &mnbudgetvote, true, true, false},
