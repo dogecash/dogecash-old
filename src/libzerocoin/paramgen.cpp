@@ -14,6 +14,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include "bignum.h"
 //#include <curses.h>
 #include <exception>
 #include "Zerocoin.h"
