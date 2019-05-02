@@ -11,6 +11,7 @@
  **/
 // Copyright (c) 2017-2018 The dogecash developers
 
+#include "bignum.h"
 #include "CoinSpend.h"
 #include <iostream>
 #include <sstream>
