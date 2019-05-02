@@ -14,6 +14,7 @@
 #include <sstream>
 #include <iostream>
 #include "Accumulator.h"
+#include "bignum.h"
 #include "ZerocoinDefines.h"
 
 namespace libzerocoin {
