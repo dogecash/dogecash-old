@@ -11,6 +11,7 @@
 **/
 // Copyright (c) 2017 The dogecash developers
 
+#include "bignum.h"
 #include <streams.h>
 #include "SerialNumberSignatureOfKnowledge.h"
 
