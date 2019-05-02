@@ -365,7 +365,7 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true,  true,  false  },
 
         /* dogecash features */
-        {"dogecash", "masternode", &masternode, true, true, false},
+    //    {"dogecash", "masternode", &masternode, true, true, false},
         {"dogecash", "listmasternodes", &listmasternodes, true, true, false},
         {"dogecash", "getmasternodecount", &getmasternodecount, true, true, false},
         {"dogecash", "masternodeconnect", &masternodeconnect, true, true, false},
