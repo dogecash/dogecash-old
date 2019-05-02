@@ -3,6 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "Denominations.h"
+#include "bignum.h"
 #include "amount.h"
 
 namespace libzerocoin {
