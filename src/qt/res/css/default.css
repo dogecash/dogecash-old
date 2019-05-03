@@ -142,16 +142,16 @@ padding-right:5px;
 }
 
 QTabWidget {
-background-color:#f2f2f2;
+background-color:#29333D;
 }
 
 QTabWidget::pane {
-background-color:#f2f2f2;
+background-color:#29333D;
 border:1px solid #29333D;
 }
 
 QTabBar {
-background-color:#f2f2f2;
+background-color:#29333D;
 color:#d6d6d6;
 }
 
