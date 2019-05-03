@@ -205,17 +205,17 @@ background-color:#e7e7e7;
 
 .QValidatedLineEdit:!focus {
 color:#B6A27E;
-background-color:#e7e7e7;
+background-color:#29333D;
 }
 
 .QLineEdit:!focus {
 color:#B6A27E;
-background-color:#e7e7e7;
+background-color:#29333D;
 }
 
 .QTextEdit:!focus {
 color:#B6A27E;
-background-color:#e7e7e7;
+background-color:#29333D;
 }
 
 /* .QValidatedLineEdit:checked, .QLineEdit:checked */
@@ -402,7 +402,7 @@ background-color:#f2f2f2;
 
 QValueComboBox:!focus {
 color:#B6A27E;
-background-color:#e7e7e7;
+background-color:#29333D;
 }
 
 /****************************************************************************************/
