@@ -305,6 +305,7 @@ border:0px solid transparent;
 QComboBox::drop-down {
 width:25px;
 border:0px;
+background:#29333D;
 }
 
 QComboBox::down-arrow {
