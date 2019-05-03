@@ -237,7 +237,7 @@ border-width: 1px;
 border-style: outset;
 border-color: #B6A27E;
 border-radius: 2px;
-color:#B6A27E;
+color:#29333D;
 font-size:12px;
 font-weight:bold;
 padding-left:25px;
@@ -249,7 +249,7 @@ margin: 2px;
 }
 
 QPushButton:hover {
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #29333D, stop: 0.1 #29333D, stop: 0.101 #6f5ca3, stop: 0.9 #6f5ca3, stop: 0.901 #29333D, stop: 1 #29333D);
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #29333D, stop: 0.1 #29333D, stop: 0.101 #d7d7d7, stop: 0.9 #d7d7d7, stop: 0.901 #29333D, stop: 1 #29333D);
 }
 
 QPushButton:focus {
