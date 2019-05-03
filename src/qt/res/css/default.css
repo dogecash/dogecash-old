@@ -287,7 +287,7 @@ background-color: #f2f2f2;
 QComboBox { /* Dropdown Menus */
 border:1px solid #B6A27E;
 padding: 3px 5px 3px 5px;
-background:#f2f2f2;
+background:#29333D;
 min-height:25px;
 color:#d6d6d6;
 }
@@ -346,14 +346,14 @@ selection-color:transparent;
 
 QAbstractSpinBox {
 padding: 3px 5px 3px 5px;
-background:#f2f2f2;
+background:#29333D;
 font-size:12px;
 min-height:25px;
 outline:0;
 padding:3px;
 border:0px;
 color:#d6d6d6;
-background-color:#f2f2f2;
+background-color:#29333D;
 }
 
 QAbstractSpinBox:!focus {
@@ -391,14 +391,14 @@ image:url(':/images/downArrow_small');
 
 QValueComboBox {
 padding: 3px 5px 3px 5px;
-background:#f2f2f2;
+background:#29333D;
 font-size:12px;
 min-height:25px;
 outline:0;
 padding:3px;
 border:0px;
 color:#29333D;
-background-color:#f2f2f2;
+background-color:#29333D;
 }
 
 QValueComboBox:!focus {
@@ -451,7 +451,7 @@ border:1px solid #d6d6d6;
 }
 
 QTableView::item { /* Table Item */
-background-color:#f2f2f2;
+background-color:#29333D;
 font-size:12px;
 }
 
