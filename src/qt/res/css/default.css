@@ -237,7 +237,7 @@ border-width: 1px;
 border-style: outset;
 border-color: #B6A27E;
 border-radius: 2px;
-color:##B6A27E;
+color:#B6A27E;
 font-size:12px;
 font-weight:bold;
 padding-left:25px;
@@ -1400,7 +1400,7 @@ min-height:27px;
 QDialog#SendCoinsDialog QLabel#labelBalance {
 margin-left:0px;
 padding-left:0px;
-color:##B6A27E;
+color:#B6A27E;
 min-height:27px;
 }
 
@@ -1623,7 +1623,7 @@ font-size:14px;
 /**************************** RECEIVE COINS DIALOG **************************************/
 
 QDialog#ReceiveRequestDialog QTextEdit { /* Contents of Receive Coin Dialog */
-border:1px solid ##B6A27E;
+border:1px solid #B6A27E;
 }
 
 /**************************** TRANSACTIONS PAGE *****************************************/
@@ -1652,7 +1652,7 @@ color:#d7d7d7;
 /**************************** TRANSACTION DETAILS DIALOG ********************************/
 
 QDialog#TransactionDescDialog QTextEdit { /* Contents of Receive Coin Dialog */
-border:1px solid ##B6A27E;
+border:1px solid #B6A27E;
 }
 
 /**************************** PRIVACY PAGE *****************************************/
