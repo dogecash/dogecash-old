@@ -200,7 +200,7 @@ outline:0;
 padding:3px;
 border:0px;
 color:#29333D;
-background-color:#e7e7e7;
+background-color:#29333D;
 }
 
 .QValidatedLineEdit:!focus {
@@ -222,11 +222,11 @@ background-color:#29333D;
 
 .QValidatedLineEdit:disabled, .QLineEdit:disabled, .QTextEdit:disabled {
 color: #B6A27E;
-background-color:#f2f2f2;
+background-color:#29333D;
 }
 
 .QPlainTextEdit {
-background-color:#f2f2f2;
+background-color:#29333D;
 }
 
 /***************************** Global Qt Objects ***********************************************************/
