@@ -396,7 +396,7 @@ min-height:25px;
 outline:0;
 padding:3px;
 border:0px;
-color:#d6d6d6;
+color:#29333D;
 background-color:#f2f2f2;
 }
 
@@ -858,7 +858,7 @@ max-width:60px;
 QDialog#RPCConsole QTextEdit#messagesWidget { /* Console Messages Window */
 border:0;
 background-color:#fcfcfc;
-color:#d6d6d6;
+color:#29333D;
 }
 
 QDialog#RPCConsole QLineEdit#lineEdit { /* Console Input */
