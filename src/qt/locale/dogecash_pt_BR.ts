@@ -613,8 +613,8 @@
         <translation>Ferramentas de abas</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Send coins to a dogecash address</source>
@@ -637,12 +637,12 @@
         <translation>Procurar masternodes</translation>
     </message>
     <message>
-        <source>&amp;About dogecash Core</source>
-        <translation>&amp;Sobre o dogecash Core</translation>
+        <source>&amp;About DogeCash Core</source>
+        <translation>&amp;Sobre o DogeCash Core</translation>
     </message>
     <message>
-        <source>Show information about dogecash Core</source>
-        <translation>Mostra informação sobre o dogecash Core</translation>
+        <source>Show information about DogeCash Core</source>
+        <translation>Mostra informação sobre o DogeCash Core</translation>
     </message>
     <message>
         <source>Modify configuration options for dogecash</source>
@@ -697,11 +697,11 @@
         <translation>Janela de exploração de blocos</translation>
     </message>
     <message>
-        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>Mostra a ajuda da dogecash Core para receber uma lista com possíveis opções de linha de comando dogecash</translation>
+        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
+        <translation>Mostra a ajuda da DogeCash Core para receber uma lista com possíveis opções de linha de comando dogecash</translation>
     </message>
     <message>
-        <source>dogecash Core client</source>
+        <source>DogeCash Core client</source>
         <translation>Cliente Core dogecash</translation>
     </message>
     <message>
@@ -1175,16 +1175,16 @@ MultiSend: %1</translation>
         <translation>versão</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About dogecash Core</source>
-        <translation>Sobre o dogecash Core</translation>
+        <source>About DogeCash Core</source>
+        <translation>Sobre o DogeCash Core</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1226,16 +1226,16 @@ MultiSend: %1</translation>
         <translation>Bem-vindo</translation>
     </message>
     <message>
-        <source>Welcome to dogecash Core.</source>
-        <translation>Bem-vindo ao dogecash Core.</translation>
+        <source>Welcome to DogeCash Core.</source>
+        <translation>Bem-vindo ao DogeCash Core.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where dogecash Core will store its data.</source>
-        <translation>Como essa é a primeira vez que o programa é utilizado, você pode escolher onde dogecash Core vai armazenar os seus dados.</translation>
+        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
+        <translation>Como essa é a primeira vez que o programa é utilizado, você pode escolher onde DogeCash Core vai armazenar os seus dados.</translation>
     </message>
     <message>
-        <source>dogecash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>dogecash Core vai baixar e armazenar uma cópia da blockchain dogecash. Pelo menos %1GB de informação será armazenado neste diretório e irá aumentar com o tempo. A carteira também será armazenada neste diretório.</translation>
+        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DogeCash Core vai baixar e armazenar uma cópia da blockchain dogecash. Pelo menos %1GB de informação será armazenado neste diretório e irá aumentar com o tempo. A carteira também será armazenada neste diretório.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1246,8 +1246,8 @@ MultiSend: %1</translation>
         <translation>Usar um diretório personalizado de dados:</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -2184,8 +2184,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     </context>
 <context>
@@ -2948,8 +2948,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>dogecash Core is shutting down...</source>
-        <translation>dogecash Core está desligando...</translation>
+        <source>DogeCash Core is shutting down...</source>
+        <translation>DogeCash Core está desligando...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -3090,8 +3090,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>dogecash Core</source>
-        <translation>dogecash Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -3106,8 +3106,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Os desenvolvedores do Dash Core</translation>
     </message>
     <message>
-        <source>The dogecash Core developers</source>
-        <translation>Os desenvolvedores do dogecash Core</translation>
+        <source>The DogeCash Core developers</source>
+        <translation>Os desenvolvedores do DogeCash Core</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -3691,7 +3691,7 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Aviso: -paytxfee está definido como muito alto! Está e a taxa de transação que você irá pagar se enviar uma transação.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong dogecash Core will not work properly.</source>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
         <translation>Aviso: Favor verificar se o horário e data de seu computador estão corretos! Se o seu relógio estiver errado o Core dogecash não vai funcionar corretamente.</translation>
     </message>
     <message>
@@ -3771,8 +3771,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Todos os direitos reservados (C) 2014-%i aos Desenvolvedores do Dash Core</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The dogecash Core Developers</source>
-        <translation>Todos os direitos reservados (C) 2015-%i aos Desenvolvedores do dogecash Core</translation>
+        <source>Copyright (C) 2015-%i The DogeCash Core Developers</source>
+        <translation>Todos os direitos reservados (C) 2015-%i aos Desenvolvedores do DogeCash Core</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -3831,8 +3831,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Erro no carregamento da wallet.dat: Carteira corrompida</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of dogecash Core</source>
-        <translation>Erro ao carregar wallet.dat: A Carteira requer uma nova versão da dogecash Core</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
+        <translation>Erro ao carregar wallet.dat: A Carteira requer uma nova versão da DogeCash Core</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -4321,8 +4321,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Carteira está travada.</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart dogecash Core to complete</source>
-        <translation>A carteira precisa ser reescrita: reinicia o dogecash Core para completar</translation>
+        <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
+        <translation>A carteira precisa ser reescrita: reinicia o DogeCash Core para completar</translation>
     </message>
     <message>
         <source>Wallet options:</source>

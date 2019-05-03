@@ -641,7 +641,7 @@
         <translation>Iloj langeto</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation>dogecash kerno</translation>
     </message>
     <message>
@@ -665,11 +665,11 @@
         <translation>Foliumi mastro-nodo</translation>
     </message>
     <message>
-        <source>&amp;About dogecash Core</source>
+        <source>&amp;About DogeCash Core</source>
         <translation>&amp;Pri dogecash Kerno</translation>
     </message>
     <message>
-        <source>Show information about dogecash Core</source>
+        <source>Show information about DogeCash Core</source>
         <translation>Montri informon pri dogecash Kerno</translation>
     </message>
     <message>
@@ -725,11 +725,11 @@
         <translation>Bloko esplorilo fenestro</translation>
     </message>
     <message>
-        <source>Show the dogecash Core help message to get a list with possible dogecash command-line options</source>
+        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
         <translation>Montri la dogecash Kore help-mesaĝo por havi liston de havebla dogecash komandlinion opciojn</translation>
     </message>
     <message>
-        <source>dogecash Core client</source>
+        <source>DogeCash Core client</source>
         <translation>dogecash Kerno kliento</translation>
     </message>
     <message>
@@ -1210,7 +1210,7 @@ Muktisendi: %1</translation>
         <translation>versio</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation>dogecash kerno</translation>
     </message>
     <message>
@@ -1218,7 +1218,7 @@ Muktisendi: %1</translation>
         <translation>(%1-bajto)</translation>
     </message>
     <message>
-        <source>About dogecash Core</source>
+        <source>About DogeCash Core</source>
         <translation>Pri dogecash Kerno</translation>
     </message>
     <message>
@@ -1261,15 +1261,15 @@ Muktisendi: %1</translation>
         <translation>Bonvenon</translation>
     </message>
     <message>
-        <source>Welcome to dogecash Core.</source>
+        <source>Welcome to DogeCash Core.</source>
         <translation>Bonvenon al la dogecash Kerno.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where dogecash Core will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
         <translation>Ĉar estas la unuan fojon ke la programo estas lanĉita, vi povas elekti kie dogecash kernk storigis sian datumojn. </translation>
     </message>
     <message>
-        <source>dogecash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>dogecash kerno elŝutos kaj konservi kopion de la dogecash blokĉeno. Almenaŭ %1GB datumoj stokitos en ĉi tiun dosierujo, kaj ĝi kresko kun la tempo. Monujo stokitos en ĉi tiun dosierujo.</translation>
     </message>
     <message>
@@ -1281,7 +1281,7 @@ Muktisendi: %1</translation>
         <translation>Uzi kutimon datumojn dosierujo:</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation>dogecash kerno</translation>
     </message>
     <message>
@@ -1995,7 +1995,7 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
         <translation>NEKONATA</translation>
     </message>
     <message>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation>dogecash kerno</translation>
     </message>
     </context>
@@ -2371,7 +2371,7 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>dogecash Core is shutting down...</source>
+        <source>DogeCash Core is shutting down...</source>
         <translation>dogecash kerno fermanta...</translation>
     </message>
     </context>
@@ -2425,7 +2425,7 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>dogecash Core</source>
+        <source>DogeCash Core</source>
         <translation>dogecash kerno</translation>
     </message>
     <message>
@@ -2437,7 +2437,7 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
         <translation>La Dash kerno programistoj</translation>
     </message>
     <message>
-        <source>The dogecash Core developers</source>
+        <source>The DogeCash Core developers</source>
         <translation>La dogecash kerno programistoj</translation>
     </message>
     </context>

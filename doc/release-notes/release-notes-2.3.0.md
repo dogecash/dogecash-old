@@ -1,4 +1,4 @@
-dogecash Core version 2.3.0 is now available from:
+DogeCash Core version 2.3.0 is now available from:
 
   <https://github.com/dogecash-project/dogecash/releases>
 
@@ -12,7 +12,7 @@ Please report bugs using the issue tracker at github:
 Mandatory Update
 ==============
 
-dogecash Core v2.3.0 is a mandatory update for all users. This release contains validation and security improvements that are not backwards compatible with older versions. Users will have a grace period of no less than two weeks to update their clients before enforcement of this update is enabled.
+DogeCash Core v2.3.0 is a mandatory update for all users. This release contains validation and security improvements that are not backwards compatible with older versions. Users will have a grace period of no less than two weeks to update their clients before enforcement of this update is enabled.
 
 How to Upgrade
 --------------
@@ -23,11 +23,11 @@ If you are running an older version, shut it down. Wait until it has completely 
 Compatibility
 ==============
 
-dogecash Core is extensively tested on multiple operating systems using the Linux kernel, macOS 10.8+, and Windows Vista and later.
+DogeCash Core is extensively tested on multiple operating systems using the Linux kernel, macOS 10.8+, and Windows Vista and later.
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support), No attempt is made to prevent installing or running the software on Windows XP, you can still do so at your own risk but be aware that there are known instabilities and issues. Please do not report issues about Windows XP to the issue tracker.
 
-dogecash Core should also work on most other Unix-like systems but is not frequently tested on them.
+DogeCash Core should also work on most other Unix-like systems but is not frequently tested on them.
 
 Notable Changes
 ===============
@@ -132,7 +132,7 @@ Note that the GUI list of masternodes associated with a controller wallet remain
 SPV Client Support
 --------------
 
-dogecash Core now enables bloom filters by default to support SPV clients like mobile wallets. This feature can be disabled by using the `-peerbloomfilters` option on startup.
+DogeCash Core now enables bloom filters by default to support SPV clients like mobile wallets. This feature can be disabled by using the `-peerbloomfilters` option on startup.
 
 2.3.0 Change log
 =================

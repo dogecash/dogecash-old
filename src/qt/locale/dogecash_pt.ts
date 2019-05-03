@@ -1260,8 +1260,8 @@
         <translation>Carteira esta bloqueada.</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart dogecash Core to complete</source>
-        <translation>Carteira precisa ser reescrita: reinicie o dogecash Core para completar.</translation>
+        <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
+        <translation>Carteira precisa ser reescrita: reinicie o DogeCash Core para completar.</translation>
     </message>
     <message>
         <source>Wallet options:</source>
