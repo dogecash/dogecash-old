@@ -873,7 +873,7 @@ padding-right:10px;
 }
 
 QDialog#RPCConsole .QGroupBox #line { /* Network In Line */
-background-color:#B6A27E;
+background-color:#29333D;
 }
 
 QDialog#RPCConsole .QGroupBox #line_2 { /* Network Out Line */
@@ -1642,7 +1642,7 @@ margin-right:1px;
 }
 
 QLabel#transactionSumLabel { /* Example of setObjectName for widgets without name */
-color:#29333D;
+color:#B6A27E;
 font-weight:bold;
 }
 
