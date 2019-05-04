@@ -249,7 +249,7 @@ margin: 2px;
 }
 
 QPushButton:hover {
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #29333D, stop: 0.1 #29333D, stop: 0.101 #d7d7d7, stop: 0.9 #d7d7d7, stop: 0.901 #29333D, stop: 1 #29333D);
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #29333D, stop: 0.1 #29333D, stop: 0.101 #B6A27E, stop: 0.9 #B6A27E, stop: 0.901 #29333D, stop: 1 #29333D);
 }
 
 QPushButton:focus {
@@ -260,7 +260,7 @@ QPushButton:focus {
 QPushButton:pressed {
 background-color: #B6A27E;
 border:1px solid #29333D;
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #a4a5a4, stop: 0.1 #a4a5a4, stop: 0.101 #6f5ca3, stop: 0.9 #6f5ca3, stop: 0.901 #a4a5a4, stop: 1 #a4a5a4);
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #29333D, stop: 0.1 #29333D, stop: 0.101 #B6A27E, stop: 0.9 #B6A27E, stop: 0.901 #29333D, stop: 1 #29333D);
 }
 
 /* Special handling for statusbar-icons (which are partly QPushButtons) */
@@ -1721,6 +1721,7 @@ QWidget#GovernancePage .ProposalFrame {
     border-radius:5px;
     margin:2px;
     max-height:250px;
+	border:1px solid #d7d7d7;
 }
 
 QWidget#GovernancePage .ProposalFrame#proposalFrame {
