@@ -4738,16 +4738,20 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
             // Start at the block we're adding on to
             CBlockIndex *prev = pindexPrev;
 
-            int readBlock = 0;
-            vector<CBigNum> vBlockSerials;
             CBlock bl;
-            // Go backwards on the forked chain up to the split
-            do {
-                // Check if the forked chain is longer than the max reorg limit
-                if(readBlock == Params().MaxReorganizationDepth()){
-                    // TODO: Remove this chain from disk.
-                    return error("%s: forked chain longer than maximum reorg limit", __func__);
-                }
+            if (!ReadBlockFromDisk(bl, prev))
+                return error("%s: previous block %s not on disk", __func__, prev->GetBlockHash().GetHex());
+
+            vector<CBigNum> vBlockSerials;
+            if (!chainActive.Contains(prev)) {
+                int readBlock = 0;
+                // Go backwards on the forked chain up to the split
+                do {
+                    // Check if the forked chain is longer than the max reorg limit
+                    if (readBlock == Params().MaxReorganizationDepth()) {
+                        // TODO: Remove this chain from disk.
+                        return error("%s: forked chain longer than maximum reorg limit", __func__);
+                    }
 
                 if(!ReadBlockFromDisk(bl, prev))
                     // Previous block not on disk
