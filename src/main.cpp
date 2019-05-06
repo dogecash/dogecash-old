@@ -4688,17 +4688,17 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
         CTransaction &stakeTxIn = block.vtx[1];
 
         // Inputs
-        std::vector<CTxIn> DOGECInputs;
+        std::vector<CTxIn> dogecInputs;
         std::vector<CTxIn> zdogecInputs;
 
         for (const CTxIn& stakeIn : stakeTxIn.vin) {
             if(stakeIn.scriptSig.IsZerocoinSpend()){
                 zdogecInputs.push_back(stakeIn);
             }else{
-                DOGECInputs.push_back(stakeIn);
+                dogecInputs.push_back(stakeIn);
             }
         }
-        const bool hasDOGECInputs = !DOGECInputs.empty();
+        const bool hasDOGECInputs = !dogecInputs.empty();
         const bool haszdogecInputs = !zdogecInputs.empty();
 
         // ZC started after PoS.
@@ -4721,7 +4721,7 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
                 if(tx.IsCoinStake()) continue;
                 if(hasDOGECInputs)
                     // Check if coinstake input is double spent inside the same block
-                    for (const CTxIn& DOGECIn : DOGECInputs){
+                    for (const CTxIn& DOGECIn : dogecInputs){
                         if(DOGECIn.prevout == in.prevout){
                             // double spent coinstake input inside block
                             return error("%s: double spent coinstake input inside block", __func__);
