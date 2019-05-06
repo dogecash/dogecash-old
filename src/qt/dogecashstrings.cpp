@@ -253,10 +253,10 @@ QT_TRANSLATE_NOOP("dogecash-core", ""
 QT_TRANSLATE_NOOP("dogecash-core", ""
 "You must specify a masternodeprivkey in the configuration. Please see "
 "documentation for help."),
-QT_TRANSLATE_NOOP("dogecash-core", "(6740 could be used only on mainnet)"),
+QT_TRANSLATE_NOOP("dogecash-core", "(16740 could be used only on mainnet)"),
 QT_TRANSLATE_NOOP("dogecash-core", "(default: %s)"),
 QT_TRANSLATE_NOOP("dogecash-core", "(default: 1)"),
-QT_TRANSLATE_NOOP("dogecash-core", "(must be 6740 for mainnet)"),
+QT_TRANSLATE_NOOP("dogecash-core", "(must be 16740 for mainnet)"),
 QT_TRANSLATE_NOOP("dogecash-core", "<category> can be:"),
 QT_TRANSLATE_NOOP("dogecash-core", "Accept command line and JSON-RPC commands"),
 QT_TRANSLATE_NOOP("dogecash-core", "Accept connections from outside (default: 1 if no -proxy or -connect)"),

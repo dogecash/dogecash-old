@@ -5042,8 +5042,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Вы должны указать в  строке приложенный ключ. Пожалуйста, обратитесь к документации для получения справки</translation>
     </message>
     <message>
-        <source>(6740 could be used only on mainnet)</source>
-        <translation>(6740 можно использовать только в сети)</translation>
+        <source>(16740 could be used only on mainnet)</source>
+        <translation>(16740 можно использовать только в сети)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -5054,8 +5054,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>(неуплата: 1)</translation>
     </message>
     <message>
-        <source>(must be 6740 for mainnet)</source>
-        <translation>(должен быть 6740 для mainet)</translation>
+        <source>(must be 16740 for mainnet)</source>
+        <translation>(должен быть 16740 для mainet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

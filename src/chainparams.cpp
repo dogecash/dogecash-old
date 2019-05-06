@@ -160,7 +160,7 @@ public:
         pchMessageStart[2] = 0x1a;
         pchMessageStart[3] = 0x6f;
         vAlertPubKey = ParseHex("04e70ca66d0bc8bd6c105952488fcdbd9f809d459af257646e35c5ec36f5e03158c916442aaa9592e63eeca8afa9660e505b160ee599c8efcc0a5f111058ba8c74");
-        nDefaultPort = 6740;
+        nDefaultPort = 16740;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // dogecash starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;

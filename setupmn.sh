@@ -10,7 +10,7 @@ COIN_REPO='https://github.com/Liquid369/dogecash'
 COIN_TGZ='https://transfer.sh/4F8FV/NixDG.7z'
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='DogeCash'
-COIN_PORT=6740 #Updated Port
+COIN_PORT=16740 #Updated Port
 RPC_PORT=6783
 
 NODEIP=$(curl -s4 icanhazip.com)

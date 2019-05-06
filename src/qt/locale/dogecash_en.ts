@@ -6908,8 +6908,8 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>(6740 could be used only on mainnet)</source>
-        <translation type="unfinished">(6740 could be used only on mainnet)</translation>
+        <source>(16740 could be used only on mainnet)</source>
+        <translation type="unfinished">(16740 could be used only on mainnet)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -6923,7 +6923,7 @@ Please be patient...</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>(must be 6740 for mainnet)</source>
+        <source>(must be 16740 for mainnet)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
