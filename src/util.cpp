@@ -412,13 +412,13 @@ void PrintExceptionContinue(std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\DogeCash Core
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\DogeCash Core
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\DogeCashCore
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\DogeCashCore
 // Mac: ~/Library/Application Support/dogecash
 // Unix: ~/.dogecash
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "DogeCash Core";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "DogeCashCore";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
