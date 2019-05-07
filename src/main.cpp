@@ -4791,7 +4791,7 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
             splitHeight = prev->nHeight;
 
             // Now that this loop if completed. Check if we have zdogec inputs.
-            if(haszdogecInput){
+            if(haszdogecInputs){
                 for (const CTxIn& zdogecInput : zdogecInputs) {
                     CoinSpend spend = TxInToZerocoinSpend(zdogecInput);
 
