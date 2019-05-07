@@ -4779,7 +4779,7 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
                             }
                         }
                     }
-				}
+					
                 // Prev block
                 prev = prev->pprev;
                 if (!ReadBlockFromDisk(bl, prev))
@@ -4791,7 +4791,7 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
             splitHeight = prev->nHeight;
 
             // Now that this loop if completed. Check if we have zdogec inputs.
-            if(haszdogecInputs){
+            if(haszdogecInput){
                 for (const CTxIn& zdogecInput : zdogecInputs) {
                     CoinSpend spend = TxInToZerocoinSpend(zdogecInput);
 
