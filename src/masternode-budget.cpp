@@ -913,33 +913,23 @@ CAmount CBudgetManager::GetTotalBudget(int nHeight)
 
     //get block value and calculate from that
     CAmount nSubsidy = 0;
-    if (nHeight <= Params().LAST_POW_BLOCK() && nHeight >= 151200) {
-       /* if (nHeight == 0) {
-	nSubsidy = 0 * COIN;
-    	} else if (nHeight == 1) {
-        nSubsidy = 5000000 * COIN;
-	} else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight > 1) { //end PoW
+    if (nHeight == 0) {
+        nSubsidy = 0 * COIN;
+       } else if (nHeight == 1) {
+        nSubsidy = 5450000 * COIN;
+    } else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight > 1) { //end PoW
         nSubsidy = 12 * COIN;
-	} else if (nHeight <= 238620 && nHeight > Params().LAST_POW_BLOCK()) { //Start PoS
+    } else if (nHeight <= 238620 && nHeight > Params().LAST_POW_BLOCK()) { //Start PoS
         nSubsidy = 12 * COIN;
-	} else if (nHeight <= 764221 && nHeight >= 238621) {
+    } else if (nHeight <= 764221 && nHeight >= 238621) {
         nSubsidy = 10 * COIN;
-	} else if (nHeight <= 1289222 && nHeight >= 764222) {
+    } else if (nHeight <= 1289222 && nHeight >= 764222) {
         nSubsidy = 6 * COIN;
-	}    else {
+    }    else {
         nSubsidy = 6 * COIN;
-	}
-    // Amount of blocks in a months period of time (using 1 minutes per) = (60*24*30)
-    if (nHeight <= 172800) {
-        //return 648000 * COIN;
-	    return 0;
-    } else {
-       // return ((nSubsidy / 100) * 10) * 1440 * 30;
-	    return 0;
-    }*/
-	    return 0;
     }
-	return 0;
+
+        return ((nSubsidy / 100) * 10) * 1440 * 30; //Cut 10% from block rewards for governance
 }
 
 void CBudgetManager::NewBlock()
