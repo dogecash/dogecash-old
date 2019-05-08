@@ -1,0 +1,81 @@
+policy_module(dogecash, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type dogecash_t;
+type dogecash_exec_t;
+init_daemon_domain(dogecash_t, dogecash_exec_t)
+
+permissive dogecash_t;
+
+type dogecash_initrc_exec_t;
+init_script_file(dogecash_initrc_exec_t)
+
+type dogecash_conf_t;
+files_type(dogecash_conf_t)
+
+type dogecash_var_lib_t;
+files_type(dogecash_var_lib_t)
+
+type dogecash_var_run_t;
+files_type(dogecash_var_run_t)
+
+type dogecash_port_t;
+corenet_port(dogecash_port_t)
+
+########################################
+#
+# dogecash local policy
+#
+allow dogecash_t self:process { fork };
+
+allow dogecash_t self:fifo_file rw_fifo_file_perms;
+allow dogecash_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(dogecash_t, dogecash_conf_t, dogecash_conf_t)
+manage_files_pattern(dogecash_t, dogecash_conf_t, dogecash_conf_t)
+
+manage_dirs_pattern(dogecash_t, dogecash_var_lib_t, dogecash_var_lib_t)
+manage_files_pattern(dogecash_t, dogecash_var_lib_t, dogecash_var_lib_t)
+files_var_lib_filetrans(dogecash_t, dogecash_var_lib_t, { dir file })
+
+manage_dirs_pattern(dogecash_t, dogecash_var_run_t, dogecash_var_run_t)
+manage_files_pattern(dogecash_t, dogecash_var_run_t, dogecash_var_run_t)
+
+sysnet_dns_name_resolve(dogecash_t)
+corenet_all_recvfrom_unlabeled(dogecash_t)
+
+allow dogecash_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(dogecash_t)
+corenet_tcp_sendrecv_generic_node(dogecash_t)
+corenet_tcp_sendrecv_all_ports(dogecash_t)
+corenet_tcp_bind_generic_node(dogecash_t)
+
+gen_require(`
+    type dogecash_port_t;
+')
+allow dogecash_t dogecash_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type dogecash_port_t;
+')
+allow dogecash_t dogecash_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(dogecash_t)
+
+files_read_etc_files(dogecash_t)
+
+miscfiles_read_localization(dogecash_t)
+
+sysnet_dns_name_resolve(dogecash_t)
+
+allow dogecash_t dogecash_exec_t:file execute_no_trans;
+allow dogecash_t self:process setsched;
+corecmd_exec_ls(dogecash_t)
+corenet_tcp_connect_http_port(dogecash_t)
+dev_read_urand(dogecash_t)
+fs_getattr_xattr_fs(dogecash_t)
+kernel_read_system_state(dogecash_t)

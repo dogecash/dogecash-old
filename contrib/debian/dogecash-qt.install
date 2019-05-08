@@ -1,0 +1,6 @@
+usr/local/bin/dogecash-qt usr/bin
+share/pixmaps/dogecash32.xpm usr/share/pixmaps
+share/pixmaps/dogecash16.xpm usr/share/pixmaps
+share/pixmaps/dogecash128.png usr/share/pixmaps
+debian/dogecash-qt.desktop usr/share/applications
+debian/dogecash-qt.protocol usr/share/kde4/services/
