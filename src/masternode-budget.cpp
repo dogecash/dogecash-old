@@ -909,11 +909,12 @@ CAmount CBudgetManager::GetTotalBudget(int nHeight)
     if (Params().NetworkID() == CBaseChainParams::TESTNET) {
         CAmount nSubsidy = 500 * COIN;
         return ((nSubsidy / 100) * 10) * 146;
-    }
-//get block value and calculate from that
-    CAmount nSubsidy = 0;
-    nSubsidy = GetBlockValue(nHeight);
+    } 
+    if (nHeight > 1) {
         return ((nSubsidy / 100) * 10) * 1440 * 30; //Cut 10% from block rewards for governance
+    } else {
+        return 0; 
+    }
 }
 
 void CBudgetManager::NewBlock()
