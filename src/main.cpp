@@ -1945,10 +1945,11 @@ int64_t GetBlockValue(int nHeight)
         nSubsidy = 6* COIN;
 	}
       int64_t nMoneySupply = chainActive.Tip()->nMoneySupply;
+      int nBlockValue = nSubsidy;
      if(nHeight > 1)
-       int nBlockValue = nSubsidy - (nSubsidy/10); //deduct 10%
+        nBlockValue = nSubsidy - (nSubsidy/10); //deduct 10%
      else
-       int nBlockValue = nSubsidy;
+        nBlockValue = nSubsidy;
     if (nMoneySupply + nBlockValue >= Params().MaxMoneyOut())
         nBlockValue = Params().MaxMoneyOut() - nMoneySupply;
 
