@@ -373,7 +373,7 @@ UniValue burn(const UniValue& params, bool fHelp){
     }
 
     // Amount
-    int64_t nAmount = AmountFromValue(params[0]);
+    int64_t nAmount = AmountFromValue(params[0].get_int());
 
     EnsureWalletIsUnlocked();
     CWalletTx wtx;
