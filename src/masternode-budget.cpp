@@ -1707,12 +1707,12 @@ CBudgetProposalBroadcast::CBudgetProposalBroadcast(std::string strProposalNameIn
     int nCycleStart = nBlockStart - nBlockStart % Params().GetBudgetCycleBlocks();
 
     // Right now single payment proposals have nBlockEnd have a cycle too early!
-    // switch back if it brea something else
+    // switch back if it break something else
     // calculate the end of the cycle for this vote, add half a cycle (vote will be deleted after that block)
     // nBlockEnd = nCycleStart + GetBudgetPaymentCycleBlocks() * nPaymentCount + GetBudgetPaymentCycleBlocks() / 2;
 
     // Calculate the end of the cycle for this vote, vote will be deleted after next cycle
-    nBlockEnd = nCycleStart + (Params().GetBudgetCycleBlocks() * nPaymentCount);
+    nBlockEnd = nCycleStart + (Params().GetBudgetCycleBlocks() + 1)  * nPaymentCount;
 
     address = addressIn;
     nAmount = nAmountIn;
