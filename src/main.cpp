@@ -1950,6 +1950,7 @@ int64_t GetBlockValue(int nHeight)
         nBlockValue = nSubsidy - (nSubsidy/10); //deduct 10%
      else
         nBlockValue = nSubsidy;
+        
     if (nMoneySupply + nBlockValue >= Params().MaxMoneyOut())
         nBlockValue = Params().MaxMoneyOut() - nMoneySupply;
 

@@ -352,6 +352,38 @@ void SendMoney(const CTxDestination& address, CAmount nValue, CWalletTx& wtxNew,
     if (!pwalletMain->CommitTransaction(wtxNew, reservekey, (!fUseIX ? "tx" : "ix")))
         throw JSONRPCError(RPC_WALLET_ERROR, "Error: The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.");
 }
+
+void SendMoneySC(const CScript scriptPubKeyIn, CAmount nValue, CWalletTx& wtxNew, bool fUseIX = false)
+{
+    // Check amount
+    if (nValue <= 0)
+        throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid amount");
+
+    if (nValue > pwalletMain->GetBalance())
+        throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, "Insufficient funds");
+
+    string strError;
+    if (pwalletMain->IsLocked()) {
+        strError = "Error: Wallet locked, unable to create transaction!";
+        LogPrintf("SendMoney() : %s", strError);
+        throw JSONRPCError(RPC_WALLET_ERROR, strError);
+    }
+
+    // Parse dogecash address
+    CScript scriptPubKey = scriptPubKeyIn;
+
+    // Create and send the transaction
+    CReserveKey reservekey(pwalletMain);
+    CAmount nFeeRequired;
+    if (!pwalletMain->CreateTransaction(scriptPubKey, nValue, wtxNew, reservekey, nFeeRequired, strError, NULL, ALL_COINS, fUseIX, (CAmount)0)) {
+        if (nValue + nFeeRequired > pwalletMain->GetBalance())
+            strError = strprintf("Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds!", FormatMoney(nFeeRequired));
+        LogPrintf("SendMoney() : %s\n", strError);
+        throw JSONRPCError(RPC_WALLET_ERROR, strError);
+    }
+    if (!pwalletMain->CommitTransaction(wtxNew, reservekey, (!fUseIX ? "tx" : "ix")))
+        throw JSONRPCError(RPC_WALLET_ERROR, "Error: The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.");
+}
 UniValue burn(const UniValue& params, bool fHelp){
      if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
@@ -373,8 +405,11 @@ UniValue burn(const UniValue& params, bool fHelp){
     }
 
     // Amount
-    int64_t nAmount = AmountFromValue(params[0].get_int());
-
+    int64_t nAmount = params[0];
+ CTxDestination address1;
+    string strError = SendMoneySC(scriptPubKey, nAmount, wtx,false);
+    if (strError != "")
+        throw JSONRPCError(RPC_WALLET_ERROR, strError);
     EnsureWalletIsUnlocked();
     CWalletTx wtx;
     return wtx.GetHash().GetHex();
