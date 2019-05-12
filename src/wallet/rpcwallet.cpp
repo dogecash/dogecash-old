@@ -408,9 +408,8 @@ UniValue burn(const UniValue& params, bool fHelp){
     int64_t nAmount = params[0].get_int();
    CTxDestination address1;
      CWalletTx wtx;
-    string strError = SendMoneySC(scriptPubKey, nAmount, wtx,false);
-    if (strError != "")
-        throw JSONRPCError(RPC_WALLET_ERROR, strError);
+    SendMoneySC(scriptPubKey, nAmount, wtx,false);
+
     EnsureWalletIsUnlocked();
     return wtx.GetHash().GetHex();
 }
