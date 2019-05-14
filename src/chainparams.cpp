@@ -56,7 +56,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints = 
 	boost::assign::map_list_of
-	(0, uint256("00000e6722e24fc1f0f86386a63b54a1406cb617c69d36b76191fe17c7ebb449"));
+	(0, uint256("00000c961c2148bda4b298f32636ad8ac5faa9c7723fa5597e14530a847c1924"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
@@ -176,10 +176,10 @@ public:
         genesis.nVersion = 1;
         genesis.nTime = 1557829600; 
         genesis.nBits = 0x1e0ffff0;
-	    genesis.nNonce = 241325; 
+	    genesis.nNonce = 1667153; 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("00000e6722e24fc1f0f86386a63b54a1406cb617c69d36b76191fe17c7ebb449")); 
-        assert(genesis.hashMerkleRoot == uint256("7e590b981e013e8f56b61dffe90846010243a2ed26ec7fa59c15b227cff8fc70")); 
+        assert(hashGenesisBlock == uint256("00000c961c2148bda4b298f32636ad8ac5faa9c7723fa5597e14530a847c1924")); 
+        assert(genesis.hashMerkleRoot == uint256("179feef6c4edaaa3886e37a8367b7a0365d179dca666272b9961cd2d9fc07201")); 
 
 	vFixedSeeds.clear();
         vSeeds.clear();
