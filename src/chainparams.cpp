@@ -56,11 +56,11 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints = 
 	boost::assign::map_list_of
-	(0, uint256("000009176ff8c5a073fd8e88f1f816786a56a60fe26d6735c2bf16828feed820"));
+	(0, uint256("00000e6722e24fc1f0f86386a63b54a1406cb617c69d36b76191fe17c7ebb449"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1557440035, // * UNIX timestamp of last checkpoint block
+    1557829600, // * UNIX timestamp of last checkpoint block
     4000,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     200        // * estimated number of transactions per day after checkpoint
@@ -134,7 +134,7 @@ public:
         nMasternodeCollateralLimit = 5000; //MN collateral
         nMaxMoneyOut = 21000000 * COIN; //21 mill
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 1440;
+        nLastPOWBlock = 600;
         nModifierUpdateBlock = INT_MAX;
         nZerocoinStartHeight = INT_MAX;
         nZerocoinStartTime = INT_MAX; // October 17, 2017 4:30:00 AM
@@ -174,12 +174,12 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1557440035; 
+        genesis.nTime = 1557829600; 
         genesis.nBits = 0x1e0ffff0;
-	    genesis.nNonce = 4538051; 
+	    genesis.nNonce = 241325; 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("000009176ff8c5a073fd8e88f1f816786a56a60fe26d6735c2bf16828feed820")); 
-        assert(genesis.hashMerkleRoot == uint256("7c3f1b5874e38c421d07fc20ce79ddb3bbaad19cdbad903a0b185070d6005b8c")); 
+        assert(hashGenesisBlock == uint256("00000e6722e24fc1f0f86386a63b54a1406cb617c69d36b76191fe17c7ebb449")); 
+        assert(genesis.hashMerkleRoot == uint256("7e590b981e013e8f56b61dffe90846010243a2ed26ec7fa59c15b227cff8fc70")); 
 
 	vFixedSeeds.clear();
         vSeeds.clear();
