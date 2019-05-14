@@ -912,7 +912,7 @@ CAmount CBudgetManager::GetTotalBudget(int nHeight)
     } 
       if(nHeight > 1){
         CAmount nSubsidy = GetBlockValue(nHeight) + (GetBlockValue(nHeight)/10); //Add ten percent to nsubsidy
-              return ((nSubsidy / 100) * 10) * 100; //Cut 10% from block rewards for governance //Change this to 1440 * 30 on mainnet
+              return ((nSubsidy / 100) * 10) * 1440 * 30; //Cut 10% from block rewards for governance
       }
       else {
                   return 0; 
@@ -1707,12 +1707,12 @@ CBudgetProposalBroadcast::CBudgetProposalBroadcast(std::string strProposalNameIn
     int nCycleStart = nBlockStart - nBlockStart % Params().GetBudgetCycleBlocks();
 
     // Right now single payment proposals have nBlockEnd have a cycle too early!
-    // switch back if it brea something else
+    // switch back if it break something else
     // calculate the end of the cycle for this vote, add half a cycle (vote will be deleted after that block)
     // nBlockEnd = nCycleStart + GetBudgetPaymentCycleBlocks() * nPaymentCount + GetBudgetPaymentCycleBlocks() / 2;
 
     // Calculate the end of the cycle for this vote, vote will be deleted after next cycle
-    nBlockEnd = nCycleStart + (Params().GetBudgetCycleBlocks() * nPaymentCount);
+    nBlockEnd = nCycleStart + (Params().GetBudgetCycleBlocks() + 1)  * nPaymentCount;
 
     address = addressIn;
     nAmount = nAmountIn;

@@ -204,10 +204,6 @@ UniValue preparebudget(const UniValue& params, bool fHelp)
 
     int nBlockEnd = nBlockStart + Params().GetBudgetCycleBlocks() * nPaymentCount; // End must be AFTER current cycle
 
-if (Params().GetBudgetCycleBlocks() == 100) {
-    //deduct 1 block from nblockend to conform to budget end blocks
-    nBlockEnd = nBlockEnd - 1;
-}
     if (nBlockStart < nBlockMin)
         throw runtime_error("Invalid block start, must be more than current height.");
 

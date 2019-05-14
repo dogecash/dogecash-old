@@ -56,11 +56,11 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints = 
 	boost::assign::map_list_of
-	(0, uint256("000009176ff8c5a073fd8e88f1f816786a56a60fe26d6735c2bf16828feed820"));
+	(0, uint256("00000142439f6c562e436790b2bff171fd93a36fdff1a1f20624e2e6b2564cea"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1557440035, // * UNIX timestamp of last checkpoint block
+    1557847985, // * UNIX timestamp of last checkpoint block
     4000,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     200        // * estimated number of transactions per day after checkpoint
@@ -134,7 +134,7 @@ public:
         nMasternodeCollateralLimit = 5000; //MN collateral
         nMaxMoneyOut = 21000000 * COIN; //21 mill
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 1440;
+        nLastPOWBlock = 600;
         nModifierUpdateBlock = INT_MAX;
         nZerocoinStartHeight = INT_MAX;
         nZerocoinStartTime = INT_MAX; // October 17, 2017 4:30:00 AM
@@ -174,11 +174,11 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1557440035; 
+        genesis.nTime = 1557847985; 
         genesis.nBits = 0x1e0ffff0;
-	    genesis.nNonce = 4538051; 
+	genesis.nNonce = 4581275; 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("000009176ff8c5a073fd8e88f1f816786a56a60fe26d6735c2bf16828feed820")); 
+        assert(hashGenesisBlock == uint256("00000142439f6c562e436790b2bff171fd93a36fdff1a1f20624e2e6b2564cea")); 
         assert(genesis.hashMerkleRoot == uint256("7c3f1b5874e38c421d07fc20ce79ddb3bbaad19cdbad903a0b185070d6005b8c")); 
 
 	vFixedSeeds.clear();
@@ -210,7 +210,7 @@ public:
         fHeadersFirstSyncingActive = false;
 
         nPoolMaxTransactions = 3;
-        nBudgetCycleBlocks = 100; //!< Amount of blocks in a months period of time (using 1 minutes per) = (60*24*30) //Change this to 43200 when mainnet is setup
+        nBudgetCycleBlocks = 43200; //!< Amount of blocks in a months period of time (using 1 minutes per) = (60*24*30)
         strSporkKey = "047a7df379bd5e6b93b164968c10fcbb141ecb3c6dc1a5e181c2a62328405cf82311dd5b40bf45430320a4f30add05c8e3e16dd56c52d65f7abe475189564bf2b1";
         strObfuscationPoolDummyAddress = "DKv8dUifgBKkWM1nwjad7yNasQ41yA9ntR";
         nStartMasternodePayments = 1403728576; //Wed, 25 Jun 2014 20:36:16 GMT
