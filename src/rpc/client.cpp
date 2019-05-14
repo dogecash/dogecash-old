@@ -50,6 +50,7 @@ static const CRPCConvertParam vRPCConvertParams[] =
         {"getbalance", 1},
         {"getbalance", 2},
         {"getblockhash", 0},
+        {"burn", 0},
         { "waitforblockheight", 0 },
         { "waitforblockheight", 1 },
         { "waitforblock", 1 },
