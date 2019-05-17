@@ -134,7 +134,7 @@ public:
         nMasternodeCollateralLimit = 5000; //MN collateral
         nMaxMoneyOut = 21000000 * COIN; //21 mill
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 600;
+        nLastPOWBlock = 200;
         nModifierUpdateBlock = INT_MAX;
         nZerocoinStartHeight = INT_MAX;
         nZerocoinStartTime = INT_MAX; // October 17, 2017 4:30:00 AM
