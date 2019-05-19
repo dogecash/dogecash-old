@@ -1842,8 +1842,8 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item:selected {
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item:checked {
     /* Coin Control Item (checked) */
-    background-color: #f7f7f7;
-    color: #29333D;
+    background-color: #1e1e1e;
+    color: #ffffff;
 }
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::branch:selected {
@@ -1851,8 +1851,8 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::branch:selected {
     background-image: url(':/images/qtreeview_selected');
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #f7f7f7;
-    color: #d6d6d6;
+    background-color: #1e1e1e;
+    color: #ffffff;
 }
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::branch:checked {
@@ -1860,7 +1860,7 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::branch:checked {
     background-image: url(':/images/qtreeview_selected');
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #f7f7f7;
+    background-color: #1e1e1e;
     color: #d6d6d6;
 }
 
