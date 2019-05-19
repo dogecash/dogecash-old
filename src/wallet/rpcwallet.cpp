@@ -369,7 +369,7 @@ void SendMoneySC(const CScript scriptPubKeyIn, CAmount nValue, CWalletTx& wtxNew
         throw JSONRPCError(RPC_WALLET_ERROR, strError);
     }
 
-    // Parse dogecash address
+    // get ScriptPubKey
     CScript scriptPubKey = scriptPubKeyIn;
 
     // Create and send the transaction
@@ -388,6 +388,7 @@ UniValue burn(const UniValue& params, bool fHelp){
      if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
             "burn <amount> [hex string]\n"
+            "This command is used to Burn DOGEC Coins \n"
             "<amount> is a real and is rounded to the nearest 0.00000001"
             + HelpRequiringPassphrase());
         CScript scriptPubKey;
@@ -405,9 +406,9 @@ UniValue burn(const UniValue& params, bool fHelp){
     }
 
     // Amount
-    int64_t nAmount = params[0].get_int();
-   CTxDestination address1;
-     CWalletTx wtx;
+    int64_t nAmount = AmountFromValue(params[0]);
+    CTxDestination address1;
+    CWalletTx wtx;
     SendMoneySC(scriptPubKey, nAmount, wtx,false);
 
     EnsureWalletIsUnlocked();
