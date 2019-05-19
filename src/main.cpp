@@ -1944,7 +1944,19 @@ int64_t GetBlockValue(int nHeight)
 	}    else {
         nSubsidy = 5.4 * COIN;
 	}
-    return nSubsidy;
+	int64_t nMoneySupply = chainActive.Tip()->nMoneySupply;
+        int64_t nBlockValue = nSubsidy;
+        nBlockValue = nSubsidy;
+
+    if (nMoneySupply + nBlockValue >= Params().MaxMoneyOut())
+        nBlockValue = Params().MaxMoneyOut() - nMoneySupply;
+
+    if (nMoneySupply >= Params().MaxMoneyOut())
+        nBlockValue = 0;
+    if (nHeight <= Params().LAST_POW_BLOCK()) {
+        return nBlockValue;
+    }
+    return nBlockValue;
 }
 
 CAmount GetSeeSaw(const CAmount& blockValue, int nMasternodeCount, int nHeight)
