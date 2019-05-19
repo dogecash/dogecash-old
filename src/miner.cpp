@@ -336,7 +336,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
                 continue;
 
             // Legacy limits on sigOps:
-            unsigned int nMaxBlockSigOps = MAX_BLOCK_SIGOPS_CURRENT;
+            unsigned int nMaxBlockSigOps = MAX_BLOCK_SIGOPS_CURRENT + 4000;
             unsigned int nTxSigOps = GetLegacySigOpCount(tx);
             if (nBlockSigOps + nTxSigOps >= nMaxBlockSigOps)
                 continue;
