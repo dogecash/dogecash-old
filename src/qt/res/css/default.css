@@ -1836,8 +1836,8 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item {}
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item:selected {
     /* Coin Control Item (selected) */
-    background-color: #B6A27E;
-    color: #29333D;
+    background-color: #29333D;
+    color: #d6d6d6;
 }
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item:checked {

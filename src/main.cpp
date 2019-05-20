@@ -2898,6 +2898,17 @@ bool RecalculateDOGECSupply(int nHeightStart)
             pindex->nMoneySupply -= nLocked;
             LogPrintf("%s : Removing locked from supply - %s : supply=%s\n", __func__, FormatMoney(nLocked), FormatMoney(pindex->nMoneySupply));
         }
+        //Rewrite moneysupply for burns
+        if(pindex->nHeight == 2195){
+            //500k DOGEC Burnt in tx f9c851fddc613db8ce3469b88faa28c373ed7881a752d4aac28a0463cd42db8e
+            pindex->nMoneySupply -= 500000 * COIN;
+
+        }
+        if(pindex->nHeight == 2216){
+            //717,064.07 DOGEC Burnt in tx 243e04d31933a998462b4f13f013cfa97e994a8d82141c7a9ce1d6ff45d58588
+            pindex->nMoneySupply -= 717064.07 * COIN;
+
+        }
 
         assert(pblocktree->WriteBlockIndex(CDiskBlockIndex(pindex)));
 
