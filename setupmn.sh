@@ -165,21 +165,6 @@ StartLimitBurst=5
 WantedBy=multi-user.target
 EOF
 
-  systemctl stop $COIN_NAME.service
-  sleep 11
-  systemctl enable $COIN_NAME.service
-  sleep 11
-  systemctl start $COIN_NAME.service
- # sleep 5
- # systemctl enable $COIN_NAME.service
-
-  if [[ -z "$(ps axo cmd:100 | egrep $COIN_DAEMON)" ]]; then
-    echo -e "${RED}$COIN_NAME is not running${NC}, please investigate. You should start by running the following commands as root:"
-    echo -e "${GREEN}systemctl start $COIN_NAME.service"
-    echo -e "systemctl status $COIN_NAME.service"
-    echo -e "less /var/log/syslog${NC}"
-    exit 1
-  fi
 }
 
 
@@ -374,6 +359,23 @@ function create_swap() {
  clear
 }
 
+function start_service() {
+  #systemctl daemon-reload
+  #sleep 11
+  #systemctl stop $COIN_NAME.service
+  #sleep 11
+  systemctl enable $COIN_NAME.service
+  sleep 11
+  systemctl start $COIN_NAME.service
+
+  if [[ -z "$(ps axo cmd:100 | egrep $COIN_DAEMON)" ]]; then
+    echo -e "${RED}$COIN_NAME is not running${NC}, please investigate. You should start by running the following commands as root:"
+    echo -e "${GREEN}systemctl start $COIN_NAME.service"
+    echo -e "systemctl status $COIN_NAME.service"
+    echo -e "less /var/log/syslog${NC}"
+    exit 1
+  fi
+ }
 
 function important_information() {
  echo
@@ -396,8 +398,9 @@ function setup_node() {
   create_key
   update_config
   #blocks
-  important_information
   configure_systemd
+  start_service
+  important_information
 }
 
 
