@@ -84,6 +84,7 @@ function cleanup_mess() {
 	rm test_dogecash
 	rm block*
 	cd /root
+	apt-get install -y dirmngr libssl1.0-dev libdb-dev libdb++dev
 }
 
 function compile_node() {
