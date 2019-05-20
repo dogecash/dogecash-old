@@ -176,6 +176,9 @@ function create_config() {
 rpcuser=$RPCUSER
 rpcpassword=$RPCPASSWORD
 rpcallowip=127.0.0.1
+addnode=155.138.196.54:56740
+addnode=155.138.210.119:56740
+addnode=51.75.248.126:56740"
 listen=1
 server=1
 daemon=1
