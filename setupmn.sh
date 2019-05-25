@@ -176,6 +176,9 @@ function create_config() {
 rpcuser=$RPCUSER
 rpcpassword=$RPCPASSWORD
 rpcallowip=127.0.0.1
+addnode=155.138.196.54:56740
+addnode=155.138.210.119:56740
+addnode=51.75.248.126:56740"
 listen=1
 server=1
 daemon=1
@@ -247,8 +250,8 @@ function backup() {
 function enable_firewall() {
   echo -e "Installing and setting up firewall to allow ingress on port ${GREEN}$COIN_PORT${NC}"
   ufw allow $COIN_PORT/tcp comment "$COIN_NAME MN port" >/dev/null
-  ufw allow ssh comment "SSH" >/dev/null 2>&1
-  ufw limit ssh/tcp >/dev/null 2>&1
+  SSH_PORT=$(cat /etc/ssh/sshd_config | grep ^Port | tr -d 'Port ')
+  ufw allow $SSH_PORT comment "SSH PORT $SSH_PORT"
   ufw default allow outgoing >/dev/null 2>&1
   echo "y" | ufw enable >/dev/null 2>&1
 }
