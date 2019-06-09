@@ -30,7 +30,7 @@ public:
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
+    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
         READWRITE(FLATDATA(*this));
     }
 
@@ -84,7 +84,7 @@ public:
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
+    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
         READWRITE(prevout);
         READWRITE(scriptSig);
         READWRITE(nSequence);
@@ -130,7 +130,7 @@ public:
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
+    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
         READWRITE(nValue);
         READWRITE(scriptPubKey);
     }
@@ -230,7 +230,7 @@ public:
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
+    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
         READWRITE(*const_cast<int32_t*>(&this->nVersion));
         nVersion = this->nVersion;
         READWRITE(*const_cast<std::vector<CTxIn>*>(&vin));
