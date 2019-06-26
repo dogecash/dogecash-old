@@ -5,10 +5,9 @@
 	
 #include "upgrade_check.h"
 #include <clientversion.h>
-#include <logging.h>
-#include <ui_interface.h>
-#include <warnings.h>
-	
+#include "util.h"
+#include "ui_interface.h"
+#include "alert.h"
 static bool fWarned = false;
 	
 	// Keeps a running sum of peer versions and if more that 5 peers exist with
@@ -36,15 +35,16 @@ void ShouldUpgrade(const std::string& SubVer) {
 	    }
 	    double ratio = (double)sPeerVersions.higher/PeersCount;
 	    LogPrintf("%s : peer has version %d : , ratio = %g, count = %d\n",__func__,PeerVersion, ratio, PeersCount);
-	    bool should =  (ratio > requiredRatioForUpgrade && PeersCount > requiredPeersForUpgrade);
-	    if (should) {
+	    bool shouldupgrade =  (ratio > requiredRatioForUpgrade && PeersCount > requiredPeersForUpgrade);
+	    if (shouldupgrade) {
 	        std::string strWarning = "More than 33% or 2/5 of your peers are reporting a newer software version. "
 	            "Please check for upgrades at http://github.com/dogecash/dogecash/releases "
 	            "and for safety you can confirm release info by checking our twitter/discord/telegram";
-	        SetMiscWarning(strWarning);
-	        if (!fWarned) {
-	            uiInterface.NotifyAlertChanged();
-	            fWarned = true;
+                strMiscWarning = strWarning;
+
+	    if (!fWarned) {
+	          CAlert::Notify(strMiscWarning, true);
+             fWarned = true;
 	        }
 	    }
 }
