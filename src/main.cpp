@@ -35,7 +35,7 @@
 #include "utilmoneystr.h"
 #include "validationinterface.h"
 #include "zdogecchain.h"
-
+#include <upgrade_check.h>
 #include "zdogec/zerocoin.h"
 #include "libzerocoin/Denominations.h"
 #include "invalid.h"
@@ -6148,7 +6148,8 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         string remoteAddr;
         if (fLogIPs)
             remoteAddr = ", peeraddr=" + pfrom->addr.ToString();
-
+      // cleanSubVer has /DogeCash.../ for us
+	    ShouldUpgrade(cleanSubVer);
         LogPrintf("receive version message: %s: version %d, blocks=%d, us=%s, peer=%d%s\n",
             pfrom->cleanSubVer, pfrom->nVersion,
             pfrom->nStartingHeight, addrMe.ToString(), pfrom->id,

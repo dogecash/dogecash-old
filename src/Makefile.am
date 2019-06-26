@@ -233,6 +233,7 @@ libbitcoin_server_a_SOURCES = \
   torcontrol.cpp \
   txdb.cpp \
   txmempool.cpp \
+  upgrade_check.cpp \
   validationinterface.cpp \
   zdogecchain.cpp \
   $(BITCOIN_CORE_H)

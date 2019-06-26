@@ -7,7 +7,8 @@
 
 #include "tinyformat.h"
 
-
+#include <utilstrencodings.h>
+#include <utilsplitstring.h>
 /**
  * Name of client reported in the 'version' message. Report the same name
  * for both dogecashd and dogecash-qt, to make it harder for attackers to
@@ -109,3 +110,28 @@ std::string FormatSubVersion(const std::string& name, int nClientVersion, const 
     ss << "/";
     return ss.str();
 }
+
+/**
+ * Split the Sub Version string such as /DogeCash Core:x.y.z/
+* in order to get integer version number
+*/
+
+	int UnformatSubVersion(const std::string &name) {
+	    std::vector<std::string> split1;
+	    std::vector<std::string> split2;
+	    std::vector<std::string> ver_str;
+	
+	    // throw away /DeVault Core: part
+	    Split(split1, name, ":");
+	    // throw away (.../ part
+	    Split(split2, split1[1], "(");
+	    // Get individual numbers
+	    Split(ver_str, split2[0], ".");
+	
+	    if (ver_str.size() == 3) {
+	        int CLIENT_VER =  1000000 * std::stoi(ver_str[0]) + 10000 * std::stoi(ver_str[1]) + 100 * std::stoi(ver_str[2]);
+	        return CLIENT_VER;
+	    } else {
+	        return 0;
+	    }
+	}
