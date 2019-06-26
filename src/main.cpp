@@ -35,7 +35,7 @@
 #include "utilmoneystr.h"
 #include "validationinterface.h"
 #include "zdogecchain.h"
-#include <upgrade_check.h>
+#include "upgrade_check.h"
 #include "zdogec/zerocoin.h"
 #include "libzerocoin/Denominations.h"
 #include "invalid.h"

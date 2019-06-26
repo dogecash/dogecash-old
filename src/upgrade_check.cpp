@@ -3,7 +3,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 	
-#include <upgrade_check.h>
+#include "upgrade_check.h"
 #include <clientversion.h>
 #include <logging.h>
 #include <ui_interface.h>
