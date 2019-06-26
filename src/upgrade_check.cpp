@@ -39,7 +39,7 @@ void ShouldUpgrade(const std::string& SubVer) {
 	    bool should =  (ratio > requiredRatioForUpgrade && PeersCount > requiredPeersForUpgrade);
 	    if (should) {
 	        std::string strWarning = "More than 33% or 2/5 of your peers are reporting a newer software version. "
-	            "Please check for upgrades at http://github.com/devaultcrypto/devault/releases "
+	            "Please check for upgrades at http://github.com/dogecash/dogecash/releases "
 	            "and for safety you can confirm release info by checking our twitter/discord/telegram";
 	        SetMiscWarning(strWarning);
 	        if (!fWarned) {
