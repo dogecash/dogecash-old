@@ -6149,7 +6149,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         if (fLogIPs)
             remoteAddr = ", peeraddr=" + pfrom->addr.ToString();
       // cleanSubVer has /DogeCash.../ for us
-	    ShouldUpgrade(cleanSubVer);
+	    ShouldUpgrade(pfrom->cleanSubVer);
         LogPrintf("receive version message: %s: version %d, blocks=%d, us=%s, peer=%d%s\n",
             pfrom->cleanSubVer, pfrom->nVersion,
             pfrom->nStartingHeight, addrMe.ToString(), pfrom->id,
