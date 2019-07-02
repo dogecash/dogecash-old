@@ -189,7 +189,7 @@ public:
         //vSeeds.push_back(CDNSSeedData("207.246.118.245", "207.246.118.245"));    // Secondary DNS Seeder
         //vSeeds.push_back(CDNSSeedData("139.180.216.73", "139.180.216.73"));         // Single node address
 	vSeeds.push_back(CDNSSeedData("seeds.dogec.xyz", "seeds.dogec.xyz"));
-       // vSeeds.push_back(CDNSSeedData("", "")); // Single node address
+        vSeeds.push_back(CDNSSeedData("x9.seeds.dogec.io", "x9.seeds.dogec.io")); // Single node address
        // vSeeds.push_back(CDNSSeedData("", ""));           // Single node address
 
 	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30);
