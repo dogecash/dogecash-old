@@ -1488,12 +1488,12 @@ UniValue getserials(const UniValue& params, bool fHelp) {
             } // end for vin in tx
         } // end for tx in block
 
-        if (pblockindex->nHeight < heightEnd) {
+        if (pblockindex->nHeight < heightEnd) 
             LOCK(cs_main);
             pblockindex = chainActive.Next(pblockindex);
-        } else {
+         else 
             break;
-        }
+        
 
     } // end for blocks
 
