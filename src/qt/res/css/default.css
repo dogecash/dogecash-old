@@ -1591,6 +1591,7 @@ QDialog#SendCoinsDialog .QFrame#frameCoinControl .QLabel#labelCoinControlFeature
 
 QDialog#SendCoinsDialog .QFrame#frameCoinControl .QWidget#widgetCoinControl {
     /* Coin Control Inputs */
+  background-color: #29333D;
 }
 
 QDialog#SendCoinsDialog .QFrame#frameCoinControl .QWidget#widgetCoinControl>.QLabel {
@@ -1836,7 +1837,7 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item {}
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item:selected {
     /* Coin Control Item (selected) */
-    background-color: #d6d6d6;
+    background-color: #29333D;
     color: #ffffff;
 }
 
@@ -1851,7 +1852,7 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::branch:selected {
     background-image: url(':/images/qtreeview_selected');
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #d6d6d6;
+    background-color: #29333D;
     color: #ffffff;
 }
 
