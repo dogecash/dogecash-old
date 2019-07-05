@@ -555,7 +555,7 @@ QTableView:focus {
 QTreeWidget {
     /* Tree Background */
     background-color: #29333D;
-    alternate-background-color: #f2f2f2;
+    alternate-background-color: #29333D;
     color: #d6d6d6;
 }
 
