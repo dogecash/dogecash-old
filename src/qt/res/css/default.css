@@ -240,7 +240,7 @@ QLabel {
 
 .QCheckBox {
     /* Checkbox Labels */
-    color: #d7d7d7;
+    color: #29333D;
 }
 
 .QCheckBox:hover {}
@@ -1822,7 +1822,8 @@ QDialog#CoinControlDialog .QFrame#frame .QRadioButton#radioListMode {
 
 QDialog#CoinControlDialog QHeaderView::section:first {
     /* Bug Fix: the number "1" displays in this table for some reason... */
-    color: transparent;
+    color: #d6d6d6;
+    background-color: #29333D;
 }
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget {
@@ -1836,13 +1837,13 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item {}
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item:selected {
     /* Coin Control Item (selected) */
-    background-color: #29333D;
-    color: #d6d6d6;
+    background-color: #d6d6d6;
+    color: #ffffff;
 }
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item:checked {
     /* Coin Control Item (checked) */
-    background-color: #29333D;
+    background-color: #d6d6d6;
     color: #ffffff;
 }
 
@@ -1851,7 +1852,7 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::branch:selected {
     background-image: url(':/images/qtreeview_selected');
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #29333D;
+    background-color: #d6d6d6;
     color: #ffffff;
 }
 
