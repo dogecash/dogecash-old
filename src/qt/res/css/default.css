@@ -2037,12 +2037,12 @@ QCalendarWidget QAbstractItemView {
 
 QCalendarWidget QAbstractItemView:enabled {
     /* Calendar widget weekdays in month */
-    color: #d6d6d6;
+    color: #29333D;
 }
 
 QCalendarWidget QAbstractItemView:disabled {
     /* Calendar widget days not in month */
-    color: #d6d6d6;
+    color: #29333D;
 }
 
 QWidget#GovernancePage .QFrame#frame_Content {
@@ -2057,7 +2057,7 @@ QWidget#GovernancePage .ProposalFrame {
 }
 
 QWidget#GovernancePage .ProposalFrame#proposalFrame {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #e09155, stop: 1 #f2cc93);
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #B6A27E, stop: 1 #B6A17E);
     border: 1px solid #f2cc93;
 }
 
@@ -2070,6 +2070,7 @@ QWidget#GovernancePage .ProposalFrame>QLabel#strProposalName,
 QLabel#strMonthlyPayout,
 QLabel#strRemainingPaymentCount {
     font-size: 18pt;
+    color: #29333D;
 }
 
 QWidget#GovernancePage .ProposalFrame>QLabel#strProposalURL {
