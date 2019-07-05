@@ -1027,10 +1027,12 @@ UniValue getfeeinfo(const UniValue& params, bool fHelp)
             "\nExamples:\n" +
             HelpExampleCli("getfeeinfo", "5") + HelpExampleRpc("getfeeinfo", "5"));
 
-    LOCK(cs_main);
-
     int nBlocks = params[0].get_int();
-    int nBestHeight = chainActive.Height();
+    int nBestHeight;
+    {
+        LOCK(cs_main);
+        nBestHeight = chainActive.Height();
+    }
     int nStartHeight = nBestHeight - nBlocks;
     if (nBlocks < 0 || nStartHeight <= 0)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "invalid start height");
@@ -1337,8 +1339,11 @@ UniValue getmintsinblocks(const UniValue& params, bool fHelp) {
                 "\nExamples:\n" +
                 HelpExampleCli("getmintsinblocks", "1200000 1000 5") +
                 HelpExampleRpc("getmintsinblocks", "1200000, 1000, 5"));
-
-    int nBestHeight = chainActive.Height();
+    int nBestHeight;
+    {
+        LOCK(cs_main);
+        nBestHeight = chainActive.Height();
+    }
 
     int heightStart = params[0].get_int();
     if (heightStart < Params().Zerocoin_StartHeight())
@@ -1357,20 +1362,23 @@ UniValue getmintsinblocks(const UniValue& params, bool fHelp) {
     if (denom == libzerocoin::CoinDenomination::ZQ_ERROR)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid denomination. Must be in {1, 5, 10, 50, 100, 500, 1000, 5000}");
 
-    int num_of_mints = 0;
-    CBlockIndex* pindex = chainActive[heightStart];
+    int num_of_mints = 0;    
+	{
+        LOCK(cs_main);
+        CBlockIndex* pindex = chainActive[heightStart];
 
-    while (true) {
-        num_of_mints += count(pindex->vMintDenominationsInBlock.begin(), pindex->vMintDenominationsInBlock.end(), denom);
-        if (pindex->nHeight < heightEnd)
-            pindex = chainActive.Next(pindex);
-        else
-            break;
-    }
+        while (true) {
+            num_of_mints += count(pindex->vMintDenominationsInBlock.begin(), pindex->vMintDenominationsInBlock.end(), denom);
+            if (pindex->nHeight < heightEnd) {
+                pindex = chainActive.Next(pindex);
+            } else {
+                break;
+            }
+        }
 
     UniValue obj(UniValue::VOBJ);
     obj.push_back(Pair("Starting block", heightStart));
-    obj.push_back(Pair("Ending block", pindex->nHeight));
+    obj.push_back(Pair("Ending block", heightEnd-1));
     obj.push_back(Pair("Number of "+ std::to_string(d) +"-denom mints", num_of_mints));
 
     return obj;
@@ -1392,8 +1400,6 @@ UniValue getserials(const UniValue& params, bool fHelp) {
             HelpExampleCli("getserials", "1254000 1000") +
             HelpExampleRpc("getserials", "1254000, 1000"));
 
-    LOCK(cs_main);
-
     int nBestHeight = chainActive.Height();
 
     int heightStart = params[0].get_int();
@@ -1413,7 +1419,14 @@ UniValue getserials(const UniValue& params, bool fHelp) {
         fVerbose = params[2].get_bool();
     }
 
-    CBlockIndex* pblockindex = chainActive[heightStart];
+    CBlockIndex* pblockindex = nullptr;
+    {
+        LOCK(cs_main);
+        pblockindex = chainActive[heightStart];
+    }
+
+    if (!pblockindex)
+        throw JSONRPCError(RPC_INVALID_PARAMETER, "invalid block height");
 
     UniValue serialsObj(UniValue::VOBJ);    // for fVerbose
     UniValue serialsArr(UniValue::VARR);
@@ -1469,9 +1482,12 @@ UniValue getserials(const UniValue& params, bool fHelp) {
             } // end for vin in tx
         } // end for tx in block
 
-        if (pblockindex->nHeight < heightEnd) pblockindex = chainActive.Next(pblockindex);
-        else break;
-
+        if (pblockindex->nHeight < heightEnd) {
+            LOCK(cs_main);
+            pblockindex = chainActive.Next(pblockindex);
+        } else {
+            break;
+        }
     } // end for blocks
 
     return serialsArr;
