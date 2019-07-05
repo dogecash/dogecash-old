@@ -1388,7 +1388,7 @@ UniValue getmintsinblocks(const UniValue& params, bool fHelp) {
 UniValue getserials(const UniValue& params, bool fHelp) {
     if (fHelp || params.size() < 2 || params.size() > 3)
         throw runtime_error(
-            "getserials \"hash\"\n"
+            "getserials height range ( fVerbose )\n"
             "\nLook the inputs of any tx in a range of blocks and returns the serial numbers for any coinspend.\n"
 
             "\nArguments:\n"
@@ -1400,19 +1400,8 @@ UniValue getserials(const UniValue& params, bool fHelp) {
             HelpExampleCli("getserials", "1254000 1000") +
             HelpExampleRpc("getserials", "1254000, 1000"));
 
-    int nBestHeight = chainActive.Height();
-
-    int heightStart = params[0].get_int();
-    if (heightStart < Params().Zerocoin_StartHeight())
-        heightStart = Params().Zerocoin_StartHeight();
-
-    int range = params[1].get_int();
-    if (range < 1)
-        throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid block range. Must be strictly positive.");
-
-    int heightEnd = heightStart + range - 1;
-    if (heightEnd > nBestHeight)
-        heightEnd = nBestHeight;
+    int heightStart, heightEnd;
+    validaterange(params, heightStart, heightEnd, Params().Zerocoin_StartHeight());
 
     bool fVerbose = false;
     if (params.size() > 2) {
@@ -1459,13 +1448,31 @@ UniValue getserials(const UniValue& params, bool fHelp) {
             }
             // loop through each input
             for (const CTxIn& txin : tx.vin) {
-                if (txin.scriptSig.IsZerocoinSpend()) {
-                    libzerocoin::CoinSpend spend = TxInToZerocoinSpend(txin);
-                    std::string serial_str = spend.getCoinSerialNumber().ToString(16);
+                bool isPublicSpend =  txin.IsZerocoinPublicSpend();
+                if (txin.IsZerocoinSpend() || isPublicSpend) {
+                    std::string serial_str;
+                    int denom;
+                    if (isPublicSpend) {
+                        CTxOut prevOut;
+                        CValidationState state;
+                        if(!GetOutput(txin.prevout.hash, txin.prevout.n, state, prevOut)){
+                            throw JSONRPCError(RPC_INTERNAL_ERROR, "public zerocoin spend prev output not found");
+                        }
+                        libzerocoin::ZerocoinParams *params = Params().Zerocoin_Params(false);
+                        PublicCoinSpend publicSpend(params);
+                        if (!ZPIVModule::parseCoinSpend(txin, tx, prevOut, publicSpend)) {
+                            throw JSONRPCError(RPC_INTERNAL_ERROR, "public zerocoin spend parse failed");
+                        }
+                        serial_str = publicSpend.getCoinSerialNumber().ToString(16);
+                        denom = libzerocoin::ZerocoinDenominationToInt(publicSpend.getDenomination());
+                    } else {
+                        libzerocoin::CoinSpend spend = TxInToZerocoinSpend(txin);
+                        serial_str = spend.getCoinSerialNumber().ToString(16);
+                        denom = libzerocoin::ZerocoinDenominationToInt(spend.getDenomination());
+                    }
                     if (!fVerbose) {
                         serialsArr.push_back(serial_str);
                     } else {
-                        int denom = libzerocoin::ZerocoinDenominationToInt(spend.getDenomination());
                         UniValue s(UniValue::VOBJ);
                         s.push_back(Pair("serial", serial_str));
                         s.push_back(Pair("denom", denom));
@@ -1476,7 +1483,6 @@ UniValue getserials(const UniValue& params, bool fHelp) {
                         s.push_back(Pair("blocktime", block.GetBlockTime()));
                         serialsArr.push_back(s);
                     }
-
                 }
 
             } // end for vin in tx
@@ -1488,10 +1494,9 @@ UniValue getserials(const UniValue& params, bool fHelp) {
         } else {
             break;
         }
+
     } // end for blocks
 
     return serialsArr;
 
 }
-
-
