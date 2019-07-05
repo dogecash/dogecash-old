@@ -1822,8 +1822,7 @@ QDialog#CoinControlDialog .QFrame#frame .QRadioButton#radioListMode {
 
 QDialog#CoinControlDialog QHeaderView::section:first {
     /* Bug Fix: the number "1" displays in this table for some reason... */
-    color: #d6d6d6;
-    background-color: #29333D;
+    color: transparent;
 }
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget {
@@ -1843,7 +1842,7 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item:selected {
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item:checked {
     /* Coin Control Item (checked) */
-    background-color: #d6d6d6;
+    background-color: #29333D;
     color: #ffffff;
 }
 
@@ -1861,7 +1860,7 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::branch:checked {
     background-image: url(':/images/qtreeview_selected');
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #1e1e1e;
+    background-color: #29333D;
     color: #d6d6d6;
 }
 
