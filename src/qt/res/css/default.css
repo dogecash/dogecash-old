@@ -260,17 +260,17 @@ QLabel {
 
 .QValidatedLineEdit:!focus {
     color: #B6A27E;
-    background-color: #29333D;
+    background-color: #424E5B;
 }
 
 .QLineEdit:!focus {
     color: #B6A27E;
-    background-color: #29333D;
+    background-color: #424E5B;
 }
 
 .QTextEdit:!focus {
     color: #B6A27E;
-    background-color: #29333D;
+    background-color: #424E5B;
 }
 
 
@@ -280,11 +280,11 @@ QLabel {
 .QLineEdit:disabled,
 .QTextEdit:disabled {
     color: #B6A27E;
-    background-color: #29333D;
+    background-color: #424E5B;
 }
 
 .QPlainTextEdit {
-    background-color: #29333D;
+    background-color: #424E5B;
 }
 
 
