@@ -1562,7 +1562,7 @@ QDialog#SendCoinsDialog .QFrame#frame_Send {
 
 QDialog#SendCoinsDialog .QFrame#frameCoinControl {
     /* Coin Control Section */
-    /* background-color:#29333Df00; */
+    background-color:#29333D; 
 }
 
 QDialog#SendCoinsDialog .QFrame#frameCoinControl>.QLabel {
@@ -1811,13 +1811,13 @@ QDialog#CoinControlDialog .QDialogButtonBox#buttonBox QPushButton {
 QDialog#CoinControlDialog .QFrame#frame .QRadioButton#radioTreeMode {
     /* Coin Control Tree Mode Selector */
     color: #d6d6d6;
-    background-color: transparent;
+    background-color: #29333D;
 }
 
 QDialog#CoinControlDialog .QFrame#frame .QRadioButton#radioListMode {
     /* Coin Control List Mode Selector */
     color: #d6d6d6;
-    background-color: transparent;
+    background-color: #29333D;
 }
 
 QDialog#CoinControlDialog QHeaderView::section:first {
@@ -1842,7 +1842,7 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item:selected {
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item:checked {
     /* Coin Control Item (checked) */
-    background-color: #1e1e1e;
+    background-color: #29333D;
     color: #ffffff;
 }
 
@@ -1851,7 +1851,7 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::branch:selected {
     background-image: url(':/images/qtreeview_selected');
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #1e1e1e;
+    background-color: #29333D;
     color: #ffffff;
 }
 
