@@ -357,16 +357,16 @@ QComboBox {
     padding: 3px 5px 3px 5px;
     background: #29333D;
     min-height: 25px;
-    color: #d6d6d6;
+    color: #424E5B;
 }
 
 QComboBox:checked {
-    background: #f2f2f2;
+    background: #424E5B;
 }
 
 QComboBox:editable {
-    background: #B6A27E;
-    color: #d6d6d6;
+    background: #424E5B;
+    color: #b6a27e;
     border: 0px solid transparent;
 }
 
@@ -402,7 +402,7 @@ QComboBox::item:alternate {
 
 QComboBox::item:selected {
     border: 0px solid transparent;
-    background: #f2f2f2;
+    background: #424E5B;
 }
 
 QComboBox::indicator {
@@ -448,7 +448,7 @@ QAbstractSpinBox::down-button {
     subcontrol-origin: border;
     subcontrol-position: bottom right;
     width: 21px;
-    background: #e7e7e7;
+    background: #29333d;
     /* Remove this to get 3D rendered buttons */
     padding-right: 1px;
     padding-left: 5px;
@@ -2032,18 +2032,18 @@ QCalendarWidget QWidget#qt_calendar_navigationbar {
 
 QCalendarWidget QAbstractItemView {
     /* Calendar widget days */
-    alternate-background-color: #dedbe5;
+    alternate-background-color: #424E5B;
     background-color: #29333D;
 }
 
 QCalendarWidget QAbstractItemView:enabled {
     /* Calendar widget weekdays in month */
-    color: #29333D;
+    color: #b6a27e;
 }
 
 QCalendarWidget QAbstractItemView:disabled {
     /* Calendar widget days not in month */
-    color: #29333D;
+    color: #b6a27e;
 }
 
 QWidget#GovernancePage .QFrame#frame_Content {
