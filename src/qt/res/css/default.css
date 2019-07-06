@@ -426,14 +426,14 @@ QAbstractSpinBox {
 
 QAbstractSpinBox:!focus {
     color: #B6A27E;
-    background-color: #e7e7e7;
+    background-color: #424E5B;
 }
 
 QAbstractSpinBox::up-button {
     subcontrol-origin: border;
     subcontrol-position: top right;
     width: 21px;
-    background: #e7e7e7;
+    background: #29333D;
     /* Remove this to get 3D rendered buttons */
     padding-right: 1px;
     padding-left: 5px;
