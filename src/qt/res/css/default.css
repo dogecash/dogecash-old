@@ -113,7 +113,7 @@ QMenu::item {
 
 QMenu::item:selected {
     background-color: #d7d7d7;
-    color: #d6d6d6;
+    color: #b6a27e;
 }
 
 QToolBar {
@@ -150,7 +150,7 @@ QToolBar>QToolButton:checked {
 
 QToolBar>QToolButton:hover {
     background-color: qlineargradient(x1: 0, x2: 1, stop: 0 #29333D, stop: 0.07 #29333D, stop: 0.0701 #B6A27E, stop: 1 #B6A27E);
-    color: #d6d6d6;
+    color: #B6A27E;
 }
 
 QToolBar>QToolButton#ToolbarSpacer:hover:!selected {
@@ -797,14 +797,14 @@ QDialog#OpenURIDialog QPushButton#selectFileButton {
     /* ... Button */
     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #29333D, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #29333D);
     border: 1px solid #d2d2d2;
-    color: #d6d6d6;
+    color: #B6A27E;
     padding-left: 10px;
     padding-right: 10px;
 }
 
 QDialog#OpenURIDialog QPushButton#selectFileButton:hover {
     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #29333D, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #29333D);
-    color: #d6d6d6;
+    color: #B6A27E;
 }
 
 QDialog#OpenURIDialog QPushButton#selectFileButton:pressed {
