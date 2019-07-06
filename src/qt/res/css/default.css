@@ -112,7 +112,7 @@ QMenu::item {
 }
 
 QMenu::item:selected {
-    background-color: #d7d7d7;
+    background-color: #424E5B;
     color: #b6a27e;
 }
 
