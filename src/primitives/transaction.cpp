@@ -176,6 +176,17 @@ CAmount CTransaction::GetValueOut() const
     return nValueOut;
 }
 
+CAmount CTransaction::GetValueOutUnspendable() const
+{
+    CAmount nValueOut = 0;
+    for (std::vector<CTxOut>::const_iterator it(vout.begin()); it != vout.end(); ++it)
+    {
+        if( !it->IsNull() && !it->IsEmpty() && it->scriptPubKey.IsUnspendable() )
+            nValueOut += it->nValue;
+    }
+    return nValueOut;
+}
+
 CAmount CTransaction::GetZerocoinMinted() const
 {
     for (const CTxOut& txOut : vout) {
