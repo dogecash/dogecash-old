@@ -276,7 +276,9 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMai
     timerAutoMintIcon->start(10000);
     setAutoMintStatus();
 }
-
+#ifdef Q_OS_MAC
+    CAppNapInhibitor* m_app_nap_inhibitor = new CAppNapInhibitor;
+#endif
 BitcoinGUI::~BitcoinGUI()
 {
     // Unsubscribe from notifications from core
@@ -286,6 +288,7 @@ BitcoinGUI::~BitcoinGUI()
     if (trayIcon) // Hide tray icon, as deleting will let it linger until quit (on Ubuntu)
         trayIcon->hide();
 #ifdef Q_OS_MAC
+    delete m_app_nap_inhibitor;
     delete appMenuBar;
     MacDockIconHandler::cleanup();
 #endif
@@ -924,14 +927,18 @@ void BitcoinGUI::setNumConnections(int count)
 
 void BitcoinGUI::setNumBlocks(int count)
 {
+       // Acquire current block source
+    enum BlockSource blockSource = clientModel->getBlockSource();
+    #ifdef Q_OS_MAC
+    (IsInitialBlockDownload() || blockSource == BLOCK_SOURCE_REINDEX || blockSource == BLOCK_SOURCE_DISK ) ? m_app_nap_inhibitor->disableAppNap() : m_app_nap_inhibitor->enableAppNap();
+    #endif
     if (!clientModel)
         return;
 
     // Prevent orphan statusbar messages (e.g. hover Quit in main menu, wait until chain-sync starts -> garbelled text)
     statusBar()->clearMessage();
 
-    // Acquire current block source
-    enum BlockSource blockSource = clientModel->getBlockSource();
+ 
     switch (blockSource) {
     case BLOCK_SOURCE_NETWORK:
         progressBarLabel->setText(tr("Synchronizing with network..."));

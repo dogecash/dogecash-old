@@ -164,6 +164,7 @@ HEADERS += src/activemasternode.h \
            src/obj/build.h \
            src/primitives/block.h \
            src/primitives/transaction.h \
+            src/qt/macos_appnap.h \
            src/qt/addressbookpage.h \
            src/qt/addresstablemodel.h \
            src/qt/askpassphrasedialog.h \
