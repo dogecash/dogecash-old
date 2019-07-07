@@ -101,7 +101,7 @@ void TrafficGraphWidget::paintEvent(QPaintEvent*)
             painter.drawLine(XMARGIN, yy, width() - XMARGIN, yy);
         }
     }
-
+    painter.setRenderHint(QPainter::Antialiasing);
     if (!vSamplesIn.empty()) {
         QPainterPath p;
         paintPath(p, vSamplesIn);
