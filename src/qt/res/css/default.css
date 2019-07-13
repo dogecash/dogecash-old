@@ -113,7 +113,7 @@ QMenu::item {
 
 QMenu::item:selected {
     background-color: #424E5B;
-    color: #b6a27e;
+    color: #D6D6D6;
 }
 
 QToolBar {
@@ -150,7 +150,7 @@ QToolBar>QToolButton:checked {
 
 QToolBar>QToolButton:hover {
     background-color: qlineargradient(x1: 0, x2: 1, stop: 0 #29333D, stop: 0.07 #29333D, stop: 0.0701 #B6A27E, stop: 1 #B6A27E);
-    color: #B6A27E;
+    color: #29333D;
 }
 
 QToolBar>QToolButton#ToolbarSpacer:hover:!selected {
@@ -204,6 +204,7 @@ QTabBar {
 
 QTabBar::tab:hover:!selected {
     background-color: #29333D;
+    color: #29333D;
 }
 
 QWidget {
