@@ -35,10 +35,10 @@ static const bool DEFAULT_SPLASHSCREEN = true;
 #define COLOR_BLACK QColor(211, 211, 211)
 /* Transaction list -- TX status decoration - conflicted */
 #define COLOR_CONFLICTED QColor(255, 0, 0)
-/* Transaction list -- TX status decoration - orphan (Light Orange #B6A27E) */
-#define COLOR_ORPHAN QColor(255,228,225)
-/* Transaction list -- TX status decoration - stake (Light Gray #F2F2F2) */
-#define COLOR_STAKE QColor(214, 214, 214)
+/* Transaction list -- TX status decoration - orphan (Orange/Gold #B6A27E) */
+#define COLOR_ORPHAN QColor(182, 162, 126)
+/* Transaction list -- TX status decoration - stake (Misty Rose #FFE4E1) */
+#define COLOR_STAKE QColor(255,228,225)
 /* Tooltips longer than this (in characters) are converted into rich text,
    so that they can be word-wrapped.
  */
