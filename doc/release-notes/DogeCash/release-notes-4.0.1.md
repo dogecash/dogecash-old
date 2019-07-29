@@ -1,6 +1,6 @@
 DogeCash Core version *4.0.1* is now available from:  <https://github.com/dogecash/dogecash/releases>
 
-This is a new major version release, including various bug fixes and performance improvements, as well as updated translations.
+This is a new minor version release, including various bug fixes and performance improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at github: <https://github.com/dogecash/dogecash/issues>
 
@@ -50,11 +50,6 @@ Miscellaneous Changes
 ------
 
 Readjusting the supply calculation methods in RPC to adjust for Burnt Coin Supplies.
-
-### Completely Disallow Qt4
-
-Compiling the DogeCash Core wallet against Qt4 hasn't been supported for quite some time now, but the build system still recognized Qt4 as a valid option if Qt5 couldn't be found. This has now been remedied and Qt4 will no longer be considered valid during the `configure` pre-compilation phase.
-
 
 *4.0.1* Change log
 ==============
