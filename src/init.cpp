@@ -2034,6 +2034,11 @@ bool AppInit2()
             // Run a thread to precompute any zDOGEC spends
             threadGroup.create_thread(boost::bind(&ThreadPrecomputeSpends));
         }
+
+        if (GetBoolArg("-staking", true)) {
+            // ppcoin:mint proof-of-stake blocks in the background
+            threadGroup.create_thread(boost::bind(&ThreadStakeMinter));
+        }
     }
 #endif
 
