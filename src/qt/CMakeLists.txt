@@ -162,12 +162,12 @@ set_source_files_properties(${QT_TRANSLATIONS_FILES} PROPERTIES OUTPUT_LOCATION 
 QT5_ADD_TRANSLATION(QM ${QT_TRANSLATIONS_FILES})
 add_custom_target(translations_target ALL DEPENDS ${QM})
 
-QT5_ADD_RESOURCES(QRC_RESOURCE pivx.qrc)
-QT5_ADD_RESOURCES(QRC_LOCALE_RESOURCE pivx_locale.qrc)
+QT5_ADD_RESOURCES(QRC_RESOURCE dogecash.qrc)
+QT5_ADD_RESOURCES(QRC_LOCALE_RESOURCE dogecash_locale.qrc)
 
-add_executable(pivx-qt pivx.cpp ${QM} ${QRC_RESOURCE} ${QRC_LOCALE_RESOURCE})
-add_dependencies(pivx-qt translations_target libunivalue libsecp256k1 leveldb leveldb_sse42 memenv)
-target_link_libraries(pivx-qt
+add_executable(dogecash-qt dogecash.cpp ${QM} ${QRC_RESOURCE} ${QRC_LOCALE_RESOURCE})
+add_dependencies(dogecash-qt translations_target libunivalue libsecp256k1 leveldb leveldb_sse42 memenv)
+target_link_libraries(dogecash-qt
         qt_stuff
         univalue
         SERVER_A UTIL_A WALLET_A CLI_A COMMON_A BITCOIN_CRYPTO_A ZEROCOIN_A
@@ -176,24 +176,24 @@ target_link_libraries(pivx-qt
         pthread
         )
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    target_link_libraries(pivx-qt "-framework Cocoa")
+    target_link_libraries(dogecash-qt "-framework Cocoa")
 endif()
 if(GMP_FOUND)
-    target_link_libraries(pivx-qt ${GMP_LIBRARY})
+    target_link_libraries(dogecash-qt ${GMP_LIBRARY})
 endif()
 if(ZMQ_FOUND)
-    target_link_libraries(pivx-qt ZMQ_A ${ZMQ_LIB})
+    target_link_libraries(dogecash-qt ZMQ_A ${ZMQ_LIB})
 endif()
 if (QRCODE_FOUND)
-    target_link_libraries(pivx-qt ${QRCODE_LIB})
+    target_link_libraries(dogecash-qt ${QRCODE_LIB})
 endif()
 
-QT5_USE_Modules(pivx-qt Gui)
-QT5_USE_Modules(pivx-qt Core)
-QT5_USE_Modules(pivx-qt Widgets)
-QT5_USE_Modules(pivx-qt Test)
-QT5_USE_Modules(pivx-qt PrintSupport)
-QT5_USE_Modules(pivx-qt Network)
+QT5_USE_Modules(dogecash-qt Gui)
+QT5_USE_Modules(dogecash-qt Core)
+QT5_USE_Modules(dogecash-qt Widgets)
+QT5_USE_Modules(dogecash-qt Test)
+QT5_USE_Modules(dogecash-qt PrintSupport)
+QT5_USE_Modules(dogecash-qt Network)
 if (Qt5DBus_FOUND)
-    QT5_USE_Modules(pivx-qt DBus)
+    QT5_USE_Modules(dogecash-qt DBus)
 endif()
