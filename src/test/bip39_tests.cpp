@@ -7,7 +7,7 @@
 #include "key.h"
 #include "util.h"
 #include "utilstrencodings.h"
-#include "test/test_dogecash.h"
+#include "test_dogecash.h"
 #include "bip39.h"
 
 #include <boost/test/unit_test.hpp>
