@@ -6,7 +6,7 @@
 #include "upgrade_check.h"
 #include <clientversion.h>
 #include "util.h"
-#include "ui_interface.h"
+#include "guiinterface.h"
 #include "alert.h"
 static bool fWarned = false;
 	

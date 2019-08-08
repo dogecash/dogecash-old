@@ -19,7 +19,7 @@
 #include "primitives/block.h"
 #include "primitives/transaction.h"
 #include "zdogec/zerocoin.h"
-#include "ui_interface.h"
+#include "guiinterface.h"
 #include "util.h"
 #include "validationinterface.h"
 #include "wallet/wallet_ismine.h"
