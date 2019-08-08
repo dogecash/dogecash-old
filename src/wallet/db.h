@@ -17,7 +17,7 @@
 #include <vector>
 
 #include <boost/filesystem/path.hpp>
-ƒ
+
 #include <db_cxx.h>
 
 class CDiskBlockIndex;
