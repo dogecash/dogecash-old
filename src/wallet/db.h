@@ -17,7 +17,7 @@
 #include <vector>
 
 #include <boost/filesystem/path.hpp>
-
+ƒ
 #include <db_cxx.h>
 
 class CDiskBlockIndex;
@@ -49,6 +49,7 @@ public:
 
     CDBEnv();
     ~CDBEnv();
+    void Reset();
     void MakeMock();
     bool IsMock() { return fMockDb; }
 
