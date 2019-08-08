@@ -1,7 +1,7 @@
 // Copyright (c) 2014-2017 The Dash Core developers
 // Distributed under the MIT software license, see the accompanying
-#ifndef PIVX_HDCHAIN_H
-#define PIVX_HDCHAIN_H
+#ifndef DOGECASH_HDCHAIN_H
+#define DOGECASH_HDCHAIN_H
 
 #include "key.h"
 #include "sync.h"
@@ -150,4 +150,4 @@ public:
     std::string GetKeyPath() const;
 };
 
-#endif // PIVX_HDCHAIN_H
+#endif // DOGECASH_HDCHAIN_H

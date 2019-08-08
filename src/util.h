@@ -32,8 +32,8 @@
 // Debugging macros
 // Uncomment the following line to enable debugging messages
 // or enable on a per file basis prior to inclusion of util.h
-//#define ENABLE_PIVX_DEBUG
-#ifdef ENABLE_PIVX_DEBUG
+//#define ENABLE_DOGECASH_DEBUG
+#ifdef ENABLE_DOGECASH_DEBUG
 #define DBG( x ) x
 #else
 #define DBG( x )

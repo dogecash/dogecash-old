@@ -21,8 +21,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef PIVX_BIP39_H
-#define PIVX_BIP39_H
+#ifndef DOGECASH_BIP39_H
+#define DOGECASH_BIP39_H
 
 #include "allocators.h"
 
