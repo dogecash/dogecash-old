@@ -355,6 +355,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int64_t nFe
 
         LogPrint("masternode","Masternode payment of %s to %s\n", FormatMoney(masternodePayment).c_str(), address2.ToString().c_str());
     }
+  }
 }
 
 int CMasternodePayments::GetMinMasternodePaymentsProto()
