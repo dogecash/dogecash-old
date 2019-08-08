@@ -10,7 +10,7 @@
 #include "bip39.h"
 
 #include <boost/test/unit_test.hpp>
-
+#include "test/test_dogecash.h"
 #include <univalue.h>
 
 // In script_tests.cpp
