@@ -18,7 +18,7 @@
 #include "wallet.h"
 #include "walletdb.h"
 #include "zdogecchain.h"
-
+#include "allocators.h"
 #include <stdint.h>
 
 #include "libzerocoin/Coin.h"
@@ -120,6 +120,62 @@ UniValue getnewaddress(const UniValue& params, bool fHelp)
     return CBitcoinAddress(keyID).ToString();
 }
 
+UniValue getxpubkey(const UniValue& params, bool fHelp)
+{
+    if (fHelp || params.size() != 0)
+        throw runtime_error(
+            "getxpubkey\n"
+            "\nReturns xpubkey of HD Wallet.\n"
+            "\nResult:\n"
+            "\"xpubkey\"    (string) The xpubkey of the wallet\n"
+
+            "\nExamples:\n" + HelpExampleCli("getxpubkey", "") + HelpExampleRpc("getxpubkey", ""));
+    if(!pwalletMain->IsHDEnabled()){
+            throw JSONRPCError(RPC_MISC_ERROR, "wallet is not a HD Enabled Wallet.");
+    }
+    else {
+    CHDChain hdChainCurrent;
+    if (pwalletMain->GetHDChain(hdChainCurrent))
+    {
+        CExtKey masterKey;
+        SecureVector vchSeed = hdChainCurrent.GetSeed();
+        masterKey.SetMaster(&vchSeed[0], vchSeed.size());
+        CExtPubKey masterPubkey;
+        masterPubkey = masterKey.Neuter();
+        CBitcoinExtPubKey b58extpubkey;
+        b58extpubkey.SetKey(masterPubkey);
+        return b58extpubkey.ToString();
+        }
+    }
+}
+
+UniValue getxprivkey(const UniValue& params, bool fHelp)
+{
+    if (fHelp || params.size() != 0)
+        throw runtime_error(
+            "getxpubkey\n"
+            "\nReturns xprivkey of HD Wallet.\n"
+            "\nResult:\n"
+            "\"xpubkey\"    (string) The xpubkey of the wallet\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("getxprivkey", "") + HelpExampleRpc("getxprivkey", ""));
+    if(!pwalletMain->IsHDEnabled()){
+            throw JSONRPCError(RPC_MISC_ERROR, "wallet is not a HD Enabled Wallet.");
+    }
+    else {
+    CHDChain hdChainCurrent;
+    if (pwalletMain->GetHDChain(hdChainCurrent))
+    {
+        SecureVector vchSeed = hdChainCurrent.GetSeed();
+        CExtKey masterKey;
+        masterKey.SetMaster(&vchSeed[0], vchSeed.size());
+        CBitcoinExtKey b58extkey;
+        b58extkey.SetKey(masterKey);
+        return b58extkey.ToString();
+    }
+  }
+}
 
 CBitcoinAddress GetAccountAddress(string strAccount, bool bForceNew = false)
 {
