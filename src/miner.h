@@ -34,6 +34,7 @@ void UpdateTime(CBlockHeader* block, const CBlockIndex* pindexPrev);
     /** Generate a new block, without valid proof-of-work */
     CBlockTemplate* CreateNewBlockWithKey(CReserveKey& reservekey, CWallet* pwallet);
     void ThreadStakeMinter();
+#endif // ENABLE_WALLET
 
 extern double dHashesPerSec;
 extern int64_t nHPSTimerStart;
