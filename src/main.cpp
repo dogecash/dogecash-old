@@ -4516,7 +4516,7 @@ bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex
     if (hash != Params().HashGenesisBlock()) {
         BlockMap::iterator mi = mapBlockIndex.find(block.hashPrevBlock);
         if (mi == mapBlockIndex.end())
-            return state.DoS(0, error("%s : prev block %s not found", __func__, block.hashPrevBlock.GetHex(), 0, "bad-prevblk");
+            return state.DoS(0, error("%s : prev block %s not found", __func__), block.hashPrevBlock.GetHex(), 0, "bad-prevblk");
         pindexPrev = (*mi).second;
         if (pindexPrev->nStatus & BLOCK_FAILED_MASK) {
             //If this "invalid" block is an exact match from the checkpoints, then reconsider it
@@ -4972,7 +4972,11 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDis
             return error("%s : AcceptBlock FAILED", __func__);
         }
     }
-
+    //Both vars need reinit due to the bracket above this line.
+    // Preliminary checks
+    int64_t nStartTime = GetTimeMillis();
+    // check block
+    bool checked = CheckBlock(*pblock, state);
     if (!ActivateBestChain(state, pblock, checked))
         return error("%s : ActivateBestChain failed", __func__);
 
