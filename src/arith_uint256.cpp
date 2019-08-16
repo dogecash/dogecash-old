@@ -13,7 +13,7 @@
 #include <string.h>
 
 template <unsigned int BITS>
-base_uint<BITS>::base_uint(const std::string& str)
+base_uint1<BITS>::base_uint1(const std::string& str)
 {
     static_assert(BITS/32 > 0 && BITS%32 == 0, "Template parameter BITS must be a positive multiple of 32.");
 
@@ -21,9 +21,9 @@ base_uint<BITS>::base_uint(const std::string& str)
 }
 
 template <unsigned int BITS>
-base_uint<BITS>& base_uint<BITS>::operator<<=(unsigned int shift)
+base_uint1<BITS>& base_uint1<BITS>::operator<<=(unsigned int shift)
 {
-    base_uint<BITS> a(*this);
+    base_uint1<BITS> a(*this);
     for (int i = 0; i < WIDTH; i++)
         pn[i] = 0;
     int k = shift / 32;
@@ -38,9 +38,9 @@ base_uint<BITS>& base_uint<BITS>::operator<<=(unsigned int shift)
 }
 
 template <unsigned int BITS>
-base_uint<BITS>& base_uint<BITS>::operator>>=(unsigned int shift)
+base_uint1<BITS>& base_uint1<BITS>::operator>>=(unsigned int shift)
 {
-    base_uint<BITS> a(*this);
+    base_uint1<BITS> a(*this);
     for (int i = 0; i < WIDTH; i++)
         pn[i] = 0;
     int k = shift / 32;
@@ -55,7 +55,7 @@ base_uint<BITS>& base_uint<BITS>::operator>>=(unsigned int shift)
 }
 
 template <unsigned int BITS>
-base_uint<BITS>& base_uint<BITS>::operator*=(uint32_t b32)
+base_uint1<BITS>& base_uint1<BITS>::operator*=(uint32_t b32)
 {
     uint64_t carry = 0;
     for (int i = 0; i < WIDTH; i++) {
@@ -67,9 +67,9 @@ base_uint<BITS>& base_uint<BITS>::operator*=(uint32_t b32)
 }
 
 template <unsigned int BITS>
-base_uint<BITS>& base_uint<BITS>::operator*=(const base_uint& b)
+base_uint1<BITS>& base_uint1<BITS>::operator*=(const base_uint1& b)
 {
-    base_uint<BITS> a = *this;
+    base_uint1<BITS> a = *this;
     *this = 0;
     for (int j = 0; j < WIDTH; j++) {
         uint64_t carry = 0;
@@ -83,10 +83,10 @@ base_uint<BITS>& base_uint<BITS>::operator*=(const base_uint& b)
 }
 
 template <unsigned int BITS>
-base_uint<BITS>& base_uint<BITS>::operator/=(const base_uint& b)
+base_uint1<BITS>& base_uint1<BITS>::operator/=(const base_uint1& b)
 {
-    base_uint<BITS> div = b;     // make a copy, so we can shift.
-    base_uint<BITS> num = *this; // make a copy, so we can subtract.
+    base_uint1<BITS> div = b;     // make a copy, so we can shift.
+    base_uint1<BITS> num = *this; // make a copy, so we can subtract.
     *this = 0;                   // the quotient.
     int num_bits = num.bits();
     int div_bits = div.bits();
@@ -109,7 +109,7 @@ base_uint<BITS>& base_uint<BITS>::operator/=(const base_uint& b)
 }
 
 template <unsigned int BITS>
-int base_uint<BITS>::CompareTo(const base_uint<BITS>& b) const
+int base_uint1<BITS>::CompareTo(const base_uint1<BITS>& b) const
 {
     for (int i = WIDTH - 1; i >= 0; i--) {
         if (pn[i] < b.pn[i])
@@ -121,7 +121,7 @@ int base_uint<BITS>::CompareTo(const base_uint<BITS>& b) const
 }
 
 template <unsigned int BITS>
-bool base_uint<BITS>::EqualTo(uint64_t b) const
+bool base_uint1<BITS>::EqualTo(uint64_t b) const
 {
     for (int i = WIDTH - 1; i >= 2; i--) {
         if (pn[i])
@@ -135,7 +135,7 @@ bool base_uint<BITS>::EqualTo(uint64_t b) const
 }
 
 template <unsigned int BITS>
-double base_uint<BITS>::getdouble() const
+double base_uint1<BITS>::getdouble() const
 {
     double ret = 0.0;
     double fact = 1.0;
@@ -147,31 +147,31 @@ double base_uint<BITS>::getdouble() const
 }
 
 template <unsigned int BITS>
-std::string base_uint<BITS>::GetHex() const
+std::string base_uint1<BITS>::GetHex() const
 {
     return ArithToUint256(*this).GetHex();
 }
 
 template <unsigned int BITS>
-void base_uint<BITS>::SetHex(const char* psz)
+void base_uint1<BITS>::SetHex(const char* psz)
 {
     *this = UintToArith256(uint256S(psz));
 }
 
 template <unsigned int BITS>
-void base_uint<BITS>::SetHex(const std::string& str)
+void base_uint1<BITS>::SetHex(const std::string& str)
 {
     SetHex(str.c_str());
 }
 
 template <unsigned int BITS>
-std::string base_uint<BITS>::ToString() const
+std::string base_uint1<BITS>::ToString() const
 {
     return (GetHex());
 }
 
 template <unsigned int BITS>
-unsigned int base_uint<BITS>::bits() const
+unsigned int base_uint1<BITS>::bits() const
 {
     for (int pos = WIDTH - 1; pos >= 0; pos--) {
         if (pn[pos]) {
@@ -186,20 +186,20 @@ unsigned int base_uint<BITS>::bits() const
 }
 
 // Explicit instantiations for base_uint<256>
-template base_uint<256>::base_uint(const std::string&);
-template base_uint<256>& base_uint<256>::operator<<=(unsigned int);
-template base_uint<256>& base_uint<256>::operator>>=(unsigned int);
-template base_uint<256>& base_uint<256>::operator*=(uint32_t b32);
-template base_uint<256>& base_uint<256>::operator*=(const base_uint<256>& b);
-template base_uint<256>& base_uint<256>::operator/=(const base_uint<256>& b);
-template int base_uint<256>::CompareTo(const base_uint<256>&) const;
-template bool base_uint<256>::EqualTo(uint64_t) const;
-template double base_uint<256>::getdouble() const;
-template std::string base_uint<256>::GetHex() const;
-template std::string base_uint<256>::ToString() const;
-template void base_uint<256>::SetHex(const char*);
-template void base_uint<256>::SetHex(const std::string&);
-template unsigned int base_uint<256>::bits() const;
+template base_uint1<256>::base_uint1(const std::string&);
+template base_uint1<256>& base_uint1<256>::operator<<=(unsigned int);
+template base_uint1<256>& base_uint1<256>::operator>>=(unsigned int);
+template base_uint1<256>& base_uint1<256>::operator*=(uint32_t b32);
+template base_uint1<256>& base_uint1<256>::operator*=(const base_uint1<256>& b);
+template base_uint1<256>& base_uint1<256>::operator/=(const base_uint1<256>& b);
+template int base_uint1<256>::CompareTo(const base_uint1<256>&) const;
+template bool base_uint1<256>::EqualTo(uint64_t) const;
+template double base_uint1<256>::getdouble() const;
+template std::string base_uint1<256>::GetHex() const;
+template std::string base_uint1<256>::ToString() const;
+template void base_uint1<256>::SetHex(const char*);
+template void base_uint1<256>::SetHex(const std::string&);
+template unsigned int base_uint1<256>::bits() const;
 
 // This implementation directly uses shifts instead of going
 // through an intermediate MPI representation.
