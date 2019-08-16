@@ -3256,6 +3256,7 @@ bool CWallet::CreateCoinStake(
     // The following split & combine thresholds are important to security
     // Should not be adjusted if you don't understand the consequences
     //int64_t nCombineThreshold = 0;
+    const CBlockIndex* pindexPrev = chainActive.Tip();
     txNew.vin.clear();
     txNew.vout.clear();
 
@@ -3302,7 +3303,7 @@ bool CWallet::CreateCoinStake(
         if (IsLocked() || ShutdownRequested())
             return false;
 
-        //make sure that enough time has elapsed between
+
         CBlockIndex* pindex = stakeInput->GetIndexFrom();
         if (!pindex || pindex->nHeight < 1) {
             LogPrintf("CreateCoinStake(): no pindexfrom\n");
@@ -3315,8 +3316,8 @@ bool CWallet::CreateCoinStake(
         nTxNewTime = GetAdjustedTime();
         nAttempts++;
         //iterates each utxo inside of CheckStakeKernelHash()
-        if (Stake(stakeInput.get(), nBits, block.GetBlockTime(), nTxNewTime, hashProofOfStake)) {
-            //Double check that this will pass time requirements
+
+        if (Stake(pindexPrev, stakeInput.get(), nBits, block.GetBlockTime(), nTxNewTime, hashProofOfStake)) {            //Double check that this will pass time requirements
             if (nTxNewTime <= chainActive.Tip()->GetMedianTimePast() && Params().NetworkID() != CBaseChainParams::REGTEST) {
                 LogPrintf("CreateCoinStake() : kernel found, but it is too far in the past \n");
                 continue;

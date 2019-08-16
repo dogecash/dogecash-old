@@ -158,7 +158,8 @@ public:
 
     // proof-of-stake specific fields
     uint256 GetBlockTrust() const;
-    uint64_t nStakeModifier;             // hash modifier for proof-of-stake
+    uint64_t nStakeModifier;  // hash modifier for proof-of-stake
+    uint256 nStakeModifierV2;    // updated hash modifier
     unsigned int nStakeModifierChecksum; // checksum of index; in-memeory only
     COutPoint prevoutStake;
     unsigned int nStakeTime;
@@ -200,6 +201,7 @@ public:
         nMoneySupply = 0;
         nFlags = 0;
         nStakeModifier = 0;
+        nStakeModifierV2 = 0;
         nStakeModifierChecksum = 0;
         prevoutStake.SetNull();
         nStakeTime = 0;
@@ -365,6 +367,7 @@ public:
 
     unsigned int GetStakeEntropyBit() const
     {
+       // if(!nNewStakeProtocol) fix later
         unsigned int nEntropyBit = ((GetBlockHash().Get64()) & 1);
         if (GetBoolArg("-printstakemodifier", false))
             LogPrintf("GetStakeEntropyBit: nHeight=%u hashBlock=%s nEntropyBit=%u\n", nHeight, GetBlockHash().ToString().c_str(), nEntropyBit);

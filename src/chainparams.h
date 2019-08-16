@@ -76,6 +76,7 @@ public:
     int64_t Interval() const { return nTargetTimespan / nTargetSpacing; }
     int COINBASE_MATURITY() const { return nMaturity; }
     CAmount MaxMoneyOut() const { return nMaxMoneyOut; }
+    CAmount nStakeMinInput() const { return nStakeCollateralMin; }
     /** The masternode count that we will allow the see-saw reward payments to be off by */
     int MasternodeCountDrift() const { return nMasternodeCountDrift; }
     //declare and match all functions later for global use
@@ -130,6 +131,7 @@ public:
     int Zerocoin_StartTime() const { return nZerocoinStartTime; }
     int Block_Enforce_Invalid() const { return nBlockEnforceInvalidUTXO; }
     int Zerocoin_Block_V2_Start() const { return nBlockZerocoinV2; }
+    bool IsNewStakeProtocol(const int nHeight) const { return nHeight >= nNewStakeProtocol; }
 
     // fake serial attack
     int Zerocoin_Block_EndFakeSerial() const { return nFakeSerialBlockheightEnd; }
@@ -160,6 +162,9 @@ protected:
     int nMasternodeCountDrift;
     int nMaturity;
     int nModifierUpdateBlock;
+    //Stake Protocol Switch
+    unsigned int nNewStakeProtocol;
+    CAmount nStakeCollateralMin;
     CAmount nMaxMoneyOut;
     int nMinerThreads;
     std::vector<CDNSSeedData> vSeeds;
