@@ -32,7 +32,7 @@ public:
             pn[i] = 0;
     }
 
-    base_uint1(const base_uint& b)
+    base_uint1(const base_uint1& b)
     {
         static_assert(BITS/32 > 0 && BITS%32 == 0, "Template parameter BITS must be a positive multiple of 32.");
 
@@ -133,7 +133,7 @@ public:
     base_uint1& operator<<=(unsigned int shift);
     base_uint1& operator>>=(unsigned int shift);
 
-    base_uint& operator+=(const base_uint& b)
+    base_uint1& operator+=(const base_uint1& b)
     {
         uint64_t carry = 0;
         for (int i = 0; i < WIDTH; i++)
