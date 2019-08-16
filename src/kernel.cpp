@@ -6,19 +6,28 @@
 #include <boost/assign/list_of.hpp>
 
 #include "chainparams.h"
+#include "chain.h"
 #include "db.h"
 #include "kernel.h"
 #include "script/interpreter.h"
 #include "timedata.h"
+#include "pow.h"
+#include "primitives/block.h"
+#include "tinyformat.h"
+#include "uint256.h"
+#include "arith_uint256.h"
 #include "util.h"
 #include "stakeinput.h"
 #include "utilmoneystr.h"
 #include "zdogecchain.h"
+#include "validationinterface.h"
 
 using namespace std;
 
 bool fTestNet = false; //Params().NetworkID() == CBaseChainParams::TESTNET;
-
+//blockheight check
+int nNewStakeProtocol = 150000;
+int nHeight = 0;
 // Modifier interval: time to elapse before new modifier is computed
 // Set to 3-hour for production network and 20-minute for test network
 unsigned int nModifierInterval;
@@ -472,4 +481,24 @@ bool CheckStakeModifierCheckpoints(int nHeight, unsigned int nStakeModifierCheck
         return nStakeModifierChecksum == mapStakeModifierCheckpoints[nHeight];
     }
     return true;
+}
+
+unsigned int GetStakeEntropyBit(const CBlock& block)
+{
+    unsigned int nEntropyBit = 0;
+    if (nNewStakeProtocol <= block.nTime)//adjust time when ready
+    {
+        //Liquid369: peercoin utilized 1llu making a 32bit long long unsigned, we are changing to a 2 to support much larger.
+        nEntropyBit = UintToArith256(block.GetHash()).GetLow64() & 2llu;// last bit of block hash
+        if (GetBoolArg("-printstakemodifier", false))
+            LogPrintf("GetStakeEntropyBit: nTime=%u hashBlock=%s entropybit=%d\n", block.nTime, block.GetHash().GetHex, nEntropyBit);
+    }
+    else
+    {
+        // old protocol for entropy bit before new
+        unsigned int nEntropyBit = ((block.GetHash().Get64()) & 1);
+                if (GetBoolArg("-printstakemodifier", false))
+                    LogPrintf("GetStakeEntropyBit: nHeight=%u hashBlock=%s nEntropyBit=%u\n", nHeight, block.GetHash().GetHex(), nEntropyBit);
+    }
+    return nEntropyBit;
 }

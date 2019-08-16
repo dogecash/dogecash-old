@@ -7,6 +7,7 @@
 #ifndef BITCOIN_CHAIN_H
 #define BITCOIN_CHAIN_H
 
+#include "chainparams.h"
 #include "pow.h"
 #include "primitives/block.h"
 #include "tinyformat.h"
@@ -17,6 +18,11 @@
 #include <vector>
 
 #include <boost/foreach.hpp>
+
+using namespace std;
+
+//Swap time of new Protocol
+unsigned int nNewStakeProtocolV1 = 150000;
 
 struct CDiskBlockPos {
     int nFile;
@@ -367,12 +373,14 @@ public:
 
     unsigned int GetStakeEntropyBit() const
     {
-       // if(!nNewStakeProtocol) fix later
-        unsigned int nEntropyBit = ((GetBlockHash().Get64()) & 1);
-        if (GetBoolArg("-printstakemodifier", false))
-            LogPrintf("GetStakeEntropyBit: nHeight=%u hashBlock=%s nEntropyBit=%u\n", nHeight, GetBlockHash().ToString().c_str(), nEntropyBit);
+        /*unsigned int nEntropyBit = 0;
+        if(nNewStakeProtocol >= block.nHeight)
+            unsigned int nEntropyBit = ((GetBlockHash().Get64()) & 1);
+                if (GetBoolArg("-printstakemodifier", false))
+                    LogPrintf("GetStakeEntropyBit: nHeight=%u hashBlock=%s nEntropyBit=%u\n", nHeight, GetBlockHash().ToString().c_str(), nEntropyBit);
 
-        return nEntropyBit;
+        return nEntropyBit;*/
+        return ((nFlags & BLOCK_STAKE_ENTROPY) >> 1);
     }
 
     bool SetStakeEntropyBit(unsigned int nEntropyBit)
