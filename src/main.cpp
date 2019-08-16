@@ -4516,7 +4516,7 @@ bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex
     if (hash != Params().HashGenesisBlock()) {
         BlockMap::iterator mi = mapBlockIndex.find(block.hashPrevBlock);
         if (mi == mapBlockIndex.end())
-            return state.DoS(0, error("%s : prev block %s not found", __func__), block.hashPrevBlock.GetHex(), 0, "bad-prevblk");
+            return state.DoS(0, error("%s : prev block %s not found", __func__), block.hashPrevBlock,0, "bad-prevblk");
         pindexPrev = (*mi).second;
         if (pindexPrev->nStatus & BLOCK_FAILED_MASK) {
             //If this "invalid" block is an exact match from the checkpoints, then reconsider it
@@ -4585,7 +4585,7 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
     if (block.GetHash() != Params().HashGenesisBlock()) {
         BlockMap::iterator mi = mapBlockIndex.find(block.hashPrevBlock);
         if (mi == mapBlockIndex.end())
-            return state.DoS(0, error("%s : prev block %s not found", __func__, block.hashPrevBlock.ToString().c_str()), 0, "bad-prevblk");
+            return state.DoS(0, error("%s : prev block %s not found", __func__, block.hashPrevBlock.GetHex()), 0, "bad-prevblk");
         pindexPrev = (*mi).second;
         if (pindexPrev->nStatus & BLOCK_FAILED_MASK) {
             //If this "invalid" block is an exact match from the checkpoints, then reconsider it
