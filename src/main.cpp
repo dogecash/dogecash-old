@@ -4935,7 +4935,7 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDis
 
     if (!CheckBlockSignature(*pblock))
         return error("ProcessNewBlock() : bad proof-of-stake block signature");
-        LOCK(cs_main); 
+    LOCK(cs_main);
 
         MarkBlockAsReceived(pblock->GetHash());
         if (!checked) {
