@@ -176,7 +176,7 @@ public:
         genesis.nVersion = 1;
         genesis.nTime = 1558130910; 
         genesis.nBits = 0x1e0ffff0;
-	    genesis.nNonce = 5510938; 
+	genesis.nNonce = 5510938; 
         hashGenesisBlock = genesis.GetHash();
        // MineGenesis(genesis);
         //debug code
@@ -184,13 +184,13 @@ public:
         assert(hashGenesisBlock == uint256("0x0000093cfce0a5a3cecea522e2c13bdf055d65c559fd2222730ba6f0d18dd2cd")); 
         assert(genesis.hashMerkleRoot == uint256("0x7c3f1b5874e38c421d07fc20ce79ddb3bbaad19cdbad903a0b185070d6005b8c")); 
 
-	    vFixedSeeds.clear();
+	vFixedSeeds.clear();
         vSeeds.clear();
-	    vSeeds.push_back(CDNSSeedData("seeds.dogec.io", "seeds.dogec.io")); //Primary DNS Seeder test
+	vSeeds.push_back(CDNSSeedData("seeds.dogec.io", "seeds.dogec.io")); //Primary DNS Seeder test
         //vSeeds.push_back(CDNSSeedData("45.76.254.27", "45.76.254.27"));     // Primary DNS Seeder
         //vSeeds.push_back(CDNSSeedData("207.246.118.245", "207.246.118.245"));    // Secondary DNS Seeder
         //vSeeds.push_back(CDNSSeedData("139.180.216.73", "139.180.216.73"));         // Single node address
-	    vSeeds.push_back(CDNSSeedData("seeds.dogec.xyz", "seeds.dogec.xyz"));
+	vSeeds.push_back(CDNSSeedData("seeds.dogec.xyz", "seeds.dogec.xyz"));
         vSeeds.push_back(CDNSSeedData("x9.seeds.dogec.io", "x9.seeds.dogec.io")); // Single node address
        // vSeeds.push_back(CDNSSeedData("", ""));           // Single node address
 
@@ -255,7 +255,7 @@ public:
     {
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
-	    pchMessageStart[0] = 0xa0;
+	pchMessageStart[0] = 0xa0;
         pchMessageStart[1] = 0x43;
         pchMessageStart[2] = 0x16;
         pchMessageStart[3] = 0x19;
