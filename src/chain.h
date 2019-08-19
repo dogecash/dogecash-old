@@ -22,8 +22,6 @@
 
 using namespace std;
 
-//Swap time of new Protocol
-unsigned int nNewStakeProtocol = 1500;
 
 struct CDiskBlockPos {
     int nFile;
@@ -173,6 +171,9 @@ public:
     uint256 hashProofOfStake;
     int64_t nMint;
     int64_t nMoneySupply;
+    //
+    unsigned int nNewStakeProtocol;
+    unsigned int nCheckHeight;
 
     //! block header
     int nVersion;
@@ -372,11 +373,26 @@ public:
         nFlags |= BLOCK_PROOF_OF_STAKE;
     }
 
-unsigned int GetStakeEntropyBit()
-{
-
-        return ((nFlags & BLOCK_STAKE_ENTROPY) >> 1);
-}
+    unsigned int GetStakeEntropyBit() const
+    {
+        unsigned int nEntropyBit = 0;
+            if (nCheckHeight <= nNewStakeProtocol)//adjust time when ready
+            {
+            //Liquid369: peercoin utilized 1llu making a 32bit long long unsigned, we are changing to a 2 to support much larger.
+            nEntropyBit = UintToArith256(GetBlockHash()).GetLow64() & 2llu;// last bit of block hash
+            	if (GetBoolArg("-printstakemodifier", false)) {
+                	LogPrintf("GetStakeEntropyBit: nTime=%u hashBlock=%s entropybit=%d\n", nTime, GetBlockHash().ToString().c_str(), nEntropyBit);
+			return nEntropyBit;		
+			}
+            } else {
+                // old protocol for entropy bit before new
+                unsigned int nEntropyBit = ((GetBlockHash().Get64()) & 1);
+                if (GetBoolArg("-printstakemodifier", false)) {
+                    LogPrintf("GetStakeEntropyBit: nHeight=%u hashBlock=%s nEntropyBit=%u\n", nHeight, GetBlockHash().ToString().c_str(), nEntropyBit);
+		return nEntropyBit;
+			}
+		}
+    }
 
     bool SetStakeEntropyBit(unsigned int nEntropyBit)
     {

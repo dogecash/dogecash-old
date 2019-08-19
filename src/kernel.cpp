@@ -24,9 +24,8 @@
 
 using namespace std;
 
-bool fTestNet = false; //Params().NetworkID() == CBaseChainParams::TESTNET;
-//blockheight check
-unsigned int nNewStakeProtocol = 1500;
+//bool fTestNet = false; //Params().NetworkID() == CBaseChainParams::TESTNET;
+
 int nHeight = 0;
 // Modifier interval: time to elapse before new modifier is computed
 // Set to 3-hour for production network and 20-minute for test network
@@ -236,8 +235,8 @@ bool ComputeNextStakeModifier(const CBlockIndex* pindexPrev, uint64_t& nStakeMod
         // add the selected block from candidates to selected list
         mapSelectedBlocks.insert(make_pair(pindex->GetBlockHash(), pindex));
         if (GetBoolArg("-printstakemodifier", false))
-            LogPrintf("ComputeNextStakeModifier: selected round %d stop=%s height=%d bit=%d\n",
-                nRound, DateTimeStrFormat("%Y-%m-%d %H:%M:%S", nSelectionIntervalStop).c_str(), pindex->nHeight, pindex->GetStakeEntropyBit());
+            LogPrintf("%s : selected round %d stop=%s height=%d bit=%d\n", __func__,
+                nRound, DateTimeStrFormat("%Y-%m-%d %H:%M:%S", nSelectionIntervalStop).c_str(), pindex->nHeight, pindex);
     }
 
     // Print selection map for visualization of the selected blocks
@@ -481,26 +480,4 @@ bool CheckStakeModifierCheckpoints(int nHeight, unsigned int nStakeModifierCheck
         return nStakeModifierChecksum == mapStakeModifierCheckpoints[nHeight];
     }
     return true;
-}
-
-unsigned int GetStakeEntropyBit(const CBlock& block)
-{
-    CBlockIndex* pindex = new CBlockIndex(block);
-    unsigned int nEntropyBit = 0;
-    if (nNewStakeProtocol >= pindex->nHeight)//adjust time when ready
-    {
-        //Liquid369: peercoin utilized 1llu making a 32bit long long unsigned, we are changing to a 2 to support much larger.
-        nEntropyBit = UintToArith256(block.GetHash()).GetLow64() & 2llu;// last bit of block hash
-        if (GetBoolArg("-printstakemodifier", false))
-            LogPrintf("GetStakeEntropyBit: nTime=%u hashBlock=%s entropybit=%d\n", block.nTime, block.GetHash().GetHex(), nEntropyBit);
-    }
-    else
-    {
-        // old protocol for entropy bit before new
-        unsigned int nEntropyBit = ((block.GetHash().Get64()) & 1);
-                if (GetBoolArg("-printstakemodifier", false))
-                    LogPrintf("GetStakeEntropyBit: nHeight=%u hashBlock=%s nEntropyBit=%u\n", nHeight, block.GetHash().GetHex(), nEntropyBit);
-    }
-    return nEntropyBit;
-
 }
