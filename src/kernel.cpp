@@ -26,7 +26,7 @@ using namespace std;
 
 bool fTestNet = false; //Params().NetworkID() == CBaseChainParams::TESTNET;
 //blockheight check
-int nNewStakeProtocol = 1500;
+unsigned int nNewStakeProtocol = 1500;
 int nHeight = 0;
 // Modifier interval: time to elapse before new modifier is computed
 // Set to 3-hour for production network and 20-minute for test network
