@@ -267,7 +267,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // dogecash: 1 day
         nTargetSpacing = 1 * 60;  // dogecash: 1 minute
-        nLastPOWBlock = 2000;
+        nLastPOWBlock = 100;
         nMaturity = 32;
         nMasternodeCountDrift = 4;
         nStakeCollateralMin = 0;
@@ -290,17 +290,17 @@ public:
         nSupplyBeforeFakeSerial = 0;
 	//MineGenesis(genesis);
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1558130910; 
+        genesis.nTime = 1566214170; 
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 5510938;
+        genesis.nNonce = 426871;
 
 	hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x0000093cfce0a5a3cecea522e2c13bdf055d65c559fd2222730ba6f0d18dd2cd"));
-	assert(genesis.hashMerkleRoot == uint256("0x7c3f1b5874e38c421d07fc20ce79ddb3bbaad19cdbad903a0b185070d6005b8c"));
+        assert(hashGenesisBlock == uint256("0x0000061d6d149bd682e7fea5c9a03b7763b02ee675d9e0427fe62264cf06ace3"));
+	assert(genesis.hashMerkleRoot == uint256("0x78c9b23c24de6d129c50a53c53b6e3b83b774a233cae985b715caf2139f2ea6b"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
-       // vSeeds.push_back(CDNSSeedData("testnet.dogecash.io", "testnet.dogecash.io"));         // Single node address
+       // vSeeds.push_back(CDNSSeedData("207.246.94.83", "207.246.94.83"));         // Single node address
        // vSeeds.push_back(CDNSSeedData("testnet1.dogecash.io", "testnet1.dogecash.io"));       // Single node address
        // vSeeds.push_back(CDNSSeedData("testnet2.dogecash.io", "testnet2.dogecash.io"));
 	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30);
