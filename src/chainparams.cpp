@@ -66,10 +66,10 @@ static const Checkpoints::CCheckpointData data = {
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
     boost::assign::map_list_of
-    (0, uint256("0x0000061d6d149bd682e7fea5c9a03b7763b02ee675d9e0427fe62264cf06ace3"));
+    (0, uint256("0x000005fa71f99253a8287fd9bc1aafc844267a955a6f3c7231f85d521ee1613b"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1566214170,
+    1566233685,
     0,
     250};
 
@@ -267,7 +267,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // dogecash: 1 day
         nTargetSpacing = 1 * 60;  // dogecash: 1 minute
-        nLastPOWBlock = 100;
+        nLastPOWBlock = 75;
         nMaturity = 32;
         nMasternodeCountDrift = 4;
         nStakeCollateralMin = 0;
@@ -292,11 +292,11 @@ public:
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1566214170; 
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 426871;
+        genesis.nNonce = 2156;
 
 	hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x0000061d6d149bd682e7fea5c9a03b7763b02ee675d9e0427fe62264cf06ace3"));
-	assert(genesis.hashMerkleRoot == uint256("0x78c9b23c24de6d129c50a53c53b6e3b83b774a233cae985b715caf2139f2ea6b"));
+        assert(hashGenesisBlock == uint256("0x000005fa71f99253a8287fd9bc1aafc844267a955a6f3c7231f85d521ee1613b"));
+	assert(genesis.hashMerkleRoot == uint256("0x4234553189306bd8788332901014dfe900914328539d594679a6d02b99eaca99"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
