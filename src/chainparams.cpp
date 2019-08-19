@@ -373,6 +373,7 @@ public:
         nBlockFirstFraudulent = 999999999; //First block that bad serials emerged
         nBlockLastGoodCheckpoint = 999999999; //Last valid accumulator checkpoint
 
+        nNewStakeProtocol = 1500;
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
 	//MineGenesis(genesis);
