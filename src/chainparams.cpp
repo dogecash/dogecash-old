@@ -300,7 +300,7 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-       // vSeeds.push_back(CDNSSeedData("207.246.94.83", "207.246.94.83"));         // Single node address
+        vSeeds.push_back(CDNSSeedData("207.246.94.83", "207.246.94.83"));         // Single node address
        // vSeeds.push_back(CDNSSeedData("testnet1.dogecash.io", "testnet1.dogecash.io"));       // Single node address
        // vSeeds.push_back(CDNSSeedData("testnet2.dogecash.io", "testnet2.dogecash.io"));
 	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30);
