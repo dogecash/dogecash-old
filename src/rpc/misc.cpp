@@ -423,6 +423,71 @@ UniValue validateaddress(const UniValue& params, bool fHelp)
     return ret;
 }
 
+UniValue createsporkkeypair(const UniValue& params, bool fHelp)
+{
+    if (fHelp)
+        throw runtime_error(
+            "createsporkkeypair\n"
+            "\nReturns a public and private key pair for use in chainparams and in conf for the spork controller\n"
+
+            "\nResult:\n"
+            "{\n"
+            "  \"dogecashaddr\" : \"dogecashaddress\", (string) The dogecash public address \n"
+            "  \"strsporkpubkey\" : \"pubsporkkey\", (string) The spork pubkey \n"
+            "  \"sporkkey\" : \"privsporkkey\", (string) The privatekey of the spork pubkey\n"
+            "}\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("createsporkkeypair", "") + HelpExampleRpc("createsporkkeypair", ""));
+
+#ifdef ENABLE_WALLET
+    LOCK2(cs_main, pwalletMain ? &pwalletMain->cs_wallet : NULL);
+#else
+    LOCK(cs_main);
+#endif
+
+    EnsureWalletIsUnlocked();
+    //check if wallet is locked
+    if (!pwalletMain->IsLocked()){
+      pwalletMain->TopUpKeyPool();
+    }
+    string strAccount = "";
+    // Generate a new key that is added to wallet
+    CPubKey newKey;
+    //check if keypool has ran out
+    if (!pwalletMain->GetKeyFromPool(newKey))
+        throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out, please call keypoolrefill first");
+    CKeyID keyID = newKey.GetID();
+    CKey vchSecret;
+    pwalletMain->SetAddressBook(keyID, strAccount, "receive");
+    //get address from KeyID
+    CBitcoinAddress address(keyID);
+    //get addr in str format
+    string currentAddress = address.ToString();
+    //check if private key is known
+    if (!pwalletMain->GetKey(keyID, vchSecret))
+        throw JSONRPCError(RPC_WALLET_ERROR, "Private key for address " + currentAddress + " is not known");
+    bool isValid = address.IsValid();
+    UniValue ret(UniValue::VOBJ);
+    //only return data if addr is valid
+    if (isValid) {
+        //akshaynexus: combine validateaddress and dumpprivkey to generate sporkkey pairs needed for testing/making new spork pairs
+        CTxDestination dest = address.Get();
+        //get public address
+        ret.push_back(Pair("dogecashaddr", currentAddress));
+        CScript scriptPubKey = GetScriptForDestination(dest);
+        //get scriptpubkey
+        ret.push_back(Pair("strsporkpubkey", HexStr(scriptPubKey.begin(), scriptPubKey.end())));
+        //get privkey
+        ret.push_back(Pair("sporkkey",CBitcoinSecret(vchSecret).ToString()));
+    }
+    else{
+        throw JSONRPCError(RPC_WALLET_ERROR, "Address returned is not valid");
+    }
+    return ret;
+}
+
+
 /**
  * Used by addmultisigaddress / createmultisig:
  */

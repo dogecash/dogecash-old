@@ -146,6 +146,9 @@ UniValue getxpubkey(const UniValue& params, bool fHelp)
         b58extpubkey.SetKey(masterPubkey);
         return b58extpubkey.ToString();
         }
+        else{
+          throw JSONRPCError(RPC_MISC_ERROR, "Runtime Error");
+        }
     }
 }
 
@@ -174,7 +177,10 @@ UniValue getxprivkey(const UniValue& params, bool fHelp)
         b58extkey.SetKey(masterKey);
         return b58extkey.ToString();
     }
-  }
+    else{
+          throw JSONRPCError(RPC_MISC_ERROR, "Runtime Error");
+      }
+   }
 }
 
 CBitcoinAddress GetAccountAddress(string strAccount, bool bForceNew = false)
