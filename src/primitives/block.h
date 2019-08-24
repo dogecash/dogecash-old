@@ -29,7 +29,7 @@ class CBlockHeader
 {
 public:
     // header
-    static const int32_t CURRENT_VERSION=5;     // Version 5 supports CLTV activation
+    static const int32_t CURRENT_VERSION=6;     // Version 6 is new stake protocols
     int32_t nVersion;
     uint256 hashPrevBlock;
     uint256 hashMerkleRoot;

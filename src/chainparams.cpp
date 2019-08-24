@@ -99,6 +99,17 @@ libzerocoin::ZerocoinParams* CChainParams::Zerocoin_Params(bool useModulusV1) co
     return &ZCParamsDec;
 }
 
+bool CChainParams::HasStakeMinAgeOrDepth(const int contextHeight, const uint32_t contextTime,
+        const int utxoFromBlockHeight, const uint32_t utxoFromBlockTime)
+{
+    // before stake modifier V2, the age required was 60 * 60 (1 hour) / not required on regtest
+    if (!IsNewStakeProtocol(contextHeight))
+        return (NetworkID() == CBaseChainParams::REGTEST || (utxoFromBlockTime + 3600 <= contextTime));
+
+    // after stake modifier V2, we require the utxo to be nStakeMinDepth deep in the chain
+    return (contextHeight - utxoFromBlockHeight >= nStakeMinDepth);
+}
+
 class CMainParams : public CChainParams
 {
 public:
@@ -125,8 +136,10 @@ public:
         nRejectBlockOutdatedMajority = 10260; // 95%
         nToCheckBlockUpgradeMajority = 10800; // Approximate expected amount of blocks in 7 days (1440*7.5)
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // dogecash: 1 day  
         nTargetSpacing = 1 * 60; //dogecash: 1 Min
+        nStakeMinDepth = 600;
+        nFutureTimeDriftPoW = 7200;
+        nFutureTimeDriftPoS = 180;
         nMaturity = 30;
         nMasternodeCountDrift = 20;
         nMasternodeCollateralLimit = 5000; //MN collateral
@@ -255,22 +268,22 @@ public:
     {
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
-	pchMessageStart[0] = 0xa0;
+	pchMessageStart[0] = 0x00;
         pchMessageStart[1] = 0x43;
         pchMessageStart[2] = 0x16;
         pchMessageStart[3] = 0x19;
-        vAlertPubKey = ParseHex("040818ca42a8634c010ba1025a8d8a10a03ea286456f341df6a4a0aad1f123833695a662be2dc983a8da5fed7380bc9e1c3433e94422d36746cdd8e21a5f97b749");
+        vAlertPubKey = ParseHex("047f7a0bdf66641b39a6f9f929ba57d188adeeabc324e150c024028781d5c01d3c76cc790f84215eef480adb484f310ad7b6134677fbadd086c2eb734488b4f983");
         nDefaultPort = 40001;
         nEnforceBlockUpgradeMajority = 4320; // 75%
         nRejectBlockOutdatedMajority = 5472; // 95%
         nToCheckBlockUpgradeMajority = 5760; // 4 days
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // dogecash: 1 day
         nTargetSpacing = 1 * 60;  // dogecash: 1 minute
-        nLastPOWBlock = 75;
-        nMaturity = 32;
+        nLastPOWBlock = 125;
+        nMaturity = 1;
+        nStakeMinDepth = 100;
         nMasternodeCountDrift = 4;
-        nStakeCollateralMin = 0;
+        nStakeCollateralMin = 10;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 21000000 * COIN;
         nZerocoinStartHeight = INT_MAX;
@@ -284,6 +297,8 @@ public:
         nBlockZerocoinV2 = 444020; //!> The block that zerocoin v2 becomes active
         nEnforceNewSporkKey = 1521604800; //!> Sporks signed after Wednesday, March 21, 2018 4:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1522454400; //!> Reject old spork key after Saturday, March 31, 2018 12:00:00 AM GMT
+        nNewStakeProtocol = 1500; //!> Enforce new Stake Protocols add test/regtest
+
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
@@ -300,9 +315,9 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("207.246.94.83", "207.246.94.83"));         // Single node address
-       // vSeeds.push_back(CDNSSeedData("testnet1.dogecash.io", "testnet1.dogecash.io"));       // Single node address
-       // vSeeds.push_back(CDNSSeedData("testnet2.dogecash.io", "testnet2.dogecash.io"));
+        vSeeds.push_back(CDNSSeedData("80.240.21.159", "80.240.21.159"));         // Single node address
+        vSeeds.push_back(CDNSSeedData("96.30.194.130", "96.30.194.130"));       // Single node address
+        vSeeds.push_back(CDNSSeedData("45.77.251.179", "45.77.251.179"));
 	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30);
 	base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
 	base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 122);
@@ -346,7 +361,7 @@ public:
     {
         networkID = CBaseChainParams::REGTEST;
         strNetworkID = "regtest";
-        pchMessageStart[0] = 0xa0;
+        pchMessageStart[0] = 0x10;
         pchMessageStart[1] = 0x43;
         pchMessageStart[2] = 0x16;
         pchMessageStart[3] = 0x19;
@@ -356,7 +371,6 @@ public:
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-        nTargetTimespan = 24 * 60 * 60; // dogecash: 1 day
         nTargetSpacing = 1 * 60;        // dogecash: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         nLastPOWBlock = 250;
