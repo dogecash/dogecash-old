@@ -191,6 +191,7 @@ protected:
     bool fSkipProofOfWorkCheck;
     bool fTestnetToBeDeprecatedFieldRPC;
     bool fHeadersFirstSyncingActive;
+    bool fStakeMinDepth;
     int nPoolMaxTransactions;
     int nBudgetCycleBlocks;
     std::string strSporkKey;
