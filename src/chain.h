@@ -378,7 +378,7 @@ public:
                 if (GetBoolArg("-printstakemodifier", false))
                     LogPrintf("GetStakeEntropyBit: nHeight=%u hashBlock=%s nEntropyBit=%u\n", nHeight, GetBlockHash().ToString().c_str(), nEntropyBit);
 
-                    return nEntropyBit;
+            return nEntropyBit;
 		}
     }
 
