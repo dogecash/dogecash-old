@@ -370,7 +370,7 @@ public:
             nEntropyBit = UintToArith256(GetBlockHash()).GetLow64() & 2llu;// last bit of block hash
             	if (GetBoolArg("-printstakemodifier", false)) {
                 	LogPrintf("GetStakeEntropyBit: nTime=%u hashBlock=%s entropybit=%d\n", nTime, GetBlockHash().ToString().c_str(), nEntropyBit);
-			    return nEntropyBit;		
+			    return nEntropyBit;
 			}
             } else {
                 // old protocol for entropy bit before new
@@ -488,14 +488,14 @@ public:
         READWRITE(nMint);
         READWRITE(nMoneySupply);
         READWRITE(nFlags);
-        
+
         // v1/v2 modifier selection.
         if (!Params().IsNewStakeProtocol(nHeight)) {
             READWRITE(nStakeModifier);
         } else {
             READWRITE(nStakeModifierV2);
         }
-        
+
         if (IsProofOfStake()) {
             READWRITE(prevoutStake);
             READWRITE(nStakeTime);

@@ -54,7 +54,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 //   (no blocks before with a timestamp after, none after with
 //    timestamp before)
 // + Contains no strange transactions
-static Checkpoints::MapCheckpoints mapCheckpoints = 
+static Checkpoints::MapCheckpoints mapCheckpoints =
 	boost::assign::map_list_of
 	(0, uint256("0x0000093cfce0a5a3cecea522e2c13bdf055d65c559fd2222730ba6f0d18dd2cd"));
 static const Checkpoints::CCheckpointData data = {
@@ -186,15 +186,15 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1558130910; 
+        genesis.nTime = 1558130910;
         genesis.nBits = 0x1e0ffff0;
-	genesis.nNonce = 5510938; 
+	genesis.nNonce = 5510938;
         hashGenesisBlock = genesis.GetHash();
        // MineGenesis(genesis);
         //debug code
 	//    std::cout << "genesisinfo \n " << genesis.ToString();
-        assert(hashGenesisBlock == uint256("0x0000093cfce0a5a3cecea522e2c13bdf055d65c559fd2222730ba6f0d18dd2cd")); 
-        assert(genesis.hashMerkleRoot == uint256("0x7c3f1b5874e38c421d07fc20ce79ddb3bbaad19cdbad903a0b185070d6005b8c")); 
+        assert(hashGenesisBlock == uint256("0x0000093cfce0a5a3cecea522e2c13bdf055d65c559fd2222730ba6f0d18dd2cd"));
+        assert(genesis.hashMerkleRoot == uint256("0x7c3f1b5874e38c421d07fc20ce79ddb3bbaad19cdbad903a0b185070d6005b8c"));
 
 	vFixedSeeds.clear();
         vSeeds.clear();
@@ -304,7 +304,7 @@ public:
         nSupplyBeforeFakeSerial = 0;
 	//MineGenesis(genesis);
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1566214170; 
+        genesis.nTime = 1566214170;
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 5657067;
 
