@@ -188,7 +188,7 @@ public:
         genesis.nVersion = 1;
         genesis.nTime = 1558130910;
         genesis.nBits = 0x1e0ffff0;
-	genesis.nNonce = 5510938;
+	    genesis.nNonce = 5510938;
         hashGenesisBlock = genesis.GetHash();
        // MineGenesis(genesis);
         //debug code
