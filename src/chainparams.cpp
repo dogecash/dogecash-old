@@ -304,7 +304,7 @@ public:
         nSupplyBeforeFakeSerial = 0;
 	//MineGenesis(genesis);
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-    genesis.nTime = 1566214170; 
+        genesis.nTime = 1566214170; 
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 5657067;
 
