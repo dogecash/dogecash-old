@@ -267,7 +267,7 @@ public:
     {
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
-	    pchMessageStart[0] = 0x00;
+    pchMessageStart[0] = 0x00;
         pchMessageStart[1] = 0x43;
         pchMessageStart[2] = 0x16;
         pchMessageStart[3] = 0x19;
@@ -310,7 +310,7 @@ public:
 
 	hashGenesisBlock = genesis.GetHash();
        // assert(hashGenesisBlock == uint256("0x00000c0941669c214f3391ea4412899cb785776c79b08474faf2b3002d23aade"));
-	   // assert(genesis.hashMerkleRoot == uint256("0xb369cd1776507cbd977247a729fc165943bc0de7f5850e90180d26efdc812016"));
+    // assert(genesis.hashMerkleRoot == uint256("0xb369cd1776507cbd977247a729fc165943bc0de7f5850e90180d26efdc812016"));
 
         vFixedSeeds.clear();
         vSeeds.clear();

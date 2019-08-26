@@ -242,7 +242,6 @@ string CRPCTable::help(string strCommand) const
     strRet = strRet.substr(0, strRet.size() - 1);
     return strRet;
 }
-
 UniValue makekeypair(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() > 1)
