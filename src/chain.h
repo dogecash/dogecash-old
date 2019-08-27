@@ -379,7 +379,7 @@ public:
                     LogPrintf("GetStakeEntropyBit: nHeight=%u hashBlock=%s nEntropyBit=%u\n", nHeight, GetBlockHash().ToString().c_str(), nEntropyBit);
 
             return nEntropyBit;
-		}
+        }
     }
 
     bool SetStakeEntropyBit(unsigned int nEntropyBit)
