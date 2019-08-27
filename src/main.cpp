@@ -4938,8 +4938,6 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDis
     }
 
     {
-    // Preliminary checks
-    int64_t nStartTime = GetTimeMillis();
 
     // check block
     bool checked = CheckBlock(*pblock, state);
