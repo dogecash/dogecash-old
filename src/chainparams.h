@@ -172,7 +172,7 @@ protected:
     int nFutureTimeDriftPoW;
     int nFutureTimeDriftPoS;
     //Stake Protocol Switch
-    unsigned int nNewStakeProtocol;
+    int nNewStakeProtocol;
     CAmount nStakeCollateralMin;
     CAmount nMaxMoneyOut;
     int nMinerThreads;

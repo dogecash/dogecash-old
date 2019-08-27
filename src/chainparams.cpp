@@ -267,7 +267,7 @@ public:
     {
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
-    pchMessageStart[0] = 0x00;
+    pchMessageStart[0] = 0x90;
         pchMessageStart[1] = 0x43;
         pchMessageStart[2] = 0x16;
         pchMessageStart[3] = 0x19;
