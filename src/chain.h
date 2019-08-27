@@ -368,10 +368,10 @@ public:
             {
             //Liquid369: peercoin utilized 1llu making a 32bit long long unsigned, we are changing to a 2 to support much larger.
             nEntropyBit = UintToArith256(GetBlockHash()).GetLow64() & 2llu;// last bit of block hash
-            	if (GetBoolArg("-printstakemodifier", false)) {
-                	LogPrintf("GetStakeEntropyBit: nTime=%u hashBlock=%s entropybit=%d\n", nTime, GetBlockHash().ToString().c_str(), nEntropyBit);
-			    return nEntropyBit;
-			}
+                if (GetBoolArg("-printstakemodifier", false)) {
+                    LogPrintf("GetStakeEntropyBit: nTime=%u hashBlock=%s entropybit=%d\n", nTime, GetBlockHash().ToString().c_str(), nEntropyBit);
+                return nEntropyBit;
+            }
             } else {
                 // old protocol for entropy bit before new
                 unsigned int nEntropyBit = ((GetBlockHash().Get64()) & 1);
