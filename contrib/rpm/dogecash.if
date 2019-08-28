@@ -24,7 +24,7 @@ interface(`dogecash_domtrans',`
 
 ########################################
 ## <summary>
-##	Execute dogecash server in the dogecash domain.
+##	Execute DogeCash server in the DogeCash domain.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -43,7 +43,7 @@ interface(`dogecash_initrc_domtrans',`
 
 ########################################
 ## <summary>
-##	Search dogecash lib directories.
+##	Search DogeCash lib directories.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -62,7 +62,7 @@ interface(`dogecash_search_lib',`
 
 ########################################
 ## <summary>
-##	Read dogecash lib files.
+##	Read DogeCash lib files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -81,7 +81,7 @@ interface(`dogecash_read_lib_files',`
 
 ########################################
 ## <summary>
-##	Manage dogecash lib files.
+##	Manage DogeCash lib files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -100,7 +100,7 @@ interface(`dogecash_manage_lib_files',`
 
 ########################################
 ## <summary>
-##	Manage dogecash lib directories.
+##	Manage DogeCash lib directories.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -121,7 +121,7 @@ interface(`dogecash_manage_lib_dirs',`
 ########################################
 ## <summary>
 ##	All of the rules required to administrate
-##	a dogecash environment
+##	a DogeCash environment
 ## </summary>
 ## <param name="domain">
 ##	<summary>

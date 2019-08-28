@@ -1,8 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018-2019 The DogeCash developers
+// Copyright (c) 2015-2018 The PIVX developers// Copyright (c) 2018-2019 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -128,7 +127,7 @@ public:
         pchMessageStart[3] = 0x19;
         vAlertPubKey = ParseHex("04e70ca66d0bc8bd6c105952488fcdbd9f809d459af257646e35c5ec36f5e03158c916442aaa9592e63eeca8afa9660e505b160ee599c8efcc0a5f111058ba8c74");
         nDefaultPort = 56740;
-        bnProofOfWorkLimit = ~uint256(0) >> 20; // dogecash starting difficulty is 1 / 2^12
+        bnProofOfWorkLimit = ~uint256(0) >> 20; // DogeCash starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 8100; // 75%

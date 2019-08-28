@@ -62,12 +62,12 @@
         <translation>Prijímacia adresa</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Toto sú vaše dogecash adresy na odosielanie platieb. Pred odoslaním vždy skontrolujte výšku a adresu prijemcu.</translation>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Toto sú vaše DogeCash adresy na odosielanie platieb. Pred odoslaním vždy skontrolujte výšku a adresu prijemcu.</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Toto sú vaše dogecash adresy na prijímanie platieb. Pre každú transakciu sa odporúča použiť novú prijímaciu adresu.</translation>
+        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Toto sú vaše DogeCash adresy na prijímanie platieb. Pre každú transakciu sa odporúča použiť novú prijímaciu adresu.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -573,7 +573,7 @@
         <translation>DogeCash Core</translation>
     </message>
     <message>
-        <source>Send coins to a dogecash address</source>
+        <source>Send coins to a DogeCash address</source>
         <translation>Odoslať mince na adresu dogecash</translation>
     </message>
     <message>
@@ -601,12 +601,12 @@
         <translation>Zmeňte možnosti konfigurácie pre dogecash</translation>
     </message>
     <message>
-        <source>Sign messages with your dogecash addresses to prove you own them</source>
+        <source>Sign messages with your DogeCash addresses to prove you own them</source>
         <translation>Podpíšte správy pomocou adresy dogecash, aby ste preukázali, že ich vlastníte</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
-        <translation>Overte správy, aby sa zabezpečilo, že boli podpísané zadanými dogecash adresami</translation>
+        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
+        <translation>Overte správy, aby sa zabezpečilo, že boli podpísané zadanými DogeCash adresami</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -649,7 +649,7 @@
         <translation>Okno blockchain prehliadača</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
+        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
         <translation>Zobraziť pomocnú správu programu DogeCash Core a získajte zoznam možností príkazového riadka dogecash</translation>
     </message>
     <message>
@@ -1132,7 +1132,7 @@ MultiSend: %1</translation>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The dogecash address to sign the message with</source>
+        <source>The DogeCash address to sign the message with</source>
         <translation>Adresa dogecash, ktorou chcete správu podpísať</translation>
     </message>
     <message>
@@ -1156,16 +1156,16 @@ MultiSend: %1</translation>
         <translation>Skopírujte aktuálny podpis do schránky</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this dogecash address</source>
-        <translation>Podpíšte správu, aby ste preukázali, že ste vlastníkom tejto dogecash adresy</translation>
+        <source>Sign the message to prove you own this DogeCash address</source>
+        <translation>Podpíšte správu, aby ste preukázali, že ste vlastníkom tejto DogeCash adresy</translation>
     </message>
     <message>
-        <source>The dogecash address the message was signed with</source>
+        <source>The DogeCash address the message was signed with</source>
         <translation>dogecash adresa, ktorou bola správa podpísaná</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
-        <translation>Skontrolujte správu, aby ste sa uistili, že bola podpísaná zadanou dogecash adresou</translation>
+        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
+        <translation>Skontrolujte správu, aby ste sa uistili, že bola podpísaná zadanou DogeCash adresou</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>

@@ -17,7 +17,7 @@ BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
             VALUE "CompanyName",        "dogecash"
-            VALUE "FileDescription",    "dogecash-tx (CLI dogecash transaction editor utility)"
+            VALUE "FileDescription",    "dogecash-tx (CLI DogeCash transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "dogecash-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR

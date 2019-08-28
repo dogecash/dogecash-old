@@ -1,10 +1,10 @@
 UNIX BUILD NOTES
 ====================
-Some notes on how to build dogecash in Unix.
+Some notes on how to build DogeCash in Unix.
 
 Note
 ---------------------
-Always use absolute paths to configure and compile dogecash and the dependencies,
+Always use absolute paths to configure and compile DogeCash and the dependencies,
 for example, when specifying the path of the dependency:
 
 	../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX
@@ -173,7 +173,7 @@ It is recommended to use Berkeley DB 4.8. If you have to build it yourself:
 ```bash
 dogecash_ROOT=$(pwd)
 
-# Pick some path to install BDB to, here we create a directory within the dogecash directory
+# Pick some path to install BDB to, here we create a directory within the DogeCash directory
 BDB_PREFIX="${dogecash_ROOT}/db4"
 mkdir -p $BDB_PREFIX
 
@@ -207,7 +207,7 @@ If you need to build Boost yourself:
 
 Security
 --------
-To help make your dogecash installation more secure by making certain attacks impossible to
+To help make your DogeCash installation more secure by making certain attacks impossible to
 exploit even if a vulnerability is found, binaries are hardened by default.
 This can be disabled with:
 
@@ -236,7 +236,7 @@ Hardening enables the following features:
     ET_DYN
 
 * _Non-executable Stack_: If the stack is executable then trivial stack based buffer overflow exploits are possible if
-    vulnerable buffers are found. By default, dogecash should be built with a non-executable stack
+    vulnerable buffers are found. By default, DogeCash should be built with a non-executable stack
     but if one of the libraries it uses asks for an executable stack or someone makes a mistake
     and uses a compiler extension which requires an executable stack, it will silently build an
     executable without the non-executable stack protection.

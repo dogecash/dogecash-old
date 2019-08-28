@@ -71,7 +71,7 @@ Due to the aforementioned issue with zdogec spending, users may find that their 
 
 RPC Changes
 ---------------------
-The `bip38decrypt` command has had it's parameter order changed to be more consistent with it's counterpart. The command now expects the dogecash address as it's first parameter and the passphrase as it's second parameter.
+The `bip38decrypt` command has had it's parameter order changed to be more consistent with it's counterpart. The command now expects the DogeCash address as it's first parameter and the passphrase as it's second parameter.
 
 Bip38 Compatibility With 3rd Party Tools
 ---------------------

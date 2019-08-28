@@ -44,11 +44,11 @@ Attacks, Exploits, and Mitigations
 
 On Janurary 22 2019, Decentralized Systems Lab out of the University of Illinois published a study entitled “[‘Fake Stake’ attacks on chain-based Proof-of-Stake cryptocurrencies](https://medium.com/@dsl_uiuc/fake-stake-attacks-on-chain-based-proof-of-stake-cryptocurrencies-b8b05723f806)”, which outlined a type of Denial of Service attack that could take place on a number of Proof of Stake based networks by exhausting a client's RAM or Disk resources.
 
-A full report provided by dogecash developers is available on the [dogecash Website](https://dogec.io/fake-stake-official-dogecash-report/), which includes additional findings, mitigation details, and resources for testing. This type of attack has no risk to users' privacy and does not affect their holdings.
+A full report provided by DogeCash developers is available on the [dogecash Website](https://dogec.io/fake-stake-official-dogecash-report/), which includes additional findings, mitigation details, and resources for testing. This type of attack has no risk to users' privacy and does not affect their holdings.
 
 ### Wrapped Serials
 
-On March 6th 2019, an attack was detected on the dogecash network zerocoin protocol, or zdogec. The vulnerability allows an attacker to fake serials accepted by the network and thus to spend zerocoins that have never been minted. As severe as it is, it does not harm users’ privacy and does not affect their holdings directly.
+On March 6th 2019, an attack was detected on the DogeCash network zerocoin protocol, or zdogec. The vulnerability allows an attacker to fake serials accepted by the network and thus to spend zerocoins that have never been minted. As severe as it is, it does not harm users’ privacy and does not affect their holdings directly.
 
 As a result of this, all zdogec functionality was disabled via one of our sporks shortly after verification of this exploit. A full report, detailing how this attack was performed, as well as investigation results and mitigation methods is available [On Medium](https://medium.com/@dev.dogecash/report-wrapped-serials-attack-5f4bf7b51701).
 
@@ -65,7 +65,7 @@ DogeCash Core v3.2.0 introduces new consensus rules for scripting pathways to su
 
 A new "Automint Addresses" feature has been added to the wallet that allows for the creation of new addresses who's purpose is to automatically convert any DOGEC funds received by such addresses to zdogec. The feature as a whole can be enabled/disabled either at runtime using the `-enableautoconvertaddress` option, via RPC/Console with the `enableautomintaddress` command, or via the GUI's options dialog, with the default being enabled.
 
-Creation of these automint addresses is currently only available via the RPC/Console `createautomintaddress` command, which takes no additional arguments. The command returns a new dogecash address each time, but addresses created by this command can be re-used if desired.
+Creation of these automint addresses is currently only available via the RPC/Console `createautomintaddress` command, which takes no additional arguments. The command returns a new DogeCash address each time, but addresses created by this command can be re-used if desired.
 
 ### In-wallet Proposal Voting
 

@@ -112,7 +112,7 @@ that wants to link against that library, then you need this package installed.
 Most people do not need this package installed.
 
 %package server
-Summary:	The dogecash daemon
+Summary:	The DogeCash daemon
 Group:		System Environment/Daemons
 Requires:	dogecash-utils = %{version}-%{release}
 Requires:	selinux-policy policycoreutils-python
@@ -141,7 +141,7 @@ Group:		Applications/System
 This package provides several command line utilities for interacting with a
 dogecash-core daemon.
 
-The dogecash-cli utility allows you to communicate and control a dogecash daemon
+The dogecash-cli utility allows you to communicate and control a DogeCash daemon
 over RPC, the dogecash-tx utility allows you to create a custom transaction, and
 the bench_dogecash utility can be used to perform some benchmarks.
 
@@ -187,13 +187,13 @@ mv %{buildroot}%{_bindir}/dogecashd %{buildroot}%{_sbindir}/dogecashd
 # systemd stuff
 mkdir -p %{buildroot}%{_tmpfilesdir}
 cat <<EOF > %{buildroot}%{_tmpfilesdir}/dogecash.conf
-d /run/dogecashd 0750 dogecash dogecash -
+d /run/dogecashd 0750 DogeCash dogecash -
 EOF
 touch -a -m -t 201504280000 %{buildroot}%{_tmpfilesdir}/dogecash.conf
 
 mkdir -p %{buildroot}%{_sysconfdir}/sysconfig
 cat <<EOF > %{buildroot}%{_sysconfdir}/sysconfig/dogecash
-# Provide options to the dogecash daemon here, for example
+# Provide options to the DogeCash daemon here, for example
 # OPTIONS="-testnet -disable-wallet"
 
 OPTIONS=""
@@ -319,9 +319,9 @@ test/functional/test_runner.py --extended
 %postun libs -p /sbin/ldconfig
 
 %pre server
-getent group dogecash >/dev/null || groupadd -r dogecash
-getent passwd dogecash >/dev/null ||
-	useradd -r -g dogecash -d /var/lib/dogecash -s /sbin/nologin \
+getent group DogeCash >/dev/null || groupadd -r dogecash
+getent passwd DogeCash >/dev/null ||
+	useradd -r -g DogeCash -d /var/lib/dogecash -s /sbin/nologin \
 	-c "Bitcoin wallet server" dogecash
 exit 0
 
@@ -360,7 +360,7 @@ if [ $1 -eq 0 ]; then
 	%{_sbindir}/semanage port -d -p tcp 18443
 	%{_sbindir}/semanage port -d -p tcp 18444
 	for selinuxvariant in %{selinux_variants}; do
-		%{_sbindir}/semodule -s ${selinuxvariant} -r dogecash &> /dev/null || :
+		%{_sbindir}/semodule -s ${selinuxvariant} -r DogeCash &> /dev/null || :
 	done
 	%{_sbindir}/fixfiles -R dogecash-server restore &> /dev/null || :
 	[ -d %{_localstatedir}/lib/dogecash ] && \
@@ -429,7 +429,7 @@ rm -rf %{buildroot}
 
 %changelog
 * Fri Feb 26 2016 Alice Wonder <buildmaster@librelamp.com> - 0.12.0-2
-- Rename Qt package from dogecash to dogecash-core
+- Rename Qt package from DogeCash to dogecash-core
 - Make building of the Qt package optional
 - When building the Qt package, default to Qt5 but allow building
 -  against Qt4

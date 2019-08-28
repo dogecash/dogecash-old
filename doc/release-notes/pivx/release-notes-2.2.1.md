@@ -45,7 +45,7 @@ blockchain.
 Additional progress has been made to prevent the wallet crashes that are causing
 the corrupted databases, for example removing the Trading Window (explained below)
 and fixing several other minor memory leaks that were inherited from the version
-of Bitcoin that dogecash was forked from.
+of Bitcoin that DogeCash was forked from.
 
 RPC Changes
 -----------

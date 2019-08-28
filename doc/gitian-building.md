@@ -1,7 +1,7 @@
 Gitian building
 ================
 
-*Setup instructions for a gitian build of dogecash using a Debian VM or physical system.*
+*Setup instructions for a gitian build of DogeCash using a Debian VM or physical system.*
 
 Gitian is the deterministic build process that is used to build the dogecash
 Core executables. It provides a way to be reasonably sure that the
@@ -277,7 +277,7 @@ cd ..
 
 **Note**: When sudo asks for a password, enter the password for the user *debian* not for *root*.
 
-Clone the git repositories for dogecash and gitian and then checkout the dogecash version that you want to build.
+Clone the git repositories for DogeCash and gitian and then checkout the DogeCash version that you want to build.
 
 ```bash
 git clone https://github.com/devrandom/gitian-builder.git
@@ -321,7 +321,7 @@ There will be a lot of warnings printed during build of the images. These can be
 Getting and building the inputs
 --------------------------------
 
-Follow the instructions in [doc/release-process.md](release-process.md) in the dogecash repository
+Follow the instructions in [doc/release-process.md](release-process.md) in the DogeCash repository
 under 'Fetch and build inputs' to install sources which require manual intervention. Also follow
 the next step: 'Seed the Gitian sources cache', which will fetch all necessary source files allowing
 for gitian to work offline.
@@ -329,8 +329,8 @@ for gitian to work offline.
 Building dogecash
 ----------------
 
-To build dogecash (for Linux, OSX and Windows) just follow the steps under 'perform
-gitian builds' in [doc/release-process.md](release-process.md) in the dogecash repository.
+To build DogeCash (for Linux, OSX and Windows) just follow the steps under 'perform
+gitian builds' in [doc/release-process.md](release-process.md) in the DogeCash repository.
 
 This may take a long time as it also builds the dependencies needed for each descriptor.
 These dependencies will be cached after a successful build to avoid rebuilding them when possible.

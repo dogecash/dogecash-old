@@ -42,9 +42,9 @@ TEST_EXIT_FAILED = 1
 TEST_EXIT_SKIPPED = 77
 
 class BitcoinTestFramework():
-    """Base class for a dogecash test script.
+    """Base class for a DogeCash test script.
 
-    Individual dogecash test scripts should subclass this class and override the set_test_params() and run_test() methods.
+    Individual DogeCash test scripts should subclass this class and override the set_test_params() and run_test() methods.
 
     Individual tests can also override the following methods to customize the test setup:
 

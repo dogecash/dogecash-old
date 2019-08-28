@@ -62,12 +62,12 @@
         <translation>Adrese za primanje</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>To su vaše dogecash adrese za slanje plaćanja. Uvijek provjerite iznos i adresu primatelja prije slanja novca.</translation>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>To su vaše DogeCash adrese za slanje plaćanja. Uvijek provjerite iznos i adresu primatelja prije slanja novca.</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>To su vaše dogecash adrese za primanje uplata. Preporuča se upotreba nove adrese primanja za svaku transakciju.</translation>
+        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>To su vaše DogeCash adrese za primanje uplata. Preporuča se upotreba nove adrese primanja za svaku transakciju.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -621,8 +621,8 @@
         <translation>DogeCash Core</translation>
     </message>
     <message>
-        <source>Send coins to a dogecash address</source>
-        <translation>Pošaljite kovanice na dogecash adresu</translation>
+        <source>Send coins to a DogeCash address</source>
+        <translation>Pošaljite kovanice na DogeCash adresu</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and dogecash: URIs)</source>
@@ -642,23 +642,23 @@
     </message>
     <message>
         <source>&amp;About DogeCash Core</source>
-        <translation>&amp; O dogecash Coreu</translation>
+        <translation>&amp; O DogeCash Coreu</translation>
     </message>
     <message>
         <source>Show information about DogeCash Core</source>
-        <translation>Prikaz informacija o dogecash Coreu</translation>
+        <translation>Prikaz informacija o DogeCash Coreu</translation>
     </message>
     <message>
         <source>Modify configuration options for dogecash</source>
         <translation>Izmijenite opcije konfiguracije za dogecash</translation>
     </message>
     <message>
-        <source>Sign messages with your dogecash addresses to prove you own them</source>
-        <translation>Potpišite poruke s vašim dogecash adresama kako biste dokazali da ih posjedujete</translation>
+        <source>Sign messages with your DogeCash addresses to prove you own them</source>
+        <translation>Potpišite poruke s vašim DogeCash adresama kako biste dokazali da ih posjedujete</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
-        <translation>Potvrdite poruke kako biste bili sigurni da su potpisani s određenim dogecash adresama</translation>
+        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
+        <translation>Potvrdite poruke kako biste bili sigurni da su potpisani s određenim DogeCash adresama</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -1348,7 +1348,7 @@
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The dogecash address to sign the message with</source>
+        <source>The DogeCash address to sign the message with</source>
         <translation>dogecash adresa za potpisivanje poruke s</translation>
     </message>
     <message>
@@ -1372,16 +1372,16 @@
         <translation>Kopirajte trenutačni potpis u međuspremnik sustava</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this dogecash address</source>
-        <translation>Potpišite poruku da biste dokazali da ste vlasnik ove dogecash adrese</translation>
+        <source>Sign the message to prove you own this DogeCash address</source>
+        <translation>Potpišite poruku da biste dokazali da ste vlasnik ove DogeCash adrese</translation>
     </message>
     <message>
-        <source>The dogecash address the message was signed with</source>
+        <source>The DogeCash address the message was signed with</source>
         <translation>dogecash adresa s kojom je potpisana poruka</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
-        <translation>Potvrdite poruku kako biste bili sigurni da je potpisan s navedenom dogecash adresom</translation>
+        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
+        <translation>Potvrdite poruku kako biste bili sigurni da je potpisan s navedenom DogeCash adresom</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>

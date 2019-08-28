@@ -8,7 +8,7 @@ There are currently two sets of tests in this directory:
 - [functional](/test/functional) which test the functionality of
 dogecashd and dogecash-qt by interacting with them through the RPC and P2P
 interfaces.
-- [util](/test/util) which tests the dogecash utilities, currently only
+- [util](/test/util) which tests the DogeCash utilities, currently only
 dogecash-tx.
 
 The util tests are run as part of `make check` target. The functional

@@ -29,9 +29,9 @@ SendCoinsEntry::SendCoinsEntry(QWidget* parent) : QStackedWidget(parent),
 #endif
     ui->addAsLabel->setPlaceholderText(tr("Enter a label for this address to add it to your address book"));
 
-    // normal dogecash address field
+    // normal DogeCash address field
     GUIUtil::setupAddressWidget(ui->payTo, this);
-    // just a label for displaying dogecash address(es)
+    // just a label for displaying DogeCash address(es)
     ui->payTo_is->setFont(GUIUtil::bitcoinAddressFont());
 
     // Connect signals

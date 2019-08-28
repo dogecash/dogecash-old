@@ -52,7 +52,7 @@ PID file:            /var/run/dogecashd/dogecashd.pid (OpenRC and Upstart)
                      /var/lib/dogecashd/dogecashd.pid (systemd)
 
 The configuration file, PID directory (if applicable) and data directory
-should all be owned by the dogecash user and group.  It is advised for security
+should all be owned by the DogeCash user and group.  It is advised for security
 reasons to make the configuration file and data directory only readable by the
 dogecash user and group.  Access to dogecash-cli and other dogecashd rpc clients
 can then be controlled by group membership.

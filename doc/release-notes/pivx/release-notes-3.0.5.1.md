@@ -1,4 +1,4 @@
-We have found that a runtime error that has caused the dogecash wallet on certain operating systems to get stuck at block 908000. This build of the wallet fixes the runtime error.
+We have found that a runtime error that has caused the DogeCash wallet on certain operating systems to get stuck at block 908000. This build of the wallet fixes the runtime error.
 
 If you are stuck on block 908000:
 - Download the 3.0.5.1 wallet (the file names do not display the "build" version and cutoff the 1)
