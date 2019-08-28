@@ -137,7 +137,7 @@ CMasternode::CMasternode(const CMasternodeBroadcast& mnb)
 //
 bool CMasternode::UpdateFromNewBroadcast(CMasternodeBroadcast& mnb)
 {
-    if (mnb.sigTime > sigTime) {
+        if(mnb.sigTime <= sigTime) return false;
         pubKeyMasternode = mnb.pubKeyMasternode;
         pubKeyCollateralAddress = mnb.pubKeyCollateralAddress;
         sigTime = mnb.sigTime;
@@ -150,9 +150,17 @@ bool CMasternode::UpdateFromNewBroadcast(CMasternodeBroadcast& mnb)
             lastPing = mnb.lastPing;
             mnodeman.mapSeenMasternodePing.insert(make_pair(lastPing.GetHash(), lastPing));
         }
-        return true;
-    }
-    return false;
+        if(protocolVersion == PROTOCOL_VERSION) {
+            // ... and PROTOCOL_VERSION, then we've been remotely activated ...
+            activeMasternode.EnableHotColdMasterNode(vin, addr);
+        } else {
+            // ... otherwise we need to reactivate our node, do not add it to the list and do not relay
+            // but also do not ban the node we get this message from
+            LogPrint("CMasternode::UpdateFromNewBroadcast -- wrong PROTOCOL_VERSION, re-activate your MN: message nProtocolVersion=%d  PROTOCOL_VERSION=%d\n", nProtocolVersion, PROTOCOL_VERSION);
+            return false;
+        }
+    return true;
+
 }
 
 //
