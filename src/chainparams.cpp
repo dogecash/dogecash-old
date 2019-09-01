@@ -279,7 +279,7 @@ public:
         nTargetSpacing = 1 * 60;  // dogecash: 1 minute
         nLastPOWBlock = 125;
         nMaturity = 1;
-        nStakeMinDepth = 100;
+        nStakeMinDepth = 50;
         nMasternodeCountDrift = 4;
         nStakeCollateralMin = 10;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
