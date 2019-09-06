@@ -399,7 +399,7 @@ void PaymentServer::handleURIOrFile(const QString& s)
                     emit receivedPaymentRequest(recipient);
             } else
                 emit message(tr("URI handling"),
-                    tr("URI cannot be parsed! This can be caused by an invalid DogeCash address or malformed URI parameters."),
+                    tr("URI cannot be parsed! This can be caused by an invalid dogecash address or malformed URI parameters."),
                     CClientUIInterface::ICON_WARNING);
 
             return;
@@ -514,7 +514,7 @@ bool PaymentServer::processPaymentRequest(PaymentRequestPlus& request, SendCoins
             // Append destination address
             addresses.append(QString::fromStdString(CBitcoinAddress(dest).ToString()));
         } else if (!recipient.authenticatedMerchant.isEmpty()) {
-            // Insecure payments to custom DogeCash addresses are not supported
+            // Insecure payments to custom dogecash addresses are not supported
             // (there is no good way to tell the user where they are paying in a way
             // they'd have a chance of understanding).
             emit message(tr("Payment request rejected"),

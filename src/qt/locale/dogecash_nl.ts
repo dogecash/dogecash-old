@@ -62,12 +62,12 @@
         <translation>Ontvangstadressen</translation>
     </message>
     <message>
-        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Dit zijn uw DogeCash adressen om betalingen mee te verzenden. Controleer altijd zowel het bedrag als het ontvangstadres voor het verzenden van geld.</translation>
+        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Dit zijn uw dogecash adressen om betalingen mee te verzenden. Controleer altijd zowel het bedrag als het ontvangstadres voor het verzenden van geld.</translation>
     </message>
     <message>
-        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Dit zijn uw DogeCash adressen waarop betalingen kunnen worden ontvangen. Het wordt aangeraden om een nieuw ontvangstadres voor elke transactie te gebruiken.</translation>
+        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Dit zijn uw dogecash adressen waarop betalingen kunnen worden ontvangen. Het wordt aangeraden om een nieuw ontvangstadres voor elke transactie te gebruiken.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -254,12 +254,12 @@
         <translation>Adres:</translation>
     </message>
     <message>
-        <source>Enter a DogeCash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Voer een DogeCash adres in dat u wilt coderen met BIP 38. Voer een wachtwoordzin in in het middelste vak. Druk op versleutelen om de versleutelde privé sleutel te berekenen.</translation>
+        <source>Enter a dogecash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>Voer een dogecash adres in dat u wilt coderen met BIP 38. Voer een wachtwoordzin in in het middelste vak. Druk op versleutelen om de versleutelde privé sleutel te berekenen.</translation>
     </message>
     <message>
-        <source>The DogeCash address to encrypt</source>
-        <translation>Het DogeCash adres om te versleutelen</translation>
+        <source>The dogecash address to encrypt</source>
+        <translation>Het dogecash adres om te versleutelen</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -290,8 +290,8 @@
         <translation>Kopieer de huidige handtekening naar het systeemklembord</translation>
     </message>
     <message>
-        <source>Encrypt the private key for this DogeCash address</source>
-        <translation>Versleutel de privé sleutel voor dit DogeCash adres</translation>
+        <source>Encrypt the private key for this dogecash address</source>
+        <translation>Versleutel de privé sleutel voor dit dogecash adres</translation>
     </message>
     <message>
         <source>Reset all fields</source>
@@ -653,8 +653,8 @@
         <translation>DogeCash Core</translation>
     </message>
     <message>
-        <source>Send coins to a DogeCash address</source>
-        <translation>Verstuur munten naar een DogeCash adres</translation>
+        <source>Send coins to a dogecash address</source>
+        <translation>Verstuur munten naar een dogecash adres</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and dogecash: URIs)</source>
@@ -678,19 +678,19 @@
     </message>
     <message>
         <source>Show information about DogeCash Core</source>
-        <translation>Toon informatie over DogeCash Kern</translation>
+        <translation>Toon informatie over dogecash Kern</translation>
     </message>
     <message>
         <source>Modify configuration options for dogecash</source>
-        <translation>Wijzig DogeCash configuratie opties</translation>
+        <translation>Wijzig dogecash configuratie opties</translation>
     </message>
     <message>
-        <source>Sign messages with your DogeCash addresses to prove you own them</source>
-        <translation>Onderteken berichten met uw DogeCash adressen om te bewijzen dat deze adressen in uw bezit zijn</translation>
+        <source>Sign messages with your dogecash addresses to prove you own them</source>
+        <translation>Onderteken berichten met uw dogecash adressen om te bewijzen dat deze adressen in uw bezit zijn</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
-        <translation>Controleer berichten om te verzekeren dat deze ondertekend zijn met de gespecificeerde DogeCash adressen</translation>
+        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
+        <translation>Controleer berichten om te verzekeren dat deze ondertekend zijn met de gespecificeerde dogecash adressen</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -733,16 +733,16 @@
         <translation>Block verkenner venster</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
-        <translation>Toon het DogeCash Core help bericht om een ​​lijst te krijgen met mogelijke DogeCash command line opties</translation>
+        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
+        <translation>Toon het DogeCash Core help bericht om een ​​lijst te krijgen met mogelijke dogecash command line opties</translation>
     </message>
     <message>
         <source>DogeCash Core client</source>
         <translation>DogeCash Core client</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to DogeCash network</source>
-        <translation><numerusform>%n actieve verbinding(en) naar het DogeCash netwerk</numerusform><numerusform>%n actieve verbinding(en) naar het DogeCash netwerk</numerusform></translation>
+        <source>%n active connection(s) to dogecash network</source>
+        <translation><numerusform>%n actieve verbinding(en) naar het dogecash netwerk</numerusform><numerusform>%n actieve verbinding(en) naar het dogecash netwerk</numerusform></translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -1185,8 +1185,8 @@ MultiSend: %1</translation>
         <translation>Wijzig verzend adres</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid DogeCash address.</source>
-        <translation>Het ingevoerde adres: "%1" is geen geldig DogeCash adres.</translation>
+        <source>The entered address "%1" is not a valid dogecash address.</source>
+        <translation>Het ingevoerde adres: "%1" is geen geldig dogecash adres.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1305,8 +1305,8 @@ MultiSend: %1</translation>
         <translation>Aangezien dit de eerste keer is dat het programma is gestart, kun je kiezen waar DogeCash Core zijn data opslaat.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>DogeCash Core zal een kopie van de DogeCash blockchain downloaden en opslaan. Tenminste %1GB aan data zal worden opgeslagen in deze map en het zal over de tijd groeien. De portemonnee zal ook in deze map worden opgeslagen.</translation>
+        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DogeCash Core zal een kopie van de dogecash blockchain downloaden en opslaan. Tenminste %1GB aan data zal worden opgeslagen in deze map en het zal over de tijd groeien. De portemonnee zal ook in deze map worden opgeslagen.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1459,8 +1459,8 @@ MultiSend: %1</translation>
         <translation>Vul het adres in om naar te verzenden</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other DogeCash addresses after it matures.
-To Add: enter percentage to give and DogeCash address to add to the MultiSend vector.
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other dogecash addresses after it matures.
+To Add: enter percentage to give and dogecash address to add to the MultiSend vector.
 To Delete: Enter address to delete and press delete.
 MultiSend will not be activated unless you have clicked Activate</source>
         <translation>MultiSend stelt je in staat om automatisch tot 100% van uw stake of masternode beloning automatisch te verzenden naar een lijst van andere DogeCash adressen nadat het volwassen is.
@@ -1850,15 +1850,15 @@ Waas alsjeblieft geduldig nadat u op importeren hebt geklikt.</translation>
     </message>
     <message>
         <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Verduistering is succesvol ingesteld op basic (%1 en 2 rondes). Je kunt dit op elk gewenst moment wijzigen door het configuratiescherm van DogeCash te openen.</translation>
+        <translation>Verduistering is succesvol ingesteld op basic (%1 en 2 rondes). Je kunt dit op elk gewenst moment wijzigen door het configuratiescherm van dogecash te openen.</translation>
     </message>
     <message>
         <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Verduistering is succesvol ingesteld op hoog (%1 en 8 rondes). U kunt dit op elk gewenst moment wijzigen door het configuratiescherm van DogeCash te openen.</translation>
+        <translation>Verduistering is succesvol ingesteld op hoog (%1 en 8 rondes). U kunt dit op elk gewenst moment wijzigen door het configuratiescherm van dogecash te openen.</translation>
     </message>
     <message>
         <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Verduistering is succesvol ingesteld op hoog (%1 en 16 rondes). U kunt dit op elk gewenst moment wijzigen door het configuratiescherm van DogeCash te openen.</translation>
+        <translation>Verduistering is succesvol ingesteld op hoog (%1 en 16 rondes). U kunt dit op elk gewenst moment wijzigen door het configuratiescherm van dogecash te openen.</translation>
     </message>
 </context>
 <context>
@@ -1919,8 +1919,8 @@ Waas alsjeblieft geduldig nadat u op importeren hebt geklikt.</translation>
         <translation>Als je de uitgaven van onbevestigde wijzigingen uitschakelt, de wijziging van een transactie&lt;br/&gt;kan niet worden gebruikt tot die transactie tenminste één bevestiging heeft.&lt;br/&gt;Dit beïnvloedt ook hoe uw saldo is berekend.</translation>
     </message>
     <message>
-        <source>Automatically open the DogeCash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Open de DogeCash client poort automatisch op de router. Dit werkt alleen als je router UPnP ondersteunt en het is ingeschakeld.</translation>
+        <source>Automatically open the dogecash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Open de dogecash client poort automatisch op de router. Dit werkt alleen als je router UPnP ondersteunt en het is ingeschakeld.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1939,11 +1939,11 @@ Waas alsjeblieft geduldig nadat u op importeren hebt geklikt.</translation>
         <translation>Expert</translation>
     </message>
     <message>
-        <source>Automatically start DogeCash after logging in to the system.</source>
+        <source>Automatically start dogecash after logging in to the system.</source>
         <translation>dogecash automatisch opstarten na inloggen op het systeem.</translation>
     </message>
     <message>
-        <source>&amp;Start DogeCash on system login</source>
+        <source>&amp;Start dogecash on system login</source>
         <translation>&amp;dogecash starten bij systeemlogin</translation>
     </message>
     <message>
@@ -2013,8 +2013,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Inzet splitdrempel:</translation>
     </message>
     <message>
-        <source>Connect to the DogeCash network through a SOCKS5 proxy.</source>
-        <translation>Maak verbinding met het DogeCash netwerk via een SOCKS5 proxy.</translation>
+        <source>Connect to the dogecash network through a SOCKS5 proxy.</source>
+        <translation>Maak verbinding met het dogecash netwerk via een SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2200,7 +2200,7 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Huidige vergrendelde balans in alleen-lezen-adressen</translation>
     </message>
     <message>
-        <source>Your current DogeCash balance, unconfirmed and immature transactions included</source>
+        <source>Your current dogecash balance, unconfirmed and immature transactions included</source>
         <translation>Uw huidige dogecash-saldo, onbevestigde en onvolgroeide transacties inbegrepen</translation>
     </message>
     <message>
@@ -2220,8 +2220,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Onvolwassen: bevestigd, maar minder dan 1 mint van dezelfde denominatie nadat het gemint was.</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
-        <translation>De weergegeven informatie kan verouderd zijn. Je portemonnee synchroniseert automatisch met het DogeCash netwerk nadat een verbinding is opgezet, maar dit proces is nog niet afgerond.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
+        <translation>De weergegeven informatie kan verouderd zijn. Je portemonnee synchroniseert automatisch met het dogecash netwerk nadat een verbinding is opgezet, maar dit proces is nog niet afgerond.</translation>
     </message>
     <message>
         <source>OVERVIEW</source>
@@ -2334,11 +2334,11 @@ Om AutoMint in te schakelend verander je 'enablezeromint=0' naar 'enablezeromint
     </message>
     <message>
         <source>Cannot start dogecash: click-to-pay handler</source>
-        <translation>Kan DogeCash niet starten: click-to-pay handler</translation>
+        <translation>Kan dogecash niet starten: click-to-pay handler</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid DogeCash address or malformed URI parameters.</source>
-        <translation>URL kan niet ontleed worden! Dit kan worden veroorzaakt door een ongeldig DogeCash adres of misvormde URL parameters.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid dogecash address or malformed URI parameters.</source>
+        <translation>URL kan niet ontleed worden! Dit kan worden veroorzaakt door een ongeldig dogecash adres of misvormde URL parameters.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2423,8 +2423,8 @@ Om AutoMint in te schakelend verander je 'enablezeromint=0' naar 'enablezeromint
         <translation>Zerocoin Acties:</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
-        <translation>De weergegeven informatie kan verouderd zijn. Je portemonnee synchroniseert automatisch met het DogeCash netwerk nadat een verbinding is opgezet, maar dit proces is nog niet afgerond.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
+        <translation>De weergegeven informatie kan verouderd zijn. Je portemonnee synchroniseert automatisch met het dogecash netwerk nadat een verbinding is opgezet, maar dit proces is nog niet afgerond.</translation>
     </message>
     <message>
         <source>Mint Zerocoin</source>
@@ -2535,8 +2535,8 @@ zdogec zijn volwassen wanneer zij meer dan 20 bevestigingen hebben EN meer dan 2
         <translation>Betaal &amp;Naar:</translation>
     </message>
     <message>
-        <source>The DogeCash address to send the payment to. Creates local payment to yourself when empty.</source>
-        <translation>Het DogeCash adres om de betaling naar te verzenden. Maakt lokale betaling aan jezelf als je leeg bent.</translation>
+        <source>The dogecash address to send the payment to. Creates local payment to yourself when empty.</source>
+        <translation>Het dogecash adres om de betaling naar te verzenden. Maakt lokale betaling aan jezelf als je leeg bent.</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2966,8 +2966,8 @@ Maximaal toegestaan:</translation>
         <translation>Geen 'Betaal aan' adres verstrekt, lokale betaling wordt gemaakt</translation>
     </message>
     <message>
-        <source>Invalid DogeCash Address</source>
-        <translation>Ongeldig DogeCash addres</translation>
+        <source>Invalid dogecash Address</source>
+        <translation>Ongeldig dogecash addres</translation>
     </message>
     <message>
         <source>Invalid Send Amount</source>
@@ -3059,8 +3059,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Bedrag</translation>
     </message>
     <message>
-        <source>Enter a DogeCash address (e.g. %1)</source>
-        <translation>Voer een DogeCash adres in (b.v. %1)</translation>
+        <source>Enter a dogecash address (e.g. %1)</source>
+        <translation>Voer een dogecash adres in (b.v. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -3201,8 +3201,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Blockchain</translation>
     </message>
     <message>
-        <source>Open the DogeCash debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Open het DogeCash debug log bestand uit de huidige data directory. Dit kan enkele seconden duren voor grote logbestanden.</translation>
+        <source>Open the dogecash debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Open het dogecash debug log bestand uit de huidige data directory. Dit kan enkele seconden duren voor grote logbestanden.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -3417,8 +3417,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Uit:</translation>
     </message>
     <message>
-        <source>Welcome to the DogeCash RPC console.</source>
-        <translation>Welkom bij de DogeCash RPC console.</translation>
+        <source>Welcome to the dogecash RPC console.</source>
+        <translation>Welkom bij de dogecash RPC console.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -3552,16 +3552,16 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>&amp;Hoeveelheid:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the DogeCash network.</source>
-        <translation>Een optioneel bericht dat aan het betalingsverzoek wordt gehecht, dat wordt weergegeven wanneer het verzoek wordt geopend. Opmerking: het bericht wordt niet verzonden met de betaling via het DogeCash netwerk.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the dogecash network.</source>
+        <translation>Een optioneel bericht dat aan het betalingsverzoek wordt gehecht, dat wordt weergegeven wanneer het verzoek wordt geopend. Opmerking: het bericht wordt niet verzonden met de betaling via het dogecash netwerk.</translation>
     </message>
     <message>
         <source>RECEIVE</source>
         <translation>ontvangen</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the DogeCash network.</source>
-        <translation>Een optioneel bericht dat aan het betalingsverzoek wordt gehecht, dat wordt weergegeven wanneer het verzoek wordt geopend.&lt;br&gt;Opmerking: het bericht wordt niet verzonden met de betaling via het DogeCash netwerk.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the dogecash network.</source>
+        <translation>Een optioneel bericht dat aan het betalingsverzoek wordt gehecht, dat wordt weergegeven wanneer het verzoek wordt geopend.&lt;br&gt;Opmerking: het bericht wordt niet verzonden met de betaling via het dogecash netwerk.</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
@@ -3861,8 +3861,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Als de aangepaste vergoeding is ingesteld op 1000 uDOGECs en de transactie is slechts 250 bytes, dan betaalt per kilobyte alleen 250 uDOGEC's in vergoeding,&lt;br /&gt;terwijl "totaal minstens" 1000 uDOGEC's betaalt. Voor transacties die groter zijn dan een kilobyte, betalen beiden per kilobyte.</translation>
     </message>
     <message>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for DogeCash transactions than the network can process.</source>
-        <translation>Alleen de minimale vergoeding betalen is prima, zolang er minder transactie volume is dan ruimte in de blokken. &lt;br /&gt;Maar wees ervan bewust dat dit kan leiden tot een nooit bevestigende transactie wanneer er meer vraag is naar DogeCash transacties dan het netwerk kan verwerken.</translation>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for dogecash transactions than the network can process.</source>
+        <translation>Alleen de minimale vergoeding betalen is prima, zolang er minder transactie volume is dan ruimte in de blokken. &lt;br /&gt;Maar wees ervan bewust dat dit kan leiden tot een nooit bevestigende transactie wanneer er meer vraag is naar dogecash transacties dan het netwerk kan verwerken.</translation>
     </message>
     <message>
         <source>normal</source>
@@ -3957,8 +3957,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Het split block tool werkt niet met meerdere adressen. Probeer het nog eens.</translation>
     </message>
     <message>
-        <source>Warning: Invalid DogeCash address</source>
-        <translation>Waarschuwing: Ongeldig DogeCash adres</translation>
+        <source>Warning: Invalid dogecash address</source>
+        <translation>Waarschuwing: Ongeldig dogecash adres</translation>
     </message>
     <message>
         <source>%1 to %2</source>
@@ -4060,8 +4060,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Betaal &amp;Naar:</translation>
     </message>
     <message>
-        <source>The DogeCash address to send the payment to</source>
-        <translation>Het DogeCash adres om de betaling naar te verzenden</translation>
+        <source>The dogecash address to send the payment to</source>
+        <translation>Het dogecash adres om de betaling naar te verzenden</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -4100,8 +4100,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Bericht:</translation>
     </message>
     <message>
-        <source>A message that was attached to the dogecash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the DogeCash network.</source>
-        <translation>Een bericht dat is gehecht aan de dogecash: URI die bij de transactie wordt opgeslagen voor uw referentie. Opmerking: dit bericht wordt niet verzonden via het DogeCash netwerk.</translation>
+        <source>A message that was attached to the dogecash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the dogecash network.</source>
+        <translation>Een bericht dat is gehecht aan de dogecash: URI die bij de transactie wordt opgeslagen voor uw referentie. Opmerking: dit bericht wordt niet verzonden via het dogecash netwerk.</translation>
     </message>
     <message>
         <source>This is an unverified payment request.</source>
@@ -4150,8 +4150,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Je kunt berichten met je adressen ondertekenen om te bewijzen dat je ze bezit. Wees voorzichtig om niets vaags te ondertekenen, omdat phishing aanvallen je misschien kunnen proberen om je identiteit over te geven. Teken alleen volledig gedetailleerde verklaringen aan waar je mee akkoord gaat.</translation>
     </message>
     <message>
-        <source>The DogeCash address to sign the message with</source>
-        <translation>Het DogeCash adres om het bericht met te ondertekenen</translation>
+        <source>The dogecash address to sign the message with</source>
+        <translation>Het dogecash adres om het bericht met te ondertekenen</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -4182,16 +4182,16 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Kopieer de huidige handtekening naar het systeemklembord</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this DogeCash address</source>
-        <translation>Onderteken het bericht om te bewijzen dat u het DogeCash adres bezit</translation>
+        <source>Sign the message to prove you own this dogecash address</source>
+        <translation>Onderteken het bericht om te bewijzen dat u het dogecash adres bezit</translation>
     </message>
     <message>
-        <source>The DogeCash address the message was signed with</source>
-        <translation>Het DogeCash adres waarmee het bericht was ondertekend</translation>
+        <source>The dogecash address the message was signed with</source>
+        <translation>Het dogecash adres waarmee het bericht was ondertekend</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
-        <translation>Controleer een bericht om te verifiëren dat het ondertekend is door het gespecificeerde DogeCash adres</translation>
+        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
+        <translation>Controleer een bericht om te verifiëren dat het ondertekend is door het gespecificeerde dogecash adres</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -4294,7 +4294,7 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
     </message>
     <message>
         <source>The DogeCash Core developers</source>
-        <translation>De DogeCash Kernontwikkelaars</translation>
+        <translation>De dogecash Kernontwikkelaars</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -5319,7 +5319,7 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
     </message>
     <message>
         <source>Copyright (C) 2015-%i The DogeCash Core Developers</source>
-        <translation>Copyright (C) 2015-%i The DogeCash Kernontwikkelaars</translation>
+        <translation>Copyright (C) 2015-%i The dogecash Kernontwikkelaars</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -5642,8 +5642,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
 </translation>
     </message>
     <message>
-        <source>Disable all DogeCash specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Schakel alle specifieke DogeCash functionaliteit uit (Masternodes, Zerocoin, SwiftTX, Budgeting) (0-1, standaard: %u)</translation>
+        <source>Disable all dogecash specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
+        <translation>Schakel alle specifieke dogecash functionaliteit uit (Masternodes, Zerocoin, SwiftTX, Budgeting) (0-1, standaard: %u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>

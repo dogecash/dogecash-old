@@ -148,9 +148,9 @@ The following new RPC commands are supported:
 - mnbudget "command"... ( "passphrase" )
  * prepare            - Prepare proposal for network by signing and creating tx
  * submit             - Submit proposal for network
- * vote-many          - Vote on a DogeCash initiative
- * vote-alias         - Vote on a DogeCash initiative
- * vote               - Vote on a DogeCash initiative/budget
+ * vote-many          - Vote on a dogecash initiative
+ * vote-alias         - Vote on a dogecash initiative
+ * vote               - Vote on a dogecash initiative/budget
  * getvotes           - Show current masternode budgets
  * getinfo            - Show current masternode budgets
  * show               - Show all budgets

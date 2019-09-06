@@ -1,5 +1,4 @@
-// Copyright (c) 2017-2019 The PIVX developers
-// Copyright (c) 2018-2019 The DogeCash Developers
+// Copyright (c) 2017-2019 The dogecash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -781,7 +780,7 @@ bool MultisigDialog::createRedeemScript(int m, vector<string> vKeys, CScript& re
         for(vector<string>::iterator it = vKeys.begin(); it != vKeys.end(); ++it) {
             string keyString = *it;
 #ifdef ENABLE_WALLET
-            // Case 1: DogeCash address and we have full public key:
+            // Case 1: dogecash address and we have full public key:
             CBitcoinAddress address(keyString);
             if (pwalletMain && address.IsValid()) {
                 CKeyID keyID;

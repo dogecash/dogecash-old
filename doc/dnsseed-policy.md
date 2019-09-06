@@ -4,9 +4,9 @@ Expectations for DNS Seed operators
 DogeCash Core attempts to minimize the level of trust in DNS seeds,
 but DNS seeds still pose a small amount of risk for the network.
 As such, DNS seeds must be run by entities which have some minimum
-level of trust within the DogeCash community.
+level of trust within the dogecash community.
 
-Other implementations of DogeCash software may also use the same
+Other implementations of dogecash software may also use the same
 seeds and may be more exposed. In light of this exposure this
 document establishes some basic expectations for the expectations
 for the operation of dnsseeds.
@@ -18,7 +18,7 @@ DNS seed. Any hosting services contracted by the operator are
 equally expected to uphold these expectations.
 
 1. The DNS seed results must consist exclusively of fairly selected and
-functioning DogeCash nodes from the public network to the best of the
+functioning dogecash nodes from the public network to the best of the
 operators understanding and capability.
 
 2. For the avoidance of doubt, the results may be randomized but must not

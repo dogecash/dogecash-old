@@ -62,12 +62,12 @@
         <translation>Gavimo adresai</translation>
     </message>
     <message>
-        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Tai jūsų DogeCash adresai mokėjimų išsiuntimams. Visada patikrinkite sumą ir gavėjo adresą prieš siųsdami monetas.</translation>
+        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Tai jūsų dogecash adresai mokėjimų išsiuntimams. Visada patikrinkite sumą ir gavėjo adresą prieš siųsdami monetas.</translation>
     </message>
     <message>
-        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Tai jūsų DogeCash adresai mokėjimų gavimams. Rekomenduojama naudoti naują adresą kiekvienam pavedimui.</translation>
+        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Tai jūsų dogecash adresai mokėjimų gavimams. Rekomenduojama naudoti naują adresą kiekvienam pavedimui.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -177,7 +177,7 @@
     </message>
     <message>
         <source>dogecash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
-        <translation>Dabar DogeCash išsijungs, kad būtų užbaigtas šifravimo procesas. Atminkite, kad jūsų piniginės užšifravimas negali visiškai apsaugoti jūsų DOGEC nuo kenkėjiškų programų, užkrėsto jūsų kompiuterio.</translation>
+        <translation>Dabar dogecash išsijungs, kad būtų užbaigtas šifravimo procesas. Atminkite, kad jūsų piniginės užšifravimas negali visiškai apsaugoti jūsų DOGEC nuo kenkėjiškų programų, užkrėsto jūsų kompiuterio.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -254,11 +254,11 @@
         <translation>Adresas:</translation>
     </message>
     <message>
-        <source>Enter a DogeCash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Įveskite DogeCash adresą, kurį norėtumėte užšifruoti naudojant BIP 38. Vidiniame laukelyje įrašykite slaptą frazę. Paspauskite užšifruoti, jei norite gauti užšifruotą privatųjį raktą.</translation>
+        <source>Enter a dogecash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>Įveskite dogecash adresą, kurį norėtumėte užšifruoti naudojant BIP 38. Vidiniame laukelyje įrašykite slaptą frazę. Paspauskite užšifruoti, jei norite gauti užšifruotą privatųjį raktą.</translation>
     </message>
     <message>
-        <source>The DogeCash address to encrypt</source>
+        <source>The dogecash address to encrypt</source>
         <translation>dogecash adresas, kurį norite užšifruoti</translation>
     </message>
     <message>
@@ -290,8 +290,8 @@
         <translation>Kopijuoti dabartinį parašą</translation>
     </message>
     <message>
-        <source>Encrypt the private key for this DogeCash address</source>
-        <translation>Užšifruoti šio DogeCash adreso privatų raktą</translation>
+        <source>Encrypt the private key for this dogecash address</source>
+        <translation>Užšifruoti šio dogecash adreso privatų raktą</translation>
     </message>
     <message>
         <source>Reset all fields</source>
@@ -645,12 +645,12 @@
         <translation>DogeCash Core</translation>
     </message>
     <message>
-        <source>Send coins to a DogeCash address</source>
-        <translation>Siųsti monetas į DogeCash adresą</translation>
+        <source>Send coins to a dogecash address</source>
+        <translation>Siųsti monetas į dogecash adresą</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and dogecash: URIs)</source>
-        <translation>Prašyti mokėjimų (sugeneruoja QR kodus ir DogeCash URI)</translation>
+        <translation>Prašyti mokėjimų (sugeneruoja QR kodus ir dogecash URI)</translation>
     </message>
     <message>
         <source>&amp;Privacy</source>
@@ -674,15 +674,15 @@
     </message>
     <message>
         <source>Modify configuration options for dogecash</source>
-        <translation>Keisti DogeCash konfigūravimo parinktis</translation>
+        <translation>Keisti dogecash konfigūravimo parinktis</translation>
     </message>
     <message>
-        <source>Sign messages with your DogeCash addresses to prove you own them</source>
-        <translation>Pasirašykite pranešimus naudodami savo DogeCash adresus, kad įrodytumėte, kad juos turite</translation>
+        <source>Sign messages with your dogecash addresses to prove you own them</source>
+        <translation>Pasirašykite pranešimus naudodami savo dogecash adresus, kad įrodytumėte, kad juos turite</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
-        <translation>Patvirtinkite pranešimus, kad jie būtų pasirašyti su nurodytais DogeCash adresais</translation>
+        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
+        <translation>Patvirtinkite pranešimus, kad jie būtų pasirašyti su nurodytais dogecash adresais</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -725,8 +725,8 @@
         <translation>Blokų naršyklės langas</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
-        <translation>Rodyti DogeCash Core žinyną, kad gautumėte sąrašą su galimomis DogeCash komandinės eilutės parinktimis</translation>
+        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
+        <translation>Rodyti DogeCash Core žinyną, kad gautumėte sąrašą su galimomis dogecash komandinės eilutės parinktimis</translation>
     </message>
     <message>
         <source>DogeCash Core client</source>
@@ -1153,8 +1153,8 @@ MultiSend: %1</translation>
         <translation>Keisti siuntimo adresą</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid DogeCash address.</source>
-        <translation>Įvestas adresas "%1" nėra galiojantis DogeCash adresas.</translation>
+        <source>The entered address "%1" is not a valid dogecash address.</source>
+        <translation>Įvestas adresas "%1" nėra galiojantis dogecash adresas.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1273,8 +1273,8 @@ MultiSend: %1</translation>
         <translation>Kadangi programa paleista pirmą kartą, galite pasirinkti kur DogeCash Core saugos savo duomenis.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>DogeCash Core atsisiųs ir saugos DogeCash blockchain'o kopiją. Šiame kataloge bus saugomas ne mažesnis kaip %1GB duomenų kiekis, kuris laikui bėgant augs. Piniginė taip pat bus saugoma šiame kataloge.</translation>
+        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DogeCash Core atsisiųs ir saugos dogecash blockchain'o kopiją. Šiame kataloge bus saugomas ne mažesnis kaip %1GB duomenų kiekis, kuris laikui bėgant augs. Piniginė taip pat bus saugoma šiame kataloge.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1427,12 +1427,12 @@ MultiSend: %1</translation>
         <translation>Įveskite adresą kuriam norite siųsti</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other DogeCash addresses after it matures.
-To Add: enter percentage to give and DogeCash address to add to the MultiSend vector.
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other dogecash addresses after it matures.
+To Add: enter percentage to give and dogecash address to add to the MultiSend vector.
 To Delete: Enter address to delete and press delete.
 MultiSend will not be activated unless you have clicked Activate</source>
-        <translation>MultiSend leidžia automatiškai išsiųsti iki 100% jūsų stake'inimo ar masternod'ų atlygio į kitus DogeCash adresus.
-Norėdami pridėti: įveskite pateiktą procentą ir DogeCash adresą, kurį norite pridėti prie MultiSend sąrašo.
+        <translation>MultiSend leidžia automatiškai išsiųsti iki 100% jūsų stake'inimo ar masternod'ų atlygio į kitus dogecash adresus.
+Norėdami pridėti: įveskite pateiktą procentą ir dogecash adresą, kurį norite pridėti prie MultiSend sąrašo.
 Norėdami ištrinti: įveskite adresą, kurį norite ištrinti, ir paspauskite ištrinti
 MultiSend nebus aktyvuotas, nebent paspausite "Įjungti"</translation>
     </message>
@@ -1736,15 +1736,15 @@ MultiSend nebus aktyvuotas, nebent paspausite "Įjungti"</translation>
     </message>
     <message>
         <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Obfuscation buvo sėkmingai nustatytas į paprastą (%1 ir 2 raundai). Bet kada galite tai pakeisti, atidarę DogeCash konfigūracijos ekraną.</translation>
+        <translation>Obfuscation buvo sėkmingai nustatytas į paprastą (%1 ir 2 raundai). Bet kada galite tai pakeisti, atidarę dogecash konfigūracijos ekraną.</translation>
     </message>
     <message>
         <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Obfuscation buvo sėkmingai nustatytas į aukštą (%1 ir 8 raundai). Bet kada galite tai pakeisti, atidarę DogeCash konfigūracijos ekraną.</translation>
+        <translation>Obfuscation buvo sėkmingai nustatytas į aukštą (%1 ir 8 raundai). Bet kada galite tai pakeisti, atidarę dogecash konfigūracijos ekraną.</translation>
     </message>
     <message>
         <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Obfuscation buvo sėkmingai nustatytas į maksimumą (%1 ir 16 raundai). Bet kada galite tai pakeisti, atidarę DogeCash konfigūracijos ekraną.</translation>
+        <translation>Obfuscation buvo sėkmingai nustatytas į maksimumą (%1 ir 16 raundai). Bet kada galite tai pakeisti, atidarę dogecash konfigūracijos ekraną.</translation>
     </message>
 </context>
 <context>
@@ -1797,12 +1797,12 @@ MultiSend nebus aktyvuotas, nebent paspausite "Įjungti"</translation>
         <translation>Ekspertas</translation>
     </message>
     <message>
-        <source>Automatically start DogeCash after logging in to the system.</source>
-        <translation>Automatiškai paleisti DogeCash prisijungus prie sistemos.</translation>
+        <source>Automatically start dogecash after logging in to the system.</source>
+        <translation>Automatiškai paleisti dogecash prisijungus prie sistemos.</translation>
     </message>
     <message>
-        <source>&amp;Start DogeCash on system login</source>
-        <translation>&amp;Paleisti DogeCash sistemai įsijungiant</translation>
+        <source>&amp;Start dogecash on system login</source>
+        <translation>&amp;Paleisti dogecash sistemai įsijungiant</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1863,8 +1863,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Pageidautinas zdogec Automatinio Nukaldinimo Nominalas</translation>
     </message>
     <message>
-        <source>Connect to the DogeCash network through a SOCKS5 proxy.</source>
-        <translation>Jungtis prie DogeCash tinklo naudojant SOCKS5 tarpinį serverį.</translation>
+        <source>Connect to the dogecash network through a SOCKS5 proxy.</source>
+        <translation>Jungtis prie dogecash tinklo naudojant SOCKS5 tarpinį serverį.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2006,8 +2006,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Dabartinis bendras užrakintas balansas tik žiūrėjimo adresuose</translation>
     </message>
     <message>
-        <source>Your current DogeCash balance, unconfirmed and immature transactions included</source>
-        <translation>Jūsų dabartinis DogeCash balansas, įskaitant nepatvirtintus ir nesubrendusius sandorius</translation>
+        <source>Your current dogecash balance, unconfirmed and immature transactions included</source>
+        <translation>Jūsų dabartinis dogecash balansas, įskaitant nepatvirtintus ir nesubrendusius sandorius</translation>
     </message>
     <message>
         <source>zdogec Balance</source>
@@ -2026,8 +2026,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo po to, kai buvo konvertuotas.</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
-        <translation>Rodoma informacija gali būti pasenusi. Jūsų piniginė automatiškai sinchronizuojasi su DogeCash tinklu po ryšio aktyvavimo, tačiau šis procesas dar nebaigtas.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
+        <translation>Rodoma informacija gali būti pasenusi. Jūsų piniginė automatiškai sinchronizuojasi su dogecash tinklu po ryšio aktyvavimo, tačiau šis procesas dar nebaigtas.</translation>
     </message>
     <message>
         <source>OVERVIEW</source>
@@ -2163,8 +2163,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Zerocoin Veiksmai:</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
-        <translation>Rodoma informacija gali būti pasenusi. Jūsų piniginė automatiškai sinchronizuojasi su DogeCash tinklu po ryšio aktyvavimo, tačiau šis procesas dar nebaigtas.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
+        <translation>Rodoma informacija gali būti pasenusi. Jūsų piniginė automatiškai sinchronizuojasi su dogecash tinklu po ryšio aktyvavimo, tačiau šis procesas dar nebaigtas.</translation>
     </message>
     <message>
         <source>Mint Zerocoin</source>
@@ -2549,8 +2549,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Klaida: jūsų piniginė užrakinta. Pirmiausia įveskite piniginės slaptažodį.</translation>
     </message>
     <message>
-        <source>Invalid DogeCash Address</source>
-        <translation>Netinkamas DogeCash Adresas</translation>
+        <source>Invalid dogecash Address</source>
+        <translation>Netinkamas dogecash Adresas</translation>
     </message>
     <message>
         <source>Invalid Send Amount</source>
@@ -2591,8 +2591,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Suma</translation>
     </message>
     <message>
-        <source>Enter a DogeCash address (e.g. %1)</source>
-        <translation>Įveskite DogeCash adresą (pvz. %1)</translation>
+        <source>Enter a dogecash address (e.g. %1)</source>
+        <translation>Įveskite dogecash adresą (pvz. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2773,8 +2773,8 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Iš:</translation>
     </message>
     <message>
-        <source>Welcome to the DogeCash RPC console.</source>
-        <translation>Sveiki atvykę į DogeCash RPC konsolę.</translation>
+        <source>Welcome to the dogecash RPC console.</source>
+        <translation>Sveiki atvykę į dogecash RPC konsolę.</translation>
     </message>
     <message>
         <source>never</source>
@@ -3110,7 +3110,7 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The DogeCash address to sign the message with</source>
+        <source>The dogecash address to sign the message with</source>
         <translation>dogecash adresas, kuriuo pasirašyti žinute</translation>
     </message>
     <message>
@@ -3134,16 +3134,16 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Kopijuoti dabartinį parašą</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this DogeCash address</source>
-        <translation>Pažymėkite žinutę, kad įrodytumėte, jog jūs šio DogeCash adreso savininkas</translation>
+        <source>Sign the message to prove you own this dogecash address</source>
+        <translation>Pažymėkite žinutę, kad įrodytumėte, jog jūs šio dogecash adreso savininkas</translation>
     </message>
     <message>
-        <source>The DogeCash address the message was signed with</source>
+        <source>The dogecash address the message was signed with</source>
         <translation>dogecash adresas, kurio buvo pasirašyta žinutė</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
-        <translation>Patikrinkite pranešimą, kad jis būtų pasirašytas su nurodytu DogeCash adresu</translation>
+        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
+        <translation>Patikrinkite pranešimą, kad jis būtų pasirašytas su nurodytu dogecash adresu</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>

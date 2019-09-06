@@ -45,7 +45,7 @@
          <item>
           <widget class="QValidatedLineEdit" name="addressIn_SM">
            <property name="toolTip">
-            <string>The DogeCash address to sign the message with</string>
+            <string>The dogecash address to sign the message with</string>
            </property>
           </widget>
          </item>
@@ -137,7 +137,7 @@
          <item>
           <widget class="QPushButton" name="signMessageButton_SM">
            <property name="toolTip">
-            <string>Sign the message to prove you own this DogeCash address</string>
+            <string>Sign the message to prove you own this dogecash address</string>
            </property>
            <property name="text">
             <string>Sign &amp;Message</string>
@@ -240,7 +240,7 @@
          <item>
           <widget class="QValidatedLineEdit" name="addressIn_VM">
            <property name="toolTip">
-            <string>The DogeCash address the message was signed with</string>
+            <string>The dogecash address the message was signed with</string>
            </property>
           </widget>
          </item>
@@ -274,7 +274,7 @@
          <item>
           <widget class="QPushButton" name="verifyMessageButton_VM">
            <property name="toolTip">
-            <string>Verify the message to ensure it was signed with the specified DogeCash address</string>
+            <string>Verify the message to ensure it was signed with the specified dogecash address</string>
            </property>
            <property name="text">
             <string>Verify &amp;Message</string>

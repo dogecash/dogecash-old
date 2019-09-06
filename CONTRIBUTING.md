@@ -62,7 +62,7 @@ the pull request affects. Valid areas as:
   - *Net* or *P2P* for changes to the peer-to-peer network code
   - *RPC/REST* for changes to the RPC or REST APIs
   - *Scripts and tools* for changes to the scripts and tools
-  - *Tests* for changes to the DogeCash unit tests or QA tests
+  - *Tests* for changes to the dogecash unit tests or QA tests
   - *Trivial* should **only** be used for PRs that do not change generated
     executable code. Notably, refactors (change of function arguments and code
     reorganization) and changes in behavior should **not** be marked as trivial.
@@ -174,7 +174,7 @@ In general, all pull requests must:
   - be well peer reviewed;
   - follow code style guidelines;
 
-Patches that change DogeCash consensus rules are considerably more involved than
+Patches that change dogecash consensus rules are considerably more involved than
 normal because they affect the entire ecosystem and so must be preceded by
 extensive discussions and clear detailing. While each case will be different,
 one should be prepared to expend more time and effort than for other kinds of

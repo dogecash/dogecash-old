@@ -1,7 +1,7 @@
 TOR SUPPORT IN dogecash
 =======================
 
-It is possible to run DogeCash as a Tor hidden service, and connect to such services.
+It is possible to run dogecash as a Tor hidden service, and connect to such services.
 
 The following directions assume you have a Tor proxy running on port 9050. Many
 distributions default to having a SOCKS proxy listening on port 9050, but others
@@ -10,10 +10,10 @@ port. See [Tor Project FAQ:TBBSocksPort](https://www.torproject.org/docs/faq.htm
 for how to properly configure Tor.
 
 
-Run DogeCash behind a Tor proxy
+Run dogecash behind a Tor proxy
 ----------------------------------
 
-The first step is running DogeCash behind a Tor proxy. This will already make all
+The first step is running dogecash behind a Tor proxy. This will already make all
 outgoing connections be anonymized, but more is possible.
 ```
 -proxy=ip:port  Set the proxy server. If SOCKS5 is selected (default), this proxy
@@ -46,7 +46,7 @@ In a typical situation, this suffices to run behind a Tor proxy:
 ./dogecashd -proxy=127.0.0.1:9050
 ```
 
-Run a DogeCash hidden server
+Run a dogecash hidden server
 -------------------------------
 
 If you configure your Tor system accordingly, it is possible to make your node also
@@ -71,7 +71,7 @@ NumEntryGuards 8
 The directory can be different of course, but (both) port numbers should be equal to
 your dogecashd's P2P listen port (16740 by default).
 ```
--externalip=X   You can tell DogeCash about its publicly reachable address using
+-externalip=X   You can tell dogecash about its publicly reachable address using
                 this option, and this can be a .onion address. Given the above
                 configuration, you can find your onion address in
                 /var/lib/tor/dogecash-service/hostname. Onion addresses are given
@@ -110,7 +110,7 @@ for normal IPv4/IPv6 communication, use:
 ./dogecashd -onion=127.0.0.1:9050 -externalip=dnetzj6l4cvo2fxy.onion:989 -discover
 ```
 
-List of known DogeCash Tor relays
+List of known dogecash Tor relays
 ------------------------------------
 ```
 y5kcscnhpygvvnjn.onion:989

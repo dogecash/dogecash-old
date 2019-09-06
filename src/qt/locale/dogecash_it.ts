@@ -62,12 +62,12 @@
         <translation>Indirizzi di ricezione</translation>
     </message>
     <message>
-        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Questi sono gli indirizzi DogeCash per l'invio di pagamenti. Controlla sempre l'importo e l'indirizzo di ricezione prima di inviare valuta.</translation>
+        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Questi sono gli indirizzi dogecash per l'invio di pagamenti. Controlla sempre l'importo e l'indirizzo di ricezione prima di inviare valuta.</translation>
     </message>
     <message>
-        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Questi sono gli indirizzi DogeCash per la ricezione di pagamenti. Si raccomanda di utilizzare un indirizzo diverso per ogni transazione.</translation>
+        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Questi sono gli indirizzi dogecash per la ricezione di pagamenti. Si raccomanda di utilizzare un indirizzo diverso per ogni transazione.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -254,12 +254,12 @@
         <translation>Indirizzo:</translation>
     </message>
     <message>
-        <source>Enter a DogeCash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Inserire un indirizzo DogeCash da crittografare utilizzando BIP 38. Inserire una password nel campo centrale. Cliccare su "cripta" per generare la chiave privata crittografata.</translation>
+        <source>Enter a dogecash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>Inserire un indirizzo dogecash da crittografare utilizzando BIP 38. Inserire una password nel campo centrale. Cliccare su "cripta" per generare la chiave privata crittografata.</translation>
     </message>
     <message>
-        <source>The DogeCash address to encrypt</source>
-        <translation>Indirizzo DogeCash da crittografare</translation>
+        <source>The dogecash address to encrypt</source>
+        <translation>Indirizzo dogecash da crittografare</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -290,7 +290,7 @@
         <translation>Copiare la firma corrente negli Appunti di sistema</translation>
     </message>
     <message>
-        <source>Encrypt the private key for this DogeCash address</source>
+        <source>Encrypt the private key for this dogecash address</source>
         <translation>Crittografa la chiave privata per questo indirizzo dogecash</translation>
     </message>
     <message>
@@ -645,7 +645,7 @@
         <translation>DogeCash Core</translation>
     </message>
     <message>
-        <source>Send coins to a DogeCash address</source>
+        <source>Send coins to a dogecash address</source>
         <translation>Invia valuta all'indirizzo dogecash</translation>
     </message>
     <message>
@@ -677,12 +677,12 @@
         <translation>Modifica le opzioni di configurazione per dogecash</translation>
     </message>
     <message>
-        <source>Sign messages with your DogeCash addresses to prove you own them</source>
-        <translation>Firma i messaggi con i tuoi indirizzi DogeCash per dimostrare di essere il proprietario </translation>
+        <source>Sign messages with your dogecash addresses to prove you own them</source>
+        <translation>Firma i messaggi con i tuoi indirizzi dogecash per dimostrare di essere il proprietario </translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
-        <translation>Verifica i messaggi per assicurarsi che siano stati firmati con indirizzi DogeCash specifici</translation>
+        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
+        <translation>Verifica i messaggi per assicurarsi che siano stati firmati con indirizzi dogecash specifici</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -725,7 +725,7 @@
         <translation>Finestra Block Explorer</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
+        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
         <translation>Mostra il messaggio di aiuto DogeCash Core per ottenere un elenco con le possibili opzioni di riga di comando dogecash</translation>
     </message>
     <message>
@@ -1149,8 +1149,8 @@ MultiSend: %1</translation>
         <translation>Modifica indirizzo di invio</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid DogeCash address.</source>
-        <translation>L'indirizzo inserito "%1" non è un indirizzo DogeCash valido.</translation>
+        <source>The entered address "%1" is not a valid dogecash address.</source>
+        <translation>L'indirizzo inserito "%1" non è un indirizzo dogecash valido.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1269,7 +1269,7 @@ MultiSend: %1</translation>
         <translation>Essendo il primo avvio dell'applicazione, puoi scegliere dove DogeCash Core salverà i propri dati.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>DogeCash Core scaricherà e salverà una copia della blockchain dogecash. Verranno salvati almeno %1GB di dati in questa cartella, che cresceranno nel tempo. In questa cartella verrà salvato anche il portafoglio.</translation>
     </message>
     <message>
@@ -1423,12 +1423,12 @@ MultiSend: %1</translation>
         <translation>Inserire indirizzo destinatario</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other DogeCash addresses after it matures.
-To Add: enter percentage to give and DogeCash address to add to the MultiSend vector.
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other dogecash addresses after it matures.
+To Add: enter percentage to give and dogecash address to add to the MultiSend vector.
 To Delete: Enter address to delete and press delete.
 MultiSend will not be activated unless you have clicked Activate</source>
-        <translation>MultiSend ti permette di inviare automaticamente ad una lista di indirizzi DogeCash fino al 100% delle ricompense di stake o masternodi, dopo che queste sono mature.
-Per Aggiunger: inserisci la percentuale da inviare e l'indirizzo DogeCash da aggiungere al vettore MultiSend.
+        <translation>MultiSend ti permette di inviare automaticamente ad una lista di indirizzi dogecash fino al 100% delle ricompense di stake o masternodi, dopo che queste sono mature.
+Per Aggiunger: inserisci la percentuale da inviare e l'indirizzo dogecash da aggiungere al vettore MultiSend.
 Per Eliminare: Inserisci l'indirizzo da eliminare e premi elimina.
 MultiSend non verrà attivato a meno che tu non prema su Attiva</translation>
     </message>
@@ -1752,8 +1752,8 @@ MultiSend non verrà attivato a meno che tu non prema su Attiva</translation>
         <translation>Saldo corrente bloccato in indirizzi sola-lettura.</translation>
     </message>
     <message>
-        <source>Your current DogeCash balance, unconfirmed and immature transactions included</source>
-        <translation>Il tuo saldo DogeCash corrente, incluse le transazioni non confermate e non mature</translation>
+        <source>Your current dogecash balance, unconfirmed and immature transactions included</source>
+        <translation>Il tuo saldo dogecash corrente, incluse le transazioni non confermate e non mature</translation>
     </message>
     <message>
         <source>zdogec Balance</source>
@@ -2462,8 +2462,8 @@ Per cambiare la percentuale (riavvio non necessario):
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The DogeCash address to sign the message with</source>
-        <translation>L'indirizzo DogeCash per firmare il messaggio con</translation>
+        <source>The dogecash address to sign the message with</source>
+        <translation>L'indirizzo dogecash per firmare il messaggio con</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2486,16 +2486,16 @@ Per cambiare la percentuale (riavvio non necessario):
         <translation>Copiare la firma corrente negli Appunti di sistema</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this DogeCash address</source>
+        <source>Sign the message to prove you own this dogecash address</source>
         <translation>Firmare il messaggio per dimostrare di possedere questo indirizzo dogecash</translation>
     </message>
     <message>
-        <source>The DogeCash address the message was signed with</source>
-        <translation>L'indirizzo DogeCash con cui è stato firmato il messaggio</translation>
+        <source>The dogecash address the message was signed with</source>
+        <translation>L'indirizzo dogecash con cui è stato firmato il messaggio</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
-        <translation>Verificare il messaggio per assicurarsi che sia stato firmato con l'indirizzo DogeCash specificato </translation>
+        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
+        <translation>Verificare il messaggio per assicurarsi che sia stato firmato con l'indirizzo dogecash specificato </translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>

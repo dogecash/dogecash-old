@@ -62,12 +62,12 @@
         <translation>Endereços de recebimento</translation>
     </message>
     <message>
-        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Esses são seus endereços DogeCash para onde enviar pagamentos. Confira sempre o montante e os endereços de destino antes de enviar moedas.</translation>
+        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Esses são seus endereços dogecash para onde enviar pagamentos. Confira sempre o montante e os endereços de destino antes de enviar moedas.</translation>
     </message>
     <message>
-        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Esses são seus endereços DogeCash onde receber pagamentos. Recomenda-se o uso de um novo endereço para cada transacção.</translation>
+        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Esses são seus endereços dogecash onde receber pagamentos. Recomenda-se o uso de um novo endereço para cada transacção.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -676,8 +676,8 @@
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The DogeCash address to sign the message with</source>
-        <translation>Um endereço DogeCash para assinar a mensagem</translation>
+        <source>The dogecash address to sign the message with</source>
+        <translation>Um endereço dogecash para assinar a mensagem</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -708,12 +708,12 @@
         <translation>Copiar a assinatura para a area de trabalho</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this DogeCash address</source>
+        <source>Sign the message to prove you own this dogecash address</source>
         <translation>Assinar a Mensagem para provar que você e dono desse endereço dogecash.</translation>
     </message>
     <message>
-        <source>The DogeCash address the message was signed with</source>
-        <translation>O endereço DogeCash que foi assinado com</translation>
+        <source>The dogecash address the message was signed with</source>
+        <translation>O endereço dogecash que foi assinado com</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>

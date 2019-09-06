@@ -62,12 +62,12 @@
         <translation>Adresy pro přijetí peněz</translation>
     </message>
     <message>
-        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Toto jsou Vaše DogeCash adresy pro poslání platby. Vždy si překontrolujte množství peněz a cílovou adresu než platbu odešlete.</translation>
+        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Toto jsou Vaše dogecash adresy pro poslání platby. Vždy si překontrolujte množství peněz a cílovou adresu než platbu odešlete.</translation>
     </message>
     <message>
-        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Toto jsou Vaše DogeCash adresy pro přijetí plateb. Je doporučeno použít novou adresu pro každou novou transakci.</translation>
+        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Toto jsou Vaše dogecash adresy pro přijetí plateb. Je doporučeno použít novou adresu pro každou novou transakci.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -605,8 +605,8 @@
         <translation>DogeCash Core</translation>
     </message>
     <message>
-        <source>Send coins to a DogeCash address</source>
-        <translation>Odeslat platbuna DogeCash adresu</translation>
+        <source>Send coins to a dogecash address</source>
+        <translation>Odeslat platbuna dogecash adresu</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and dogecash: URIs)</source>
@@ -637,12 +637,12 @@
         <translation>Upravit možnosti konfigurace pro dogecash</translation>
     </message>
     <message>
-        <source>Sign messages with your DogeCash addresses to prove you own them</source>
-        <translation>Podepsat zprávy Vaší DogeCash adresou pro prokázaní, že jste jejich vlastníkem</translation>
+        <source>Sign messages with your dogecash addresses to prove you own them</source>
+        <translation>Podepsat zprávy Vaší dogecash adresou pro prokázaní, že jste jejich vlastníkem</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
-        <translation>Ověřit zprávy k zajištění, že bylypodepsány vybranými DogeCash adresami</translation>
+        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
+        <translation>Ověřit zprávy k zajištění, že bylypodepsány vybranými dogecash adresami</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -685,8 +685,8 @@
         <translation>Okno blokového průzkumníka</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
-        <translation>Zobrazit DogeCash Core pomocnou zpráv pro získání seznamu možných parametrů DogeCash pro příkazy do příkazové řádky</translation>
+        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
+        <translation>Zobrazit DogeCash Core pomocnou zpráv pro získání seznamu možných parametrů dogecash pro příkazy do příkazové řádky</translation>
     </message>
     <message>
         <source>DogeCash Core client</source>
@@ -1081,8 +1081,8 @@ MultiSend: %1</translation>
         <translation>Upravit adresu k odeslání platby</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid DogeCash address.</source>
-        <translation>Zadaná adresa "%1" není validní DogeCash adresa.</translation>
+        <source>The entered address "%1" is not a valid dogecash address.</source>
+        <translation>Zadaná adresa "%1" není validní dogecash adresa.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1185,8 +1185,8 @@ MultiSend: %1</translation>
         <translation>Při prvním spuštění programu si můžete vybrat, kam bude DogeCash Core ukládat svá data.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>DogeCash Core stáhne a uloží kopii DogeCash blockchainu. Nejméně %1GB dat bude do této složky uloženo a v průběhu času bude ukládat další data. Peněženka bude v této složce uložena také.</translation>
+        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DogeCash Core stáhne a uloží kopii dogecash blockchainu. Nejméně %1GB dat bude do této složky uloženo a v průběhu času bude ukládat další data. Peněženka bude v této složce uložena také.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1527,12 +1527,12 @@ MultiSend: %1</translation>
         <translation>Expert</translation>
     </message>
     <message>
-        <source>Automatically start DogeCash after logging in to the system.</source>
-        <translation>Automaticky spustit DogeCash po přihlášení do systému</translation>
+        <source>Automatically start dogecash after logging in to the system.</source>
+        <translation>Automaticky spustit dogecash po přihlášení do systému</translation>
     </message>
     <message>
-        <source>&amp;Start DogeCash on system login</source>
-        <translation>&amp;Spusti DogeCash při přihlášení do systému</translation>
+        <source>&amp;Start dogecash on system login</source>
+        <translation>&amp;Spusti dogecash při přihlášení do systému</translation>
     </message>
     <message>
         <source>Show Masternodes Tab</source>
@@ -2204,7 +2204,7 @@ MultiSend: %1</translation>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The DogeCash address to sign the message with</source>
+        <source>The dogecash address to sign the message with</source>
         <translation>dogecash adresa pro podepsání zprávy</translation>
     </message>
     <message>
@@ -2232,16 +2232,16 @@ MultiSend: %1</translation>
         <translation>Kopírovat aktuální podpis do systémové mezipaměti</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this DogeCash address</source>
-        <translation>Podepsat zprávu k prokázání, že vlastníte tuto DogeCash adresu</translation>
+        <source>Sign the message to prove you own this dogecash address</source>
+        <translation>Podepsat zprávu k prokázání, že vlastníte tuto dogecash adresu</translation>
     </message>
     <message>
-        <source>The DogeCash address the message was signed with</source>
+        <source>The dogecash address the message was signed with</source>
         <translation>dogecash adresa zprávy byla podpsána</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
-        <translation>Verifikujte zprávu pro ujištění, že byla podepsána zmíněnou DogeCash adresou</translation>
+        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
+        <translation>Verifikujte zprávu pro ujištění, že byla podepsána zmíněnou dogecash adresou</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>

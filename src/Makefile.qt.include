@@ -5,7 +5,7 @@
 bin_PROGRAMS += qt/dogecash-qt
 EXTRA_LIBRARIES += qt/libbitcoinqt.a
 
-# DogeCash qt core #
+# dogecash qt core #
 QT_TS = \
   qt/locale/dogecash_bg.ts \
    qt/locale/dogecash_ca.ts \

@@ -6,7 +6,7 @@ providing various message-oriented semantics such as publish/subscribe,
 request/reply, and push/pull.
 
 The DogeCash Core daemon can be configured to act as a trusted "border
-router", implementing the DogeCash wire protocol and relay, making
+router", implementing the dogecash wire protocol and relay, making
 consensus decisions, maintaining the local blockchain database,
 broadcasting locally generated transactions into the network, and
 providing a queryable RPC interface to interact on a polled basis for

@@ -40,7 +40,7 @@ Notable Changes
 
 Automated Database Corruption Repair
 ---------------------
-There have been cases of blockchain database corruption that can occur when DogeCash client is not closed gracefully. The most common cases of corruption have been identified and the wallet will now automatically fix most of these corruptions. Certain corruption states are still unable to be fixed, but now provide more detailed error messages to the user as well as prompting the user to reindex their database.
+There have been cases of blockchain database corruption that can occur when dogecash client is not closed gracefully. The most common cases of corruption have been identified and the wallet will now automatically fix most of these corruptions. Certain corruption states are still unable to be fixed, but now provide more detailed error messages to the user as well as prompting the user to reindex their database.
 
 More Accurate Error Messages
 ---------------------

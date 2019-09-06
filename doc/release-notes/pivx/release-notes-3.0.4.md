@@ -105,7 +105,7 @@ git merge commit are mentioned.
 - #307 `dbd801d` Remove hard-coded GIT_ARCHIVE define (Jon Spock)
 - #314 `f1c830a` Fix issue causing crash when dogecashd --help was invoked (Jon Spock)
 - #326 `8b6a13e` Combine 2 LogPrintf statement to reduce debug.log clutter (Jon Spock)
-- #328 `a6c18c8` [Main] DogeCash not responding on user quitting app (Aaron Langford)
+- #328 `a6c18c8` [Main] dogecash not responding on user quitting app (Aaron Langford)
 
 
 Credits

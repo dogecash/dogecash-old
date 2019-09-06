@@ -121,6 +121,6 @@ you can monitor its process by looking at the debug.log file, like this:
 Other commands:
 -------
 
-    ./dogecashd -daemon # to start the DogeCash daemon.
+    ./dogecashd -daemon # to start the dogecash daemon.
     ./dogecash-cli --help  # for a list of command-line options.
     ./dogecash-cli help    # When the daemon is running, to get a list of RPC commands

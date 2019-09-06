@@ -45,7 +45,7 @@ zdogec Updates
 
 ### zdogec Staking
 
-zdogec Staking is here! zdogec staking will be activated on the morning of the 8th of May 2018. With the release of zdogec staking, there are effectively 2 versions of zdogec, zdogec minted on the 3.0.6 DogeCash wallet or lower, and zdogec minted on DogeCash wallet version or higher. New features in this release will require the use of zdogec v2, zdogec minted on this wallet release 3.1.0 or later. If you currently hold zdogec v1 and wish to take advantage of zdogec staking and deterministic zdogec, you will need to spend the zdogec v1 to yourself and remint zdogec v2.
+zdogec Staking is here! zdogec staking will be activated on the morning of the 8th of May 2018. With the release of zdogec staking, there are effectively 2 versions of zdogec, zdogec minted on the 3.0.6 dogecash wallet or lower, and zdogec minted on dogecash wallet version or higher. New features in this release will require the use of zdogec v2, zdogec minted on this wallet release 3.1.0 or later. If you currently hold zdogec v1 and wish to take advantage of zdogec staking and deterministic zdogec, you will need to spend the zdogec v1 to yourself and remint zdogec v2.
 Note: To find your zdogec version, click the privacy tab, then the zdogec Control button then expand the arrows next to the desired denomination.
 
 
@@ -70,7 +70,7 @@ DOGEC/zdogec Staking and Masternode Rewards
 
 ### DOGEC, zdogec and Masternode Payment Schedule
 
-To encourage the use of zdogec and increase the DogeCash zerocoin anonymity set, the DogeCash payment schedule has been changed to the following:
+To encourage the use of zdogec and increase the dogecash zerocoin anonymity set, the dogecash payment schedule has been changed to the following:
 
 If a user staking zdogec wins the reward for their block, the following zdogec reward will be: 
 - 3 zdogec (3 x 1 denominations) rewarded to the staker, 2 DOGEC rewarded to the masternode owner and 1 DOGEC available for the budget. This is a total block reward of 6 DOGEC, up from 5.
@@ -89,7 +89,7 @@ User Experience
 
 ### Graphical User Interface
 
-The visual layout of the DogeCash Qt wallet has undergone a near-complete overhaul.
+The visual layout of the dogecash Qt wallet has undergone a near-complete overhaul.
 A new 'vertical tab' layout is now being used instead of the prior 'horizontal tab' layout, as well as a completely new icon set.
 The overview tab has been simplified greatly to display only balances that are active or relevant, zero-balance line items are hidden by default to avoid clutter.
 
@@ -113,7 +113,7 @@ Backup to external devices / locations
 
 ### Summary
 
- The DogeCash wallet can now have user selected directories for automatic backups of the wallet data file (wallet.dat). This can be set by adding the following lines to the dogecash.conf file, found in the DogeCash data directory.
+ The dogecash wallet can now have user selected directories for automatic backups of the wallet data file (wallet.dat). This can be set by adding the following lines to the dogecash.conf file, found in the dogecash data directory.
 - backuppath = <directory / full path>
 - zdogecbackuppath = <directory / full path>
 - custombackupthreshold = <backup limit>
@@ -169,7 +169,7 @@ dogecash Daemon & Client (RPC Changes)
 
 ### RPC Ban Management
 
-The DogeCash client peer bans now have additional RPC commands to manage peers. Peers can be banned and unbanned at will without the need to restart the wallet client. No changes have been made to the conditions resulting in automatic peer bans. New RPC commands: `setban`, `listbanned`, `clearbanned`, and `disconnectnode`
+The dogecash client peer bans now have additional RPC commands to manage peers. Peers can be banned and unbanned at will without the need to restart the wallet client. No changes have been made to the conditions resulting in automatic peer bans. New RPC commands: `setban`, `listbanned`, `clearbanned`, and `disconnectnode`
 
 
 ### Random-cookie RPC authentication
@@ -188,7 +188,7 @@ This allows for a user (such as a third party integration) to query the blockcha
 ### New RPC command 
 `findserial`
 
-Search the zerocoin database for a zerocoinspend transaction that contains the given serial. This will be a helpful tool for the DogeCash support group, which often times sees users say "I didn't spend that zdogec". This RPC call allows for support to grab the serial, and then find the spend tx on the chain.
+Search the zerocoin database for a zerocoinspend transaction that contains the given serial. This will be a helpful tool for the dogecash support group, which often times sees users say "I didn't spend that zdogec". This RPC call allows for support to grab the serial, and then find the spend tx on the chain.
 
 
 ### New RPC commands 
@@ -206,11 +206,11 @@ Network Layer 2 Changes (Proposals / Budgets / SwiftX)
 
 ### Monthly Budget Increase
 
-As voted on by the DogeCash masternodes, the monthly budget available to be utilised has been increased to 42,000 DOGEC / month. This DOGEC only has the opportunity to be raised once per month (paid to winning proposals) with any unused DOGEC not created by the blockchain.
+As voted on by the dogecash masternodes, the monthly budget available to be utilised has been increased to 42,000 DOGEC / month. This DOGEC only has the opportunity to be raised once per month (paid to winning proposals) with any unused DOGEC not created by the blockchain.
 
 ### Budget Finalization Fee
 
-The DogeCash finalization fee for successful proposals has now been reduced, this fee is now 5 DOGEC down from 50 DOGEC. The total fee outlay for a successful proposal is now a total of 55 DOGEC.
+The dogecash finalization fee for successful proposals has now been reduced, this fee is now 5 DOGEC down from 50 DOGEC. The total fee outlay for a successful proposal is now a total of 55 DOGEC.
 
 
 ### SwiftX Raw Transactions
@@ -285,7 +285,7 @@ Zerocoins, or zdogec, are now deterministically generated using a unique 256 bit
 Zerocoin Modulus
 --------------
 
-dogecash's zerocoin implementation used the same code from the ZCoin project to import the modulus use for the zerocoin protocol. The chosen modulus is the 2048 bit RSA number created for the RSA factoring challenge. The ZCoin project's implementation (which DogeCash used) improperly imported the modulus into the code. This flaw was discovered by user GOAT from the [Civitas Project](https://github.com/eastcoastcrypto/Civitas/), and reported to DogeCash using the bug bounty program. The modulus is now correctly imported and dogecash's accumulators have been changed to use the new proper modulus.
+dogecash's zerocoin implementation used the same code from the ZCoin project to import the modulus use for the zerocoin protocol. The chosen modulus is the 2048 bit RSA number created for the RSA factoring challenge. The ZCoin project's implementation (which dogecash used) improperly imported the modulus into the code. This flaw was discovered by user GOAT from the [Civitas Project](https://github.com/eastcoastcrypto/Civitas/), and reported to dogecash using the bug bounty program. The modulus is now correctly imported and dogecash's accumulators have been changed to use the new proper modulus.
 
 
 *3.1.0* Change log

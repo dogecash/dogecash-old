@@ -1061,17 +1061,17 @@ QDialog#HelpMessageDialog QScrollBar:horizontal {
 }
 
 
-/* About DogeCash Dialog */
+/* About dogecash Dialog */
 
 QDialog#AboutDialog QLabel#label,
 QDialog#AboutDialog QLabel#copyrightLabel,
 QDialog#AboutDialog QLabel#label_2 {
-    /* About DogeCash Contents */
+    /* About dogecash Contents */
     margin-left: 10px;
 }
 
 QDialog#AboutDialog QLabel#label_2 {
-    /* Margin for About DogeCash text */
+    /* Margin for About dogecash text */
     margin-right: 10px;
 }
 
