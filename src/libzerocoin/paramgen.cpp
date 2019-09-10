@@ -9,13 +9,11 @@
  * @copyright  Copyright 2013 Ian Miers, Christina Garman and Matthew Green
  * @license    This project is released under the MIT license.
  **/
-// Copyright (c) 2017 The PIVX developers
-// Copyright (c) 2017-2018 The DogeCash developers
+// Copyright (c) 2017-2018 The PIVX developers
 
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "bignum.h"
 //#include <curses.h>
 #include <exception>
 #include "Zerocoin.h"
@@ -23,8 +21,6 @@
 #define DEFAULT_MODULUS_SIZE    3072
 #define MIN_MODULUS_SIZE        1026
 
-using namespace std;
-using namespace libzerocoin;
 
 void
 PrintWarning()
