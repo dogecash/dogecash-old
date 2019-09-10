@@ -63,7 +63,10 @@ bool CTxIn::IsZerocoinSpend() const
 {
     return prevout.hash == 0 && scriptSig.IsZerocoinSpend();
 }
-
+bool CTransaction::IsZerocoinSpend() const
+{
+    return prevout.hash == 0 && scriptSig.IsZerocoinSpend();
+}
 bool CTxIn::IsZerocoinPublicSpend() const
 {
     return scriptSig.IsZerocoinPublicSpend();
