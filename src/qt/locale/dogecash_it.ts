@@ -62,12 +62,12 @@
         <translation>Indirizzi di ricezione</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Questi sono gli indirizzi dogecash per l'invio di pagamenti. Controlla sempre l'importo e l'indirizzo di ricezione prima di inviare valuta.</translation>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Questi sono gli indirizzi DogeCash per l'invio di pagamenti. Controlla sempre l'importo e l'indirizzo di ricezione prima di inviare valuta.</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Questi sono gli indirizzi dogecash per la ricezione di pagamenti. Si raccomanda di utilizzare un indirizzo diverso per ogni transazione.</translation>
+        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Questi sono gli indirizzi DogeCash per la ricezione di pagamenti. Si raccomanda di utilizzare un indirizzo diverso per ogni transazione.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -176,8 +176,8 @@
         <translation>Conferma cifratura portafoglio</translation>
     </message>
     <message>
-        <source>dogecash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
-        <translation>dogecash verrà ora chiuso per completare il processo di cifratura. Ricorda che crittografare il tuo portafoglio non protegge completamente i tuoi DOGEC dal furto da parte di software malevoli che potrebbero infettare il tuo computer.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash verrà ora chiuso per completare il processo di cifratura. Ricorda che crittografare il tuo portafoglio non protegge completamente i tuoi DOGEC dal furto da parte di software malevoli che potrebbero infettare il tuo computer.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -254,12 +254,12 @@
         <translation>Indirizzo:</translation>
     </message>
     <message>
-        <source>Enter a dogecash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Inserire un indirizzo dogecash da crittografare utilizzando BIP 38. Inserire una password nel campo centrale. Cliccare su "cripta" per generare la chiave privata crittografata.</translation>
+        <source>Enter a DogeCash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>Inserire un indirizzo DogeCash da crittografare utilizzando BIP 38. Inserire una password nel campo centrale. Cliccare su "cripta" per generare la chiave privata crittografata.</translation>
     </message>
     <message>
-        <source>The dogecash address to encrypt</source>
-        <translation>Indirizzo dogecash da crittografare</translation>
+        <source>The DogeCash address to encrypt</source>
+        <translation>Indirizzo DogeCash da crittografare</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -290,8 +290,8 @@
         <translation>Copiare la firma corrente negli Appunti di sistema</translation>
     </message>
     <message>
-        <source>Encrypt the private key for this dogecash address</source>
-        <translation>Crittografa la chiave privata per questo indirizzo dogecash</translation>
+        <source>Encrypt the private key for this DogeCash address</source>
+        <translation>Crittografa la chiave privata per questo indirizzo DogeCash</translation>
     </message>
     <message>
         <source>Reset all fields</source>
@@ -433,8 +433,8 @@
         <translation>Espora la cronologia delle transazioni</translation>
     </message>
     <message>
-        <source>Privacy Actions for zdogec</source>
-        <translation>Operazioni di privacy per zdogec</translation>
+        <source>Privacy Actions for zDOGEC</source>
+        <translation>Operazioni di privacy per zDOGEC</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -645,8 +645,8 @@
         <translation>DogeCash Core</translation>
     </message>
     <message>
-        <source>Send coins to a dogecash address</source>
-        <translation>Invia valuta all'indirizzo dogecash</translation>
+        <source>Send coins to a DogeCash address</source>
+        <translation>Invia valuta all'indirizzo DogeCash</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and dogecash: URIs)</source>
@@ -673,16 +673,16 @@
         <translation>Visualizza informazioni su DogeCash Core</translation>
     </message>
     <message>
-        <source>Modify configuration options for dogecash</source>
-        <translation>Modifica le opzioni di configurazione per dogecash</translation>
+        <source>Modify configuration options for DogeCash</source>
+        <translation>Modifica le opzioni di configurazione per DogeCash</translation>
     </message>
     <message>
-        <source>Sign messages with your dogecash addresses to prove you own them</source>
-        <translation>Firma i messaggi con i tuoi indirizzi dogecash per dimostrare di essere il proprietario </translation>
+        <source>Sign messages with your DogeCash addresses to prove you own them</source>
+        <translation>Firma i messaggi con i tuoi indirizzi DogeCash per dimostrare di essere il proprietario </translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
-        <translation>Verifica i messaggi per assicurarsi che siano stati firmati con indirizzi dogecash specifici</translation>
+        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
+        <translation>Verifica i messaggi per assicurarsi che siano stati firmati con indirizzi DogeCash specifici</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -713,8 +713,8 @@
         <translation>Apri file di configurazione del Masternodo</translation>
     </message>
     <message>
-        <source>Open a dogecash: URI or payment request</source>
-        <translation>Apri un dogecash: URI o richiesta di pagamento</translation>
+        <source>Open a DogeCash: URI or payment request</source>
+        <translation>Apri un DogeCash: URI o richiesta di pagamento</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -725,8 +725,8 @@
         <translation>Finestra Block Explorer</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>Mostra il messaggio di aiuto DogeCash Core per ottenere un elenco con le possibili opzioni di riga di comando dogecash</translation>
+        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
+        <translation>Mostra il messaggio di aiuto DogeCash Core per ottenere un elenco con le possibili opzioni di riga di comando DogeCash</translation>
     </message>
     <message>
         <source>DogeCash Core client</source>
@@ -1102,7 +1102,7 @@ MultiSend: %1</translation>
         <translation>Questa etichetta diventa rossa se uno dei destinatari riceve un importo inferiore a %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 uDOGEC per input.</source>
+        <source>Can vary +/- %1 upiv per input.</source>
         <translation>Può variare di +/- %1 uDOGEC per input.</translation>
     </message>
     <message>
@@ -1149,8 +1149,8 @@ MultiSend: %1</translation>
         <translation>Modifica indirizzo di invio</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid dogecash address.</source>
-        <translation>L'indirizzo inserito "%1" non è un indirizzo dogecash valido.</translation>
+        <source>The entered address "%1" is not a valid DogeCash address.</source>
+        <translation>L'indirizzo inserito "%1" non è un indirizzo DogeCash valido.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1269,8 +1269,8 @@ MultiSend: %1</translation>
         <translation>Essendo il primo avvio dell'applicazione, puoi scegliere dove DogeCash Core salverà i propri dati.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>DogeCash Core scaricherà e salverà una copia della blockchain dogecash. Verranno salvati almeno %1GB di dati in questa cartella, che cresceranno nel tempo. In questa cartella verrà salvato anche il portafoglio.</translation>
+        <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DogeCash Core scaricherà e salverà una copia della blockchain DogeCash. Verranno salvati almeno %1GB di dati in questa cartella, che cresceranno nel tempo. In questa cartella verrà salvato anche il portafoglio.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1423,12 +1423,12 @@ MultiSend: %1</translation>
         <translation>Inserire indirizzo destinatario</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other dogecash addresses after it matures.
-To Add: enter percentage to give and dogecash address to add to the MultiSend vector.
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other DogeCash addresses after it matures.
+To Add: enter percentage to give and DogeCash address to add to the MultiSend vector.
 To Delete: Enter address to delete and press delete.
 MultiSend will not be activated unless you have clicked Activate</source>
-        <translation>MultiSend ti permette di inviare automaticamente ad una lista di indirizzi dogecash fino al 100% delle ricompense di stake o masternodi, dopo che queste sono mature.
-Per Aggiunger: inserisci la percentuale da inviare e l'indirizzo dogecash da aggiungere al vettore MultiSend.
+        <translation>MultiSend ti permette di inviare automaticamente ad una lista di indirizzi DogeCash fino al 100% delle ricompense di stake o masternodi, dopo che queste sono mature.
+Per Aggiunger: inserisci la percentuale da inviare e l'indirizzo DogeCash da aggiungere al vettore MultiSend.
 Per Eliminare: Inserisci l'indirizzo da eliminare e premi elimina.
 MultiSend non verrà attivato a meno che tu non prema su Attiva</translation>
     </message>
@@ -1613,29 +1613,6 @@ MultiSend non verrà attivato a meno che tu non prema su Attiva</translation>
     </message>
 </context>
 <context>
-    <name>ObfuscationConfig</name>
-    <message>
-        <source>Configure Obfuscation</source>
-        <translation>Configura Offuscamento</translation>
-    </message>
-    <message>
-        <source>Use 2 separate masternodes to mix funds up to 10000 DOGEC</source>
-        <translation>Usa 2 masternodi diversi per mescolare fino a 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>Use 8 separate masternodes to mix funds up to 10000 DOGEC</source>
-        <translation>Usa 8 masternodi diversi per mixare fino a 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>Use 16 separate masternodes</source>
-        <translation>Usa 16 masternodi diversi</translation>
-    </message>
-    <message>
-        <source>Obfuscation Configuration</source>
-        <translation>Configurazione Offuscamento</translation>
-    </message>
-    </context>
-<context>
     <name>OpenURIDialog</name>
     <message>
         <source>Open URI</source>
@@ -1661,24 +1638,24 @@ MultiSend non verrà attivato a meno che tu non prema su Attiva</translation>
         <translation>Mappa la porta utilizzando &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of DOGEC units to zdogec</source>
-        <translation>Attiva il conio automatico di unità DOGEC in zdogec</translation>
+        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
+        <translation>Attiva il conio automatico di unità DOGEC in zDOGEC</translation>
     </message>
     <message>
-        <source>Enable zdogec Automint</source>
-        <translation>Attiva Conio automatico zdogec</translation>
+        <source>Enable zDOGEC Automint</source>
+        <translation>Attiva Conio automatico zDOGEC</translation>
     </message>
     <message>
-        <source>Percentage of incoming DOGEC which get automatically converted to zdogec via Zerocoin Protocol (min: 10%)</source>
-        <translation>Percentuale di DOGEC in entrata che viene automaticamente convertita in zdogec attraverso il protocollo Zerocoin (min: 10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
+        <translation>Percentuale di DOGEC in entrata che viene automaticamente convertita in zDOGEC attraverso il protocollo Zerocoin (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zdogec</source>
-        <translation>Percentuale di zdogec Percentuale di zdogec da coniare automaticamente</translation>
+        <source>Percentage of autominted zDOGEC</source>
+        <translation>Percentuale di zDOGEC Percentuale di zDOGEC da coniare automaticamente</translation>
     </message>
     <message>
-        <source>Preferred Automint zdogec Denomination</source>
-        <translation>Denominazione preferita conio automatico zdogec</translation>
+        <source>Preferred Automint zDOGEC Denomination</source>
+        <translation>Denominazione preferita conio automatico zDOGEC</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1752,18 +1729,18 @@ MultiSend non verrà attivato a meno che tu non prema su Attiva</translation>
         <translation>Saldo corrente bloccato in indirizzi sola-lettura.</translation>
     </message>
     <message>
-        <source>Your current dogecash balance, unconfirmed and immature transactions included</source>
-        <translation>Il tuo saldo dogecash corrente, incluse le transazioni non confermate e non mature</translation>
+        <source>Your current DogeCash balance, unconfirmed and immature transactions included</source>
+        <translation>Il tuo saldo DogeCash corrente, incluse le transazioni non confermate e non mature</translation>
     </message>
     <message>
-        <source>zdogec Balance</source>
-        <translation>Bilancio zdogec</translation>
+        <source>zDOGEC Balance</source>
+        <translation>Bilancio zDOGEC</translation>
     </message>
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zdogec are spendable.</source>
+These zDOGEC are spendable.</source>
         <translation>Maturi: più di 20 conferme e più di 1 conio della stessa denominazione dopo il conio.
-Questi zdogec sono spendibili.</translation>
+Questi zDOGEC sono spendibili.</translation>
     </message>
     <message>
         <source>OVERVIEW</source>
@@ -1794,8 +1771,8 @@ Questi zdogec sono spendibili.</translation>
         <translation>Spendibili:</translation>
     </message>
     <message>
-        <source>Locked DOGEC or Masternode collaterals. These are excluded from zdogec minting.</source>
-        <translation>DOGEC bloccati o collaterali Masternodo. Questi sono esclusi dal conio di zdogec.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
+        <translation>DOGEC bloccati o collaterali Masternodo. Questi sono esclusi dal conio di zDOGEC.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -1806,18 +1783,18 @@ Questi zdogec sono spendibili.</translation>
         <translation>Non confermati:</translation>
     </message>
     <message>
-        <source>Your current zdogec balance, unconfirmed and immature zdogec included.</source>
-        <translation>Il tuo saldo zdogec corrente, inclusi zdogec non confermati e non maturi</translation>
+        <source>Your current zDOGEC balance, unconfirmed and immature zDOGEC included.</source>
+        <translation>Il tuo saldo zDOGEC corrente, inclusi zDOGEC non confermati e non maturi</translation>
     </message>
     <message>
         <source>Recent transactions</source>
         <translation>Transazioni recenti</translation>
     </message>
     <message>
-        <source>Current percentage of zdogec.
+        <source>Current percentage of zDOGEC.
 If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
 </source>
-        <translation>Percentuale corrente di zdogec.
+        <translation>Percentuale corrente di zDOGEC.
 Se il conio automatico è attivato questa percentuale si stabilizzerà all'incirca sulla percentuale stabilita per il conio automatico (percentuale prestabilita = 10%).
 </translation>
     </message>
@@ -1881,44 +1858,24 @@ Per attivare il Conio automatico cambiare 'enablezeromint=0' in 'enablezeromint=
         <translation>0</translation>
     </message>
     <message>
-        <source>zdogec</source>
-        <translation>zdogec</translation>
-    </message>
-    <message>
-        <source>0.000 000 00 DOGEC</source>
-        <translation>0.000 000 00 DOGEC</translation>
+        <source>zDOGEC</source>
+        <translation>zDOGEC</translation>
     </message>
     <message>
         <source>Reset</source>
         <translation>Reset</translation>
     </message>
     <message>
-        <source>Coin Control...</source>
-        <translation>Controllo Monete...</translation>
-    </message>
-    <message>
-        <source>Quantity:</source>
-        <translation>Quantità:</translation>
-    </message>
-    <message>
-        <source>Amount:</source>
-        <translation>Totale:</translation>
-    </message>
-    <message>
         <source>PRIVACY</source>
         <translation>PRIVACY</translation>
     </message>
     <message>
-        <source>Enter an amount of DOGEC to convert to zdogec</source>
-        <translation>Immetti un importo di DOGEC da convertire in zdogec</translation>
+        <source>zDOGEC Control</source>
+        <translation>Controllo zDOGEC</translation>
     </message>
     <message>
-        <source>zdogec Control</source>
-        <translation>Controllo zdogec</translation>
-    </message>
-    <message>
-        <source>zdogec Selected:</source>
-        <translation>zdogec selezionati:</translation>
+        <source>zDOGEC Selected:</source>
+        <translation>zDOGEC selezionati:</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -1929,23 +1886,23 @@ Per attivare il Conio automatico cambiare 'enablezeromint=0' in 'enablezeromint=
         <translation>Spendi Zerocoin</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zdogec for spending</source>
-        <translation>zdogec disponibili disponibili per essere spesi (maturi e spendibili)</translation>
+        <source>Available (mature and spendable) zDOGEC for spending</source>
+        <translation>zDOGEC disponibili disponibili per essere spesi (maturi e spendibili)</translation>
     </message>
     <message>
         <source>Available Balance:</source>
         <translation>Bilancio Disponibile:</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zdogec for spending
+        <source>Available (mature and spendable) zDOGEC for spending
 
-zdogec are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
-        <translation>zdogec disponibili disponibili per essere spesi (maturi e spendibili)
-Gli zdogec sono maturi quando hanno più di 20 conferme E più di 2 conii della stessa denominazione dopo che sono stati coniati</translation>
+zDOGEC are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
+        <translation>zDOGEC disponibili disponibili per essere spesi (maturi e spendibili)
+Gli zDOGEC sono maturi quando hanno più di 20 conferme E più di 2 conii della stessa denominazione dopo che sono stati coniati</translation>
     </message>
     <message>
-        <source>0 zdogec</source>
-        <translation>0 zdogec</translation>
+        <source>0 zDOGEC</source>
+        <translation>0 zDOGEC</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
@@ -1988,31 +1945,31 @@ Gli zdogec sono maturi quando hanno più di 20 conferme E più di 2 conii della 
         <translation>Statistiche Zerocoin:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zdogec</source>
-        <translation>Saldo totale inclusi zdogec non confermati e non maturi</translation>
+        <source>Total Balance including unconfirmed and immature zDOGEC</source>
+        <translation>Saldo totale inclusi zDOGEC non confermati e non maturi</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
         <translation>Saldo totale Zerocoin:</translation>
     </message>
     <message>
-        <source>Show the current status of automatic zdogec minting.
+        <source>Show the current status of automatic zDOGEC minting.
 
 To change the status (restart required):
 - enable: add 'enablezeromint=1' to dogecash.conf
 - disable: add 'enablezeromint=0' to dogecash.conf
 
 To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zdogec
+- menu Settings-&gt;Options-&gt;Percentage of autominted zDOGEC
 
 </source>
-        <translation>Mostra lo stato corrente del conio automatico zdogec.
+        <translation>Mostra lo stato corrente del conio automatico zDOGEC.
 Per cambiare lo stato (riavvio necessario):
 - attivato: aggiungi 'enablezeromint=1' a dogecash.conf
 - disattivato: aggiungi 'enablezeromint=0' a dogecash.conf
 
 Per cambiare la percentuale (riavvio non necessario):
-- menu Impostazioni-&gt;Opzioni-&gt;Percentuale di zdogec da coniare automaticamente
+- menu Impostazioni-&gt;Opzioni-&gt;Percentuale di zDOGEC da coniare automaticamente
 
 </translation>
     </message>
@@ -2153,16 +2110,8 @@ Per cambiare la percentuale (riavvio non necessario):
         <translation>Differenza:</translation>
     </message>
     <message>
-        <source>Copy quantity</source>
-        <translation>Copia importo</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>Copia ammontare</translation>
-    </message>
-    <message>
-        <source>zdogec Mint</source>
-        <translation>Conio zdogec</translation>
+        <source>zDOGEC Mint</source>
+        <translation>Conio zDOGEC</translation>
     </message>
     <message>
         <source>AutoMint Status:</source>
@@ -2462,8 +2411,8 @@ Per cambiare la percentuale (riavvio non necessario):
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The dogecash address to sign the message with</source>
-        <translation>L'indirizzo dogecash per firmare il messaggio con</translation>
+        <source>The DogeCash address to sign the message with</source>
+        <translation>L'indirizzo DogeCash per firmare il messaggio con</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2486,16 +2435,16 @@ Per cambiare la percentuale (riavvio non necessario):
         <translation>Copiare la firma corrente negli Appunti di sistema</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this dogecash address</source>
-        <translation>Firmare il messaggio per dimostrare di possedere questo indirizzo dogecash</translation>
+        <source>Sign the message to prove you own this DogeCash address</source>
+        <translation>Firmare il messaggio per dimostrare di possedere questo indirizzo DogeCash</translation>
     </message>
     <message>
-        <source>The dogecash address the message was signed with</source>
-        <translation>L'indirizzo dogecash con cui è stato firmato il messaggio</translation>
+        <source>The DogeCash address the message was signed with</source>
+        <translation>L'indirizzo DogeCash con cui è stato firmato il messaggio</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
-        <translation>Verificare il messaggio per assicurarsi che sia stato firmato con l'indirizzo dogecash specificato </translation>
+        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
+        <translation>Verificare il messaggio per assicurarsi che sia stato firmato con l'indirizzo DogeCash specificato </translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>
@@ -2645,14 +2594,14 @@ Per cambiare la percentuale (riavvio non necessario):
     </message>
     </context>
 <context>
-    <name>zdogecControlDialog</name>
+    <name>ZPivControlDialog</name>
     <message>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <source>zdogec</source>
-        <translation>zdogec</translation>
+        <source>zDOGEC</source>
+        <translation>zDOGEC</translation>
     </message>
     </context>
 <context>

@@ -43,11 +43,11 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>选择发送dogecash coin的地址</translation>
+        <translation>选择发送DogeCash coin的地址</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>选择接收dogecash coin的地址</translation>
+        <translation>选择接收DogeCash coin的地址</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -63,11 +63,11 @@
     </message>
     <message>
         <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>这是用于发送dogecash的地址。在发送dogecash之前，请认真核查发送金额和接收地址。</translation>
+        <translation>这是用于发送DogeCash的地址。在发送DogeCash之前，请认真核查发送金额和接收地址。</translation>
     </message>
     <message>
         <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>这是用于接收dogecash的钱包地址。建议每一笔交易都使用一个新的钱包地址。</translation>
+        <translation>这是用于接收DogeCash的钱包地址。建议每一笔交易都使用一个新的钱包地址。</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -173,7 +173,7 @@
     </message>
     <message>
         <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
-        <translation>dogecash将关闭以完成加密过程。但是，仅仅加密您的钱包是不够的，因为它并不能阻止恶意软件从您的电脑里面偷取DOGECs。</translation>
+        <translation>DogeCash将关闭以完成加密过程。但是，仅仅加密您的钱包是不够的，因为它并不能阻止恶意软件从您的电脑里面偷取DOGECs。</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -574,10 +574,10 @@
     </message>
     <message>
         <source>Send coins to a DogeCash address</source>
-        <translation>发送数字货币到dogecash地址</translation>
+        <translation>发送数字货币到DogeCash地址</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and DogeCash: URIs)</source>
+        <source>Request payments (generates QR codes and dogecash: URIs)</source>
         <translation>请求支付（生成二维码和dogecash：URIs）</translation>
     </message>
     <message>
@@ -595,24 +595,22 @@
     <message>
         <source>&amp;About DogeCash Core</source>
         <translation>&amp;A关于DogeCash Core</translation>
-        <source>&amp;About DogeCash Core</source>
-        <translation>&amp;A关于DogeCash Core</translation>
     </message>
     <message>
         <source>Show information about DogeCash Core</source>
-        <translation>显示dogecash  Core的相关信息</translation>
+        <translation>显示DogeCash  Core的相关信息</translation>
     </message>
     <message>
         <source>Modify configuration options for DogeCash</source>
-        <translation>修改dogecash的配置选项</translation>
+        <translation>修改DogeCash的配置选项</translation>
     </message>
     <message>
         <source>Sign messages with your DogeCash addresses to prove you own them</source>
-        <translation>使用您的dogecash地址验证消息，以证明您拥有他们</translation>
+        <translation>使用您的DogeCash地址验证消息，以证明您拥有他们</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
-        <translation>验证消息确保它已使用指定的dogecash地址进行签名</translation>
+        <translation>验证消息确保它已使用指定的DogeCash地址进行签名</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -644,7 +642,7 @@
     </message>
     <message>
         <source>Open a DogeCash: URI or payment request</source>
-        <translation>打开dogecash：URI或付款请求</translation>
+        <translation>打开DogeCash：URI或付款请求</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -656,9 +654,7 @@
     </message>
     <message>
         <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
-        <translation>显示DogeCash Core帮助信息并获取dogecash命令行选项列表</translation>
-        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
-        <translation>显示DogeCash Core帮助信息并获取dogecash命令行选项列表</translation>
+        <translation>显示DogeCash Core帮助信息并获取DogeCash命令行选项列表</translation>
     </message>
     <message>
         <source>DogeCash Core client</source>
@@ -683,6 +679,10 @@
     <message>
         <source>Up to date</source>
         <translation>最新</translation>
+    </message>
+    <message>
+        <source>%1 and %2</source>
+        <translation>%1 和 %2</translation>
     </message>
     <message>
         <source>Catching up...</source>
@@ -820,8 +820,6 @@ Address: %4
     <message>
         <source>About DogeCash Core</source>
         <translation>关于DogeCash Core</translation>
-        <source>About DogeCash Core</source>
-        <translation>关于DogeCash Core</translation>
     </message>
     </context>
 <context>
@@ -833,12 +831,10 @@ Address: %4
     <message>
         <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
         <translation>由于这是该程序第一次启动，您可以选择存储DogeCash Core 数据的位置。</translation>
-        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
-        <translation>由于这是该程序第一次启动，您可以选择存储DogeCash Core 数据的位置。</translation>
     </message>
     <message>
         <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>DogeCash Core将下载并存储dogecash区块链副本。 至少 %1 GB的数据将存储在此目录中，并且会随着时间的推移而增长。 钱包也将存储在此目录中。</translation>
+        <translation>DogeCash Core将下载并存储DogeCash区块链副本。 至少 %1 GB的数据将存储在此目录中，并且会随着时间的推移而增长。 钱包也将存储在此目录中。</translation>
     </message>
     <message>
         <source>DogeCash Core</source>
@@ -907,9 +903,6 @@ Address: %4
     <name>MultisigDialog</name>
     </context>
 <context>
-    <name>ObfuscationConfig</name>
-    </context>
-<context>
     <name>OpenURIDialog</name>
     </context>
 <context>
@@ -936,7 +929,7 @@ Address: %4
     </message>
     <message>
         <source>Automatically open the DogeCash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>自动打开路由器上的dogecash钱包使用的端口。 这只有当您的路由器支持UPnP并且该享生效时才有用。</translation>
+        <translation>自动打开路由器上的DogeCash钱包使用的端口。 这只有当您的路由器支持UPnP并且该享生效时才有用。</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -944,7 +937,7 @@ Address: %4
     </message>
     <message>
         <source>&amp;Start DogeCash on system login</source>
-        <translation>&amp;开机启动dogecash</translation>
+        <translation>&amp;开机启动DogeCash</translation>
     </message>
     <message>
         <source>Enable coin &amp;control features</source>
@@ -999,12 +992,8 @@ Address: %4
         <translation>界面主题（语言包）:</translation>
     </message>
     <message>
-        <source>&amp;Unit to show amounts in:</source>
-        <translation>&amp;单位显示金额</translation>
-    </message>
-    <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>选择显示发送dogecash的默认单位。</translation>
+        <translation>选择显示发送DogeCash的默认单位。</translation>
     </message>
     <message>
         <source>Decimal digits</source>
@@ -1083,7 +1072,7 @@ Address: %4
     </message>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
-        <translation>显示的信息可能已过期。建立连接后，您的钱包会自动与dogecash网络同步，但此过程尚未完成。</translation>
+        <translation>显示的信息可能已过期。建立连接后，您的钱包会自动与DogeCash网络同步，但此过程尚未完成。</translation>
     </message>
     <message>
         <source>Your current balance in watch-only addresses</source>
@@ -1100,7 +1089,7 @@ Address: %4
     <name>PrivacyDialog</name>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
-        <translation>显示的信息可能已过期。建立连接后，您的钱包会自动与dogecash网络同步，但此过程尚未完成。</translation>
+        <translation>显示的信息可能已过期。建立连接后，您的钱包会自动与DogeCash网络同步，但此过程尚未完成。</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
@@ -1199,11 +1188,11 @@ Address: %4
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the DogeCash network.</source>
-        <translation>附加到付款请求的可选消息，将在请求打开时显示。 注意：消息不会在付款时通过dogecash网络发送。</translation>
+        <translation>附加到付款请求的可选消息，将在请求打开时显示。 注意：消息不会在付款时通过DogeCash网络发送。</translation>
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the DogeCash network.</source>
-        <translation>附加到付款请求的可选消息，将在请求打开时显示。&lt;br&gt; 注意：消息不会在付款时通过dogecash网络发送。</translation>
+        <translation>附加到付款请求的可选消息，将在请求打开时显示。&lt;br&gt; 注意：消息不会在付款时通过DogeCash网络发送。</translation>
     </message>
     <message>
         <source>&amp;Label:</source>
@@ -1343,7 +1332,7 @@ Address: %4
     </message>
     <message>
         <source>A message that was attached to the DogeCash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the DogeCash network.</source>
-        <translation>附加到dogecash：URI的消息，该消息将与转账信息一起存储以供参考。 注意：此消息不会通过dogecash网络发送。</translation>
+        <translation>附加到DogeCash：URI的消息，该消息将与转账信息一起存储以供参考。 注意：此消息不会通过DogeCash网络发送。</translation>
     </message>
     <message>
         <source>Enter a label for this address to add it to your address book</source>
@@ -1369,7 +1358,7 @@ Address: %4
     </message>
     <message>
         <source>The DogeCash address to sign the message with</source>
-        <translation>该dogecash地址签名的消息</translation>
+        <translation>该DogeCash地址签名的消息</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1397,15 +1386,15 @@ Address: %4
     </message>
     <message>
         <source>Sign the message to prove you own this DogeCash address</source>
-        <translation>签署消息以证明您拥有此dogecash地址</translation>
+        <translation>签署消息以证明您拥有此DogeCash地址</translation>
     </message>
     <message>
         <source>The DogeCash address the message was signed with</source>
-        <translation>由dogecash地址签名的消息</translation>
+        <translation>由DogeCash地址签名的消息</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
-        <translation>验证消息确保它已使用指定的dogecash地址进行签名</translation>
+        <translation>验证消息确保它已使用指定的DogeCash地址进行签名</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -1563,17 +1552,15 @@ Address: %4
     </message>
     </context>
 <context>
-    <name>zdogecControlDialog</name>
+    <name>ZPivControlDialog</name>
     </context>
 <context>
-    <name>DogeCash-core</name>
+    <name>dogecash-core</name>
     <message>
         <source>Execute command when a relevant alert is received or we see a really long fork (%s in cmd is replaced by message)</source>
         <translation>在收到相关警报时执行命令，或者看到一个很长的分叉（cmd中的%s被消息替换）</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
-        <translation>注意：请检查您的电脑的日期和时间是否正确！ 如果您的时间设置不正确，DogeCash Core将无法正常工作。</translation>
         <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
         <translation>注意：请检查您的电脑的日期和时间是否正确！ 如果您的时间设置不正确，DogeCash Core将无法正常工作。</translation>
     </message>
@@ -1600,14 +1587,6 @@ Address: %4
     <message>
         <source>Warning</source>
         <translation>注意</translation>
-    </message>
-    <message>
-        <source>Your entries added successfully.</source>
-        <translation>您的输入成功添加。</translation>
-    </message>
-    <message>
-        <source>Your transaction was accepted into the pool!</source>
-        <translation>您的交易被矿池接受！</translation>
     </message>
     </context>
 </TS>

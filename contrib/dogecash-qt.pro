@@ -119,7 +119,7 @@ HEADERS += src/activemasternode.h \
            src/tinyformat.h \
            src/txdb.h \
            src/txmempool.h \
-           src/guiinterface.h \
+           src/ui_interface.h \
            src/uint256.h \
            src/undo.h \
            src/util.h \
@@ -658,3 +658,6 @@ TRANSLATIONS += src/qt/locale/dogecash_bg.ts \
                 src/qt/locale/dogecash_vi.ts \
                 src/qt/locale/dogecash_zh_CN.ts \
                 src/qt/locale/dogecash_zh_TW.ts
+
+DISTFILES += \
+    README.md

@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2019 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,14 +16,14 @@
 #include "wallet/wallet.h"
 #include "wallet/walletdb.h"
 #include "txdb.h"
+#include "test/test_dogecash.h"
 #include <boost/test/unit_test.hpp>
 #include <iostream>
 
-using namespace libzerocoin;
 
 class CDeterministicMint;
 
-BOOST_AUTO_TEST_SUITE(zerocoin_coinspend_tests)
+BOOST_FIXTURE_TEST_SUITE(zerocoin_coinspend_tests, TestingSetup)
 
 /**
  * Check that wrapped serials pass and not pass using the new validation.
@@ -33,32 +33,32 @@ BOOST_AUTO_TEST_CASE(zerocoin_wrapped_serial_spend_test)
     unsigned int TESTS_COINS_TO_ACCUMULATE = 5;
 
     SelectParams(CBaseChainParams::MAIN);
-    ZerocoinParams *ZCParams = Params().Zerocoin_Params(false);
+    libzerocoin::ZerocoinParams *ZCParams = Params().Zerocoin_Params(false);
     (void)ZCParams;
 
     // Seed + Mints
-    string strWalletFile = "unittestwallet.dat";
+    std::string strWalletFile = "unittestwallet.dat";
     CWalletDB walletdb(strWalletFile, "cr+");
     CWallet wallet(strWalletFile);
-    CzdogecWallet *czdogecWallet = new CzdogecWallet(wallet.strWalletFile);
+    CzDOGECWallet *czDOGECWallet = new CzDOGECWallet(wallet.strWalletFile);
 
     // Get the 5 created mints.
-    CoinDenomination denom = CoinDenomination::ZQ_FIFTY;
-    std::vector<PrivateCoin> vCoins;
+    libzerocoin::CoinDenomination denom = libzerocoin::CoinDenomination::ZQ_FIFTY;
+    std::vector<libzerocoin::PrivateCoin> vCoins;
     for (unsigned int i = 0; i < TESTS_COINS_TO_ACCUMULATE; i++) {
-        PrivateCoin coin(ZCParams, denom, false);
+        libzerocoin::PrivateCoin coin(ZCParams, denom, false);
         CDeterministicMint dMint;
-        czdogecWallet->GenerateDeterministiczdogec(denom, coin, dMint, true);
-        czdogecWallet->UpdateCount();
+        czDOGECWallet->GenerateDeterministicZDOGEC(denom, coin, dMint, true);
+        czDOGECWallet->UpdateCount();
         vCoins.emplace_back(coin);
     }
 
     // Selected coin
-    PrivateCoin coinToSpend = vCoins[0];
+    libzerocoin::PrivateCoin coinToSpend = vCoins[0];
 
     // Accumulate coins
-    Accumulator acc(&ZCParams->accumulatorParams, denom);
-    AccumulatorWitness accWitness(ZCParams, acc, coinToSpend.getPublicCoin());
+    libzerocoin::Accumulator acc(&ZCParams->accumulatorParams, denom);
+    libzerocoin::AccumulatorWitness accWitness(ZCParams, acc, coinToSpend.getPublicCoin());
 
     for (uint32_t i = 0; i < TESTS_COINS_TO_ACCUMULATE; i++) {
         acc += vCoins[i].getPublicCoin();
@@ -71,7 +71,7 @@ BOOST_AUTO_TEST_CASE(zerocoin_wrapped_serial_spend_test)
     Bignum wrappedSerial = coinToSpend.getSerialNumber() + ZCParams->coinCommitmentGroup.groupOrder * CBigNum(2).pow(256) * 2;
     coinToSpend.setSerialNumber(wrappedSerial);
 
-    CoinSpend wrappedSerialSpend(
+    libzerocoin::CoinSpend wrappedSerialSpend(
             ZCParams,
             ZCParams,
             coinToSpend,
@@ -79,7 +79,7 @@ BOOST_AUTO_TEST_CASE(zerocoin_wrapped_serial_spend_test)
             0,
             accWitness,
             0,
-            SpendType::SPEND
+            libzerocoin::SpendType::SPEND
     );
 
     // first check that the Verify pass without do the invalid range check

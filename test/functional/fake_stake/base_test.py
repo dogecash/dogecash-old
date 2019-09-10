@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# Copyright (c) 2019 The DogeCash developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
 # -*- coding: utf-8 -*-
 
 from io import BytesIO
@@ -17,11 +20,11 @@ from test_framework.util import hash256, bytes_to_hex_str, hex_str_to_bytes, con
 
 from .util import TestNode, create_transaction, utxo_to_stakingPrevOuts, dir_size
 ''' -------------------------------------------------------------------------
-dogecash_FakeStakeTest CLASS ----------------------------------------------------
+DogeCash_FakeStakeTest CLASS ----------------------------------------------------
 
 General Test Class to be extended by individual tests for each attack test
 '''
-class dogecash_FakeStakeTest(BitcoinTestFramework):
+class DogeCash_FakeStakeTest(BitcoinTestFramework):
 
     def set_test_params(self):
         ''' Setup test environment
@@ -48,7 +51,9 @@ class dogecash_FakeStakeTest(BitcoinTestFramework):
         :param:
         :return:
         '''
-        self.log.info("\n\n*** Starting %s ***\n------------------------\n%s\n", self.__class__.__name__, self.description)
+        title = "*** Starting %s ***" % self.__class__.__name__
+        underline = "-" * len(title)
+        self.log.info("\n\n%s\n%s\n%s\n", title, underline, self.description)
         # Global Test parameters (override in run_test)
         self.DEFAULT_FEE = 0.1
         # Spam blocks to send in current test
@@ -92,8 +97,6 @@ class dogecash_FakeStakeTest(BitcoinTestFramework):
         :return  block:              (CBlock) generated block
         '''
 
-        self.log.info("Creating Spam Block")
-
         # If not given inputs to create spam txes, use a copy of the staking inputs
         if len(spendingPrevOuts) == 0:
             spendingPrevOuts = dict(stakingPrevOuts)
@@ -117,8 +120,6 @@ class dogecash_FakeStakeTest(BitcoinTestFramework):
         if not block.solve_stake(stakingPrevOuts):
             raise Exception("Not able to solve for any prev_outpoint")
 
-        self.log.info("Stake found. Signing block...")
-
         # Sign coinstake TX and add it to the block
         signed_stake_tx = self.sign_stake_tx(block, stakingPrevOuts[block.prevoutStake][0], fZPoS)
         block.vtx.append(signed_stake_tx)
@@ -130,10 +131,10 @@ class dogecash_FakeStakeTest(BitcoinTestFramework):
 
         # remove a random prevout from the list
         # (to randomize block creation if the same height is picked two times)
-        del spendingPrevOuts[choice(list(spendingPrevOuts))]
+        if len(spendingPrevOuts) > 0:
+            del spendingPrevOuts[choice(list(spendingPrevOuts))]
 
         # Create spam for the block. Sign the spendingPrevouts
-        self.log.info("Creating spam TXes...")
         for outPoint in spendingPrevOuts:
             value_out = int(spendingPrevOuts[outPoint][0] - self.DEFAULT_FEE * COIN)
             tx = create_transaction(outPoint, b"", value_out, nTime, scriptPubKey=CScript([self.block_sig_key.get_pubkey(), OP_CHECKSIG]))
@@ -180,7 +181,7 @@ class dogecash_FakeStakeTest(BitcoinTestFramework):
     def spend_utxos(self, utxo_list, address_list = []):
         ''' spend utxos to provided list of addresses or 10 new generate ones.
         :param      utxo_list:      (JSON list) returned from listunspent used as input
-                    address_list:   (string list) [optional] recipient dogecash addresses. if not set,
+                    address_list:   (string list) [optional] recipient DogeCash addresses. if not set,
                                     10 new addresses will be generated from the wallet for each tx.
         :return:    txHashes        (string list) tx hashes
         '''
@@ -206,7 +207,7 @@ class dogecash_FakeStakeTest(BitcoinTestFramework):
     def stake_amplification_step(self, utxo_list, address_list = []):
         ''' spends a list of utxos providing the list of new outputs
         :param      utxo_list:     (JSON list) returned from listunspent used as input
-                    address_list:  (string list) [optional] recipient dogecash addresses.
+                    address_list:  (string list) [optional] recipient DogeCash addresses.
         :return:    new_utxos:     (JSON list) list of new (valid) inputs after the spends
         '''
         self.log.info("--> Stake Amplification step started with %d UTXOs", len(utxo_list))
@@ -228,7 +229,7 @@ class dogecash_FakeStakeTest(BitcoinTestFramework):
         ''' performs the "stake amplification" which gives higher chances at finding fake stakes
         :param      utxo_list:    (JSON list) returned from listunspent used as input
                     iterations:   (int) amount of stake amplification steps to perform
-                    address_list: (string list) [optional] recipient dogecash addresses.
+                    address_list: (string list) [optional] recipient DogeCash addresses.
         :return:    all_inputs:   (JSON list) list of all spent inputs
         '''
         self.log.info("** Stake Amplification started with %d UTXOs", len(utxo_list))

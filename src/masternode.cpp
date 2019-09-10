@@ -220,7 +220,7 @@ void CMasternode::Check(bool forceCheck)
     if (!unitTest) {
         CValidationState state;
         CMutableTransaction tx = CMutableTransaction();
-        CTxOut vout = CTxOut(((Params().MasternodeCollateralLimit() - 0.01)) * COIN, obfuScationPool.collateralPubKey);
+        CTxOut vout = CTxOut(9999.99 * COIN, obfuScationPool.collateralPubKey);
         tx.vin.push_back(vin);
         tx.vout.push_back(vout);
 
@@ -564,8 +564,8 @@ bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
     }
 
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
-        if (addr.GetPort() != 56740) return false;
-    } else if (addr.GetPort() == 56740)
+        if (addr.GetPort() != 51472) return false;
+    } else if (addr.GetPort() == 51472)
         return false;
 
     //search existing Masternode list, this is where we update existing Masternodes with new mnb broadcasts

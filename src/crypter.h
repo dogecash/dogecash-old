@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2018 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -123,7 +123,6 @@ class CCryptoKeyStore : public CBasicKeyStore
 {
 private:
     CryptedKeyMap mapCryptedKeys;
-    CHDChain cryptedHDChain;
 
     CKeyingMaterial vMasterKey;
 
@@ -139,10 +138,7 @@ protected:
 
     //! will encrypt previously unencrypted keys
     bool EncryptKeys(CKeyingMaterial& vMasterKeyIn);
-    bool EncryptHDChain(const CKeyingMaterial& vMasterKeyIn);
-    bool DecryptHDChain(CHDChain& hdChainRet) const;
-    bool SetHDChain(const CHDChain& chain);
-    bool SetCryptedHDChain(const CHDChain& chain);
+
     bool Unlock(const CKeyingMaterial& vMasterKeyIn);
 
 public:
@@ -199,7 +195,6 @@ public:
 
     bool GetDeterministicSeed(const uint256& hashSeed, uint256& seed);
     bool AddDeterministicSeed(const uint256& seed);
-    bool GetHDChain(CHDChain& hdChainRet) const;
 
 
     /**

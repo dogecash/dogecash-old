@@ -1,5 +1,6 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2018 The DogeCash developers
+// Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -31,7 +32,7 @@ class QUrl;
 class QWidget;
 QT_END_NAMESPACE
 
-/** Utility functions used by the dogecash Qt UI.
+/** Utility functions used by the DogeCash Qt UI.
  */
 namespace GUIUtil
 {
@@ -39,7 +40,7 @@ namespace GUIUtil
 QString dateTimeStr(const QDateTime& datetime);
 QString dateTimeStr(qint64 nTime);
 
-// Render dogecash addresses in monospace font
+// Render DogeCash addresses in monospace font
 QFont bitcoinAddressFont();
 
 // Set up widgets for address and amounts
@@ -113,7 +114,7 @@ bool isObscured(QWidget* w);
 void openDebugLogfile();
 
 // Open dogecash.conf
-void openConfigfile();
+bool openConfigfile();
 
 // Open masternode.conf
 void openMNConfigfile();

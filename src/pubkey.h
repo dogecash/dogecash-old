@@ -1,11 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2016-2018 The PIVX  developers
+// Copyright (c) 2016-2018 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef dogecash_PUBKEY_H
-#define dogecash_PUBKEY_H
+#ifndef DogeCash_PUBKEY_H
+#define DogeCash_PUBKEY_H
 
 #include "hash.h"
 #include "serialize.h"
@@ -225,29 +225,7 @@ struct CExtPubKey {
     void Encode(unsigned char code[BIP32_EXTKEY_SIZE]) const;
     void Decode(const unsigned char code[BIP32_EXTKEY_SIZE]);
     bool Derive(CExtPubKey& out, unsigned int nChild) const;
-    unsigned int GetSerializeSize(int nType, int nVersion) const
-    {
-        return BIP32_EXTKEY_SIZE+1; //add one byte for the size (compact int)
-    }
-    template <typename Stream>
-    void Serialize(Stream& s, int nType, int nVersion) const
-    {
-        unsigned int len = BIP32_EXTKEY_SIZE;
-        ::WriteCompactSize(s, len);
-        unsigned char code[BIP32_EXTKEY_SIZE];
-        Encode(code);
-        s.write((const char *)&code[0], len);
-    }
-    template <typename Stream>
-    void Unserialize(Stream& s, int nType, int nVersion)
-    {
-        unsigned int len = ::ReadCompactSize(s);
-        unsigned char code[BIP32_EXTKEY_SIZE];
-        if (len != BIP32_EXTKEY_SIZE)
-            throw std::runtime_error("Invalid extended key size\n");
-        s.read((char *)&code[0], len);
-        Decode(code);
-    }
+
     void Serialize(CSizeComputer& s) const
     {
         // Optimized implementation for ::GetSerializeSize that avoids copying.
@@ -285,4 +263,4 @@ public:
     ~ECCVerifyHandle();
 };
 
-#endif // dogecash_PUBKEY_H
+#endif // DogeCash_PUBKEY_H

@@ -1,9 +1,9 @@
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2015-2018 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef dogecash_GENWIT_H
-#define dogecash_GENWIT_H
+#ifndef DogeCash_GENWIT_H
+#define DogeCash_GENWIT_H
 
 
 #include <iostream>
@@ -58,4 +58,4 @@ private:
 };
 
 
-#endif //dogecash_GENWIT_H
+#endif //DogeCash_GENWIT_H

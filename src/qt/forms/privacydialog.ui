@@ -172,7 +172,7 @@
                       <item>
                        <layout class="QHBoxLayout" name="horizontalLayout_3">
                         <item>
-                         <widget class="QLabel" name="labelzdogecActions">
+                         <widget class="QLabel" name="labelzDOGECActions">
                           <property name="font">
                            <font>
                             <pointsize>12</pointsize>
@@ -189,7 +189,7 @@
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="labelzdogecSyncStatus">
+                         <widget class="QLabel" name="labelzDOGECSyncStatus">
                           <property name="toolTip">
                            <string>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</string>
                           </property>
@@ -258,7 +258,7 @@
                               </font>
                              </property>
                              <property name="toolTip">
-                              <string>Total Balance including unconfirmed and immature zdogec</string>
+                              <string>Total Balance including unconfirmed and immature zDOGEC</string>
                              </property>
                              <property name="text">
                               <string>Total Zerocoin  Balance:</string>
@@ -283,10 +283,10 @@
                               </font>
                              </property>
                              <property name="toolTip">
-                              <string>Total Balance including unconfirmed and immature zdogec</string>
+                              <string>Total Balance including unconfirmed and immature zDOGEC</string>
                              </property>
                              <property name="text">
-                              <string>0 zdogec</string>
+                              <string>0 zDOGEC</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -335,7 +335,7 @@
                               </font>
                              </property>
                              <property name="text">
-                              <string>0 zdogec</string>
+                              <string>0 zDOGEC</string>
                              </property>
                             </widget>
                            </item>
@@ -357,7 +357,7 @@
                          <item>
                           <widget class="QPushButton" name="pushButtonShowDenoms">
                            <property name="toolTip">
-                            <string>Show zdogec denominations list</string>
+                            <string>Show zDOGEC denominations list</string>
                            </property>
                            <property name="text">
                             <string>Show Denominations</string>
@@ -414,7 +414,7 @@
                            <string>Available for minting are coins which are confirmed and not locked or Masternode collaterals.</string>
                           </property>
                           <property name="text">
-                           <string>Available for Minting:</string>
+                           <string>zDOGEC minting is DISABLED</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -721,6 +721,47 @@
                        </widget>
                       </item>
                       <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_7">
+                        <item>
+                         <spacer name="horizontalSpacer_18">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>40</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_2">
+                          <property name="styleSheet">
+                           <string notr="true">color: red;
+font-weight: bold;</string>
+                          </property>
+                          <property name="text">
+                           <string>zDOGEC spending is NOT private (links back to the mint transaction)</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <spacer name="horizontalSpacer_30">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>40</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
                        <layout class="QHBoxLayout" name="horizontalLayout_24">
                         <property name="leftMargin">
                          <number>0</number>
@@ -731,19 +772,19 @@
                         <item>
                          <widget class="QPushButton" name="pushButtonzdogecControl">
                           <property name="text">
-                           <string>zdogec Control</string>
+                           <string>zDOGEC Control</string>
                           </property>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="labelzdogecSelected">
+                         <widget class="QLabel" name="labelzDogecSelected">
                           <property name="text">
-                           <string>zdogec Selected:</string>
+                           <string>zDOGEC Selected:</string>
                           </property>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="labelzdogecSelected_int">
+                         <widget class="QLabel" name="labelzDogecSelected_int">
                           <property name="text">
                            <string>0</string>
                           </property>
@@ -797,7 +838,7 @@
                       <item>
                        <layout class="QHBoxLayout" name="horizontalLayout_6">
                         <item>
-                         <widget class="QPushButton" name="pushButtonSpendzdogec">
+                         <widget class="QPushButton" name="pushButtonSpendzDOGEC">
                           <property name="minimumSize">
                            <size>
                             <width>131</width>
@@ -813,9 +854,9 @@
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="labelzdogecBalanceText">
+                         <widget class="QLabel" name="labelzDOGECBalanceText">
                           <property name="toolTip">
-                           <string>Available (mature and spendable) zdogec for spending</string>
+                           <string>Available (mature and spendable) zDOGEC for spending</string>
                           </property>
                           <property name="text">
                            <string>Available Balance:</string>
@@ -834,12 +875,12 @@
                            </font>
                           </property>
                           <property name="toolTip">
-                           <string>Available (mature and spendable) zdogec for spending
+                           <string>Available (mature and spendable) zDOGEC for spending
 
-zdogec are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</string>
+zDOGEC are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</string>
                           </property>
                           <property name="text">
-                           <string>0 zdogec</string>
+                           <string>0 zDOGEC</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -983,7 +1024,7 @@ zdogec are mature when they have more than 20 confirmations AND more than 2 mint
                            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                           </property>
                           <property name="buddy">
-                           <cstring>zdogecpayAmount</cstring>
+                           <cstring>zDOGECpayAmount</cstring>
                           </property>
                          </widget>
                         </item>
@@ -993,10 +1034,10 @@ zdogec are mature when they have more than 20 confirmations AND more than 2 mint
                            <number>0</number>
                           </property>
                           <item>
-                           <widget class="QLineEdit" name="zdogecpayAmount"/>
+                           <widget class="QLineEdit" name="zDOGECpayAmount"/>
                           </item>
                           <item>
-                           <widget class="QLabel" name="labelzdogec">
+                           <widget class="QLabel" name="labelzDOGEC">
                             <property name="minimumSize">
                              <size>
                               <width>55</width>
@@ -1004,7 +1045,7 @@ zdogec are mature when they have more than 20 confirmations AND more than 2 mint
                              </size>
                             </property>
                             <property name="text">
-                             <string>zdogec</string>
+                             <string>zDOGEC</string>
                             </property>
                             <property name="alignment">
                              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1088,7 +1129,7 @@ zdogec are mature when they have more than 20 confirmations AND more than 2 mint
                       <item>
                        <layout class="QHBoxLayout" name="horizontalLayout_21">
                         <item>
-                         <widget class="QLabel" name="labelzdogecStats">
+                         <widget class="QLabel" name="labelzDOGECStats">
                           <property name="font">
                            <font>
                             <pointsize>12</pointsize>
@@ -1168,7 +1209,7 @@ zdogec are mature when they have more than 20 confirmations AND more than 2 mint
                            </font>
                           </property>
                           <property name="toolTip">
-                           <string>Total Balance including unconfirmed and immature zdogec</string>
+                           <string>Total Balance including unconfirmed and immature zDOGEC</string>
                           </property>
                           <property name="text">
                            <string>Total Zerocoin  Balance:</string>
@@ -1206,10 +1247,10 @@ zdogec are mature when they have more than 20 confirmations AND more than 2 mint
                            </font>
                           </property>
                           <property name="toolTip">
-                           <string>Total Balance including unconfirmed and immature zdogec</string>
+                           <string>Total Balance including unconfirmed and immature zDOGEC</string>
                           </property>
                           <property name="text">
-                           <string>0 zdogec</string>
+                           <string>0 zDOGEC</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1666,14 +1707,14 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
                         <item>
                          <widget class="QLabel" name="label_AutoMintStatus">
                           <property name="toolTip">
-                           <string>Show the current status of automatic zdogec minting.
+                           <string>Show the current status of automatic zDOGEC minting.
 
 To change the status (restart required):
 - enable: add 'enablezeromint=1' to dogecash.conf
 - disable: add 'enablezeromint=0' to dogecash.conf
 
 To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zdogec
+- menu Settings-&gt;Options-&gt;Percentage of autominted zDOGEC
 
 </string>
                           </property>
@@ -1753,7 +1794,7 @@ To change the percentage (no restart required):
                            </font>
                           </property>
                           <property name="text">
-                           <string>0 zdogec</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -1784,7 +1825,7 @@ To change the percentage (no restart required):
                         <item>
                          <widget class="QLabel" name="labelZsupplyAmount1">
                           <property name="text">
-                           <string>0 zdogec</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -1815,7 +1856,7 @@ To change the percentage (no restart required):
                         <item>
                          <widget class="QLabel" name="labelZsupplyAmount5">
                           <property name="text">
-                           <string>0 zdogec</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -1846,7 +1887,7 @@ To change the percentage (no restart required):
                         <item>
                          <widget class="QLabel" name="labelZsupplyAmount10">
                           <property name="text">
-                           <string>0 zdogec</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -1877,7 +1918,7 @@ To change the percentage (no restart required):
                         <item>
                          <widget class="QLabel" name="labelZsupplyAmount50">
                           <property name="text">
-                           <string>0 zdogec</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -1908,7 +1949,7 @@ To change the percentage (no restart required):
                         <item>
                          <widget class="QLabel" name="labelZsupplyAmount100">
                           <property name="text">
-                           <string>0 zdogec</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -1939,7 +1980,7 @@ To change the percentage (no restart required):
                         <item>
                          <widget class="QLabel" name="labelZsupplyAmount500">
                           <property name="text">
-                           <string>0 zdogec</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -1970,7 +2011,7 @@ To change the percentage (no restart required):
                         <item>
                          <widget class="QLabel" name="labelZsupplyAmount1000">
                           <property name="text">
-                           <string>0 zdogec</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>
@@ -2001,7 +2042,7 @@ To change the percentage (no restart required):
                         <item>
                          <widget class="QLabel" name="labelZsupplyAmount5000">
                           <property name="text">
-                           <string>0 zdogec</string>
+                           <string>0 zDOGEC</string>
                           </property>
                          </widget>
                         </item>

@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2019 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,9 +11,8 @@
 #include "deterministicmint.h"
 #include "zdogecchain.h"
 
-using namespace libzerocoin;
 
-CzdogecWallet::CzdogecWallet(std::string strWalletFile)
+CzDOGECWallet::CzDOGECWallet(std::string strWalletFile)
 {
     this->strWalletFile = strWalletFile;
     CWalletDB walletdb(strWalletFile);
@@ -24,13 +23,13 @@ CzdogecWallet::CzdogecWallet(std::string strWalletFile)
     //Check for old db version of storing zdogec seed
     if (fFirstRun) {
         uint256 seed;
-        if (walletdb.ReadzdogecSeed_deprecated(seed)) {
+        if (walletdb.ReadZDOGECSeed_deprecated(seed)) {
             //Update to new format, erase old
             seedMaster = seed;
             hashSeed = Hash(seed.begin(), seed.end());
             if (pwalletMain->AddDeterministicSeed(seed)) {
-                if (walletdb.ErasezdogecSeed_deprecated()) {
-                    LogPrintf("%s: Updated zdogec seed databasing\n", __func__);
+                if (walletdb.EraseZDOGECSeed_deprecated()) {
+                    LogPrintf("%s: Updated zDOGEC seed databasing\n", __func__);
                     fFirstRun = false;
                 } else {
                     LogPrintf("%s: failed to remove old zdogec seed\n", __func__);
@@ -68,7 +67,7 @@ CzdogecWallet::CzdogecWallet(std::string strWalletFile)
     this->mintPool = CMintPool(nCountLastUsed);
 }
 
-bool CzdogecWallet::SetMasterSeed(const uint256& seedMaster, bool fResetCount)
+bool CzDOGECWallet::SetMasterSeed(const uint256& seedMaster, bool fResetCount)
 {
 
     CWalletDB walletdb(strWalletFile);
@@ -84,8 +83,8 @@ bool CzdogecWallet::SetMasterSeed(const uint256& seedMaster, bool fResetCount)
     nCountLastUsed = 0;
 
     if (fResetCount)
-        walletdb.WritezdogecCount(nCountLastUsed);
-    else if (!walletdb.ReadzdogecCount(nCountLastUsed))
+        walletdb.WriteZDOGECCount(nCountLastUsed);
+    else if (!walletdb.ReadZDOGECCount(nCountLastUsed))
         nCountLastUsed = 0;
 
     mintPool.Reset();
@@ -93,18 +92,18 @@ bool CzdogecWallet::SetMasterSeed(const uint256& seedMaster, bool fResetCount)
     return true;
 }
 
-void CzdogecWallet::Lock()
+void CzDOGECWallet::Lock()
 {
     seedMaster = 0;
 }
 
-void CzdogecWallet::AddToMintPool(const std::pair<uint256, uint32_t>& pMint, bool fVerbose)
+void CzDOGECWallet::AddToMintPool(const std::pair<uint256, uint32_t>& pMint, bool fVerbose)
 {
     mintPool.Add(pMint, fVerbose);
 }
 
 //Add the next 20 mints to the mint pool
-void CzdogecWallet::GenerateMintPool(uint32_t nCountStart, uint32_t nCountEnd)
+void CzDOGECWallet::GenerateMintPool(uint32_t nCountStart, uint32_t nCountEnd)
 {
 
     //Is locked
@@ -146,7 +145,7 @@ void CzdogecWallet::GenerateMintPool(uint32_t nCountStart, uint32_t nCountEnd)
         CBigNum bnSerial;
         CBigNum bnRandomness;
         CKey key;
-        SeedTozdogec(seedZerocoin, bnValue, bnSerial, bnRandomness, key);
+        SeedToZDOGEC(seedZerocoin, bnValue, bnSerial, bnRandomness, key);
 
         mintPool.Add(bnValue, i);
         CWalletDB(strWalletFile).WriteMintPoolPair(hashSeed, GetPubCoinHash(bnValue), i);
@@ -155,9 +154,9 @@ void CzdogecWallet::GenerateMintPool(uint32_t nCountStart, uint32_t nCountEnd)
 }
 
 // pubcoin hashes are stored to db so that a full accounting of mints belonging to the seed can be tracked without regenerating
-bool CzdogecWallet::LoadMintPoolFromDB()
+bool CzDOGECWallet::LoadMintPoolFromDB()
 {
-    map<uint256, vector<pair<uint256, uint32_t> > > mapMintPool = CWalletDB(strWalletFile).MapMintPool();
+    std::map<uint256, std::vector<std::pair<uint256, uint32_t> > > mapMintPool = CWalletDB(strWalletFile).MapMintPool();
 
     uint256 hashSeed = Hash(seedMaster.begin(), seedMaster.end());
     for (auto& pair : mapMintPool[hashSeed])
@@ -166,26 +165,26 @@ bool CzdogecWallet::LoadMintPoolFromDB()
     return true;
 }
 
-void CzdogecWallet::RemoveMintsFromPool(const std::vector<uint256>& vPubcoinHashes)
+void CzDOGECWallet::RemoveMintsFromPool(const std::vector<uint256>& vPubcoinHashes)
 {
     for (const uint256& hash : vPubcoinHashes)
         mintPool.Remove(hash);
 }
 
-void CzdogecWallet::GetState(int& nCount, int& nLastGenerated)
+void CzDOGECWallet::GetState(int& nCount, int& nLastGenerated)
 {
     nCount = this->nCountLastUsed + 1;
     nLastGenerated = mintPool.CountOfLastGenerated();
 }
 
 //Catch the counter up with the chain
-void CzdogecWallet::SyncWithChain(bool fGenerateMintPool)
+void CzDOGECWallet::SyncWithChain(bool fGenerateMintPool)
 {
     uint32_t nLastCountUsed = 0;
     bool found = true;
     CWalletDB walletdb(strWalletFile);
 
-    set<uint256> setAddedTx;
+    std::set<uint256> setAddedTx;
     while (found) {
         found = false;
         if (fGenerateMintPool)
@@ -193,8 +192,8 @@ void CzdogecWallet::SyncWithChain(bool fGenerateMintPool)
         LogPrintf("%s: Mintpool size=%d\n", __func__, mintPool.size());
 
         std::set<uint256> setChecked;
-        list<pair<uint256,uint32_t> > listMints = mintPool.List();
-        for (pair<uint256, uint32_t> pMint : listMints) {
+        std::list<std::pair<uint256,uint32_t> > listMints = mintPool.List();
+        for (std::pair<uint256, uint32_t> pMint : listMints) {
             LOCK(cs_main);
             if (setChecked.count(pMint.first))
                 return;
@@ -225,14 +224,14 @@ void CzdogecWallet::SyncWithChain(bool fGenerateMintPool)
                 }
 
                 //Find the denomination
-                CoinDenomination denomination = CoinDenomination::ZQ_ERROR;
+                libzerocoin::CoinDenomination denomination = libzerocoin::CoinDenomination::ZQ_ERROR;
                 bool fFoundMint = false;
                 CBigNum bnValue = 0;
                 for (const CTxOut& out : tx.vout) {
-                    if (!out.scriptPubKey.IsZerocoinMint())
+                    if (!out.IsZerocoinMint())
                         continue;
 
-                    PublicCoin pubcoin(Params().Zerocoin_Params(false));
+                    libzerocoin::PublicCoin pubcoin(Params().Zerocoin_Params(false));
                     CValidationState state;
                     if (!TxOutToPublicCoin(out, pubcoin, state)) {
                         LogPrintf("%s : failed to get mint from txout for %s!\n", __func__, pMint.first.GetHex());
@@ -249,7 +248,7 @@ void CzdogecWallet::SyncWithChain(bool fGenerateMintPool)
                     }
                 }
 
-                if (!fFoundMint || denomination == ZQ_ERROR) {
+                if (!fFoundMint || denomination == libzerocoin::ZQ_ERROR) {
                     LogPrintf("%s : failed to get mint %s from tx %s!\n", __func__, pMint.first.GetHex(), tx.GetHash().GetHex());
                     found = false;
                     break;
@@ -280,11 +279,11 @@ void CzdogecWallet::SyncWithChain(bool fGenerateMintPool)
     }
 }
 
-bool CzdogecWallet::SetMintSeen(const CBigNum& bnValue, const int& nHeight, const uint256& txid, const CoinDenomination& denom)
+bool CzDOGECWallet::SetMintSeen(const CBigNum& bnValue, const int& nHeight, const uint256& txid, const libzerocoin::CoinDenomination& denom)
 {
     if (!mintPool.Has(bnValue))
         return error("%s: value not in pool", __func__);
-    pair<uint256, uint32_t> pMint = mintPool.Get(bnValue);
+    std::pair<uint256, uint32_t> pMint = mintPool.Get(bnValue);
 
     // Regenerate the mint
     uint512 seedZerocoin = GetZerocoinSeed(pMint.second);
@@ -292,7 +291,7 @@ bool CzdogecWallet::SetMintSeen(const CBigNum& bnValue, const int& nHeight, cons
     CBigNum bnSerial;
     CBigNum bnRandomness;
     CKey key;
-    SeedTozdogec(seedZerocoin, bnValueGen, bnSerial, bnRandomness, key);
+    SeedToZDOGEC(seedZerocoin, bnValueGen, bnSerial, bnRandomness, key);
 
     //Sanity check
     if (bnValueGen != bnValue)
@@ -304,7 +303,7 @@ bool CzdogecWallet::SetMintSeen(const CBigNum& bnValue, const int& nHeight, cons
     uint256 hashPubcoin = GetPubCoinHash(bnValue);
     uint256 nSerial = bnSerial.getuint256();
     uint256 hashStake = Hash(nSerial.begin(), nSerial.end());
-    CDeterministicMint dMint(PrivateCoin::CURRENT_VERSION, pMint.second, hashSeed, hashSerial, hashPubcoin, hashStake);
+    CDeterministicMint dMint(libzerocoin::PrivateCoin::CURRENT_VERSION, pMint.second, hashSeed, hashSerial, hashPubcoin, hashStake);
     dMint.SetDenomination(denom);
     dMint.SetHeight(nHeight);
     dMint.SetTxHash(txid);
@@ -334,7 +333,7 @@ bool CzdogecWallet::SetMintSeen(const CBigNum& bnValue, const int& nHeight, cons
     if (nCountLastUsed < pMint.second) {
         CWalletDB walletdb(strWalletFile);
         nCountLastUsed = pMint.second;
-        walletdb.WritezdogecCount(nCountLastUsed);
+        walletdb.WriteZDOGECCount(nCountLastUsed);
     }
 
     //remove from the pool
@@ -351,9 +350,9 @@ bool IsValidCoinValue(const CBigNum& bnValue)
     bnValue.isPrime();
 }
 
-void CzdogecWallet::SeedTozdogec(const uint512& seedZerocoin, CBigNum& bnValue, CBigNum& bnSerial, CBigNum& bnRandomness, CKey& key)
+void CzDOGECWallet::SeedToZDOGEC(const uint512& seedZerocoin, CBigNum& bnValue, CBigNum& bnSerial, CBigNum& bnRandomness, CKey& key)
 {
-    ZerocoinParams* params = Params().Zerocoin_Params(false);
+    libzerocoin::ZerocoinParams* params = Params().Zerocoin_Params(false);
 
     //convert state seed into a seed for the private key
     uint256 nSeedPrivKey = seedZerocoin.trim256();
@@ -400,7 +399,7 @@ void CzdogecWallet::SeedTozdogec(const uint512& seedZerocoin, CBigNum& bnValue, 
     }
 }
 
-uint512 CzdogecWallet::GetZerocoinSeed(uint32_t n)
+uint512 CzDOGECWallet::GetZerocoinSeed(uint32_t n)
 {
     CDataStream ss(SER_GETHASH, 0);
     ss << seedMaster << n;
@@ -408,14 +407,14 @@ uint512 CzdogecWallet::GetZerocoinSeed(uint32_t n)
     return zerocoinSeed;
 }
 
-void CzdogecWallet::UpdateCount()
+void CzDOGECWallet::UpdateCount()
 {
     nCountLastUsed++;
     CWalletDB walletdb(strWalletFile);
-    walletdb.WritezdogecCount(nCountLastUsed);
+    walletdb.WriteZDOGECCount(nCountLastUsed);
 }
 
-void CzdogecWallet::GenerateDeterministiczdogec(CoinDenomination denom, PrivateCoin& coin, CDeterministicMint& dMint, bool fGenerateOnly)
+void CzDOGECWallet::GenerateDeterministicZDOGEC(libzerocoin::CoinDenomination denom, libzerocoin::PrivateCoin& coin, CDeterministicMint& dMint, bool fGenerateOnly)
 {
     GenerateMint(nCountLastUsed + 1, denom, coin, dMint);
     if (fGenerateOnly)
@@ -425,17 +424,17 @@ void CzdogecWallet::GenerateDeterministiczdogec(CoinDenomination denom, PrivateC
     //LogPrintf("%s : Generated new deterministic mint. Count=%d pubcoin=%s seed=%s\n", __func__, nCount, coin.getPublicCoin().getValue().GetHex().substr(0,6), seedZerocoin.GetHex().substr(0, 4));
 }
 
-void CzdogecWallet::GenerateMint(const uint32_t& nCount, const CoinDenomination denom, PrivateCoin& coin, CDeterministicMint& dMint)
+void CzDOGECWallet::GenerateMint(const uint32_t& nCount, const libzerocoin::CoinDenomination denom, libzerocoin::PrivateCoin& coin, CDeterministicMint& dMint)
 {
     uint512 seedZerocoin = GetZerocoinSeed(nCount);
     CBigNum bnValue;
     CBigNum bnSerial;
     CBigNum bnRandomness;
     CKey key;
-    SeedTozdogec(seedZerocoin, bnValue, bnSerial, bnRandomness, key);
-    coin = PrivateCoin(Params().Zerocoin_Params(false), denom, bnSerial, bnRandomness);
+    SeedToZDOGEC(seedZerocoin, bnValue, bnSerial, bnRandomness, key);
+    coin = libzerocoin::PrivateCoin(Params().Zerocoin_Params(false), denom, bnSerial, bnRandomness);
     coin.setPrivKey(key.GetPrivKey());
-    coin.setVersion(PrivateCoin::CURRENT_VERSION);
+    coin.setVersion(libzerocoin::PrivateCoin::CURRENT_VERSION);
 
     uint256 hashSeed = Hash(seedMaster.begin(), seedMaster.end());
     uint256 hashSerial = GetSerialHash(bnSerial);
@@ -446,14 +445,14 @@ void CzdogecWallet::GenerateMint(const uint32_t& nCount, const CoinDenomination 
     dMint.SetDenomination(denom);
 }
 
-bool CzdogecWallet::CheckSeed(const CDeterministicMint& dMint)
+bool CzDOGECWallet::CheckSeed(const CDeterministicMint& dMint)
 {
     //Check that the seed is correct    todo:handling of incorrect, or multiple seeds
     uint256 hashSeed = Hash(seedMaster.begin(), seedMaster.end());
     return hashSeed == dMint.GetSeedHash();
 }
 
-bool CzdogecWallet::RegenerateMint(const CDeterministicMint& dMint, CZerocoinMint& mint)
+bool CzDOGECWallet::RegenerateMint(const CDeterministicMint& dMint, CZerocoinMint& mint)
 {
     if (!CheckSeed(dMint)) {
         uint256 hashSeed = Hash(seedMaster.begin(), seedMaster.end());
@@ -461,7 +460,7 @@ bool CzdogecWallet::RegenerateMint(const CDeterministicMint& dMint, CZerocoinMin
     }
 
     //Generate the coin
-    PrivateCoin coin(Params().Zerocoin_Params(false), dMint.GetDenomination(), false);
+    libzerocoin::PrivateCoin coin(Params().Zerocoin_Params(false), dMint.GetDenomination(), false);
     CDeterministicMint dMintDummy;
     GenerateMint(dMint.GetCount(), dMint.GetDenomination(), coin, dMintDummy);
 

@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2018 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef zdogecCONTROLDIALOG_H
-#define zdogecCONTROLDIALOG_H
+#ifndef ZDOGECCONTROLDIALOG_H
+#define ZDOGECCONTROLDIALOG_H
 
 #include <QDialog>
 #include <QTreeWidgetItem>
@@ -14,26 +14,26 @@ class CZerocoinMint;
 class WalletModel;
 
 namespace Ui {
-class zdogecControlDialog;
+class ZPivControlDialog;
 }
 
-class CzdogecControlWidgetItem : public QTreeWidgetItem
+class CZPivControlWidgetItem : public QTreeWidgetItem
 {
 public:
-    explicit CzdogecControlWidgetItem(QTreeWidget *parent, int type = Type) : QTreeWidgetItem(parent, type) {}
-    explicit CzdogecControlWidgetItem(int type = Type) : QTreeWidgetItem(type) {}
-    explicit CzdogecControlWidgetItem(QTreeWidgetItem *parent, int type = Type) : QTreeWidgetItem(parent, type) {}
+    explicit CZPivControlWidgetItem(QTreeWidget *parent, int type = Type) : QTreeWidgetItem(parent, type) {}
+    explicit CZPivControlWidgetItem(int type = Type) : QTreeWidgetItem(type) {}
+    explicit CZPivControlWidgetItem(QTreeWidgetItem *parent, int type = Type) : QTreeWidgetItem(parent, type) {}
 
     bool operator<(const QTreeWidgetItem &other) const;
 };
 
-class zdogecControlDialog : public QDialog
+class ZPivControlDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit zdogecControlDialog(QWidget *parent);
-    ~zdogecControlDialog();
+    explicit ZPivControlDialog(QWidget *parent);
+    ~ZPivControlDialog();
 
     void setModel(WalletModel* model);
 
@@ -42,9 +42,8 @@ public:
     static std::vector<CMintMeta> GetSelectedMints();
 
 private:
-    Ui::zdogecControlDialog *ui;
+    Ui::ZPivControlDialog *ui;
     WalletModel* model;
-    PrivacyDialog* privacyDialog;
 
     void updateList();
     void updateLabels();
@@ -58,11 +57,11 @@ private:
         COLUMN_CONFIRMATIONS,
         COLUMN_ISSPENDABLE
     };
-    friend class CzdogecControlWidgetItem;
+    friend class CZPivControlWidgetItem;
 
 private slots:
     void updateSelection(QTreeWidgetItem* item, int column);
     void ButtonAllClicked();
 };
 
-#endif // zdogecCONTROLDIALOG_H
+#endif // ZDOGECCONTROLDIALOG_H

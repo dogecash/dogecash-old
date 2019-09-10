@@ -19,7 +19,7 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "dogecash"
+            VALUE "CompanyName",        "DogeCash"
             VALUE "FileDescription",    "DogeCash Core (OSS GUI client for DogeCash)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "dogecash-qt"

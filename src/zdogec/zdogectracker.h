@@ -1,9 +1,9 @@
-// Copyright (c) 2018 The dogecash developers
+// Copyright (c) 2018-2019 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef dogecash_zdogecTRACKER_H
-#define dogecash_zdogecTRACKER_H
+#ifndef DogeCash_ZDOGECTRACKER_H
+#define DogeCash_ZDOGECTRACKER_H
 
 #include "zerocoin.h"
 #include "witness.h"
@@ -11,9 +11,9 @@
 #include <list>
 
 class CDeterministicMint;
-class CzdogecWallet;
+class CzDOGECWallet;
 
-class CzdogecTracker
+class CzDOGECTracker
 {
 private:
     bool fInitialized;
@@ -23,9 +23,9 @@ private:
     std::map<uint256, std::unique_ptr<CoinWitnessData> > mapStakeCache; //serialhash, witness value, height
     bool UpdateStatusInternal(const std::set<uint256>& setMempool, CMintMeta& mint);
 public:
-    CzdogecTracker(std::string strWalletFile);
-    ~CzdogecTracker();
-    void Add(const CDeterministicMint& dMint, bool isNew = false, bool isArchived = false, CzdogecWallet* zdogecWallet = NULL);
+    CzDOGECTracker(std::string strWalletFile);
+    ~CzDOGECTracker();
+    void Add(const CDeterministicMint& dMint, bool isNew = false, bool isArchived = false, CzDOGECWallet* zDOGECWallet = NULL);
     void Add(const CZerocoinMint& mint, bool isNew = false, bool isArchived = false);
     bool Archive(CMintMeta& meta);
     bool HasPubcoin(const CBigNum& bnValue) const;
@@ -45,7 +45,7 @@ public:
     bool ClearSpendCache() EXCLUSIVE_LOCKS_REQUIRED(cs_spendcache);
     std::vector<CMintMeta> GetMints(bool fConfirmedOnly) const;
     CAmount GetUnconfirmedBalance() const;
-    std::set<CMintMeta> ListMints(bool fUnusedOnly, bool fMatureOnly, bool fUpdateStatus, bool fWrongSeed = false);
+    std::set<CMintMeta> ListMints(bool fUnusedOnly, bool fMatureOnly, bool fUpdateStatus, bool fWrongSeed = false, bool fExcludeV1 = false);
     void RemovePending(const uint256& txid);
     void SetPubcoinUsed(const uint256& hashPubcoin, const uint256& txid);
     void SetPubcoinNotUsed(const uint256& hashPubcoin);
@@ -55,4 +55,4 @@ public:
     void Clear();
 };
 
-#endif //dogecash_zdogecTRACKER_H
+#endif //DogeCash_ZDOGECTRACKER_H

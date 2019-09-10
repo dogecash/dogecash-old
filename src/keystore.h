@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2017 The PIVX developers
+// Copyright (c) 2017-2018 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,7 +10,6 @@
 #include "key.h"
 #include "pubkey.h"
 #include "sync.h"
-#include "hdchain.h"
 
 #include <boost/signals2/signal.hpp>
 
@@ -66,7 +65,6 @@ protected:
     KeyMap mapKeys;
     ScriptMap mapScripts;
     WatchOnlySet setWatchOnly;
-    CHDChain hdChain; /* the HD chain data model*/
     MultiSigScriptSet setMultiSig;
 
 public:
@@ -83,7 +81,6 @@ public:
     virtual bool RemoveWatchOnly(const CScript& dest);
     virtual bool HaveWatchOnly(const CScript& dest) const;
     virtual bool HaveWatchOnly() const;
-    bool GetHDChain(CHDChain& hdChainRet) const;
 
     virtual bool AddMultiSig(const CScript& dest);
     virtual bool RemoveMultiSig(const CScript& dest);

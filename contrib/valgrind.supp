@@ -1,4 +1,4 @@
-# Valgrind suppressions file for dogecash.
+# Valgrind suppressions file for DogeCash.
 #
 # Includes known Valgrind warnings in our dependencies that cannot be fixed
 # in-tree.

@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2018 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef dogecash_UINT512_H
-#define dogecash_UINT512_H
+#ifndef DogeCash_UINT512_H
+#define DogeCash_UINT512_H
 
 #include "arith_uint256.h"
 #include "uint256.h"
@@ -42,4 +42,4 @@ inline uint512 uint512S(const char* str)
     return rv;
 }
 
-#endif // dogecash_UINT512_H
+#endif // DogeCash_UINT512_H

@@ -1,9 +1,10 @@
-// Copyright (c) 2017 The PIVX developers
+// Copyright (c) 2017-2018 The DogeCash developers
+// Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef dogecash_QT_MULTISENDDIALOG_H
-#define dogecash_QT_MULTISENDDIALOG_H
+#ifndef DogeCash_QT_MULTISENDDIALOG_H
+#define DogeCash_QT_MULTISENDDIALOG_H
 
 #include <QDialog>
 
@@ -38,4 +39,4 @@ private:
     WalletModel* model;
 };
 
-#endif // dogecash_QT_MULTISENDDIALOG_H
+#endif // DogeCash_QT_MULTISENDDIALOG_H
