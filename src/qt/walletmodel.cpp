@@ -22,7 +22,7 @@
 #include "wallet/walletdb.h" // for BackupWallet
 #include <stdint.h>
 #include <iostream>
-#include "zpiv/deterministicmint.h"
+#include "zdogec/deterministicmint.h"
 
 #include <QDebug>
 #include <QSet>
@@ -494,7 +494,7 @@ bool WalletModel::createZdogecSpend(
     }
 
     if (wallet->IsLocked()) {
-        receipt.SetStatus("Error: Wallet locked, unable to create transaction!", ZPIV_WALLET_LOCKED);
+        receipt.SetStatus("Error: Wallet locked, unable to create transaction!", ZDOGEC_WALLET_LOCKED);
         return false;
     }
 
@@ -560,7 +560,7 @@ bool WalletModel::convertBackZdogec(
 
     // address to must be from us.
     if(!isMine(addressTo)){
-        receipt.SetStatus(_("To convert zDOGEC back to PIV the return address must be from your wallet"), ZPIV_SPEND_ERROR);
+        receipt.SetStatus(_("To convert zDOGEC back to PIV the return address must be from your wallet"), ZDOGEC_SPEND_ERROR);
         return false;
     }
 
@@ -947,7 +947,7 @@ void WalletModel::listLockedCoins(std::vector<COutPoint>& vOutpts)
 void WalletModel::listZerocoinMints(std::set<CMintMeta>& setMints, bool fUnusedOnly, bool fMaturedOnly, bool fUpdateStatus, bool fWrongSeed)
 {
     setMints.clear();
-    setMints = pwalletMain->zpivTracker->ListMints(fUnusedOnly, fMaturedOnly, fUpdateStatus, fWrongSeed);
+    setMints = pwalletMain->zdogecTracker->ListMints(fUnusedOnly, fMaturedOnly, fUpdateStatus, fWrongSeed);
 }
 
 void WalletModel::loadReceiveRequests(std::vector<std::string>& vReceiveRequests)
