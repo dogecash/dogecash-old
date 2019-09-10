@@ -37,8 +37,8 @@ void MNModel::updateMNList(){
             {
                 LOCK2(cs_main, pwalletMain->cs_wallet);
                 const CWalletTx *walletTx = pwalletMain->GetWalletTx(txHash);
-                if (walletTx->GetDepthInMainChain() > 0) {
-                    txAccepted = true;
+                if (walletTx && walletTx->GetDepthInMainChain() > 0) {
+	                    txAccepted = true;
                 }
             }
             collateralTxAccepted.insert(mne.getTxHash(), txAccepted);
@@ -103,8 +103,8 @@ QVariant MNModel::data(const QModelIndex &index, int role) const
                     {
                         LOCK2(cs_main, pwalletMain->cs_wallet);
                         const CWalletTx *walletTx = pwalletMain->GetWalletTx(rec->vin.prevout.hash);
-                        txAccepted = walletTx->GetDepthInMainChain() > 0;
-                    }
+                        txAccepted = walletTx && walletTx->GetDepthInMainChain() > 0;
+	                    }
                     return txAccepted;
                 }
                 return true;
