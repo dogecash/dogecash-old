@@ -187,7 +187,6 @@ BITCOIN_CORE_H = \
   zdogec/zerocoin.h \
   zdogec/zdogectracker.h \
   zdogec/zdogecwallet.h \
-  zdogec/zdogecmodule.h \
   genwit.h \
   concurrentqueue.h \
   lightzdogecthread.h \
@@ -285,7 +284,6 @@ libbitcoin_wallet_a_SOURCES = \
   zdogec/zdogectracker.cpp \
   stakeinput.cpp \
   genwit.cpp \
-  zdogec/zdogecmodule.cpp \
   lightzdogecthread.cpp \
   $(BITCOIN_CORE_H)
 
