@@ -53,7 +53,7 @@ src/compat/strnlen.cpp
 src/compressor.cpp
 src/compressor.h
 src/concurrentqueue.h
-src/config/pivx-config.h
+src/config/dogecash-config.h
 src/core_io.h
 src/core_read.cpp
 src/core_write.cpp
