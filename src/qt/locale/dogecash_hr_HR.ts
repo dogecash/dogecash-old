@@ -62,12 +62,12 @@
         <translation>Adresa primatelja</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>To su vaše dogecash adrese za slanje plaćanja. Uvijek provjerite iznos i adresu primatelja prije slanja novca.</translation>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>To su vaše DogeCash adrese za slanje plaćanja. Uvijek provjerite iznos i adresu primatelja prije slanja novca.</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>To su vaše dogecash adrese za primanje uplata. Preporuča se upotreba nove adrese primatelja za svaku transakciju.</translation>
+        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>To su vaše DogeCash adrese za primanje uplata. Preporuča se upotreba nove adrese primatelja za svaku transakciju.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -176,8 +176,8 @@
         <translation>Potvrdi šifriranje novčanika</translation>
     </message>
     <message>
-        <source>dogecash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
-        <translation>dogecash se sada zatvara kako bi dovršio proces šifriranja. Ne zaboravite da šifriranje vašeg novčanika ne može u potpunosti zaštititi vaše DOGEC od krađe zlonamjernog softvera koji zarazi vaše računalo.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash se sada zatvara kako bi dovršio proces šifriranja. Ne zaboravite da šifriranje vašeg novčanika ne može u potpunosti zaštititi vaše DOGEC od krađe zlonamjernog softvera koji zarazi vaše računalo.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -254,12 +254,12 @@
         <translation>Adresa: </translation>
     </message>
     <message>
-        <source>Enter a dogecash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Unesite dogecash adresu koju želite šifrirati pomoću BIP 38. Unesite zaporku u srednjem okviru. Pritisnite šifriranje za izračunavanje šifriranog privatnog ključa.</translation>
+        <source>Enter a DogeCash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>Unesite DogeCash adresu koju želite šifrirati pomoću BIP 38. Unesite zaporku u srednjem okviru. Pritisnite šifriranje za izračunavanje šifriranog privatnog ključa.</translation>
     </message>
     <message>
-        <source>The dogecash address to encrypt</source>
-        <translation>dogecash adresa za šifriranje</translation>
+        <source>The DogeCash address to encrypt</source>
+        <translation>DogeCash adresa za šifriranje</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -290,8 +290,8 @@
         <translation>Kopirajte trenutačni potpis u međuspremnik sustava</translation>
     </message>
     <message>
-        <source>Encrypt the private key for this dogecash address</source>
-        <translation>Šifriranje privatnog ključa za ovu dogecash adresu</translation>
+        <source>Encrypt the private key for this DogeCash address</source>
+        <translation>Šifriranje privatnog ključa za ovu DogeCash adresu</translation>
     </message>
     <message>
         <source>Reset all fields</source>
@@ -433,8 +433,8 @@
         <translation>Pregled povijesti transakcija</translation>
     </message>
     <message>
-        <source>Privacy Actions for zdogec</source>
-        <translation>Postavke privatnosti za zdogec</translation>
+        <source>Privacy Actions for zDOGEC</source>
+        <translation>Postavke privatnosti za zDOGEC</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -645,8 +645,8 @@
         <translation>DogeCash Core</translation>
     </message>
     <message>
-        <source>Send coins to a dogecash address</source>
-        <translation>Pošaljite kovanice na dogecash adresu</translation>
+        <source>Send coins to a DogeCash address</source>
+        <translation>Pošaljite kovanice na DogeCash adresu</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and dogecash: URIs)</source>
@@ -673,16 +673,16 @@
         <translation>Prikaz informacija o DogeCash Core-u</translation>
     </message>
     <message>
-        <source>Modify configuration options for dogecash</source>
-        <translation>Izmijenite konfiguracijske opcije za dogecash</translation>
+        <source>Modify configuration options for DogeCash</source>
+        <translation>Izmijenite konfiguracijske opcije za DogeCash</translation>
     </message>
     <message>
-        <source>Sign messages with your dogecash addresses to prove you own them</source>
-        <translation>Potpišite poruke s vašim dogecash adresama kako biste dokazali da ih posjedujete</translation>
+        <source>Sign messages with your DogeCash addresses to prove you own them</source>
+        <translation>Potpišite poruke s vašim DogeCash adresama kako biste dokazali da ih posjedujete</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
-        <translation>Potvrdite poruke kako biste bili sigurni da su potpisani s određenim dogecash adresama</translation>
+        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
+        <translation>Potvrdite poruke kako biste bili sigurni da su potpisani s određenim DogeCash adresama</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -713,8 +713,8 @@
         <translation>Otvori Masternode konfiguracijsku datoteku</translation>
     </message>
     <message>
-        <source>Open a dogecash: URI or payment request</source>
-        <translation>Otvori dogecash: URI zahtjev za plačanje</translation>
+        <source>Open a DogeCash: URI or payment request</source>
+        <translation>Otvori DogeCash: URI zahtjev za plačanje</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -725,8 +725,8 @@
         <translation>Prozor Block preglednika</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>Pokažite poruku DogeCash Core pomoći da biste dobili popis s mogućim dogecash opcijama naredbenog retka</translation>
+        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
+        <translation>Pokažite poruku DogeCash Core pomoći da biste dobili popis s mogućim DogeCash opcijama naredbenog retka</translation>
     </message>
     <message>
         <source>DogeCash Core client</source>
@@ -1106,8 +1106,8 @@ Višestruko slanje: %1</translation>
         <translation>Ova oznaka postaje crvena ako neki primatelj prima iznos manji od %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 uDOGEC per input.</source>
-        <translation>Može varirati +/- %1 uDOGEC po unosu.</translation>
+        <source>Can vary +/- %1 upiv per input.</source>
+        <translation>Može varirati +/- %1 upiv po unosu.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1161,8 +1161,8 @@ Višestruko slanje: %1</translation>
         <translation>Uređivanje adrese slanja</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid dogecash address.</source>
-        <translation>Unesena adresa "%1" nije važeća dogecash adresa.</translation>
+        <source>The entered address "%1" is not a valid DogeCash address.</source>
+        <translation>Unesena adresa "%1" nije važeća DogeCash adresa.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1281,8 +1281,8 @@ Višestruko slanje: %1</translation>
         <translation>Budući da je prvi put pokrenut program, možete odabrati gdje će DogeCash Core pohraniti svoje podatke.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>DogeCash Core preuzima i pohranjuje kopiju dogecash blok-lanca. Barem će %1GB podataka biti pohranjeno u ovom direktoriju i to će s vremenom rasti. Novčanik će također biti pohranjena u ovom direktoriju.</translation>
+        <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DogeCash Core preuzima i pohranjuje kopiju DogeCash blok-lanca. Barem će %1GB podataka biti pohranjeno u ovom direktoriju i to će s vremenom rasti. Novčanik će također biti pohranjena u ovom direktoriju.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1435,12 +1435,12 @@ Višestruko slanje: %1</translation>
         <translation>Unesite adresu za slanje</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other dogecash addresses after it matures.
-To Add: enter percentage to give and dogecash address to add to the MultiSend vector.
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other DogeCash addresses after it matures.
+To Add: enter percentage to give and DogeCash address to add to the MultiSend vector.
 To Delete: Enter address to delete and press delete.
 MultiSend will not be activated unless you have clicked Activate</source>
-        <translation>MultiSend vam omogućuje da automatski pošaljete do 100% svoje nagrade za ulog ili masternode  nagrade na popis drugih dogecash adresa nakon što sazrijete.
-Za Dodaj: unesite postotak za davanje i dogecash adresu za dodavanje MultiSend vektoru.
+        <translation>MultiSend vam omogućuje da automatski pošaljete do 100% svoje nagrade za ulog ili masternode  nagrade na popis drugih DogeCash adresa nakon što sazrijete.
+Za Dodaj: unesite postotak za davanje i DogeCash adresu za dodavanje MultiSend vektoru.
 Za brisanje: Unesite adresu za brisanje i pritisnite Delete.
 MultiSend neće biti aktiviran dok ne kliknete Aktiviraj</translation>
     </message>
@@ -1707,73 +1707,6 @@ Budite strpljivi nakon što kliknete uvoz.</translation>
     </message>
 </context>
 <context>
-    <name>ObfuscationConfig</name>
-    <message>
-        <source>Configure Obfuscation</source>
-        <translation>Konfiguriraj Obfuscation</translation>
-    </message>
-    <message>
-        <source>Basic Privacy</source>
-        <translation>Osnovna privatnost</translation>
-    </message>
-    <message>
-        <source>High Privacy</source>
-        <translation>Visoka privatnost</translation>
-    </message>
-    <message>
-        <source>Maximum Privacy</source>
-        <translation>Maksimalna privatnost</translation>
-    </message>
-    <message>
-        <source>Please select a privacy level.</source>
-        <translation>Odaberi razinu privatnosti.</translation>
-    </message>
-    <message>
-        <source>Use 2 separate masternodes to mix funds up to 10000 DOGEC</source>
-        <translation>Koristite 2 odvojene masternode za miješanje sredstava do 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>Use 8 separate masternodes to mix funds up to 10000 DOGEC</source>
-        <translation>Koristite 8 zasebnih masternoda za miješanje sredstava do 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>Use 16 separate masternodes</source>
-        <translation>Koristite 16 zasebnih masternodova</translation>
-    </message>
-    <message>
-        <source>This option is the quickest and will cost about ~0.025 DOGEC to anonymize 10000 DOGEC</source>
-        <translation>Ova je opcija najbrža i košta oko 0,025 DOGEC da anonimizira 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>This option is moderately fast and will cost about 0.05 DOGEC to anonymize 10000 DOGEC</source>
-        <translation>Ova je opcija umjereno brza i košta oko 0,05 DOGEC da anonimizira 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
-        <translation>Ovo je najsporiji i najsigurniji izbor. Korištenje maksimalne anonimnosti košta</translation>
-    </message>
-    <message>
-        <source>0.1 DOGEC per 10000 DOGEC you anonymize.</source>
-        <translation>0,1 DOGEC po 10000 DOGEC za anonimizaciju.</translation>
-    </message>
-    <message>
-        <source>Obfuscation Configuration</source>
-        <translation>Obfuscation Konfiguracija</translation>
-    </message>
-    <message>
-        <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Obfuscation je uspješno postavljen na osnovne (%1 i 2 runde). To možete promijeniti u bilo kojem trenutku otvaranjem zaslona za konfiguraciju dogecash-a.</translation>
-    </message>
-    <message>
-        <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Obfuscation je uspješno postavljen na visoku razinu (%1 i 8 krugova). To možete promijeniti u bilo kojem trenutku otvaranjem zaslona za konfiguraciju dogecash-a</translation>
-    </message>
-    <message>
-        <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Obfuscation je uspješno postavljen na maksimalnu razinu (%1 i 16 krugova). To možete promijeniti u bilo kojem trenutku otvaranjem zaslona za konfiguraciju dogecash-a.</translation>
-    </message>
-</context>
-<context>
     <name>OpenURIDialog</name>
     <message>
         <source>Open URI</source>
@@ -1831,8 +1764,8 @@ Budite strpljivi nakon što kliknete uvoz.</translation>
         <translation>Ako onemogućite potrošnju nepotvrđenih promjena, promjena s transakcijskog kanala bit će upotrijebljena sve dok ta transakcija nema barem jednu potvrdu. To također utječe na izračun salda.</translation>
     </message>
     <message>
-        <source>Automatically open the dogecash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatski otvorite dogecash klijentski priključak na rooteru. To funkcionira samo kada vaš rooter podržava UPnP i omogućen je.</translation>
+        <source>Automatically open the DogeCash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatski otvorite DogeCash klijentski priključak na rooteru. To funkcionira samo kada vaš rooter podržava UPnP i omogućen je.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1851,12 +1784,12 @@ Budite strpljivi nakon što kliknete uvoz.</translation>
         <translation>Stručnjak</translation>
     </message>
     <message>
-        <source>Automatically start dogecash after logging in to the system.</source>
-        <translation>Automatski pokrenite dogecash nakon prijave u sustav.</translation>
+        <source>Automatically start DogeCash after logging in to the system.</source>
+        <translation>Automatski pokrenite DogeCash nakon prijave u sustav.</translation>
     </message>
     <message>
-        <source>&amp;Start dogecash on system login</source>
-        <translation>Pokrenite dogecash na prijavi u sustav</translation>
+        <source>&amp;Start DogeCash on system login</source>
+        <translation>Pokrenite DogeCash na prijavi u sustav</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1883,8 +1816,8 @@ Budite strpljivi nakon što kliknete uvoz.</translation>
         <translation>Mreža</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting dogecash.</source>
-        <translation>Ovdje se može postaviti jezik korisničkog sučelja. Ova postavka će stupiti na snagu nakon ponovnog pokretanja dogecash-a.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting DogeCash.</source>
+        <translation>Ovdje se može postaviti jezik korisničkog sučelja. Ova postavka će stupiti na snagu nakon ponovnog pokretanja DogeCash-a.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -1898,36 +1831,36 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
 </translation>
     </message>
     <message>
-        <source>Enable automatic minting of DOGEC units to zdogec</source>
-        <translation>Omogućite automint DOGEC jedinica na zdogec</translation>
+        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
+        <translation>Omogućite automint DOGEC jedinica na zDOGEC</translation>
     </message>
     <message>
-        <source>Enable zdogec Automint</source>
-        <translation>Omogući zdogec Automint</translation>
+        <source>Enable zDOGEC Automint</source>
+        <translation>Omogući zDOGEC Automint</translation>
     </message>
     <message>
-        <source>Percentage of incoming DOGEC which get automatically converted to zdogec via Zerocoin Protocol (min: 10%)</source>
-        <translation>Postotak dolaznih DOGEC koji se automatski pretvara u zdogec putem protokola Zerocoin (min: 10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
+        <translation>Postotak dolaznih DOGEC koji se automatski pretvara u zDOGEC putem protokola Zerocoin (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zdogec</source>
-        <translation>Postotak automatiziranog zdogec</translation>
+        <source>Percentage of autominted zDOGEC</source>
+        <translation>Postotak automatiziranog zDOGEC</translation>
     </message>
     <message>
         <source>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</source>
         <translation>Pričekajte s automatskom pretvorbom u Zerocoin dok ne bude dostupno dovoljno DOGEC za apoen</translation>
     </message>
     <message>
-        <source>Preferred Automint zdogec Denomination</source>
-        <translation>Preferirana Automint zdogec denominacijad</translation>
+        <source>Preferred Automint zDOGEC Denomination</source>
+        <translation>Preferirana Automint zDOGEC denominacijad</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>Prag razdvajanja Stake-a:</translation>
     </message>
     <message>
-        <source>Connect to the dogecash network through a SOCKS5 proxy.</source>
-        <translation>Povežite se s dogecash mrežom putem SOCKS5 proxy poslužitelja.</translation>
+        <source>Connect to the DogeCash network through a SOCKS5 proxy.</source>
+        <translation>Povežite se s DogeCash mrežom putem SOCKS5 proxy poslužitelja.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1976,10 +1909,6 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
     <message>
         <source>User Interface Theme:</source>
         <translation>Tema sučelja korisnika:</translation>
-    </message>
-    <message>
-        <source>&amp;Unit to show amounts in:</source>
-        <translation>Jedinica za prikaz količine:</translation>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
@@ -2105,18 +2034,18 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Trenutačno zaključana ravnoteža u adresama samo za gledanje</translation>
     </message>
     <message>
-        <source>Your current dogecash balance, unconfirmed and immature transactions included</source>
-        <translation>Uključena je vaša trenutna bilanca dogecash, nepotvrđene i nezrele transakcije</translation>
+        <source>Your current DogeCash balance, unconfirmed and immature transactions included</source>
+        <translation>Uključena je vaša trenutna bilanca DogeCash, nepotvrđene i nezrele transakcije</translation>
     </message>
     <message>
-        <source>zdogec Balance</source>
-        <translation>zdogec Bilanca</translation>
+        <source>zDOGEC Balance</source>
+        <translation>zDOGEC Bilanca</translation>
     </message>
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zdogec are spendable.</source>
+These zDOGEC are spendable.</source>
         <translation>Mature: više od 20 potvrda i više od 1 mint od iste denominacije nakon što je mintan.
-Ti zdogecs se mogu potrošiti.</translation>
+Ti zDOGECs se mogu potrošiti.</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
@@ -2125,8 +2054,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Nezreli: potvrđeno, ali manje od 1 minta iste denominacije nakon mintanja</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
-        <translation>Prikazane informacije mogu biti zastarjele. Vaš se novčanik automatski sinkronizira s dogecash mrežom nakon uspostavljanja veze, ali taj postupak još nije dovršen.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
+        <translation>Prikazane informacije mogu biti zastarjele. Vaš se novčanik automatski sinkronizira s DogeCash mrežom nakon uspostavljanja veze, ali taj postupak još nije dovršen.</translation>
     </message>
     <message>
         <source>OVERVIEW</source>
@@ -2169,8 +2098,8 @@ Nezreli: potvrđeno, ali manje od 1 minta iste denominacije nakon mintanja</tran
         <translation>Po potrošiti:</translation>
     </message>
     <message>
-        <source>Locked DOGEC or Masternode collaterals. These are excluded from zdogec minting.</source>
-        <translation>Zaključani DOGEC ili Masternode kolateral. Oni su isključeni iz zdogec kovanja.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
+        <translation>Zaključani DOGEC ili Masternode kolateral. Oni su isključeni iz zDOGEC kovanja.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2181,8 +2110,8 @@ Nezreli: potvrđeno, ali manje od 1 minta iste denominacije nakon mintanja</tran
         <translation>Nepotvrđeno:</translation>
     </message>
     <message>
-        <source>Your current zdogec balance, unconfirmed and immature zdogec included.</source>
-        <translation>Vaša trenutačna zdogec bilanca, nepotvrđena i nezrela zdogec.</translation>
+        <source>Your current zDOGEC balance, unconfirmed and immature zDOGEC included.</source>
+        <translation>Vaša trenutačna zDOGEC bilanca, nepotvrđena i nezrela zDOGEC.</translation>
     </message>
     <message>
         <source>Recent transactions</source>
@@ -2193,10 +2122,10 @@ Nezreli: potvrđeno, ali manje od 1 minta iste denominacije nakon mintanja</tran
         <translation>nije sinkronizirano</translation>
     </message>
     <message>
-        <source>Current percentage of zdogec.
+        <source>Current percentage of zDOGEC.
 If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
 </source>
-        <translation>Trenutni postotak zdogec.
+        <translation>Trenutni postotak zDOGEC.
 Ako je omogućeno automatsko navođenje, ovaj postotak će se podmiriti oko konfiguriranog postotka automatskog navođenja (zadano = 10%).
 </translation>
     </message>
@@ -2242,8 +2171,8 @@ Da biste omogućili, promjenite postavke AutoMint 'enablezeromint=0' na 'enablez
         <translation>Ne može se pokrenuti dogecash: clik-to-pay handler</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid dogecash address or malformed URI parameters.</source>
-        <translation>URI se ne može analizirati! To može biti uzrokovana nevažećom dogecash adresom ili nepravilnim URI parametrima.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid DogeCash address or malformed URI parameters.</source>
+        <translation>URI se ne može analizirati! To može biti uzrokovana nevažećom DogeCash adresom ili nepravilnim URI parametrima.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2328,8 +2257,8 @@ Da biste omogućili, promjenite postavke AutoMint 'enablezeromint=0' na 'enablez
         <translation>Zerocoin radnje:</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
-        <translation>Prikazane informacije mogu biti zastarjele. Vaš se novčanik automatski sinkronizira s dogecash mrežom nakon uspostavljanja veze, ali taj postupak još nije dovršen.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
+        <translation>Prikazane informacije mogu biti zastarjele. Vaš se novčanik automatski sinkronizira s DogeCash mrežom nakon uspostavljanja veze, ali taj postupak još nije dovršen.</translation>
     </message>
     <message>
         <source>Mint Zerocoin</source>
@@ -2340,20 +2269,8 @@ Da biste omogućili, promjenite postavke AutoMint 'enablezeromint=0' na 'enablez
         <translation>0</translation>
     </message>
     <message>
-        <source>zdogec</source>
-        <translation>zdogec</translation>
-    </message>
-    <message>
-        <source>Available for minting are coins which are confirmed and not locked or Masternode collaterals.</source>
-        <translation>Dostupne za mintanje su kovanice koje su potvrđene i nisu zaključane ili Masternode kolateralne.</translation>
-    </message>
-    <message>
-        <source>Available for Minting:</source>
-        <translation>Dostupno za Minting:</translation>
-    </message>
-    <message>
-        <source>0.000 000 00 DOGEC</source>
-        <translation>0.000 000 00 DOGEC</translation>
+        <source>zDOGEC</source>
+        <translation>zDOGEC</translation>
     </message>
     <message>
         <source>Reset Zerocoin Wallet DB. Deletes transactions that did not make it into the blockchain.</source>
@@ -2362,18 +2279,6 @@ Da biste omogućili, promjenite postavke AutoMint 'enablezeromint=0' na 'enablez
     <message>
         <source>Reset</source>
         <translation>Reset</translation>
-    </message>
-    <message>
-        <source>Coin Control...</source>
-        <translation>Upravljanje novčićem...</translation>
-    </message>
-    <message>
-        <source>Quantity:</source>
-        <translation>Količina:</translation>
-    </message>
-    <message>
-        <source>Amount:</source>
-        <translation>Iznos:</translation>
     </message>
     <message>
         <source>Rescan the complete blockchain for  Zerocoin mints and their meta-data.</source>
@@ -2392,16 +2297,12 @@ Da biste omogućili, promjenite postavke AutoMint 'enablezeromint=0' na 'enablez
         <translation>PRIVATNOST</translation>
     </message>
     <message>
-        <source>Enter an amount of DOGEC to convert to zdogec</source>
-        <translation>Unesite iznos DOGEC za pretvorbu u zdogec</translation>
+        <source>zDOGEC Control</source>
+        <translation>Upravljanje zDOGEC</translation>
     </message>
     <message>
-        <source>zdogec Control</source>
-        <translation>Upravljanje zdogec</translation>
-    </message>
-    <message>
-        <source>zdogec Selected:</source>
-        <translation>zdogec Odabrani:</translation>
+        <source>zDOGEC Selected:</source>
+        <translation>zDOGEC Odabrani:</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -2416,32 +2317,32 @@ Da biste omogućili, promjenite postavke AutoMint 'enablezeromint=0' na 'enablez
         <translation>Potroši Zerocoin</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zdogec for spending</source>
-        <translation>Dostupni (zreli) zdogec za potrošnju</translation>
+        <source>Available (mature and spendable) zDOGEC for spending</source>
+        <translation>Dostupni (zreli) zDOGEC za potrošnju</translation>
     </message>
     <message>
         <source>Available Balance:</source>
         <translation>Dostupna Bilanca:</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zdogec for spending
+        <source>Available (mature and spendable) zDOGEC for spending
 
-zdogec are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
-        <translation>Dostupni (zreli) zdogec za potrošnju
+zDOGEC are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
+        <translation>Dostupni (zreli) zDOGEC za potrošnju
 
-zdogec su zreli kada imaju više od 20 potvrda I više od 2 mint od iste denominacije nakon što su bili mintani</translation>
+zDOGEC su zreli kada imaju više od 20 potvrda I više od 2 mint od iste denominacije nakon što su bili mintani</translation>
     </message>
     <message>
-        <source>0 zdogec</source>
-        <translation>0 zdogec</translation>
+        <source>0 zDOGEC</source>
+        <translation>0 zDOGEC</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
         <translation>Platiti:</translation>
     </message>
     <message>
-        <source>The dogecash address to send the payment to. Creates local payment to yourself when empty.</source>
-        <translation>dogecash adresa za slanje uplate. Stvara lokalno plaćanje za sebe kada je prazno.</translation>
+        <source>The DogeCash address to send the payment to. Creates local payment to yourself when empty.</source>
+        <translation>DogeCash adresa za slanje uplate. Stvara lokalno plaćanje za sebe kada je prazno.</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2492,8 +2393,8 @@ zdogec su zreli kada imaju više od 20 potvrda I više od 2 mint od iste denomin
         <translation>Statistike Zerocoina:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zdogec</source>
-        <translation>Ukupni saldo uključujući nepotvrđeni i nedovršeni zdogec</translation>
+        <source>Total Balance including unconfirmed and immature zDOGEC</source>
+        <translation>Ukupni saldo uključujući nepotvrđeni i nedovršeni zDOGEC</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
@@ -2514,24 +2415,24 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Nezreli: potvrđeno, ali manje od 1 minta iste denominacije nakon mintanja</translation>
     </message>
     <message>
-        <source>Show the current status of automatic zdogec minting.
+        <source>Show the current status of automatic zDOGEC minting.
 
 To change the status (restart required):
 - enable: add 'enablezeromint=1' to dogecash.conf
 - disable: add 'enablezeromint=0' to dogecash.conf
 
 To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zdogec
+- menu Settings-&gt;Options-&gt;Percentage of autominted zDOGEC
 
 </source>
-        <translation>Pokažite trenutačni status automatskog zdogec mintanja.
+        <translation>Pokažite trenutačni status automatskog zDOGEC mintanja.
 
 Da biste promijenili status (potrebno je ponovno pokretanje):
 - omogući: dodajte 'enablezeromint = 1' u dogecash.conf
 - onemogućiti: dodajte 'enablezeromint = 0' na dogecash.conf
 
 Promjena postotka (nije potrebno ponovno pokretanje):
-- izbornik Postavke-&gt; Opcije-&gt; Postotak zdogec</translation>
+- izbornik Postavke-&gt; Opcije-&gt; Postotak zDOGEC</translation>
     </message>
     <message>
         <source>AutoMint Status</source>
@@ -2698,31 +2599,17 @@ Promjena postotka (nije potrebno ponovno pokretanje):
         <translation>Mint Status: U redu</translation>
     </message>
     <message>
-        <source>Copy quantity</source>
-        <translation>Kopirajte količinu</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>Kopiraj iznos</translation>
-    </message>
-    <message>
         <source>Starting ResetMintZerocoin: rescanning complete blockchain, this will need up to 30 minutes depending on your hardware.
 Please be patient...</source>
         <translation>Pokretanje ResetMintZerocoin: ponovno skeniranje potpunog blockchain, to će trajati i do 30 minuta, ovisno o vašem hardveru.</translation>
     </message>
     <message>
-        <source>) needed.
-Maximum allowed: </source>
-        <translation>) potrebno.
-Maksimalno dopušteno:</translation>
+        <source>zDOGEC Spend #: </source>
+        <translation>zDOGEC utrošeno #: </translation>
     </message>
     <message>
-        <source>zdogec Spend #: </source>
-        <translation>zdogec utrošeno #: </translation>
-    </message>
-    <message>
-        <source>zdogec Mint</source>
-        <translation>zdogec Mint</translation>
+        <source>zDOGEC Mint</source>
+        <translation>zDOGEC Mint</translation>
     </message>
     <message>
         <source> &lt;b&gt;enabled&lt;/b&gt;.</source>
@@ -2737,12 +2624,12 @@ Maksimalno dopušteno:</translation>
         <translation> Konfigirani ciljani postotak: &lt;b&gt;</translation>
     </message>
     <message>
-        <source>zdogec is currently disabled due to maintenance.</source>
-        <translation>Zbog održavanja zdogec je trenutačno onemogućen.</translation>
+        <source>zDOGEC is currently disabled due to maintenance.</source>
+        <translation>Zbog održavanja zDOGEC je trenutačno onemogućen.</translation>
     </message>
     <message>
-        <source>zdogec is currently undergoing maintenance.</source>
-        <translation>Radovi u tijeku na zdogec.</translation>
+        <source>zDOGEC is currently undergoing maintenance.</source>
+        <translation>Radovi u tijeku na zDOGEC.</translation>
     </message>
     <message>
         <source>Denom. with value &lt;b&gt;1&lt;/b&gt;:</source>
@@ -2813,31 +2700,6 @@ Maksimalno dopušteno:</translation>
         <translation>Denom. &lt;b&gt;5000&lt;/b&gt;:</translation>
     </message>
     <message>
-        <source>Error: Your wallet is locked. Please enter the wallet passphrase first.</source>
-        <translation>Pogreška: vaš je novčanik zaključan. Najprije unesite zaporku novčanika.</translation>
-    </message>
-    <message>
-        <source>Message: Enter an amount &gt; 0.</source>
-        <translation>Poruka: unesite iznos&gt; 0.</translation>
-    </message>
-    <message>
-        <source>Minting </source>
-        <translation>Minting </translation>
-    </message>
-    <message>
-        <source>Successfully minted </source>
-        <translation>Uspješno mintano</translation>
-    </message>
-    <message>
-        <source> zdogec in </source>
-        <translation> ulazni zdogec </translation>
-    </message>
-    <message>
-        <source> sec. Used denominations:
-</source>
-        <translation>sek. Upotrijebljene denominacije:</translation>
-    </message>
-    <message>
         <source>Duration: </source>
         <translation>Trajanje:</translation>
     </message>
@@ -2856,8 +2718,8 @@ Maksimalno dopušteno:</translation>
         <translation>Nije dodijeljena adresa "Plati", stvarajući lokalnu uplatu</translation>
     </message>
     <message>
-        <source>Invalid dogecash Address</source>
-        <translation>Nevažeća dogecash Adresa</translation>
+        <source>Invalid DogeCash Address</source>
+        <translation>Nevažeća DogeCash Adresa</translation>
     </message>
     <message>
         <source>Invalid Send Amount</source>
@@ -2886,15 +2748,6 @@ Maksimalno dopušteno:</translation>
     <message>
         <source>Failed to fetch mint associated with serial hash</source>
         <translation>Neuspjelo dohvaćanje minta asociranog s serijskim hashom</translation>
-    </message>
-    <message>
-        <source>Too much inputs (</source>
-        <translation>Previše unosa (</translation>
-    </message>
-    <message>
-        <source>
-Either mint higher denominations (so fewer inputs are needed) or reduce the amount to spend.</source>
-        <translation>Ili mintaj više vrijedne denominacije (tako da je potrebno manje ulaza) ili smanjiti iznos potrošnje</translation>
     </message>
     <message>
         <source>Spend Zerocoin failed with status = </source>
@@ -2943,8 +2796,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Iznos</translation>
     </message>
     <message>
-        <source>Enter a dogecash address (e.g. %1)</source>
-        <translation>Unesite dogecash adresu (npr., %1)</translation>
+        <source>Enter a DogeCash address (e.g. %1)</source>
+        <translation>Unesite DogeCash adresu (npr., %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -3086,8 +2939,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Block chain</translation>
     </message>
     <message>
-        <source>Open the dogecash debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Otvorite dogecash debug log datoteku iz aktualnog direktorija podataka. To može potrajati nekoliko sekundi za velike datoteke zapisnika.</translation>
+        <source>Open the DogeCash debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Otvorite DogeCash debug log datoteku iz aktualnog direktorija podataka. To može potrajati nekoliko sekundi za velike datoteke zapisnika.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -3222,8 +3075,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Put prilagođenog sigurnosnog kopiranja:</translation>
     </message>
     <message>
-        <source>Custom zdogec Backup Path:</source>
-        <translation>Prilagođeni put zdogec sigurnosne kopije:</translation>
+        <source>Custom zDOGEC Backup Path:</source>
+        <translation>Prilagođeni put zDOGEC sigurnosne kopije:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -3302,8 +3155,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Iz:</translation>
     </message>
     <message>
-        <source>Welcome to the dogecash RPC console.</source>
-        <translation>Dobrodošli na dogecash RPC konzolu.</translation>
+        <source>Welcome to the DogeCash RPC console.</source>
+        <translation>Dobrodošli na DogeCash RPC konzolu.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -3429,16 +3282,16 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Količina:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the dogecash network.</source>
-        <translation>Dodatna poruka priložena zahtjevu za plaćanje, koji će se prikazati kada se zahtjev otvori. Napomena: poruka neće biti poslana s plaćanjem putem dogecash mreže.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the DogeCash network.</source>
+        <translation>Dodatna poruka priložena zahtjevu za plaćanje, koji će se prikazati kada se zahtjev otvori. Napomena: poruka neće biti poslana s plaćanjem putem DogeCash mreže.</translation>
     </message>
     <message>
         <source>RECEIVE</source>
         <translation>PRIMI</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the dogecash network.</source>
-        <translation>Dodatna poruka za pridruživanje zahtjevu za plaćanje koja će se prikazati kada se zahtjev otvori.Napomena: poruka neće biti poslana s plaćanjem putem dogecash mreže.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the DogeCash network.</source>
+        <translation>Dodatna poruka za pridruživanje zahtjevu za plaćanje koja će se prikazati kada se zahtjev otvori.Napomena: poruka neće biti poslana s plaćanjem putem DogeCash mreže.</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
@@ -3737,8 +3590,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Ako je prilagođena naknada postavljena na 1000 uDOGEC, a transakcija je samo 250 bajta, tada "po kilobajtu" plaća se samo 250 uDOGEC-ova, a "ukupno barem" plaća 1000 uDOGEC-ova. Za transakcije veće od kilobajta, oboje plaćaju po kilobajtu.</translation>
     </message>
     <message>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for dogecash transactions than the network can process.</source>
-        <translation>Plaćanje samo minimalne naknade je sasvim u redu sve dok j obujma transakcija manji od prostora u blokovima. No, budite svjesni da to može dovesti do transakcije koja nikada se ne potvrđuje kada se pojavi više zahtjeva za dogecash transakcijama nego što mreža može obraditi.</translation>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for DogeCash transactions than the network can process.</source>
+        <translation>Plaćanje samo minimalne naknade je sasvim u redu sve dok j obujma transakcija manji od prostora u blokovima. No, budite svjesni da to može dovesti do transakcije koja nikada se ne potvrđuje kada se pojavi više zahtjeva za DogeCash transakcijama nego što mreža može obraditi.</translation>
     </message>
     <message>
         <source>normal</source>
@@ -3833,8 +3686,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Alat za podjelu blocka ne funkcionira s više adresa. Pokušajte ponovo.</translation>
     </message>
     <message>
-        <source>Warning: Invalid dogecash address</source>
-        <translation>Upozorenje: Nevažeća dogecash adresa</translation>
+        <source>Warning: Invalid DogeCash address</source>
+        <translation>Upozorenje: Nevažeća DogeCash adresa</translation>
     </message>
     <message>
         <source>%1 to %2</source>
@@ -3932,8 +3785,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Platiti:</translation>
     </message>
     <message>
-        <source>The dogecash address to send the payment to</source>
-        <translation>dogecash adresa za slanje uplate</translation>
+        <source>The DogeCash address to send the payment to</source>
+        <translation>DogeCash adresa za slanje uplate</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -3972,8 +3825,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Poruka:</translation>
     </message>
     <message>
-        <source>A message that was attached to the dogecash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the dogecash network.</source>
-        <translation>Poruka koja je bila povezana s dogecash: URI koji će biti pohranjen s transakcijom za vašu referencu. Napomena: ova poruka neće biti poslana preko dogecash mreže.</translation>
+        <source>A message that was attached to the DogeCash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the DogeCash network.</source>
+        <translation>Poruka koja je bila povezana s DogeCash: URI koji će biti pohranjen s transakcijom za vašu referencu. Napomena: ova poruka neće biti poslana preko DogeCash mreže.</translation>
     </message>
     <message>
         <source>This is an unverified payment request.</source>
@@ -4022,8 +3875,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Možete potpisati poruke s vašim adresama kako biste dokazali da ih posjedujete. Pazite da ne potpišete ništa nejasno, jer napadi za krađu identiteta mogu Vas pokušati uvjeriti da vam potpišu identitet. Potpišite samo detalje oko kojih se slažete.</translation>
     </message>
     <message>
-        <source>The dogecash address to sign the message with</source>
-        <translation>dogecash adresa za potpisivanje poruke</translation>
+        <source>The DogeCash address to sign the message with</source>
+        <translation>DogeCash adresa za potpisivanje poruke</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -4054,16 +3907,16 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Kopirajte trenutačni potpis u međuspremnik sustava</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this dogecash address</source>
-        <translation>Potpišite poruku da biste dokazali da ste vlasnik ove dogecash adrese</translation>
+        <source>Sign the message to prove you own this DogeCash address</source>
+        <translation>Potpišite poruku da biste dokazali da ste vlasnik ove DogeCash adrese</translation>
     </message>
     <message>
-        <source>The dogecash address the message was signed with</source>
-        <translation>dogecash adresa s kojom je potpisana poruka</translation>
+        <source>The DogeCash address the message was signed with</source>
+        <translation>DogeCash adresa s kojom je potpisana poruka</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
-        <translation>Potvrdite poruku kako biste bili sigurni da je potpisana s navedenom dogecash adresom</translation>
+        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
+        <translation>Potvrdite poruku kako biste bili sigurni da je potpisana s navedenom DogeCash adresom</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -4434,8 +4287,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>DOGEC Stake</translation>
     </message>
     <message>
-        <source>zdogec Stake</source>
-        <translation>zdogec Stake</translation>
+        <source>zDOGEC Stake</source>
+        <translation>zDOGEC Stake</translation>
     </message>
     <message>
         <source>Obfuscation Denominate</source>
@@ -4454,32 +4307,32 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Prikrivanje Stvara Denominacije</translation>
     </message>
     <message>
-        <source>Converted DOGEC to zdogec</source>
-        <translation>Pretvoreni DOGEC u zdogec</translation>
+        <source>Converted DOGEC to zDOGEC</source>
+        <translation>Pretvoreni DOGEC u zDOGEC</translation>
     </message>
     <message>
-        <source>Spent zdogec</source>
-        <translation>Utrošeni zdogec</translation>
+        <source>Spent zDOGEC</source>
+        <translation>Utrošeni zDOGEC</translation>
     </message>
     <message>
-        <source>Received DOGEC from zdogec</source>
-        <translation>Primljeni DOGEC od zdogec</translation>
+        <source>Received DOGEC from zDOGEC</source>
+        <translation>Primljeni DOGEC od zDOGEC</translation>
     </message>
     <message>
-        <source>Minted Change as zdogec from zdogec Spend</source>
-        <translation>Mintana razlika zdogec od zdogec Utroška</translation>
+        <source>Minted Change as zDOGEC from zDOGEC Spend</source>
+        <translation>Mintana razlika zDOGEC od zDOGEC Utroška</translation>
     </message>
     <message>
-        <source>Converted zdogec to DOGEC</source>
-        <translation>Pretvoreni zdogec u DOGEC</translation>
+        <source>Converted zDOGEC to DOGEC</source>
+        <translation>Pretvoreni zDOGEC u DOGEC</translation>
     </message>
     <message>
-        <source>Anonymous (zdogec Transaction)</source>
-        <translation>Anonimno (zdogec Transakcija)</translation>
+        <source>Anonymous (zDOGEC Transaction)</source>
+        <translation>Anonimno (zDOGEC Transakcija)</translation>
     </message>
     <message>
-        <source>Anonymous (zdogec Stake)</source>
-        <translation>Anonimno (zdogec Stake)</translation>
+        <source>Anonymous (zDOGEC Stake)</source>
+        <translation>Anonimno (zDOGEC Stake)</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -4689,12 +4542,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Izvoz uspješan</translation>
     </message>
     <message>
-        <source>Received DOGEC from zdogec</source>
-        <translation>Primljeni DOGEC od zdogec</translation>
+        <source>Received DOGEC from zDOGEC</source>
+        <translation>Primljeni DOGEC od zDOGEC</translation>
     </message>
     <message>
-        <source>Zerocoin Spend, Change in zdogec</source>
-        <translation>Zerocoin Utrošeno, Razlika (ostatak) u zdogec</translation>
+        <source>Zerocoin Spend, Change in zDOGEC</source>
+        <translation>Zerocoin Utrošeno, Razlika (ostatak) u zDOGEC</translation>
     </message>
     <message>
         <source>The transaction history was successfully saved to %1.</source>
@@ -4762,10 +4615,10 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
 </context>
 <context>
-    <name>zdogecControlDialog</name>
+    <name>ZPivControlDialog</name>
     <message>
-        <source>Select zdogec to Spend</source>
-        <translation>Odabrani zdogec za utrošiti</translation>
+        <source>Select zDOGEC to Spend</source>
+        <translation>Odabrani zDOGEC za utrošiti</translation>
     </message>
     <message>
         <source>Quantity</source>
@@ -4776,8 +4629,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>0</translation>
     </message>
     <message>
-        <source>zdogec</source>
-        <translation>zdogec</translation>
+        <source>zDOGEC</source>
+        <translation>zDOGEC</translation>
     </message>
     <message>
         <source>Select/Deselect All</source>
@@ -4839,16 +4692,16 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Distribuirano pod MIT softverskom licencom, pogledajte priloženu datoteku COPYING ili &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
     </message>
     <message>
-        <source>Enable automatic wallet backups triggered after each zdogec minting (0-1, default: %u)</source>
-        <translation>Omogući automatsko sigurnosno kopiranje novčanika nakon svakog zdogec mintanja (0-1, default: %u)</translation>
+        <source>Enable automatic wallet backups triggered after each zDOGEC minting (0-1, default: %u)</source>
+        <translation>Omogući automatsko sigurnosno kopiranje novčanika nakon svakog zDOGEC mintanja (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for DOGEC inputs (0-1, default: %u)</source>
         <translation>Omogući ili onemogući staking funkcionalnosti za DOGEC unose (0-1, default: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for zdogec inputs (0-1, default: %u)</source>
-        <translation>Omogući ili onemogući staking funkcionalnosti za zdogec unose (0-1, default: %u)</translation>
+        <source>Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)</source>
+        <translation>Omogući ili onemogući staking funkcionalnosti za zDOGEC unose (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -4893,10 +4746,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
         <translation>Ispraznite aktivnost baze podataka iz baze memorije na dnevnik diska svakog megabajta (zadano: %u)</translation>
-    </message>
-    <message>
-        <source>Found unconfirmed denominated outputs, will wait till they confirm to continue.</source>
-        <translation>Pronađeni su nepotvrđeni denonimi izlaza, čekat će dok ne potvrde nastavak.</translation>
     </message>
     <message>
         <source>If paytxfee is not set, include enough fee so transactions begin confirmation on average within n blocks (default: %u)</source>
@@ -5047,8 +4896,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Morate odrediti masternodeprivkey u konfiguraciji. Za pomoć pogledajte dokumentaciju.</translation>
     </message>
     <message>
-        <source>(16740 could be used only on mainnet)</source>
-        <translation>(16740 se može koristiti samo na mainnetu)</translation>
+        <source>(51472 could be used only on mainnet)</source>
+        <translation>(51472 se može koristiti samo na mainnetu)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -5059,8 +4908,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 16740 for mainnet)</source>
-        <translation>(mora biti 16740 za glavnu mrežu)</translation>
+        <source>(must be 51472 for mainnet)</source>
+        <translation>(mora biti 51472 za glavnu mrežu)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
@@ -5083,10 +4932,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Dopustite traženja DNS-a za -addnode, -seednode i -connect</translation>
     </message>
     <message>
-        <source>Already have that input.</source>
-        <translation>Već imate taj unos.</translation>
-    </message>
-    <message>
         <source>Always query for peer addresses via DNS lookup (default: %u)</source>
         <translation>Uvijek se upita za peer adrese putem DNS pretraživanja (zadano: %u)</translation>
     </message>
@@ -5107,18 +4952,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Izračun akumulatora koji nedostaju ...</translation>
     </message>
     <message>
-        <source>Can't denominate: no compatible inputs left.</source>
-        <translation>Nije moguće denominirati: nema kompatibilnih ulaza.</translation>
-    </message>
-    <message>
-        <source>Can't find random Masternode.</source>
-        <translation>Nije moguće pronaći slučajni Masternode.</translation>
-    </message>
-    <message>
-        <source>Can't mix while sync in progress.</source>
-        <translation>Nije moguće miješati dok je sinkronizacija u tijeku.</translation>
-    </message>
-    <message>
         <source>Cannot downgrade wallet</source>
         <translation>Nije moguće novčanik vratiti na nižu verziju</translation>
     </message>
@@ -5137,10 +4970,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Cannot write default address</source>
         <translation>Ne možete zapisati zadanu adresu</translation>
-    </message>
-    <message>
-        <source>Collateral not valid.</source>
-        <translation>Zalog nije valjan.</translation>
     </message>
     <message>
         <source>Connect only to the specified node(s)</source>
@@ -5228,14 +5057,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Omogućite klijentu da djeluje kao masternode (0-1, zadano: %u)</translation>
     </message>
     <message>
-        <source>Entries are full.</source>
-        <translation>Unosi su puni.</translation>
-    </message>
-    <message>
-        <source>Error connecting to Masternode.</source>
-        <translation>Pogreška pri povezivanju s Masternodeom.</translation>
-    </message>
-    <message>
         <source>Error initializing block database</source>
         <translation>Pogreška prilikom inicijalizacije baze blokova</translation>
     </message>
@@ -5257,7 +5078,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
     <message>
         <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
-        <translation>Pogreška prilikom učitavanja wallet.dat: Novčanik zahtijeva noviju verziju dogecash jezgre</translation>
+        <translation>Pogreška prilikom učitavanja wallet.dat: Novčanik zahtijeva noviju verziju DogeCash jezgre</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -5284,10 +5105,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Pogreška: Došlo je do kobne interne pogreške, pogledajte detalje o debug.logu</translation>
     </message>
     <message>
-        <source>Error: Can't select current denominated inputs</source>
-        <translation>Pogreška: Nije moguće odabrati trenutne unose</translation>
-    </message>
-    <message>
         <source>Error: Disk space is low!</source>
         <translation>Pogreška: prostor na disku je nizak!</translation>
     </message>
@@ -5298,10 +5115,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Error: Wallet locked, unable to create transaction!</source>
         <translation>Pogreška: Novčanik zaključan, ne može stvoriti transakciju!</translation>
-    </message>
-    <message>
-        <source>Error: You already have pending entries in the Obfuscation pool</source>
-        <translation>Pogreška: već imate unose čekanja u grupi za Prekrivanje</translation>
     </message>
     <message>
         <source>Failed to calculate accumulator checkpoint</source>
@@ -5320,20 +5133,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Naknada (u DOGEC / kB) za dodavanje transakcija koje šaljete (zadano: %s)</translation>
     </message>
     <message>
-        <source>Finalizing transaction.</source>
-        <translation>Završavanje transakcije.</translation>
-    </message>
-    <message>
         <source>Force safe mode (default: %u)</source>
         <translation>Prisilno poktretanje sigurnosnog načina rada (zadano: %u)</translation>
-    </message>
-    <message>
-        <source>Found enough users, signing ( waiting %s )</source>
-        <translation>Pronađeno dovoljno korisnika, potpisivanje (čekanje %s)</translation>
-    </message>
-    <message>
-        <source>Found enough users, signing ...</source>
-        <translation>Pronađeno dovoljno korisnika, potpisivanje ...</translation>
     </message>
     <message>
         <source>Generate coins (default: %u)</source>
@@ -5360,14 +5161,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Uključi IP adrese u izlaz za ispravljanje pogrešaka (zadano: %u)</translation>
     </message>
     <message>
-        <source>Incompatible mode.</source>
-        <translation>Nepodudarni način rada.</translation>
-    </message>
-    <message>
-        <source>Incompatible version.</source>
-        <translation>Nepodudarna verzija.</translation>
-    </message>
-    <message>
         <source>Incorrect or no genesis block found. Wrong datadir for network?</source>
         <translation>Netočan ili nijedan blok geneze nije pronađen. Pogrešan datadir za mrežu?</translation>
     </message>
@@ -5378,10 +5171,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Initialization sanity check failed. DogeCash Core is shutting down.</source>
         <translation>Provjera ispravnosti inicijalizacije nije uspjela. DogeCash Core se zatvara.</translation>
-    </message>
-    <message>
-        <source>Input is not valid.</source>
-        <translation>Unos nije valjan.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5440,16 +5229,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Nevažeći privatni ključ.</translation>
     </message>
     <message>
-        <source>Invalid script detected.</source>
-        <translation>Otkriven nevažeća skripta.</translation>
-    </message>
-    <message>
         <source>Percentage of automatically minted Zerocoin  (1-100, default: %u)</source>
         <translation>Postotak automatskog kovanog Zerocoina (1-100, zadano: %u)</translation>
     </message>
     <message>
-        <source>Reindex the DOGEC and zdogec money supply statistics</source>
-        <translation>Ponovno indeksirati statistiku DOGEC i zdogec ponude novca</translation>
+        <source>Reindex the DOGEC and zDOGEC money supply statistics</source>
+        <translation>Ponovno indeksirati statistiku DOGEC i zDOGEC ponude novca</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5487,8 +5272,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>uklonjene nepotvrđene transakcije</translation>
     </message>
     <message>
-        <source>Disable all dogecash specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Onemogući sve specifične funkcije dogecash (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, zadano: %u)</translation>
+        <source>Disable all DogeCash specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
+        <translation>Onemogući sve specifične funkcije DogeCash (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, zadano: %u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
@@ -5523,8 +5308,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Preferirana denominacija za automatski ovjereni Zerocoin (1/5/10/50/100/500/1000/5000), 0 bez preferencije. zadana vrijednost: %u)</translation>
     </message>
     <message>
-        <source>Specify custom backup path to add a copy of any automatic zdogec backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
-        <translation>Navedite put prilagođenog sigurnosnog kopiranja da biste dodali kopiju bilo koje automatske zdogec sigurnosne kopije. Ako je postavljeno kao dir, svaka sigurnosna kopija generira vremensku datoteku. Ako je postavljen kao datoteka, prepisat će na tu datoteku svaku kopiju. Ako je postavljen backuppath, dogodit će se 4 sigurnosne kopije</translation>
+        <source>Specify custom backup path to add a copy of any automatic zDOGEC backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
+        <translation>Navedite put prilagođenog sigurnosnog kopiranja da biste dodali kopiju bilo koje automatske zDOGEC sigurnosne kopije. Ako je postavljeno kao dir, svaka sigurnosna kopija generira vremensku datoteku. Ako je postavljen kao datoteka, prepisat će na tu datoteku svaku kopiju. Ako je postavljen backuppath, dogodit će se 4 sigurnosne kopije</translation>
     </message>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
@@ -5607,14 +5392,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Zadržite najviše &lt;n&gt; neprenosive transakcije u memoriji (zadano: %u)</translation>
     </message>
     <message>
-        <source>Last Obfuscation was too recent.</source>
-        <translation>Poslijednje prikrivanje je bilo nedavno.</translation>
-    </message>
-    <message>
-        <source>Last successful Obfuscation action was too recent.</source>
-        <translation>Posljednje uspješno Prikrivanje je bilo nedavno.</translation>
-    </message>
-    <message>
         <source>Limit size of signature cache to &lt;n&gt; entries (default: %u)</source>
         <translation>Ograničite veličinu predmemorije potpisa na 1 unosa (zadano: %u)</translation>
     </message>
@@ -5667,10 +5444,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Lokacija autentičnog kolačića (zadano: dir. Podataka)</translation>
     </message>
     <message>
-        <source>Lock is already in place.</source>
-        <translation>Zaključavanje na mjestu.</translation>
-    </message>
-    <message>
         <source>Lock masternodes from masternode configuration file (default: %u)</source>
         <translation>Zaključaj masternode iz masternode konfiguracijske datoteke (zadano: %u)</translation>
     </message>
@@ -5687,14 +5460,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Opcije Masternoda:</translation>
     </message>
     <message>
-        <source>Masternode queue is full.</source>
-        <translation>Niz Masternoda je pun.</translation>
-    </message>
-    <message>
-        <source>Masternode:</source>
-        <translation>Masternode:</translation>
-    </message>
-    <message>
         <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: %u)</source>
         <translation>Maksimalni međuspremnik za primanje veze, &lt;n&gt;* 1000 bajta (zadano: %u)</translation>
     </message>
@@ -5707,14 +5472,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Kovanje nije ušlo u blockchain</translation>
     </message>
     <message>
-        <source>Missing input transaction information.</source>
-        <translation>Nedostaju informacije o ulaznoj transakciji.</translation>
-    </message>
-    <message>
-        <source>Mixing in progress...</source>
-        <translation>Miješanje u tijeku ...</translation>
-    </message>
-    <message>
         <source>Need address because change is not exact</source>
         <translation>Trebate adresu, jer ostatak nije točan</translation>
     </message>
@@ -5723,40 +5480,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Morate navesti vezu s -whitebind: '%s'</translation>
     </message>
     <message>
-        <source>No Masternodes detected.</source>
-        <translation>Masternode nije pronađen.</translation>
-    </message>
-    <message>
-        <source>No compatible Masternode found.</source>
-        <translation>Nema kompatibilnog Masternoda.</translation>
-    </message>
-    <message>
-        <source>No funds detected in need of denominating.</source>
-        <translation>Nema otkrivenih sredstava kojima je potrebna denominacija.</translation>
-    </message>
-    <message>
-        <source>No matching denominations found for mixing.</source>
-        <translation>Za miješanje nisu pronađeni odgovarajući apoeni.</translation>
-    </message>
-    <message>
         <source>Node relay options:</source>
         <translation>Opcije releja čvorova:</translation>
     </message>
     <message>
-        <source>Non-standard public key detected.</source>
-        <translation>Otkriven je nestandardni javni ključ.</translation>
-    </message>
-    <message>
-        <source>Not compatible with existing transactions.</source>
-        <translation>Nije kompatibilno s postojećim transakcijama.</translation>
-    </message>
-    <message>
         <source>Not enough file descriptors available.</source>
         <translation>Nije dostupno dovoljno deskriptora datoteka.</translation>
-    </message>
-    <message>
-        <source>Not in the Masternode list.</source>
-        <translation>Nije na popisu Masternode.</translation>
     </message>
     <message>
         <source>Number of automatic wallet backups (default: 10)</source>
@@ -5765,18 +5494,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Number of custom location backups to retain (default: %d)</source>
         <translation>Broj sigurnosnih kopija prilagođenih lokacija za zadržavanje (zadano: %d)</translation>
-    </message>
-    <message>
-        <source>Obfuscation is idle.</source>
-        <translation>Prikrivanje je u stanju mirovanja.</translation>
-    </message>
-    <message>
-        <source>Obfuscation request complete:</source>
-        <translation>Zahtjev za Prikrivanje dovršeno:</translation>
-    </message>
-    <message>
-        <source>Obfuscation request incomplete:</source>
-        <translation>Nedovršeni zahtjevi za Prikrivanje:</translation>
     </message>
     <message>
         <source>Only accept block chain matching built-in checkpoints (default: %u)</source>
@@ -5869,10 +5586,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Send transactions as zero-fee transactions if possible (default: %u)</source>
         <translation>Ako je moguće, pošaljite transakcije kao transakcije s nultom naknadom (zadano: %u)</translation>
-    </message>
-    <message>
-        <source>Session not complete!</source>
-        <translation>Sjednica nije dovršena!</translation>
     </message>
     <message>
         <source>Session timed out.</source>
@@ -5979,18 +5692,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Prestani prikazivati nakon uvoza blokova s diska (zadano: %u)</translation>
     </message>
     <message>
-        <source>Submitted following entries to masternode: %u / %d</source>
-        <translation>Sljedeće unose podnesi na masternode: %u / %d</translation>
-    </message>
-    <message>
-        <source>Submitted to masternode, waiting for more entries ( %u / %d ) %s</source>
-        <translation>Poslano na masternode, čeka se više unosa ( %u / %d ) %s</translation>
-    </message>
-    <message>
-        <source>Submitted to masternode, waiting in queue %s</source>
-        <translation>poslano na masternode, čeka se %s</translation>
-    </message>
-    <message>
         <source>Synchronization failed</source>
         <translation>Sinkronizacija neuspjela</translation>
     </message>
@@ -6019,8 +5720,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Sinkronizacija sporka...</translation>
     </message>
     <message>
-        <source>Syncing zdogec wallet...</source>
-        <translation>Sinkronizacija zdogec novčanika...</translation>
+        <source>Syncing zDOGEC wallet...</source>
+        <translation>Sinkronizacija zDOGEC novčanika...</translation>
     </message>
     <message>
         <source>The coin spend has been used</source>
@@ -6041,10 +5742,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>This is intended for regression testing tools and app development.</source>
         <translation>To je namijenjeno alatima za test regresije i razvoju aplikacija.</translation>
-    </message>
-    <message>
-        <source>This is not a Masternode.</source>
-        <translation>Ovo nije Masternode.</translation>
     </message>
     <message>
         <source>Threshold for disconnecting misbehaving peers (default: %u)</source>
@@ -6079,18 +5776,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Iznos transakcije mora biti pozitivan</translation>
     </message>
     <message>
-        <source>Transaction created successfully.</source>
-        <translation>Transakcija uspješno stvorena.</translation>
-    </message>
-    <message>
-        <source>Transaction fees are too high.</source>
-        <translation>Previsoka naknada za transakciju.</translation>
-    </message>
-    <message>
-        <source>Transaction not valid.</source>
-        <translation>Transakcija nije valjana.</translation>
-    </message>
-    <message>
         <source>Transaction too large for fee policy</source>
         <translation>Transakcija prevelika da bi bila besplatna</translation>
     </message>
@@ -6099,24 +5784,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Transakcija prevelika</translation>
     </message>
     <message>
-        <source>Transmitting final transaction.</source>
-        <translation>Šaljem finalnu transakciju. </translation>
-    </message>
-    <message>
-        <source>Try to spend with a higher security level to include more coins</source>
-        <translation>Pokušajte potrošiti s višom razinom sigurnosti kako biste uključili više novca</translation>
-    </message>
-    <message>
         <source>Trying to spend an already spent serial #, try again.</source>
         <translation>Pokušavate potrošiti već utrošeni serijski broj #, pokušajte ponovo.</translation>
     </message>
     <message>
         <source>Unable to bind to %s on this computer (bind returned error %s)</source>
         <translation>Nije moguće vezati se na %s na ovom računalu (vezanje vraćene pogreške %s)</translation>
-    </message>
-    <message>
-        <source>Unable to find transaction containing mint</source>
-        <translation>Nije moguće pronaći transakciju koja sadrži mintanje</translation>
     </message>
     <message>
         <source>Unable to sign spork message, wrong key?</source>
@@ -6129,10 +5802,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
         <translation>Nepoznata mreža specificirana u -onlynet: '%s'</translation>
-    </message>
-    <message>
-        <source>Unknown state: id = %u</source>
-        <translation>Nepoznato stanje: id = %u</translation>
     </message>
     <message>
         <source>Upgrade wallet to latest format</source>
@@ -6159,12 +5828,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Korisničko ime za JSON-RPC veze</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zdogec</source>
-        <translation>Vrijednost je niža od najmanje dostupne denominacije (= 1) zdogec-a</translation>
-    </message>
-    <message>
-        <source>Value more than Obfuscation pool maximum allows.</source>
-        <translation>Vrijednost veća od maksimalnog broja Prikrivanja zbirnih sredstava.</translation>
+        <source>Value is below the smallest available denomination (= 1) of zDOGEC</source>
+        <translation>Vrijednost je niža od najmanje dostupne denominacije (= 1) zDOGEC-a</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -6177,10 +5842,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Wallet %s resides outside data directory %s</source>
         <translation>Novčanik %s nalazi se izvan direktorija podataka %s</translation>
-    </message>
-    <message>
-        <source>Wallet is locked.</source>
-        <translation>Novčanik zaključan.</translation>
     </message>
     <message>
         <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
@@ -6211,24 +5872,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Upozorenje: nepodržani argument -debugnet ignoriran, upotrijebite -debug=net.</translation>
     </message>
     <message>
-        <source>Will retry...</source>
-        <translation>Ponovno pokušati...</translation>
-    </message>
-    <message>
         <source>You don't have enough Zerocoins in your wallet</source>
         <translation>Nemate dovoljno Zerocoina u novčaniku</translation>
     </message>
     <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>orate obnoviti bazu podataka koristeći -index za promjenu -txindexa</translation>
-    </message>
-    <message>
-        <source>Your entries added successfully.</source>
-        <translation>Unosi uspješno dodani.</translation>
-    </message>
-    <message>
-        <source>Your transaction was accepted into the pool!</source>
-        <translation>Vaša transakcija je prihvaćena u bazen!</translation>
     </message>
     <message>
         <source>Zapping all transactions from wallet...</source>

@@ -1,9 +1,9 @@
-// Copyright (c) 2018 The dogecash developers
+// Copyright (c) 2018 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef dogecash_QT_PROPOSALFRAME_H
-#define dogecash_QT_PROPOSALFRAME_H
+#ifndef DogeCash_QT_PROPOSALFRAME_H
+#define DogeCash_QT_PROPOSALFRAME_H
 
 #include <QFrame>
 #include <QLabel>
@@ -51,4 +51,4 @@ private Q_SLOTS:
     void proposalLink_clicked(const QString &link);
 };
 
-#endif //dogecash_QT_PROPOSALFRAME_H
+#endif //DogeCash_QT_PROPOSALFRAME_H

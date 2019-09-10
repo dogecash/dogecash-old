@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2015-2018 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -22,12 +22,11 @@
 #define MASTERNODE_REMOVAL_SECONDS (130 * 60)
 #define MASTERNODE_CHECK_SECONDS 5
 
-using namespace std;
 
 class CMasternode;
 class CMasternodeBroadcast;
 class CMasternodePing;
-extern map<int64_t, uint256> mapCacheBlockHashes;
+extern std::map<int64_t, uint256> mapCacheBlockHashes;
 
 bool GetBlockHash(uint256& hash, int nBlockHeight);
 
@@ -121,7 +120,8 @@ public:
         MASTERNODE_WATCHDOG_EXPIRED,
         MASTERNODE_POSE_BAN,
         MASTERNODE_VIN_SPENT,
-        MASTERNODE_POS_ERROR
+        MASTERNODE_POS_ERROR,
+        MASTERNODE_MISSING
     };
 
     CTxIn vin;
@@ -277,6 +277,7 @@ public:
         if (activeState == CMasternode::MASTERNODE_VIN_SPENT) strStatus = "VIN_SPENT";
         if (activeState == CMasternode::MASTERNODE_REMOVE) strStatus = "REMOVE";
         if (activeState == CMasternode::MASTERNODE_POS_ERROR) strStatus = "POS_ERROR";
+        if (activeState == CMasternode::MASTERNODE_MISSING) strStatus = "MISSING";
 
         return strStatus;
     }

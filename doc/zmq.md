@@ -33,8 +33,10 @@ buffering or reassembly.
 
 ## Prerequisites
 
-The ZeroMQ feature in DogeCash Core requires ZeroMQ API version 4.x or
-newer. Typically, it is packaged by distributions as something like
+The ZeroMQ feature in DogeCash Core requires the ZeroMQ API >= 4.0.0
+[libzmq](https://github.com/zeromq/libzmq/releases).
+For version information, see [dependencies.md](dependencies.md).
+Typically, it is packaged by distributions as something like
 *libzmq3-dev*. The C++ wrapper for ZeroMQ is *not* needed.
 
 In order to run the example Python client scripts in contrib/ one must
@@ -103,6 +105,6 @@ and just the tip will be notified. It is up to the subscriber to
 retrieve the chain from the last known block to the new tip.
 
 There are several possibilities that ZMQ notification can get lost
-during transmission depending on the communication type your are
+during transmission depending on the communication type you are
 using. dogecashd appends an up-counting sequence number to each
 notification which allows listeners to detect lost notifications.

@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2015-2019 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -28,7 +28,6 @@
 #endif
 
 #include <boost/filesystem/path.hpp>
-#include <boost/foreach.hpp>
 #include <boost/signals2/signal.hpp>
 
 class CAddrMan;
@@ -109,7 +108,7 @@ enum {
 };
 
 bool IsPeerAddrLocalGood(CNode* pnode);
-void AdvertizeLocal(CNode* pnode);
+void AdvertiseLocal(CNode* pnode);
 void SetLimited(enum Network net, bool fLimited = true);
 bool IsLimited(enum Network net);
 bool IsLimited(const CNetAddr& addr);
@@ -411,7 +410,7 @@ public:
     unsigned int GetTotalRecvSize()
     {
         unsigned int total = 0;
-        BOOST_FOREACH (const CNetMessage& msg, vRecvMsg)
+        for (const CNetMessage& msg : vRecvMsg)
             total += msg.vRecv.size() + 24;
         return total;
     }
@@ -423,7 +422,7 @@ public:
     void SetRecvVersion(int nVersionIn)
     {
         nRecvVersion = nVersionIn;
-        BOOST_FOREACH (CNetMessage& msg, vRecvMsg)
+        for (CNetMessage& msg : vRecvMsg)
             msg.SetVersion(nVersionIn);
     }
 
@@ -659,7 +658,7 @@ public:
 
     bool HasFulfilledRequest(std::string strRequest)
     {
-        BOOST_FOREACH (std::string& type, vecRequestsFulfilled) {
+        for (std::string& type : vecRequestsFulfilled) {
             if (type == strRequest) return true;
         }
         return false;

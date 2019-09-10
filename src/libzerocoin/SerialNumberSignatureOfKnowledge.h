@@ -10,6 +10,7 @@
 * @license    This project is released under the MIT license.
 **/
 // Copyright (c) 2017 The PIVX developers
+// Copyright (c) 2017-2019 The DogeCash developers
 
 #ifndef SERIALNUMBERPROOF_H_
 #define SERIALNUMBERPROOF_H_

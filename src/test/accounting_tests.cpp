@@ -1,19 +1,20 @@
 // Copyright (c) 2012-2014 The Bitcoin Core developers
-// Copyright (c) 2018 The dogecash developers
+// Copyright (c) 2018-2019 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "wallet/wallet.h"
 #include "wallet/walletdb.h"
 
+#include "test/test_dogecash.h"
+
 #include <stdint.h>
 
-#include <boost/foreach.hpp>
 #include <boost/test/unit_test.hpp>
 
 extern CWallet* pwalletMain;
 
-BOOST_AUTO_TEST_SUITE(accounting_tests)
+BOOST_FIXTURE_TEST_SUITE(accounting_tests, TestingSetup)
 
 static void
 GetResults(CWalletDB& walletdb, std::map<CAmount, CAccountingEntry>& results)
@@ -23,7 +24,7 @@ GetResults(CWalletDB& walletdb, std::map<CAmount, CAccountingEntry>& results)
     results.clear();
     BOOST_CHECK(walletdb.ReorderTransactions(pwalletMain) == DB_LOAD_OK);
     walletdb.ListAccountCreditDebit("", aes);
-    BOOST_FOREACH(CAccountingEntry& ae, aes)
+    for (CAccountingEntry& ae : aes)
     {
         results[ae.nOrderPos] = ae;
     }

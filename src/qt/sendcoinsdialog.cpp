@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2015-2019 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -59,7 +59,7 @@ SendCoinsDialog::SendCoinsDialog(QWidget* parent) : QDialog(parent, Qt::WindowSy
     connect(ui->splitBlockCheckBox, SIGNAL(stateChanged(int)), this, SLOT(splitBlockChecked(int)));
     connect(ui->splitBlockLineEdit, SIGNAL(textChanged(const QString&)), this, SLOT(splitBlockLineEditChanged(const QString&)));
 
-    // dogecash specific
+    // DogeCash specific
     QSettings settings;
     if (!settings.contains("bUseObfuScation"))
         settings.setValue("bUseObfuScation", false);
@@ -133,8 +133,13 @@ SendCoinsDialog::SendCoinsDialog(QWidget* parent) : QDialog(parent, Qt::WindowSy
     ui->sliderSmartFee->setValue(settings.value("nSmartFeeSliderPosition").toInt());
     ui->customFee->setValue(settings.value("nTransactionFee").toLongLong());
     ui->checkBoxMinimumFee->setChecked(settings.value("fPayOnlyMinFee").toBool());
-    ui->checkBoxFreeTx->setChecked(settings.value("fSendFreeTransactions").toBool());
-    ui->checkzdogec->hide();
+    //ui->checkBoxFreeTx->setChecked(settings.value("fSendFreeTransactions").toBool());
+    ui->checkzDOGEC->hide();
+
+    // Making zero fee txes option not visible (no need to clean this.. wallet 4.0 is right behind the corner)
+    ui->checkBoxFreeTx->setChecked(false);
+    ui->checkBoxFreeTx->setVisible(false);
+    ui->labelFreeTx->setVisible(false);
 
     minimizeFeeSection(settings.value("fFeeSectionMinimized").toBool());
     // If SwiftX activated hide button 'Choose'. Show otherwise.
@@ -910,7 +915,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
             ui->labelCoinControlChangeLabel->setText("");
         } else if (!addr.IsValid()) // Invalid address
         {
-            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid dogecash address"));
+            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid DogeCash address"));
         } else // Valid address
         {
             CPubKey pubkey;

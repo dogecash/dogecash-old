@@ -8,6 +8,93 @@ check-doc.py
 Check if all command line args are documented. The return value indicates the
 number of undocumented args.
 
+clang-format-diff.py
+===================
+
+A script to format unified git diffs according to [.clang-format](../../src/.clang-format).
+
+Requires `clang-format`, installed e.g. via `brew install clang-format` on macOS.
+
+For instance, to format the last commit with 0 lines of context,
+the script should be called from the git root folder as follows.
+
+```
+git diff -U0 HEAD~1.. | ./contrib/devtools/clang-format-diff.py -p1 -i -v
+```
+
+copyright\_header.py
+====================
+
+Provides utilities for managing copyright headers of `The DogeCash
+developers` in repository source files. It has three subcommands:
+
+```
+$ ./copyright_header.py report <base_directory> [verbose]
+$ ./copyright_header.py update <base_directory>
+$ ./copyright_header.py insert <file>
+```
+Running these subcommands without arguments displays a usage string.
+
+copyright\_header.py report \<base\_directory\> [verbose]
+---------------------------------------------------------
+
+Produces a report of all copyright header notices found inside the source files
+of a repository. Useful to quickly visualize the state of the headers.
+Specifying `verbose` will list the full filenames of files of each category.
+
+copyright\_header.py update \<base\_directory\> [verbose]
+---------------------------------------------------------
+Updates all the copyright headers of `The DogeCash developers` which were
+changed in a year more recent than is listed. For example:
+```
+// Copyright (c) <firstYear>-<lastYear> The DogeCash developers
+```
+will be updated to:
+```
+// Copyright (c) <firstYear>-<lastModifiedYear> The DogeCash developers
+```
+where `<lastModifiedYear>` is obtained from the `git log` history.
+
+This subcommand also handles copyright headers that have only a single year. In
+those cases:
+```
+// Copyright (c) <year> The DogeCash developers
+```
+will be updated to:
+```
+// Copyright (c) <year>-<lastModifiedYear> The DogeCash developers
+```
+where the update is appropriate.
+
+copyright\_header.py insert \<file\>
+------------------------------------
+Inserts a copyright header for `The DogeCash developers` at the top of the
+file in either Python or C++ style as determined by the file extension. If the
+file is a Python file and it has  `#!` starting the first line, the header is
+inserted in the line below it.
+
+The copyright dates will be set to be `<year_introduced>-<current_year>` where
+`<year_introduced>` is according to the `git log` history. If
+`<year_introduced>` is equal to `<current_year>`, it will be set as a single
+year rather than two hyphenated years.
+
+If the file already has a copyright for `The DogeCash developers`, the
+script will exit.
+
+gen-manpages.sh
+===============
+
+A small script to automatically create manpages in ../../doc/man by running the release binaries with the -help option.
+This requires help2man which can be found at: https://www.gnu.org/software/help2man/
+
+With in-tree builds this tool can be run from any directory within the
+repostitory. To use this tool with out-of-tree builds set `BUILDDIR`. For
+example:
+
+```bash
+BUILDDIR=$PWD/build contrib/devtools/gen-manpages.sh
+```
+
 github-merge.py
 ===============
 
@@ -19,6 +106,7 @@ For example:
 
 (in any git repository) will help you merge pull request #3077 for the
 dogecash/dogecash repository.
+DogeCash-Project/DogeCash repository.
 
 What it does:
 * Fetch master and the pull request.
@@ -37,8 +125,10 @@ couldn't mess with the sources.
 Setup
 ---------
 Configuring the github-merge tool for the dogecash repository is done in the following way:
+Configuring the github-merge tool for the DogeCash repository is done in the following way:
 
     git config githubmerge.repository dogecash/dogecash
+    git config githubmerge.repository DogeCash-Project/DogeCash
     git config githubmerge.testcmd "make -j4 check" (adapt to whatever you want to use for testing)
     git config --global user.signingkey mykeyid (if you want to GPG sign)
 
@@ -67,6 +157,8 @@ LogPrint and LogPrintf are known to throw exceptions when the number of argument
 LogPrint(f) function is not the same as the number of format specifiers.
 
 Ideally, the presentation of this mismatch would be at compile-time, but instead it is at run-time.
+A script to optimize png files in the DogeCash
+repository (requires pngcrush).
 
 This script scans the src/ directory recursively and looks in each .cpp/.h file and identifies all
 errorneous LogPrint(f) calls where the number of arguments do not match.

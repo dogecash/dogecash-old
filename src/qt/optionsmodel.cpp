@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2015-2019 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -156,8 +156,30 @@ void OptionsModel::Init()
     else if (!settings.value("fUseProxy").toBool() && !GetArg("-proxy", "").empty())
         addOverriddenOption("-proxy");
 
-    // Display
-    if (!settings.contains("digits"))
+    if(reset){
+        refreshDataView();
+    }
+}
+
+void OptionsModel::setWindowDefaultOptions(QSettings& settings, bool reset){
+    if (!settings.contains("fMinimizeToTray") || reset)
+        settings.setValue("fMinimizeToTray", false);
+    fMinimizeToTray = settings.value("fMinimizeToTray").toBool();
+
+    if (!settings.contains("fMinimizeOnClose") || reset)
+        settings.setValue("fMinimizeOnClose", false);
+    fMinimizeOnClose = settings.value("fMinimizeOnClose").toBool();
+
+    if(reset){
+        refreshDataView();
+    }
+}
+
+void OptionsModel::setDisplayDefaultOptions(QSettings& settings, bool reset){
+    if (!settings.contains("nDisplayUnit") || reset)
+        settings.setValue("nDisplayUnit", BitcoinUnits::DOGEC);
+    nDisplayUnit = settings.value("nDisplayUnit").toInt();
+    if (!settings.contains("digits") || reset)
         settings.setValue("digits", "2");
     if (!settings.contains("theme"))
         settings.setValue("theme", "");
@@ -176,8 +198,8 @@ void OptionsModel::Init()
         SoftSetArg("-zeromintpercentage", settings.value("nZeromintPercentage").toString().toStdString());
     if (settings.contains("nPreferredDenom"))
         SoftSetArg("-preferredDenom", settings.value("nPreferredDenom").toString().toStdString());
-    if (settings.contains("nAnonymizedogecashAmount"))
-        SoftSetArg("-anonymizedogecashamount", settings.value("nAnonymizedogecashAmount").toString().toStdString());
+    if (settings.contains("nAnonymizeDogeCashAmount") || reset)
+        SoftSetArg("-anonymizedogecashamount", settings.value("nAnonymizeDogeCashAmount").toString().toStdString());
 
     language = settings.value("language").toString();
 }

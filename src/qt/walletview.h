@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2019 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -90,7 +90,7 @@ public slots:
     /** Switch to explorer page */
     void gotoBlockExplorerPage();
     /** Switch to privacy page */
-    // void gotoPrivacyPage();
+    void gotoPrivacyPage();
     /** Switch to receive coins page */
     void gotoReceiveCoinsPage();
     /** Switch to send coins page */

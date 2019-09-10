@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "dogecash"
-            VALUE "FileDescription",    "dogecash-cli (OSS RPC client for dogecash)"
+            VALUE "CompanyName",        "DogeCash"
+            VALUE "FileDescription",    "DogeCash-cli (OSS RPC client for DogeCash)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "dogecash-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
             VALUE "OriginalFilename",   "dogecash-cli.exe"
-            VALUE "ProductName",        "dogecash-cli"
+            VALUE "ProductName",        "DogeCash-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

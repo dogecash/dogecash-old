@@ -1,6 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2019 The DogeCash developers
+// Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -55,6 +56,56 @@ CoinControlDialog::CoinControlDialog(QWidget* parent, bool fMultisigEnabled) : Q
 
     /* Open CSS when configured */
     this->setStyleSheet(GUIUtil::loadStyleSheet());
+
+    ui->frameContainer->setProperty("cssClass", "container-dialog");
+    ui->layoutAmount->setProperty("cssClass", "container-border-purple");
+    ui->layoutAfter->setProperty("cssClass", "container-border-purple");
+    ui->layoutBytes->setProperty("cssClass", "container-border-purple");
+    ui->layoutChange->setProperty("cssClass", "container-border-purple");
+    ui->layoutDust->setProperty("cssClass", "container-border-purple");
+    ui->layoutFee->setProperty("cssClass", "container-border-purple");
+    ui->layoutQuantity->setProperty("cssClass", "container-border-purple");
+
+    // Title
+
+    ui->labelTitle->setText("Select DOGEC Denominations to Spend");
+    ui->labelTitle->setProperty("cssClass", "text-title-dialog");
+
+    // Label Style
+
+    ui->labelCoinControlAfterFeeText->setProperty("cssClass", "text-main-purple");
+    ui->labelCoinControlAmountText->setProperty("cssClass", "text-main-purple");
+    ui->labelCoinControlBytesText->setProperty("cssClass", "text-main-purple");
+    ui->labelCoinControlChangeText->setProperty("cssClass", "text-main-purple");
+    ui->labelCoinControlLowOutputText->setProperty("cssClass", "text-main-purple");
+    ui->labelCoinControlFeeText->setProperty("cssClass", "text-main-purple");
+    ui->labelCoinControlQuantityText->setProperty("cssClass", "text-main-purple");
+    ui->labelCoinControlAfterFeeText->setProperty("cssClass", "text-main-purple");
+
+    ui->labelCoinControlAfterFee->setProperty("cssClass", "text-main-purple");
+    ui->labelCoinControlAmount->setProperty("cssClass", "text-main-purple");
+    ui->labelCoinControlBytes->setProperty("cssClass", "text-main-purple");
+    ui->labelCoinControlChange->setProperty("cssClass", "text-main-purple");
+    ui->labelCoinControlLowOutput->setProperty("cssClass", "text-main-purple");
+    ui->labelCoinControlFee->setProperty("cssClass", "text-main-purple");
+    ui->labelCoinControlQuantity->setProperty("cssClass", "text-main-purple");
+    ui->labelCoinControlAfterFee->setProperty("cssClass", "text-main-purple");
+
+    ui->groupBox_2->setProperty("cssClass", "group-box");
+    ui->treeWidget->setProperty("cssClass", "table-tree");
+    ui->labelLocked->setProperty("cssClass", "text-main-purple");
+
+    // Buttons
+    ui->pushButtonSelectAll->setProperty("cssClass", "btn-check");
+    ui->pushButtonToggleLock->setProperty("cssClass", "btn-check");
+
+    ui->btnEsc->setText("");
+    ui->btnEsc->setProperty("cssClass", "ic-close");
+    ui->pushButtonOk->setProperty("cssClass", "btn-primary");
+
+    connect(ui->btnEsc, SIGNAL(clicked()), this, SLOT(close()));
+
+    this->fMultisigEnabled = fMultisigEnabled;
 
     // context menu actions
     QAction* copyAddressAction = new QAction(tr("Copy address"), this);
@@ -804,7 +855,7 @@ void CoinControlDialog::updateView()
             if (ExtractDestination(out.tx->vout[out.i].scriptPubKey, outputAddress)) {
                 sAddress = QString::fromStdString(CBitcoinAddress(outputAddress).ToString());
 
-                // if listMode or change => show dogecash address. In tree mode, address is not shown again for direct wallet address outputs
+                // if listMode or change => show DogeCash address. In tree mode, address is not shown again for direct wallet address outputs
                 if (!treeMode || (!(sAddress == sWalletAddress)))
                     itemOutput->setText(COLUMN_ADDRESS, sAddress);
 

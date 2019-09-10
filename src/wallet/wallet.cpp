@@ -6119,4 +6119,3 @@ void CWallet::PrecomputeSpends()
         MilliSleep(5000);
     }
 }
-

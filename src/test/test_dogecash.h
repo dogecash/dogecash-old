@@ -1,9 +1,9 @@
-// Copyright (c) 2015 The PIVX developers
+// Copyright (c) 2015 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DOGEC_TEST_TEST_DOGEC_H
-#define DOGEC_TEST_TEST_DOGEC_H
+#ifndef DogeCash_TEST_TEST_DogeCash_H
+#define DogeCash_TEST_TEST_DogeCash_H
 
 #include "txdb.h"
 

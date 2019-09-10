@@ -1,5 +1,4 @@
-//
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2015-2019 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 //
@@ -9,7 +8,7 @@
 #include "main.h"
 
 /****** Thread ********/
-void CLightWorker::ThreadLightzdogecSimplified() {
+void CLightWorker::ThreadLightZDOGECSimplified() {
     RenameThread("dogecash-light-thread");
     isWorkerRunning = true;
     while (true) {
@@ -36,11 +35,11 @@ void CLightWorker::ThreadLightzdogecSimplified() {
                     libzerocoin::Accumulator accumulator(params, genWit.getDen(), genWit.getAccWitValue());
                     libzerocoin::PublicCoin temp(params);
                     libzerocoin::AccumulatorWitness witness(params, accumulator, temp);
-                    string strFailReason = "";
+                    std::string strFailReason = "";
                     int nMintsAdded = 0;
                     CZerocoinSpendReceipt receipt;
 
-                    list<CBigNum> ret;
+                    std::list<CBigNum> ret;
                     int heightStop;
 
                     bool res;
@@ -61,7 +60,7 @@ void CLightWorker::ThreadLightzdogecSimplified() {
                         );
 
                     } catch (NotEnoughMintsException e) {
-                        LogPrintStr(std::string("ThreadLightzdogecSimplified: ") + e.message + "\n");
+                        LogPrintStr(std::string("ThreadLightZDOGECSimplified: ") + e.message + "\n");
                         rejectWork(genWit, blockHeight, NOT_ENOUGH_MINTS);
                         continue;
                     }

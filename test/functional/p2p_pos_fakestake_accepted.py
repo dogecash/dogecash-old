@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 The DogeCash Core developers
+# Copyright (c) 2019 The DogeCash developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,14 +10,14 @@ but not on the fork branch. These blocks must be accepted.
 
 from time import sleep
 
-from fake_stake.base_test import dogecash_FakeStakeTest
+from fake_stake.base_test import DogeCash_FakeStakeTest
 
-class PoSFakeStakeAccepted(dogecash_FakeStakeTest):
+class PoSFakeStakeAccepted(DogeCash_FakeStakeTest):
 
     def run_test(self):
         self.description = "Covers the scenario of a valid PoS block where the coinstake input prevout is spent on main chain, but not on the fork branch. These blocks must be accepted."
         self.init_test()
-        INITAL_MINED_BLOCKS = 200   # First mined blocks (rewards collected to spend)
+        INITAL_MINED_BLOCKS = 189   # First mined blocks (rewards collected to spend)
         FORK_DEPTH = 50             # number of blocks after INITIAL_MINED_BLOCKS before the coins are spent
         MORE_MINED_BLOCKS = 10      # number of blocks after spending of the collected coins
         self.NUM_BLOCKS = 3         # Number of spammed blocks
@@ -28,7 +28,7 @@ class PoSFakeStakeAccepted(dogecash_FakeStakeTest):
 
         # 2) Collect the possible prevouts
         self.log.info("Collecting all unspent coins which we generated from mining...")
-        staking_utxo_list = self.node.listunspent()
+        staking_utxo_list = self.node.listunspent(100 - FORK_DEPTH + 1)
         sleep(2)
 
         # 3) Mine more blocks

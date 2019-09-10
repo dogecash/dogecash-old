@@ -1,10 +1,10 @@
 //
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2015-2018 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef dogecash_CONCURRENTQUEUE_H
-#define dogecash_CONCURRENTQUEUE_H
+#ifndef DogeCash_CONCURRENTQUEUE_H
+#define DogeCash_CONCURRENTQUEUE_H
 
 
 #include <mutex>
@@ -48,4 +48,4 @@ public:
     }
 };
 
-#endif //dogecash_CONCURRENTQUEUE_H
+#endif //DogeCash_CONCURRENTQUEUE_H

@@ -385,12 +385,29 @@
          </widget>
         </item>
         <item>
-         <widget class="QRadioButton" name="radioTreeMode">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+         <widget class="QWidget" name="layoutAmount" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="0,1">
+           <item>
+            <widget class="QLabel" name="labelCoinControlAmountText">
+             <property name="text">
+              <string>Amount</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelCoinControlAmount">
+             <property name="text">
+              <string>0.00 DOGEC</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
           <property name="text">
            <string>Tree mode</string>
@@ -411,6 +428,26 @@
           <property name="checked">
            <bool>true</bool>
           </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QWidget" name="layoutFee" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,1">
+           <item>
+            <widget class="QLabel" name="labelCoinControlFeeText">
+             <property name="text">
+              <string>Fee:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelCoinControlFee">
+             <property name="text">
+              <string>0.00 DOGEC</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </item>
         <item>
@@ -421,7 +458,100 @@
          </widget>
         </item>
         <item>
-         <spacer name="horizontalSpacer">
+         <widget class="QWidget" name="layoutBytes" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,1">
+           <item>
+            <widget class="QLabel" name="labelCoinControlBytesText">
+             <property name="text">
+              <string>Bytes:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelCoinControlBytes">
+             <property name="text">
+              <string>0</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="layoutDust" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,1">
+           <item>
+            <widget class="QLabel" name="labelCoinControlLowOutputText">
+             <property name="text">
+              <string>Dust:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelCoinControlLowOutput">
+             <property name="text">
+              <string>no</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="layoutChange" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,1">
+           <item>
+            <widget class="QLabel" name="labelCoinControlChangeText">
+             <property name="text">
+              <string>Change:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelCoinControlChange">
+             <property name="text">
+              <string>0</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="layoutAfter" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="0,1">
+           <item>
+            <widget class="QLabel" name="labelCoinControlAfterFeeText">
+             <property name="text">
+              <string>After Fee: </string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelCoinControlAfterFee">
+             <property name="text">
+              <string>0.00 DOGEC</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>20</number>
+        </property>
+        <property name="rightMargin">
+         <number>26</number>
+        </property>
+        <item>
+         <spacer name="horizontalSpacer_3">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>

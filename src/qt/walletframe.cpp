@@ -1,5 +1,6 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
-// Copyright (c) 2016-2018 The PIVX  developers
+// Copyright (c) 2016-2019 The PIVX developers
+// Copyright (c) 2016-2019 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -147,12 +148,12 @@ void WalletFrame::gotoReceiveCoinsPage()
         i.value()->gotoReceiveCoinsPage();
 }
 
-// void WalletFrame::gotoPrivacyPage()
-// {
-//     QMap<QString, WalletView*>::const_iterator i;
-//     for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
-//         i.value()->gotoPrivacyPage();
-// }
+void WalletFrame::gotoPrivacyPage()
+{
+    QMap<QString, WalletView*>::const_iterator i;
+    for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
+        i.value()->gotoPrivacyPage();
+}
 
 void WalletFrame::gotoSendCoinsPage(QString addr)
 {

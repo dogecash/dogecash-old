@@ -82,8 +82,6 @@ BITCOIN_CORE_H = \
   allocators.h \
   amount.h \
   base58.h \
-  bip39.h \
-  bip39_english.h \
   bip38.h \
   bloom.h \
   blocksignature.h \
@@ -110,7 +108,6 @@ BITCOIN_CORE_H = \
   obfuscation-relay.h \
   wallet/db.h \
   hash.h \
-  hdchain.h \
   httprpc.h \
   httpserver.h \
   init.h \
@@ -124,7 +121,6 @@ BITCOIN_CORE_H = \
   leveldbwrapper.h \
   limitedmap.h \
   main.h \
-  upgrade_check.h \
   masternode.h \
   masternode-payments.h \
   masternode-budget.h \
@@ -170,7 +166,6 @@ BITCOIN_CORE_H = \
   uint256.h \
   undo.h \
   util.h \
-  utilsplitstring.h \
   utilstrencodings.h \
   utilmoneystr.h \
   utiltime.h \
@@ -182,6 +177,7 @@ BITCOIN_CORE_H = \
   zdogecchain.h \
   zdogec/accumulators.h \
   zdogec/accumulatorcheckpoints.h \
+  zdogec/accumulatorcheckpoints.json.h \
   zdogec/accumulatormap.h \
   zdogec/deterministicmint.h \
   zdogec/mintpool.h \
@@ -189,6 +185,7 @@ BITCOIN_CORE_H = \
   zdogec/zerocoin.h \
   zdogec/zdogectracker.h \
   zdogec/zdogecwallet.h \
+  zdogec/zdogecmodule.h \
   genwit.h \
   concurrentqueue.h \
   lightzdogecthread.h \
@@ -238,7 +235,6 @@ libbitcoin_server_a_SOURCES = \
   torcontrol.cpp \
   txdb.cpp \
   txmempool.cpp \
-  upgrade_check.cpp \
   validationinterface.cpp \
   zdogecchain.cpp \
   $(BITCOIN_CORE_H)
@@ -286,6 +282,7 @@ libbitcoin_wallet_a_SOURCES = \
   zdogec/zdogectracker.cpp \
   stakeinput.cpp \
   genwit.cpp \
+  zdogec/zdogecmodule.cpp \
   lightzdogecthread.cpp \
   $(BITCOIN_CORE_H)
 
@@ -368,7 +365,6 @@ libbitcoin_common_a_SOURCES = \
   allocators.cpp \
   amount.cpp \
   base58.cpp \
-  bip39.cpp \
   bip38.cpp \
   chainparams.cpp \
   coins.cpp \
@@ -380,7 +376,6 @@ libbitcoin_common_a_SOURCES = \
   core_read.cpp \
   core_write.cpp \
   hash.cpp \
-  hdchain.cpp \
   invalid.cpp \
   key.cpp \
   keystore.cpp \
@@ -416,7 +411,6 @@ libbitcoin_util_a_SOURCES = \
   uint256.cpp \
   util.cpp \
   utilmoneystr.cpp \
-  utilsplitstring.h \
   utilstrencodings.cpp \
   utiltime.cpp \
   $(BITCOIN_CORE_H)
@@ -538,10 +532,16 @@ CLEANFILES = $(EXTRA_LIBRARIES)
 CLEANFILES += *.gcda *.gcno
 CLEANFILES += compat/*.gcda compat/*.gcno
 CLEANFILES += crypto/*.gcda crypto/*.gcno
+CLEANFILES += libzerocoin/*.gcda libzerocoin/*.gcno
 CLEANFILES += primitives/*.gcda primitives/*.gcno
+CLEANFILES += rpc/*.gcda rpc/*.gcno
 CLEANFILES += script/*.gcda script/*.gcno
+CLEANFILES += support/*.gcda support/*.gcno
 CLEANFILES += univalue/*.gcda univalue/*.gcno
+CLEANFILES += wallet/*.gcda wallet/*.gcno
+CLEANFILES += wallet/test/*.gcda wallet/test/*.gcno
 CLEANFILES += zmq/*.gcda zmq/*.gcno
+CLEANFILES += zdogec/*.gcda zdogec/*.gcno
 CLEANFILES += obj/build.h
 
 EXTRA_DIST =
@@ -569,13 +569,13 @@ clean-local:
 check-symbols: $(bin_PROGRAMS)
 if GLIBC_BACK_COMPAT
 	@echo "Checking glibc back compat..."
-	$(AM_V_at) READELF=$(READELF) CPPFILT=$(CPPFILT) $(top_srcdir)/contrib/devtools/symbol-check.py < $(bin_PROGRAMS)
+	$(AM_V_at) READELF=$(READELF) CPPFILT=$(CPPFILT) $(PYTHON) $(top_srcdir)/contrib/devtools/symbol-check.py < $(bin_PROGRAMS)
 endif
 
 check-security: $(bin_PROGRAMS)
 if HARDEN
 	@echo "Checking binary security..."
-	$(AM_V_at) READELF=$(READELF) OBJDUMP=$(OBJDUMP) $(top_srcdir)/contrib/devtools/security-check.py < $(bin_PROGRAMS)
+	$(AM_V_at) READELF=$(READELF) OBJDUMP=$(OBJDUMP) $(PYTHON) $(top_srcdir)/contrib/devtools/security-check.py < $(bin_PROGRAMS)
 endif
 
 %.pb.cc %.pb.h: %.proto

@@ -1,4 +1,5 @@
 // Copyright (c) 2012-2013 The PPCoin developers
+// Copyright (c) 2016-2019 The PIVX developers
 // Copyright (c) 2015-2018 The dogecash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.

@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2019 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,43 +8,65 @@
 #include "zdogec/accumulators.h"
 #include "main.h"
 #include "walletmodel.h"
+#include "guiutil.h"
 
-using namespace std;
-using namespace libzerocoin;
 
-std::set<std::string> zdogecControlDialog::setSelectedMints;
-std::set<CMintMeta> zdogecControlDialog::setMints;
+std::set<std::string> ZPivControlDialog::setSelectedMints;
+std::set<CMintMeta> ZPivControlDialog::setMints;
 
-bool CzdogecControlWidgetItem::operator<(const QTreeWidgetItem &other) const {
+bool CZPivControlWidgetItem::operator<(const QTreeWidgetItem &other) const {
     int column = treeWidget()->sortColumn();
-    if (column == zdogecControlDialog::COLUMN_DENOMINATION || column == zdogecControlDialog::COLUMN_VERSION || column == zdogecControlDialog::COLUMN_CONFIRMATIONS)
+    if (column == ZPivControlDialog::COLUMN_DENOMINATION || column == ZPivControlDialog::COLUMN_VERSION || column == ZPivControlDialog::COLUMN_CONFIRMATIONS)
         return data(column, Qt::UserRole).toLongLong() < other.data(column, Qt::UserRole).toLongLong();
     return QTreeWidgetItem::operator<(other);
 }
 
 
-zdogecControlDialog::zdogecControlDialog(QWidget *parent) :
+ZPivControlDialog::ZPivControlDialog(QWidget *parent) :
     QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint),
-    ui(new Ui::zdogecControlDialog),
+    ui(new Ui::ZPivControlDialog),
     model(0)
 {
     ui->setupUi(this);
     setMints.clear();
-    privacyDialog = (PrivacyDialog*)parent;
+
+    /* Open CSS when configured */
+    this->setStyleSheet(GUIUtil::loadStyleSheet());
+
+    ui->frame->setProperty("cssClass", "container-dialog");
+
+    // Title
+    ui->labelTitle->setText(tr("Select zDOGEC Denominations to Spend"));
+    ui->labelTitle->setProperty("cssClass", "text-title-dialog");
+
+
+    // Label Style
+    ui->labelZPiv->setProperty("cssClass", "text-main-purple");
+    ui->labelZPiv_int->setProperty("cssClass", "text-main-purple");
+    ui->labelQuantity->setProperty("cssClass", "text-main-purple");
+    ui->labelQuantity_int->setProperty("cssClass", "text-main-purple");
+
+    ui->layoutAmount->setProperty("cssClass", "container-border-purple");
+    ui->layoutQuantity->setProperty("cssClass", "container-border-purple");
+
+    // Buttons
+
+    ui->btnEsc->setText("");
+    ui->btnEsc->setProperty("cssClass", "ic-close");
+    ui->pushButtonAll->setProperty("cssClass", "btn-check");
 
     // click on checkbox
     connect(ui->treeWidget, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(updateSelection(QTreeWidgetItem*, int)));
-
     // push select/deselect all button
     connect(ui->pushButtonAll, SIGNAL(clicked()), this, SLOT(ButtonAllClicked()));
 }
 
-zdogecControlDialog::~zdogecControlDialog()
+ZPivControlDialog::~ZPivControlDialog()
 {
     delete ui;
 }
 
-void zdogecControlDialog::setModel(WalletModel *model)
+void ZPivControlDialog::setModel(WalletModel *model)
 {
     this->model = model;
     updateList();
@@ -52,7 +74,7 @@ void zdogecControlDialog::setModel(WalletModel *model)
 
 
 //Update the tree widget
-void zdogecControlDialog::updateList()
+void ZPivControlDialog::updateList()
 {
     // need to prevent the slot from being called each time something is changed
     ui->treeWidget->blockSignals(true);
@@ -60,9 +82,9 @@ void zdogecControlDialog::updateList()
 
     // add a top level item for each denomination
     QFlags<Qt::ItemFlag> flgTristate = Qt::ItemIsEnabled | Qt::ItemIsUserCheckable | Qt::ItemIsTristate;
-    map<libzerocoin::CoinDenomination, int> mapDenomPosition;
+    std::map<libzerocoin::CoinDenomination, int> mapDenomPosition;
     for (auto denom : libzerocoin::zerocoinDenomList) {
-        CzdogecControlWidgetItem* itemDenom(new CzdogecControlWidgetItem);
+        CZPivControlWidgetItem* itemDenom(new CZPivControlWidgetItem);
         ui->treeWidget->addTopLevelItem(itemDenom);
 
         //keep track of where this is positioned in tree widget
@@ -80,11 +102,11 @@ void zdogecControlDialog::updateList()
 
     //populate rows with mint info
     int nBestHeight = chainActive.Height();
-    map<CoinDenomination, int> mapMaturityHeight = GetMintMaturityHeight();
+    //map<CoinDenomination, int> mapMaturityHeight = GetMintMaturityHeight();
     for (const CMintMeta& mint : setMints) {
         // assign this mint to the correct denomination in the tree view
         libzerocoin::CoinDenomination denom = mint.denom;
-        CzdogecControlWidgetItem *itemMint = new CzdogecControlWidgetItem(ui->treeWidget->topLevelItem(mapDenomPosition.at(denom)));
+        CZPivControlWidgetItem *itemMint = new CZPivControlWidgetItem(ui->treeWidget->topLevelItem(mapDenomPosition.at(denom)));
 
         // if the mint is already selected, then it needs to have the checkbox checked
         std::string strPubCoinHash = mint.hashPubcoin.GetHex();
@@ -123,9 +145,10 @@ void zdogecControlDialog::updateList()
         }
 
         // check for maturity
-        bool isMature = false;
-        if (mapMaturityHeight.count(mint.denom))
-            isMature = mint.nHeight < mapMaturityHeight.at(denom);
+        // Always mature, public spends doesn't require any new accumulation.
+        bool isMature = true;
+        //if (mapMaturityHeight.count(mint.denom))
+        //    isMature = mint.nHeight < mapMaturityHeight.at(denom);
 
         // disable selecting this mint if it is not spendable - also display a reason why
         bool fSpendable = isMature && nConfirmations >= Params().Zerocoin_MintRequiredConfirmations() && mint.isSeedCorrect;
@@ -137,13 +160,13 @@ void zdogecControlDialog::updateList()
             if (setSelectedMints.count(strPubCoinHash))
                 setSelectedMints.erase(strPubCoinHash);
 
-            string strReason = "";
+            std::string strReason = "";
             if(nConfirmations < Params().Zerocoin_MintRequiredConfirmations())
                 strReason = strprintf("Needs %d more confirmations", Params().Zerocoin_MintRequiredConfirmations() - nConfirmations);
             else if (model->getEncryptionStatus() == WalletModel::EncryptionStatus::Locked)
-                strReason = "Your wallet is locked. Impossible to precompute or spend zdogec.";
+                strReason = "Your wallet is locked. Impossible to precompute or spend zDOGEC.";
             else if (!mint.isSeedCorrect)
-                strReason = "The zdogec seed used to mint this zdogec is not the same as currently hold in the wallet";
+                strReason = "The zDOGEC seed used to mint this zDOGEC is not the same as currently hold in the wallet";
             else
                 strReason = strprintf("Needs %d more mints added to network", Params().Zerocoin_RequiredAccumulation());
 
@@ -158,7 +181,7 @@ void zdogecControlDialog::updateList()
 }
 
 // Update the list when a checkbox is clicked
-void zdogecControlDialog::updateSelection(QTreeWidgetItem* item, int column)
+void ZPivControlDialog::updateSelection(QTreeWidgetItem* item, int column)
 {
     // only want updates from non top level items that are available to spend
     if (item->parent() && column == COLUMN_CHECKBOX && !item->isDisabled()){
@@ -180,7 +203,7 @@ void zdogecControlDialog::updateSelection(QTreeWidgetItem* item, int column)
 }
 
 // Update the Quantity and Amount display
-void zdogecControlDialog::updateLabels()
+void ZPivControlDialog::updateLabels()
 {
     int64_t nAmount = 0;
     for (const CMintMeta& mint : setMints) {
@@ -189,14 +212,14 @@ void zdogecControlDialog::updateLabels()
     }
 
     //update this dialog's labels
-    ui->labelzdogec_int->setText(QString::number(nAmount));
+    ui->labelZPiv_int->setText(QString::number(nAmount));
     ui->labelQuantity_int->setText(QString::number(setSelectedMints.size()));
 
     //update PrivacyDialog labels
-    privacyDialog->setzdogecControlLabels(nAmount, setSelectedMints.size());
+    //privacyDialog->setZPivControlLabels(nAmount, setSelectedMints.size());
 }
 
-std::vector<CMintMeta> zdogecControlDialog::GetSelectedMints()
+std::vector<CMintMeta> ZPivControlDialog::GetSelectedMints()
 {
     std::vector<CMintMeta> listReturn;
     for (const CMintMeta& mint : setMints) {
@@ -208,7 +231,7 @@ std::vector<CMintMeta> zdogecControlDialog::GetSelectedMints()
 }
 
 // select or deselect all of the mints
-void zdogecControlDialog::ButtonAllClicked()
+void ZPivControlDialog::ButtonAllClicked()
 {
     ui->treeWidget->blockSignals(true);
     Qt::CheckState state = Qt::Checked;

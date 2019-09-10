@@ -17,7 +17,7 @@ BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
             VALUE "CompanyName",        "DogeCash"
-            VALUE "FileDescription",    "dogecashd (OSS daemon/client for dogecash)"
+            VALUE "FileDescription",    "dogecashd (OSS daemon/client for DogeCash)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "dogecashd"
             VALUE "LegalCopyright",     COPYRIGHT_STR

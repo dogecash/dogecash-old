@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2016 The Dash developers
-// Copyright (c) 2016-2018 The PIVX  developers
+// Copyright (c) 2016-2018 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,8 +14,6 @@
 #include "sporkdb.h"
 #include "util.h"
 
-using namespace std;
-using namespace boost;
 
 class CSporkMessage;
 class CSporkManager;
@@ -25,7 +23,7 @@ CSporkManager sporkManager;
 std::map<uint256, CSporkMessage> mapSporks;
 std::map<int, CSporkMessage> mapSporksActive;
 
-// dogecash: on startup load spork values from previous session if they exist in the sporkDB
+// DogeCash: on startup load spork values from previous session if they exist in the sporkDB
 void LoadSporksFromDB()
 {
     for (int i = SPORK_START; i <= SPORK_END; ++i) {
@@ -84,15 +82,8 @@ void ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
 
         LogPrintf("%s : new %s ID %d Time %d bestHeight %d\n", __func__, hash.ToString(), spork.nSporkID, spork.nValue, chainActive.Tip()->nHeight);
 
-        if (spork.nTimeSigned >= Params().NewSporkStart()) {
-            if (!sporkManager.CheckSignature(spork, true)) {
-                LogPrintf("%s : Invalid Signature\n", __func__);
-                Misbehaving(pfrom->GetId(), 100);
-                return;
-            }
-        }
-
-        if (!sporkManager.CheckSignature(spork)) {
+        bool fRequireNew = spork.nTimeSigned >= Params().NewSporkStart();
+        if (!sporkManager.CheckSignature(spork, fRequireNew)) {
             LogPrintf("%s : Invalid Signature\n", __func__);
             Misbehaving(pfrom->GetId(), 100);
             return;
@@ -102,7 +93,7 @@ void ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
         mapSporksActive[spork.nSporkID] = spork;
         sporkManager.Relay(spork);
 
-        // dogecash: add to spork database.
+        // DogeCash: add to spork database.
         pSporkDB->WriteSpork(spork.nSporkID, spork);
     }
     if (strCommand == "getsporks") {
@@ -182,7 +173,7 @@ void ReprocessBlocks(int nBlocks)
     }
 }
 
-bool CSporkManager::CheckSignature(CSporkMessage& spork, bool fCheckSigner)
+bool CSporkManager::CheckSignature(CSporkMessage& spork, bool fRequireNew)
 {
     //note: need to investigate why this is failing
     std::string strMessage = std::to_string(spork.nSporkID) + std::to_string(spork.nValue) + std::to_string(spork.nTimeSigned);
@@ -191,7 +182,7 @@ bool CSporkManager::CheckSignature(CSporkMessage& spork, bool fCheckSigner)
 
     bool fValidWithNewKey = obfuScationSigner.VerifyMessage(pubkeynew, spork.vchSig,strMessage, errorMessage);
 
-    if (fCheckSigner && !fValidWithNewKey)
+    if (fRequireNew && !fValidWithNewKey)
         return false;
 
     // See if window is open that allows for old spork key to sign messages
@@ -261,7 +252,8 @@ bool CSporkManager::SetPrivKey(std::string strPrivKey)
 
     Sign(msg);
 
-    if (CheckSignature(msg, true)) {
+    bool fRequireNew = GetTime() >= Params().NewSporkStart();
+    if (CheckSignature(msg, fRequireNew)) {
         LogPrintf("CSporkManager::SetPrivKey - Successfully initialized as spork signer\n");
         return true;
     } else {

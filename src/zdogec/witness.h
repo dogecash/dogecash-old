@@ -1,5 +1,9 @@
-#ifndef dogecash_WITNESS_H
-#define dogecash_WITNESS_H
+// Copyright (c) 2018 The DogeCash developers
+// Distributed under the MIT software license, see the accompanying
+// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+#ifndef DogeCash_WITNESS_H
+#define DogeCash_WITNESS_H
 
 
 #include <libzerocoin/Accumulator.h>
@@ -75,4 +79,4 @@ public:
         READWRITE(accumulatorDenom);
     };
 };
-#endif //dogecash_WITNESS_H
+#endif //DogeCash_WITNESS_H

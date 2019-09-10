@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2018 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,10 +17,9 @@
 #include <stdint.h>
 #include <fstream>
 
-using namespace std;
 
 /**
- * JSON-RPC protocol.  dogecash speaks version 1.0 for maximum compatibility,
+ * JSON-RPC protocol.  DogeCash speaks version 1.0 for maximum compatibility,
  * but uses JSON-RPC 1.1/2.0 standards for parts of the 1.0 standard that were
  * unspecified (HTTP errors and contents of 'error').
  *
@@ -29,7 +28,7 @@ using namespace std;
  * http://www.codeproject.com/KB/recipes/JSON_Spirit.aspx
  */
 
-string JSONRPCRequest(const string& strMethod, const UniValue& params, const UniValue& id)
+std::string JSONRPCRequest(const std::string& strMethod, const UniValue& params, const UniValue& id)
 {
     UniValue request(UniValue::VOBJ);
     request.push_back(Pair("method", strMethod));
@@ -50,13 +49,13 @@ UniValue JSONRPCReplyObj(const UniValue& result, const UniValue& error, const Un
     return reply;
 }
 
-string JSONRPCReply(const UniValue& result, const UniValue& error, const UniValue& id)
+std::string JSONRPCReply(const UniValue& result, const UniValue& error, const UniValue& id)
 {
     UniValue reply = JSONRPCReplyObj(result, error, id);
     return reply.write() + "\n";
 }
 
-UniValue JSONRPCError(int code, const string& message)
+UniValue JSONRPCError(int code, const std::string& message)
 {
     UniValue error(UniValue::VOBJ);
     error.push_back(Pair("code", code));

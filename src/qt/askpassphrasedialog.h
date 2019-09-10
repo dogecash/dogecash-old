@@ -1,5 +1,6 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2018 The DogeCash developers
+// Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,8 +8,12 @@
 #define BITCOIN_QT_ASKPASSPHRASEDIALOG_H
 
 #include <QDialog>
+#include "qt/dogecash/prunnable.h"
+#include "allocators.h"
+#include <QCheckBox>
 
 class WalletModel;
+class DogeCashGUI;
 
 namespace Ui
 {
@@ -39,8 +44,8 @@ public:
         ToggleLock,     /** Toggle wallet lock state */
         ChangePass,     /** Change passphrase */
         Send_DOGEC,       /** Send DOGEC */
-        Send_zdogec,      /** Send zdogec */
-        Mint_zdogec,      /** Mint zdogec */
+        Send_zDOGEC,      /** Send zDOGEC */
+        Mint_zDOGEC,      /** Mint zDOGEC */
         BIP_38,         /** BIP38 menu */
         Multi_Sig,      /** Multi-Signature dialog */
         Sign_Message,   /** Sign/verify message dialog */

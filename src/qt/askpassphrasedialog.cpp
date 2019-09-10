@@ -1,6 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2015-2018 The DogeCash developers
+// Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,6 +11,11 @@
 #include "guiconstants.h"
 #include "guiutil.h"
 #include "walletmodel.h"
+#include "qt/dogecash/qtutils.h"
+#include "qt/dogecash/loadingdialog.h"
+#include "qt/dogecash/defaultdialog.h"
+#include "qt/dogecash/dogecashgui.h"
+#include <QDebug>
 
 #include "allocators.h"
 
@@ -122,30 +128,19 @@ void AskPassphraseDialog::accept()
             // Cannot encrypt with empty passphrase
             break;
         }
-        QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm wallet encryption"),
-            tr("Warning: If you encrypt your wallet and lose your passphrase, you will <b>LOSE ALL OF YOUR DOGEC</b>!") + "<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
-            QMessageBox::Yes | QMessageBox::Cancel,
-            QMessageBox::Cancel);
-        if (retval == QMessageBox::Yes) {
+        hide();
+        bool ret = openStandardDialog(
+                tr("Confirm wallet encryption"),
+                tr("Warning: If you encrypt your wallet and lose your passphrase, you will <b>LOSE ALL OF YOUR DOGEC</b>!") + "<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
+                tr("ENCRYPT"), tr("CANCEL")
+        );
+        if (ret) {
             if (newpass1 == newpass2) {
-                if (model->setWalletEncrypted(true, newpass1)) {
-                    QMessageBox::warning(this, tr("Wallet encrypted"),
-                        "<qt>" +
-                            tr("DogeCash will close now to finish the encryption process. "
-                               "Remember that encrypting your wallet cannot fully protect "
-                               "your DOGECs from being stolen by malware infecting your computer.") +
-                            "<br><br><b>" +
-                            tr("IMPORTANT: Any previous backups you have made of your wallet file "
-                               "should be replaced with the newly generated, encrypted wallet file. "
-                               "For security reasons, previous backups of the unencrypted wallet file "
-                               "will become useless as soon as you start using the new, encrypted wallet.") +
-                            "</b></qt>");
-                    QApplication::quit();
-                } else {
-                    QMessageBox::critical(this, tr("Wallet encryption failed"),
-                        tr("Wallet encryption failed due to an internal error. Your wallet was not encrypted."));
-                }
-                QDialog::accept(); // Success
+                newpassCache = newpass1;
+                DogeCashGUI* window = static_cast<DogeCashGUI*>(parentWidget());
+                LoadingDialog *dialog = new LoadingDialog(window);
+                dialog->execute(this, 1);
+                openDialogWithOpaqueBackgroundFullScreen(dialog, window);
             } else {
                 QMessageBox::critical(this, tr("Wallet encryption failed"),
                     tr("The supplied passphrases do not match."));
@@ -250,4 +245,72 @@ bool AskPassphraseDialog::eventFilter(QObject* object, QEvent* event)
         }
     }
     return QDialog::eventFilter(object, event);
+}
+
+bool AskPassphraseDialog::openStandardDialog(QString title, QString body, QString okBtn, QString cancelBtn){
+    DogeCashGUI* gui = static_cast<DogeCashGUI*>(parentWidget());
+    DefaultDialog *confirmDialog = new DefaultDialog(gui);
+    confirmDialog->setText(title, body, okBtn, cancelBtn);
+    confirmDialog->adjustSize();
+    openDialogWithOpaqueBackground(confirmDialog, gui);
+    bool ret = confirmDialog->isOk;
+    confirmDialog->deleteLater();
+    return ret;
+}
+
+void AskPassphraseDialog::warningMessage() {
+    hide();
+    static_cast<DogeCashGUI*>(parentWidget())->showHide(true);
+    openStandardDialog(
+            tr("Wallet encrypted"),
+            "<qt>" +
+            tr("DogeCash will close now to finish the encryption process. "
+               "Remember that encrypting your wallet cannot fully protect "
+               "your DOGECs from being stolen by malware infecting your computer.") +
+            "<br><br><b>" +
+            tr("IMPORTANT: Any previous backups you have made of your wallet file "
+               "should be replaced with the newly generated, encrypted wallet file. "
+               "For security reasons, previous backups of the unencrypted wallet file "
+               "will become useless as soon as you start using the new, encrypted wallet.") +
+            "</b></qt>",
+            tr("OK")
+            );
+    QApplication::quit();
+}
+
+void AskPassphraseDialog::errorEncryptingWallet() {
+    QMessageBox::critical(this, tr("Wallet encryption failed"),
+                          tr("Wallet encryption failed due to an internal error. Your wallet was not encrypted."));
+}
+
+void AskPassphraseDialog::run(int type){
+    if (type == 1) {
+        if (!newpassCache.empty()) {
+            QMetaObject::invokeMethod(this, "hide", Qt::QueuedConnection);
+            if (model->setWalletEncrypted(true, newpassCache)) {
+                QMetaObject::invokeMethod(this, "warningMessage", Qt::QueuedConnection);
+            } else {
+                QMetaObject::invokeMethod(this, "errorEncryptingWallet", Qt::QueuedConnection);
+            }
+            newpassCache.clear();
+            QDialog::accept(); // Success
+        }
+    }
+}
+void AskPassphraseDialog::onError(int type, QString error){
+    newpassCache = "";
+}
+
+void AskPassphraseDialog::initWatch(QWidget *parent) {
+    btnWatch = new QCheckBox(parent);
+    setCssProperty(btnWatch, "btn-watch-password");
+    btnWatch->setChecked(false);
+    QSize BUTTON_CONTACT_SIZE = QSize(24, 24);
+    btnWatch->setMinimumSize(BUTTON_CONTACT_SIZE);
+    btnWatch->setMaximumSize(BUTTON_CONTACT_SIZE);
+    btnWatch->show();
+    btnWatch->raise();
+
+    int posYY = 8;
+    btnWatch->move(450, posYY);
 }

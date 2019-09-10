@@ -29,16 +29,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>dogecash-Qt</string>
+  <string>DogeCash-Qt</string>
   
   <key>CFBundleName</key>
-  <string>dogecash-Qt</string>
+  <string>DogeCash-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.dogecash.dogecash-Qt</string>
+  <string>io.dogecash.DogeCash-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -46,7 +46,7 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>io.dogecash.dogecashPayment</string>
+      <string>io.dogecash.DogeCashPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
         <string>dogecash</string>
@@ -60,7 +60,7 @@
       <key>UTTypeIdentifier</key>
       <string>io.dogecash.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>dogecash payment request</string>
+      <string>DogeCash payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
