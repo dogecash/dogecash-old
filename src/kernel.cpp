@@ -525,3 +525,36 @@ bool initStakeInput(const CBlock block, std::unique_ptr<CStakeInput>& stake, int
     }
     return true;
 }
+bool GetHashProofOfStake(const CBlockIndex* pindexPrev, CStakeInput* stake, const unsigned int nTimeTx, const bool fVerify, uint256& hashProofOfStakeRet) {
+    // Grab the stake data
+    CBlockIndex* pindexfrom = stake->GetIndexFrom();
+    if (!pindexfrom) return error("%s : Failed to find the block index for stake origin", __func__);
+    const CDataStream& ssUniqueID = stake->GetUniqueness();
+    const unsigned int nTimeBlockFrom = pindexfrom->nTime;
+    CDataStream modifier_ss(SER_GETHASH, 0);
+
+    // Hash the modifier
+    if (!Params().IsStakeModifierV2(pindexPrev->nHeight + 1)) {
+        // Modifier v1
+        uint64_t nStakeModifier = 0;
+        if (!stake->GetModifier(nStakeModifier))
+            return error("%s : Failed to get kernel stake modifier", __func__);
+        modifier_ss << nStakeModifier;
+    } else {
+        // Modifier v2
+        modifier_ss << pindexPrev->nStakeModifierV2;
+    }
+
+    CDataStream ss(modifier_ss);
+    // Calculate hash
+    ss << nTimeBlockFrom << ssUniqueID << nTimeTx;
+    hashProofOfStakeRet = Hash(ss.begin(), ss.end());
+
+    if (fVerify) {
+        LogPrint("staking", "%s :{ nStakeModifier=%s\n"
+                            "nStakeModifierHeight=%s\n"
+                            "}\n",
+            __func__, HexStr(modifier_ss), ((stake->IsZPIV()) ? "Not available" : std::to_string(stake->getStakeModifierHeight())));
+    }
+    return true;
+}
