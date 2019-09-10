@@ -5344,13 +5344,13 @@ bool CWallet::CreateZerocoinSpendTransaction(
                 return false;
             }
 
-            if (nChange > 0 && !address) {
+            if (nChange > 0 && !changeAddress) {
                 receipt.SetStatus(_("Need address because change is not exact"), nStatus);
                 return false;
             }
 
-            if (address) {
-                scriptZerocoinSpend = GetScriptForDestination(address->Get());
+            if (changeAddress) {
+                    scriptChange = GetScriptForDestination(changeAddress->Get());
                 if (nChange) {
                     // Reserve a new key pair from key pool
                     CPubKey vchPubKey;
@@ -5711,7 +5711,8 @@ bool CWallet::SpendZerocoin(
         std::list<std::pair<CBitcoinAddress*,CAmount>> addressesTo,
         CBitcoinAddress* changeAddress,
         bool isPublicSpend
-){
+)
+{
     // Default: assume something goes wrong. Depending on the problem this gets more specific below
     int nStatus = zdogec_SPEND_ERROR;
 
@@ -5721,8 +5722,20 @@ bool CWallet::SpendZerocoin(
     }
 
     CReserveKey reserveKey(this);
-    vector<CDeterministicMint> vNewMints;
-    if (!CreateZerocoinSpendTransaction(nAmount, wtxNew, reserveKey, receipt, vMintsSelected, vNewMints, fMintChange, fMinimizeChange, addressTo)) {
+    std::vector<CDeterministicMint> vNewMints;
+    if (!CreateZerocoinSpendTransaction(
+            nAmount,
+            wtxNew,
+            reserveKey,
+            receipt,
+            vMintsSelected,
+            vNewMints,
+            fMintChange,
+            fMinimizeChange,
+            addressesTo,
+            changeAddress,
+            isPublicSpend
+    )) {
         return false;
     }
 
@@ -5781,7 +5794,7 @@ bool CWallet::SpendZerocoin(
         zdogecTracker->Add(dMint, true);
     }
 
-    receipt.SetStatus("Spend Successful", zdogec_SPEND_OKAY);  // When we reach this point spending zdogec was successful
+    receipt.SetStatus("Spend Successful", zdogec_SPEND_OKAY);  // When we reach this point spending zPIV was successful
 
     return true;
 }
