@@ -31,6 +31,9 @@ public:
     virtual bool Iszdogec() = 0;
     virtual CDataStream GetUniqueness() = 0;
     virtual uint256 GetSerialHash() const = 0;
+    virtual uint64_t getStakeModifierHeight() const {
+        return 0;
+    }
 };
 
 
