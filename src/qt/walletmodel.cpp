@@ -494,7 +494,7 @@ bool WalletModel::createZdogecSpend(
     }
 
     if (wallet->IsLocked()) {
-        receipt.SetStatus("Error: Wallet locked, unable to create transaction!", ZDOGEC_WALLET_LOCKED);
+        receipt.SetStatus("Error: Wallet locked, unable to create transaction!", zdogec_WALLET_LOCKED);
         return false;
     }
 
@@ -858,7 +858,7 @@ CBitcoinAddress WalletModel::getNewAddress(std::string label) const{
         wallet->TopUpKeyPool();
 
     // Generate a new key that is added to wallet
-    CPubKey newKey = wallet->GenerateNewKey();
+    CPubKey newKey = wallet->GenerateNewKey(0,false);
     CKeyID keyID = newKey.GetID();
 
     pwalletMain->SetAddressBook(keyID, label, "receive");

@@ -189,6 +189,7 @@ public:
     {
         return !(a == b);
     }
+    unsigned int GetTotalSize() const;
 
     std::string ToString() const;
 };
