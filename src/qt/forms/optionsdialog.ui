@@ -30,10 +30,10 @@
        <item>
         <widget class="QCheckBox" name="bitcoinAtStartup">
          <property name="toolTip">
-          <string>Automatically start DogeCash after logging in to the system.</string>
+          <string>Automatically start PIVX after logging in to the system.</string>
          </property>
          <property name="text">
-          <string>&amp;Start DogeCash on system login</string>
+          <string>&amp;Start PIVX on system login</string>
          </property>
         </widget>
        </item>
@@ -131,8 +131,8 @@
         </spacer>
        </item>
        <item>
-        <widget class="QWidget" name="verticalZdogecOptionsWidget" native="true">
-         <layout class="QVBoxLayout" name="verticalZdogecOptionsLayout">
+        <widget class="QWidget" name="verticalZpivOptionsWidget" native="true">
+         <layout class="QVBoxLayout" name="verticalZpivOptionsLayout">
           <property name="margin">
            <number>0</number>
           </property>
@@ -325,7 +325,7 @@
        <item>
         <widget class="QCheckBox" name="mapPortUpnp">
          <property name="toolTip">
-          <string>Automatically open the DogeCash client port on the router. This only works when your router supports UPnP and it is enabled.</string>
+          <string>Automatically open the PIVX client port on the router. This only works when your router supports UPnP and it is enabled.</string>
          </property>
          <property name="text">
           <string>Map port using &amp;UPnP</string>
@@ -345,7 +345,7 @@
        <item>
         <widget class="QCheckBox" name="connectSocks">
          <property name="toolTip">
-          <string>Connect to the DogeCash network through a SOCKS5 proxy.</string>
+          <string>Connect to the PIVX network through a SOCKS5 proxy.</string>
          </property>
          <property name="text">
           <string>&amp;Connect through SOCKS5 proxy (default proxy):</string>
@@ -533,7 +533,7 @@
          </property>
          <property name="text">
           <string>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/dogecash/dogecash-translations</string>
+https://www.transifex.com/pivx-project/pivx-project-translations</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -561,8 +561,8 @@ https://www.transifex.com/dogecash/dogecash-translations</string>
         </layout>
        </item>
        <item>
-        <widget class="QWidget" name="verticalZdogecDisplayWidget" native="true">
-         <layout class="QVBoxLayout" name="verticalZdogecDisplayLayout">
+        <widget class="QWidget" name="verticalZpivDisplayWidget" native="true">
+         <layout class="QVBoxLayout" name="verticalZpivDisplayLayout">
           <property name="margin">
            <number>0</number>
           </property>
