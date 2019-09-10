@@ -167,7 +167,7 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
         stakeData.push_back(Pair("BlockFromHash", stake.get()->GetIndexFrom()->GetBlockHash().GetHex()));
         stakeData.push_back(Pair("BlockFromHeight", stake.get()->GetIndexFrom()->nHeight));
         stakeData.push_back(Pair("hashProofOfStake", hashProofOfStakeRet.GetHex()));
-        stakeData.push_back(Pair("stakeModifierHeight", ((stake->IsZDOGEC()) ? "Not available" : std::to_string(
+        stakeData.push_back(Pair("stakeModifierHeight", ((stake->Iszdogec()) ? "Not available" : std::to_string(
                 stake->getStakeModifierHeight()))));
         result.push_back(Pair("CoinStake", stakeData));
     }
