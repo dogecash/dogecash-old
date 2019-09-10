@@ -478,7 +478,7 @@ void BlockExplorer::showEvent(QShowEvent*)
 
         if (!GetBoolArg("-txindex", true)) {
             QString Warning = tr("Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (dogecash.conf).");
-            QMessageBox::warning(this, "PIVX Core Blockchain Explorer", Warning, QMessageBox::Ok);
+            QMessageBox::warning(this, "DogeCash Core Blockchain Explorer", Warning, QMessageBox::Ok);
         }
     }
 }
