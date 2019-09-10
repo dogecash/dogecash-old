@@ -22,8 +22,8 @@
 #include <QSettings>
 #include <utilmoneystr.h>
 #include <QtWidgets>
-#include <zpiv/deterministicmint.h>
-#include <zpiv/accumulators.h>
+#include <zdogec/deterministicmint.h>
+#include <zdogec/accumulators.h>
 
 PrivacyDialog::PrivacyDialog(QWidget* parent) : QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint | Qt::WindowCloseButtonHint),
                                                 ui(new Ui::PrivacyDialog),
