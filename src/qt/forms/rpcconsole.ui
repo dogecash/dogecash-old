@@ -1354,17 +1354,17 @@
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QLabel" name="wallet_customzdogecbackuppath_label">
+        <widget class="QLabel" name="wallet_customzpivbackuppath_label">
          <property name="visible">
           <bool>false</bool>
          </property>
          <property name="text">
-          <string>Custom zDOGEC Backup Path:</string>
+          <string>Custom zPIV Backup Path:</string>
          </property>
         </widget>
        </item>
        <item row="4" column="1" colspan="3">
-        <widget class="QLabel" name="wallet_customzdogecbackuppath">
+        <widget class="QLabel" name="wallet_customzpivbackuppath">
          <property name="cursor">
           <cursorShape>IBeamCursor</cursorShape>
          </property>
