@@ -97,6 +97,15 @@ public:
     }
     bool IsZerocoinSpend() const;
     bool IsZerocoinPublicSpend() const;
+    bool HasZerocoinMintOutputs() const;
+    bool ContainsZerocoins() const
+    {
+        return HasZerocoinSpendInputs() || HasZerocoinPublicSpendInputs() || HasZerocoinMintOutputs();
+    }
+
+    CAmount GetZerocoinMinted() const;
+    CAmount GetZerocoinSpent() const;
+    int GetZerocoinMintCount() const;
     friend bool operator==(const CTxIn& a, const CTxIn& b)
     {
         return (a.prevout   == b.prevout &&
