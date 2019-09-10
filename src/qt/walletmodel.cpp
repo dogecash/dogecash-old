@@ -560,7 +560,7 @@ bool WalletModel::convertBackZdogec(
 
     // address to must be from us.
     if(!isMine(addressTo)){
-        receipt.SetStatus(_("To convert zDOGEC back to PIV the return address must be from your wallet"), ZDOGEC_SPEND_ERROR);
+        receipt.SetStatus(_("To convert zDOGEC back to PIV the return address must be from your wallet"), zdogec_SPEND_ERROR);
         return false;
     }
 

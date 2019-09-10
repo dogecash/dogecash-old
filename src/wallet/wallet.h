@@ -230,7 +230,18 @@ public:
 
     // Zerocoin additions
     bool CreateZerocoinMintTransaction(const CAmount nValue, CMutableTransaction& txNew, vector<CDeterministicMint>& vDMints, CReserveKey* reservekey, int64_t& nFeeRet, std::string& strFailReason, const CCoinControl* coinControl = NULL, const bool isZCSpendChange = false);
-    bool CreateZerocoinSpendTransaction(CAmount nValue, CWalletTx& wtxNew, CReserveKey& reserveKey, CZerocoinSpendReceipt& receipt, vector<CZerocoinMint>& vSelectedMints, vector<CDeterministicMint>& vNewMints, bool fMintChange,  bool fMinimizeChange, CBitcoinAddress* address = NULL);
+    bool CreateZerocoinSpendTransaction(
+            CAmount nValue,
+            CWalletTx& wtxNew,
+            CReserveKey& reserveKey,
+            CZerocoinSpendReceipt& receipt,
+            std::vector<CZerocoinMint>& vSelectedMints,
+            std::vector<CDeterministicMint>& vNewMints,
+            bool fMintChange,
+            bool fMinimizeChange,
+            std::list<std::pair<CBitcoinAddress*,CAmount>> addressesTo,
+            CBitcoinAddress* changeAddress = nullptr,
+            bool isPublicSpend = true);
     bool CheckCoinSpend(libzerocoin::CoinSpend& spend, libzerocoin::Accumulator& accumulator, CZerocoinSpendReceipt& receipt);
     bool MintToTxIn(CZerocoinMint mint, const uint256& hashTxOut, CTxIn& newTxIn, CZerocoinSpendReceipt& receipt, libzerocoin::SpendType spendType, CBlockIndex* pindexCheckpoint = nullptr);
     bool MintsToInputVector(std::map<CBigNum, CZerocoinMint>& mapMintsSelected, const uint256& hashTxOut, std::vector<CTxIn>& vin,
