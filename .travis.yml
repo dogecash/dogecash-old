@@ -40,19 +40,19 @@ after_script:
     - echo $TRAVIS_COMMIT_RANGE
     - echo $TRAVIS_COMMIT_LOG
 
-jobs:
-  include:
-# lint stage
-    - stage: lint
-      env:
-      sudo: false
-      cache: false
-      language: python
-      python: '3.6'
-      install:
-        - set -o errexit; source .travis/lint_04_install.sh
-      before_script:
-        - set -o errexit; source .travis/lint_05_before_script.sh
+# jobs:
+#   include:
+# # lint stage
+#     - stage: lint
+#       env:
+#       sudo: false
+#       cache: false
+#       language: python
+#       python: '3.6'
+#       install:
+#         - set -o errexit; source .travis/lint_04_install.sh
+#       before_script:
+#         - set -o errexit; source .travis/lint_05_before_script.sh
       # script:
       #   - set -o errexit; source .travis/lint_06_script.sh
 # # ARM
