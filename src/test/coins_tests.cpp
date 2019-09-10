@@ -5,7 +5,6 @@
 #include "coins.h"
 #include "random.h"
 #include "uint256.h"
-#include "test/test_dogecash.h"
 
 #include <vector>
 #include <map>
@@ -61,7 +60,7 @@ public:
 };
 }
 
-BOOST_FIXTURE_TEST_SUITE(coins_tests, BasicTestingSetup)
+BOOST_AUTO_TEST_SUITE(coins_tests)
 
 static const unsigned int NUM_SIMULATION_ITERATIONS = 40000;
 

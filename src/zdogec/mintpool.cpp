@@ -1,10 +1,11 @@
-// Copyright (c) 2017-2018 The DogeCash developers
+// Copyright (c) 2017-2019 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "mintpool.h"
 #include "util.h"
 
+using namespace std;
 
 CMintPool::CMintPool()
 {
@@ -21,11 +22,11 @@ CMintPool::CMintPool(uint32_t nCount)
 void CMintPool::Add(const CBigNum& bnValue, const uint32_t& nCount)
 {
     uint256 hash = GetPubCoinHash(bnValue);
-    Add(std::make_pair(hash, nCount));
+    Add(make_pair(hash, nCount));
     LogPrintf("%s : add %s to mint pool, nCountLastGenerated=%d\n", __func__, bnValue.GetHex().substr(0, 6), nCountLastGenerated);
 }
 
-void CMintPool::Add(const std::pair<uint256, uint32_t>& pMint, bool fVerbose)
+void CMintPool::Add(const pair<uint256, uint32_t>& pMint, bool fVerbose)
 {
     insert(pMint);
     if (pMint.second > nCountLastGenerated)
@@ -46,14 +47,14 @@ std::pair<uint256, uint32_t> CMintPool::Get(const CBigNum& bnValue)
     return *it;
 }
 
-bool SortSmallest(const std::pair<uint256, uint32_t>& a, const std::pair<uint256, uint32_t>& b)
+bool SortSmallest(const pair<uint256, uint32_t>& a, const pair<uint256, uint32_t>& b)
 {
     return a.second < b.second;
 }
 
-std::list<std::pair<uint256, uint32_t> > CMintPool::List()
+std::list<pair<uint256, uint32_t> > CMintPool::List()
 {
-    std::list<std::pair<uint256, uint32_t> > listMints;
+    list<pair<uint256, uint32_t> > listMints;
     for (auto pMint : *(this)) {
         listMints.emplace_back(pMint);
     }
@@ -78,7 +79,7 @@ bool CMintPool::Front(std::pair<uint256, uint32_t>& pMint)
     return true;
 }
 
-bool CMintPool::Next(std::pair<uint256, uint32_t>& pMint)
+bool CMintPool::Next(pair<uint256, uint32_t>& pMint)
 {
     auto it = find(pMint.first);
     if (it == end() || ++it == end())

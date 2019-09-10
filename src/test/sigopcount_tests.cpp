@@ -1,5 +1,5 @@
 // Copyright (c) 2012-2013 The Bitcoin Core developers
-// Copyright (c) 2017-2019 The DogeCash developers
+// Copyright (c) 2017 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,12 +8,13 @@
 #include "script/script.h"
 #include "script/standard.h"
 #include "uint256.h"
-#include "test_dogecash.h"
 
 #include <vector>
 
+#include <boost/foreach.hpp>
 #include <boost/test/unit_test.hpp>
 
+using namespace std;
 
 // Helpers:
 static std::vector<unsigned char>
@@ -23,7 +24,7 @@ Serialize(const CScript& s)
     return sSerialized;
 }
 
-BOOST_FIXTURE_TEST_SUITE(sigopcount_tests, BasicTestingSetup)
+BOOST_AUTO_TEST_SUITE(sigopcount_tests)
 
 BOOST_AUTO_TEST_CASE(GetSigOpCount)
 {

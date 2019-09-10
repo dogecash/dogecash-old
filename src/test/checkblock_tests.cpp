@@ -11,7 +11,6 @@
 #include "clientversion.h"
 #include "main.h"
 #include "utiltime.h"
-#include "test/test_dogecash.h"
 
 #include <cstdio>
 
@@ -20,7 +19,7 @@
 #include <boost/test/unit_test.hpp>
 
 
-BOOST_FIXTURE_TEST_SUITE(CheckBlock_tests, BasicTestingSetup)
+BOOST_AUTO_TEST_SUITE(CheckBlock_tests)
 
 bool read_block(const std::string& filename, CBlock& block)
 {

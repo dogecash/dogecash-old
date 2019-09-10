@@ -1,5 +1,4 @@
 // Copyright (c) 2012-2013 The PPCoin developers
-// Copyright (c) 2016-2019 The PIVX developers
 // Copyright (c) 2015-2018 The dogecash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -208,7 +207,7 @@ bool ComputeNextStakeModifier(const CBlockIndex* pindexPrev, uint64_t& nStakeMod
         nStakeModifierNew |= (((uint64_t)pindex->GetStakeEntropyBit()) << nRound);
 
         // add the selected block from candidates to selected list
-        mapSelectedBlocks.insert(std::make_pair(pindex->GetBlockHash(), pindex));
+        mapSelectedBlocks.insert(make_pair(pindex->GetBlockHash(), pindex));
         if (GetBoolArg("-printstakemodifier", false))
             LogPrintf("ComputeNextStakeModifier: selected round %d stop=%s height=%d bit=%d\n",
                 nRound, DateTimeStrFormat("%Y-%m-%d %H:%M:%S", nSelectionIntervalStop).c_str(), pindex->nHeight, pindex->GetStakeEntropyBit());
@@ -438,75 +437,6 @@ bool CheckStakeModifierCheckpoints(int nHeight, unsigned int nStakeModifierCheck
     if (fTestNet) return true; // Testnet has no checkpoints
     if (mapStakeModifierCheckpoints.count(nHeight)) {
         return nStakeModifierChecksum == mapStakeModifierCheckpoints[nHeight];
-    }
-    return true;
-}
-bool initStakeInput(const CBlock block, std::unique_ptr<CStakeInput>& stake, int nPreviousBlockHeight) {
-    const CTransaction tx = block.vtx[1];
-    if (!tx.IsCoinStake())
-        return error("%s : called on non-coinstake %s", __func__, tx.GetHash().ToString().c_str());
-
-    // Kernel (input 0) must match the stake hash target per coin age (nBits)
-    const CTxIn& txin = tx.vin[0];
-
-    //Construct the stakeinput object
-    if (txin.IsZerocoinSpend()) {
-        libzerocoin::CoinSpend spend = TxInToZerocoinSpend(txin);
-        if (spend.getSpendType() != libzerocoin::SpendType::STAKE)
-            return error("%s : spend is using the wrong SpendType (%d)", __func__, (int)spend.getSpendType());
-
-        stake = std::unique_ptr<CStakeInput>(new CzdogecStake(spend));
-
-        if (!ContextualCheckZerocoinStake(nPreviousBlockHeight, stake.get()))
-            return error("%s : staked zPIV fails context checks", __func__);
-    } else {
-        // First try finding the previous transaction in database
-        uint256 hashBlock;
-        CTransaction txPrev;
-        if (!GetTransaction(txin.prevout.hash, txPrev, hashBlock, true))
-            return error("%s : INFO: read txPrev failed, tx id prev: %s, block id %s",
-                         __func__, txin.prevout.hash.GetHex(), block.GetHash().GetHex());
-
-        //verify signature and script
-        if (!VerifyScript(txin.scriptSig, txPrev.vout[txin.prevout.n].scriptPubKey, STANDARD_SCRIPT_VERIFY_FLAGS, TransactionSignatureChecker(&tx, 0)))
-            return error("%s : VerifySignature failed on coinstake %s", __func__, tx.GetHash().ToString().c_str());
-
-        CzdogecStake* pivInput = new CzdogecStake();
-        pivInput->SetInput(txPrev, txin.prevout.n);
-        stake = std::unique_ptr<CStakeInput>(pivInput);
-    }
-    return true;
-}
-bool GetHashProofOfStake(const CBlockIndex* pindexPrev, CStakeInput* stake, const unsigned int nTimeTx, const bool fVerify, uint256& hashProofOfStakeRet) {
-    // Grab the stake data
-    CBlockIndex* pindexfrom = stake->GetIndexFrom();
-    if (!pindexfrom) return error("%s : Failed to find the block index for stake origin", __func__);
-    const CDataStream& ssUniqueID = stake->GetUniqueness();
-    const unsigned int nTimeBlockFrom = pindexfrom->nTime;
-    CDataStream modifier_ss(SER_GETHASH, 0);
-
-    // Hash the modifier
-    if (!Params().IsStakeModifierV2(pindexPrev->nHeight + 1)) {
-        // Modifier v1
-        uint64_t nStakeModifier = 0;
-        if (!stake->GetModifier(nStakeModifier))
-            return error("%s : Failed to get kernel stake modifier", __func__);
-        modifier_ss << nStakeModifier;
-    } else {
-        // Modifier v2
-        modifier_ss << pindexPrev->nStakeModifierV2;
-    }
-
-    CDataStream ss(modifier_ss);
-    // Calculate hash
-    ss << nTimeBlockFrom << ssUniqueID << nTimeTx;
-    hashProofOfStakeRet = Hash(ss.begin(), ss.end());
-
-    if (fVerify) {
-        LogPrint("staking", "%s :{ nStakeModifier=%s\n"
-                            "nStakeModifierHeight=%s\n"
-                            "}\n",
-            __func__, HexStr(modifier_ss), ((stake->IsZPIV()) ? "Not available" : std::to_string(stake->getStakeModifierHeight())));
     }
     return true;
 }

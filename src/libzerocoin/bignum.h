@@ -1,9 +1,8 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2017-2019 The PIVX developers
+// Copyright (c) 2017-2019 The dogecash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-
 #ifndef BITCOIN_BIGNUM_H
 #define BITCOIN_BIGNUM_H
 
@@ -68,13 +67,13 @@ public:
     * @param range The upper bound on the number.
     * @return
     */
-    static CBigNum randBignum(const CBigNum& range);
+    static CBigNum  randBignum(const CBigNum& range);
 
     /** Generates a cryptographically secure random k-bit number
     * @param k The bit length of the number.
     * @return
     */
-    static CBigNum randKBitBignum(const uint32_t k);
+    static CBigNum RandKBitBigum(const uint32_t k);
 
     /**Returns the size in bits of the underlying bignum.
      *
@@ -122,7 +121,7 @@ public:
         * @param e the exponent as an int
         * @return
         */
-    CBigNum pow(const int e) const;
+    CBigNum pow(const int e) const ;
 
     /**
      * exponentiation this^e

@@ -1,9 +1,9 @@
-// Copyright (c) 2017 The DogeCash developers
+// Copyright (c) 2017 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DogeCash_CSPORKDB_H
-#define DogeCash_CSPORKDB_H
+#ifndef dogecash_CSPORKDB_H
+#define dogecash_CSPORKDB_H
 
 #include <boost/filesystem/path.hpp>
 #include "leveldbwrapper.h"
@@ -25,4 +25,4 @@ public:
 };
 
 
-#endif //DogeCash_CSPORKDB_H
+#endif //dogecash_CSPORKDB_H
