@@ -177,7 +177,6 @@ BITCOIN_CORE_H = \
   zdogecchain.h \
   zdogec/accumulators.h \
   zdogec/accumulatorcheckpoints.h \
-  zdogec/accumulatorcheckpoints.json.h \
   zdogec/accumulatormap.h \
   zdogec/deterministicmint.h \
   zdogec/mintpool.h \
