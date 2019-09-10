@@ -60,7 +60,7 @@ set(GUI_FORMS
         ${CMAKE_CURRENT_SOURCE_DIR}/forms/bip38tooldialog.ui
         ${CMAKE_CURRENT_SOURCE_DIR}/forms/coincontroldialog.ui
         ${CMAKE_CURRENT_SOURCE_DIR}/forms/governancepage.ui
-        ${CMAKE_CURRENT_SOURCE_DIR}/forms/zpivcontroldialog.ui
+        ${CMAKE_CURRENT_SOURCE_DIR}/forms/zdogeccontroldialog.ui
         ${CMAKE_CURRENT_SOURCE_DIR}/forms/blockexplorer.ui
         ${CMAKE_CURRENT_SOURCE_DIR}/forms/editaddressdialog.ui
         ${CMAKE_CURRENT_SOURCE_DIR}/forms/helpmessagedialog.ui
@@ -113,7 +113,7 @@ SET(QT_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/addresstablemodel.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/askpassphrasedialog.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/coincontroldialog.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/zpivcontroldialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/zdogeccontroldialog.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/coincontroltreewidget.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/privacydialog.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/proposalframe.cpp
