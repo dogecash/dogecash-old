@@ -5224,7 +5224,18 @@ bool CWallet::MintsToInputVector(std::map<CBigNum, CZerocoinMint>& mapMintsSelec
     return true;
 }
 
-bool CWallet::CreateZerocoinSpendTransaction(CAmount nValue, CWalletTx& wtxNew, CReserveKey& reserveKey, CZerocoinSpendReceipt& receipt, vector<CZerocoinMint>& vSelectedMints, vector<CDeterministicMint>& vNewMints, bool fMintChange,  bool fMinimizeChange, CBitcoinAddress* address)
+bool CWallet::CreateZerocoinSpendTransaction(
+        CAmount nValue,
+        CWalletTx& wtxNew,
+        CReserveKey& reserveKey,
+        CZerocoinSpendReceipt& receipt,
+        std::vector<CZerocoinMint>& vSelectedMints,
+        std::vector<CDeterministicMint>& vNewMints,
+        bool fMintChange,
+        bool fMinimizeChange,
+        std::list<std::pair<CBitcoinAddress*,CAmount>> addressesTo,
+        CBitcoinAddress* changeAddress,
+        bool isPublicSpend)
 {
     // Check available funds
     int nStatus = zdogec_TRX_FUNDS_PROBLEMS;
