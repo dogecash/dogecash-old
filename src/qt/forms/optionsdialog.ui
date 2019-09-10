@@ -131,8 +131,8 @@
         </spacer>
        </item>
        <item>
-        <widget class="QWidget" name="verticalZpivOptionsWidget" native="true">
-         <layout class="QVBoxLayout" name="verticalZpivOptionsLayout">
+        <widget class="QWidget" name="verticalZdogecOptionsWidget" native="true">
+         <layout class="QVBoxLayout" name="verticalZdogecOptionsLayout">
           <property name="margin">
            <number>0</number>
           </property>
@@ -561,8 +561,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</string>
         </layout>
        </item>
        <item>
-        <widget class="QWidget" name="verticalZpivDisplayWidget" native="true">
-         <layout class="QVBoxLayout" name="verticalZpivDisplayLayout">
+        <widget class="QWidget" name="verticalZdogecDisplayWidget" native="true">
+         <layout class="QVBoxLayout" name="verticalZdogecDisplayLayout">
           <property name="margin">
            <number>0</number>
           </property>
