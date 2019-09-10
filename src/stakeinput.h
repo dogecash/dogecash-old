@@ -85,7 +85,7 @@ private:
 public:
     CDOGECStake(){}
 
-    bool SetInput(CTransaction txPrev, unsigned int n);
+   bool SetInput(CTransaction txPrev, unsigned int n);
 
     CBlockIndex* GetIndexFrom() override;
     bool GetTxFrom(CTransaction& tx) override;
@@ -93,7 +93,7 @@ public:
     bool GetModifier(uint64_t& nStakeModifier) override;
     CDataStream GetUniqueness() override;
     bool CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut = 0) override;
-    bool CreateTxOuts(CWallet* pwallet, vector<CTxOut>& vout, CAmount nTotal) override;
+    bool CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal) override;
     bool Iszdogec() override { return false; }
     uint256 GetSerialHash() const override { return uint256(0); }
     uint64_t getStakeModifierHeight() const override { return nStakeModifierHeight; }
