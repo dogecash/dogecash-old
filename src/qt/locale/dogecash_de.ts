@@ -4608,7 +4608,7 @@ Bitte haben Sie etwas Geduld...</translation>
     </message>
 </context>
 <context>
-    <name>ZPivControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     <message>
         <source>Select zDOGEC to Spend</source>
         <translation>Wählen Sie die zDOGEC aus, die Sie ausgeben möchten</translation>

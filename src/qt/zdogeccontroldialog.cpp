@@ -11,20 +11,20 @@
 #include "guiutil.h"
 
 
-std::set<std::string> ZPivControlDialog::setSelectedMints;
-std::set<CMintMeta> ZPivControlDialog::setMints;
+std::set<std::string> ZDOGECControlDialog::setSelectedMints;
+std::set<CMintMeta> ZDOGECControlDialog::setMints;
 
 bool CZPivControlWidgetItem::operator<(const QTreeWidgetItem &other) const {
     int column = treeWidget()->sortColumn();
-    if (column == ZPivControlDialog::COLUMN_DENOMINATION || column == ZPivControlDialog::COLUMN_VERSION || column == ZPivControlDialog::COLUMN_CONFIRMATIONS)
+    if (column == ZDOGECControlDialog::COLUMN_DENOMINATION || column == ZDOGECControlDialog::COLUMN_VERSION || column == ZDOGECControlDialog::COLUMN_CONFIRMATIONS)
         return data(column, Qt::UserRole).toLongLong() < other.data(column, Qt::UserRole).toLongLong();
     return QTreeWidgetItem::operator<(other);
 }
 
 
-ZPivControlDialog::ZPivControlDialog(QWidget *parent) :
+ZDOGECControlDialog::ZDOGECControlDialog(QWidget *parent) :
     QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint),
-    ui(new Ui::ZPivControlDialog),
+    ui(new Ui::ZDOGECControlDialog),
     model(0)
 {
     ui->setupUi(this);
@@ -61,12 +61,12 @@ ZPivControlDialog::ZPivControlDialog(QWidget *parent) :
     connect(ui->pushButtonAll, SIGNAL(clicked()), this, SLOT(ButtonAllClicked()));
 }
 
-ZPivControlDialog::~ZPivControlDialog()
+ZDOGECControlDialog::~ZDOGECControlDialog()
 {
     delete ui;
 }
 
-void ZPivControlDialog::setModel(WalletModel *model)
+void ZDOGECControlDialog::setModel(WalletModel *model)
 {
     this->model = model;
     updateList();
@@ -74,7 +74,7 @@ void ZPivControlDialog::setModel(WalletModel *model)
 
 
 //Update the tree widget
-void ZPivControlDialog::updateList()
+void ZDOGECControlDialog::updateList()
 {
     // need to prevent the slot from being called each time something is changed
     ui->treeWidget->blockSignals(true);
@@ -181,7 +181,7 @@ void ZPivControlDialog::updateList()
 }
 
 // Update the list when a checkbox is clicked
-void ZPivControlDialog::updateSelection(QTreeWidgetItem* item, int column)
+void ZDOGECControlDialog::updateSelection(QTreeWidgetItem* item, int column)
 {
     // only want updates from non top level items that are available to spend
     if (item->parent() && column == COLUMN_CHECKBOX && !item->isDisabled()){
@@ -203,7 +203,7 @@ void ZPivControlDialog::updateSelection(QTreeWidgetItem* item, int column)
 }
 
 // Update the Quantity and Amount display
-void ZPivControlDialog::updateLabels()
+void ZDOGECControlDialog::updateLabels()
 {
     int64_t nAmount = 0;
     for (const CMintMeta& mint : setMints) {
@@ -219,7 +219,7 @@ void ZPivControlDialog::updateLabels()
     //privacyDialog->setZPivControlLabels(nAmount, setSelectedMints.size());
 }
 
-std::vector<CMintMeta> ZPivControlDialog::GetSelectedMints()
+std::vector<CMintMeta> ZDOGECControlDialog::GetSelectedMints()
 {
     std::vector<CMintMeta> listReturn;
     for (const CMintMeta& mint : setMints) {
@@ -231,7 +231,7 @@ std::vector<CMintMeta> ZPivControlDialog::GetSelectedMints()
 }
 
 // select or deselect all of the mints
-void ZPivControlDialog::ButtonAllClicked()
+void ZDOGECControlDialog::ButtonAllClicked()
 {
     ui->treeWidget->blockSignals(true);
     Qt::CheckState state = Qt::Checked;

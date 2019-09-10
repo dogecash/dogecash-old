@@ -4882,7 +4882,7 @@ Proszę być cierpliwym...</translation>
     </message>
 </context>
 <context>
-    <name>ZPivControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     <message>
         <source>Select zDOGEC to Spend</source>
         <translation>Wybierz zDOGEC do wydania</translation>

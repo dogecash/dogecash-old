@@ -6325,7 +6325,7 @@ Please be patient...</source>
     </message>
 </context>
 <context>
-    <name>ZPivControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     <message>
         <location filename="../forms/zdogeccontroldialog.ui" line="+20"/>
         <source>Select zDOGEC to Spend</source>

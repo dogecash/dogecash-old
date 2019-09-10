@@ -4807,7 +4807,7 @@ Wees alsjeblieft geduldig...</translation>
     </message>
 </context>
 <context>
-    <name>ZPivControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     <message>
         <source>Select zDOGEC to Spend</source>
         <translation>Selecteer zDOGEC om te besteden</translation>

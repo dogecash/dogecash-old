@@ -14,7 +14,7 @@ class CZerocoinMint;
 class WalletModel;
 
 namespace Ui {
-class ZPivControlDialog;
+class ZDOGECControlDialog;
 }
 
 class CZPivControlWidgetItem : public QTreeWidgetItem
@@ -27,13 +27,13 @@ public:
     bool operator<(const QTreeWidgetItem &other) const;
 };
 
-class ZPivControlDialog : public QDialog
+class ZDOGECControlDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit ZPivControlDialog(QWidget *parent);
-    ~ZPivControlDialog();
+    explicit ZDOGECControlDialog(QWidget *parent);
+    ~ZDOGECControlDialog();
 
     void setModel(WalletModel* model);
 
@@ -42,7 +42,7 @@ public:
     static std::vector<CMintMeta> GetSelectedMints();
 
 private:
-    Ui::ZPivControlDialog *ui;
+    Ui::ZDOGECControlDialog *ui;
     WalletModel* model;
 
     void updateList();

@@ -303,7 +303,7 @@ void PrivacyDialog::on_pushButtonZPivControl_clicked()
     if (!walletModel || !walletModel->getOptionsModel())
         return;
 
-    ZPivControlDialog* zPivControl = new ZPivControlDialog(this);
+    ZDOGECControlDialog* zPivControl = new ZDOGECControlDialog(this);
     zPivControl->setModel(walletModel);
     zPivControl->exec();
 }
@@ -414,8 +414,8 @@ void PrivacyDialog::sendzDOGEC()
     // use mints from zDOGEC selector if applicable
     std::vector<CMintMeta> vMintsToFetch;
     std::vector<CZerocoinMint> vMintsSelected;
-    if (!ZPivControlDialog::setSelectedMints.empty()) {
-        vMintsToFetch = ZPivControlDialog::GetSelectedMints();
+    if (!ZDOGECControlDialog::setSelectedMints.empty()) {
+        vMintsToFetch = ZDOGECControlDialog::GetSelectedMints();
 
         for (auto& meta : vMintsToFetch) {
             CZerocoinMint mint;
@@ -474,7 +474,7 @@ void PrivacyDialog::sendzDOGEC()
     }
 
     // Clear zpiv selector in case it was used
-    ZPivControlDialog::setSelectedMints.clear();
+    ZDOGECControlDialog::setSelectedMints.clear();
     ui->labelzPivSelected_int->setText(QString("0"));
     ui->labelQuantitySelected_int->setText(QString("0"));
 

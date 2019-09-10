@@ -1646,7 +1646,7 @@
               <number>3</number>
              </property>
              <item>
-              <widget class="QCheckBox" name="checkzPIV">
+              <widget class="QCheckBox" name="checkzDOGEC">
                <property name="enabled">
                 <bool>false</bool>
                </property>

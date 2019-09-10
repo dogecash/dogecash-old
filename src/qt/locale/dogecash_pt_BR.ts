@@ -3515,7 +3515,7 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
     </message>
 </context>
 <context>
-    <name>ZPivControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     <message>
         <source>Quantity</source>
         <translation>Quantia</translation>

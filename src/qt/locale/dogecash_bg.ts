@@ -4601,7 +4601,7 @@ Please be patient...</source>
     </message>
 </context>
 <context>
-    <name>ZPivControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     <message>
         <source>Select zDOGEC to Spend</source>
         <translation>Изберете zDOGEC за Изпращане</translation>

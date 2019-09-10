@@ -4615,7 +4615,7 @@ Please be patient...</source>
     </message>
 </context>
 <context>
-    <name>ZPivControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     <message>
         <source>Select zDOGEC to Spend</source>
         <translation>사용할 zDOGEC 선택</translation>
