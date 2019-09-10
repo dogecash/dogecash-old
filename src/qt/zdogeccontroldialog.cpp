@@ -5,7 +5,7 @@
 #include "zdogeccontroldialog.h"
 #include "ui_zdogeccontroldialog.h"
 
-#include "zpiv/accumulators.h"
+#include "zdogec/accumulators.h"
 #include "main.h"
 #include "walletmodel.h"
 #include "guiutil.h"
@@ -132,9 +132,9 @@ void ZDOGECControlDialog::updateList()
         itemMint->setData(COLUMN_CONFIRMATIONS, Qt::UserRole, QVariant((qlonglong) nConfirmations));
 
         {
-            LOCK(pwalletMain->zpivTracker->cs_spendcache);
+            LOCK(pwalletMain->zdogecTracker->cs_spendcache);
 
-            CoinWitnessData *witnessData = pwalletMain->zpivTracker->GetSpendCache(mint.hashStake);
+            CoinWitnessData *witnessData = pwalletMain->zdogecTracker->GetSpendCache(mint.hashStake);
             if (witnessData->nHeightAccStart > 0  && witnessData->nHeightAccEnd > 0) {
                 int nPercent = std::max(0, std::min(100, (int)((double)(witnessData->nHeightAccEnd - witnessData->nHeightAccStart) / (double)(nBestHeight - witnessData->nHeightAccStart - 220) * 100)));
                 QString percent = QString::number(nPercent) + QString("%");
