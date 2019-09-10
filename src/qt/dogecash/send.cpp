@@ -395,8 +395,8 @@ bool SendWidget::sendZdogec(QList<SendCoinsRecipient> recipients){
     // use mints from zDOGEC selector if applicable
     std::vector<CMintMeta> vMintsToFetch;
     std::vector<CZerocoinMint> vMintsSelected;
-    if (!ZPivControlDialog::setSelectedMints.empty()) {
-        vMintsToFetch = ZPivControlDialog::GetSelectedMints();
+    if (!ZDOGECControlDialog::setSelectedMints.empty()) {
+        vMintsToFetch = ZDOGECControlDialog::GetSelectedMints();
 
         for (auto& meta : vMintsToFetch) {
             CZerocoinMint mint;
@@ -445,7 +445,7 @@ bool SendWidget::sendZdogec(QList<SendCoinsRecipient> recipients){
     )
             ) {
         inform(tr("zDOGEC transaction sent!"));
-        ZPivControlDialog::setSelectedMints.clear();
+        ZDOGECControlDialog::setSelectedMints.clear();
         clearAll();
         return true;
     } else {
@@ -652,10 +652,10 @@ void SendWidget::onCoinControlClicked(){
         }
     }else{
         if (walletModel->getZerocoinBalance() > 0) {
-            ZPivControlDialog *zDogecControl = new ZPivControlDialog(this);
+            ZDOGECControlDialog *zDogecControl = new ZDOGECControlDialog(this);
             zDogecControl->setModel(walletModel);
             zDogecControl->exec();
-            ui->btnCoinControl->setActive(!ZPivControlDialog::setSelectedMints.empty());
+            ui->btnCoinControl->setActive(!ZDOGECControlDialog::setSelectedMints.empty());
             zDogecControl->deleteLater();
         } else {
             inform(tr("You don't have any zDOGEC in your balance to select."));

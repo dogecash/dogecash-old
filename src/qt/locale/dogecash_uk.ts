@@ -380,7 +380,7 @@
     </message>
     </context>
 <context>
-    <name>ZPivControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     </context>
 <context>
     <name>dogecash-core</name>
