@@ -215,6 +215,8 @@ private:
     void DeriveNewChildKey(const CKeyMetadata& metadata, CKey& secretRet, uint32_t nAccountIndex, bool fInternal = false);
 
 public:
+    static const int STAKE_SPLIT_THRESHOLD = 2000;
+
     bool MintableCoins();
     bool SelectStakeCoins(std::list<std::unique_ptr<CStakeInput> >& listInputs, CAmount nTargetAmount, bool fPrecompute = false);
     bool SelectCoinsDark(CAmount nValueMin, CAmount nValueMax, std::vector<CTxIn>& setCoinsRet, CAmount& nValueRet, int nObfuscationRoundsMin, int nObfuscationRoundsMax) const;
@@ -351,7 +353,7 @@ public:
 
         // Stake Settings
         nHashDrift = 45;
-        nStakeSplitThreshold = 600;
+        nStakeSplitThreshold = STAKE_SPLIT_THRESHOLD;
         nHashInterval = 22;
         nStakeSetUpdateTime = 300; // 5 minutes
 
