@@ -82,6 +82,8 @@ BITCOIN_CORE_H = \
   allocators.h \
   amount.h \
   base58.h \
+  bip39.h \
+  bip39_english.h \
   bip38.h \
   bloom.h \
   blocksignature.h \
@@ -109,6 +111,7 @@ BITCOIN_CORE_H = \
   obfuscation-relay.h \
   wallet/db.h \
   hash.h \
+  hdchain.h \
   httprpc.h \
   httpserver.h \
   init.h \
@@ -172,6 +175,8 @@ BITCOIN_CORE_H = \
   utilstrencodings.h \
   utilmoneystr.h \
   utiltime.h \
+  upgrade_check.h \
+  utilsplitstring.h \
   validationinterface.h \
   version.h \
   wallet/wallet.h \
@@ -369,6 +374,7 @@ libbitcoin_common_a_SOURCES = \
   amount.cpp \
   base58.cpp \
   bip38.cpp \
+  bip39.cpp \
   chainparams.cpp \
   coins.cpp \
   compressor.cpp \
@@ -380,6 +386,7 @@ libbitcoin_common_a_SOURCES = \
   core_read.cpp \
   core_write.cpp \
   hash.cpp \
+  hdchain.cpp \
   invalid.cpp \
   key.cpp \
   keystore.cpp \
@@ -394,6 +401,7 @@ libbitcoin_common_a_SOURCES = \
   script/script_error.cpp \
   spork.cpp \
   sporkdb.cpp \
+  upgrade_check.cpp \
   $(BITCOIN_CORE_H)
 
 # util: shared between all executables.

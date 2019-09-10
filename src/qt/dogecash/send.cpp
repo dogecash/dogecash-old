@@ -450,7 +450,7 @@ bool SendWidget::sendZdogec(QList<SendCoinsRecipient> recipients){
         return true;
     } else {
         QString body;
-        if (receipt.GetStatus() == ZDOGEC_SPEND_V1_SEC_LEVEL) {
+        if (receipt.GetStatus() == zdogec_SPEND_V1_SEC_LEVEL) {
             body = tr("Version 1 zDOGEC require a security level of 100 to successfully spend.");
         } else {
             int nNeededSpends = receipt.GetNeededSpends(); // Number of spends we would need for this transaction

@@ -248,7 +248,7 @@ bool IsZDOGECType(TransactionRecord::Type type)
         case TransactionRecord::ZerocoinMint:
         case TransactionRecord::ZerocoinSpend:
         case TransactionRecord::RecvFromZerocoinSpend:
-        case TransactionRecord::ZerocoinSpend_Change_zPiv:
+        case TransactionRecord::ZerocoinSpend_Change_zDogec:
         case TransactionRecord::ZerocoinSpend_FromMe:
             return true;
         default:

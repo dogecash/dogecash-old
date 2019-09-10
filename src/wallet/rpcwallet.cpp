@@ -3366,6 +3366,7 @@ extern UniValue DozdogecSpend(const CAmount nAmount, bool fMintChange, bool fMin
     CWalletTx wtx;
     CZerocoinSpendReceipt receipt;
     bool fSuccess;
+    std::list<std::pair<CBitcoinAddress*, CAmount>> outputs;
 
     if(address_str != "") { // Spend to supplied destination address
         address = CBitcoinAddress(address_str);

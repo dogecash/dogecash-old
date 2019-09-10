@@ -96,7 +96,7 @@ public:
         if (hasZcTxes) return;
         if (record.type == TransactionRecord::ZerocoinMint ||
             record.type == TransactionRecord::ZerocoinSpend ||
-            record.type == TransactionRecord::ZerocoinSpend_Change_zPiv ||
+            record.type == TransactionRecord::ZerocoinSpend_Change_zDogec ||
             record.type == TransactionRecord::ZerocoinSpend_FromMe) {
             hasZcTxes = true;
         }
@@ -398,7 +398,7 @@ QString TransactionTableModel::formatTxType(const TransactionRecord* wtx) const
         return tr("Spent zDOGEC");
     case TransactionRecord::RecvFromZerocoinSpend:
         return tr("Received PIV from zDOGEC");
-    case TransactionRecord::ZerocoinSpend_Change_zPiv:
+    case TransactionRecord::ZerocoinSpend_Change_zDogec:
         return tr("Minted Change as zDOGEC from zDOGEC Spend");
     case TransactionRecord::ZerocoinSpend_FromMe:
         return tr("Converted zDOGEC to PIV");
@@ -455,7 +455,7 @@ QString TransactionTableModel::formatTxToAddress(const TransactionRecord* wtx, b
     case TransactionRecord::SendToOther:
         return QString::fromStdString(wtx->address) + watchAddress;
     case TransactionRecord::ZerocoinMint:
-    case TransactionRecord::ZerocoinSpend_Change_zPiv:
+    case TransactionRecord::ZerocoinSpend_Change_zDogec:
     case TransactionRecord::StakeZDOGEC:
         return tr("Anonymous");
     case TransactionRecord::SendToSelf: {
