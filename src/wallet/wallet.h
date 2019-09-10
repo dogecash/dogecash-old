@@ -237,7 +237,17 @@ public:
                             CZerocoinSpendReceipt& receipt, libzerocoin::SpendType spendType, CBlockIndex* pindexCheckpoint = nullptr);
     std::string MintZerocoinFromOutPoint(CAmount nValue, CWalletTx& wtxNew, std::vector<CDeterministicMint>& vDMints, const vector<COutPoint> vOutpts);
     std::string MintZerocoin(CAmount nValue, CWalletTx& wtxNew, vector<CDeterministicMint>& vDMints, const CCoinControl* coinControl = NULL);
-    bool SpendZerocoin(CAmount nValue, CWalletTx& wtxNew, CZerocoinSpendReceipt& receipt, vector<CZerocoinMint>& vMintsSelected, bool fMintChange, bool fMinimizeChange, CBitcoinAddress* addressTo = NULL);
+    bool SpendZerocoin(
+            CAmount nAmount,
+            CWalletTx& wtxNew,
+            CZerocoinSpendReceipt& receipt,
+            std::vector<CZerocoinMint>& vMintsSelected,
+            bool fMintChange,
+            bool fMinimizeChange,
+            std::list<std::pair<CBitcoinAddress*,CAmount>> addressesTo,
+            CBitcoinAddress* changeAddress = nullptr,
+            bool isPublicSpend = true
+    );
     std::string ResetMintZerocoin();
     std::string ResetSpentZerocoin();
     void ReconsiderZerocoins(std::list<CZerocoinMint>& listMintsRestored, std::list<CDeterministicMint>& listDMintsRestored);
