@@ -32,7 +32,7 @@ QT_TRANSLATE_NOOP("dogecash-core", ""
 QT_TRANSLATE_NOOP("dogecash-core", ""
 "Calculated accumulator checkpoint is not what is recorded by block index"),
 QT_TRANSLATE_NOOP("dogecash-core", ""
-"Cannot obtain a lock on data directory %s. PIVX Core is probably already "
+"Cannot obtain a lock on data directory %s. DogeCash Core is probably already "
 "running."),
 QT_TRANSLATE_NOOP("dogecash-core", ""
 "Change automatic finalized budget voting behavior. mode=auto: Vote for only "
@@ -207,7 +207,7 @@ QT_TRANSLATE_NOOP("dogecash-core", ""
 "Total length of network version string (%i) exceeds maximum length (%i). "
 "Reduce the number or size of uacomments."),
 QT_TRANSLATE_NOOP("dogecash-core", ""
-"Unable to bind to %s on this computer. PIVX Core is probably already running."),
+"Unable to bind to %s on this computer. DogeCash Core is probably already running."),
 QT_TRANSLATE_NOOP("dogecash-core", ""
 "Unable to locate enough Obfuscation denominated funds for this transaction."),
 QT_TRANSLATE_NOOP("dogecash-core", ""
@@ -227,7 +227,7 @@ QT_TRANSLATE_NOOP("dogecash-core", ""
 "pay if you send a transaction."),
 QT_TRANSLATE_NOOP("dogecash-core", ""
 "Warning: Please check that your computer's date and time are correct! If "
-"your clock is wrong PIVX Core will not work properly."),
+"your clock is wrong DogeCash Core will not work properly."),
 QT_TRANSLATE_NOOP("dogecash-core", ""
 "Warning: The network does not appear to fully agree! Some miners appear to "
 "be experiencing issues."),
@@ -343,7 +343,7 @@ QT_TRANSLATE_NOOP("dogecash-core", "Imports blocks from external blk000??.dat fi
 QT_TRANSLATE_NOOP("dogecash-core", "Include IP addresses in debug output (default: %u)"),
 QT_TRANSLATE_NOOP("dogecash-core", "Incorrect or no genesis block found. Wrong datadir for network?"),
 QT_TRANSLATE_NOOP("dogecash-core", "Information"),
-QT_TRANSLATE_NOOP("dogecash-core", "Initialization sanity check failed. PIVX Core is shutting down."),
+QT_TRANSLATE_NOOP("dogecash-core", "Initialization sanity check failed. DogeCash Core is shutting down."),
 QT_TRANSLATE_NOOP("dogecash-core", "Insufficient funds"),
 QT_TRANSLATE_NOOP("dogecash-core", "Insufficient funds."),
 QT_TRANSLATE_NOOP("dogecash-core", "Invalid -onion address or hostname: '%s'"),
@@ -486,7 +486,7 @@ QT_TRANSLATE_NOOP("dogecash-core", "Value is below the smallest available denomi
 QT_TRANSLATE_NOOP("dogecash-core", "Verifying blocks..."),
 QT_TRANSLATE_NOOP("dogecash-core", "Verifying wallet..."),
 QT_TRANSLATE_NOOP("dogecash-core", "Wallet %s resides outside data directory %s"),
-QT_TRANSLATE_NOOP("dogecash-core", "Wallet needed to be rewritten: restart PIVX Core to complete"),
+QT_TRANSLATE_NOOP("dogecash-core", "Wallet needed to be rewritten: restart DogeCash Core to complete"),
 QT_TRANSLATE_NOOP("dogecash-core", "Wallet options:"),
 QT_TRANSLATE_NOOP("dogecash-core", "Wallet window title"),
 QT_TRANSLATE_NOOP("dogecash-core", "Warning"),
