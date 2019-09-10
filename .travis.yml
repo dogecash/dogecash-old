@@ -40,8 +40,8 @@ after_script:
     - echo $TRAVIS_COMMIT_RANGE
     - echo $TRAVIS_COMMIT_LOG
 
-# jobs:
-#   include:
+jobs:
+  include:
 # # lint stage
 #     - stage: lint
 #       env:
