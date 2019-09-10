@@ -205,7 +205,7 @@ public:
     /// Get process return value
     int getReturnValue() { return returnValue; }
 
-    /// Get window identifier of QMainWindow (DOGECGUI)
+    /// Get window identifier of QMainWindow (DogeCashGUI)
     WId getMainWinId() const;
 
 public slots:
@@ -226,7 +226,7 @@ private:
     QThread* coreThread;
     OptionsModel* optionsModel;
     ClientModel* clientModel;
-    DOGECGUI* window;
+    DogeCashGUI* window;
     QTimer* pollShutdownTimer;
 #ifdef ENABLE_WALLET
     PaymentServer* paymentServer;
@@ -356,7 +356,7 @@ void BitcoinApplication::createOptionsModel()
 
 void BitcoinApplication::createWindow(const NetworkStyle* networkStyle)
 {
-    window = new DOGECGUI(networkStyle, 0);
+    window = new DogeCashGUI(networkStyle, 0);
 
     pollShutdownTimer = new QTimer(window);
     connect(pollShutdownTimer, SIGNAL(timeout()), window, SLOT(detectShutdown()));
@@ -464,8 +464,8 @@ void BitcoinApplication::initializeResult(int retval)
         if (pwalletMain) {
             walletModel = new WalletModel(pwalletMain, optionsModel);
 
-            window->addWallet(DOGECGUI::DEFAULT_WALLET, walletModel);
-            window->setCurrentWallet(DOGECGUI::DEFAULT_WALLET);
+            window->addWallet(DogeCashGUI::DEFAULT_WALLET, walletModel);
+            window->setCurrentWallet(DogeCashGUI::DEFAULT_WALLET);
 
             connect(walletModel, SIGNAL(coinsSent(CWallet*, SendCoinsRecipient, QByteArray)),
                 paymentServer, SLOT(fetchPaymentACK(CWallet*, const SendCoinsRecipient&, QByteArray)));
@@ -504,7 +504,7 @@ void BitcoinApplication::shutdownResult(int retval)
 
 void BitcoinApplication::handleRunawayException(const QString& message)
 {
-    QMessageBox::critical(0, "Runaway exception", DOGECGUI::tr("A fatal error occurred. PIVX can no longer continue safely and will quit.") + QString("\n\n") + message);
+    QMessageBox::critical(0, "Runaway exception", DogeCashGUI::tr("A fatal error occurred. PIVX can no longer continue safely and will quit.") + QString("\n\n") + message);
     ::exit(1);
 }
 
