@@ -441,3 +441,39 @@ bool CheckStakeModifierCheckpoints(int nHeight, unsigned int nStakeModifierCheck
     }
     return true;
 }
+bool initStakeInput(const CBlock block, std::unique_ptr<CStakeInput>& stake, int nPreviousBlockHeight) {
+    const CTransaction tx = block.vtx[1];
+    if (!tx.IsCoinStake())
+        return error("%s : called on non-coinstake %s", __func__, tx.GetHash().ToString().c_str());
+
+    // Kernel (input 0) must match the stake hash target per coin age (nBits)
+    const CTxIn& txin = tx.vin[0];
+
+    //Construct the stakeinput object
+    if (txin.IsZerocoinSpend()) {
+        libzerocoin::CoinSpend spend = TxInToZerocoinSpend(txin);
+        if (spend.getSpendType() != libzerocoin::SpendType::STAKE)
+            return error("%s : spend is using the wrong SpendType (%d)", __func__, (int)spend.getSpendType());
+
+        stake = std::unique_ptr<CStakeInput>(new CzdogecStake(spend));
+
+        if (!ContextualCheckZerocoinStake(nPreviousBlockHeight, stake.get()))
+            return error("%s : staked zPIV fails context checks", __func__);
+    } else {
+        // First try finding the previous transaction in database
+        uint256 hashBlock;
+        CTransaction txPrev;
+        if (!GetTransaction(txin.prevout.hash, txPrev, hashBlock, true))
+            return error("%s : INFO: read txPrev failed, tx id prev: %s, block id %s",
+                         __func__, txin.prevout.hash.GetHex(), block.GetHash().GetHex());
+
+        //verify signature and script
+        if (!VerifyScript(txin.scriptSig, txPrev.vout[txin.prevout.n].scriptPubKey, STANDARD_SCRIPT_VERIFY_FLAGS, TransactionSignatureChecker(&tx, 0)))
+            return error("%s : VerifySignature failed on coinstake %s", __func__, tx.GetHash().ToString().c_str());
+
+        CzdogecStake* pivInput = new CzdogecStake();
+        pivInput->SetInput(txPrev, txin.prevout.n);
+        stake = std::unique_ptr<CStakeInput>(pivInput);
+    }
+    return true;
+}
