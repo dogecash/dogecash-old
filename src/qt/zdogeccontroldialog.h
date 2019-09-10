@@ -1,13 +1,13 @@
-// Copyright (c) 2017-2018 The DogeCash developers
+// Copyright (c) 2017-2018 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef ZDOGECCONTROLDIALOG_H
-#define ZDOGECCONTROLDIALOG_H
+#ifndef ZPIVCONTROLDIALOG_H
+#define ZPIVCONTROLDIALOG_H
 
 #include <QDialog>
 #include <QTreeWidgetItem>
-#include "zdogec/zerocoin.h"
+#include "zpiv/zerocoin.h"
 #include "privacydialog.h"
 
 class CZerocoinMint;
@@ -64,4 +64,4 @@ private slots:
     void ButtonAllClicked();
 };
 
-#endif // ZDOGECCONTROLDIALOG_H
+#endif // ZPIVCONTROLDIALOG_H

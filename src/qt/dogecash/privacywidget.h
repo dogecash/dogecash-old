@@ -41,7 +41,7 @@ private slots:
     void onDenomClicked();
     void onRescanMintsClicked();
     void onResetZeroClicked();
-    void onTotalZpivClicked();
+    void onTotalZdogecClicked();
     void updateDisplayUnit();
     void showList();
     void onSendClicked();

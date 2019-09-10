@@ -134,7 +134,7 @@ PrivacyWidget::PrivacyWidget(DogeCashGUI* parent) :
     ui->btnResetZerocoin->setTitleClassAndText("btn-title-grey", "Reset Zerocoin");
     ui->btnResetZerocoin->setSubTitleClassAndText("text-subtitle", "Reset zerocoin database.");
 
-    connect(ui->btnTotalzDOGEC, SIGNAL(clicked()), this, SLOT(onTotalZpivClicked()));
+    connect(ui->btnTotalzDOGEC, SIGNAL(clicked()), this, SLOT(onTotalZdogecClicked()));
     connect(ui->btnCoinControl, SIGNAL(clicked()), this, SLOT(onCoinControlClicked()));
     connect(ui->btnDenomGeneration, SIGNAL(clicked()), this, SLOT(onDenomClicked()));
     connect(ui->btnRescanMints, SIGNAL(clicked()), this, SLOT(onRescanMintsClicked()));
@@ -215,7 +215,7 @@ void PrivacyWidget::showList(){
     ui->listView->setVisible(true);
 }
 
-void PrivacyWidget::onTotalZpivClicked(){
+void PrivacyWidget::onTotalZdogecClicked(){
     bool isVisible = ui->layoutDenom->isVisible();
     if(!isVisible){
         ui->layoutDenom->setVisible(true);
@@ -282,7 +282,7 @@ void PrivacyWidget::spend(CAmount value){
     bool mintChange = false;
     bool minimizeChange = false;
 
-    if(!walletModel->convertBackZpiv(
+    if(!walletModel->convertBackZdogec(
             value,
             selectedMints,
             mintChange,
