@@ -1519,8 +1519,8 @@ bool AppInit2()
                 // Recalculate money supply for blocks that are impacted by accounting issue after zerocoin activation
                 if (GetBoolArg("-reindexmoneysupply", false) || reindexZerocoin) {
                     if (chainHeight > Params().Zerocoin_StartHeight()) {
-                        RecalculateZDOGECMinted();
-                        RecalculateZDOGECSpent();
+                        RecalculatezdogecMinted();
+                        RecalculatezdogecSpent();
                     }
                     // Recalculate from the zerocoin activation or from scratch.
                     RecalculateDOGECSupply(reindexZerocoin ? Params().Zerocoin_StartHeight() : 1);
