@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
-// Copyright (c) 2017-2019 The DogeCash developers
+// Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,6 +9,7 @@
 #include "amount.h"
 
 #include <QAbstractListModel>
+#include <QSettings>
 
 QT_BEGIN_NAMESPACE
 class QNetworkProxy;
@@ -63,6 +64,7 @@ public:
     int rowCount(const QModelIndex& parent = QModelIndex()) const;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
     bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole);
+    void refreshDataView();
     /** Updates current unit in memory, settings and emits displayUnitChanged(newUnit) signal */
     void setDisplayUnit(const QVariant& value);
     /* Update StakeSplitThreshold's value in wallet */
@@ -81,6 +83,13 @@ public:
     void setRestartRequired(bool fRequired);
     bool isRestartRequired();
     bool resetSettings;
+
+    // Reset
+    void setMainDefaultOptions(QSettings& settings, bool reset = false);
+    void setWalletDefaultOptions(QSettings& settings, bool reset = false);
+    void setNetworkDefaultOptions(QSettings& settings, bool reset = false);
+    void setWindowDefaultOptions(QSettings& settings, bool reset = false);
+    void setDisplayDefaultOptions(QSettings& settings, bool reset = false);
 
 private:
     /* Qt-only settings */
@@ -104,7 +113,7 @@ signals:
     void zeromintAddressesChanged(bool);
     void zeromintPercentageChanged(int);
     void preferredDenomChanged(int);
-    void anonymizeDogeCashAmountChanged(int);
+    void anonymizePivxAmountChanged(int);
     void coinControlFeaturesChanged(bool);
     void hideZeroBalancesChanged(bool);
     void hideOrphansChanged(bool);
