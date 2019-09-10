@@ -29,8 +29,16 @@
 #include <boost/filesystem/path.hpp>
 #include <boost/thread/exceptions.hpp>
 #include <boost/thread/condition_variable.hpp> // for boost::thread_interrupted
-
-//dogecash only features
+// Debugging macros
+// Uncomment the following line to enable debugging messages
+// or enable on a per file basis prior to inclusion of util.h
+//#define ENABLE_DOGECASH_DEBUG
+#ifdef ENABLE_DOGECASH_DEBUG
+#define DBG( x ) x
+#else
+#define DBG( x )
+#endif
+//PIVX only features
 
 extern bool fMasterNode;
 extern bool fLiteMode;
@@ -141,6 +149,7 @@ boost::filesystem::path GetMasternodeConfigFile();
 boost::filesystem::path GetPidFile();
 void CreatePidFile(const boost::filesystem::path& path, pid_t pid);
 #endif
+void ClearDatadirCache();
 void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet, std::map<std::string, std::vector<std::string> >& mapMultiSettingsRet);
 #ifdef WIN32
 boost::filesystem::path GetSpecialFolderPath(int nFolder, bool fCreate = true);

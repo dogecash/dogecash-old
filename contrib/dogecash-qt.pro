@@ -119,7 +119,7 @@ HEADERS += src/activemasternode.h \
            src/tinyformat.h \
            src/txdb.h \
            src/txmempool.h \
-           src/ui_interface.h \
+           src/guiinterface.h \
            src/uint256.h \
            src/undo.h \
            src/util.h \
@@ -164,7 +164,6 @@ HEADERS += src/activemasternode.h \
            src/obj/build.h \
            src/primitives/block.h \
            src/primitives/transaction.h \
-            src/qt/macos_appnap.h \
            src/qt/addressbookpage.h \
            src/qt/addresstablemodel.h \
            src/qt/askpassphrasedialog.h \

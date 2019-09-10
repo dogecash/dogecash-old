@@ -20,7 +20,7 @@
 #include "masternodeman.h"
 #include "net.h"
 #include "netbase.h"
-#include "ui_interface.h"
+#include "guiinterface.h"
 #include "util.h"
 
 #include <stdint.h>

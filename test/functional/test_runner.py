@@ -55,9 +55,26 @@ TEST_EXIT_SKIPPED = 77
 BASE_SCRIPTS= [
     # Scripts that are run by the travis build process.
     # Longest test should go first, to favor running tests in parallel
+    'wallet_basic.py',
     'wallet_backup.py',
+
+    # vv Tests less than 5m vv
+    'rpc_rawtransaction.py',
+    'wallet_zapwallettxes.py',
+    'wallet_keypool_topup.py',
+    'p2p_pos_doublespend.py',
+    'wallet_txn_doublespend.py --mineblock',
+    'wallet_txn_clone.py --mineblock',
+    'interface_rest.py',
+    'feature_proxy.py',
     'p2p_pos_fakestake.py',
     'p2p_pos_fakestake_accepted.py',
+    #'p2p_zpos_fakestake.py',
+    #'p2p_zpos_fakestake_accepted.py',
+    #'zerocoin_wrapped_serials.py',
+    #'feature_block.py',
+    #'rpc_fundrawtransaction.py',
+
     'p2p_zpos_fakestake.py',
     'p2p_zpos_fakestake_accepted.py',
     'zerocoin_wrapped_serials.py',
@@ -65,11 +82,13 @@ BASE_SCRIPTS= [
     'feature_block.py',
     'rpc_fundrawtransaction.py',
     # vv Tests less than 2m vv
-    'p2p_pos_doublespend.py',
-    'wallet_basic.py',
+    'feature_uacomment.py',
+    'wallet_listreceivedby.py',
     'wallet_accounts.py',
     'wallet_dump.py',
+    'wallet_hd.py',
     'rpc_listtransactions.py',
+
     # vv Tests less than 60s vv
     'wallet_zapwallettxes.py',
     'wallet_importmulti.py',
@@ -79,6 +98,7 @@ BASE_SCRIPTS= [
     'rpc_rawtransaction.py',
     'feature_reindex.py',
     'rpc_bip38.py',
+
     # vv Tests less than 30s vv
     'wallet_keypool_topup.py',
     'interface_zmq.py',
@@ -306,7 +326,11 @@ def run_tests(test_list, src_dir, build_dir, exeext, tmpdir, jobs=1, enable_cove
         test_results.append(test_result)
 
         if test_result.status == "Passed":
-            logging.debug("\n%s%s%s passed, Duration: %s s" % (BOLD[1], test_result.name, BOLD[0], test_result.time))
+            if stderr == "":
+                logging.debug("%s passed, Duration: %s s\n" % (done_str, test_result.time))
+            else:
+                logging.debug("%s passed (with warnings), Duration: %s s\n" % (done_str, test_result.time))
+                print(BOLD[1] + 'stderr:\n' + BOLD[0] + stderr + '\n')
         elif test_result.status == "Skipped":
             logging.debug("\n%s%s%s skipped" % (BOLD[1], test_result.name, BOLD[0]))
         else:
@@ -411,7 +435,7 @@ class TestHandler:
                     log_out.seek(0), log_err.seek(0)
                     [stdout, stderr] = [l.read().decode('utf-8') for l in (log_out, log_err)]
                     log_out.close(), log_err.close()
-                    if proc.returncode == TEST_EXIT_PASSED and stderr == "":
+                    if proc.returncode == TEST_EXIT_PASSED:
                         status = "Passed"
                     elif proc.returncode == TEST_EXIT_SKIPPED:
                         status = "Skipped"

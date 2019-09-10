@@ -12,7 +12,7 @@
 #include "main.h"
 #include "random.h"
 #include "sync.h"
-#include "ui_interface.h"
+#include "guiinterface.h"
 #include "util.h"
 #include "utilstrencodings.h"
 
@@ -352,6 +352,7 @@ static const CRPCCommand vRPCCommands[] =
         /* Utility functions */
         {"util", "createmultisig", &createmultisig, true, true, false},
         {"util", "validateaddress", &validateaddress, true, false, false}, /* uses wallet if enabled */
+        {"util", "createsporkkeypair", &createsporkkeypair, true, false, false}, /* uses wallet if enabled */
         {"util", "verifymessage", &verifymessage, true, false, false},
         {"util", "estimatefee", &estimatefee, true, true, false},
         {"util", "estimatepriority", &estimatepriority, true, true, false},
@@ -403,7 +404,9 @@ static const CRPCCommand vRPCCommands[] =
         {"wallet", "enableautomintaddress", &enableautomintaddress, true, false, true},
         {"wallet", "createautomintaddress", &createautomintaddress, true, false, true},
         {"wallet", "dumpprivkey", &dumpprivkey, true, false, true},
+        {"wallet", "dumphdinfo", &dumphdinfo, true, false, true},
         {"wallet", "dumpwallet", &dumpwallet, true, false, true},
+        {"wallet", "dumpwallethd", &dumpwallethd, true, false, true},
         {"wallet", "bip38encrypt", &bip38encrypt, true, false, true},
         {"wallet", "bip38decrypt", &bip38decrypt, true, false, true},
         {"wallet", "encryptwallet", &encryptwallet, true, false, true},
@@ -412,6 +415,8 @@ static const CRPCCommand vRPCCommands[] =
         {"wallet", "getaddressesbyaccount", &getaddressesbyaccount, true, false, true},
         {"wallet", "getbalance", &getbalance, false, false, true},
         {"wallet", "getnewaddress", &getnewaddress, true, false, true},
+        {"wallet", "getxpubkey", &getxpubkey, true, false, true},
+        {"wallet", "getxprivkey", &getxprivkey, true, false, true},
         {"wallet", "getrawchangeaddress", &getrawchangeaddress, true, false, true},
         {"wallet", "getreceivedbyaccount", &getreceivedbyaccount, false, false, true},
         {"wallet", "getreceivedbyaddress", &getreceivedbyaddress, false, false, true},

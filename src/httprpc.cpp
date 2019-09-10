@@ -1,5 +1,5 @@
 // Copyright (c) 2015-2017 The Bitcoin Core developers
-// Copyright (c) 2017 The dogecash developers
+// Copyright (c) 2017 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,7 +14,7 @@
 #include "sync.h"
 #include "util.h"
 #include "utilstrencodings.h"
-#include "ui_interface.h"
+#include "guiinterface.h"
 
 #include <boost/algorithm/string.hpp> // boost::trim
 

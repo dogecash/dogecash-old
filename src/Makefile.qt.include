@@ -126,8 +126,8 @@ QT_MOC_CPP = \
 
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
-  qt/macnotificationhandler.mm \
-  qt/macos_appnap.mm
+  qt/macnotificationhandler.mm
+
 QT_MOC = \
   qt/dogecash.moc \
   qt/bitcoinamountfield.moc \
@@ -146,7 +146,6 @@ PROTOBUF_PROTO = qt/paymentrequest.proto
 
 BITCOIN_QT_H = \
   qt/addressbookpage.h \
-    qt/macos_appnap.h \
   qt/addresstablemodel.h \
   qt/askpassphrasedialog.h \
   qt/bantablemodel.h \

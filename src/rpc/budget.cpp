@@ -49,117 +49,48 @@ void budgetToJSON(CBudgetProposal* pbudgetProposal, UniValue& bObj)
     bObj.push_back(Pair("fValid", pbudgetProposal->fValid));
 }
 
-// This command is retained for backwards compatibility, but is depreciated.
-// Future removal of this command is planned to keep things clean.
-UniValue mnbudget(const UniValue& params, bool fHelp)
+void checkBudgetInputs(const UniValue& params, std::string &strProposalName, std::string &strURL,
+                       int &nPaymentCount, int &nBlockStart, CBitcoinAddress &address, CAmount &nAmount)
 {
-    string strCommand;
-    if (params.size() >= 1)
-        strCommand = params[0].get_str();
+    strProposalName = SanitizeString(params[0].get_str());
+    if (strProposalName.size() > 20)
+        throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid proposal name, limit of 20 characters.");
 
-    if (fHelp ||
-        (strCommand != "vote-alias" && strCommand != "vote-many" && strCommand != "prepare" && strCommand != "submit" && strCommand != "vote" && strCommand != "getvotes" && strCommand != "getinfo" && strCommand != "show" && strCommand != "projection" && strCommand != "check" && strCommand != "nextblock"))
-        throw runtime_error(
-            "mnbudget \"command\"... ( \"passphrase\" )\n"
-            "\nVote or show current budgets\n"
-            "This command is depreciated, please see individual command documentation for future reference\n\n"
+    strURL = SanitizeString(params[1].get_str());
+    if (strURL.size() > 64)
+        throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid url, limit of 64 characters.");
 
-            "\nAvailable commands:\n"
-            "  prepare            - Prepare proposal for network by signing and creating tx\n"
-            "  submit             - Submit proposal for network\n"
-            "  vote-many          - Vote on a dogecash initiative\n"
-            "  vote-alias         - Vote on a dogecash initiative\n"
-            "  vote               - Vote on a dogecash initiative/budget\n"
-            "  getvotes           - Show current masternode budgets\n"
-            "  getinfo            - Show current masternode budgets\n"
-            "  show               - Show all budgets\n"
-            "  projection         - Show the projection of which proposals will be paid the next cycle\n"
-            "  check              - Scan proposals and remove invalid\n"
-            "  nextblock          - Get next superblock for budget system\n");
+    nPaymentCount = params[2].get_int();
+    if (nPaymentCount < 1)
+        throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid payment count, must be more than zero.");
 
-    if (strCommand == "nextblock") {
-        UniValue newParams(UniValue::VARR);
-        // forward params but skip command
-        for (unsigned int i = 1; i < params.size(); i++) {
-            newParams.push_back(params[i]);
-        }
-        return getnextsuperblock(newParams, fHelp);
+    CBlockIndex* pindexPrev = chainActive.Tip();
+    if (!pindexPrev)
+        throw JSONRPCError(RPC_IN_WARMUP, "Try again after active chain is loaded");
+
+    // Start must be in the next budget cycle or later
+    const int budgetCycleBlocks = Params().GetBudgetCycleBlocks();
+    int pHeight = pindexPrev->nHeight;
+
+    int nBlockMin = pHeight - (pHeight % budgetCycleBlocks) + budgetCycleBlocks;
+
+    nBlockStart = params[3].get_int();
+    if ((nBlockStart < nBlockMin) || ((nBlockStart % budgetCycleBlocks) != 0)) {
+        throw JSONRPCError(RPC_INVALID_PARAMETER, strprintf("Invalid block start - must be a budget cycle block. Next valid block: %d", nBlockMin));
     }
 
-    if (strCommand == "prepare") {
-        UniValue newParams(UniValue::VARR);
-        // forward params but skip command
-        for (unsigned int i = 1; i < params.size(); i++) {
-            newParams.push_back(params[i]);
-        }
-        return preparebudget(newParams, fHelp);
-    }
+    address = params[4].get_str();
+    if (!address.IsValid())
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid dogecash address");
 
-    if (strCommand == "submit") {
-        UniValue newParams(UniValue::VARR);
-        // forward params but skip command
-        for (unsigned int i = 1; i < params.size(); i++) {
-            newParams.push_back(params[i]);
-        }
-        return submitbudget(newParams, fHelp);
-    }
-
-    if (strCommand == "vote" || strCommand == "vote-many" || strCommand == "vote-alias") {
-        if (strCommand == "vote-alias")
-            throw runtime_error(
-                "vote-alias is not supported with this command\n"
-                "Please use mnbudgetvote instead.\n"
-            );
-        return mnbudgetvote(params, fHelp);
-    }
-
-    if (strCommand == "projection") {
-        UniValue newParams(UniValue::VARR);
-        // forward params but skip command
-        for (unsigned int i = 1; i < params.size(); i++) {
-            newParams.push_back(params[i]);
-        }
-        return getbudgetprojection(newParams, fHelp);
-    }
-
-    if (strCommand == "show" || strCommand == "getinfo") {
-        UniValue newParams(UniValue::VARR);
-        // forward params but skip command
-        for (unsigned int i = 1; i < params.size(); i++) {
-            newParams.push_back(params[i]);
-        }
-        return getbudgetinfo(newParams, fHelp);
-    }
-
-    if (strCommand == "getvotes") {
-        UniValue newParams(UniValue::VARR);
-        // forward params but skip command
-        for (unsigned int i = 1; i < params.size(); i++) {
-            newParams.push_back(params[i]);
-        }
-        return getbudgetvotes(newParams, fHelp);
-    }
-
-    if (strCommand == "check") {
-        UniValue newParams(UniValue::VARR);
-        // forward params but skip command
-        for (unsigned int i = 1; i < params.size(); i++) {
-            newParams.push_back(params[i]);
-        }
-        return checkbudgets(newParams, fHelp);
-    }
-
-    return NullUniValue;
+    nAmount = AmountFromValue(params[5]);
 }
 
 UniValue preparebudget(const UniValue& params, bool fHelp)
 {
-    int nBlockMin = 0;
-    CBlockIndex* pindexPrev = chainActive.Tip();
-
     if (fHelp || params.size() != 6)
-        throw runtime_error(
-            "preparebudget \"proposal-name\" \"url\" payment-count block-start \"dogecash-address\" monthy-payment\n"
+        throw std::runtime_error(
+            "preparebudget \"proposal-name\" \"url\" payment-count block-start \"pivx-address\" monthy-payment\n"
             "\nPrepare proposal for network by signing and creating tx\n"
 
             "\nArguments:\n"
@@ -167,58 +98,35 @@ UniValue preparebudget(const UniValue& params, bool fHelp)
             "2. \"url\":            (string, required) URL of proposal details (64 character limit)\n"
             "3. payment-count:    (numeric, required) Total number of monthly payments\n"
             "4. block-start:      (numeric, required) Starting super block height\n"
-            "5. \"dogecash-address\":   (string, required) dogecash address to send payments to\n"
+            "5. \"pivx-address\":   (string, required) PIVX address to send payments to\n"
             "6. monthly-payment:  (numeric, required) Monthly payment amount\n"
 
             "\nResult:\n"
             "\"xxxx\"       (string) proposal fee hash (if successful) or error message (if failed)\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("preparebudget", "\"test-proposal\" \"https://forum.dogec.io/t/test-proposal\" 2 820800 \"D9oc6C3dttUbv8zd7zGNq1qKBGf4ZQ1XEE\" 500") +
-            HelpExampleRpc("preparebudget", "\"test-proposal\" \"https://forum.dogec.io/t/test-proposal\" 2 820800 \"D9oc6C3dttUbv8zd7zGNq1qKBGf4ZQ1XEE\" 500"));
+            HelpExampleCli("preparebudget", "\"test-proposal\" \"https://forum.pivx.org/t/test-proposal\" 2 820800 \"D9oc6C3dttUbv8zd7zGNq1qKBGf4ZQ1XEE\" 500") +
+            HelpExampleRpc("preparebudget", "\"test-proposal\" \"https://forum.pivx.org/t/test-proposal\" 2 820800 \"D9oc6C3dttUbv8zd7zGNq1qKBGf4ZQ1XEE\" 500"));
+
+    if (!pwalletMain) {
+        throw JSONRPCError(RPC_IN_WARMUP, "Try again after active chain is loaded");
+    }
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     EnsureWalletIsUnlocked();
 
-    std::string strProposalName = SanitizeString(params[0].get_str());
-    if (strProposalName.size() > 20)
-        throw runtime_error("Invalid proposal name, limit of 20 characters.");
+    std::string strProposalName;
+    std::string strURL;
+    int nPaymentCount;
+    int nBlockStart;
+    CBitcoinAddress address;
+    CAmount nAmount;
 
-    std::string strURL = SanitizeString(params[1].get_str());
-    if (strURL.size() > 64)
-        throw runtime_error("Invalid url, limit of 64 characters.");
+    checkBudgetInputs(params, strProposalName, strURL, nPaymentCount, nBlockStart, address, nAmount);
 
-    int nPaymentCount = params[2].get_int();
-    if (nPaymentCount < 1)
-        throw runtime_error("Invalid payment count, must be more than zero.");
-
-    // Start must be in the next budget cycle
-    if (pindexPrev != NULL) nBlockMin = pindexPrev->nHeight - pindexPrev->nHeight % Params().GetBudgetCycleBlocks() + Params().GetBudgetCycleBlocks();
-
-    int nBlockStart = params[3].get_int();
-    if (nBlockStart % Params().GetBudgetCycleBlocks() != 0) {
-        int nNext = pindexPrev->nHeight - pindexPrev->nHeight % Params().GetBudgetCycleBlocks() + Params().GetBudgetCycleBlocks();
-        throw runtime_error(strprintf("Invalid block start - must be a budget cycle block. Next valid block: %d", nNext));
-    }
-
-    int nBlockEnd = nBlockStart + Params().GetBudgetCycleBlocks() * nPaymentCount; // End must be AFTER current cycle
-
-    if (nBlockStart < nBlockMin)
-        throw runtime_error("Invalid block start, must be more than current height.");
-
-    if (nBlockEnd < pindexPrev->nHeight)
-        throw runtime_error("Invalid ending block, starting block + (payment_cycle*payments) must be more than current height.");
-
-    CBitcoinAddress address(params[4].get_str());
-    if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid dogecash address");
-
-    // Parse dogecash address
+    // Parse PIVX address
     CScript scriptPubKey = GetScriptForDestination(address.Get());
-    CAmount nAmount = AmountFromValue(params[5]);
-
-    //*************************************************************************
 
     // create transaction 15 minutes into the future, to allow for confirmation time
     CBudgetProposalBroadcast budgetProposalBroadcast(strProposalName, strURL, nPaymentCount, scriptPubKey, nAmount, nBlockStart, 0);
@@ -249,9 +157,6 @@ UniValue preparebudget(const UniValue& params, bool fHelp)
 
 UniValue submitbudget(const UniValue& params, bool fHelp)
 {
-    int nBlockMin = 0;
-    CBlockIndex* pindexPrev = chainActive.Tip();
-
     if (fHelp || params.size() != 7)
         throw runtime_error(
             "submitbudget \"proposal-name\" \"url\" payment-count block-start \"dogecash-address\" monthy-payment \"fee-tx\"\n"
@@ -273,45 +178,18 @@ UniValue submitbudget(const UniValue& params, bool fHelp)
             HelpExampleCli("submitbudget", "\"test-proposal\" \"https://forum.dogec.io/t/test-proposal\" 2 820800 \"D9oc6C3dttUbv8zd7zGNq1qKBGf4ZQ1XEE\" 500") +
             HelpExampleRpc("submitbudget", "\"test-proposal\" \"https://forum.dogec.io/t/test-proposal\" 2 820800 \"D9oc6C3dttUbv8zd7zGNq1qKBGf4ZQ1XEE\" 500"));
 
-    // Check these inputs the same way we check the vote commands:
-    // **********************************************************
+    std::string strProposalName;
+    std::string strURL;
+    int nPaymentCount;
+    int nBlockStart;
+    CBitcoinAddress address;
+    CAmount nAmount;
 
-    std::string strProposalName = SanitizeString(params[0].get_str());
-    if (strProposalName.size() > 20)
-        throw runtime_error("Invalid proposal name, limit of 20 characters.");
+    checkBudgetInputs(params, strProposalName, strURL, nPaymentCount, nBlockStart, address, nAmount);
 
-    std::string strURL = SanitizeString(params[1].get_str());
-    if (strURL.size() > 64)
-        throw runtime_error("Invalid url, limit of 64 characters.");
-
-    int nPaymentCount = params[2].get_int();
-    if (nPaymentCount < 1)
-        throw runtime_error("Invalid payment count, must be more than zero.");
-
-    // Start must be in the next budget cycle
-    if (pindexPrev != NULL) nBlockMin = pindexPrev->nHeight - pindexPrev->nHeight % Params().GetBudgetCycleBlocks() + Params().GetBudgetCycleBlocks();
-
-    int nBlockStart = params[3].get_int();
-    if (nBlockStart % Params().GetBudgetCycleBlocks() != 0) {
-        int nNext = pindexPrev->nHeight - pindexPrev->nHeight % Params().GetBudgetCycleBlocks() + Params().GetBudgetCycleBlocks();
-        throw runtime_error(strprintf("Invalid block start - must be a budget cycle block. Next valid block: %d", nNext));
-    }
-
-    int nBlockEnd = nBlockStart + (Params().GetBudgetCycleBlocks() * nPaymentCount); // End must be AFTER current cycle
-
-    if (nBlockStart < nBlockMin)
-        throw runtime_error("Invalid block start, must be more than current height.");
-
-    if (nBlockEnd < pindexPrev->nHeight)
-        throw runtime_error("Invalid ending block, starting block + (payment_cycle*payments) must be more than current height.");
-
-    CBitcoinAddress address(params[4].get_str());
-    if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid dogecash address");
-
-    // Parse dogecash address
+    // Parse PIVX address
     CScript scriptPubKey = GetScriptForDestination(address.Get());
-    CAmount nAmount = AmountFromValue(params[5]);
+
     uint256 hash = ParseHashV(params[6], "parameter 1");
 
     //create the proposal incase we're the first to make it

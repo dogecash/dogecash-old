@@ -28,7 +28,13 @@ void IncrementExtraNonce(CBlock* pblock, CBlockIndex* pindexPrev, unsigned int& 
 /** Check mined block */
 void UpdateTime(CBlockHeader* block, const CBlockIndex* pindexPrev);
 
-void BitcoinMiner(CWallet* pwallet, bool fProofOfStake);
+#ifdef ENABLE_WALLET
+    /** Run the miner threads */
+    void GenerateBitcoins(bool fGenerate, CWallet* pwallet, int nThreads);
+    /** Generate a new block, without valid proof-of-work */
+    CBlockTemplate* CreateNewBlockWithKey(CReserveKey& reservekey, CWallet* pwallet);
+    void ThreadStakeMinter();
+#endif // ENABLE_WALLET
 
 extern double dHashesPerSec;
 extern int64_t nHPSTimerStart;
