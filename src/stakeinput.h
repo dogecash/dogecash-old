@@ -76,6 +76,10 @@ class CDOGECStake : public CStakeInput
 private:
     CTransaction txFrom;
     unsigned int nPosition;
+    // cached data
+    uint64_t nStakeModifier = 0;
+    int nStakeModifierHeight = 0;
+    int64_t nStakeModifierTime = 0;
 public:
     CDOGECStake()
     {
