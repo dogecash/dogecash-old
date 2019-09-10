@@ -39,6 +39,9 @@ void OptionsModel::addOverriddenOption(const std::string& option)
 {
     strOverriddenByCommandLine += QString::fromStdString(option) + "=" + QString::fromStdString(mapArgs[option]) + " ";
 }
+void OptionsModel::refreshDataView(){
+    emit dataChanged(index(0), index(rowCount(QModelIndex()) - 1));
+}
 
 // Writes all missing QSettings with their default values
 void OptionsModel::Init()
