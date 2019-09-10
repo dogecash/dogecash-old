@@ -7,7 +7,7 @@
 
 #include <QDialog>
 #include <QTreeWidgetItem>
-#include "zpiv/zerocoin.h"
+#include "zdogec/zerocoin.h"
 #include "privacydialog.h"
 
 class CZerocoinMint;
