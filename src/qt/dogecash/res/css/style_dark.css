@@ -537,12 +537,13 @@ QPushButton[cssClass="btn-check-hd-enabled"] {
 }
 
 QPushButton[cssClass="btn-check-hd-disabled"] {
-    background-color:#507d6c4b;
     border-bottom:2px solid #9c7019;
     qproperty-icon: url("://ic-wallet-hd-disabled") off,
     url("://ic-wallet-hd-disabled") on ;
     qproperty-iconSize: 24px 24px;
-    color:white;
+    color:#B3FFFFFF;
+    background-color:#407d714b;
+    border-bottom:2px solid #7d644b;
     border-radius:2px;
 }
 
