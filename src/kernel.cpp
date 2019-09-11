@@ -154,7 +154,7 @@ uint256 ComputeStakeModifier(const CBlockIndex* pindexPrev, const uint256& kerne
     ss << kernel;
     int nModifierCheck = chainActive.Height();
     // switch with old modifier on upgrade block
-    if (nModifierCheck >= 150000 && pindexPrev->nStakeModifier)//Mrs-X suggestion hard block check
+    if (!Params().IsNewStakeProtocol(pindexPrev->nHeight + 1))//Mrs-X suggestion hard block check
         ss << pindexPrev->nStakeModifier;
     else
         ss << pindexPrev->nStakeModifierV2;
