@@ -357,9 +357,6 @@ void BitcoinApplication::createOptionsModel()
 // this will be used to get mnemonic words
 bool BitcoinApplication::setupMnemonicWords(std::vector<std::string>& wordlist) {
     namespace fs = boost::filesystem;
-    if (GetBoolArg("-disablewallet", DEFAULT_DISABLE_WALLET)) {
-        LogPrintf("Wallet disabled!\n");
-    }
 
     std::string walletFile = GetArg("-wallet", "wallet.dat");
     if (fs::exists(walletFile)) return true;
