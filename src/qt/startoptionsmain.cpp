@@ -26,7 +26,7 @@ StartOptionsMain::StartOptionsMain(QWidget *parent)
     ui->setupUi(this);
     this->setStyleSheet(GUIUtil::loadStyleSheet());
 
-    this->setWindowTitle("Phore Wallet Setup");
+    this->setWindowTitle("DogeCash Wallet Setup");
 
 
     wordsList = CMnemonic::getListOfAllWordInLanguage();
