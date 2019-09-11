@@ -12,6 +12,7 @@
 #include <boost/test/unit_test.hpp>
 #include "test/test_dogecash.h"
 #include <univalue.h>
+#include <string>
 #include <vector>
 
 // In script_tests.cpp
