@@ -334,7 +334,7 @@
                       </size>
                      </property>
                      <property name="text">
-                      <string>9) What is a Master Node?</string>
+                      <string>9) What is a Masternode?</string>
                      </property>
                      <property name="checkable">
                       <bool>true</bool>
@@ -353,7 +353,7 @@
                       </size>
                      </property>
                      <property name="text">
-                      <string>10) What is a Master Node Controller?</string>
+                      <string>10) What is a Masternode Controller?</string>
                      </property>
                      <property name="checkable">
                       <bool>true</bool>
@@ -1383,7 +1383,7 @@
                       <item>
                        <widget class="QLabel" name="labelSubtitle9">
                         <property name="text">
-                         <string>What is a Master Node?</string>
+                         <string>What is a Masternode?</string>
                         </property>
                         <property name="wordWrap">
                          <bool>true</bool>
@@ -1514,7 +1514,7 @@
                       <item>
                        <widget class="QLabel" name="labelSubtitle10">
                         <property name="text">
-                         <string>What is a Master Node Controller?</string>
+                         <string>What is a Masternode Controller?</string>
                         </property>
                         <property name="wordWrap">
                          <bool>true</bool>
