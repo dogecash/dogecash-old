@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE(bip39_vectors)
 
         std::vector<std::string> m = CMnemonic::FromData(data, data.size());
         std::string strMnemonic = test[1].get_str();
-        SecureString mnemonic(strMnemonic.begin(), strMnemonic.end());
+        std::vector<std::string> mnemonic(strMnemonic.begin(), strMnemonic.end());
 
         // printf("%s\n%s\n", m.c_str(), mnemonic.c_str());
         BOOST_CHECK(m == mnemonic);
