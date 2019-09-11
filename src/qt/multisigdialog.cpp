@@ -416,7 +416,7 @@ bool MultisigDialog::createMultisigTransaction(std::vector<CTxIn> vUserIn, std::
         }
 
         if(totalIn < totalOut){
-            throw std::runtime_error("Not enough PIV provided as input to complete transaction (including fee).");
+            throw std::runtime_error("Not enough DOGEC provided as input to complete transaction (including fee).");
         }
 
         //calculate change amount
@@ -481,7 +481,7 @@ bool MultisigDialog::createMultisigTransaction(std::vector<CTxIn> vUserIn, std::
             tx.vout.at(changeIndex).nValue -= fee;
             feeStringRet = strprintf("%d",((double)fee)/COIN).c_str();
         }else{
-            throw std::runtime_error("Not enough PIV provided to cover fee");
+            throw std::runtime_error("Not enough DOGEC provided to cover fee");
         }
 
         //clear junk from script sigs
