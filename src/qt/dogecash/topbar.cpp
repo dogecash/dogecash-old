@@ -111,7 +111,7 @@ TopBar::TopBar(DogeCashGUI* _mainWindow, QWidget *parent) :
     connect(ui->pushButtonTheme, SIGNAL(Mouse_Pressed()), this, SLOT(onThemeClicked()));
     connect(ui->pushButtonFAQ, SIGNAL(Mouse_Pressed()), _mainWindow, SLOT(openFAQ()));
     // Connect HD enabled state signal
-    connect(this, SIGNAL(hdEnabledStatusChanged(bool)), gui, SLOT(setHDStatus(bool)));
+    connect(this, SIGNAL(hdEnabledStatusChanged(bool)), ui, SLOT(setHDStatus(bool)));
 }
 
 void TopBar::onThemeClicked(){
