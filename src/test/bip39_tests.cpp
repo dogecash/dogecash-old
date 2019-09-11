@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE(bip39_vectors)
         std::vector<uint8_t> vData = ParseHex(test[0].get_str());
         SecureVector data(vData.begin(), vData.end());
 
-        SecureString m = CMnemonic::FromData(data, data.size());
+        SecureString m = CMnemonic::FromDataS(data, data.size());
         std::string strMnemonic = test[1].get_str();
         SecureString mnemonic(strMnemonic.begin(), strMnemonic.end());
 

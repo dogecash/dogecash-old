@@ -72,8 +72,8 @@ std::vector<std::string> CMnemonic::FromData(const SecureVector& data, int len)
     return mnemonic;
 }
 
-// SecureString CMnemonic::FromData(const uint8_t *data, int len)
-SecureString CMnemonic::FromData(const SecureVector& data, int len)
+// SecureString CMnemonic::FromDataS(const uint8_t *data, int len)
+SecureString CMnemonic::FromDataS(const SecureVector& data, int len)
 {
     if (len % 4 || len < 16 || len > 32) {
         return SecureString();

@@ -31,7 +31,7 @@ class CMnemonic
 public:
     static std::vector<std::string> Generate(int strength);    // strength in bits
     static std::vector<std::string> FromData(const SecureVector& data, int len);
-    static SecureString FromData(const SecureVector& data, int len);
+    static SecureString FromDataS(const SecureVector& data, int len);
     static std::vector<std::string> getListOfAllWordInLanguage();
     static bool Check(std::string mnemonic);
     static bool Check(SecureString mnemonic);
