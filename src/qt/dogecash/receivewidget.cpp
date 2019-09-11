@@ -180,7 +180,7 @@ void ReceiveWidget::updateQr(QString address){
     ui->labelQrImg->setText("");
 
     QString error;
-    QColor qrColor("#382d4d");
+    QColor qrColor("#4d442d");
     QPixmap pixmap = encodeToQr(uri, error, qrColor);
     if(!pixmap.isNull()){
         qrImage = &pixmap;
