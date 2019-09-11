@@ -29,6 +29,8 @@
 #include "crypto/sha256.h"
 #include "random.h"
 
+#include <boost/algorithm/string.hpp>
+
 #include <openssl/evp.h>
 
 std::vector<std::string> CMnemonic::Generate(int strength)
@@ -78,6 +80,19 @@ std::vector<std::string> CMnemonic::getListOfAllWordInLanguage() {
         words.push_back(wordlist[i]);
     }
     return words;
+}
+
+bool CMnemonic::Check(std::vector<std::string> mnemonic)
+{
+    std::string m = "";
+    for(unsigned long i=0; i< mnemonic.size(); i++) {
+        if (seedphrase.empty())
+            seedphrase = mnemonic[i];
+        else
+            seedphrase += " " + mnemonic[i];
+    }
+    boost::trim_right(m);
+    return CMnemonic::Check(m);
 }
 
 bool CMnemonic::Check(std::string mnemonic)

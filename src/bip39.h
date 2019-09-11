@@ -33,6 +33,7 @@ public:
     static std::vector<std::string> FromData(const SecureVector& data, int len);
     static std::vector<std::string> getListOfAllWordInLanguage();
     static bool Check(std::string mnemonic);
+    static bool Check(std::vector<std::string> mnemonic);
     static bool Check(SecureString mnemonic);
     // passphrase must be at most 256 characters or code may crash
     static void ToSeed(SecureString mnemonic, SecureString passphrase, SecureVector& seedRet);
