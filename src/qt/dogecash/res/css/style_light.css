@@ -522,7 +522,7 @@ QPushButton[cssClass="btn-check-status-staking"] {
 
 QPushButton[cssClass="btn-check-text"] {
     color:#7f7c87;
-    background-color:#372A4C;
+    background-color:#4c422a;
     font-size:18px;
     border-bottom:2px solid #7d644b;
 }
@@ -671,7 +671,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-staking"]:hover {
 
 
 *[cssClass="top-sub-menu"] {
-    background-color:#4C425F;
+    background-color:#5f5042;
 }
 
 
@@ -1101,7 +1101,7 @@ QPushButton[cssClass="btn-check"]:checked {
 
 QPushButton[cssClass="btn-check"]:checked:hover {
     border:  1px solid #7d644b;
-    background-color:#44375f;
+    background-color:#5f4f37;
     font-size:18px;
     padding:4px;
     color: #FFFFFF;
@@ -1109,8 +1109,8 @@ QPushButton[cssClass="btn-check"]:checked:hover {
 }
 
 QPushButton[cssClass="btn-check"]:checked:pressed {
-    border:  1px solid #44375f;
-    background-color:#44375f;
+    border:  1px solid #5f4f37;
+    background-color:#5f4f37;
     font-size:18px;
     padding:4px 10px;
     color: #9c7019;
@@ -1139,7 +1139,7 @@ QPushButton[cssClass="btn-primary"] {
 
 QPushButton[cssClass="btn-primary"]:hover {
     border:  1px solid #7d644b;
-    background-color:#44375f;
+    background-color:#5f4f37;
     font-size:18px;
     padding:4px 10px;
     color: #FFFFFF;
@@ -1147,8 +1147,8 @@ QPushButton[cssClass="btn-primary"]:hover {
 }
 
 QPushButton[cssClass="btn-primary"]:pressed {
-    border:  1px solid #44375f;
-    background-color:#44375f;
+    border:  1px solid #5f4f37;
+    background-color:#5f4f37;
     font-size:18px;
     padding:4px 10px;
     color: #9c7019;
@@ -1478,7 +1478,7 @@ QPushButton[cssClass="btn-text-primary"] {
 
 
 QPushButton[cssClass="btn-text-primary"]:hover {
-    color: #44375f;
+    color: #5f4f37;
 }
 
 QPushButton[cssClass="btn-text-primary"]:pressed {
@@ -1762,7 +1762,7 @@ QPushButton[cssClass="btn-check-time"]:checked {
 }
 
 QPushButton[cssClass="btn-check-time"]:hover {
-    background-color:#44375f;
+    background-color:#5f4f37;
     border-radius:2px;
     font-size:14px;
     padding:4px;
@@ -3020,7 +3020,7 @@ QPushButton[cssClass="btn-dots-welcome"] {
 
 QPushButton[cssClass="btn-dots-welcome"]:hover {
     border:  1px solid #9c7019;
-    background-color:#44375f;
+    background-color:#5f4f37;
     font-size:18px;
     padding:8px;
     color: #FFFFFF;
@@ -3029,7 +3029,7 @@ QPushButton[cssClass="btn-dots-welcome"]:hover {
 
 QPushButton[cssClass="btn-dots-welcome"]:pressed {
     border:  1px solid #9c7019;
-    background-color:#44375f;
+    background-color:#5f4f37;
     font-size:18px;
     padding:8px;
     color: #9c7019;
