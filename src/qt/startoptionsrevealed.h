@@ -2,13 +2,26 @@
 // Created by Kolby on 9/4/2019.
 //
 
-#ifndef DOGEC_STARTOPTIONSREVEALED_H
-#define DOGEC_STARTOPTIONSREVEALED_H
+#include <QLabel>
+#include <QWidget>
+#include "bip39.h"
+
+namespace Ui {
+    class StartOptionsRevealed;
+}
+
+/** Dialog to ask for passphrases. Used for encryption only
+ */
+class StartOptionsRevealed : public QWidget {
+    Q_OBJECT
+
+public:
+    explicit StartOptionsRevealed(std::vector<std::string>& Words, int rows, QWidget *parent = nullptr);
+    ~StartOptionsRevealed();
 
 
-class startoptionsrevealed {
+private:
+    Ui::StartOptionsRevealed *ui;
+    std::list<QLabel*> labelsList;
 
 };
-
-
-#endif //DOGEC_STARTOPTIONSREVEALED_H

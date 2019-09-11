@@ -2,26 +2,32 @@
 // Created by Kolby on 9/4/2019.
 //
 
-#include <QLabel>
+#include <QLineEdit>
 #include <QWidget>
-#include "bip39.h"
+#include <list>
+#include <QString>
 
 namespace Ui {
-    class StartOptionsRevealed;
+    class StartOptionsRestore;
 }
 
 /** Dialog to ask for passphrases. Used for encryption only
  */
-class StartOptionsRevealed : public QWidget {
+class StartOptionsRestore : public QWidget {
     Q_OBJECT
 
 public:
-    explicit StartOptionsRevealed(std::vector<std::string>& Words, int rows, QWidget *parent = nullptr);
-    ~StartOptionsRevealed();
+    explicit StartOptionsRestore(QStringList wordList, int rows, QWidget *parent = nullptr);
+    ~StartOptionsRestore();
+    std::vector<std::string> getOrderedStrings();
 
+private Q_SLOTS:
+            void textChanged(const QString &text);
 
 private:
-    Ui::StartOptionsRevealed *ui;
-    std::list<QLabel*> labelsList;
+    Ui::StartOptionsRestore *ui;
+    std::list<QLineEdit*> editList;
+
+    QStringList wordList;
 
 };
