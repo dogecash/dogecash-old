@@ -532,7 +532,7 @@ QPushButton[cssClass="btn-check-hd-enabled"] {
     border-bottom:2px solid #9c7019;
     qproperty-icon: url("://ic-wallet-hd-enabled") off,
     url("://ic-wallet-hd-enabled") on ;
-    qproperty-iconSize: 24px 24px;
+    qproperty-iconSize: 24px 14px;
     color:white;
     border-radius:2px;
 }
@@ -542,7 +542,7 @@ QPushButton[cssClass="btn-check-hd-disabled"] {
     border-bottom:2px solid #9c7019;
     qproperty-icon: url("://ic-wallet-hd-disabled") off,
     url("://ic-wallet-hd-disabled") on ;
-    qproperty-iconSize: 24px 24px;
+    qproperty-iconSize: 24px 14px;
     color:white;
     border-radius:2px;
 }
