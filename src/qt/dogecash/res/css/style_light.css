@@ -1515,7 +1515,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="edit-primary-disabled"] {
     border:  1px solid #33ffffff;
-    background-color:#16160b;
+    background-color:#16110b;
     font-size:18px;
     border-radius: 2px;
     padding:8px;
@@ -2511,7 +2511,7 @@ QPushButton[cssClass="btn-faq-options"]:checked {
 
 #scrollAreaFaq QScrollBar:vertical {
     border: 0px solid #bababa;
-    background:#16160b;
+    background:#16110b;
     width:4px;
     margin: 0px 0px 0px 0px;
 }
@@ -2523,14 +2523,14 @@ QPushButton[cssClass="btn-faq-options"]:checked {
 }
 
 #scrollAreaFaq QScrollBar::add-line:vertical {
-    background: #16160b;
+    background: #16110b;
     height: 0px;
     subcontrol-position: bottom;
     subcontrol-origin: margin;
 }
 
 #scrollAreaFaq QScrollBar::sub-line:vertical {
-    background: #16160b;
+    background: #16110b;
     height: 0 px;
     subcontrol-position: top;
     subcontrol-origin: margin;
