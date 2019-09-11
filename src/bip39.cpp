@@ -72,6 +72,41 @@ std::vector<std::string> CMnemonic::FromData(const SecureVector& data, int len)
     return mnemonic;
 }
 
+// SecureString CMnemonic::FromData(const uint8_t *data, int len)
+SecureString CMnemonic::FromData(const SecureVector& data, int len)
+{
+    if (len % 4 || len < 16 || len > 32) {
+        return SecureString();
+    }
+
+    SecureVector checksum(32);
+    CSHA256().Write(&data[0], len).Finalize(&checksum[0]);
+
+    // data
+    SecureVector bits(len);
+    memcpy(&bits[0], &data[0], len);
+    // checksum
+    bits.push_back(checksum[0]);
+
+    int mlen = len * 3 / 4;
+    SecureString mnemonic;
+
+    int i, j, idx;
+    for (i = 0; i < mlen; i++) {
+        idx = 0;
+        for (j = 0; j < 11; j++) {
+            idx <<= 1;
+            idx += (bits[(i * 11 + j) / 8] & (1 << (7 - ((i * 11 + j) % 8)))) > 0;
+        }
+        mnemonic.append(wordlist[idx]);
+        if (i < mlen - 1) {
+            mnemonic += ' ';
+        }
+    }
+
+    return mnemonic;
+}
+
 std::vector<std::string> CMnemonic::getListOfAllWordInLanguage() {
 
     std::vector<std::string> words;
@@ -80,19 +115,6 @@ std::vector<std::string> CMnemonic::getListOfAllWordInLanguage() {
         words.push_back(wordlist[i]);
     }
     return words;
-}
-
-bool CMnemonic::Check(std::vector<std::string> mnemonic)
-{
-    std::string m = "";
-    for(unsigned long i=0; i< mnemonic.size(); i++) {
-        if (m.empty())
-            m = mnemonic[i];
-        else
-            m += " " + mnemonic[i];
-    }
-    boost::trim_right(m);
-    return CMnemonic::Check(m);
 }
 
 bool CMnemonic::Check(std::string mnemonic)

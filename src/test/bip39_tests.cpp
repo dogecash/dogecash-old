@@ -38,10 +38,9 @@ BOOST_AUTO_TEST_CASE(bip39_vectors)
         std::vector<uint8_t> vData = ParseHex(test[0].get_str());
         SecureVector data(vData.begin(), vData.end());
 
-        std::vector<std::string> m = CMnemonic::FromData(data, data.size());
+        SecureString m = CMnemonic::FromData(data, data.size());
         std::string strMnemonic = test[1].get_str();
-        std::vector<std::string> mnemonic(strMnemonic.begin(), strMnemonic.end());
-        SecureString mnemonic2(strMnemonic.begin(), strMnemonic.end());
+        SecureString mnemonic(strMnemonic.begin(), strMnemonic.end());
 
         // printf("%s\n%s\n", m.c_str(), mnemonic.c_str());
         BOOST_CHECK(m == mnemonic);
@@ -49,7 +48,7 @@ BOOST_AUTO_TEST_CASE(bip39_vectors)
 
         SecureVector seed;
         SecureString passphrase("TREZOR");
-        CMnemonic::ToSeed(mnemonic2, passphrase, seed);
+        CMnemonic::ToSeed(mnemonic, passphrase, seed);
         // printf("seed: %s\n", HexStr(std::string(seed.begin(), seed.end())).c_str());
         BOOST_CHECK(HexStr(std::string(seed.begin(), seed.end())) == test[2].get_str());
 
