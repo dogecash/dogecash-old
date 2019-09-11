@@ -96,15 +96,15 @@ ReceiveWidget::ReceiveWidget(DogeCashGUI* parent) :
 
     ui->pushButtonLabel->setText(tr("Add Label"));
     ui->pushButtonLabel->setLayoutDirection(Qt::RightToLeft);
-    setCssProperty(ui->pushButtonLabel, "btn-secundary-label");
+    setCssProperty(ui->pushButtonLabel, "btn-secondary-label");
 
     ui->pushButtonNewAddress->setText(tr("Generate Address"));
     ui->pushButtonNewAddress->setLayoutDirection(Qt::RightToLeft);
-    setCssProperty(ui->pushButtonNewAddress, "btn-secundary-new-address");
+    setCssProperty(ui->pushButtonNewAddress, "btn-secondary-new-address");
 
     ui->pushButtonCopy->setText(tr("Copy"));
     ui->pushButtonCopy->setLayoutDirection(Qt::RightToLeft);
-    setCssProperty(ui->pushButtonCopy, "btn-secundary-copy");
+    setCssProperty(ui->pushButtonCopy, "btn-secondary-copy");
 
     // List Addresses
     setCssProperty(ui->listViewAddress, "container");

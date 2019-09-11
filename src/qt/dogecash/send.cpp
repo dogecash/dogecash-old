@@ -72,10 +72,10 @@ SendWidget::SendWidget(DogeCashGUI* parent) :
     setCssBtnSecondary(ui->pushButtonFee);
 
     ui->pushButtonClear->setText(tr("Clear all"));
-    setCssProperty(ui->pushButtonClear, "btn-secundary-clear");
+    setCssProperty(ui->pushButtonClear, "btn-secondary-clear");
 
     ui->pushButtonAddRecipient->setText(tr("Add recipient"));
-    setCssProperty(ui->pushButtonAddRecipient, "btn-secundary-add");
+    setCssProperty(ui->pushButtonAddRecipient, "btn-secondary-add");
 
     setCssBtnPrimary(ui->pushButtonSave);
     ui->pushButtonReset->setText(tr("Reset to default"));

@@ -214,7 +214,7 @@ void setCssBtnPrimary(QPushButton *btn, bool forceUpdate){
 }
 
 void setCssBtnSecondary(QPushButton *btn, bool forceUpdate){
-    setCssProperty(btn, "btn-secundary", forceUpdate);
+    setCssProperty(btn, "btn-secondary", forceUpdate);
 }
 
 void setCssTextBodyDialog(std::initializer_list<QWidget*> args){
