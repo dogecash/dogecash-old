@@ -527,6 +527,26 @@ QPushButton[cssClass="btn-check-text"] {
     border-bottom:2px solid #7d644b;
 }
 
+QPushButton[cssClass="btn-check-hd-enabled"] {
+    background-color:#507d6c4b;
+    border-bottom:2px solid #9c7019;
+    qproperty-icon: url("://ic-wallet-hd-enabled") off,
+    url("://ic-wallet-hd-enabled") on ;
+    qproperty-iconSize: 24px 24px;
+    color:white;
+    border-radius:2px;
+}
+
+QPushButton[cssClass="btn-check-hd-disabled"] {
+    background-color:#507d6c4b;
+    border-bottom:2px solid #9c7019;
+    qproperty-icon: url("://ic-wallet-hd-disabled") off,
+    url("://ic-wallet-hd-disabled") on ;
+    qproperty-iconSize: 24px 24px;
+    color:white;
+    border-radius:2px;
+}
+
 QPushButton[cssClass="btn-check-text"]:checked {
     color:#FFFFFF;
     background-color:#7d644b;

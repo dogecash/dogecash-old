@@ -49,7 +49,8 @@ public slots:
 signals:
     void themeChanged(bool isLight);
     void walletSynced(bool isSync);
-
+    /** HD-Enabled status of wallet changed (only possible during startup) */
+    void hdEnabledStatusChanged(bool hdEnabled);
 protected:
     void resizeEvent(QResizeEvent *event) override;
 private slots:
@@ -60,6 +61,7 @@ private slots:
     void lockDropdownClicked(const StateClicked&);
     void refreshStatus();
     void openLockUnlock();
+    void setHDStatus(bool hdEnabled);
 private:
     Ui::TopBar *ui;
     LockUnlock *lockUnlockWidget = nullptr;
