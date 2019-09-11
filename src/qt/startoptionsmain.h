@@ -12,7 +12,7 @@
 #include <startoptionsrestore.h>
 
 
-#include "wallet/bip39.h"
+#include "bip39.h"
 
 
 class WalletModel;

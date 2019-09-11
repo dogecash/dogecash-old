@@ -2,9 +2,9 @@
 // Created by Kolby on 9/4/2019.
 //
 
-##include <QLabel>
+#include <QLabel>
 #include <QWidget>
-#include "wallet/bip39.h"
+#include "bip39.h"
 
 namespace Ui {
     class StartOptionsRevealed;

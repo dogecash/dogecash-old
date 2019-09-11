@@ -12,7 +12,7 @@
 #include "random.h"
 
 #include <guiinterface.h>
-#include "wallet/bip39.h"
+#include "bip39.h"
 
 #include <boost/algorithm/string.hpp>
 
