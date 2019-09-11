@@ -33,9 +33,8 @@
 
 std::vector<std::string> CMnemonic::Generate(int strength)
 {
-    if (strength % 32 || strength < 128 || strength > 256) {
-        return SecureString();
-    }
+    assert(strength == 128 || strength == 256);
+
     SecureVector data(32);
     GetRandBytes(&data[0], 32);
     std::vector<std::string> mnemonic = FromData(data, strength / 8);
