@@ -101,12 +101,17 @@ TopBar::TopBar(DogeCashGUI* _mainWindow, QWidget *parent) :
     ui->pushButtonLock->setButtonText("Wallet Locked  ");
     ui->pushButtonLock->setButtonClassStyle("cssClass", "btn-check-status-lock");
 
+    ui->pushButtonHD->setButtonText("HD Enabled  ");
+    ui->pushButtonHD->setButtonClassStyle("cssClass", "btn-check-hd-enabled");
+
 
     connect(ui->pushButtonQR, SIGNAL(clicked()), this, SLOT(onBtnReceiveClicked()));
     connect(ui->btnQr, SIGNAL(clicked()), this, SLOT(onBtnReceiveClicked()));
     connect(ui->pushButtonLock, SIGNAL(Mouse_Pressed()), this, SLOT(onBtnLockClicked()));
     connect(ui->pushButtonTheme, SIGNAL(Mouse_Pressed()), this, SLOT(onThemeClicked()));
     connect(ui->pushButtonFAQ, SIGNAL(Mouse_Pressed()), _mainWindow, SLOT(openFAQ()));
+    // Connect HD enabled state signal
+    connect(this, SIGNAL(hdEnabledStatusChanged(bool)), gui, SLOT(setHDStatus(bool)));
 }
 
 void TopBar::onThemeClicked(){
@@ -434,13 +439,23 @@ void TopBar::loadWalletModel(){
             SLOT(updateBalances(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)));
     connect(walletModel->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
     connect(walletModel, &WalletModel::encryptionStatusChanged, this, &TopBar::refreshStatus);
-
+    Q_EMIT hdEnabledStatusChanged(walletModel->hdEnabled());
     // update the display unit, to not use the default ("DogeCash")
     updateDisplayUnit();
 
     refreshStatus();
 }
-
+void TopBar::setHDStatus(bool hdEnabled)
+{
+    if(hdEnabled){
+    ui->pushButtonHD->setButtonText("HD Enabled  ");
+    ui->pushButtonHD->setButtonClassStyle("cssClass", "btn-check-hd-enabled");
+    }
+    else{
+    ui->pushButtonHD->setButtonText("HD Disabled  ");
+    ui->pushButtonHD->setButtonClassStyle("cssClass", "btn-check-hd-disabled");
+    }
+}
 void TopBar::refreshStatus(){
     // Check lock status
     if (!this->walletModel)
