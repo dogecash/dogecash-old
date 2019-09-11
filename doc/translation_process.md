@@ -110,6 +110,6 @@ To create a new language template, you will need to edit the languages manifest 
 **Note:** that the language translation file **must end in `.qm`** (the compiled extension), and not `.ts`.
 
 ### Questions and general assistance
-The DogeCash Core translation maintainers include *Fuzzbawls*. You can find them, and others, in the [DogeCash Discord](https://discord.dogecash.org).
+The DogeCash Core translation maintainers include *Fuzzbawls*. You can find them, and others, in the [DogeCash Discord](https://discord.dogec.io).
 
 Announcements will be posted during application pre-releases to notify translators to check for updates.
