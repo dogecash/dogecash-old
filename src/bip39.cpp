@@ -86,10 +86,10 @@ bool CMnemonic::Check(std::vector<std::string> mnemonic)
 {
     std::string m = "";
     for(unsigned long i=0; i< mnemonic.size(); i++) {
-        if (seedphrase.empty())
-            seedphrase = mnemonic[i];
+        if (m.empty())
+            m = mnemonic[i];
         else
-            seedphrase += " " + mnemonic[i];
+            m += " " + mnemonic[i];
     }
     boost::trim_right(m);
     return CMnemonic::Check(m);
