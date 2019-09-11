@@ -17,7 +17,7 @@ MnInfoDialog::MnInfoDialog(QWidget *parent) :
     ui->setupUi(this);
     this->setStyleSheet(parent->styleSheet());
     setCssProperty(ui->frame, "container-dialog");
-    ui->labelTitle->setText(tr("Master Node Information"));
+    ui->labelTitle->setText(tr("Masternode Information"));
     setCssProperty(ui->labelTitle, "text-title-dialog");
     setCssTextBodyDialog({ui->labelAmount, ui->labelSend, ui->labelInputs, ui->labelFee, ui->labelId});
     setCssProperty({ui->labelDivider1, ui->labelDivider4, ui->labelDivider6, ui->labelDivider7, ui->labelDivider8, ui->labelDivider9}, "container-divider");
@@ -25,7 +25,7 @@ MnInfoDialog::MnInfoDialog(QWidget *parent) :
     setCssProperty({ui->pushCopy, ui->pushCopyId, ui->pushExport}, "ic-copy-big");
     setCssProperty(ui->btnEsc, "ic-close");
     connect(ui->btnEsc, SIGNAL(clicked()), this, SLOT(closeDialog()));
-    connect(ui->pushCopy, &QPushButton::clicked, [this](){ copyInform(txId, "Master Node public key copied"); });
+    connect(ui->pushCopy, &QPushButton::clicked, [this](){ copyInform(txId, "Masternode public key copied"); });
     connect(ui->pushCopyId, &QPushButton::clicked, [this](){ copyInform(pubKey, "Collateral tx id copied"); });
     connect(ui->pushExport, &QPushButton::clicked, [this](){ exportMN = true; accept(); });
 }
