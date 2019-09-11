@@ -614,7 +614,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-unlocked"] {
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-unlocked"]:checked {
-    background-color:#50b088ff;
+    background-color:#50ffcd88;
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-unlocked"]:hover {
@@ -634,7 +634,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-locked"] {
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-locked"]:checked {
-    background-color:#50b088ff;
+    background-color:#50ffcd88;
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-locked"]:hover {
@@ -655,7 +655,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-staking"] {
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-staking"]:checked {
-    background-color:#50b088ff;
+    background-color:#50ffcd88;
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-staking"]:hover {
@@ -998,7 +998,7 @@ QPushButton[cssClass="btn-check-right"]:hover {
 
 QPushButton[cssClass="btn-check-right"]:pressed {
     border:  1px solid #7d644b;
-    background-color:#4Db088ff;
+    background-color:#4Dffcd88;
     font-size:18px;
     color: #707070;
     border-top-right-radius:2px;
@@ -1057,7 +1057,7 @@ QPushButton[cssClass="btn-check-left"]:hover {
 
 QPushButton[cssClass="btn-check-left"]:pressed {
     border:  1px solid #7d644b;
-    background-color:#4Db088ff;
+    background-color:#4Dffcd88;
     font-size:18px;
     color: #707070;
     border-top-left-radius:2px;
@@ -1182,7 +1182,7 @@ QPushButton[cssClass="btn-secondary"]:hover {
 
 QPushButton[cssClass="btn-secondary"]:pressed {
     border:  1px solid #9c7019;
-    background-color:#4Db088ff;
+    background-color:#4Dffcd88;
     font-size:18px;
     padding:4px 10px;
     color: #9c7019;
@@ -1361,7 +1361,7 @@ QPushButton[cssClass="btn-secondary-clear"]:hover {
 
 QPushButton[cssClass="btn-secondary-clear"]:pressed {
     border:  1px solid #9c7019;
-    background-color:#4Db088ff;
+    background-color:#4Dffcd88;
 }
 
 QPushButton[cssClass="btn-secondary-new-address"] {
@@ -1386,7 +1386,7 @@ QPushButton[cssClass="btn-secondary-new-address"]:hover {
 
 QPushButton[cssClass="btn-secondary-new-address"]:pressed {
     border:  1px solid #9c7019;
-    background-color:#4Db088ff;
+    background-color:#4Dffcd88;
 }
 
 QPushButton[cssClass="btn-secondary-label"] {
@@ -1411,7 +1411,7 @@ QPushButton[cssClass="btn-secondary-label"]:hover {
 
 QPushButton[cssClass="btn-secondary-label"]:pressed {
     border:  1px solid #9c7019;
-    background-color:#4Db088ff;
+    background-color:#4Dffcd88;
 }
 
 QPushButton[cssClass="btn-secondary-copy"] {
@@ -1437,7 +1437,7 @@ QPushButton[cssClass="btn-secondary-copy"]:hover {
 
 QPushButton[cssClass="btn-secondary-copy"]:pressed {
     border:  1px solid #9c7019;
-    background-color:#4Db088ff;
+    background-color:#4Dffcd88;
 }
 
 
@@ -1464,7 +1464,7 @@ QPushButton[cssClass="btn-secondary-add"]:hover {
 
 QPushButton[cssClass="btn-secondary-add"]:pressed {
     border:  1px solid #9c7019;
-    background-color:#4Db088ff;
+    background-color:#4Dffcd88;
 }
 
 
@@ -1574,7 +1574,7 @@ QProgressBar[cssClass="progress-splash"]::chunk:horizontal {
     x2: 1,
     y2: 0.5,
     stop: 0 #80211a2f,
-    stop: 1 #80b088ff,
+    stop: 1 #80ffcd88,
     stop: 2 #80211a2f,);
     margin-right: 2px;
 }
@@ -2815,7 +2815,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     background-color:#16110b;;
     background-position:center;
     background-repeat:no-repeat;
-    selection-background-color:#33b088ff;
+    selection-background-color:#33ffcd88;
     selection-color: white;
     font-size:14px;
     border-radius:0px;
@@ -2891,7 +2891,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     border-bottom: 1px solid #40ffffff;
     border-radius:0px;
     color: #ffffff;
-    background-color:#33b088ff;
+    background-color:#33ffcd88;
 }
 
 
@@ -2900,21 +2900,21 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     border-bottom: 1px solid #40ffffff;
     border-radius:0px;
     color: #ffffff;
-    background-color:#33b088ff;
+    background-color:#33ffcd88;
 }
 
 
 #treeWidget::branch {
     background-color: #16110b;
-    selection-background-color:#33b088ff;
+    selection-background-color:#33ffcd88;
 }
 
 #treeWidget::branch:selected {
-    background-color:#33b088ff;
+    background-color:#33ffcd88;
 }
 
 #treeWidget::branch:!selected {
-    background-color:#33b088ff;
+    background-color:#33ffcd88;
 }
 
 #treeWidget::branch:hover {
