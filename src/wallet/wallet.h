@@ -717,7 +717,7 @@ public:
     /* Returns true if HD is enabled */
     bool IsHDEnabled();
     /* Generates a new HD chain */
-    void GenerateNewHDChain();
+    void GenerateNewHDChain(const std::vector<std::string>& words);
     /* Set the HD chain model (chain child index counters) */
     bool SetHDChain(const CHDChain& chain, bool memonly);
     bool SetCryptedHDChain(const CHDChain& chain, bool memonly);
