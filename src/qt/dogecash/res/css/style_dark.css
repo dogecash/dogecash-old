@@ -2504,7 +2504,7 @@ QPushButton[cssClass="btn-faq-options"] {
 }
 
 QPushButton[cssClass="btn-faq-options"]:checked {
-    background-color: rgba(176 ,136 ,255, 0.2);
+    background-color: rgba(255, 193, 136, 0.2);
     border:none;
     font-size:18px;
     color: #FFFFFF;
