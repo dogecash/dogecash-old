@@ -519,6 +519,8 @@ void DashboardWidget::loadChartData(bool withMonthNames) {
 
     chartData->amountsByCache = getAmountBy(); // pair DOGEC, zDOGEC
     std::pair<int,int> range = getChartRange(chartData->amountsByCache);
+    bool isOrderedByMonth = chartShow == MONTH;
+    int daysInMonth = QDate(yearFilter, monthFilter, 1).daysInMonth();
 
     for (int j = range.first; j < range.second; j++) {
         int num = (isOrderedByMonth && j > daysInMonth) ? (j % daysInMonth) : j;
