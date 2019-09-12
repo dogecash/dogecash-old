@@ -513,14 +513,14 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
     CAmount matureZerocoinBalance = zerocoinBalance - unconfirmedZerocoinBalance - immatureZerocoinBalance;
 
     // Set
-    QString totalPiv = GUIUtil::formatBalance(pivAvailableBalance, nDisplayUnit);
+    QString totalDogeC = GUIUtil::formatBalance(pivAvailableBalance, nDisplayUnit);
     QString totalzDogec = GUIUtil::formatBalance(matureZerocoinBalance, nDisplayUnit, true);
     // Top
-    ui->labelAmountTopPiv->setText(totalPiv);
+    ui->labelAmountTopPiv->setText(totalDogeC);
     ui->labelAmountTopzDogec->setText(totalzDogec);
 
     // Expanded
-    ui->labelAmountPiv->setText(totalPiv);
+    ui->labelAmountPiv->setText(totalDogeC);
     ui->labelAmountzDogec->setText(totalzDogec);
 
     ui->labelPendingPiv->setText(GUIUtil::formatBalance(unconfirmedBalance, nDisplayUnit));

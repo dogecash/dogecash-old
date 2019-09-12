@@ -6,6 +6,7 @@
 #define TXVIEWHOLDER_H
 
 #include "qt/dogecash/furlistrow.h"
+#include "qt/dogecash/txrow.h"
 #include "bitcoinunits.h"
 #include <transactionfilterproxy.h>
 
@@ -41,6 +42,7 @@ public:
 private:
     int nDisplayUnit;
     TransactionFilterProxy *filter = nullptr;
+    TxRow* txRow = nullptr;
 };
 
 #endif // TXVIEWHOLDER_H
