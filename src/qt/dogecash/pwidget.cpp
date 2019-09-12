@@ -80,13 +80,12 @@ bool PWidget::execute(int type){
     Worker* worker = new Worker(this, type);
     connect(worker, SIGNAL (error(QString&)), this, SLOT (errorString(QString)));
     connect(worker, SIGNAL (finished()), worker, SLOT (deleteLater()));
-    thread->start();
+
     WorkerTask* task = new WorkerTask(worker);
     task->setAutoDelete(true);
     QThreadPool::globalInstance()->start(task);
     return true;
 }
-
 bool PWidget::verifyWalletUnlocked(){
     if (!walletModel->isWalletUnlocked()) {
         inform(tr("Wallet locked, you need to unlock it to perform this action"));
