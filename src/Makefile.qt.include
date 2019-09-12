@@ -456,6 +456,8 @@ RES_ICONS = \
   qt/dogecash/res/img/ic-check-peers-off.svg \
   qt/dogecash/res/img/ic-nav-dashboard.svg \
   qt/dogecash/res/img/ic-wallet-status-unlocked.svg \
+  qt/dogecash/res/img/ic-wallet-hd-enabled.svg \
+  qt/dogecash/res/img/ic-wallet-hd-disabled.svg \
   qt/dogecash/res/img/ic-check-peers.svg \
   qt/dogecash/res/img/ic-nav-master-active.svg \
   qt/dogecash/res/img/ic-watch-password-white.svg \

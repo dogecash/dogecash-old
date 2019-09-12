@@ -991,3 +991,7 @@ std::string WalletModel::resetMintZerocoin(){
 std::string WalletModel::resetSpentZerocoin(){
     return wallet->ResetSpentZerocoin();
 }
+bool WalletModel::hdEnabled() const
+{
+    return wallet->IsHDEnabled();
+}

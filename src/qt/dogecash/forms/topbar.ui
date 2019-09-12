@@ -308,6 +308,22 @@ border:none;</string>
              </property>
             </widget>
            </item>
+            <item>
+            <widget class="ExpandableButton" name="pushButtonHD" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>36</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
            <item>
             <widget class="ExpandableButton" name="pushButtonTheme" native="true">
              <property name="minimumSize">

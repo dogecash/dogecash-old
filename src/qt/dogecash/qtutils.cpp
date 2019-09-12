@@ -156,7 +156,7 @@ void updateStyle(QWidget* widget){
 QColor getRowColor(bool isLightTheme, bool isHovered, bool isSelected){
     if(isLightTheme){
         if (isSelected) {
-            return QColor("#25b088ff");
+            return QColor("#25ffcd88");
         }else if(isHovered){
             return QColor("#25bababa");
         } else{
@@ -164,7 +164,7 @@ QColor getRowColor(bool isLightTheme, bool isHovered, bool isSelected){
         }
     }else{
         if (isSelected) {
-            return QColor("#25b088ff");
+            return QColor("#25ffcd88");
         }else if(isHovered){
             return QColor("#25bababa");
         } else{
@@ -214,7 +214,7 @@ void setCssBtnPrimary(QPushButton *btn, bool forceUpdate){
 }
 
 void setCssBtnSecondary(QPushButton *btn, bool forceUpdate){
-    setCssProperty(btn, "btn-secundary", forceUpdate);
+    setCssProperty(btn, "btn-secondary", forceUpdate);
 }
 
 void setCssTextBodyDialog(std::initializer_list<QWidget*> args){

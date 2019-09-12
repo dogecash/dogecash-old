@@ -678,7 +678,7 @@
              </size>
             </property>
             <property name="text">
-             <string>Create New Master Node Controller</string>
+             <string>Create New Masternode Controller</string>
             </property>
            </widget>
           </item>
@@ -790,7 +790,7 @@
              </size>
             </property>
             <property name="text">
-             <string>Set Master Node’s Name</string>
+             <string>Set Masternode’s Name</string>
             </property>
            </widget>
           </item>
@@ -829,7 +829,7 @@
           <item>
            <widget class="QLabel" name="labelMessage3">
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 DOGEC will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 5,000 DOGEC will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -873,7 +873,7 @@
              </size>
             </property>
             <property name="text">
-             <string>Set Master Node’s IP and port</string>
+             <string>Set Masternode’s IP and port</string>
             </property>
            </widget>
           </item>

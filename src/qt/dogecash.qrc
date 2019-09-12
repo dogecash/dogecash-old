@@ -263,6 +263,8 @@
         <file alias="ic-wallet-status-locked">dogecash/res/img/ic-wallet-status-locked.svg</file>
         <file alias="ic-wallet-status-staking">dogecash/res/img/ic-wallet-status-staking.svg</file>
         <file alias="ic-wallet-status-unlocked">dogecash/res/img/ic-wallet-status-unlocked.svg</file>
+        <file alias="ic-wallet-hd-enabled">dogecash/res/img/ic-wallet-hd-enabled.svg</file>
+        <file alias="ic-wallet-hd-disabled">dogecash/res/img/ic-wallet-hd-disabled.svg</file>
         <file alias="ic-watch-password-white">dogecash/res/img/ic-watch-password-white.svg</file>
         <file alias="ic-watch-password">dogecash/res/img/ic-watch-password.svg</file>
         <file alias="img-empty-contacts">dogecash/res/img/img-empty-contacts.svg</file>
