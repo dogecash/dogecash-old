@@ -22,7 +22,7 @@ void TxViewHolder::init(QWidget* holder,const QModelIndex &index, bool isHovered
     QModelIndex rIndex = (filter) ? filter->mapToSource(index) : index;
     QDateTime date = rIndex.data(TransactionTableModel::DateRole).toDateTime();
     qint64 amount = rIndex.data(TransactionTableModel::AmountRole).toLongLong();
-    bool isSend = rIndex.data(TransactionTableModel::TypeRole).toInt() == TransactionTableModel::SendToAddress || SendToOther;
+    bool isSend = rIndex.data(TransactionTableModel::TypeRole).toInt() == TransactionTableModel::SendToAddress || TransactionTableModel::SendToOther;
     QString amountText = BitcoinUnits::formatWithUnit(nDisplayUnit, amount, !isSend, BitcoinUnits::separatorAlways);
     QModelIndex indexType = rIndex.sibling(rIndex.row(),TransactionTableModel::Type);
     QString label = indexType.data(Qt::DisplayRole).toString();
