@@ -756,6 +756,9 @@ void DashboardWidget::windowResizeEvent(QResizeEvent *event){
 bool DashboardWidget::hasStakes() {
     return stakesFilter->rowCount() > 0;
 }
+bool DashboardWidget::hasMNRewards() {
+    return mnrewardFilter->rowCount() > 0;
+}
 
 #endif
 

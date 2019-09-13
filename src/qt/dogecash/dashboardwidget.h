@@ -146,6 +146,7 @@ private:
 
     // Chart
     TransactionFilterProxy* stakesFilter = nullptr;
+    TransactionFilterProxy* mnrewardFilter = nullptr;
     bool isChartInitialized = false;
     QChartView *chartView = nullptr;
     QBarSeries *series = nullptr;
@@ -175,6 +176,7 @@ private:
     void setChartShow(ChartShowType type);
     std::pair<int, int> getChartRange(QMap<int, std::pair<qint64, qint64>> amountsBy);
     bool hasStakes();
+    bool hasMNRewards();
 
 private slots:
     void onChartRefreshed();
