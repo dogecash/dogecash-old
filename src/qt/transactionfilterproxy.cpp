@@ -150,6 +150,10 @@ bool TransactionFilterProxy::isStakeTx(int type) const {
     return (type == TransactionRecord::StakeMint || type == TransactionRecord::Generated || type == TransactionRecord::StakeZDOGEC);
 }
 
+bool TransactionFilterProxy::isMasternodeRewardTx(int type) const {
+    return (type == TransactionRecord::MNReward);
+}
+
 /*QVariant TransactionFilterProxy::dataFromSourcePos(int sourceRow, int role) const {
     QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
     return index.data(index, role);
