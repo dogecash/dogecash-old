@@ -88,6 +88,7 @@ private:
 
     bool isZcTx(int type) const;
     bool isStakeTx(int type) const;
+    bool isMasternodeRewardTx(int type) const;
 };
 
 #endif // BITCOIN_QT_TRANSACTIONFILTERPROXY_H
