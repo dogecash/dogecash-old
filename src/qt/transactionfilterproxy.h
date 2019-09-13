@@ -64,6 +64,8 @@ public:
 
     /** Only stakes txes **/
     void setOnlyStakes(bool fOnlyStakes);
+    /** Only MN Rewards **/
+    void setOnlyMNRewards(bool fOnlyMNRewards);
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const;
     static bool isOrphan(const int status, const int type);
@@ -85,6 +87,7 @@ private:
     bool fHideOrphans = true;
     bool fOnlyZc = false;
     bool fOnlyStakes = false;
+    bool fOnlyMNRewards = false;
 
     bool isZcTx(int type) const;
     bool isStakeTx(int type) const;
