@@ -12,7 +12,7 @@
 QWidget* TxViewHolder::createHolder(int pos){
     if (!txRow) {
         txRow = new TxRow();
-        txRow->init(isLightTheme);
+        txRow->init(isLightTheme, false, false);
         return txRow;
     } else {
         return txRow;
