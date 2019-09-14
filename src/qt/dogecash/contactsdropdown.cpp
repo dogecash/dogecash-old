@@ -25,8 +25,8 @@ public:
 
     ContactDropdownRow* createHolder(int pos) override{
         if (!row) {
-            //row = new ContactDropdownRow();
-            row->init(true, false);
+            row = new ContactDropdownRow();
+            row->init(false, true);
             return row;
         }
     }
@@ -47,7 +47,7 @@ public:
     ~ContViewHolder() override{}
 
     bool isLightTheme;
-    ContactDropdownRow* row = nullptr;
+    ContactDropdownRow* row;
 };
 
 ContactsDropdown::ContactsDropdown(int minWidth, int minHeight, PWidget *parent) :
