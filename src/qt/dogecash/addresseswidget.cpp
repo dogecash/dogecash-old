@@ -57,7 +57,6 @@ public:
     ~ContactsHolder() override{}
 
     bool isLightTheme;
-     AddressLabelRow* cachedRow = nullptr;
     AddressLabelRow* cachedRow = nullptr;
 };
 
