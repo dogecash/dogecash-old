@@ -44,9 +44,9 @@ TopBar::TopBar(DogeCashGUI* _mainWindow, QWidget *parent) :
 
     // Amount information top
     ui->widgetTopAmount->setVisible(false);
-    setCssProperty({ui->labelAmountTopPiv, ui->labelAmountTopzDogec}, "amount-small-topbar");
-    setCssProperty({ui->labelAmountPiv, ui->labelAmountzDogec}, "amount-topbar");
-    setCssProperty({ui->labelPendingPiv, ui->labelPendingzDogec, ui->labelImmaturePiv, ui->labelImmaturezDogec}, "amount-small-topbar");
+    setCssProperty({ui->labelAmountTopDogeC, ui->labelAmountTopzDogec}, "amount-small-topbar");
+    setCssProperty({ui->labelAmountDogeC, ui->labelAmountzDogec}, "amount-topbar");
+    setCssProperty({ui->labelPendingDogeC, ui->labelPendingzDogec, ui->labelImmatureDogeC, ui->labelImmaturezDogec}, "amount-small-topbar");
 
     // Progress Sync
     progressBar = new QProgressBar(ui->layoutSync);
@@ -508,26 +508,26 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
 
     // DOGEC Balance
     //CAmount nTotalBalance = balance + unconfirmedBalance;
-    CAmount pivAvailableBalance = balance - immatureBalance - nLockedBalance;
+    CAmount dogecAvailableBalance = balance - immatureBalance - nLockedBalance;
 
     // zDOGEC Balance
     CAmount matureZerocoinBalance = zerocoinBalance - unconfirmedZerocoinBalance - immatureZerocoinBalance;
 
     // Set
-    QString totalDogeC = GUIUtil::formatBalance(pivAvailableBalance, nDisplayUnit);
+    QString totalDogeC = GUIUtil::formatBalance(dogecAvailableBalance, nDisplayUnit);
     QString totalzDogec = GUIUtil::formatBalance(matureZerocoinBalance, nDisplayUnit, true);
     // Top
-    ui->labelAmountTopPiv->setText(totalDogeC);
+    ui->labelAmountTopDogeC->setText(totalDogeC);
     ui->labelAmountTopzDogec->setText(totalzDogec);
 
     // Expanded
-    ui->labelAmountPiv->setText(totalDogeC);
+    ui->labelAmountDogeC->setText(totalDogeC);
     ui->labelAmountzDogec->setText(totalzDogec);
 
-    ui->labelPendingPiv->setText(GUIUtil::formatBalance(unconfirmedBalance, nDisplayUnit));
+    ui->labelPendingDogeC->setText(GUIUtil::formatBalance(unconfirmedBalance, nDisplayUnit));
     ui->labelPendingzDogec->setText(GUIUtil::formatBalance(unconfirmedZerocoinBalance, nDisplayUnit, true));
 
-    ui->labelImmaturePiv->setText(GUIUtil::formatBalance(immatureBalance, nDisplayUnit));
+    ui->labelImmatureDogeC->setText(GUIUtil::formatBalance(immatureBalance, nDisplayUnit));
     ui->labelImmaturezDogec->setText(GUIUtil::formatBalance(immatureZerocoinBalance, nDisplayUnit, true));
 }
 

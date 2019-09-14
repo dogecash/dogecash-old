@@ -59,9 +59,9 @@ DashboardWidget::DashboardWidget(DogeCashGUI* parent) :
     // Staking Information
     ui->labelMessage->setText(tr("Amount of DOGEC and zDOGEC staked."));
     setCssSubtitleScreen(ui->labelMessage);
-    setCssProperty(ui->labelSquarePiv, "square-chart-piv");
+    setCssProperty(ui->labelSquareDogeC, "square-chart-dogec");
     setCssProperty(ui->labelSquarezDogec, "square-chart-zdogec");
-    setCssProperty(ui->labelPiv, "text-chart-piv");
+    setCssProperty(ui->labelDogeC, "text-chart-dogec");
     setCssProperty(ui->labelZdogec, "text-chart-zdogec");
 
     // Staking Amount
@@ -71,8 +71,8 @@ DashboardWidget::DashboardWidget(DogeCashGUI* parent) :
     setCssProperty(ui->labelChart, "legend-chart");
 
     ui->labelAmountZdogec->setText("0 zDOGEC");
-    ui->labelAmountPiv->setText("0 DOGEC");
-    setCssProperty(ui->labelAmountPiv, "text-stake-piv-disable");
+    ui->labelAmountDogeC->setText("0 DOGEC");
+    setCssProperty(ui->labelAmountDogeC, "text-stake-dogec-disable");
     setCssProperty(ui->labelAmountZdogec, "text-stake-zdogec-disable");
 
     setCssProperty({ui->pushButtonAll,  ui->pushButtonMonth, ui->pushButtonYear}, "btn-check-time");
@@ -471,7 +471,7 @@ QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
         QModelIndex modelIndex = stakesFilter->index(i, TransactionTableModel::ToAddress);
         qint64 amount = llabs(modelIndex.data(TransactionTableModel::AmountRole).toLongLong());
         QDate date = modelIndex.data(TransactionTableModel::DateRole).toDateTime().date();
-        bool isPiv = modelIndex.data(TransactionTableModel::TypeRole).toInt() != TransactionRecord::StakeZDOGEC;
+        bool isDogeC = modelIndex.data(TransactionTableModel::TypeRole).toInt() != TransactionRecord::StakeZDOGEC;
 
         int time = 0;
         switch (chartShow) {
@@ -492,12 +492,12 @@ QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
                 return amountBy;
         }
         if (amountBy.contains(time)) {
-            if (isPiv) {
+            if (isDogeC) {
                 amountBy[time].first += amount;
             } else
                 amountBy[time].second += amount;
         } else {
-            if (isPiv) {
+            if (isDogeC) {
                 amountBy[time] = std::make_pair(amount, 0);
             } else {
                 amountBy[time] = std::make_pair(0, amount);
@@ -523,11 +523,11 @@ void DashboardWidget::loadChartData(bool withMonthNames) {
 
     for (int j = range.first; j < range.second; j++) {
         int num = (isOrderedByMonth && j > daysInMonth) ? (j % daysInMonth) : j;
-        qreal piv = 0;
+        qreal dogec = 0;
         qreal zdogec = 0;
         if (chartData->amountsByCache.contains(num)) {
             std::pair <qint64, qint64> pair = chartData->amountsByCache[num];
-            piv = (pair.first != 0) ? pair.first / 100000000 : 0;
+            dogec = (pair.first != 0) ? pair.first / 100000000 : 0;
             zdogec = (pair.second != 0) ? pair.second / 100000000 : 0;
             chartData->totalPiv += pair.first;
             chartData->totalZdogec += pair.second;
@@ -535,10 +535,10 @@ void DashboardWidget::loadChartData(bool withMonthNames) {
 
         chartData->xLabels << ((withMonthNames) ? monthsNames[num - 1] : QString::number(num));
 
-        chartData->valuesPiv.append(piv);
+        chartData->valuesDogeC.append(dogec);
         chartData->valueszDogec.append(zdogec);
 
-        int max = std::max(piv, zdogec);
+        int max = std::max(dogec, zdogec);
         if (max > chartData->maxValue) {
             chartData->maxValue = max;
         }
@@ -600,20 +600,20 @@ void DashboardWidget::onChartRefreshed() {
     series->attachAxis(axisX);
     series->attachAxis(axisY);
 
-    set0->append(chartData->valuesPiv);
+    set0->append(chartData->valuesDogeC);
     set1->append(chartData->valueszDogec);
 
     // Total
     nDisplayUnit = walletModel->getOptionsModel()->getDisplayUnit();
-    if (chartData->totalPiv > 0 || chartData->totalZdogec > 0) {
-        setCssProperty(ui->labelAmountPiv, "text-stake-piv");
+    if (chartData->totalDogeC > 0 || chartData->totalZdogec > 0) {
+        setCssProperty(ui->labelAmountDogeC, "text-stake-dogec");
         setCssProperty(ui->labelAmountZdogec, "text-stake-zdogec");
     } else {
-        setCssProperty(ui->labelAmountPiv, "text-stake-piv-disable");
+        setCssProperty(ui->labelAmountDogeC, "text-stake-dogec-disable");
         setCssProperty(ui->labelAmountZdogec, "text-stake-zdogec-disable");
     }
-    forceUpdateStyle({ui->labelAmountPiv, ui->labelAmountZdogec});
-    ui->labelAmountPiv->setText(GUIUtil::formatBalance(chartData->totalPiv, nDisplayUnit));
+    forceUpdateStyle({ui->labelAmountDogeC, ui->labelAmountZdogec});
+    ui->labelAmountDogeC->setText(GUIUtil::formatBalance(chartData->totalDogeC, nDisplayUnit));
     ui->labelAmountZdogec->setText(GUIUtil::formatBalance(chartData->totalZdogec, nDisplayUnit, true));
 
     series->append(set0);

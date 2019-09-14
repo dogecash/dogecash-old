@@ -1106,8 +1106,8 @@ Adresse: %4
         <translation>Denne tekstmarkør bliver rød, hvis en modtageradresse modtager et beløb mindre end %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Kan variere +/- %1 opiv pr input.</translation>
+        <source>Can vary +/- %1 udogec per input.</source>
+        <translation>Kan variere +/- %1 odogec pr input.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -4331,7 +4331,7 @@ Vær tålmodig...</translation>
     </message>
     <message>
         <source>Received DOGEC from zDOGEC</source>
-        <translation>Modtaget Piv fra zDogec</translation>
+        <translation>Modtaget DogeC fra zDogec</translation>
     </message>
     <message>
         <source>Minted Change as zDOGEC from zDOGEC Spend</source>
@@ -4558,7 +4558,7 @@ Vær tålmodig...</translation>
     </message>
     <message>
         <source>Received DOGEC from zDOGEC</source>
-        <translation>Modtaget Piv fra zDogec</translation>
+        <translation>Modtaget DogeC fra zDogec</translation>
     </message>
     <message>
         <source>Zerocoin Spend, Change in zDOGEC</source>

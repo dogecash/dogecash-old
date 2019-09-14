@@ -193,7 +193,7 @@
         <file alias="ic-clear-purple">dogecash/res/img/ic-clear-purple.svg</file>
         <file alias="ic-close-white">dogecash/res/img/ic-close-white.svg</file>
         <file alias="ic-close">dogecash/res/img/ic-close.svg</file>
-        <file alias="ic-coin-piv">dogecash/res/img/ic-coin-piv.svg</file>
+        <file alias="ic-coin-dogec">dogecash/res/img/ic-coin-dogec.svg</file>
         <file alias="ic-coin-zdogec">dogecash/res/img/ic-coin-zdogec.svg</file>
         <file alias="ic-combo-box">dogecash/res/img/ic-combo-box.svg</file>
         <file alias="ic-connect">dogecash/res/img/ic-connect.svg</file>

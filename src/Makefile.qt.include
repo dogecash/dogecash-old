@@ -76,7 +76,7 @@ QT_FORMS_UI = \
   qt/dogecash/forms/topbar.ui \
   qt/dogecash/forms/txrow.ui \
   qt/dogecash/forms/dashboardwidget.ui \
-  qt/dogecash/forms/coincontrolpivwidget.ui \
+  qt/dogecash/forms/coincontroldogecwidget.ui \
   qt/dogecash/forms/addresslabelrow.ui \
   qt/dogecash/forms/contactdropdownrow.ui \
   qt/dogecash/forms/mninfodialog.ui \
@@ -183,7 +183,7 @@ QT_MOC_CPP = \
   qt/dogecash/moc_topbar.cpp \
   qt/dogecash/moc_txrow.cpp \
   qt/dogecash/moc_dashboardwidget.cpp \
-  qt/dogecash/moc_coincontrolpivwidget.cpp \
+  qt/dogecash/moc_coincontroldogecwidget.cpp \
   qt/dogecash/moc_addresslabelrow.cpp \
   qt/dogecash/moc_contactdropdownrow.cpp \
   qt/dogecash/moc_mninfodialog.cpp \
@@ -324,7 +324,7 @@ BITCOIN_QT_H = \
   qt/dogecash/txrow.h \
   qt/dogecash/addressfilterproxymodel.h \
   qt/dogecash/dashboardwidget.h \
-  qt/dogecash/coincontrolpivwidget.h \
+  qt/dogecash/coincontroldogecwidget.h \
   qt/dogecash/addresslabelrow.h \
   qt/dogecash/contactdropdownrow.h \
   qt/dogecash/mninfodialog.h \
@@ -536,7 +536,7 @@ RES_ICONS = \
   qt/dogecash/res/img/ic-radio-liliac-on.svg \
   qt/dogecash/res/img/img-empty-staking-off.svg \
   qt/dogecash/res/img/ic-arrow-drop-down.svg \
-  qt/dogecash/res/img/ic-coin-piv.svg \
+  qt/dogecash/res/img/ic-coin-dogec.svg \
   qt/dogecash/res/img/ic-receive-off.svg \
   qt/dogecash/res/img/img-empty-staking-on.svg \
   qt/dogecash/res/img/ic-arrow-drop-up-white.svg \
@@ -709,7 +709,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/dogecash/txrow.cpp \
   qt/dogecash/addressfilterproxymodel.cpp \
   qt/dogecash/dashboardwidget.cpp \
-  qt/dogecash/coincontrolpivwidget.cpp \
+  qt/dogecash/coincontroldogecwidget.cpp \
   qt/dogecash/addresslabelrow.cpp \
   qt/dogecash/contactdropdownrow.cpp \
   qt/dogecash/contactsdropdown.cpp \

@@ -559,7 +559,7 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="labelAmountPiv">
+           <widget class="QLabel" name="labelAmountDogeC">
             <property name="text">
              <string>TextLabel</string>
             </property>
@@ -667,7 +667,7 @@
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLabel" name="labelSquarePiv">
+                 <widget class="QLabel" name="labelSquareDogeC">
                   <property name="minimumSize">
                    <size>
                     <width>14</width>
@@ -686,7 +686,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="labelPiv">
+                 <widget class="QLabel" name="labelDogeC">
                   <property name="text">
                    <string>DOGEC</string>
                   </property>
