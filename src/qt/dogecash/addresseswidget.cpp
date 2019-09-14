@@ -56,7 +56,7 @@ public:
     ~ContactsHolder() override{}
 
     bool isLightTheme;
-     AddressLabelRow* cachedRow = nullptr;
+    AddressLabelRow* cachedRow = nullptr;
 };
 
 #include "qt/dogecash/moc_addresseswidget.cpp"
