@@ -487,8 +487,6 @@ UniValue createsporkkeypair(const UniValue& params, bool fHelp)
     return ret;
 }
 
-
-
 /**
  * Used by addmultisigaddress / createmultisig:
  */
