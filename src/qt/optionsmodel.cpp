@@ -207,8 +207,8 @@ void OptionsModel::setDisplayDefaultOptions(QSettings& settings, bool reset){
         SoftSetArg("-zeromintpercentage", settings.value("nZeromintPercentage").toString().toStdString());
     if (settings.contains("nPreferredDenom") || reset)
         SoftSetArg("-preferredDenom", settings.value("nPreferredDenom").toString().toStdString());
-    if (settings.contains("nAnonymizeDogeCxAmount") || reset)
-        SoftSetArg("-anonymizedogecashamount", settings.value("nAnonymizeDogeCxAmount").toString().toStdString());
+    if (settings.contains("nAnonymizeDogeCashAmount") || reset)
+        SoftSetArg("-anonymizedogecashamount", settings.value("nAnonymizeDogeCashAmount").toString().toStdString());
 
     if (!settings.contains("strThirdPartyTxUrls") || reset)
         settings.setValue("strThirdPartyTxUrls", "");
