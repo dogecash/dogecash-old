@@ -22,7 +22,7 @@ class ContViewHolder : public FurListRow<QWidget*>
 public:
     ContViewHolder();
 
-    explicit ContViewHolder(bool _isLightTheme) : FurListRow(), isLightTheme(_isLightTheme){
+    explicit ContViewHolder(bool _isLightTheme) : FurListRow(), isLightTheme(_isLightTheme){}
 
     ContactDropdownRow* createHolder(int pos) override{
         if (!row) {
