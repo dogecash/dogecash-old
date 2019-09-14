@@ -138,7 +138,7 @@ public:
     int Zerocoin_StartTime() const { return nZerocoinStartTime; }
     int Block_Enforce_Invalid() const { return nBlockEnforceInvalidUTXO; }
     int Zerocoin_Block_V2_Start() const { return nBlockZerocoinV2; }
-    bool IsNewStakeProtocol(const int nHeight) const { return nHeight >= nNewStakeProtocol; }
+    bool IsNewStakeProtocol(const int nHeight) const { return nHeight >= nBlockNewStakeProtocol; }
 
     // fake serial attack
     int Zerocoin_Block_EndFakeSerial() const { return nFakeSerialBlockheightEnd; }
@@ -172,7 +172,7 @@ protected:
     int nFutureTimeDriftPoW;
     int nFutureTimeDriftPoS;
     //Stake Protocol Switch
-    int nNewStakeProtocol;
+    int nBlockNewStakeProtocol;
     CAmount nStakeCollateralMin;
     CAmount nMaxMoneyOut;
     int nMinerThreads;

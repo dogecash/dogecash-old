@@ -16,6 +16,7 @@
 #include "libzerocoin/bignum.h"
 #include <assert.h>
 
+#include <limits>
 #include <boost/assign/list_of.hpp>
 
 using namespace std;
@@ -159,7 +160,7 @@ public:
         nBlockDoubleAccumulated = 1050010;
         nEnforceNewSporkKey = 1425158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
-        nNewStakeProtocol = 150000; //!> Enforce new Stake Protocols add test/regtest
+        nBlockNewStakeProtocol = 150000; //!> Enforce new Stake Protocols add test/regtest
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 1686229;
@@ -296,7 +297,7 @@ public:
         nBlockZerocoinV2 = 444020; //!> The block that zerocoin v2 becomes active
         nEnforceNewSporkKey = 1521604800; //!> Sporks signed after Wednesday, March 21, 2018 4:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1522454400; //!> Reject old spork key after Saturday, March 31, 2018 12:00:00 AM GMT
-        nNewStakeProtocol = 1500; //!> Enforce new Stake Protocols add test/regtest
+        nBlockNewStakeProtocol = 1500; //!> Enforce new Stake Protocols add test/regtest
 
 
         // Fake Serial Attack
@@ -386,7 +387,7 @@ public:
         nBlockFirstFraudulent = 999999999; //First block that bad serials emerged
         nBlockLastGoodCheckpoint = 999999999; //Last valid accumulator checkpoint
 
-        nNewStakeProtocol = 1500;
+        nBlockNewStakeProtocol = 1500;
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
 	//MineGenesis(genesis);
