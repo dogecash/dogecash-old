@@ -11,7 +11,7 @@
 #define ADDRESS_SIZE 12
 
 QWidget* TxViewHolder::createHolder(int pos){
-    if (!txRow) {}
+    if (!txRow) {
         txRow = new TxRow();
         txRow->init(isLightTheme);
         return txRow;
