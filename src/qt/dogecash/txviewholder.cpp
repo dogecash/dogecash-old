@@ -3,7 +3,6 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "qt/dogecash/txviewholder.h"
-#include "qt/dogecash/txrow.h"
 #include "qt/dogecash/qtutils.h"
 #include "transactiontablemodel.h"
 #include <QModelIndex>
@@ -11,7 +10,13 @@
 #define ADDRESS_SIZE 12
 
 QWidget* TxViewHolder::createHolder(int pos){
-    return new TxRow(isLightTheme);
+    if (!txRow) {}
+        txRow = new TxRow();
+        txRow->init(isLightTheme);
+        return txRow;
+    } else {
+        return txRow;
+    }
 }
 
 void TxViewHolder::init(QWidget* holder,const QModelIndex &index, bool isHovered, bool isSelected) const{

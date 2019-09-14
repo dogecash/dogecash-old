@@ -4,9 +4,8 @@
 
 #include "qt/dogecash/addresslabelrow.h"
 #include "qt/dogecash/forms/ui_addresslabelrow.h"
-#include "QFile"
 
-AddressLabelRow::AddressLabelRow(bool isLightTheme, bool isHover , QWidget *parent) :
+AddressLabelRow::AddressLabelRow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::AddressLabelRow)
 {
@@ -14,6 +13,9 @@ AddressLabelRow::AddressLabelRow(bool isLightTheme, bool isHover , QWidget *pare
 
     ui->lblAddress->setProperty("cssClass", "text-list-body1");
     ui->lblLabel->setProperty("cssClass", "text-list-title1");
+}
+
+void AddressLabelRow::init(bool isLightTheme, bool isHover) {
 
     updateState(isLightTheme, isHover, false);
 }

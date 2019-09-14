@@ -508,10 +508,16 @@ QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
     return amountBy;
 }
 
-ChartData DashboardWidget::loadChartData(bool withMonthNames) {
-    ChartData chartData;
-    chartData.amountsByCache = getAmountBy(); // pair DOGEC, zDOGEC
-    std::pair<int,int> range = getChartRange(chartData.amountsByCache);
+void DashboardWidget::loadChartData(bool withMonthNames) {
+
+    if (chartData) {
+        delete chartData;
+        chartData = nullptr;
+    }
+    chartData = new ChartData();
+
+    chartData->amountsByCache = getAmountBy(); // pair DOGEC, zDOGEC
+    std::pair<int,int> range = getChartRange(chartData->amountsByCache);
     bool isOrderedByMonth = chartShow == MONTH;
     int daysInMonth = QDate(yearFilter, monthFilter, 1).daysInMonth();
 
@@ -519,22 +525,22 @@ ChartData DashboardWidget::loadChartData(bool withMonthNames) {
         int num = (isOrderedByMonth && j > daysInMonth) ? (j % daysInMonth) : j;
         qreal piv = 0;
         qreal zdogec = 0;
-        if (chartData.amountsByCache.contains(num)) {
-            std::pair <qint64, qint64> pair = chartData.amountsByCache[num];
+        if (chartData->amountsByCache.contains(num)) {
+            std::pair <qint64, qint64> pair = chartData->amountsByCache[num];
             piv = (pair.first != 0) ? pair.first / 100000000 : 0;
             zdogec = (pair.second != 0) ? pair.second / 100000000 : 0;
-            chartData.totalPiv += pair.first;
-            chartData.totalZdogec += pair.second;
+            chartData->totalPiv += pair.first;
+            chartData->totalZdogec += pair.second;
         }
 
-        chartData.xLabels << ((withMonthNames) ? monthsNames[num - 1] : QString::number(num));
+        chartData->xLabels << ((withMonthNames) ? monthsNames[num - 1] : QString::number(num));
 
-        chartData.valuesPiv.append(piv);
-        chartData.valueszDogec.append(zdogec);
+        chartData->valuesPiv.append(piv);
+        chartData->valueszDogec.append(zdogec);
 
         int max = std::max(piv, zdogec);
-        if (max > chartData.maxValue) {
-            chartData.maxValue = max;
+        if (max > chartData->maxValue) {
+            chartData->maxValue = max;
         }
     }
     return chartData;
@@ -594,12 +600,12 @@ void DashboardWidget::onChartRefreshed() {
     series->attachAxis(axisX);
     series->attachAxis(axisY);
 
-    set0->append(chartData.valuesPiv);
-    set1->append(chartData.valueszDogec);
+    set0->append(chartData->valuesPiv);
+    set1->append(chartData->valueszDogec);
 
     // Total
     nDisplayUnit = walletModel->getOptionsModel()->getDisplayUnit();
-    if (chartData.totalPiv > 0 || chartData.totalZdogec > 0) {
+    if (chartData->totalPiv > 0 || chartData->totalZdogec > 0) {
         setCssProperty(ui->labelAmountPiv, "text-stake-piv");
         setCssProperty(ui->labelAmountZdogec, "text-stake-zdogec");
     } else {
@@ -607,8 +613,8 @@ void DashboardWidget::onChartRefreshed() {
         setCssProperty(ui->labelAmountZdogec, "text-stake-zdogec-disable");
     }
     forceUpdateStyle({ui->labelAmountPiv, ui->labelAmountZdogec});
-    ui->labelAmountPiv->setText(GUIUtil::formatBalance(chartData.totalPiv, nDisplayUnit));
-    ui->labelAmountZdogec->setText(GUIUtil::formatBalance(chartData.totalZdogec, nDisplayUnit, true));
+    ui->labelAmountPiv->setText(GUIUtil::formatBalance(chartData->totalPiv, nDisplayUnit));
+    ui->labelAmountZdogec->setText(GUIUtil::formatBalance(chartData->totalZdogec, nDisplayUnit, true));
 
     series->append(set0);
     if(hasZdogecStakes)
@@ -620,8 +626,8 @@ void DashboardWidget::onChartRefreshed() {
     else {
         series->setBarWidth(0.3);
     }
-    axisX->append(chartData.xLabels);
-    axisY->setRange(0, chartData.maxValue);
+    axisX->append(chartData->xLabels);
+    axisY->setRange(0, chartData->maxValue);
 
     // Controllers
     switch (chartShow) {
@@ -690,7 +696,7 @@ std::pair<int, int> DashboardWidget::getChartRange(QMap<int, std::pair<qint64, q
 void DashboardWidget::updateAxisX(const QStringList* args) {
     axisX->clear();
     QStringList months;
-    std::pair<int,int> range = getChartRange(chartData.amountsByCache);
+    std::pair<int,int> range = getChartRange(chartData->amountsByCache);
     if (args) {
         months = *args;
     } else {
@@ -775,7 +781,6 @@ void DashboardWidget::processNewTransaction(const QModelIndex& parent, int start
 DashboardWidget::~DashboardWidget(){
 #ifdef USE_QTCHARTS
     delete chart;
-    quitWorker(true);
 #endif
     delete ui;
 }

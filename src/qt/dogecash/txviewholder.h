@@ -7,6 +7,7 @@
 
 #include "qt/dogecash/furlistrow.h"
 #include "bitcoinunits.h"
+#include "qt/dogecash/txrow.h"
 #include <transactionfilterproxy.h>
 
 QT_BEGIN_NAMESPACE
@@ -41,6 +42,7 @@ public:
 private:
     int nDisplayUnit;
     TransactionFilterProxy *filter = nullptr;
+    TxRow* txRow = nullptr;
 };
 
 #endif // TXVIEWHOLDER_H

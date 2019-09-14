@@ -24,7 +24,12 @@ public:
     explicit ContViewHolder(bool _isLightTheme) : FurListRow(), isLightTheme(_isLightTheme){}
 
     ContactDropdownRow* createHolder(int pos) override{
-        return new ContactDropdownRow(true, false);
+        if (!row) {
+            row = new ContactDropdownRow();
+            row->init(true, false);
+            return row;
+        } else {
+            return row;
     }
 
     void init(QWidget* holder,const QModelIndex &index, bool isHovered, bool isSelected) const override{
@@ -43,6 +48,7 @@ public:
     ~ContViewHolder() override{}
 
     bool isLightTheme;
+    ContactDropdownRow* row = nullptr;
 };
 
 ContactsDropdown::ContactsDropdown(int minWidth, int minHeight, PWidget *parent) :
