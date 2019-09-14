@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -86,6 +87,7 @@ bool PWidget::execute(int type){
     QThreadPool::globalInstance()->start(task);
     return true;
 }
+
 bool PWidget::verifyWalletUnlocked(){
     if (!walletModel->isWalletUnlocked()) {
         inform(tr("Wallet locked, you need to unlock it to perform this action"));
