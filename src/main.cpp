@@ -1909,7 +1909,7 @@ int64_t GetBlockValue(int nHeight)
         if (nHeight == 0) {
 	nSubsidy = 0 * COIN;
     	} else if (nHeight == 1) {
-        nSubsidy = 7000000 * COIN;
+        nSubsidy = 25000 * COIN;
 	} else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight > 1) { //end PoW
         nSubsidy = 10.8 * COIN;
 	} else if (nHeight <= 238620 && nHeight > Params().LAST_POW_BLOCK()) { //Start PoS
@@ -1918,7 +1918,7 @@ int64_t GetBlockValue(int nHeight)
         nSubsidy = 9 * COIN;
 	} else if (nHeight <= 1289222 && nHeight >= 764222) {
         nSubsidy = 5 * COIN;
-	}    else {
+    } else {
         nSubsidy = 6* COIN;
 	}
     }
@@ -1927,7 +1927,7 @@ int64_t GetBlockValue(int nHeight)
         if (nHeight == 0) {
 	nSubsidy = 0 * COIN;
     	} else if (nHeight == 1) {
-        nSubsidy = 7000000 * COIN;
+        nSubsidy = 25000 * COIN;
 	} else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight > 1) { //end PoW
         nSubsidy = 12 * COIN;
 	} else if (nHeight <= 238620 && nHeight > Params().LAST_POW_BLOCK()) { //Start PoS
@@ -4301,10 +4301,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
             }
         }
     } else {
-        LogPrintf("%s : skipping transaction locking checks\n", __func__);\
-
-
-
+        LogPrintf("%s : skipping transaction locking checks\n", __func__);
 
     }
 

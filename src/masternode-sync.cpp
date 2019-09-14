@@ -287,7 +287,6 @@ void CMasternodeSync::Process()
             pnode->FulfilledRequest("getspork");
 
             pnode->PushMessage("getsporks"); //get current network sporks
-            //GetNextAsset();
             if (RequestedMasternodeAttempt >= 2) GetNextAsset();
             RequestedMasternodeAttempt++;
 
@@ -304,8 +303,6 @@ void CMasternodeSync::Process()
 
                 if (pnode->HasFulfilledRequest("mnsync")) continue;
                 pnode->FulfilledRequest("mnsync");
-              //  if (lastMasternodeList > 0 && GetTime() - nAssetSyncStarted > MASTERNODE_SYNC_TIMEOUT * 5) GetNextAsset();
-
                 // timeout
                 if (lastMasternodeList == 0 &&
                     (RequestedMasternodeAttempt >= MASTERNODE_SYNC_THRESHOLD * 3 || GetTime() - nAssetSyncStarted > MASTERNODE_SYNC_TIMEOUT * 5)) {
@@ -337,7 +334,6 @@ void CMasternodeSync::Process()
                 if (pnode->HasFulfilledRequest("mnwsync")) continue;
                 pnode->FulfilledRequest("mnwsync");
 
-                //if (lastMasternodeWinner > 0 && GetTime() - nAssetSyncStarted > MASTERNODE_SYNC_TIMEOUT * 5) GetNextAsset();
                 // timeout
                 if (lastMasternodeWinner == 0 &&
                     (RequestedMasternodeAttempt >= MASTERNODE_SYNC_THRESHOLD * 3 || GetTime() - nAssetSyncStarted > MASTERNODE_SYNC_TIMEOUT * 5)) {

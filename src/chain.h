@@ -20,8 +20,6 @@
 
 #include <boost/foreach.hpp>
 
-using namespace std;
-
 
 struct CDiskBlockPos {
     int nFile;
@@ -171,7 +169,7 @@ public:
     uint256 hashProofOfStake;
     int64_t nMint;
     int64_t nMoneySupply;
-    //
+    //New Stake Protocols
     unsigned int nNewStakeProtocol;
     unsigned int nCheckHeight;
 

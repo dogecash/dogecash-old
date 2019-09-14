@@ -24,7 +24,7 @@
 
 using namespace std;
 
-//bool fTestNet = false; //Params().NetworkID() == CBaseChainParams::TESTNET;
+bool fTestNet = false; //Params().NetworkID() == CBaseChainParams::TESTNET;
 
 int nHeight = 0;
 // Modifier interval: time to elapse before new modifier is computed
