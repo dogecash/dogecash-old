@@ -14,7 +14,7 @@
 std::set<std::string> ZDOGECControlDialog::setSelectedMints;
 std::set<CMintMeta> ZDOGECControlDialog::setMints;
 
-bool CZPivControlWidgetItem::operator<(const QTreeWidgetItem &other) const {
+bool CZDogeCControlWidgetItem::operator<(const QTreeWidgetItem &other) const {
     int column = treeWidget()->sortColumn();
     if (column == ZDOGECControlDialog::COLUMN_DENOMINATION || column == ZDOGECControlDialog::COLUMN_VERSION || column == ZDOGECControlDialog::COLUMN_CONFIRMATIONS)
         return data(column, Qt::UserRole).toLongLong() < other.data(column, Qt::UserRole).toLongLong();
@@ -41,8 +41,8 @@ ZDOGECControlDialog::ZDOGECControlDialog(QWidget *parent) :
 
 
     // Label Style
-    ui->labelZPiv->setProperty("cssClass", "text-main-purple");
-    ui->labelZPiv_int->setProperty("cssClass", "text-main-purple");
+    ui->labelZDogeC->setProperty("cssClass", "text-main-purple");
+    ui->labelZDogeC_int->setProperty("cssClass", "text-main-purple");
     ui->labelQuantity->setProperty("cssClass", "text-main-purple");
     ui->labelQuantity_int->setProperty("cssClass", "text-main-purple");
 
@@ -84,7 +84,7 @@ void ZDOGECControlDialog::updateList()
     QFlags<Qt::ItemFlag> flgTristate = Qt::ItemIsEnabled | Qt::ItemIsUserCheckable | Qt::ItemIsTristate;
     std::map<libzerocoin::CoinDenomination, int> mapDenomPosition;
     for (auto denom : libzerocoin::zerocoinDenomList) {
-        CZPivControlWidgetItem* itemDenom(new CZPivControlWidgetItem);
+        CZDogeCControlWidgetItem* itemDenom(new CZDogeCControlWidgetItem);
         ui->treeWidget->addTopLevelItem(itemDenom);
 
         //keep track of where this is positioned in tree widget
@@ -106,7 +106,7 @@ void ZDOGECControlDialog::updateList()
     for (const CMintMeta& mint : setMints) {
         // assign this mint to the correct denomination in the tree view
         libzerocoin::CoinDenomination denom = mint.denom;
-        CZPivControlWidgetItem *itemMint = new CZPivControlWidgetItem(ui->treeWidget->topLevelItem(mapDenomPosition.at(denom)));
+        CZDogeCControlWidgetItem *itemMint = new CZDogeCControlWidgetItem(ui->treeWidget->topLevelItem(mapDenomPosition.at(denom)));
 
         // if the mint is already selected, then it needs to have the checkbox checked
         std::string strPubCoinHash = mint.hashPubcoin.GetHex();
@@ -212,11 +212,11 @@ void ZDOGECControlDialog::updateLabels()
     }
 
     //update this dialog's labels
-    ui->labelZPiv_int->setText(QString::number(nAmount));
+    ui->labelZDogeC_int->setText(QString::number(nAmount));
     ui->labelQuantity_int->setText(QString::number(setSelectedMints.size()));
 
     //update PrivacyDialog labels
-    //privacyDialog->setZPivControlLabels(nAmount, setSelectedMints.size());
+    //privacyDialog->setZDogeCControlLabels(nAmount, setSelectedMints.size());
 }
 
 std::vector<CMintMeta> ZDOGECControlDialog::GetSelectedMints()

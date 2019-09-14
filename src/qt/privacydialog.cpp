@@ -298,19 +298,19 @@ void PrivacyDialog::on_pushButtonSpendzDOGEC_clicked()
     sendzDOGEC();
 }
 
-void PrivacyDialog::on_pushButtonZPivControl_clicked()
+void PrivacyDialog::on_pushButtonZDogeCControl_clicked()
 {
     if (!walletModel || !walletModel->getOptionsModel())
         return;
 
-    ZDOGECControlDialog* zPivControl = new ZDOGECControlDialog(this);
-    zPivControl->setModel(walletModel);
-    zPivControl->exec();
+    ZDOGECControlDialog* zDogeCControl = new ZDOGECControlDialog(this);
+    zDogeCControl->setModel(walletModel);
+    zDogeCControl->exec();
 }
 
-void PrivacyDialog::setZPivControlLabels(int64_t nAmount, int nQuantity)
+void PrivacyDialog::setZDogeCControlLabels(int64_t nAmount, int nQuantity)
 {
-    ui->labelzPivSelected_int->setText(QString::number(nAmount));
+    ui->labelzDogeCSelected_int->setText(QString::number(nAmount));
     ui->labelQuantitySelected_int->setText(QString::number(nQuantity));
 }
 
@@ -330,7 +330,7 @@ void PrivacyDialog::sendzDOGEC()
     }
     else{
         if (!address.IsValid()) {
-            QMessageBox::warning(this, tr("Spend Zerocoin"), tr("Invalid Pivx Address"), QMessageBox::Ok, QMessageBox::Ok);
+            QMessageBox::warning(this, tr("Spend Zerocoin"), tr("Invalid DogeCx Address"), QMessageBox::Ok, QMessageBox::Ok);
             ui->payTo->setFocus();
             return;
         }
@@ -475,7 +475,7 @@ void PrivacyDialog::sendzDOGEC()
 
     // Clear zdogec selector in case it was used
     ZDOGECControlDialog::setSelectedMints.clear();
-    ui->labelzPivSelected_int->setText(QString("0"));
+    ui->labelzDogeCSelected_int->setText(QString("0"));
     ui->labelQuantitySelected_int->setText(QString("0"));
 
     // Some statistics for entertainment
@@ -493,7 +493,7 @@ void PrivacyDialog::sendzDOGEC()
 
     CAmount nValueOut = 0;
     for (const CTxOut& txout: wtxNew.vout) {
-        strStats += tr("value out: ") + FormatMoney(txout.nValue).c_str() + " Piv, ";
+        strStats += tr("value out: ") + FormatMoney(txout.nValue).c_str() + " DogeC, ";
         nValueOut += txout.nValue;
 
         strStats += tr("address: ");

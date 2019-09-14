@@ -119,6 +119,7 @@ EXPECTED_HOLDER_NAMES = [
     "The Dash developers\n",
     "The Dash Developers\n",
     "The Dash Core developers\n",
+    "The PIVX developers\n",
     "The DogeCash developers\n",
     "The PPCoin developers\n",
 ]

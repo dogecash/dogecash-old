@@ -82,7 +82,7 @@ public:
     qreal maxValue = 0;
     qint64 totalDogeC = 0;
     qint64 totalZdogec = 0;
-    QList<qreal> valuesPiv;
+    QList<qreal> valuesDogeC;
     QList<qreal> valueszDogec;
     QStringList xLabels;
 };

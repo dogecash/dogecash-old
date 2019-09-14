@@ -1467,7 +1467,7 @@ Address: %4
     </message>
     <message>
         <location line="+8"/>
-        <source>Can vary +/- %1 upiv per input.</source>
+        <source>Can vary +/- %1 udogec per input.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

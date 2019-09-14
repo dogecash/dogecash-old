@@ -108,7 +108,7 @@
              <number>0</number>
             </property>
             <item alignment="Qt::AlignTop">
-             <widget class="QLabel" name="labelAmountTopPiv">
+             <widget class="QLabel" name="labelAmountTopDogeC">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -402,7 +402,7 @@ border:none;</string>
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="labelAmountPiv">
+                <widget class="QLabel" name="labelAmountDogeC">
                  <property name="text">
                   <string>480.0685 DOGEC</string>
                  </property>
@@ -425,7 +425,7 @@ border:none;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="labelPendingPiv">
+                  <widget class="QLabel" name="labelPendingDogeC">
                    <property name="text">
                     <string>6.943 DOGEC</string>
                    </property>
@@ -459,7 +459,7 @@ border:none;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="labelImmaturePiv">
+                  <widget class="QLabel" name="labelImmatureDogeC">
                    <property name="text">
                     <string>10 DOGEC</string>
                    </property>
