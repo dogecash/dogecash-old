@@ -31,6 +31,7 @@ public:
             return row;
         } else {
             return row;
+        }
     }
 
     void init(QWidget* holder,const QModelIndex &index, bool isHovered, bool isSelected) const override{
