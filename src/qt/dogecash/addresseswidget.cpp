@@ -30,8 +30,8 @@ public:
 
     AddressLabelRow* createHolder(int pos) override{
         if (!cachedRow) {
-            //cachedRow = new AddressLabelRow();
-            cachedRow->init(isLightTheme, false);
+            cachedRow = new AddressLabelRow();
+            cachedRow->init(isLightTheme, false, false);
             return cachedRow;
         } else {
             return cachedRow;
