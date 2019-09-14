@@ -29,7 +29,7 @@ public:
 
     AddressLabelRow* createHolder(int pos) override{
         if (!cachedRow) {
-            cachedRow = new AddressLabelRow();
+            //cachedRow = new AddressLabelRow();
             cachedRow->init(isLightTheme, false);
             return cachedRow;
         } else {

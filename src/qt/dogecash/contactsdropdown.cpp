@@ -25,10 +25,8 @@ public:
 
     ContactDropdownRow* createHolder(int pos) override{
         if (!row) {
-            row = new ContactDropdownRow();
+            //row = new ContactDropdownRow();
             row->init(true, false);
-            return row;
-        } else {
             return row;
         }
     }
