@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,7 +14,6 @@ MyAddressRow::MyAddressRow(QWidget *parent) :
     ui->labelName->setProperty("cssClass", "text-list-title1");
     ui->labelAddress->setProperty("cssClass", "text-list-body2");
     ui->labelDate->setProperty("cssClass", "text-list-caption");
-
 }
 
 void MyAddressRow::updateView(QString address, QString label, QString date){

@@ -65,7 +65,7 @@ CoinControlDialog::CoinControlDialog(QWidget* parent, bool fMultisigEnabled) : Q
 
     // Title
 
-    ui->labelTitle->setText("Select PIV Denominations to Spend");
+    ui->labelTitle->setText("Select DOGEC Denominations to Spend");
     ui->labelTitle->setProperty("cssClass", "text-title-dialog");
 
     // Label Style

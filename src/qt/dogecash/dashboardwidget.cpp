@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -85,6 +86,7 @@ DashboardWidget::DashboardWidget(DogeCashGUI* parent) :
     ui->pushButtonYear->setChecked(true);
 
     setCssProperty(ui->pushButtonChartArrow, "btn-chart-arrow");
+    setCssProperty(ui->pushButtonChartRight, "btn-chart-arrow-right");
 
     connect(ui->comboBoxYears, SIGNAL(currentIndexChanged(const QString&)), this,SLOT(onChartYearChanged(const QString&)));
 
@@ -357,7 +359,8 @@ void DashboardWidget::loadChart(){
             for (int i = 1; i < 13; ++i) ui->comboBoxMonths->addItem(QString(monthsNames[i-1]), QVariant(i));
             ui->comboBoxMonths->setCurrentIndex(monthFilter - 1);
             connect(ui->comboBoxMonths, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(onChartMonthChanged(const QString&)));
-            connect(ui->pushButtonChartArrow, SIGNAL(clicked()), this, SLOT(onChartArrowClicked()));
+            connect(ui->pushButtonChartArrow, &QPushButton::clicked, [this](){ onChartArrowClicked(true); });
+            connect(ui->pushButtonChartRight, &QPushButton::clicked, [this](){ onChartArrowClicked(false); });            
         }
         refreshChart();
         changeChartColors();
@@ -418,7 +421,7 @@ void DashboardWidget::changeChartColors(){
     }else{
         gridY = QColor("#40ffffff");
         axisY->setGridLineColor(gridY);
-        gridLineColorX = QColor(15,11,22);
+        gridLineColorX = QColor(22, 21, 11);
         linePenColorY =  gridLineColorX;
         backgroundColor = linePenColorY;
     }
@@ -514,6 +517,7 @@ void DashboardWidget::loadChartData(bool withMonthNames) {
         delete chartData;
         chartData = nullptr;
     }
+
     chartData = new ChartData();
 
     chartData->amountsByCache = getAmountBy(); // pair DOGEC, zDOGEC
@@ -529,7 +533,7 @@ void DashboardWidget::loadChartData(bool withMonthNames) {
             std::pair <qint64, qint64> pair = chartData->amountsByCache[num];
             piv = (pair.first != 0) ? pair.first / 100000000 : 0;
             zdogec = (pair.second != 0) ? pair.second / 100000000 : 0;
-            chartData->totalPiv += pair.first;
+            chartData->totalDogeC += pair.first;
             chartData->totalZdogec += pair.second;
         }
 
@@ -543,7 +547,6 @@ void DashboardWidget::loadChartData(bool withMonthNames) {
             chartData->maxValue = max;
         }
     }
-    return chartData;
 }
 
 void DashboardWidget::onChartYearChanged(const QString& yearStr) {
@@ -590,8 +593,8 @@ void DashboardWidget::onChartRefreshed() {
     // init sets
     set0 = new QBarSet("DOGEC");
     set1 = new QBarSet("zDOGEC");
-    set0->setColor(QColor(92,75,125));
-    set1->setColor(QColor(176,136,255));
+    set0->setColor(QColor(125,108,75));
+    set1->setColor(QColor(255, 209, 136));
 
     if(!series) {
         series = new QBarSeries();
@@ -605,7 +608,7 @@ void DashboardWidget::onChartRefreshed() {
 
     // Total
     nDisplayUnit = walletModel->getOptionsModel()->getDisplayUnit();
-    if (chartData->totalPiv > 0 || chartData->totalZdogec > 0) {
+    if (chartData->totalDogeC > 0 || chartData->totalZdogec > 0) {
         setCssProperty(ui->labelAmountPiv, "text-stake-piv");
         setCssProperty(ui->labelAmountZdogec, "text-stake-zdogec");
     } else {
@@ -613,7 +616,7 @@ void DashboardWidget::onChartRefreshed() {
         setCssProperty(ui->labelAmountZdogec, "text-stake-zdogec-disable");
     }
     forceUpdateStyle({ui->labelAmountPiv, ui->labelAmountZdogec});
-    ui->labelAmountPiv->setText(GUIUtil::formatBalance(chartData->totalPiv, nDisplayUnit));
+    ui->labelAmountPiv->setText(GUIUtil::formatBalance(chartData->totalDogeC, nDisplayUnit));
     ui->labelAmountZdogec->setText(GUIUtil::formatBalance(chartData->totalZdogec, nDisplayUnit, true));
 
     series->append(set0);
@@ -705,10 +708,18 @@ void DashboardWidget::updateAxisX(const QStringList* args) {
     axisX->append(months);
 }
 
-void DashboardWidget::onChartArrowClicked() {
-    dayStart--;
-    if (dayStart == 0) {
-        dayStart = QDate(yearFilter, monthFilter, 1).daysInMonth();
+void DashboardWidget::onChartArrowClicked(bool goLeft) {
+    if (goLeft) {
+        dayStart--;
+        if (dayStart == 0) {
+            dayStart = QDate(yearFilter, monthFilter, 1).daysInMonth();
+        }
+    } else {
+        int dayInMonth = QDate(yearFilter, monthFilter, dayStart).daysInMonth();
+        dayStart++;
+        if (dayStart > dayInMonth) {
+            dayStart = 1;
+        }
     }
     refreshChart();
 }
@@ -746,6 +757,9 @@ void DashboardWidget::windowResizeEvent(QResizeEvent *event){
 bool DashboardWidget::hasStakes() {
     return stakesFilter->rowCount() > 0;
 }
+bool DashboardWidget::hasMNRewards() {
+    return mnrewardFilter->rowCount() > 0;
+}
 
 #endif
 
@@ -753,7 +767,7 @@ void DashboardWidget::run(int type) {
 #ifdef USE_QTCHARTS
     if (type == REQUEST_LOAD_TASK) {
         bool withMonthNames = !isChartMin && (chartShow == YEAR);
-        chartData = loadChartData(withMonthNames);
+        loadChartData(withMonthNames);
         QMetaObject::invokeMethod(this, "onChartRefreshed", Qt::QueuedConnection);
     }
 #endif

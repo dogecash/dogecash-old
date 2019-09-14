@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,7 +19,7 @@ class ContactDropdownRow : public QWidget
 public:
     explicit ContactDropdownRow(QWidget *parent = nullptr);
     ~ContactDropdownRow();
-
+    
     void init(bool isLightTheme, bool isHover);
     void update(bool isLightTheme, bool isHover, bool isSelected);
     void setData(QString address, QString label);

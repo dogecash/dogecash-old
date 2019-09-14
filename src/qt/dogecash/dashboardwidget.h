@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -79,7 +80,7 @@ public:
 
     QMap<int, std::pair<qint64, qint64>> amountsByCache;
     qreal maxValue = 0;
-    qint64 totalPiv = 0;
+    qint64 totalDogeC = 0;
     qint64 totalZdogec = 0;
     QList<qreal> valuesPiv;
     QList<qreal> valueszDogec;
@@ -128,7 +129,7 @@ private slots:
     void changeChartColors();
     void onChartYearChanged(const QString&);
     void onChartMonthChanged(const QString&);
-    void onChartArrowClicked();
+    void onChartArrowClicked(bool goLeft);
 #endif
 
 private:
@@ -146,6 +147,7 @@ private:
 
     // Chart
     TransactionFilterProxy* stakesFilter = nullptr;
+    TransactionFilterProxy* mnrewardFilter = nullptr;
     bool isChartInitialized = false;
     QChartView *chartView = nullptr;
     QBarSeries *series = nullptr;
@@ -175,6 +177,7 @@ private:
     void setChartShow(ChartShowType type);
     std::pair<int, int> getChartRange(QMap<int, std::pair<qint64, qint64>> amountsBy);
     bool hasStakes();
+    bool hasMNRewards();
 
 private slots:
     void onChartRefreshed();

@@ -1705,6 +1705,22 @@ QPushButton[cssClass="btn-chart-arrow"]:pressed {
     background-color:#20192e;
 }
 
+QPushButton[cssClass="btn-chart-arrow-right"] {
+    qproperty-icon: url("://ic-arrow-right-white") ;
+    qproperty-iconSize: 12px 12px;
+    background-color: transparent;
+    border:0px;
+    border-radius:2px;
+}
+
+QPushButton[cssClass="btn-chart-arrow-right"]:hover {
+    background-color: #7d644b;
+}
+
+QPushButton[cssClass="btn-chart-arrow-right"]:pressed {
+    background-color:#2e2419;
+}
+
 QComboBox[cssClass="btn-combo-secondary"] {
     background-color:#16110b;
     padding:6px 12px 6px 6px;

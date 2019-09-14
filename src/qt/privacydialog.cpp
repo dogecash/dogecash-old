@@ -363,7 +363,7 @@ void PrivacyDialog::sendzDOGEC()
 
     if(!fWholeNumber && fMintChange){
         QString strFeeWarning = "You've entered an amount with fractional digits and want the change to be converted to Zerocoin.<br /><br /><b>";
-        strFeeWarning += QString::number(dzFee, 'f', 8) + " PIV </b>will be added to the standard transaction fees!<br />";
+        strFeeWarning += QString::number(dzFee, 'f', 8) + " DOGEC </b>will be added to the standard transaction fees!<br />";
         QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm additional Fees"),
                                                                    strFeeWarning,
                                                                    QMessageBox::Yes | QMessageBox::Cancel,
@@ -820,7 +820,7 @@ void PrivacyDialog::updateSPORK16Status()
     } else if (!fMaintenanceMode && !fButtonsEnabled) {
         // Mint zDOGEC
         //ui->pushButtonMintzDOGEC->setEnabled(true);
-        //ui->pushButtonMintzDOGEC->setToolTip(tr("PrivacyDialog", "Enter an amount of PIV to convert to zDOGEC", 0));
+        //ui->pushButtonMintzDOGEC->setToolTip(tr("PrivacyDialog", "Enter an amount of DOGEC to convert to zDOGEC", 0));
 
         // Spend zDOGEC
         ui->pushButtonSpendzDOGEC->setEnabled(true);

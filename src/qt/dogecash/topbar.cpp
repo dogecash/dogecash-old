@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -513,14 +514,14 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
     CAmount matureZerocoinBalance = zerocoinBalance - unconfirmedZerocoinBalance - immatureZerocoinBalance;
 
     // Set
-    QString totalPiv = GUIUtil::formatBalance(pivAvailableBalance, nDisplayUnit);
+    QString totalDogeC = GUIUtil::formatBalance(pivAvailableBalance, nDisplayUnit);
     QString totalzDogec = GUIUtil::formatBalance(matureZerocoinBalance, nDisplayUnit, true);
     // Top
-    ui->labelAmountTopPiv->setText(totalPiv);
+    ui->labelAmountTopPiv->setText(totalDogeC);
     ui->labelAmountTopzDogec->setText(totalzDogec);
 
     // Expanded
-    ui->labelAmountPiv->setText(totalPiv);
+    ui->labelAmountPiv->setText(totalDogeC);
     ui->labelAmountzDogec->setText(totalzDogec);
 
     ui->labelPendingPiv->setText(GUIUtil::formatBalance(unconfirmedBalance, nDisplayUnit));

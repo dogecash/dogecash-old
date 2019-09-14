@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,6 +21,7 @@ class TxRow : public QWidget
 public:
     explicit TxRow(QWidget *parent = nullptr);
     ~TxRow();
+
     void init(bool isLightTheme);
     void updateStatus(bool isLightTheme, bool isHover, bool isSelected);
 
