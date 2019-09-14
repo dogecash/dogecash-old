@@ -404,6 +404,8 @@ libbitcoin_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_util_a_SOURCES = \
   allocators.cpp \
+  arith_uint256.cpp \
+  arith_uint256.h \
   chainparamsbase.cpp \
   clientversion.cpp \
   compat/glibc_sanity.cpp \

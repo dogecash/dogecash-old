@@ -258,7 +258,9 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
                 pindexNew->nMint = diskindex.nMint;
                 pindexNew->nMoneySupply = diskindex.nMoneySupply;
                 pindexNew->nFlags = diskindex.nFlags;
-                pindexNew->nStakeModifier = diskindex.nStakeModifier;
+                if (Params().IsNewStakeProtocol(pindexNew->nHeight)) {
+                    pindexNew->nStakeModifierV2 = diskindex.nStakeModifierV2;
+                }
                 pindexNew->prevoutStake = diskindex.prevoutStake;
                 pindexNew->nStakeTime = diskindex.nStakeTime;
                 pindexNew->hashProofOfStake = diskindex.hashProofOfStake;

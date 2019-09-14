@@ -16,6 +16,7 @@
 #include "libzerocoin/bignum.h"
 #include <assert.h>
 
+#include <limits>
 #include <boost/assign/list_of.hpp>
 
 using namespace std;
@@ -54,7 +55,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 //   (no blocks before with a timestamp after, none after with
 //    timestamp before)
 // + Contains no strange transactions
-static Checkpoints::MapCheckpoints mapCheckpoints = 
+static Checkpoints::MapCheckpoints mapCheckpoints =
 	boost::assign::map_list_of
 	(0, uint256("0x0000093cfce0a5a3cecea522e2c13bdf055d65c559fd2222730ba6f0d18dd2cd"));
 static const Checkpoints::CCheckpointData data = {
@@ -66,11 +67,11 @@ static const Checkpoints::CCheckpointData data = {
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
     boost::assign::map_list_of
-    (0, uint256("0x0000093cfce0a5a3cecea522e2c13bdf055d65c559fd2222730ba6f0d18dd2cd"));
+    (0, uint256("0x00000c0941669c214f3391ea4412899cb785776c79b08474faf2b3002d23aade"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1558130910,
-    2305594,
+    1566233685,
+    0,
     250};
 
 static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
@@ -99,6 +100,16 @@ libzerocoin::ZerocoinParams* CChainParams::Zerocoin_Params(bool useModulusV1) co
     return &ZCParamsDec;
 }
 
+bool CChainParams::HasStakeMinAgeOrDepth(const int contextHeight, const uint32_t contextTime, const int utxoFromBlockHeight, const uint32_t utxoFromBlockTime) const
+{
+    // before stake modifier V2, the age required was 60 * 60 (1 hour) / not required on regtest
+    if (!IsNewStakeProtocol(contextHeight))
+        return (NetworkID() == CBaseChainParams::REGTEST || (utxoFromBlockTime + 3600 <= contextTime));
+
+    // after stake modifier V2, we require the utxo to be nStakeMinDepth deep in the chain
+    return(contextHeight - utxoFromBlockHeight >= nStakeMinDepth);
+}
+
 class CMainParams : public CChainParams
 {
 public:
@@ -125,11 +136,14 @@ public:
         nRejectBlockOutdatedMajority = 10260; // 95%
         nToCheckBlockUpgradeMajority = 10800; // Approximate expected amount of blocks in 7 days (1440*7.5)
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // dogecash: 1 day  
         nTargetSpacing = 1 * 60; //dogecash: 1 Min
+        nStakeMinDepth = 600;
+        nFutureTimeDriftPoW = 7200;
+        nFutureTimeDriftPoS = 180;
         nMaturity = 30;
         nMasternodeCountDrift = 20;
         nMasternodeCollateralLimit = 5000; //MN collateral
+        nStakeCollateralMin = 100 * COIN;
         nMaxMoneyOut = 21000000 * COIN; //21 mill
         /** Height or Time Based Activations **/
         nLastPOWBlock = 200;
@@ -146,6 +160,7 @@ public:
         nBlockDoubleAccumulated = 1050010;
         nEnforceNewSporkKey = 1425158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
+        nBlockNewStakeProtocol = 150000; //!> Enforce new Stake Protocols add test/regtest
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 1686229;
@@ -172,15 +187,15 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1558130910; 
+        genesis.nTime = 1558130910;
         genesis.nBits = 0x1e0ffff0;
-	genesis.nNonce = 5510938; 
+        genesis.nNonce = 5510938;
         hashGenesisBlock = genesis.GetHash();
        // MineGenesis(genesis);
         //debug code
 	//    std::cout << "genesisinfo \n " << genesis.ToString();
-        assert(hashGenesisBlock == uint256("0x0000093cfce0a5a3cecea522e2c13bdf055d65c559fd2222730ba6f0d18dd2cd")); 
-        assert(genesis.hashMerkleRoot == uint256("0x7c3f1b5874e38c421d07fc20ce79ddb3bbaad19cdbad903a0b185070d6005b8c")); 
+        assert(hashGenesisBlock == uint256("0x0000093cfce0a5a3cecea522e2c13bdf055d65c559fd2222730ba6f0d18dd2cd"));
+        assert(genesis.hashMerkleRoot == uint256("0x7c3f1b5874e38c421d07fc20ce79ddb3bbaad19cdbad903a0b185070d6005b8c"));
 
 	vFixedSeeds.clear();
         vSeeds.clear();
@@ -253,21 +268,22 @@ public:
     {
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
-	pchMessageStart[0] = 0xa0;
+    pchMessageStart[0] = 0x90;
         pchMessageStart[1] = 0x43;
         pchMessageStart[2] = 0x16;
         pchMessageStart[3] = 0x19;
-        vAlertPubKey = ParseHex("040818ca42a8634c010ba1025a8d8a10a03ea286456f341df6a4a0aad1f123833695a662be2dc983a8da5fed7380bc9e1c3433e94422d36746cdd8e21a5f97b749");
+        vAlertPubKey = ParseHex("76a9147613c3040939cc666b635863d7bd4c49dfc7e66e88ac");
         nDefaultPort = 40001;
         nEnforceBlockUpgradeMajority = 4320; // 75%
         nRejectBlockOutdatedMajority = 5472; // 95%
         nToCheckBlockUpgradeMajority = 5760; // 4 days
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // dogecash: 1 day
         nTargetSpacing = 1 * 60;  // dogecash: 1 minute
-        nLastPOWBlock = 2000;
-        nMaturity = 32;
+        nLastPOWBlock = 125;
+        nMaturity = 1;
+        nStakeMinDepth = 50;
         nMasternodeCountDrift = 4;
+        nStakeCollateralMin = 10;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 21000000 * COIN;
         nZerocoinStartHeight = INT_MAX;
@@ -281,25 +297,27 @@ public:
         nBlockZerocoinV2 = 444020; //!> The block that zerocoin v2 becomes active
         nEnforceNewSporkKey = 1521604800; //!> Sporks signed after Wednesday, March 21, 2018 4:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1522454400; //!> Reject old spork key after Saturday, March 31, 2018 12:00:00 AM GMT
+        nBlockNewStakeProtocol = 1500; //!> Enforce new Stake Protocols add test/regtest
+
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
         nSupplyBeforeFakeSerial = 0;
 	//MineGenesis(genesis);
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1558130910; 
+        genesis.nTime = 1566214170;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 5510938;
+        genesis.nNonce = 5657067;
 
 	hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x0000093cfce0a5a3cecea522e2c13bdf055d65c559fd2222730ba6f0d18dd2cd"));
-	assert(genesis.hashMerkleRoot == uint256("0x7c3f1b5874e38c421d07fc20ce79ddb3bbaad19cdbad903a0b185070d6005b8c"));
+       // assert(hashGenesisBlock == uint256("0x00000c0941669c214f3391ea4412899cb785776c79b08474faf2b3002d23aade"));
+    // assert(genesis.hashMerkleRoot == uint256("0xb369cd1776507cbd977247a729fc165943bc0de7f5850e90180d26efdc812016"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
-       // vSeeds.push_back(CDNSSeedData("testnet.dogecash.io", "testnet.dogecash.io"));         // Single node address
-       // vSeeds.push_back(CDNSSeedData("testnet1.dogecash.io", "testnet1.dogecash.io"));       // Single node address
-       // vSeeds.push_back(CDNSSeedData("testnet2.dogecash.io", "testnet2.dogecash.io"));
+        vSeeds.push_back(CDNSSeedData("80.240.21.159", "80.240.21.159"));         // Single node address
+        vSeeds.push_back(CDNSSeedData("96.30.194.130", "96.30.194.130"));       // Single node address
+        vSeeds.push_back(CDNSSeedData("45.77.251.179", "45.77.251.179"));
 	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30);
 	base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
 	base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 122);
@@ -343,7 +361,7 @@ public:
     {
         networkID = CBaseChainParams::REGTEST;
         strNetworkID = "regtest";
-        pchMessageStart[0] = 0xa0;
+        pchMessageStart[0] = 0x10;
         pchMessageStart[1] = 0x43;
         pchMessageStart[2] = 0x16;
         pchMessageStart[3] = 0x19;
@@ -353,12 +371,12 @@ public:
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-        nTargetTimespan = 24 * 60 * 60; // dogecash: 1 day
         nTargetSpacing = 1 * 60;        // dogecash: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         nLastPOWBlock = 250;
         nMaturity = 100;
         nMasternodeCountDrift = 4;
+        nStakeCollateralMin = 0;
         nModifierUpdateBlock = 0; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 21000000 * COIN;
         nZerocoinStartHeight = INT_MAX;
@@ -369,6 +387,7 @@ public:
         nBlockFirstFraudulent = 999999999; //First block that bad serials emerged
         nBlockLastGoodCheckpoint = 999999999; //Last valid accumulator checkpoint
 
+        nBlockNewStakeProtocol = 1500;
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
 	//MineGenesis(genesis);

@@ -71,11 +71,19 @@ public:
     bool SkipProofOfWorkCheck() const { return fSkipProofOfWorkCheck; }
     /** Make standard checks */
     bool RequireStandard() const { return fRequireStandard; }
-    int64_t TargetTimespan() const { return nTargetTimespan; }
     int64_t TargetSpacing() const { return nTargetSpacing; }
-    int64_t Interval() const { return nTargetTimespan / nTargetSpacing; }
+        /** returns the coinbase maturity **/
     int COINBASE_MATURITY() const { return nMaturity; }
+
+    /** returns the coinstake maturity (min depth required) **/
+    int COINSTAKE_MIN_DEPTH() const { return nStakeMinDepth; }
+    bool HasStakeMinAgeOrDepth(const int contextHeight, const uint32_t contextTime, const int utxoFromBlockHeight, const uint32_t utxoFromBlockTime) const;
+
+    /** returns the max future time (and drift in seconds) allowed for a block in the future **/
+    int FutureBlockTimeDrift(const bool isPoS) const { return isPoS ? nFutureTimeDriftPoS : nFutureTimeDriftPoW; }
+    uint32_t MaxFutureBlockTime(uint32_t time, const bool isPoS) const { return time + FutureBlockTimeDrift(isPoS); }
     CAmount MaxMoneyOut() const { return nMaxMoneyOut; }
+    CAmount nStakeMinInput() const { return nStakeCollateralMin; }
     /** The masternode count that we will allow the see-saw reward payments to be off by */
     int MasternodeCountDrift() const { return nMasternodeCountDrift; }
     //declare and match all functions later for global use
@@ -130,6 +138,7 @@ public:
     int Zerocoin_StartTime() const { return nZerocoinStartTime; }
     int Block_Enforce_Invalid() const { return nBlockEnforceInvalidUTXO; }
     int Zerocoin_Block_V2_Start() const { return nBlockZerocoinV2; }
+    bool IsNewStakeProtocol(const int nHeight) const { return nHeight >= nBlockNewStakeProtocol; }
 
     // fake serial attack
     int Zerocoin_Block_EndFakeSerial() const { return nFakeSerialBlockheightEnd; }
@@ -152,7 +161,6 @@ protected:
     int nEnforceBlockUpgradeMajority;
     int nRejectBlockOutdatedMajority;
     int nToCheckBlockUpgradeMajority;
-    int64_t nTargetTimespan;
     int64_t nTargetSpacing;
     int nLastPOWBlock;
     int nMinStakeReserve;
@@ -160,6 +168,12 @@ protected:
     int nMasternodeCountDrift;
     int nMaturity;
     int nModifierUpdateBlock;
+    int nStakeMinDepth;
+    int nFutureTimeDriftPoW;
+    int nFutureTimeDriftPoS;
+    //Stake Protocol Switch
+    int nBlockNewStakeProtocol;
+    CAmount nStakeCollateralMin;
     CAmount nMaxMoneyOut;
     int nMinerThreads;
     std::vector<CDNSSeedData> vSeeds;
@@ -177,6 +191,7 @@ protected:
     bool fSkipProofOfWorkCheck;
     bool fTestnetToBeDeprecatedFieldRPC;
     bool fHeadersFirstSyncingActive;
+    bool fStakeMinDepth;
     int nPoolMaxTransactions;
     int nBudgetCycleBlocks;
     std::string strSporkKey;

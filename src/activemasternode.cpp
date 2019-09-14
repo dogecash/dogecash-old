@@ -12,7 +12,7 @@
 #include "spork.h"
 
 //
-// Bootup the Masternode, look for a 10000 dogecash input and register on the network
+// Bootup the Masternode, look for a 5000 DogeCash input and register on the network
 //
 void CActiveMasternode::ManageStatus()
 {
