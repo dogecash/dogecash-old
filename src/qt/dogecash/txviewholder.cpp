@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -41,8 +42,7 @@ void TxViewHolder::init(QWidget* holder,const QModelIndex &index, bool isHovered
     }
 
     int status = rIndex.data(TransactionTableModel::StatusRole).toInt();
-    bool isUnconfirmed = (status == TransactionStatus::Unconfirmed) || (status == TransactionStatus::Immature)
-                         || (status == TransactionStatus::Conflicted) || (status == TransactionStatus::NotAccepted);
+    bool isUnconfirmed = (status == TransactionStatus::Unconfirmed) || (status == TransactionStatus::Immature)|| (status == TransactionStatus::Conflicted) || (status == TransactionStatus::NotAccepted);
 
     txRow->setDate(date);
     txRow->setLabel(label);
