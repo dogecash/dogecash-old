@@ -303,6 +303,42 @@ QPushButton[cssClass="img-nav-logo"] {
     color: #9c7019;
 }
 
+*[cssClass="btn-nav-governance"] {
+    qproperty-icon: url("://ic-nav-governance") off,
+    url("://ic-nav-master-active") on;
+    qproperty-iconSize: 24px 30px;
+    background-color:transparent;
+    font-size:14px;
+    color: #a5988d;
+}
+
+*[cssClass="btn-nav-governance"]:checked {
+    qproperty-icon: url("://ic-nav-governance-active");
+    background-color: qlineargradient(x1:0, x2: 1, stop: 0 #594825, stop: 1 #2b2216);
+    font-size:14px;
+    color: #9c7019;
+}
+
+*[cssClass="btn-nav-governance"]:checked:hover {
+    background-color: qlineargradient(x1:0, x2: 1, stop: 0 #594825, stop: 1 #2b2216);
+    color: #9c7019;
+}
+
+*[cssClass="btn-nav-governance"]:hover {
+    qproperty-icon: url("://ic-nav-governance-hover");
+    qproperty-iconSize: 24px 30px;
+    background-color: #1A000000;
+    color: #a5988d;
+}
+
+*[cssClass="btn-nav-governance-active"] {
+    qproperty-icon:url("://ic-nav-governance-active");
+    qproperty-iconSize: 24px 30px;
+    background-color: qlineargradient(x1:0, x2: 1, stop: 0 #594825, stop: 1 #2b2216);
+    font-size:14px;
+    color: #9c7019;
+}
+
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 HH       TOP BAR
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
@@ -856,6 +892,15 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     font-size:14px;
 }
 
+*[cssClass="text-text"] {
+    color: white;
+    font-size:14px;
+}
+
+*[cssClass="text-text2"] {
+    color: white;
+}
+
 *[cssClass="text-body2-grey"] {
     color:#707070;
     font-size:14px;
@@ -1182,6 +1227,36 @@ QPushButton[cssClass="btn-primary"]:pressed {
     border-radius: 2px;
 }
 
+
+QPushButton[cssClass="btn-primary-2"] {
+    border:  1px solid #7d644b;
+    background-color:#7d644b;
+    font-size:18px;
+    padding:4px;
+    padding-right: 32px;
+    color: #FFFFFF;
+    border-radius: 2px;
+}
+
+QPushButton[cssClass="btn-primary-2"]:hover {
+    border:  1px solid #7d644b;
+    background-color:#5f4f37;
+    font-size:18px;
+    padding:4px;
+    padding-right: 32px;
+    color: #FFFFFF;
+    border-radius: 2px;
+}
+
+QPushButton[cssClass="btn-primary-2"]:pressed {
+    border:  1px solid #1c122e;
+    background-color:#1c122e;
+    font-size:18px;
+    padding:4px;
+    padding-right: 32px;
+    color: #9c7019;
+    border-radius: 2px;
+}
 
 QPushButton[cssClass="btn-secondary"] {
     border:  1px solid #7d644b;
@@ -2792,6 +2867,12 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     background-color: transparent;
 }
 
+*[cssClass="img-empty-governance"] {
+    qproperty-icon: url("://img-empty-dark-governance");
+    qproperty-iconSize: 100px 100px;
+    background-color: transparent;
+}
+
 *[cssClass="img-empty-transactions"] {
     qproperty-icon: url("://img-empty-dark-transactions");
     qproperty-iconSize: 100px 100px;
@@ -3146,4 +3227,51 @@ QRadioButton[cssClass="radio-welcome"]::indicator:unchecked {
     background: url("://btn-radio-off");
     background-repeat:no-repeat;
     background-position:center;
+}
+
+*[cssClass="qframe-frame-Content2"]{
+    background-color: #16110b;
+}
+
+*[cssClass="GovernancePage-ProposalFrame"] {
+    border-radius: 5px;
+    margin: 2px;
+    max-height: 250px;
+    border: 1px solid #d7d7d7;
+}
+
+*[cssClass="GovernancePage-ProposalFrame-proposalFrame"] {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #B6A27E, stop: 1 #B6A17E);
+    border-radius: 5px;
+    margin: 2px;
+    max-height: 250px;
+    border: 1px solid #f2cc93;
+}
+
+*[cssClass="GovernancePage-ProposalFrame-proposalFramePassing"] {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #00cc00, stop: 1 #00ef00);
+    border-radius: 5px;
+    margin: 2px;
+    max-height: 250px;
+    border: 1px solid #00ef00;
+}
+
+*[cssClass="GovernancePage-ProposalFrame-QLabel-strProposalName"] {
+    font-size: 18pt;
+    color: white;
+}
+
+*[cssClass="GovernancePage-ProposalFrame-QLabel-strProposalURL"] {
+    font-size: 14pt;
+}
+
+
+*[cssClass="GovernancePage-scrollArea"] {
+    background-color: #16110b;
+}
+
+*[cssClass="GovernancePage-proposalGrid"]
+QWidget#GovernancePage .QGridLayout#proposalGrid {
+    margin-right: 35px!important;
+    padding-right: 35px!important;
 }

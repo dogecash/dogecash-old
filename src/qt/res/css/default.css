@@ -2048,7 +2048,7 @@ QCalendarWidget QAbstractItemView:disabled {
     color: #b6a27e;
 }
 
-QWidget#GovernancePage .QFrame#frame_Content {
+QWidget#GovernancePage .QFrame#frame_Content2  {
     background-color: #29333D;
 }
 
@@ -2081,7 +2081,7 @@ QWidget#GovernancePage .ProposalFrame>QLabel#strProposalURL {
 }
 
 QWidget#GovernancePage .QScrollArea,
-.QWidget#scrollAreaWidgetContents {
+.QWidget#scrollAreaWidgetContents2 {
     background-color: #29333D;
 }
 

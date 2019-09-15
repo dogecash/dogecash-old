@@ -31,6 +31,7 @@ private slots:
     void onPrivacyClicked();
     void onAddressClicked();
     void onMasterNodesClicked();
+    void onGovernanceClicked();
     void onSettingsClicked();
     void onReceiveClicked();
     void updateButtonStyles();

@@ -428,8 +428,6 @@ src/qt/forms/ui_coincontroldialog.h
 src/qt/forms/ui_coincontroldialog.h
 src/qt/forms/ui_editaddressdialog.h
 src/qt/forms/ui_editaddressdialog.h
-src/qt/forms/ui_governancepage.h
-src/qt/forms/ui_governancepage.h
 src/qt/forms/ui_helpmessagedialog.h
 src/qt/forms/ui_helpmessagedialog.h
 src/qt/forms/ui_intro.h
@@ -469,8 +467,7 @@ src/qt/forms/ui_zdogeccontroldialog.h
 src/qt/forms/zdogeccontroldialog.ui
 src/qt/governancepage.cpp
 src/qt/governancepage.cpp
-src/qt/governancepage.h
-src/qt/governancepage.h
+
 src/qt/guiconstants.h
 src/qt/guiconstants.h
 src/qt/guiutil.cpp

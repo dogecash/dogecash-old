@@ -217,6 +217,9 @@
         <file alias="ic-nav-master-active">dogecash/res/img/ic-nav-master-active.svg</file>
         <file alias="ic-nav-master-hover">dogecash/res/img/ic-nav-master-hover.svg</file>
         <file alias="ic-nav-master">dogecash/res/img/ic-nav-master.svg</file>
+        <file alias="ic-nav-governance-active">dogecash/res/img/ic-nav-governance-active.svg</file>
+        <file alias="ic-nav-governance-hover">dogecash/res/img/ic-nav-governance-hover.svg</file>
+        <file alias="ic-nav-governance">dogecash/res/img/ic-nav-governance.svg</file>
         <file alias="ic-nav-privacy-active">dogecash/res/img/ic-nav-privacy-active.svg</file>
         <file alias="ic-nav-privacy-hover">dogecash/res/img/ic-nav-privacy-hover.svg</file>
         <file alias="ic-nav-privacy">dogecash/res/img/ic-nav-privacy.svg</file>
@@ -271,6 +274,7 @@
         <file alias="img-empty-dark-contacts">dogecash/res/img/img-empty-dark-contacts.svg</file>
         <file alias="img-empty-dark-error">dogecash/res/img/img-empty-dark-error.svg</file>
         <file alias="img-empty-dark-masternode">dogecash/res/img/img-empty-dark-masternode.svg</file>
+        <file alias="img-empty-dark-governance">res/icons/governance_dark.png</file>
         <file alias="img-empty-dark-multisend">dogecash/res/img/img-empty-dark-multisend.svg</file>
         <file alias="img-empty-dark-peers">dogecash/res/img/img-empty-dark-peers.svg</file>
         <file alias="img-empty-dark-staking-on">dogecash/res/img/img-empty-dark-staking-on.svg</file>
@@ -279,6 +283,7 @@
         <file alias="img-empty-dark-privacy">dogecash/res/img/img-empty-privacy-dark.svg</file>
         <file alias="img-empty-error">dogecash/res/img/img-empty-error.svg</file>
         <file alias="img-empty-masternode">dogecash/res/img/img-empty-masternode.svg</file>
+        <file alias="img-empty-governance">res/icons/governance.png</file>
         <file alias="img-empty-multisend">dogecash/res/img/img-empty-multisend.svg</file>
         <file alias="img-empty-peers">dogecash/res/img/img-empty-peers.svg</file>
         <file alias="img-empty-privacy">dogecash/res/img/img-empty-privacy.svg</file>

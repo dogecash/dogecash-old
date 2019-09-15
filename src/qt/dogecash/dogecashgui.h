@@ -23,6 +23,7 @@
 #include "qt/dogecash/addresseswidget.h"
 #include "qt/dogecash/privacywidget.h"
 #include "qt/dogecash/masternodeswidget.h"
+#include "qt/dogecash/governancepage.h"
 #include "qt/dogecash/snackbar.h"
 #include "qt/dogecash/settings/settingswidget.h"
 #include "qt/rpcconsole.h"
@@ -68,6 +69,7 @@ public slots:
     void goToAddresses();
     void goToPrivacy();
     void goToMasterNodes();
+    void goToGovernance();
     void goToSettings();
 
     void connectActions();
@@ -131,6 +133,7 @@ private:
     AddressesWidget *addressesWidget = nullptr;
     PrivacyWidget *privacyWidget = nullptr;
     MasterNodesWidget *masterNodesWidget = nullptr;
+    GovernancePage *governancePage = nullptr;
     SettingsWidget* settingsWidget = nullptr;
 
     SnackBar *snackBar = nullptr;
