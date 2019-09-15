@@ -40,8 +40,8 @@ after_script:
     - echo $TRAVIS_COMMIT_RANGE
     - echo $TRAVIS_COMMIT_LOG
 
-jobs:
-  include:
+# jobs:
+#   include:
 # # lint stage
 #     - stage: lint
 #       env:
@@ -138,8 +138,8 @@ jobs:
 # #        GOAL="install"
 # #        BITCOIN_CONFIG="--enable-glibc-back-compat --enable-reduce-exports"
 # # Cross-Mac
-    - stage: test
-      env: >-
+#     - stage: test
+#       env: >-
         HOST=x86_64-apple-darwin14
         PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python-dev python3-setuptools-git"
         OSX_SDK=10.11
