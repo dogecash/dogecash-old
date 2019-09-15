@@ -5,8 +5,8 @@
 #ifndef BITCOIN_QT_GOVERNANCEPAGE_H
 #define BITCOIN_QT_GOVERNANCEPAGE_H
 
+#include "qt/dogecash/pwidget.h"
 #include "masternode.h"
-#include "platformstyle.h"
 #include "sync.h"
 #include "util.h"
 
@@ -18,8 +18,7 @@
 #include <QTimer>
 #include <QWidget>
 
-class ClientModel;
-class WalletModel;
+class DogeCashGUI;
 class CBudgetProposal;
 
 namespace Ui
@@ -31,16 +30,14 @@ QT_BEGIN_NAMESPACE
 class QModelIndex;
 QT_END_NAMESPACE
 
-class GovernancePage : public QWidget
+class GovernancePage : public PWidget
 {
     Q_OBJECT
 
 public:
-    explicit GovernancePage(QWidget* parent = 0);
+    explicit GovernancePage(DogeCashGUI* parent = nullptr);
     ~GovernancePage();
 
-    void setClientModel(ClientModel* clientModel);
-    void setWalletModel(WalletModel* walletModel);
     void setExtendedProposal(CBudgetProposal* proposal);
     void lockUpdating(bool lock);
 
@@ -50,21 +47,20 @@ private:
     bool fFilterUpdated;
     bool fLockUpdating;
 
-public Q_SLOTS:
+public slots:
     void updateProposalList();
 
-Q_SIGNALS:
+private slots:
+    void onCreateProposalButtonclicked();
+    void onUpdateButtonclicked();
 
 private:
     QTimer* timer;
-    Ui::GovernancePage* ui;
-    ClientModel* clientModel;
-    WalletModel* walletModel;
+    Ui::GovernancePage *ui;
     QString strCurrentFilter;
     CBudgetProposal* extendedProposal;
 
-private Q_SLOTS:
-    void on_UpdateButton_clicked();
+
 };
 
 #endif // BITCOIN_QT_GOVERNANCEPAGE_H

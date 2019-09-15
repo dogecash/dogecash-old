@@ -2,7 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "proposalframe.h"
+#include "qt/dogecash/proposalframe.h"
+#include "qt/dogecash/qtutils.h"
 
 #include "masternode-budget.h"
 #include "masternodeconfig.h"
@@ -49,10 +50,12 @@ void ProposalFrame::setProposal(CBudgetProposal* proposal)
     QLabel* strProposalName = new QLabel();
     strProposalName->setObjectName(QStringLiteral("strProposalName"));
     strProposalName->setText(QString::fromStdString(proposal->GetName()));
+    setCssProperty(strProposalName, "GovernancePage-ProposalFrame-QLabel-strProposalName");
     QLabel* strMonthlyPayout = new QLabel();
     strMonthlyPayout->setObjectName(QStringLiteral("strMonthlyPayout"));
     strMonthlyPayout->setText(QString::fromStdString(FormatMoney(proposal->GetAmount())));
     strMonthlyPayout->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+    setCssProperty(strMonthlyPayout, "GovernancePage-ProposalFrame-QLabel-strProposalName");
 
     proposalInfo->addWidget(strProposalName);
     proposalInfo->addWidget(strProposalHash);
@@ -94,6 +97,7 @@ void ProposalFrame::refresh()
         strProposalURL->setTextFormat(Qt::RichText);
         strProposalURL->setTextInteractionFlags(Qt::TextBrowserInteraction);
         strProposalURL->setOpenExternalLinks(false);
+        setCssProperty(strProposalURL, "GovernancePage-ProposalFrame-QLabel-strProposalURL");
         connect(strProposalURL, &QLabel::linkActivated, this, &ProposalFrame::proposalLink_clicked);
         proposalURL->addWidget(strProposalURL);
 
@@ -105,6 +109,7 @@ void ProposalFrame::refresh()
         //CYCLES LEFT
         strRemainingPaymentCount = new QLabel();
         strRemainingPaymentCount->setObjectName(QStringLiteral("strRemainingPaymentCount"));
+        setCssProperty(strRemainingPaymentCount, "GovernancePage-ProposalFrame-QLabel-strProposalName");
         QString strPaymentCount = QString::number(proposal->GetRemainingPaymentCount()) + tr(" remaining payment(s).");
         strRemainingPaymentCount->setText(strPaymentCount);
         proposalItem->addWidget(strRemainingPaymentCount);

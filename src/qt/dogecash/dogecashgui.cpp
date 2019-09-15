@@ -37,8 +37,8 @@ DogeCashGUI::DogeCashGUI(const NetworkStyle* networkStyle, QWidget* parent) :
 
     /* Open CSS when configured */
     this->setStyleSheet(GUIUtil::loadStyleSheet());
-    this->setMinimumSize(1200, 740);
-    GUIUtil::restoreWindowGeometry("nWindow", QSize(1200, 740), this);
+    this->setMinimumSize(1200, 780);
+    GUIUtil::restoreWindowGeometry("nWindow", QSize(1200, 780), this);
 
     QString windowTitle = tr("DogeCash Core") + " - ";
 #ifdef ENABLE_WALLET
@@ -118,6 +118,7 @@ DogeCashGUI::DogeCashGUI(const NetworkStyle* networkStyle, QWidget* parent) :
         addressesWidget = new AddressesWidget(this);
         privacyWidget = new PrivacyWidget(this);
         masterNodesWidget = new MasterNodesWidget(this);
+        governancePage = new GovernancePage(this);
         settingsWidget = new SettingsWidget(this);
 
         // Add to parent
@@ -127,6 +128,7 @@ DogeCashGUI::DogeCashGUI(const NetworkStyle* networkStyle, QWidget* parent) :
         stackedContainer->addWidget(addressesWidget);
         stackedContainer->addWidget(privacyWidget);
         stackedContainer->addWidget(masterNodesWidget);
+        stackedContainer->addWidget(governancePage);
         stackedContainer->addWidget(settingsWidget);
         stackedContainer->setCurrentWidget(dashboard);
 
@@ -470,6 +472,10 @@ void DogeCashGUI::goToMasterNodes(){
     showTop(masterNodesWidget);
 }
 
+void DogeCashGUI::goToGovernance(){
+    showTop(governancePage);
+}
+
 void DogeCashGUI::goToSettings(){
     showTop(settingsWidget);
 }
@@ -569,6 +575,7 @@ bool DogeCashGUI::addWallet(const QString& name, WalletModel* walletModel)
     addressesWidget->setWalletModel(walletModel);
     privacyWidget->setWalletModel(walletModel);
     masterNodesWidget->setWalletModel(walletModel);
+    governancePage->setWalletModel(walletModel);
     settingsWidget->setWalletModel(walletModel);
 
     // Connect actions..

@@ -44,6 +44,10 @@ NavMenuWidget::NavMenuWidget(DogeCashGUI *mainWindow, QWidget *parent) :
     ui->btnMaster->setText("MASTER\r\nNODES");
     ui->btnMaster->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
+    ui->btnGovernance->setProperty("name", "governance");
+    ui->btnGovernance->setText("GOVERNANCE");
+    ui->btnGovernance->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+
     ui->btnSettings->setProperty("name", "settings");
     ui->btnSettings->setText("SETTINGS\n");
     ui->btnSettings->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
@@ -52,7 +56,7 @@ NavMenuWidget::NavMenuWidget(DogeCashGUI *mainWindow, QWidget *parent) :
     ui->btnReceive->setText("RECEIVE\n");
     ui->btnReceive->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
-    btns = {ui->btnDashboard, ui->btnSend, ui->btnReceive, ui->btnAddress, ui->btnPrivacy, ui->btnMaster, ui->btnSettings};
+    btns = {ui->btnDashboard, ui->btnSend, ui->btnReceive, ui->btnAddress, ui->btnPrivacy, ui->btnMaster, ui->btnGovernance, ui->btnSettings};
     onNavSelected(ui->btnDashboard, true);
 
     connectActions();
@@ -67,6 +71,7 @@ void NavMenuWidget::connectActions() {
     connect(ui->btnAddress,SIGNAL(clicked()),this, SLOT(onAddressClicked()));
     connect(ui->btnPrivacy,SIGNAL(clicked()),this, SLOT(onPrivacyClicked()));
     connect(ui->btnMaster,SIGNAL(clicked()),this, SLOT(onMasterNodesClicked()));
+    connect(ui->btnGovernance,SIGNAL(clicked()),this, SLOT(onGovernanceClicked()));
     connect(ui->btnSettings,SIGNAL(clicked()),this, SLOT(onSettingsClicked()));
     connect(ui->btnReceive,SIGNAL(clicked()),this, SLOT(onReceiveClicked()));
 
@@ -76,7 +81,8 @@ void NavMenuWidget::connectActions() {
     ui->btnAddress->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_4));
     ui->btnPrivacy->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_5));
     ui->btnMaster->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_6));
-    ui->btnSettings->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_7));
+    ui->btnGovernance->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_7));
+    ui->btnSettings->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_8));
 }
 
 void NavMenuWidget::onSendClicked(){
@@ -103,6 +109,11 @@ void NavMenuWidget::onPrivacyClicked(){
 void NavMenuWidget::onMasterNodesClicked(){
     window->goToMasterNodes();
     onNavSelected(ui->btnMaster);
+}
+
+void NavMenuWidget::onGovernanceClicked(){
+    window->goToGovernance();
+    onNavSelected(ui->btnGovernance);
 }
 
 void NavMenuWidget::onSettingsClicked(){
@@ -138,6 +149,7 @@ void NavMenuWidget::updateButtonStyles(){
          ui->btnAddress,
          ui->btnPrivacy,
          ui->btnMaster,
+         ui->btnGovernance,
          ui->btnSettings,
          ui->btnReceive
     });
