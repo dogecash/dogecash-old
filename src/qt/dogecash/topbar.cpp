@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -43,9 +44,9 @@ TopBar::TopBar(DogeCashGUI* _mainWindow, QWidget *parent) :
 
     // Amount information top
     ui->widgetTopAmount->setVisible(false);
-    setCssProperty({ui->labelAmountTopPiv, ui->labelAmountTopzDogec}, "amount-small-topbar");
-    setCssProperty({ui->labelAmountPiv, ui->labelAmountzDogec}, "amount-topbar");
-    setCssProperty({ui->labelPendingPiv, ui->labelPendingzDogec, ui->labelImmaturePiv, ui->labelImmaturezDogec}, "amount-small-topbar");
+    setCssProperty({ui->labelAmountTopDogeC, ui->labelAmountTopzDogec}, "amount-small-topbar");
+    setCssProperty({ui->labelAmountDogeC, ui->labelAmountzDogec}, "amount-topbar");
+    setCssProperty({ui->labelPendingDogeC, ui->labelPendingzDogec, ui->labelImmatureDogeC, ui->labelImmaturezDogec}, "amount-small-topbar");
 
     // Progress Sync
     progressBar = new QProgressBar(ui->layoutSync);
@@ -101,7 +102,7 @@ TopBar::TopBar(DogeCashGUI* _mainWindow, QWidget *parent) :
     ui->pushButtonLock->setButtonText("Wallet Locked  ");
     ui->pushButtonLock->setButtonClassStyle("cssClass", "btn-check-status-lock");
 
-    ui->pushButtonHD->setButtonText("HD Enabled  ");
+    ui->pushButtonHD->setButtonText("HD Enabled");
     ui->pushButtonHD->setButtonClassStyle("cssClass", "btn-check-hd-enabled");
 
 
@@ -448,11 +449,11 @@ void TopBar::loadWalletModel(){
 void TopBar::setHDStatus(bool hdEnabled)
 {
     if(hdEnabled){
-    ui->pushButtonHD->setButtonText("HD Enabled  ");
+    ui->pushButtonHD->setButtonText("HD Enabled");
     ui->pushButtonHD->setButtonClassStyle("cssClass", "btn-check-hd-enabled");
     }
     else{
-    ui->pushButtonHD->setButtonText("HD Disabled  ");
+    ui->pushButtonHD->setButtonText("HD Disabled");
     ui->pushButtonHD->setButtonClassStyle("cssClass", "btn-check-hd-disabled");
     }
 }
@@ -507,26 +508,26 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
 
     // DOGEC Balance
     //CAmount nTotalBalance = balance + unconfirmedBalance;
-    CAmount pivAvailableBalance = balance - immatureBalance - nLockedBalance;
+    CAmount dogecAvailableBalance = balance - immatureBalance - nLockedBalance;
 
     // zDOGEC Balance
     CAmount matureZerocoinBalance = zerocoinBalance - unconfirmedZerocoinBalance - immatureZerocoinBalance;
 
     // Set
-    QString totalPiv = GUIUtil::formatBalance(pivAvailableBalance, nDisplayUnit);
+    QString totalDogeC = GUIUtil::formatBalance(dogecAvailableBalance, nDisplayUnit);
     QString totalzDogec = GUIUtil::formatBalance(matureZerocoinBalance, nDisplayUnit, true);
     // Top
-    ui->labelAmountTopPiv->setText(totalPiv);
+    ui->labelAmountTopDogeC->setText(totalDogeC);
     ui->labelAmountTopzDogec->setText(totalzDogec);
 
     // Expanded
-    ui->labelAmountPiv->setText(totalPiv);
+    ui->labelAmountDogeC->setText(totalDogeC);
     ui->labelAmountzDogec->setText(totalzDogec);
 
-    ui->labelPendingPiv->setText(GUIUtil::formatBalance(unconfirmedBalance, nDisplayUnit));
+    ui->labelPendingDogeC->setText(GUIUtil::formatBalance(unconfirmedBalance, nDisplayUnit));
     ui->labelPendingzDogec->setText(GUIUtil::formatBalance(unconfirmedZerocoinBalance, nDisplayUnit, true));
 
-    ui->labelImmaturePiv->setText(GUIUtil::formatBalance(immatureBalance, nDisplayUnit));
+    ui->labelImmatureDogeC->setText(GUIUtil::formatBalance(immatureBalance, nDisplayUnit));
     ui->labelImmaturezDogec->setText(GUIUtil::formatBalance(immatureZerocoinBalance, nDisplayUnit, true));
 }
 

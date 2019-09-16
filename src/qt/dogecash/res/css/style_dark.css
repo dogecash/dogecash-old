@@ -537,12 +537,13 @@ QPushButton[cssClass="btn-check-hd-enabled"] {
 }
 
 QPushButton[cssClass="btn-check-hd-disabled"] {
-    background-color:#507d6c4b;
     border-bottom:2px solid #9c7019;
     qproperty-icon: url("://ic-wallet-hd-disabled") off,
     url("://ic-wallet-hd-disabled") on ;
     qproperty-iconSize: 24px 24px;
-    color:white;
+    color:#B3FFFFFF;
+    background-color:#407d714b;
+    border-bottom:2px solid #7d644b;
     border-radius:2px;
 }
 
@@ -1623,14 +1624,14 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     font-size:20px;
 }
 
-*[cssClass="text-stake-piv"] {
+*[cssClass="text-stake-dogec"] {
     color:#7d644b;
     font-size:16px;
     padding:10px;
     border-bottom: 5px solid #7d644b;
 }
 
-*[cssClass="text-stake-piv-disable"] {
+*[cssClass="text-stake-dogec-disable"] {
     color:#69656F;
     font-size:16px;
     padding:10px;
@@ -1662,7 +1663,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     padding-left:4px;
 }
 
-*[cssClass="text-chart-piv"] {
+*[cssClass="text-chart-dogec"] {
     color:#7d644b;
     font-size:16px;
     padding-left:4px;
@@ -1673,7 +1674,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     border:none;
 }
 
-*[cssClass="square-chart-piv"] {
+*[cssClass="square-chart-dogec"] {
     background-color:#7d644b;
     border:none;
 }
@@ -1702,6 +1703,22 @@ QPushButton[cssClass="btn-chart-arrow"]:hover {
 
 QPushButton[cssClass="btn-chart-arrow"]:pressed {
     background-color:#20192e;
+}
+
+QPushButton[cssClass="btn-chart-arrow-right"] {
+    qproperty-icon: url("://ic-arrow-right-white") ;
+    qproperty-iconSize: 12px 12px;
+    background-color: transparent;
+    border:0px;
+    border-radius:2px;
+}
+
+QPushButton[cssClass="btn-chart-arrow-right"]:hover {
+    background-color: #7d644b;
+}
+
+QPushButton[cssClass="btn-chart-arrow-right"]:pressed {
+    background-color:#2e2419;
 }
 
 QComboBox[cssClass="btn-combo-secondary"] {
@@ -2196,9 +2213,9 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 
-*[cssClass="coin-icon-piv"] {
-    qproperty-icon: url("://ic-coin-piv") off,
-    url("://ic-coin-piv") on ;
+*[cssClass="coin-icon-dogec"] {
+    qproperty-icon: url("://ic-coin-dogec") off,
+    url("://ic-coin-dogec") on ;
     qproperty-iconSize: 24px 24px;
     background-color: #FFFFFF;
     border:  2px solid #16110b;

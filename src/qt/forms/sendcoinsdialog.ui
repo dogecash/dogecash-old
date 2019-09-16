@@ -457,7 +457,7 @@
                         <enum>Qt::ActionsContextMenu</enum>
                        </property>
                        <property name="text">
-                        <string notr="true">0.00 PIV</string>
+                        <string notr="true">0.00 DOGEC</string>
                        </property>
                        <property name="textInteractionFlags">
                         <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -537,7 +537,7 @@
                         <enum>Qt::ActionsContextMenu</enum>
                        </property>
                        <property name="text">
-                        <string notr="true">0.00 PIV</string>
+                        <string notr="true">0.00 DOGEC</string>
                        </property>
                        <property name="textInteractionFlags">
                         <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -617,7 +617,7 @@
                         <enum>Qt::ActionsContextMenu</enum>
                        </property>
                        <property name="text">
-                        <string notr="true">0.00 PIV</string>
+                        <string notr="true">0.00 DOGEC</string>
                        </property>
                        <property name="textInteractionFlags">
                         <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -646,7 +646,7 @@
                         <enum>Qt::ActionsContextMenu</enum>
                        </property>
                        <property name="text">
-                        <string notr="true">0.00 PIV</string>
+                        <string notr="true">0.00 DOGEC</string>
                        </property>
                        <property name="textInteractionFlags">
                         <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -813,7 +813,7 @@
                 <item>
                  <widget class="QLabel" name="labelBlockSize">
                   <property name="text">
-                   <string>0 PIV</string>
+                   <string>0 DOGEC</string>
                   </property>
                  </widget>
                 </item>
@@ -962,7 +962,7 @@
                     </size>
                    </property>
                    <property name="toolTip">
-                    <string>SwiftX technology allows for near instant transactions - A flat fee of 0.01 PIV applies</string>
+                    <string>SwiftX technology allows for near instant transactions - A flat fee of 0.01 DOGEC applies</string>
                    </property>
                    <property name="text">
                     <string>SwiftX</string>
@@ -1651,7 +1651,7 @@
                 <bool>false</bool>
                </property>
                <property name="text">
-                <string>Anonymized PIV</string>
+                <string>Anonymized DOGEC</string>
                </property>
               </widget>
              </item>
@@ -1674,7 +1674,7 @@
                 <cursorShape>IBeamCursor</cursorShape>
                </property>
                <property name="text">
-                <string notr="true">123.456 PIV</string>
+                <string notr="true">123.456 DOGEC</string>
                </property>
                <property name="textInteractionFlags">
                 <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>

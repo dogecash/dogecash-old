@@ -61,6 +61,9 @@ bool TransactionFilterProxy::filterAcceptsRow(int sourceRow, const QModelIndex& 
     if (fOnlyZc && !isZcTx(type)){
         return false;
     }
+     if (fOnlyMNRewards && !isMasternodeRewardTx(type)){
+        return false;
+    }
     if (fOnlyStakes && !isStakeTx(type))
         return false;
 
@@ -125,6 +128,11 @@ void TransactionFilterProxy::setOnlyStakes(bool fOnlyStakes){
     invalidateFilter();
 }
 
+void TransactionFilterProxy::setOnlyMNRewards(bool fOnlyMNRewards){
+    this->fOnlyMNRewards = fOnlyMNRewards;
+    invalidateFilter();
+}
+
 int TransactionFilterProxy::rowCount(const QModelIndex& parent) const
 {
     if (limitRows != -1) {
@@ -148,6 +156,10 @@ bool TransactionFilterProxy::isZcTx(int type) const {
 
 bool TransactionFilterProxy::isStakeTx(int type) const {
     return (type == TransactionRecord::StakeMint || type == TransactionRecord::Generated || type == TransactionRecord::StakeZDOGEC);
+}
+
+bool TransactionFilterProxy::isMasternodeRewardTx(int type) const {
+    return (type == TransactionRecord::MNReward);
 }
 
 /*QVariant TransactionFilterProxy::dataFromSourcePos(int sourceRow, int role) const {

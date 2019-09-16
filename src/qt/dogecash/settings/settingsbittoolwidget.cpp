@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -330,7 +331,7 @@ void SettingsBitToolWidget::importAddressFromDecKey(){
     }
 
     ui->statusLabel_DEC->setStyleSheet("QLabel { color: green; }");
-    ui->statusLabel_DEC->setText(tr("Successfully added pivate key to the wallet"));
+    ui->statusLabel_DEC->setText(tr("Successfully added dogecate key to the wallet"));
 }
 
 void SettingsBitToolWidget::resizeEvent(QResizeEvent *event){

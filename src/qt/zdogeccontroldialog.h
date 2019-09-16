@@ -17,12 +17,12 @@ namespace Ui {
 class ZDOGECControlDialog;
 }
 
-class CZPivControlWidgetItem : public QTreeWidgetItem
+class CZDogeCControlWidgetItem : public QTreeWidgetItem
 {
 public:
-    explicit CZPivControlWidgetItem(QTreeWidget *parent, int type = Type) : QTreeWidgetItem(parent, type) {}
-    explicit CZPivControlWidgetItem(int type = Type) : QTreeWidgetItem(type) {}
-    explicit CZPivControlWidgetItem(QTreeWidgetItem *parent, int type = Type) : QTreeWidgetItem(parent, type) {}
+    explicit CZDogeCControlWidgetItem(QTreeWidget *parent, int type = Type) : QTreeWidgetItem(parent, type) {}
+    explicit CZDogeCControlWidgetItem(int type = Type) : QTreeWidgetItem(type) {}
+    explicit CZDogeCControlWidgetItem(QTreeWidgetItem *parent, int type = Type) : QTreeWidgetItem(parent, type) {}
 
     bool operator<(const QTreeWidgetItem &other) const;
 };
@@ -57,7 +57,7 @@ private:
         COLUMN_CONFIRMATIONS,
         COLUMN_ISSPENDABLE
     };
-    friend class CZPivControlWidgetItem;
+    friend class CZDogeCControlWidgetItem;
 
 private slots:
     void updateSelection(QTreeWidgetItem* item, int column);

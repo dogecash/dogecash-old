@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,9 +17,11 @@ class AddressLabelRow : public QWidget
     Q_OBJECT
 
 public:
-    explicit AddressLabelRow(bool isLightTheme, bool isHover , QWidget *parent = nullptr);
+    explicit AddressLabelRow(QWidget *parent = nullptr);
     ~AddressLabelRow();
 
+    void init(bool isLightTheme, bool isHover);
+    
     void updateState(bool isLightTheme, bool isHovered, bool isSelected);
     void updateView(QString address, QString label);
 protected:

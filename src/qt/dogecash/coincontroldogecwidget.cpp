@@ -1,13 +1,14 @@
 // Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/dogecash/coincontrolpivwidget.h"
-#include "qt/dogecash/forms/ui_coincontrolpivwidget.h"
+#include "qt/dogecash/coincontroldogecwidget.h"
+#include "qt/dogecash/forms/ui_coincontroldogecwidget.h"
 
-CoinControlPivWidget::CoinControlPivWidget(QWidget *parent) :
+CoinControlDogeCWidget::CoinControlDogeCWidget(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::CoinControlPivWidget)
+    ui(new Ui::CoinControlDogeCWidget)
 {
     ui->setupUi(this);
 
@@ -83,7 +84,7 @@ CoinControlPivWidget::CoinControlPivWidget(QWidget *parent) :
 
 }
 
-CoinControlPivWidget::~CoinControlPivWidget()
+CoinControlDogeCWidget::~CoinControlDogeCWidget()
 {
     delete ui;
 }

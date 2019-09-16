@@ -1106,8 +1106,8 @@ Adresse: %4
         <translation>Denne tekstmarkør bliver rød, hvis en modtageradresse modtager et beløb mindre end %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Kan variere +/- %1 opiv pr input.</translation>
+        <source>Can vary +/- %1 udogec per input.</source>
+        <translation>Kan variere +/- %1 odogec pr input.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -4331,7 +4331,7 @@ Vær tålmodig...</translation>
     </message>
     <message>
         <source>Received DOGEC from zDOGEC</source>
-        <translation>Modtaget Piv fra zDogec</translation>
+        <translation>Modtaget DogeC fra zDogec</translation>
     </message>
     <message>
         <source>Minted Change as zDOGEC from zDOGEC Spend</source>
@@ -4558,7 +4558,7 @@ Vær tålmodig...</translation>
     </message>
     <message>
         <source>Received DOGEC from zDOGEC</source>
-        <translation>Modtaget Piv fra zDogec</translation>
+        <translation>Modtaget DogeC fra zDogec</translation>
     </message>
     <message>
         <source>Zerocoin Spend, Change in zDOGEC</source>
@@ -4912,8 +4912,8 @@ Vær tålmodig...</translation>
         <translation>Der skal angives en masternodeprivkey i konfigurationen. For mere information, se i dokumentationen.</translation>
     </message>
     <message>
-        <source>(51472 could be used only on mainnet)</source>
-        <translation>(51472 kunne kun bruges på hovednettet)</translation>
+        <source>(56740 could be used only on mainnet)</source>
+        <translation>(56740 kunne kun bruges på hovednettet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4924,8 +4924,8 @@ Vær tålmodig...</translation>
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 51472 for mainnet)</source>
-        <translation>(skal være 51472 for hovednettet)</translation>
+        <source>(must be 56740 for mainnet)</source>
+        <translation>(skal være 56740 for hovednettet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

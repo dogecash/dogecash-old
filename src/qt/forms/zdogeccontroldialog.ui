@@ -160,14 +160,14 @@
                                     <widget class="QWidget" name="layoutAmount" native="true">
                                         <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="0,1">
                                             <item>
-                                                <widget class="QLabel" name="labelZPiv">
+                                                <widget class="QLabel" name="labelZDogeC">
                                                     <property name="text">
-                                                        <string>zPiv</string>
+                                                        <string>zDogeC</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QLabel" name="labelZPiv_int">
+                                                <widget class="QLabel" name="labelZDogeC_int">
                                                     <property name="text">
                                                         <string>0.00 </string>
                                                     </property>

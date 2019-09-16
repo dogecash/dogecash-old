@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -28,7 +29,13 @@ public:
     explicit ContactsHolder(bool _isLightTheme) : FurListRow(), isLightTheme(_isLightTheme){}
 
     AddressLabelRow* createHolder(int pos) override{
-        return new AddressLabelRow(isLightTheme, false);
+        if (!cachedRow) {
+            cachedRow = new AddressLabelRow();
+            cachedRow->init(isLightTheme, false);
+            return cachedRow;
+        } else {
+            return cachedRow;
+        }
     }
 
     void init(QWidget* holder,const QModelIndex &index, bool isHovered, bool isSelected) const override{
@@ -50,6 +57,7 @@ public:
     ~ContactsHolder() override{}
 
     bool isLightTheme;
+    AddressLabelRow* cachedRow = nullptr;
 };
 
 #include "qt/dogecash/moc_addresseswidget.cpp"
@@ -177,8 +185,8 @@ void AddressesWidget::onStoreContactClicked(){
             return;
         }
 
-        CBitcoinAddress pivAdd = CBitcoinAddress(address.toUtf8().constData());
-        if (walletModel->isMine(pivAdd)) {
+        CBitcoinAddress dogecAdd = CBitcoinAddress(address.toUtf8().constData());
+        if (walletModel->isMine(dogecAdd)) {
             setCssEditLine(ui->lineEditAddress, false, true);
             inform(tr("Cannot store your own address as contact"));
             return;
@@ -191,7 +199,7 @@ void AddressesWidget::onStoreContactClicked(){
             return;
         }
 
-        if (walletModel->updateAddressBookLabels(pivAdd.Get(), label.toUtf8().constData(), "send")) {
+        if (walletModel->updateAddressBookLabels(dogecAdd.Get(), label.toUtf8().constData(), "send")) {
             ui->lineEditAddress->setText("");
             ui->lineEditName->setText("");
             setCssEditLine(ui->lineEditAddress, true, true);

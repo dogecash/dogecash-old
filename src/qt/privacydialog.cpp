@@ -298,19 +298,19 @@ void PrivacyDialog::on_pushButtonSpendzDOGEC_clicked()
     sendzDOGEC();
 }
 
-void PrivacyDialog::on_pushButtonZPivControl_clicked()
+void PrivacyDialog::on_pushButtonZDogeCControl_clicked()
 {
     if (!walletModel || !walletModel->getOptionsModel())
         return;
 
-    ZDOGECControlDialog* zPivControl = new ZDOGECControlDialog(this);
-    zPivControl->setModel(walletModel);
-    zPivControl->exec();
+    ZDOGECControlDialog* zDogeCControl = new ZDOGECControlDialog(this);
+    zDogeCControl->setModel(walletModel);
+    zDogeCControl->exec();
 }
 
-void PrivacyDialog::setZPivControlLabels(int64_t nAmount, int nQuantity)
+void PrivacyDialog::setZDogeCControlLabels(int64_t nAmount, int nQuantity)
 {
-    ui->labelzPivSelected_int->setText(QString::number(nAmount));
+    ui->labelzDogeCSelected_int->setText(QString::number(nAmount));
     ui->labelQuantitySelected_int->setText(QString::number(nQuantity));
 }
 
@@ -330,7 +330,7 @@ void PrivacyDialog::sendzDOGEC()
     }
     else{
         if (!address.IsValid()) {
-            QMessageBox::warning(this, tr("Spend Zerocoin"), tr("Invalid Pivx Address"), QMessageBox::Ok, QMessageBox::Ok);
+            QMessageBox::warning(this, tr("Spend Zerocoin"), tr("Invalid DogeCash Address"), QMessageBox::Ok, QMessageBox::Ok);
             ui->payTo->setFocus();
             return;
         }
@@ -363,7 +363,7 @@ void PrivacyDialog::sendzDOGEC()
 
     if(!fWholeNumber && fMintChange){
         QString strFeeWarning = "You've entered an amount with fractional digits and want the change to be converted to Zerocoin.<br /><br /><b>";
-        strFeeWarning += QString::number(dzFee, 'f', 8) + " PIV </b>will be added to the standard transaction fees!<br />";
+        strFeeWarning += QString::number(dzFee, 'f', 8) + " DOGEC </b>will be added to the standard transaction fees!<br />";
         QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm additional Fees"),
                                                                    strFeeWarning,
                                                                    QMessageBox::Yes | QMessageBox::Cancel,
@@ -475,7 +475,7 @@ void PrivacyDialog::sendzDOGEC()
 
     // Clear zdogec selector in case it was used
     ZDOGECControlDialog::setSelectedMints.clear();
-    ui->labelzPivSelected_int->setText(QString("0"));
+    ui->labelzDogeCSelected_int->setText(QString("0"));
     ui->labelQuantitySelected_int->setText(QString("0"));
 
     // Some statistics for entertainment
@@ -493,7 +493,7 @@ void PrivacyDialog::sendzDOGEC()
 
     CAmount nValueOut = 0;
     for (const CTxOut& txout: wtxNew.vout) {
-        strStats += tr("value out: ") + FormatMoney(txout.nValue).c_str() + " Piv, ";
+        strStats += tr("value out: ") + FormatMoney(txout.nValue).c_str() + " DogeC, ";
         nValueOut += txout.nValue;
 
         strStats += tr("address: ");
@@ -820,7 +820,7 @@ void PrivacyDialog::updateSPORK16Status()
     } else if (!fMaintenanceMode && !fButtonsEnabled) {
         // Mint zDOGEC
         //ui->pushButtonMintzDOGEC->setEnabled(true);
-        //ui->pushButtonMintzDOGEC->setToolTip(tr("PrivacyDialog", "Enter an amount of PIV to convert to zDOGEC", 0));
+        //ui->pushButtonMintzDOGEC->setToolTip(tr("PrivacyDialog", "Enter an amount of DOGEC to convert to zDOGEC", 0));
 
         // Spend zDOGEC
         ui->pushButtonSpendzDOGEC->setEnabled(true);

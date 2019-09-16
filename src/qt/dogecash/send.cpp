@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -120,7 +121,7 @@ SendWidget::SendWidget(DogeCashGUI* parent) :
     coinIcon->show();
     coinIcon->raise();
 
-    setCssProperty(coinIcon, "coin-icon-piv");
+    setCssProperty(coinIcon, "coin-icon-dogec");
 
     QSize BUTTON_SIZE = QSize(24, 24);
     coinIcon->setMinimumSize(BUTTON_SIZE);
@@ -318,19 +319,19 @@ void SendWidget::onSendClicked(){
         return;
     }
 
-    bool sendPiv = ui->pushLeft->isChecked();
+    bool sendDogeC = ui->pushLeft->isChecked();
 
     // request unlock only if was locked or unlocked for mixing:
     // this way we let users unlock by walletpassphrase or by menu
     // and make many transactions while unlocking through this dialog
     // will call relock
-    if(!GUIUtil::requestUnlock(walletModel, sendPiv ? AskPassphraseDialog::Context::Send_DOGEC : AskPassphraseDialog::Context::Send_zDOGEC, true)){
+    if(!GUIUtil::requestUnlock(walletModel, sendDogeC ? AskPassphraseDialog::Context::Send_DOGEC : AskPassphraseDialog::Context::Send_zDOGEC, true)){
         // Unlock wallet was cancelled
         inform(tr("Cannot send, wallet locked"));
         return;
     }
 
-    if((sendPiv) ? send(recipients) : sendZdogec(recipients)) {
+    if((sendDogeC) ? send(recipients) : sendZdogec(recipients)) {
         updateEntryLabels(recipients);
     }
 }
@@ -671,7 +672,7 @@ void SendWidget::onValueChanged() {
 
 void SendWidget::onDOGECSelected(bool _isDOGEC){
     isDOGEC = _isDOGEC;
-    setCssProperty(coinIcon, _isDOGEC ? "coin-icon-piv" : "coin-icon-zdogec");
+    setCssProperty(coinIcon, _isDOGEC ? "coin-icon-dogec" : "coin-icon-zdogec");
     refreshView();
     updateStyle(coinIcon);
 }
@@ -764,8 +765,8 @@ void SendWidget::onContactMultiClicked(){
             inform(tr("Invalid address"));
             return;
         }
-        CBitcoinAddress pivAdd = CBitcoinAddress(address.toStdString());
-        if (walletModel->isMine(pivAdd)) {
+        CBitcoinAddress dogecAdd = CBitcoinAddress(address.toStdString());
+        if (walletModel->isMine(dogecAdd)) {
             inform(tr("Cannot store your own address as contact"));
             return;
         }
@@ -785,7 +786,7 @@ void SendWidget::onContactMultiClicked(){
             if (label == dialog->getLabel()) {
                 return;
             }
-            if (walletModel->updateAddressBookLabels(pivAdd.Get(), dialog->getLabel().toStdString(), "send")) {
+            if (walletModel->updateAddressBookLabels(dogecAdd.Get(), dialog->getLabel().toStdString(), "send")) {
                 inform(tr("New Contact Stored"));
             } else {
                 inform(tr("Error Storing Contact"));

@@ -166,7 +166,7 @@
            <item>
             <widget class="QLabel" name="labelCoinControlAmount">
              <property name="text">
-              <string>0.00 PIV</string>
+              <string>0.00 DOGEC</string>
              </property>
             </widget>
            </item>
@@ -238,7 +238,7 @@
            <item>
             <widget class="QLabel" name="labelCoinControlFee">
              <property name="text">
-              <string>0.00 PIV</string>
+              <string>0.00 DOGEC</string>
              </property>
             </widget>
            </item>
@@ -598,7 +598,7 @@
            <item>
             <widget class="QLabel" name="labelCoinControlAfterFee">
              <property name="text">
-              <string>0.00 PIV</string>
+              <string>0.00 DOGEC</string>
              </property>
             </widget>
            </item>

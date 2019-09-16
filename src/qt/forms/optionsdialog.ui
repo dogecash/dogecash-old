@@ -141,7 +141,7 @@
             <item>
              <widget class="QCheckBox" name="checkBoxZeromintEnable">
               <property name="toolTip">
-               <string>Enable automatic minting of PIV units to zDOGEC</string>
+               <string>Enable automatic minting of DOGEC units to zDOGEC</string>
               </property>
               <property name="layoutDirection">
                <enum>Qt::LeftToRight</enum>
@@ -171,7 +171,7 @@
             <item>
              <widget class="QLabel" name="percentage_label">
               <property name="toolTip">
-               <string>Percentage of incoming PIV which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</string>
+               <string>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</string>
               </property>
               <property name="text">
                <string>Percentage of autominted zDOGEC</string>
@@ -204,7 +204,7 @@
                </size>
               </property>
               <property name="toolTip">
-               <string>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</string>
+               <string>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</string>
               </property>
               <property name="text">
                <string>Preferred Automint zDOGEC Denomination</string>
@@ -220,7 +220,7 @@
                </size>
               </property>
               <property name="toolTip">
-               <string>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</string>
+               <string>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</string>
               </property>
               <property name="maxVisibleItems">
                <number>9</number>
@@ -533,7 +533,7 @@
          </property>
          <property name="text">
           <string>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</string>
+https://www.transifex.com/dogecash-project/dogecash-project-translations</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>

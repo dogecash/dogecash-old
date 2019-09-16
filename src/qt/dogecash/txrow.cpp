@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,11 +9,14 @@
 #include "guiutil.h"
 #include "qt/dogecash/qtutils.h"
 
-TxRow::TxRow(bool isLightTheme, QWidget *parent) :
+TxRow::TxRow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::TxRow)
 {
     ui->setupUi(this);
+}
+
+void TxRow::init(bool isLightTheme) {
     setConfirmStatus(true);
     updateStatus(isLightTheme, false, false);
 }
