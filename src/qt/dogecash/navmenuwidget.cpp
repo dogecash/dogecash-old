@@ -104,11 +104,6 @@ void NavMenuWidget::onMasterNodesClicked(){
     onNavSelected(ui->btnMaster);
 }
 
-void NavMenuWidget::onGovernanceClicked(){
-    window->goToGovernance();
-    onNavSelected(ui->btnGovernance);
-}
-
 void NavMenuWidget::onSettingsClicked(){
     window->goToSettings();
     onNavSelected(ui->btnSettings);

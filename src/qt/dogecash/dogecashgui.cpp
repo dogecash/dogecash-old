@@ -117,7 +117,6 @@ DogeCashGUI::DogeCashGUI(const NetworkStyle* networkStyle, QWidget* parent) :
         addressesWidget = new AddressesWidget(this);
         privacyWidget = new PrivacyWidget(this);
         masterNodesWidget = new MasterNodesWidget(this);
-        governacePage = new GovernacePage(this);
         settingsWidget = new SettingsWidget(this);
 
         // Add to parent
@@ -127,7 +126,6 @@ DogeCashGUI::DogeCashGUI(const NetworkStyle* networkStyle, QWidget* parent) :
         stackedContainer->addWidget(addressesWidget);
         stackedContainer->addWidget(privacyWidget);
         stackedContainer->addWidget(masterNodesWidget);
-        stackedContainer->addWidget(governacePage);
         stackedContainer->addWidget(settingsWidget);
         stackedContainer->setCurrentWidget(dashboard);
 
@@ -471,10 +469,6 @@ void DogeCashGUI::goToMasterNodes(){
     showTop(masterNodesWidget);
 }
 
-void DogeCashGUI::goToGovernance(){
-    showTop(governanceWidget);
-}
-
 void DogeCashGUI::goToSettings(){
     showTop(settingsWidget);
 }
@@ -574,7 +568,6 @@ bool DogeCashGUI::addWallet(const QString& name, WalletModel* walletModel)
     addressesWidget->setWalletModel(walletModel);
     privacyWidget->setWalletModel(walletModel);
     masterNodesWidget->setWalletModel(walletModel);
-    governancePage->setWalletModel(walletModel);
     settingsWidget->setWalletModel(walletModel);
 
     // Connect actions..
