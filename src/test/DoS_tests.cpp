@@ -15,6 +15,7 @@
 #include "script/sign.h"
 #include "serialize.h"
 #include "util.h"
+#include "test/test_dogecash.h"
 
 #include <stdint.h>
 
