@@ -29,6 +29,7 @@
 #include "masternodeman.h"
 #include "miner.h"
 #include "net.h"
+#include "random.h"
 #include "rpc/server.h"
 #include "script/standard.h"
 #include "scheduler.h"
