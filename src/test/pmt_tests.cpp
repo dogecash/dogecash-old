@@ -8,6 +8,7 @@
 #include "streams.h"
 #include "uint256.h"
 #include "version.h"
+#include "test/test_dogecash.h"
 
 #include <vector>
 

@@ -4,6 +4,7 @@
 
 #include "coins.h"
 #include "uint256.h"
+#include "test/test_dogecash.h"
 
 #include <vector>
 #include <map>
