@@ -39,7 +39,7 @@
 #else
 #define DBG( x )
 #endif
-//PIVX only features
+//dogecash only features
 
 extern bool fMasterNode;
 extern bool fLiteMode;

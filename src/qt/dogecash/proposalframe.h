@@ -51,4 +51,4 @@ private Q_SLOTS:
     void proposalLink_clicked(const QString &link);
 };
 
-#endif //PIVX_QT_PROPOSALFRAME_H
+#endif //dogecash_QT_PROPOSALFRAME_H
