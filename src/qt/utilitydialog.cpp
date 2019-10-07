@@ -8,7 +8,7 @@
 
 #include "ui_helpmessagedialog.h"
 
-#include "bitcoingui.h"
+#include "qt/dogecash/dogecashgui.h"
 #include "clientmodel.h"
 #include "guiconstants.h"
 #include "intro.h"

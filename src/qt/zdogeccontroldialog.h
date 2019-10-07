@@ -8,7 +8,6 @@
 #include <QDialog>
 #include <QTreeWidgetItem>
 #include "zdogec/zerocoin.h"
-#include "privacydialog.h"
 
 class CZerocoinMint;
 class WalletModel;
