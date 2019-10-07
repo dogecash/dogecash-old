@@ -31,7 +31,7 @@ public:
     DogeCashGUI* getWindow() { return this->window; }
 
     void run(int type) override;
-    void onError(int type, QString error) override;
+    void onError(QString error, int type) override;
 
 signals:
     void message(const QString& title, const QString& body, unsigned int style, bool* ret = nullptr);
@@ -63,6 +63,8 @@ protected:
 private:
 
     void init();
+    private slots:
+    void errorString(QString, int);
 };
 
 #endif // PWIDGET_H

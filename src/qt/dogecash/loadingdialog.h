@@ -25,7 +25,7 @@ public slots:
     void process();
 signals:
     void finished();
-    void error(QString err);
+    void error(QString err, int type);
 
 private:
     Runnable* runnable;
