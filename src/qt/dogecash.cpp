@@ -250,7 +250,7 @@ void BitcoinCore::initialize()
         qDebug() << __func__ << ": Running AppInit2 in thread";
         int rv = AppInit2();
         emit initializeResult(rv);
-    } catch (std::exception& e) {
+    } catch (const std::exception& e) {
         handleRunawayException(&e);
     } catch (...) {
         handleRunawayException(NULL);
@@ -271,7 +271,7 @@ void BitcoinCore::restart(QStringList args)
             QProcess::startDetached(QApplication::applicationFilePath(), args);
             qDebug() << __func__ << ": Restart initiated...";
             QApplication::quit();
-        } catch (std::exception& e) {
+        } catch (const std::exception& e) {
             handleRunawayException(&e);
         } catch (...) {
             handleRunawayException(NULL);
@@ -287,7 +287,7 @@ void BitcoinCore::shutdown()
         Shutdown();
         qDebug() << __func__ << ": Shutdown finished";
         emit shutdownResult(1);
-    } catch (std::exception& e) {
+    } catch (const std::exception& e) {
         handleRunawayException(&e);
     } catch (...) {
         handleRunawayException(NULL);
@@ -556,7 +556,7 @@ int main(int argc, char* argv[])
     }
     try {
         ReadConfigFile(mapArgs, mapMultiArgs);
-    } catch (std::exception& e) {
+    } catch (const std::exception& e) {
         QMessageBox::critical(0, QObject::tr("DogeCash Core"),
             QObject::tr("Error: Cannot parse configuration file: %1. Only use key=value syntax.").arg(e.what()));
         return 0;
@@ -635,7 +635,7 @@ int main(int argc, char* argv[])
         app.exec();
         app.requestShutdown();
         app.exec();
-    } catch (std::exception& e) {
+    } catch (const std::exception& e) {
         PrintExceptionContinue(&e, "Runaway exception");
         app.handleRunawayException(QString::fromStdString(strMiscWarning));
     } catch (...) {

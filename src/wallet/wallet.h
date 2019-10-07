@@ -151,7 +151,7 @@ public:
             try {
                 READWRITE(fInternal);
             }
-            catch (std::ios_base::failure&) {
+            catch (const std::ios_base::failure&) {
                 /* flag as external address if we can't read the internal boolean
                    (this will be the case for any wallet before the HD chain split version) */
                 fInternal = false;

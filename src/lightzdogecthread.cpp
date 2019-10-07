@@ -60,7 +60,7 @@ void CLightWorker::ThreadLightzdogecSimplified() {
                                 heightStop
                         );
 
-                    } catch (NotEnoughMintsException e) {
+                    } catch (const NotEnoughMintsException& e) {
                         LogPrintStr(std::string("ThreadLightzdogecSimplified: ") + e.message + "\n");
                         rejectWork(genWit, blockHeight, NOT_ENOUGH_MINTS);
                         continue;
@@ -93,7 +93,7 @@ void CLightWorker::ThreadLightzdogecSimplified() {
                     rejectWork(genWit, blockHeight, NON_DETERMINED);
                 }
             }
-        } catch (std::exception& e) {
+        } catch (const std::exception& e) {
             //std::cout << "exception in light loop, closing it. " << e.what() << std::endl;
             PrintExceptionContinue(&e, "lightzdogecthread");
             break;
