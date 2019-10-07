@@ -169,7 +169,7 @@ private:
     bool execute_restart;
 
     /// Pass fatal exception message to UI thread
-    void handleRunawayException(std::exception* e);
+    void handleRunawayException(const std::exception* e);
 };
 
 /** Main dogecash application object */
@@ -236,7 +236,7 @@ BitcoinCore::BitcoinCore() : QObject()
 {
 }
 
-void BitcoinCore::handleRunawayException(std::exception* e)
+void BitcoinCore::handleRunawayException(const std::exception* e)
 {
     PrintExceptionContinue(e, "Runaway exception");
     emit runawayException(QString::fromStdString(strMiscWarning));
