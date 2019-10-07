@@ -7,16 +7,19 @@
 #ifndef BITCOIN_CHAIN_H
 #define BITCOIN_CHAIN_H
 
+#include "chainparams.h"
 #include "pow.h"
 #include "primitives/block.h"
 #include "tinyformat.h"
 #include "uint256.h"
+#include "arith_uint256.h"
 #include "util.h"
 #include "libzerocoin/Denominations.h"
 
 #include <vector>
 
 #include <boost/foreach.hpp>
+
 
 struct CDiskBlockPos {
     int nFile;
@@ -158,13 +161,17 @@ public:
 
     // proof-of-stake specific fields
     uint256 GetBlockTrust() const;
-    uint64_t nStakeModifier;             // hash modifier for proof-of-stake
+    uint64_t nStakeModifier;  // hash modifier for proof-of-stake
+    uint256 nStakeModifierV2;    // updated hash modifier
     unsigned int nStakeModifierChecksum; // checksum of index; in-memeory only
     COutPoint prevoutStake;
     unsigned int nStakeTime;
     uint256 hashProofOfStake;
     int64_t nMint;
     int64_t nMoneySupply;
+    //New Stake Protocols
+    unsigned int nNewStakeProtocol;
+    unsigned int nCheckHeight;
 
     //! block header
     int nVersion;
@@ -200,6 +207,7 @@ public:
         nMoneySupply = 0;
         nFlags = 0;
         nStakeModifier = 0;
+        nStakeModifierV2 = uint256();
         nStakeModifierChecksum = 0;
         prevoutStake.SetNull();
         nStakeTime = 0;
@@ -234,22 +242,10 @@ public:
         if(block.nVersion > 3)
             nAccumulatorCheckpoint = block.nAccumulatorCheckpoint;
 
-        //Proof of Stake
-        bnChainTrust = uint256();
-        nMint = 0;
-        nMoneySupply = 0;
-        nFlags = 0;
-        nStakeModifier = 0;
-        nStakeModifierChecksum = 0;
-        hashProofOfStake = uint256();
-
         if (block.IsProofOfStake()) {
             SetProofOfStake();
             prevoutStake = block.vtx[1].vin[0].prevout;
             nStakeTime = block.nTime;
-        } else {
-            prevoutStake.SetNull();
-            nStakeTime = 0;
         }
     }
 
@@ -365,11 +361,13 @@ public:
 
     unsigned int GetStakeEntropyBit() const
     {
-        unsigned int nEntropyBit = ((GetBlockHash().Get64()) & 1);
-        if (GetBoolArg("-printstakemodifier", false))
-            LogPrintf("GetStakeEntropyBit: nHeight=%u hashBlock=%s nEntropyBit=%u\n", nHeight, GetBlockHash().ToString().c_str(), nEntropyBit);
+        unsigned int nEntropyBit = 0;
+                // old protocol for entropy bit before new
+                nEntropyBit = ((GetBlockHash().Get64()) & 1);
+                if (GetBoolArg("-printstakemodifier", false))
+                    LogPrintf("GetStakeEntropyBit: nHeight=%u hashBlock=%s nEntropyBit=%u\n", nHeight, GetBlockHash().ToString().c_str(), nEntropyBit);
 
-        return nEntropyBit;
+            return nEntropyBit;
     }
 
     bool SetStakeEntropyBit(unsigned int nEntropyBit)
@@ -478,7 +476,14 @@ public:
         READWRITE(nMint);
         READWRITE(nMoneySupply);
         READWRITE(nFlags);
-        READWRITE(nStakeModifier);
+
+        // v1/v2 modifier selection.
+        if (!Params().IsNewStakeProtocol(nHeight)) {
+            READWRITE(nStakeModifier);
+        } else {
+            READWRITE(nStakeModifierV2);
+        }
+
         if (IsProofOfStake()) {
             READWRITE(prevoutStake);
             READWRITE(nStakeTime);

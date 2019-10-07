@@ -29,7 +29,7 @@ class CBlockHeader
 {
 public:
     // header
-    static const int32_t CURRENT_VERSION=5;     // Version 5 supports CLTV activation
+    static const int32_t CURRENT_VERSION=6;     // Version 6 is new stake protocols
     int32_t nVersion;
     uint256 hashPrevBlock;
     uint256 hashMerkleRoot;
@@ -167,6 +167,7 @@ public:
 
     std::vector<uint256> GetMerkleBranch(int nIndex) const;
     static uint256 CheckMerkleBranch(uint256 hash, const std::vector<uint256>& vMerkleBranch, int nIndex);
+    unsigned int GetStakeEntropyBit() const;
     std::string ToString() const;
     void print() const;
 };

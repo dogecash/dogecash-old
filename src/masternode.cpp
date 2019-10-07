@@ -136,7 +136,7 @@ CMasternode::CMasternode(const CMasternodeBroadcast& mnb)
 //
 bool CMasternode::UpdateFromNewBroadcast(CMasternodeBroadcast& mnb)
 {
-    if (mnb.sigTime > sigTime) {
+        if(mnb.sigTime <= sigTime) return false;
         pubKeyMasternode = mnb.pubKeyMasternode;
         pubKeyCollateralAddress = mnb.pubKeyCollateralAddress;
         sigTime = mnb.sigTime;
@@ -149,9 +149,18 @@ bool CMasternode::UpdateFromNewBroadcast(CMasternodeBroadcast& mnb)
             lastPing = mnb.lastPing;
             mnodeman.mapSeenMasternodePing.insert(make_pair(lastPing.GetHash(), lastPing));
         }
-        return true;
-    }
-    return false;
+        if(protocolVersion == PROTOCOL_VERSION) {
+            // ... and PROTOCOL_VERSION, then we've been remotely activated ...
+            activeMasternode.EnableHotColdMasterNode(vin, addr);
+        } else {
+            // ... otherwise we need to reactivate our node, do not add it to the list and do not relay
+            // but also do not ban the node we get this message from
+            char nProtoVersion = protocolVersion;
+            LogPrint("CMasternode::UpdateFromNewBroadcast -- wrong PROTOCOL_VERSION, re-activate your MN: message nProtocolVersion=%d  PROTOCOL_VERSION=%d\n", "blah",nProtoVersion);
+            return false;
+        }
+    return true;
+
 }
 
 //
@@ -517,8 +526,7 @@ bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
     }
 
     std::string errorMessage = "";
-    if (!obfuScationSigner.VerifyMessage(pubKeyCollateralAddress, sig, GetNewStrMessage(), errorMessage)
-    		&& !obfuScationSigner.VerifyMessage(pubKeyCollateralAddress, sig, GetOldStrMessage(), errorMessage))
+    if (!obfuScationSigner.VerifyMessage(pubKeyCollateralAddress, sig, GetStrMessage(), errorMessage))
     {
         // don't ban for old masternodes, their sigs could be broken because of the bug
         nDos = protocolVersion < MIN_PEER_MNANNOUNCE ? 0 : 100;
@@ -659,11 +667,7 @@ bool CMasternodeBroadcast::Sign(CKey& keyCollateralAddress)
     std::string errorMessage;
     sigTime = GetAdjustedTime();
 
-    std::string strMessage;
-    if(chainActive.Height() < Params().Zerocoin_Block_V2_Start())
-    	strMessage = GetOldStrMessage();
-    else
-    	strMessage = GetNewStrMessage();
+    std::string strMessage = GetStrMessage();
 
     if (!obfuScationSigner.SignMessage(strMessage, errorMessage, sig, keyCollateralAddress))
     	return error("CMasternodeBroadcast::Sign() - Error: %s", errorMessage);
@@ -679,31 +683,23 @@ bool CMasternodeBroadcast::VerifySignature()
 {
     std::string errorMessage;
 
-    if(!obfuScationSigner.VerifyMessage(pubKeyCollateralAddress, sig, GetNewStrMessage(), errorMessage)
-            && !obfuScationSigner.VerifyMessage(pubKeyCollateralAddress, sig, GetOldStrMessage(), errorMessage))
+    if(!obfuScationSigner.VerifyMessage(pubKeyCollateralAddress, sig, GetStrMessage(), errorMessage))
         return error("CMasternodeBroadcast::VerifySignature() - Error: %s", errorMessage);
 
     return true;
 }
 
-std::string CMasternodeBroadcast::GetOldStrMessage()
+std::string CMasternodeBroadcast::GetStrMessage()
 {
-    std::string strMessage;
+    return (addr.ToString() +
 
-    std::string vchPubKey(pubKeyCollateralAddress.begin(), pubKeyCollateralAddress.end());
-    std::string vchPubKey2(pubKeyMasternode.begin(), pubKeyMasternode.end());
-    strMessage = addr.ToString() + std::to_string(sigTime) + vchPubKey + vchPubKey2 + std::to_string(protocolVersion);
+            std::to_string(sigTime) +
+            pubKeyCollateralAddress.GetID().ToString() +
+            pubKeyMasternode.GetID().ToString() +
+            std::to_string(protocolVersion)
 
-    return strMessage;
-}
+    );
 
-std:: string CMasternodeBroadcast::GetNewStrMessage()
-{
-    std::string strMessage;
-
-    strMessage = addr.ToString() + std::to_string(sigTime) + pubKeyCollateralAddress.GetID().ToString() + pubKeyMasternode.GetID().ToString() + std::to_string(protocolVersion);
-
-    return strMessage;
 }
 
 CMasternodePing::CMasternodePing()

@@ -82,7 +82,7 @@ void OptionsModel::Init()
     fCoinControlFeatures = settings.value("fCoinControlFeatures", false).toBool();
 
     if (!settings.contains("fZeromintEnable"))
-        settings.setValue("fZeromintEnable", true);
+        settings.setValue("fZeromintEnable", false);
     fEnableZeromint = settings.value("fZeromintEnable").toBool();
 
     if (!settings.contains("fEnableAutoConvert"))
@@ -90,7 +90,7 @@ void OptionsModel::Init()
     fEnableAutoConvert = settings.value("fEnableAutoConvert").toBool();
 
     if (!settings.contains("nZeromintPercentage"))
-        settings.setValue("nZeromintPercentage", 10);
+        settings.setValue("nZeromintPercentage", 0);
     nZeromintPercentage = settings.value("nZeromintPercentage").toLongLong();
 
     if (!settings.contains("nPreferredDenom"))
