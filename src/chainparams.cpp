@@ -137,7 +137,7 @@ public:
         nToCheckBlockUpgradeMajority = 10800; // Approximate expected amount of blocks in 7 days (1440*7.5)
         nMinerThreads = 0;
         nTargetSpacing = 1 * 60; //dogecash: 1 Min
-        nStakeMinDepth = 600;
+        nStakeMinDepth = 100;
         nFutureTimeDriftPoW = 7200;
         nFutureTimeDriftPoS = 180;
         nMaturity = 30;
