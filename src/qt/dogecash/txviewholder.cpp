@@ -32,8 +32,8 @@ void TxViewHolder::init(QWidget* holder,const QModelIndex &index, bool isHovered
     int type = rIndex.data(TransactionTableModel::TypeRole).toInt();
 
     if(type != TransactionRecord::ZerocoinMint &&
-            type !=  TransactionRecord::ZerocoinSpend_Change_zDogec &&
-            type !=  TransactionRecord::StakeZDOGEC &&
+            type !=  TransactionRecord::ZerocoinSpend_Change_zdogec &&
+            type !=  TransactionRecord::Stakezdogec &&
             type != TransactionRecord::Other){
         QString address = rIndex.data(Qt::DisplayRole).toString();
         if(address.length() > 20) {

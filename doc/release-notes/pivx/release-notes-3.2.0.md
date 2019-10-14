@@ -65,7 +65,7 @@ DogeCash Core v3.2.0 introduces new consensus rules for scripting pathways to su
 
 ### Automint Addresses
 
-A new "Automint Addresses" feature has been added to the wallet that allows for the creation of new addresses who's purpose is to automatically convert any PIV funds received by such addresses to zDOGEC. The feature as a whole can be enabled/disabled either at runtime using the `-enableautoconvertaddress` option, via RPC/Console with the `enableautomintaddress` command, or via the GUI's options dialog, with the default being enabled.
+A new "Automint Addresses" feature has been added to the wallet that allows for the creation of new addresses who's purpose is to automatically convert any DOGEC funds received by such addresses to zDOGEC. The feature as a whole can be enabled/disabled either at runtime using the `-enableautoconvertaddress` option, via RPC/Console with the `enableautomintaddress` command, or via the GUI's options dialog, with the default being enabled.
 
 Creation of these automint addresses is currently only available via the RPC/Console `createautomintaddress` command, which takes no additional arguments. The command returns a new DogeCash address each time, but addresses created by this command can be re-used if desired.
 
@@ -243,7 +243,7 @@ Detailed release notes follow. This overview includes changes that affect behavi
  - #677 `29fab5982f` [Qt] change colors for tx labels in history/overview (random-zebra)
  - #693 `022b58257c` [UI] Add address to the payment request history (warrows)
  - #698 `3f35bc81d8` [Qt] Remove Qt4 build support & code fallbacks (Wladimir J. van der Laan)
- - #655 `de0c4e0888` [Qt] Fix PIV balances on overview page (Fuzzbawls)
+ - #655 `de0c4e0888` [Qt] Fix DOGEC balances on overview page (Fuzzbawls)
  - #680 `71ac5285e5` [Qt] Privacy dialog: hide/show denominations (random-zebra)
  - #675 `8a26ba0b07` [Qt] SwiftX - intuitiveness (random-zebra)
  - #668 `4a68c9ed43` [Qt] Clean up Multisend Dialog UI (Fuzzbawls)

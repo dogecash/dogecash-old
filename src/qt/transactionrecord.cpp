@@ -244,11 +244,11 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
 bool IsZDOGECType(TransactionRecord::Type type)
 {
     switch (type) {
-        case TransactionRecord::StakeZDOGEC:
+        case TransactionRecord::Stakezdogec:
         case TransactionRecord::ZerocoinMint:
         case TransactionRecord::ZerocoinSpend:
         case TransactionRecord::RecvFromZerocoinSpend:
-        case TransactionRecord::ZerocoinSpend_Change_zDogec:
+        case TransactionRecord::ZerocoinSpend_Change_zdogec:
         case TransactionRecord::ZerocoinSpend_FromMe:
             return true;
         default:
@@ -293,7 +293,7 @@ void TransactionRecord::updateStatus(const CWalletTx& wtx)
         }
     }
     // For generated transactions, determine maturity
-    else if (type == TransactionRecord::Generated || type == TransactionRecord::StakeMint || type == TransactionRecord::StakeZDOGEC || type == TransactionRecord::MNReward) {
+    else if (type == TransactionRecord::Generated || type == TransactionRecord::StakeMint || type == TransactionRecord::Stakezdogec || type == TransactionRecord::MNReward) {
         if (nBlocksToMaturity > 0) {
             status.status = TransactionStatus::Immature;
             status.matures_in = nBlocksToMaturity;

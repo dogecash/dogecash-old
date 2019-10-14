@@ -5839,7 +5839,7 @@ bool CWallet::SpendZerocoin(
         zdogecTracker->Add(dMint, true);
     }
 
-    receipt.SetStatus("Spend Successful", zdogec_SPEND_OKAY);  // When we reach this point spending zPIV was successful
+    receipt.SetStatus("Spend Successful", zdogec_SPEND_OKAY);  // When we reach this point spending ZDOGEC was successful
 
     return true;
 }
