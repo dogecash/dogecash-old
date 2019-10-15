@@ -151,7 +151,6 @@ public:
 
     int Zerocoin_Block_Double_Accumulated() const { return nBlockDoubleAccumulated; }
     CAmount InvalidAmountFiltered() const { return nInvalidAmountFiltered; };
-    bool IsNewStakeProtocol(const int nHeight) const { return nHeight >= nBlockNewStakeProtocol;; }
 
 protected:
     CChainParams() {}
@@ -190,7 +189,6 @@ protected:
     CBlock genesis;
     std::vector<CAddress> vFixedSeeds;
     bool fMiningRequiresPeers;
-    int nBlockNewStakeProtocol;
     bool fAllowMinDifficultyBlocks;
     bool fDefaultConsistencyChecks;
     bool fRequireStandard;

@@ -106,7 +106,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     // Create new block
     unique_ptr<CBlockTemplate> pblocktemplate(new CBlockTemplate());
     if (!pblocktemplate.get())
-        return nullptr;
+        return NULL;
     CBlock* pblock = &pblocktemplate->block; // pointer for convenience
 
     // Tip
@@ -120,17 +120,13 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
     // Make sure to create the correct block version after zerocoin is enabled
     bool fZerocoinActive = nHeight >= Params().Zerocoin_StartHeight();
-    if(Params().IsNewStakeProcotol(nHeight)) {
-        pblock->nVersion = 6;       //!> Supports V2 Stake Modifiers.
-    } else {
-        pblock->nVersion = 5;       //!> Supports CLTV activation
-    }
+    pblock->nVersion = 5;   // Supports CLTV activation
 
     // -regtest only: allow overriding block.nVersion with
     // -blockversion=N to test forking scenarios
     if (Params().MineBlocksOnDemand()) {
         if (fZerocoinActive)
-            pblock->nVersion = 5;
+            pblock->nVersion = 4;
         else
             pblock->nVersion = 3;
 
@@ -171,7 +167,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
         if (!fStakeFound) {
             LogPrint("staking", "CreateNewBlock(): stake not found\n");
-            return nullptr;
+            return NULL;
         }
     }
 
@@ -219,7 +215,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
                 continue;
             }
 
-            COrphan* porphan = nullptr;
+            COrphan* porphan = NULL;
             double dPriority = 0;
             CAmount nTotalIn = 0;
             bool fMissingInputs = false;
@@ -488,11 +484,12 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
                     if (fZerocoinActive && !CalculateAccumulatorCheckpoint(nHeight, nCheckpoint, mapAccumulators)) {
                         LogPrintf("%s: failed to get accumulator checkpoint\n", __func__);
                     } else {
-                        // the next time the accumulator checkpoint should be recalculated ( the next height that is multiple of 10)
-                        pCheckpointCache.first = nHeight + (10 - (nHeight % 10));
-                        // the block hash of the last block used in the accumulator checkpoint calc. This will handle reorg situations.
-                        pCheckpointCache.second.first = hashBlockLastAccumulated;
-                        pCheckpointCache.second.second = nCheckpoint;
+                       LogPrintf("CreateNewBlock pCheckpointCache \n"); 	
+	            // the next time the accumulator checkpoint should be recalculated ( the next height that is multiple of 10)
+	            pCheckpointCache.first = nHeight + (10 - (nHeight % 10));
+ 	            // the block hash of the last block used in the accumulator checkpoint calc. This will handle reorg situations.
+	            pCheckpointCache.second.first = hashBlockLastAccumulated;
+	            pCheckpointCache.second.second = nCheckpoint;
 	        }
 	    }
 	}
@@ -515,17 +512,17 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
                 CKey key;
                 if (!pwallet->GetZerocoinKey(bnSerial, key)) {
                     LogPrintf("%s: failed to find zdogec with serial %s, unable to sign block\n", __func__, bnSerial.GetHex());
-                    return nullptr;
+                    return NULL;
                 }
 
                 //Sign block with the zdogec key
                 if (!SignBlockWithKey(*pblock, key)) {
-                    LogPrintf("DogeCashMiner(): Signing new block with zdogec key failed \n");
-                    return nullptr;
+                    LogPrintf("BitcoinMiner(): Signing new block with zdogec key failed \n");
+                    return NULL;
                 }
             } else if (!SignBlock(*pblock, *pwallet)) {
-                LogPrintf("DogeCashMiner(): Signing new block with UTXO key failed \n");
-                return nullptr;
+                LogPrintf("BitcoinMiner(): Signing new block with UTXO key failed \n");
+                return NULL;
             }
         }
 
@@ -533,7 +530,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         if (!TestBlockValidity(state, *pblock, pindexPrev, false, false)) {
             LogPrintf("CreateNewBlock() : TestBlockValidity failed\n");
             mempool.clear();
-            return nullptr;
+            return NULL;
         }
 
 //        if (pblock->IsZerocoinStake()) {
@@ -575,7 +572,7 @@ CBlockTemplate* CreateNewBlockWithKey(CReserveKey& reservekey, CWallet* pwallet)
 {
     CPubKey pubkey;
     if (!reservekey.GetReservedKey(pubkey))
-        return nullptr;
+        return NULL;
 
     const int nHeightNext = chainActive.Tip()->nHeight + 1;
     static int nLastPOWBlock = Params().LAST_POW_BLOCK();
@@ -642,9 +639,9 @@ int nMintableLastCheck = 0;
 
 void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 {
-    LogPrintf("DogeCashMiner started\n");
+    LogPrintf("dogecashMiner started\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
-    RenameThread("DogeCash-Miner");
+    RenameThread("dogecash-miner");
 
     // Each thread has its own key and counter
     CReserveKey reservekey(pwallet);
@@ -652,11 +649,6 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
     bool fLastLoopOrphan = false;
     while (fGenerateBitcoins || fProofOfStake) {
         if (fProofOfStake) {
-            if (chainActive.Tip()->nHeight < Params().LAST_POW_BLOCK()) {
-                //  The last PoW block hasn't even been mined yet.
-                MilliSleep(Params().TargetSpacing() * 1000);       // sleep a block
-                continue;
-            }
             //control the amount of times the client will check for mintable coins
             if ((GetTime() - nMintableLastCheck > 5 * 60)) // 5 minute check time
             {
@@ -664,28 +656,25 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
                 fMintableCoins = pwallet->MintableCoins();
             }
 
-            while (vNodes.empty() || pwallet->IsLocked() || !fMintableCoins ||
-                   (pwallet->GetBalance() > 0 && nReserveBalance >= pwallet->GetBalance()) || !masternodeSync.IsSynced()) {
-                nLastCoinStakeSearchInterval = 0;
+            if (chainActive.Tip()->nHeight < Params().LAST_POW_BLOCK()) {
                 MilliSleep(5000);
-                
+                continue;
+            }
+
+            while (vNodes.empty() || pwallet->IsLocked() || !fMintableCoins || (pwallet->GetBalance() > 0 && nReserveBalance >= pwallet->GetBalance()) || !masternodeSync.IsSynced()) {
+                nLastCoinStakeSearchInterval = 0;
                 // Do a separate 1 minute check here to ensure fMintableCoins is updated
-                if (!fMintableCoins && (GetTime() - nMintableLastCheck > 1 * 60)) {// 1 minute check time
+                if (!fMintableCoins) {
+                    if (GetTime() - nMintableLastCheck > 1 * 60) // 1 minute check time
                     {
                         nMintableLastCheck = GetTime();
                         fMintableCoins = pwallet->MintableCoins();
                     }
                 }
-
-            } else { // PoW
-            if ((chainActive.Tip()->nHeight - 6) > Params().LAST_POW_BLOCK())
-            {
-                // Run for a little while longer, just in case there is a rewind on the chain.
-                LogPrintf("%s: Exiting Proof of Work Mining Thread at height: %d\n",
-                          __func__, chainActive.Tip()->nHeight);
-                return;
+                MilliSleep(5000);
+                if (!fGenerateBitcoins && !fProofOfStake)
+                    continue;
             }
-       }
 
             if (mapHashedBlocks.count(chainActive.Tip()->nHeight) && !fLastLoopOrphan) //search our map of hashed blocks, see if bestblock has been hashed yet
             {
@@ -729,11 +718,11 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 
                 //Sign block with the zdogec key
                 if (!SignBlockWithKey(*pblock, key)) {
-                    LogPrintf("DogeCashMiner(): Signing new block with zdogec key failed \n");
+                    LogPrintf("BitcoinMiner(): Signing new block with zdogec key failed \n");
                     continue;
                 }
             } else if (!SignBlock(*pblock, *pwallet)) {
-                LogPrintf("DogeCashMiner(): Signing new block with UTXO key failed \n");
+                LogPrintf("BitcoinMiner(): Signing new block with UTXO key failed \n");
                 continue;
             }
 
@@ -748,7 +737,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
             continue;
         }
 
-        LogPrintf("Running DogeCashMiner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
+        LogPrintf("Running dogecashMiner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
             ::GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION));
 
         //
@@ -765,7 +754,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
                 if (hash <= hashTarget) {
                     // Found a solution
                     SetThreadPriority(THREAD_PRIORITY_NORMAL);
-                    LogPrintf("DogeCashMiner:\n");
+                    LogPrintf("BitcoinMiner:\n");
                     LogPrintf("proof-of-work found  \n  hash: %s  \ntarget: %s\n", hash.GetHex(), hashTarget.GetHex());
                     ProcessBlockFound(pblock, *pwallet, reservekey);
                     SetThreadPriority(THREAD_PRIORITY_LOWEST);
@@ -847,7 +836,7 @@ void static ThreadBitcoinMiner(void* parg)
 
 void GenerateBitcoins(bool fGenerate, CWallet* pwallet, int nThreads)
 {
-    static boost::thread_group* minerThreads = nullptr;
+    static boost::thread_group* minerThreads = NULL;
     fGenerateBitcoins = fGenerate;
 
     if (nThreads < 0) {
@@ -858,10 +847,10 @@ void GenerateBitcoins(bool fGenerate, CWallet* pwallet, int nThreads)
             nThreads = boost::thread::hardware_concurrency();
     }
 
-    if (minerThreads != nullptr) {
+    if (minerThreads != NULL) {
         minerThreads->interrupt_all();
         delete minerThreads;
-        minerThreads = nullptr;
+        minerThreads = NULL;
     }
 
     if (nThreads == 0 || !fGenerate)
