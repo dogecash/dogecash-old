@@ -434,7 +434,7 @@ static const CRPCCommand vRPCCommands[] =
         {"wallet", "dumpprivkey", &dumpprivkey, true, false, true},
         {"wallet", "dumphdinfo", &dumphdinfo, true, false, true},
         {"wallet", "dumpwallet", &dumpwallet, true, false, true},
-        {"wallet", "dumpwallethd", &dumpwallethd, true, false, true},
+//        {"wallet", "dumpwallethd", &dumpwallethd, true, false, true},
         {"wallet", "bip38encrypt", &bip38encrypt, true, false, true},
         {"wallet", "bip38decrypt", &bip38decrypt, true, false, true},
         {"wallet", "encryptwallet", &encryptwallet, true, false, true},
