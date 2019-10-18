@@ -486,7 +486,7 @@ class RawTransactionsTest(BitcoinTestFramework):
 
         # drain the keypool
         self.nodes[1].getnewaddress()
-        self.nodes[1].getrawchangeaddress()
+        #self.nodes[1].getrawchangeaddress()
         inputs = []
         outputs = {self.nodes[0].getnewaddress():1.1}
         rawTx = self.nodes[1].createrawtransaction(inputs, outputs)
@@ -500,7 +500,7 @@ class RawTransactionsTest(BitcoinTestFramework):
 
         #refill the keypool
         self.nodes[1].walletpassphrase("test", 100)
-        self.nodes[1].keypoolrefill(2) #need to refill the keypool to get an internal change address
+        #self.nodes[1].keypoolrefill(2) #need to refill the keypool to get an internal change address
         self.nodes[1].walletlock()
 
         try:
@@ -664,3 +664,4 @@ class RawTransactionsTest(BitcoinTestFramework):
 
 if __name__ == '__main__':
     RawTransactionsTest().main()
+``
