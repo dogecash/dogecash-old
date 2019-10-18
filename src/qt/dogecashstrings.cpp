@@ -50,7 +50,7 @@ QT_TRANSLATE_NOOP("dogecash-core", ""
 "Delete all zerocoin spends and mints that have been recorded to the "
 "blockchain database and reindex them (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("dogecash-core", ""
-"Disable all PIVX specific functionality (Masternodes, Zerocoin, SwiftX, "
+"Disable all DogeCash specific functionality (Masternodes, Zerocoin, SwiftX, "
 "Budgeting) (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("dogecash-core", ""
 "Distributed under the MIT software license, see the accompanying file "
@@ -311,7 +311,7 @@ QT_TRANSLATE_NOOP("dogecash-core", "Error initializing wallet database environme
 QT_TRANSLATE_NOOP("dogecash-core", "Error loading block database"),
 QT_TRANSLATE_NOOP("dogecash-core", "Error loading wallet.dat"),
 QT_TRANSLATE_NOOP("dogecash-core", "Error loading wallet.dat: Wallet corrupted"),
-QT_TRANSLATE_NOOP("dogecash-core", "Error loading wallet.dat: Wallet requires newer version of PIVX Core"),
+QT_TRANSLATE_NOOP("dogecash-core", "Error loading wallet.dat: Wallet requires newer version of DogeCash Core"),
 QT_TRANSLATE_NOOP("dogecash-core", "Error opening block database"),
 QT_TRANSLATE_NOOP("dogecash-core", "Error reading from database, shutting down."),
 QT_TRANSLATE_NOOP("dogecash-core", "Error recovering public key."),
