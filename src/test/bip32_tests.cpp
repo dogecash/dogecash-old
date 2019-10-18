@@ -104,7 +104,7 @@ void RunTest(const TestVector &test) {
         }
         key = keyNew;
         pubkey = pubkeyNew;
-        /*CDataStream ssPub(SER_DISK, CLIENT_VERSION);
+        CDataStream ssPub(SER_DISK, CLIENT_VERSION);
         ssPub << pubkeyNew;
         BOOST_CHECK(ssPub.size() == BIP32_EXTKEY_SIZE+1);
 
@@ -118,7 +118,7 @@ void RunTest(const TestVector &test) {
         ssPriv >> privCheck;
 
         BOOST_CHECK(pubCheck == pubkeyNew);
-        BOOST_CHECK(privCheck == keyNew);*/
+        BOOST_CHECK(privCheck == keyNew);
     }
 }
 
