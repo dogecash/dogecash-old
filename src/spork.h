@@ -75,19 +75,39 @@ void ReprocessBlocks(int nBlocks);
 // Keeps track of all of the network spork settings
 //
 
-class CSporkMessage
+class CSporkMessage : public CSignedMessage
 {
 public:
-    std::vector<unsigned char> vchSig;
-    int nSporkID;
+    SporkId nSporkID;
     int64_t nValue;
     int64_t nTimeSigned;
 
-    uint256 GetHash()
-    {
-        uint256 n = HashQuark(BEGIN(nSporkID), END(nTimeSigned));
-        return n;
-    }
+    CSporkMessage() :
+        CSignedMessage(),
+        nSporkID((SporkId)0),
+        nValue(0),
+        nTimeSigned(0)
+    {}
+
+    CSporkMessage(SporkId nSporkID, int64_t nValue, int64_t nTimeSigned) :
+        CSignedMessage(),
+        nSporkID(nSporkID),
+        nValue(nValue),
+        nTimeSigned(nTimeSigned)
+    { }
+
+    uint256 GetHash() const { return HashQuark(BEGIN(nSporkID), END(nTimeSigned)); }
+
+    // override CSignedMessage functions
+    uint256 GetSignatureHash() const override;
+    std::string GetStrMessage() const override;
+    const CTxIn GetVin() const override { return CTxIn(); };
+
+    // override GetPublicKey - gets Params().SporkPubkey()
+    const CPubKey GetPublicKey(std::string& strErrorRet) const override;
+    const CPubKey GetPublicKeyOld() const;
+
+    void Relay();
 
     ADD_SERIALIZE_METHODS;
 
@@ -98,6 +118,12 @@ public:
         READWRITE(nValue);
         READWRITE(nTimeSigned);
         READWRITE(vchSig);
+        try
+        {
+            READWRITE(nMessVersion);
+        } catch (...) {
+            nMessVersion = MessageVersion::MESS_VER_STRMESS;
+        }
     }
 };
 

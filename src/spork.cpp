@@ -8,6 +8,7 @@
 #include "key.h"
 #include "main.h"
 #include "masternode-budget.h"
+#include "messagesigner.h"
 #include "net.h"
 #include "protocol.h"
 #include "sync.h"
@@ -72,6 +73,28 @@ void ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
         std::string strSpork = sporkManager.GetSporkNameByID(spork.nSporkID);
         if (strSpork == "Unknown") return;
 
+        // Do not accept sporks signed way too far into the future
+        if (spork.nTimeSigned > GetAdjustedTime() + 2 * 60 * 60) {
+            LOCK(cs_main);
+            LogPrintf("%s : ERROR: too far into the future\n", __func__);
+            Misbehaving(pfrom->GetId(), 100);
+            return;
+        }
+
+        // reject old signatures 600 blocks after hard-fork
+        if (spork.nMessVersion != MessageVersion::MESS_VER_HASH) {
+            int nHeight;
+            {
+                LOCK(cs_main);
+                nHeight = chainActive.Height();
+            }
+            if (Params().NewSigsActive(nHeight - 600)) {
+                LogPrintf("%s : nMessVersion=%d not accepted anymore at block %d", __func__, spork.nMessVersion, nHeight);
+                return;
+            }
+        }
+
+
         uint256 hash = spork.GetHash();
         if (mapSporksActive.count(spork.nSporkID)) {
             if (mapSporksActive[spork.nSporkID].nTimeSigned >= spork.nTimeSigned) {
@@ -84,15 +107,18 @@ void ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
 
         LogPrintf("%s : new %s ID %d Time %d bestHeight %d\n", __func__, hash.ToString(), spork.nSporkID, spork.nValue, chainActive.Tip()->nHeight);
 
-        if (spork.nTimeSigned >= Params().NewSporkStart()) {
-            if (!sporkManager.CheckSignature(spork, true)) {
-                LogPrintf("%s : Invalid Signature\n", __func__);
-                Misbehaving(pfrom->GetId(), 100);
-                return;
+        const bool fRequireNew = spork.nTimeSigned >= Params().NewSporkStart();
+        bool fValidSig = spork.CheckSignature();
+        if (!fValidSig && !fRequireNew) {
+            // See if window is open that allows for old spork key to sign messages
+            if (GetAdjustedTime() < Params().RejectOldSporkKey()) {
+                CPubKey pubkeyold = spork.GetPublicKeyOld();
+                fValidSig = spork.CheckSignature(pubkeyold);
             }
         }
 
-        if (!sporkManager.CheckSignature(spork)) {
+        if (!fValidSig) {
+            LOCK(cs_main);
             LogPrintf("%s : Invalid Signature\n", __func__);
             Misbehaving(pfrom->GetId(), 100);
             return;
@@ -119,7 +145,11 @@ void ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
 // grab the value of the spork on the network, or the default
 int64_t GetSporkValue(int nSporkID)
 {
-    int64_t r = -1;
+    bool fNewSigs = false;
+    {
+        LOCK(cs_main);
+        fNewSigs = chainActive.NewSigsActive();
+    }
 
     if (mapSporksActive.count(nSporkID)) {
         r = mapSporksActive[nSporkID].nValue;
@@ -137,7 +167,12 @@ int64_t GetSporkValue(int nSporkID)
         if (nSporkID == SPORK_16_ZEROCOIN_MAINTENANCE_MODE) r = SPORK_16_ZEROCOIN_MAINTENANCE_MODE_DEFAULT;
         if (nSporkID == SPORK_17_NEW_STAKE_PROTOCOL) r = SPORK_17_NEW_STAKE_PROTOCOL;
 
-        if (r == -1) LogPrintf("%s : Unknown Spork %d\n", __func__, nSporkID);
+    if(spork.Sign(strMasterPrivKey, fNewSigs)){
+        spork.Relay();
+        LOCK(cs);
+        mapSporks[spork.GetHash()] = spork;
+        mapSporksActive[nSporkID] = spork;
+        return true;
     }
 
     return r;
@@ -190,15 +225,23 @@ bool CSporkManager::CheckSignature(CSporkMessage& spork, bool fCheckSigner)
     CPubKey pubkeynew(ParseHex(Params().SporkKey()));
     std::string errorMessage = "";
 
-    bool fValidWithNewKey = obfuScationSigner.VerifyMessage(pubkeynew, spork.vchSig,strMessage, errorMessage);
+    spork.Sign(strPrivKey, true);
 
-    if (fCheckSigner && !fValidWithNewKey)
-        return false;
-
-    // See if window is open that allows for old spork key to sign messages
-    if (!fValidWithNewKey && GetAdjustedTime() < Params().RejectOldSporkKey()) {
-        CPubKey pubkeyold(ParseHex(Params().SporkKeyOld()));
-        return obfuScationSigner.VerifyMessage(pubkeyold, spork.vchSig, strMessage, errorMessage);
+    const bool fRequireNew = GetTime() >= Params().NewSporkStart();
+    bool fValidSig = spork.CheckSignature();
+    if (!fValidSig && !fRequireNew) {
+        // See if window is open that allows for old spork key to sign messages
+        if (GetAdjustedTime() < Params().RejectOldSporkKey()) {
+            CPubKey pubkeyold = spork.GetPublicKeyOld();
+            fValidSig = spork.CheckSignature(pubkeyold);
+        }
+    }
+    if (fValidSig) {
+        LOCK(cs);
+        // Test signing successful, proceed
+        LogPrintf("%s : Successfully initialized as spork signer\n", __func__);
+        strMasterPrivKey = strPrivKey;
+        return true;
     }
 
     return fValidWithNewKey;
@@ -208,43 +251,31 @@ bool CSporkManager::Sign(CSporkMessage& spork)
 {
     std::string strMessage = std::to_string(spork.nSporkID) + std::to_string(spork.nValue) + std::to_string(spork.nTimeSigned);
 
-    CKey key2;
-    CPubKey pubkey2;
-    std::string errorMessage = "";
-
-    if (!obfuScationSigner.SetKey(strMasterPrivKey, errorMessage, key2, pubkey2)) {
-        LogPrintf("CMasternodePayments::Sign - ERROR: Invalid masternodeprivkey: '%s'\n", errorMessage);
-        return false;
-    }
-
-    if (!obfuScationSigner.SignMessage(strMessage, errorMessage, spork.vchSig, key2)) {
-        LogPrintf("CMasternodePayments::Sign - Sign message failed");
-        return false;
-    }
-
-    if (!obfuScationSigner.VerifyMessage(pubkey2, spork.vchSig, strMessage, errorMessage)) {
-        LogPrintf("CMasternodePayments::Sign - Verify message failed");
-        return false;
-    }
-
-    return true;
+uint256 CSporkMessage::GetSignatureHash() const
+{
+    CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
+    ss << nMessVersion;
+    ss << nSporkID;
+    ss << nValue;
+    ss << nTimeSigned;
+    return ss.GetHash();
 }
 
-bool CSporkManager::UpdateSpork(int nSporkID, int64_t nValue)
+std::string CSporkMessage::GetStrMessage() const
 {
-    CSporkMessage msg;
-    msg.nSporkID = nSporkID;
-    msg.nValue = nValue;
-    msg.nTimeSigned = GetTime();
+    return std::to_string(nSporkID) +
+            std::to_string(nValue) +
+            std::to_string(nTimeSigned);
+}
 
-    if (Sign(msg)) {
-        Relay(msg);
-        mapSporks[msg.GetHash()] = msg;
-        mapSporksActive[nSporkID] = msg;
-        return true;
-    }
+const CPubKey CSporkMessage::GetPublicKey(std::string& strErrorRet) const
+{
+    return CPubKey(ParseHex(Params().SporkPubKey()));
+}
 
-    return false;
+const CPubKey CSporkMessage::GetPublicKeyOld() const
+{
+    return CPubKey(ParseHex(Params().SporkPubKeyOld()));
 }
 
 void CSporkManager::Relay(CSporkMessage& msg)

@@ -166,6 +166,9 @@ public:
         nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
         nBlockNewStakeProtocol = 227769; //!> Enforce new Stake Protocols add test/regtest
 
+        // New P2P messages signatures
+        nBlockEnforceNewMessageSignatures = 2967000;
+
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 1686229;
       //  nSupplyBeforeFakeSerial = 4131563 * COIN;   // zerocoin supply at block nFakeSerialBlockheightEnd
@@ -306,6 +309,8 @@ public:
         nRejectOldSporkKey = 1522454400; //!> Reject old spork key after Saturday, March 31, 2018 12:00:00 AM GMT
         nBlockNewStakeProtocol = 1500; //!> Enforce new Stake Protocols add test/regtest
 
+        // New P2P messages signatures
+        nBlockEnforceNewMessageSignatures = 2214000;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
@@ -397,7 +402,9 @@ public:
         nBlockFirstFraudulent = 999999999; //First block that bad serials emerged
         nBlockLastGoodCheckpoint = 999999999; //Last valid accumulator checkpoint
 
-        nBlockNewStakeProtocol = 1500;
+        // New P2P messages signatures
+        nBlockEnforceNewMessageSignatures = 1;
+
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
 

@@ -355,6 +355,7 @@ set(WALLET_SOURCES
         ./src/masternodeconfig.cpp
         ./src/masternodeman.cpp
         ./src/zdogec/mintpool.cpp
+        ./src/messagesigner.cpp
         ./src/wallet/rpcdump.cpp
         ./src/zdogec/deterministicmint.cpp
         ./src/zdogec/zerocoin.cpp
