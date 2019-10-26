@@ -37,7 +37,7 @@ extern CSporkManager sporkManager;
 class CSporkMessage : public CSignedMessage
 {
 private:
-
+    std::vector<unsigned char> vchSig;
 
 public:
     SporkId nSporkID;
