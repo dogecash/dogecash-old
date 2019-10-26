@@ -73,24 +73,10 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
         // Do not accept sporks signed way too far into the future
         if (spork.nTimeSigned > GetAdjustedTime() + 2 * 60 * 60) {
             LOCK(cs_main);
-            LogPrintf("%s : ERROR: too far into the future\n", __func__);
+            LogPrintf("%s -- ERROR: too far into the future\n", __func__);
             Misbehaving(pfrom->GetId(), 100);
             return;
         }
-
-        // reject old signatures 600 blocks after hard-fork
-        if (spork.nMessVersion != MessageVersion::MESS_VER_HASH) {
-            int nHeight;
-            {
-                LOCK(cs_main);
-                nHeight = chainActive.Height();
-            }
-            if (Params().NewSigsActive(nHeight - 600)) {
-                LogPrintf("%s : nMessVersion=%d not accepted anymore at block %d", __func__, spork.nMessVersion, nHeight);
-                return;
-            }
-        }
-
 
         uint256 hash = spork.GetHash();
         {
