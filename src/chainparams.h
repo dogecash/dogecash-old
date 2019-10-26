@@ -222,7 +222,8 @@ protected:
     int nBlockEnforceInvalidUTXO;
     int nBlockZerocoinV2;
     int nBlockDoubleAccumulated;
-
+    int nBlockEnforceNewMessageSignatures;
+    int nBlockStakeModifierlV2;
     // fake serial attack
     int nFakeSerialBlockheightEnd = 0;
     CAmount nSupplyBeforeFakeSerial = 0;

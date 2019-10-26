@@ -154,7 +154,7 @@ uint256 ComputeStakeModifier(const CBlockIndex* pindexPrev, const uint256& kerne
     ss << kernel;
     int nModifierCheck = chainActive.Height();
     // switch with old modifier on upgrade block
-    if (!Params().IsNewStakeProtocol(pindexPrev->nHeight + 1))//Mrs-X suggestion hard block check
+    if (!Params().IsStakeModifierV2(pindexPrev->nHeight + 1))//Mrs-X suggestion hard block check
         ss << pindexPrev->nStakeModifier;
     else
         ss << pindexPrev->nStakeModifierV2;
@@ -355,7 +355,7 @@ bool GetHashProofOfStake(const CBlockIndex* pindexPrev, CStakeInput* stake, cons
     CDataStream modifier_ss(SER_GETHASH, 0);
 
     // Hash the modifier
-    if (!Params().IsNewStakeProtocol(pindexPrev->nHeight + 1)) {
+    if (!Params().IsStakeModifierV2(pindexPrev->nHeight + 1)) {
         // Modifier v1
         uint64_t nStakeModifier = 0;
         if (!stake->GetModifier(nStakeModifier))

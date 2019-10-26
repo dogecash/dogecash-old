@@ -103,7 +103,7 @@ libzerocoin::ZerocoinParams* CChainParams::Zerocoin_Params(bool useModulusV1) co
 bool CChainParams::HasStakeMinAgeOrDepth(const int contextHeight, const uint32_t contextTime, const int utxoFromBlockHeight, const uint32_t utxoFromBlockTime) const
 {
     // before stake modifier V2, the age required was 60 * 60 (1 hour) / not required on regtest
-    if (!IsNewStakeProtocol(contextHeight))
+    if (!IsStakeModifierV2(contextHeight))
         return (NetworkID() == CBaseChainParams::REGTEST || (utxoFromBlockTime + 3600 <= contextTime));
 
     // after stake modifier V2, we require the utxo to be nStakeMinDepth deep in the chain
@@ -160,7 +160,7 @@ public:
         nBlockDoubleAccumulated = 1050010;
         nEnforceNewSporkKey = 1425158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
-        nBlockNewStakeProtocol = 227769; //!> Enforce new Stake Protocols add test/regtest
+        nBlockStakeModifierlV2 = 227769; //!> Enforce new Stake Protocols add test/regtest
 
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = 2967000;
@@ -300,7 +300,7 @@ public:
         nBlockZerocoinV2 = 444020; //!> The block that zerocoin v2 becomes active
         nEnforceNewSporkKey = 1521604800; //!> Sporks signed after Wednesday, March 21, 2018 4:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1522454400; //!> Reject old spork key after Saturday, March 31, 2018 12:00:00 AM GMT
-        nBlockNewStakeProtocol = 1500; //!> Enforce new Stake Protocols add test/regtest
+        nBlockStakeModifierlV2 = 1500; //!> Enforce new Stake Protocols add test/regtest
 
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = 2214000;
