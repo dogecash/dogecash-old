@@ -53,16 +53,12 @@ void CSporkManager::LoadSporksFromDB()
 
 void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
 {
-    if (fLiteMode) return; //disable all obfuscation/masternode related functionality
+    if (fLiteMode || chainActive.Tip() == nullptr) return; // disable all obfuscation/masternode related functionality
 
     if (strCommand == "spork") {
-        //LogPrintf("CSporkManager::spork\n");
-        CDataStream vMsg(vRecv);
+        
         CSporkMessage spork;
         vRecv >> spork;
-
-        LOCK(cs_main);
-        if (chainActive.Tip() == NULL) return;
 
         // Ignore spork messages about unknown/deleted sporks
         std::string strSpork = sporkManager.GetSporkNameByID(spork.nSporkID);
@@ -91,24 +87,32 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
 
 
         uint256 hash = spork.GetHash();
-        if (mapSporksActive.count(spork.nSporkID)) {
-            if (mapSporksActive[spork.nSporkID].nTimeSigned >= spork.nTimeSigned) {
-                if (fDebug) LogPrintf("%s : seen %s block %d \n", __func__, hash.ToString(), chainActive.Tip()->nHeight);
-                return;
+        {
+            LOCK(cs);
+            if (mapSporksActive.count(spork.nSporkID)) {
+                // spork is active
+                if (mapSporksActive[spork.nSporkID].nTimeSigned >= spork.nTimeSigned) {
+                    // spork in memory has been signed more recently
+                    if (fDebug) LogPrintf("%s : seen %s block %d \n", __func__, hash.ToString(), chainActive.Tip()->nHeight);
+                    return;
+                } else {
+                    // update active spork
+                    if (fDebug) LogPrintf("%s : got updated spork %s block %d \n", __func__, hash.ToString(), chainActive.Tip()->nHeight);
+                }
             } else {
-                if (fDebug) LogPrintf("%s : got updated spork %s block %d \n", __func__, hash.ToString(), chainActive.Tip()->nHeight);
+                // spork is not active
+                if (fDebug) LogPrintf("%s : got new spork %s block %d \n", __func__, hash.ToString(), chainActive.Tip()->nHeight);
             }
         }
 
         LogPrintf("%s : new %s ID %d Time %d bestHeight %d\n", __func__, hash.ToString(), spork.nSporkID, spork.nValue, chainActive.Tip()->nHeight);
 
-        const bool fRequireNew = spork.nTimeSigned >= Params().NewSporkStart();
-        bool fValidSig = spork.CheckSignature();
-        if (!fValidSig && !fRequireNew) {
-            // See if window is open that allows for old spork key to sign messages
-            if (GetAdjustedTime() < Params().RejectOldSporkKey()) {
-                CPubKey pubkeyold = spork.GetPublicKeyOld();
-                fValidSig = spork.CheckSignature(pubkeyold);
+        bool fRequireNew = spork.nTimeSigned >= Params().NewSporkStart();
+            if (!spork.CheckSignature(fRequireNew)) {
+                LOCK(cs_main);
+                LogPrintf("%s : Invalid Signature\n", __func__);
+                Misbehaving(pfrom->GetId(), 100);
+                return;
             }
 
         if (!fValidSig) {
@@ -118,14 +122,18 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
             return;
         }
 
+        {           
+        LOCK(cs);
         mapSporks[hash] = spork;
         mapSporksActive[spork.nSporkID] = spork;
+        }
         spork.Relay();
 
         // dogecash: add to spork database.
         pSporkDB->WriteSpork(spork.nSporkID, spork);
     }
     if (strCommand == "getsporks") {
+        LOCK(cs);
         std::map<int, CSporkMessage>::iterator it = mapSporksActive.begin();
 
         while (it != mapSporksActive.end()) {
@@ -142,6 +150,7 @@ bool CSporkManager::UpdateSpork(int nSporkID, int64_t nValue)
 
     if(spork.Sign(strMasterPrivKey)){
         spork.Relay();
+        LOCK(cs);
         mapSporks[spork.GetHash()] = spork;
         mapSporksActive[nSporkID] = spork;
         return true;
@@ -161,11 +170,8 @@ bool CSporkManager::IsSporkActive(int nSporkID)
 // grab the value of the spork on the network, or the default
 int64_t CSporkManager::GetSporkValue(int nSporkID)
 {
-    bool fNewSigs = false;
-    {
-        LOCK(cs_main);
-        fNewSigs = chainActive.NewSigsActive();
-    }
+    LOCK(cs);
+    int64_t r = -1;
 
     if (mapSporksActive.count(nSporkID)) {
         r = mapSporksActive[nSporkID].nValue;
@@ -235,6 +241,7 @@ bool CSporkManager::SetPrivKey(std::string strPrivKey)
     spork.Sign(strPrivKey);
     const bool fRequireNew = GetTime() >= Params().NewSporkStart();
     if (spork.CheckSignature(fRequireNew)) {
+        LOCK(cs);
         // Test signing successful, proceed
         LogPrintf("%s : -- Successfully initialized as spork signer\n", __func__);
         strMasterPrivKey = strPrivKey;
