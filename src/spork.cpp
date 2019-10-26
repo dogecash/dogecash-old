@@ -20,7 +20,13 @@ CSporkManager sporkManager;
 
 std::map<uint256, CSporkMessage> mapSporks;
 
-// dogecash: on startup load spork values from previous session if they exist in the sporkDB
+void CSporkManager::Clear()
+{
+    strMasterPrivKey = "";
+    mapSporksActive.clear();
+}
+
+// DogeCash: on startup load spork values from previous session if they exist in the sporkDB
 void CSporkManager::LoadSporksFromDB()
 {
     for (int i = SPORK_START; i <= SPORK_END; ++i) {
@@ -249,6 +255,12 @@ bool CSporkManager::SetPrivKey(std::string strPrivKey)
     }
 
     return false;
+}
+
+std::string CSporkManager::ToString() const
+{
+    LOCK(cs);
+    return strprintf("Sporks: %llu", mapSporksActive.size());
 }
 
 bool CSporkMessage::Sign(std::string strSignKey)
