@@ -150,7 +150,7 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
     }
 }
 
-bool CSporkManager::UpdateSpork(nSporkID, int64_t nValue)
+bool CSporkManager::UpdateSpork(SporkId nSporkID, int64_t nValue)
 {
 
     CSporkMessage spork = CSporkMessage(nSporkID, nValue, GetTime());
@@ -167,13 +167,13 @@ bool CSporkManager::UpdateSpork(nSporkID, int64_t nValue)
 }
 
 // grab the spork value, and see if it's off
-bool CSporkManager::IsSporkActive(nSporkID)
+bool CSporkManager::IsSporkActive(SporkId nSporkID)
 {
     return GetSporkValue(nSporkID) < GetAdjustedTime();
 }
 
 // grab the value of the spork on the network, or the default
-int64_t CSporkManager::GetSporkValue(nSporkID)
+int64_t CSporkManager::GetSporkValue(SporkId nSporkID)
 {
     LOCK(cs);
     int64_t r = -1;
@@ -202,7 +202,7 @@ SporkId CSporkManager::GetSporkIDByName(std::string strName)
     return it->second->sporkId;
 }
 
-std::string CSporkManager::GetSporkNameByID(SporkId id)
+std::string CSporkManager::GetSporkNameByID(SporkId nSporkID)
 {
     auto it = sporkDefsById.find(nSporkID);
     if (it == sporkDefsById.end()) {
@@ -239,7 +239,7 @@ bool CSporkMessage::Sign(std::string strSignKey)
     std::string strMessage = std::to_string(nSporkID) + std::to_string(nValue) + std::to_string(nTimeSigned);
     std::string errorMessage = "";
     CKey key;
-    CKey pubkey;
+    CPubKey pubkey;
     
     if (!obfuScationSigner.SetKey(strSignKey, errorMessage, key, pubkey)) {
         return error("%s : SetKey error: '%s'\n", __func__, errorMessage);
