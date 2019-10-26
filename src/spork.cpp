@@ -20,6 +20,29 @@ CSporkManager sporkManager;
 
 std::map<uint256, CSporkMessage> mapSporks;
 
+#define MAKE_SPORK_DEF(name, defaultValue) CSporkDef(name, defaultValue, #name)
+
+std::vector<CSporkDef> sporkDefs = {
+    MAKE_SPORK_DEF(SPORK_2_SWIFTTX,                         0),             // ON
+    MAKE_SPORK_DEF(SPORK_3_SWIFTTX_BLOCK_FILTERING,         0),             // ON
+    MAKE_SPORK_DEF(SPORK_5_MAX_VALUE,                       1000),          // 1000 PIV
+    MAKE_SPORK_DEF(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT,  4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT,   4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_10_MASTERNODE_PAY_UPDATED_NODES,   0),             // OFF
+    MAKE_SPORK_DEF(SPORK_13_ENABLE_SUPERBLOCKS,             4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_14_NEW_PROTOCOL_ENFORCEMENT,       4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2,     4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_16_ZEROCOIN_MAINTENANCE_MODE,      4070908800ULL), // OFF
+};
+
+CSporkManager::CSporkManager()
+{
+    for (auto& sporkDef : sporkDefs) {
+        sporkDefsById.emplace(sporkDef.sporkId, &sporkDef);
+        sporkDefsByName.emplace(sporkDef.name, &sporkDef);
+    }
+}
+
 void CSporkManager::Clear()
 {
     strMasterPrivKey = "";
@@ -156,9 +179,7 @@ bool CSporkManager::UpdateSpork(nSporkID, int64_t nValue)
 // grab the spork value, and see if it's off
 bool CSporkManager::IsSporkActive(nSporkID)
 {
-    int64_t r = GetSporkValue(nSporkID);
-    if (r == -1) return false;
-    return r < GetAdjustedTime();
+    return GetSporkValue(nSporkID) < GetAdjustedTime();
 }
 
 // grab the value of the spork on the network, or the default
@@ -168,62 +189,37 @@ int64_t CSporkManager::GetSporkValue(nSporkID)
     int64_t r = -1;
 
     if (mapSporksActive.count(nSporkID)) {
-        r = mapSporksActive[nSporkID].nValue;
+        return mapSporksActive[nSporkID].nValue;
     } else {
-        if (nSporkID == SPORK_2_SWIFTTX) r = SPORK_2_SWIFTTX_DEFAULT;
-        if (nSporkID == SPORK_3_SWIFTTX_BLOCK_FILTERING) r = SPORK_3_SWIFTTX_BLOCK_FILTERING_DEFAULT;
-        if (nSporkID == SPORK_5_MAX_VALUE) r = SPORK_5_MAX_VALUE_DEFAULT;
-        if (nSporkID == SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT) r = SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT_DEFAULT;
-        if (nSporkID == SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT) r = SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT_DEFAULT;
-        if (nSporkID == SPORK_10_MASTERNODE_PAY_UPDATED_NODES) r = SPORK_10_MASTERNODE_PAY_UPDATED_NODES_DEFAULT;
-        if (nSporkID == SPORK_13_ENABLE_SUPERBLOCKS) r = SPORK_13_ENABLE_SUPERBLOCKS_DEFAULT;
-        if (nSporkID == SPORK_14_NEW_PROTOCOL_ENFORCEMENT) r = SPORK_14_NEW_PROTOCOL_ENFORCEMENT_DEFAULT;
-        if (nSporkID == SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2) r = SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2_DEFAULT;
-        if (nSporkID == SPORK_16_ZEROCOIN_MAINTENANCE_MODE) r = SPORK_16_ZEROCOIN_MAINTENANCE_MODE_DEFAULT;
-        if (nSporkID == SPORK_17_NEW_STAKE_PROTOCOL) r = SPORK_17_NEW_STAKE_PROTOCOL;
-
-    if(spork.Sign(strMasterPrivKey, fNewSigs)){
-        spork.Relay();
-        LOCK(cs);
-        mapSporks[spork.GetHash()] = spork;
-        mapSporksActive[nSporkID] = spork;
-        return true;
+         auto it = sporkDefsById.find(nSporkID);
+         if (it != sporkDefsById.end()) {
+             return it->second->defaultValue;
+         } else {
+             LogPrintf("%s : Unknown Spork %d\n", __func__, nSporkID);
+         }
     }
 
-    return r;
+    return -1;
 }
 
 SporkId CSporkManager::GetSporkIDByName(std::string strName)
 {
-    if (strName == "SPORK_2_SWIFTTX") return SPORK_2_SWIFTTX;
-    if (strName == "SPORK_3_SWIFTTX_BLOCK_FILTERING") return SPORK_3_SWIFTTX_BLOCK_FILTERING;
-    if (strName == "SPORK_5_MAX_VALUE") return SPORK_5_MAX_VALUE;
-    if (strName == "SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT") return SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT;
-    if (strName == "SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT") return SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT;
-    if (strName == "SPORK_10_MASTERNODE_PAY_UPDATED_NODES") return SPORK_10_MASTERNODE_PAY_UPDATED_NODES;
-    if (strName == "SPORK_13_ENABLE_SUPERBLOCKS") return SPORK_13_ENABLE_SUPERBLOCKS;
-    if (strName == "SPORK_14_NEW_PROTOCOL_ENFORCEMENT") return SPORK_14_NEW_PROTOCOL_ENFORCEMENT;
-    if (strName == "SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2") return SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2;
-    if (strName == "SPORK_16_ZEROCOIN_MAINTENANCE_MODE") return SPORK_16_ZEROCOIN_MAINTENANCE_MODE;
-
-    return SPORK_INVALID;
+    auto it = sporkDefsByName.find(strName);
+    if (it == sporkDefsByName.end()) {
+        LogPrintf("%s -- Unknown Spork name '%s'\n", __func__, strName);
+        return SPORK_INVALID;
+    }
+    return it->second->sporkId;
 }
 
 std::string CSporkManager::GetSporkNameByID(SporkId id)
 {
-    if (id == SPORK_2_SWIFTTX) return "SPORK_2_SWIFTTX";
-    if (id == SPORK_3_SWIFTTX_BLOCK_FILTERING) return "SPORK_3_SWIFTTX_BLOCK_FILTERING";
-    if (id == SPORK_5_MAX_VALUE) return "SPORK_5_MAX_VALUE";
-    if (id == SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT) return "SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT";
-    if (id == SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT) return "SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT";
-    if (id == SPORK_10_MASTERNODE_PAY_UPDATED_NODES) return "SPORK_10_MASTERNODE_PAY_UPDATED_NODES";
-    if (id == SPORK_13_ENABLE_SUPERBLOCKS) return "SPORK_13_ENABLE_SUPERBLOCKS";
-    if (id == SPORK_14_NEW_PROTOCOL_ENFORCEMENT) return "SPORK_14_NEW_PROTOCOL_ENFORCEMENT";
-    if (id == SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2) return "SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2";
-    if (id == SPORK_16_ZEROCOIN_MAINTENANCE_MODE) return "SPORK_16_ZEROCOIN_MAINTENANCE_MODE";
-    if (id == SPORK_17_NEW_STAKE_PROTOCOL) return "SPORK_17_NEW_STAKE_PROTOCOL";
-
-    return "Unknown";
+    auto it = sporkDefsById.find(nSporkID);
+    if (it == sporkDefsById.end()) {
+        LogPrint("%s -- Unknown Spork ID %d\n", __func__, nSporkID);
+        return "Unknown";
+    }
+    return it->second->name;
 }
 
 bool CSporkManager::SetPrivKey(std::string strPrivKey)
