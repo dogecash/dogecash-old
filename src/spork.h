@@ -23,6 +23,8 @@
 using namespace std;
 using namespace boost;
 
+extern std::vector<CSporkDef> sporkDefs;
+
 class CSporkMessage;
 class CSporkManager;
 
