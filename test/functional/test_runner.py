@@ -59,9 +59,6 @@ BASE_SCRIPTS= [
     'wallet_backup.py',
 
     # vv Tests less than 5m vv
-    'wallet_abandonconflict.py',
-    'wallet_reorg-stake.py',
-    'feature_coldStaking.py',
     'rpc_rawtransaction.py',
     'wallet_zapwallettxes.py',
     'wallet_keypool_topup.py',
@@ -70,7 +67,6 @@ BASE_SCRIPTS= [
     'wallet_txn_clone.py --mineblock',
     'interface_rest.py',
     'feature_proxy.py',
-
     'p2p_pos_fakestake.py',
     'p2p_pos_fakestake_accepted.py',
     #'p2p_zpos_fakestake.py',

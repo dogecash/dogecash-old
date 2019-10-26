@@ -1046,6 +1046,7 @@ bool ContextualCheckZerocoinSpendNoSerialCheck(const CTransaction& tx, const Coi
     return true;
 }
 
+
 bool CheckZerocoinSpend(const CTransaction& tx, bool fVerifySignature, CValidationState& state, bool fFakeSerialAttack)
 {
     //max needed non-mint outputs should be 2 - one for redemption address and a possible 2nd for change
@@ -1079,21 +1080,6 @@ bool CheckZerocoinSpend(const CTransaction& tx, bool fVerifySignature, CValidati
 
         CoinSpend newSpend = TxInToZerocoinSpend(txin);
         vSpends.push_back(newSpend);
-        libzerocoin::CoinSpend newSpend;
-        CTxOut prevOut;
-        if (isPublicSpend) {
-            if(!GetOutput(txin.prevout.hash, txin.prevout.n, state, prevOut)){
-                return state.DoS(100, error("CheckZerocoinSpend(): public zerocoin spend prev output not found, prevTx %s, index %d", txin.prevout.hash.GetHex(), txin.prevout.n));
-            }
-            libzerocoin::ZerocoinParams* params = Params().Zerocoin_Params(false);
-            PublicCoinSpend publicSpend(params);
-            if (!ZPIVModule::parseCoinSpend(txin, tx, prevOut, publicSpend)){
-                return state.DoS(100, error("CheckZerocoinSpend(): public zerocoin spend parse failed"));
-            }
-            newSpend = publicSpend;
-        } else {
-            newSpend = TxInToZerocoinSpend(txin);
-        }
 
         //check that the denomination is valid
         if (newSpend.getDenomination() == ZQ_ERROR)
@@ -1141,7 +1127,7 @@ bool CheckZerocoinSpend(const CTransaction& tx, bool fVerifySignature, CValidati
     return fValidated;
 }
 
-bool CheckTransaction(const CTransaction& tx, bool fZerocoinActive, bool fRejectBadUTXO, CValidationState& state, bool fFakeSerialAttack, bool fColdStakingActive)
+bool CheckTransaction(const CTransaction& tx, bool fZerocoinActive, bool fRejectBadUTXO, CValidationState& state, bool fFakeSerialAttack)
 {
     // Basic checks that don't depend on any context
     if (tx.vin.empty())
@@ -1158,14 +1144,13 @@ bool CheckTransaction(const CTransaction& tx, bool fZerocoinActive, bool fReject
         return state.DoS(100, error("CheckTransaction() : size limits failed"),
             REJECT_INVALID, "bad-txns-oversize");
 
-    const CAmount minColdStakingAmount = Params().GetMinColdStakingAmount();
-
     // Check for negative or overflow output values
     CAmount nValueOut = 0;
     int nZCSpendCount = 0;
     BOOST_FOREACH (const CTxOut& txout, tx.vout) {
         if (txout.IsEmpty() && !tx.IsCoinBase() && !tx.IsCoinStake())
             return state.DoS(100, error("CheckTransaction(): txout empty for user transaction"));
+
         if (txout.nValue < 0)
             return state.DoS(100, error("CheckTransaction() : txout.nValue negative"),
                 REJECT_INVALID, "bad-txns-vout-negative");
@@ -1180,29 +1165,7 @@ bool CheckTransaction(const CTransaction& tx, bool fZerocoinActive, bool fReject
             if(!CheckZerocoinMint(tx.GetHash(), txout, state, true))
                 return state.DoS(100, error("CheckTransaction() : invalid zerocoin mint"));
         }
-        // check cold staking enforcement and value out
-        if (txout.scriptPubKey.IsPayToColdStaking()) {
-            if (!fColdStakingActive)
-                return state.DoS(100, error("%s: cold staking not active", __func__), REJECT_INVALID, "bad-txns-cold-stake");
-            if (txout.nValue < minColdStakingAmount)
-                return state.DoS(100, error("%s: dust amount (%d) not allowed for cold staking. Min amount: %d",
-                        __func__, txout.nValue, minColdStakingAmount), REJECT_INVALID, "bad-txns-cold-stake");
-        }
-    }
-
-    std::set<COutPoint> vInOutPoints;
-    std::set<CBigNum> vZerocoinSpendSerials;
-    int nZCSpendCount = 0;
-
-    for (const CTxIn& txin : tx.vin) {
-        // Check for duplicate inputs
-        if (vInOutPoints.count(txin.prevout))
-            return state.DoS(100, error("CheckTransaction() : duplicate inputs"), REJECT_INVALID, "bad-txns-inputs-duplicate");
-
-        //duplicate zcspend serials are checked in CheckZerocoinSpend()
-        if (!txin.IsZerocoinSpend()) {
-            vInOutPoints.insert(txin.prevout);
-        } else if (!txin.IsZerocoinPublicSpend()) {
+        if (fZerocoinActive && txout.scriptPubKey.IsZerocoinSpend())
             nZCSpendCount++;
     }
 
@@ -1327,11 +1290,9 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
     if (GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE) && tx.ContainsZerocoins())
         return state.DoS(10, error("AcceptToMemoryPool : Zerocoin transactions are temporarily disabled for maintenance"), REJECT_INVALID, "bad-tx");
 
-    // Cold staking and zerocoin enforcement
     int chainHeight = chainActive.Height();
-    bool fColdStakingActive = Params().Cold_Staking_Enabled(chainHeight);
-    if (!CheckTransaction(tx, chainHeight >= Params().Zerocoin_StartHeight(), true, state, isBlockBetweenFakeSerialAttackRange(chainHeight), fColdStakingActive))
-        return state.DoS(100, error("%s : CheckTransaction failed", __func__), REJECT_INVALID, "bad-tx");
+    if (!CheckTransaction(tx, chainHeight >= Params().Zerocoin_StartHeight(), true, state, isBlockBetweenFakeSerialAttackRange(chainHeight)))
+        return state.DoS(100, error("AcceptToMemoryPool: : CheckTransaction failed"), REJECT_INVALID, "bad-tx");
 
     // Coinbase is only valid in a block, not as a loose transaction
     if (tx.IsCoinBase())
@@ -4259,32 +4220,6 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
     return true;
 }
 
-bool CheckColdStakeFreeOutput(const CTransaction& tx, const int nHeight)
-{
-    if (!tx.HasP2CSOutputs())
-        return true;
-
-    const unsigned int outs = tx.vout.size();
-    const CTxOut& lastOut = tx.vout[outs-1];
-    if (outs >=3 && lastOut.scriptPubKey != tx.vout[outs-2].scriptPubKey) {
-        // last output can either be a mn reward or a budget payment
-        // cold staking is active much after nPublicZCSpends so GetMasternodePayment is always 3 PIV.
-        // TODO: double check this if/when MN rewards change
-        if (lastOut.nValue == 3 * COIN)
-            return true;
-
-        if (budget.IsBudgetPaymentBlock(nHeight) &
-                sporkManager.IsSporkActive(SPORK_13_ENABLE_SUPERBLOCKS) &&
-                sporkManager.IsSporkActive(SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT))
-            return true;
-
-        return error("%s: Wrong cold staking outputs: vout[%d].scriptPubKey (%s) != vout[%d].scriptPubKey (%s) - value: %s",
-                __func__, outs-1, HexStr(lastOut.scriptPubKey), outs-2, HexStr(tx.vout[outs-2].scriptPubKey), FormatMoney(lastOut.nValue).c_str());
-    }
-
-    return true;
-}
-
 bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckSig)
 {
     // These are checks that are independent of context.
@@ -4390,14 +4325,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         // The case also exists that the sending peer could not have enough data to see
         // that this block is invalid, so don't issue an outright ban.
         if (nHeight != 0 && !IsInitialBlockDownload()) {
-            // Last output of Cold-Stake is not abused
-            if (IsPoS && !CheckColdStakeFreeOutput(block.vtx[1], nHeight)) {
-                mapRejectedBlocks.insert(std::make_pair(block.GetHash(), GetTime()));
-                return state.DoS(0, error("%s : Cold stake outputs not valid", __func__),
-                        REJECT_INVALID, "bad-p2cs-outs");
-            }
-
-            // Valid masternode/budget payment
             if (!IsBlockPayeeValid(block, nHeight)) {
                 mapRejectedBlocks.insert(make_pair(block.GetHash(), GetTime()));
                 return state.DoS(0, error("%s : Couldn't find masternode/budget payment", __func__),
@@ -4411,8 +4338,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
 
     // Check transactions
     bool fZerocoinActive = block.GetBlockTime() > Params().Zerocoin_StartTime();
-    bool fColdStakingActive = Params().Cold_Staking_Enabled(nHeight);
-    std::vector<CBigNum> vBlockSerials;
+    vector<CBigNum> vBlockSerials;
     // TODO: Check if this is ok... blockHeight is always the tip or should we look for the prevHash and get the height?
     int blockHeight = chainActive.Height() + 1;
     for (const CTransaction& tx : block.vtx) {
@@ -4421,8 +4347,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 fZerocoinActive,
                 blockHeight >= Params().Zerocoin_Block_EnforceSerialRange(),
                 state,
-                isBlockBetweenFakeSerialAttackRange(blockHeight),
-                fColdStakingActive
+                isBlockBetweenFakeSerialAttackRange(blockHeight)
         ))
             return error("%s : CheckTransaction failed", __func__);
 

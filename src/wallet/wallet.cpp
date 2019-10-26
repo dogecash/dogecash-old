@@ -638,10 +638,9 @@ bool CWallet::GetMasternodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet, CKey& 
     // wait for reindex and/or import to finish
     if (fImporting || fReindex) return false;
 
-    // Find possible candidates (remove delegated)
+    // Find possible candidates
     std::vector<COutput> vPossibleCoins;
-    AvailableCoins(vPossibleCoins, true, NULL, false, ONLY_10000, false, 1, false, false);
-
+    AvailableCoins(vPossibleCoins, true, NULL, false, ONLY_10000);
     if (vPossibleCoins.empty()) {
         LogPrintf("CWallet::GetMasternodeVinAndKeys -- Could not locate any valid masternode vin\n");
         return false;
@@ -669,7 +668,7 @@ bool CWallet::GetMasternodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet, CKey& 
     return false;
 }
 
-bool CWallet::GetVinAndKeysFromOutput(COutput out, CTxIn& txinRet, CPubKey& pubKeyRet, CKey& keyRet, bool fColdStake)
+bool CWallet::GetVinAndKeysFromOutput(COutput out, CTxIn& txinRet, CPubKey& pubKeyRet, CKey& keyRet)
 {
     // wait for reindex and/or import to finish
     if (fImporting || fReindex) return false;
@@ -680,7 +679,7 @@ bool CWallet::GetVinAndKeysFromOutput(COutput out, CTxIn& txinRet, CPubKey& pubK
     pubScript = out.tx->vout[out.i].scriptPubKey; // the inputs PubKey
 
     CTxDestination address1;
-    ExtractDestination(pubScript, address1, fColdStake);
+    ExtractDestination(pubScript, address1);
     CBitcoinAddress address2(address1);
 
     CKeyID keyID;
@@ -1320,38 +1319,10 @@ CAmount CWalletTx::GetDebit(const isminefilter& filter) const
             debit += nWatchDebitCached;
         }
     }
-    if (filter & ISMINE_COLD) {
-        if (fColdDebitCached)
-            debit += nColdDebitCached;
-        else {
-            nColdDebitCached = pwallet->GetDebit(*this, ISMINE_COLD);
-            fColdDebitCached = true;
-            debit += nColdDebitCached;
-        }
-    }
-    if (filter & ISMINE_SPENDABLE_DELEGATED) {
-        if (fDelegatedDebitCached)
-            debit += nDelegatedDebitCached;
-        else {
-            nDelegatedDebitCached = pwallet->GetDebit(*this, ISMINE_SPENDABLE_DELEGATED);
-            fDelegatedDebitCached = true;
-            debit += nDelegatedDebitCached;
-        }
-    }
     return debit;
 }
 
-CAmount CWalletTx::GetColdStakingDebit(bool fUseCache) const
-{
-    return UpdateAmount(nColdDebitCached, fColdDebitCached, fUseCache, ISMINE_COLD, false);
-}
-
-CAmount CWalletTx::GetStakeDelegationDebit(bool fUseCache) const
-{
-    return UpdateAmount(nDelegatedDebitCached, fDelegatedDebitCached, fUseCache, ISMINE_SPENDABLE_DELEGATED, false);
-}
-
-CAmount CWalletTx::GetCredit(const isminefilter& filter, const bool fUnspent) const
+CAmount CWalletTx::GetCredit(const isminefilter& filter) const
 {
     // Must wait until coinbase is safely deep enough in the chain before valuing it
     if (IsCoinBase() && GetBlocksToMaturity() > 0)
@@ -1363,7 +1334,7 @@ CAmount CWalletTx::GetCredit(const isminefilter& filter, const bool fUnspent) co
         if (fCreditCached)
             credit += nCreditCached;
         else {
-            nCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE, fUnspent);
+            nCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE);
             fCreditCached = true;
             credit += nCreditCached;
         }
@@ -1372,27 +1343,9 @@ CAmount CWalletTx::GetCredit(const isminefilter& filter, const bool fUnspent) co
         if (fWatchCreditCached)
             credit += nWatchCreditCached;
         else {
-            nWatchCreditCached = pwallet->GetCredit(*this, ISMINE_WATCH_ONLY, fUnspent);
+            nWatchCreditCached = pwallet->GetCredit(*this, ISMINE_WATCH_ONLY);
             fWatchCreditCached = true;
             credit += nWatchCreditCached;
-        }
-    }
-    if (filter & ISMINE_COLD) {
-        if (fColdCreditCached)
-            credit += nColdCreditCached;
-        else {
-            nColdCreditCached = pwallet->GetCredit(*this, ISMINE_COLD, fUnspent);
-            fColdCreditCached = true;
-            credit += nColdCreditCached;
-        }
-    }
-    if (filter & ISMINE_SPENDABLE_DELEGATED) {
-        if (fDelegatedCreditCached)
-            credit += nDelegatedCreditCached;
-        else {
-            nDelegatedCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE_DELEGATED, fUnspent);
-            fDelegatedCreditCached = true;
-            credit += nDelegatedCreditCached;
         }
     }
     return credit;
@@ -1414,20 +1367,6 @@ CAmount CWalletTx::GetImmatureCredit(bool fUseCache) const
 
 CAmount CWalletTx::GetAvailableCredit(bool fUseCache) const
 {
-    return UpdateAmount(nAvailableCreditCached, fAvailableCreditCached, fUseCache, ISMINE_SPENDABLE);}
-
-CAmount CWalletTx::GetColdStakingCredit(bool fUseCache) const
-{
-    return UpdateAmount(nColdCreditCached, fColdCreditCached, fUseCache, ISMINE_COLD);
-}
-
-CAmount CWalletTx::GetStakeDelegationCredit(bool fUseCache) const
-{
-    return UpdateAmount(nDelegatedCreditCached, fDelegatedCreditCached, fUseCache, ISMINE_SPENDABLE_DELEGATED);
-}
-
-CAmount CWalletTx::UpdateAmount(CAmount& amountToUpdate, bool& cacheFlagToUpdate, bool fUseCache, isminetype mimeType, bool fCredit) const
-{
     if (pwallet == 0)
         return 0;
 
@@ -1435,12 +1374,23 @@ CAmount CWalletTx::UpdateAmount(CAmount& amountToUpdate, bool& cacheFlagToUpdate
     if (IsCoinBase() && GetBlocksToMaturity() > 0)
         return 0;
 
-    if (fUseCache && cacheFlagToUpdate)
-        return amountToUpdate;
+    if (fUseCache && fAvailableCreditCached)
+        return nAvailableCreditCached;
 
-    amountToUpdate = (fCredit) ? GetCredit(mimeType, true) : GetDebit(mimeType);
-    cacheFlagToUpdate = true;
-    return amountToUpdate;
+    CAmount nCredit = 0;
+    uint256 hashTx = GetHash();
+    for (unsigned int i = 0; i < vout.size(); i++) {
+        if (!pwallet->IsSpent(hashTx, i)) {
+            const CTxOut& txout = vout[i];
+            nCredit += pwallet->GetCredit(txout, ISMINE_SPENDABLE);
+            if (!MoneyRange(nCredit))
+                throw std::runtime_error("CWalletTx::GetAvailableCredit() : value out of range");
+        }
+    }
+
+    nAvailableCreditCached = nCredit;
+    fAvailableCreditCached = true;
+    return nCredit;
 }
 
 CAmount CWalletTx::GetAnonymizableCredit(bool fUseCache) const
@@ -1536,7 +1486,7 @@ CAmount CWalletTx::GetUnlockedCredit() const
     return nCredit;
 }
 
-// Return sum of locked coins
+    // Return sum of unlocked coins
 CAmount CWalletTx::GetLockedCredit() const
 {
     if (pwallet == 0)
@@ -1553,9 +1503,6 @@ CAmount CWalletTx::GetLockedCredit() const
 
         // Skip spent coins
         if (pwallet->IsSpent(hashTx, i)) continue;
-
-        // Add delegated coins
-        nCredit += pwallet->GetCredit(txout, ISMINE_SPENDABLE_DELEGATED);
 
         // Add locked coins
         if (pwallet->IsLockedCoin(hashTx, i)) {
@@ -1727,11 +1674,10 @@ void CWalletTx::GetAmounts(list<COutputEntry>& listReceived,
             continue;
 
         // In either case, we need to get the destination address
-        const bool fColdStake = (filter & ISMINE_COLD);
         CTxDestination address;
         if (txout.scriptPubKey.IsZerocoinMint()) {
             address = CNoDestination();
-        } else if (!ExtractDestination(txout.scriptPubKey, address, fColdStake)) {
+        } else if (!ExtractDestination(txout.scriptPubKey, address)) {
             if (!IsCoinStake() && !IsCoinBase()) {
                 LogPrintf("CWalletTx::GetAmounts: Unknown transaction type found, txid %s\n", this->GetHash().ToString());
             }
@@ -1996,46 +1942,8 @@ CAmount CWallet::GetBalance() const
     return nTotal;
 }
 
-CAmount CWallet::GetColdStakingBalance() const
-{
-    CAmount nTotal = 0;
-    {
-        LOCK2(cs_main, cs_wallet);
-        for (std::map<uint256, CWalletTx>::const_iterator it = mapWallet.begin(); it != mapWallet.end(); ++it) {
-            const CWalletTx* pcoin = &(*it).second;
-
-            if (pcoin->HasP2CSOutputs() && pcoin->IsTrusted())
-                nTotal += pcoin->GetColdStakingCredit();
-        }
-    }
-
-    return nTotal;
-}
-
-CAmount CWallet::GetStakingBalance(const bool fIncludeColdStaking) const
-{
-    return GetBalance() + (fIncludeColdStaking ? GetColdStakingBalance() : 0);
-}
-
-CAmount CWallet::GetDelegatedBalance() const
-{
-    CAmount nTotal = 0;
-    {
-        LOCK2(cs_main, cs_wallet);
-        for (std::map<uint256, CWalletTx>::const_iterator it = mapWallet.begin(); it != mapWallet.end(); ++it) {
-            const CWalletTx* pcoin = &(*it).second;
-
-            if (pcoin->HasP2CSOutputs() && pcoin->IsTrusted())
-                nTotal += pcoin->GetStakeDelegationCredit();
-        }
-    }
-
-    return nTotal;
-}
-
-//std::map<libzerocoin::CoinDenomination, int> mapMintMaturity;
-//int nLastMaturityCheck = 0;
-
+std::map<libzerocoin::CoinDenomination, int> mapMintMaturity;
+int nLastMaturityCheck = 0;
 CAmount CWallet::GetZerocoinBalance(bool fMatureOnly) const
 {
     if (fMatureOnly) {
@@ -2327,15 +2235,9 @@ void CWallet::AvailableCoins(
         bool fIncludeZeroValue,
         AvailableCoinsType nCoinType,
         bool fUseIX,
-        int nWatchonlyConfig,
-        bool fIncludeColdStaking,
-        bool fIncludeDelegated) const
+        int nWatchonlyConfig) const
 {
     vCoins.clear();
-    const bool fCoinsSelected = (coinControl != nullptr) && coinControl->HasSelected();
-    // include delegated coins when coinControl is active
-    if (!fIncludeDelegated && fCoinsSelected)
-        fIncludeDelegated = true;
 
     {
         LOCK2(cs_main, cs_wallet);
@@ -2400,23 +2302,16 @@ void CWallet::AvailableCoins(
                     continue;
                 if (pcoin->vout[i].nValue <= 0 && !fIncludeZeroValue)
                     continue;
-                if (fCoinsSelected && !coinControl->fAllowOtherInputs && !coinControl->IsSelected((*it).first, i))
+                if (coinControl && coinControl->HasSelected() && !coinControl->fAllowOtherInputs && !coinControl->IsSelected((*it).first, i))
                     continue;
 
-                // --Skip P2CS outputs
-                // skip cold coins
-                if (mine == ISMINE_COLD && (!fIncludeColdStaking || !HasDelegator(pcoin->vout[i]))) continue;
-                // skip delegated coins
-                if (mine == ISMINE_SPENDABLE_DELEGATED && !fIncludeDelegated) continue;
-                // skip auto-delegated coins
-                if (mine == ISMINE_SPENDABLE_STAKEABLE && !fIncludeColdStaking && !fIncludeDelegated) continue;
+                bool fIsSpendable = false;
+                if ((mine & ISMINE_SPENDABLE) != ISMINE_NO)
+                    fIsSpendable = true;
+                if ((mine & ISMINE_MULTISIG) != ISMINE_NO)
+                    fIsSpendable = true;
 
-                bool fIsValid = (
-                        ((mine & ISMINE_SPENDABLE) != ISMINE_NO) ||
-                        ((mine & (ISMINE_MULTISIG | (fIncludeColdStaking ? ISMINE_COLD : ISMINE_NO) |
-                                (fIncludeDelegated ? ISMINE_SPENDABLE_DELEGATED : ISMINE_NO) )) != ISMINE_NO));
-
-                vCoins.emplace_back(COutput(pcoin, i, nDepth, fIsValid));
+                vCoins.emplace_back(COutput(pcoin, i, nDepth, fIsSpendable));
             }
         }
     }
@@ -2424,9 +2319,8 @@ void CWallet::AvailableCoins(
 
 map<CBitcoinAddress, vector<COutput> > CWallet::AvailableCoinsByAddress(bool fConfirmed, CAmount maxCoinValue)
 {
-    std::vector<COutput> vCoins;
-    // include cold and delegated coins
-    AvailableCoins(vCoins, fConfirmed, nullptr, false, ALL_COINS, false, 1, true, true);
+    vector<COutput> vCoins;
+    AvailableCoins(vCoins, fConfirmed);
 
     map<CBitcoinAddress, vector<COutput> > mapCoins;
     BOOST_FOREACH (COutput out, vCoins) {
@@ -2434,16 +2328,10 @@ map<CBitcoinAddress, vector<COutput> > CWallet::AvailableCoinsByAddress(bool fCo
             continue;
 
         CTxDestination address;
-        bool fColdStakeAddr = false;
-        if (!ExtractDestination(out.tx->vout[out.i].scriptPubKey, address, fColdStakeAddr)) {
-            // if this is a P2CS we don't have the owner key - check if we have the staking key
-            fColdStakeAddr = true;
-            if ( !out.tx->vout[out.i].scriptPubKey.IsPayToColdStaking() ||
-                    !ExtractDestination(out.tx->vout[out.i].scriptPubKey, address, fColdStakeAddr) )
-                continue;
-        }
+        if (!ExtractDestination(out.tx->vout[out.i].scriptPubKey, address))
+            continue;
 
-        mapCoins[CBitcoinAddress(address, fColdStakeAddr ? CChainParams::STAKING_ADDRESS : CChainParams::PUBKEY_ADDRESS)].push_back(out);
+        mapCoins[CBitcoinAddress(address)].push_back(out);
     }
 
     return mapCoins;
@@ -2510,10 +2398,8 @@ bool CWallet::SelectStakeCoins(std::list<std::unique_ptr<CStakeInput> >& listInp
         int blockHeight, bool fPrecompute){
     LOCK(cs_main);
     //Add DOGEC
-    std::vector<COutput> vCoins;
-    // include cold, exclude delegated
-    const bool fIncludeCold = Params().Cold_Staking_Enabled(blockHeight) && GetBoolArg("-coldstaking", true);
-    AvailableCoins(vCoins, true, NULL, false, STAKABLE_COINS, false, 1, fIncludeCold, false);
+    vector<COutput> vCoins;
+    AvailableCoins(vCoins, true, NULL, false, STAKABLE_COINS);
     CAmount nAmountSelected = 0;
     if (GetBoolArg("-DOGECstake", true) && !fPrecompute) {
         for (const COutput &out : vCoins) {
@@ -2574,7 +2460,7 @@ bool CWallet::SelectStakeCoins(std::list<std::unique_ptr<CStakeInput> >& listInp
 bool CWallet::MintableCoins()
 {
     LOCK(cs_main);
-    CAmount nBalance = GetStakingBalance(GetBoolArg("-coldstaking", true));
+    CAmount nBalance = GetBalance();
     CAmount nzdogecBalance = GetZerocoinBalance(false);
 
     int chainHeight = chainActive.Height();
@@ -2585,10 +2471,9 @@ bool CWallet::MintableCoins()
         if (nBalance <= nReserveBalance)
             return false;
 
-        std::vector<COutput> vCoins;
-        // include cold, exclude delegated
-        const bool fIncludeCold = Params().Cold_Staking_Enabled(chainHeight) && GetBoolArg("-coldstaking", true);
-        AvailableCoins(vCoins, true, NULL, false, STAKABLE_COINS, false, 1, fIncludeCold, false);
+        vector<COutput> vCoins;
+        AvailableCoins(vCoins, true);
+        int64_t time = GetAdjustedTime();
 
         for (const COutput& out : vCoins) {
             CBlockIndex* utxoBlock = mapBlockIndex.at(out.tx->hashBlock);
@@ -2719,11 +2604,12 @@ bool CWallet::SelectCoinsMinConf(const CAmount& nTargetValue, int nConfMine, int
     return true;
 }
 
-bool CWallet::SelectCoins(const CAmount& nTargetValue, std::set<std::pair<const CWalletTx*, unsigned int> >& setCoinsRet, CAmount& nValueRet, const CCoinControl* coinControl, AvailableCoinsType coin_type, bool useIX, bool fIncludeColdStaking, bool fIncludeDelegated) const
+bool CWallet::SelectCoins(const CAmount& nTargetValue, set<pair<const CWalletTx*, unsigned int> >& setCoinsRet, CAmount& nValueRet, const CCoinControl* coinControl, AvailableCoinsType coin_type, bool useIX) const
 {
     // Note: this function should never be used for "always free" tx types like dstx
-    std::vector<COutput> vCoins;
-    AvailableCoins(vCoins, true, coinControl, false, coin_type, useIX, 1, fIncludeColdStaking, fIncludeDelegated);
+
+    vector<COutput> vCoins;
+    AvailableCoins(vCoins, true, coinControl, false, coin_type, useIX);
 
     // coin control -> return all selected outputs (we want all selected to go into the transaction for sure)
     if (coinControl && coinControl->HasSelected()) {
@@ -3115,8 +3001,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend,
     const CCoinControl* coinControl,
     AvailableCoinsType coin_type,
     bool useIX,
-    CAmount nFeePay,
-    bool fIncludeDelegated)
+    CAmount nFeePay)
 {
     if (useIX && nFeePay < CENT) nFeePay = CENT;
 
@@ -3185,7 +3070,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend,
                 set<pair<const CWalletTx*, unsigned int> > setCoins;
                 CAmount nValueIn = 0;
 
-                if (!SelectCoins(nTotalValue, setCoins, nValueIn, coinControl, coin_type, useIX, false, fIncludeDelegated)) {
+                if (!SelectCoins(nTotalValue, setCoins, nValueIn, coinControl, coin_type, useIX)) {
                     if (coin_type == ALL_COINS) {
                         strFailReason = _("Insufficient funds.");
                     } else if (coin_type == ONLY_NOT10000IFMN) {
@@ -3205,9 +3090,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend,
                 }
 
 
-                for (PAIRTYPE(const CWalletTx*, unsigned int) pcoin : setCoins) {
-                    if(pcoin.first->vout[pcoin.second].scriptPubKey.IsPayToColdStaking())
-                        wtxNew.fStakeDelegationVoided = true;
+                BOOST_FOREACH (PAIRTYPE(const CWalletTx*, unsigned int) pcoin, setCoins) {
                     CAmount nCredit = pcoin.first->vout[pcoin.second].nValue;
                     //The coin age after the next block (depth+1) is used instead of the current,
                     //reflecting an assumption the user would accept a bit more delay for
@@ -3345,11 +3228,11 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend,
     return true;
 }
 
-bool CWallet::CreateTransaction(CScript scriptPubKey, const CAmount& nValue, CWalletTx& wtxNew, CReserveKey& reservekey, CAmount& nFeeRet, std::string& strFailReason, const CCoinControl* coinControl, AvailableCoinsType coin_type, bool useIX, CAmount nFeePay, bool fIncludeDelegated)
+bool CWallet::CreateTransaction(CScript scriptPubKey, const CAmount& nValue, CWalletTx& wtxNew, CReserveKey& reservekey, CAmount& nFeeRet, std::string& strFailReason, const CCoinControl* coinControl, AvailableCoinsType coin_type, bool useIX, CAmount nFeePay)
 {
-    std::vector<std::pair<CScript, CAmount> > vecSend;
-    vecSend.push_back(std::make_pair(scriptPubKey, nValue));
-    return CreateTransaction(vecSend, wtxNew, reservekey, nFeeRet, strFailReason, coinControl, coin_type, useIX, nFeePay, fIncludeDelegated);
+    vector<pair<CScript, CAmount> > vecSend;
+    vecSend.push_back(make_pair(scriptPubKey, nValue));
+    return CreateTransaction(vecSend, wtxNew, reservekey, nFeeRet, strFailReason, coinControl, coin_type, useIX, nFeePay);
 }
 
 // ppcoin: create coin stake transaction
@@ -3374,7 +3257,7 @@ bool CWallet::CreateCoinStake(
     txNew.vout.push_back(CTxOut(0, scriptEmpty));
 
     // Choose coins to use
-    CAmount nBalance = GetStakingBalance();
+    CAmount nBalance = GetBalance();
 
     if (mapArgs.count("-reservebalance") && !ParseMoney(mapArgs["-reservebalance"], nReserveBalance))
         return error("CreateCoinStake : invalid reserve balance amount");
@@ -3436,7 +3319,7 @@ bool CWallet::CreateCoinStake(
             // Create the output transaction(s)
             vector<CTxOut> vout;
             if (!stakeInput->CreateTxOuts(this, vout, nCredit)) {
-                LogPrintf("%s : failed to create output\n", __func__);
+                LogPrintf("%s : failed to get scriptPubKey\n", __func__);
                 continue;
             }
             txNew.vout.insert(txNew.vout.end(), vout.begin(), vout.end());
@@ -3504,7 +3387,7 @@ bool CWallet::CreateCoinStake(
     if (!txNew.vin[0].scriptSig.IsZerocoinSpend()) {
         for (CTxIn txIn : txNew.vin) {
             const CWalletTx *wtx = GetWalletTx(txIn.prevout.hash);
-            if (!SignSignature(*this, *wtx, txNew, nIn++, SIGHASH_ALL, true))
+            if (!SignSignature(*this, *wtx, txNew, nIn++))
                 return error("CreateCoinStake : failed to sign coinstake");
         }
     } else {
@@ -3819,9 +3702,11 @@ DBErrors CWallet::ZapWalletTx(std::vector<CWalletTx>& vWtx)
 
 bool CWallet::SetAddressBook(const CTxDestination& address, const string& strName, const string& strPurpose)
 {
-    bool fUpdated = HasAddressBook(address);
+    bool fUpdated = false;
     {
         LOCK(cs_wallet); // mapAddressBook
+        std::map<CTxDestination, CAddressBookData>::iterator mi = mapAddressBook.find(address);
+        fUpdated = mi != mapAddressBook.end();
         mapAddressBook[address].name = strName;
         if (!strPurpose.empty()) /* update purpose only if requested */
             mapAddressBook[address].purpose = strPurpose;
@@ -3846,7 +3731,6 @@ bool CWallet::DelAddressBook(const CTxDestination& address)
             BOOST_FOREACH (const PAIRTYPE(string, string) & item, mapAddressBook[address].destdata) {
                 CWalletDB(strWalletFile).EraseDestData(strAddress, item.first);
             }
-
         }
         mapAddressBook.erase(address);
     }
@@ -3859,27 +3743,15 @@ bool CWallet::DelAddressBook(const CTxDestination& address)
     return CWalletDB(strWalletFile).EraseName(CBitcoinAddress(address).ToString());
 }
 
-bool CWallet::HasAddressBook(const CTxDestination& address) const
+bool CWallet::SetDefaultKey(const CPubKey& vchPubKey)
 {
-    LOCK(cs_wallet); // mapAddressBook
-    std::map<CTxDestination, CAddressBookData>::const_iterator mi = mapAddressBook.find(address);
-    return mi != mapAddressBook.end();
-}
-
-bool CWallet::HasDelegator(const CTxOut& out) const
-{
-    CTxDestination delegator;
-    if (!ExtractDestination(out.scriptPubKey, delegator, false))
-        return false;
-    {
-        LOCK(cs_wallet); // mapAddressBook
-        std::map<CTxDestination, CAddressBookData>::const_iterator mi = mapAddressBook.find(delegator);
-        if (mi == mapAddressBook.end())
+    if (fFileBacked) {
+        if (!CWalletDB(strWalletFile).WriteDefaultKey(vchPubKey))
             return false;
-        return (*mi).second.purpose == "delegator";
     }
+    vchDefaultKey = vchPubKey;
+    return true;
 }
-
 
 /**
  * Mark old keypool keys as used,
@@ -4105,8 +3977,7 @@ std::map<CTxDestination, CAmount> CWallet::GetAddressBalances()
                 CTxDestination addr;
                 if (!IsMine(pcoin->vout[i]))
                     continue;
-                if ( !ExtractDestination(pcoin->vout[i].scriptPubKey, addr) &&
-                        !ExtractDestination(pcoin->vout[i].scriptPubKey, addr, true) )
+                if (!ExtractDestination(pcoin->vout[i].scriptPubKey, addr))
                     continue;
 
                 CAmount n = IsSpent(walletEntry.first, i) ? 0 : pcoin->vout[i].nValue;
@@ -6243,338 +6114,3 @@ void CWallet::PrecomputeSpends()
     }*/
 }
 
-
-CWallet::CWallet(std::string strWalletFileIn)
-{
-    SetNull();
-
-    strWalletFile = strWalletFileIn;
-    fFileBacked = true;
-}
-
-CWallet::~CWallet()
-{
-    delete pwalletdbEncryption;
-}
-
-void CWallet::SetNull()
-{
-    nWalletVersion = FEATURE_BASE;
-    nWalletMaxVersion = FEATURE_BASE;
-    fFileBacked = false;
-    nMasterKeyMaxID = 0;
-    pwalletdbEncryption = NULL;
-    nOrderPosNext = 0;
-    nNextResend = 0;
-    nLastResend = 0;
-    nTimeFirstKey = 0;
-    fWalletUnlockAnonymizeOnly = false;
-    fBackupMints = false;
-
-    // Stake Settings
-    nHashDrift = 45;
-    nStakeSplitThreshold = STAKE_SPLIT_THRESHOLD;
-    nHashInterval = 22;
-    nStakeSetUpdateTime = 300; // 5 minutes
-
-    //MultiSend
-    vMultiSend.clear();
-    fMultiSendStake = false;
-    fMultiSendMasternodeReward = false;
-    fMultiSendNotify = false;
-    strMultiSendChangeAddress = "";
-    nLastMultiSendHeight = 0;
-    vDisabledAddresses.clear();
-
-    //Auto Combine Dust
-    fCombineDust = false;
-    nAutoCombineThreshold = 0;
-}
-
-int CWallet::getZeromintPercentage()
-{
-    return nZeromintPercentage;
-}
-
-void CWallet::setZWallet(CzPIVWallet* zwallet)
-{
-    zwalletMain = zwallet;
-    zpivTracker = std::unique_ptr<CzPIVTracker>(new CzPIVTracker(strWalletFile));
-}
-
-CzPIVWallet* CWallet::getZWallet()
-{
-    return zwalletMain;
-}
-
-bool CWallet::isZeromintEnabled()
-{
-    return fEnableZeromint || fEnableAutoConvert;
-}
-
-void CWallet::setZPivAutoBackups(bool fEnabled)
-{
-    fBackupMints = fEnabled;
-}
-
-bool CWallet::isMultiSendEnabled()
-{
-    return fMultiSendMasternodeReward || fMultiSendStake;
-}
-
-void CWallet::setMultiSendDisabled()
-{
-    fMultiSendMasternodeReward = false;
-    fMultiSendStake = false;
-}
-
-bool CWallet::CanSupportFeature(enum WalletFeature wf)
-{
-    AssertLockHeld(cs_wallet);
-    return nWalletMaxVersion >= wf;
-}
-
-bool CWallet::LoadMinVersion(int nVersion)
-{
-    AssertLockHeld(cs_wallet);
-    nWalletVersion = nVersion;
-    nWalletMaxVersion = std::max(nWalletMaxVersion, nVersion);
-    return true;
-}
-
-isminetype CWallet::IsMine(const CTxOut& txout) const
-{
-    return ::IsMine(*this, txout.scriptPubKey);
-}
-
-CAmount CWallet::GetCredit(const CTxOut& txout, const isminefilter& filter) const
-{
-    if (!MoneyRange(txout.nValue))
-        throw std::runtime_error("CWallet::GetCredit() : value out of range");
-    return ((IsMine(txout) & filter) ? txout.nValue : 0);
-}
-
-CAmount CWallet::GetChange(const CTxOut& txout) const
-{
-    if (!MoneyRange(txout.nValue))
-        throw std::runtime_error("CWallet::GetChange() : value out of range");
-    return (IsChange(txout) ? txout.nValue : 0);
-}
-
-bool CWallet::IsMine(const CTransaction& tx) const
-{
-    for (const CTxOut& txout : tx.vout)
-        if (IsMine(txout))
-            return true;
-    return false;
-}
-
-bool CWallet::IsFromMe(const CTransaction& tx) const
-{
-    return (GetDebit(tx, ISMINE_ALL) > 0);
-}
-
-CAmount CWallet::GetDebit(const CTransaction& tx, const isminefilter& filter) const
-{
-    CAmount nDebit = 0;
-    for (const CTxIn& txin : tx.vin) {
-        nDebit += GetDebit(txin, filter);
-        if (!MoneyRange(nDebit))
-            throw std::runtime_error("CWallet::GetDebit() : value out of range");
-    }
-    return nDebit;
-}
-
-CAmount CWallet::GetCredit(const CTransaction& tx, const isminefilter& filter, const bool fUnspent) const
-{
-    CAmount nCredit = 0;
-    for (int i = 0; i < tx.vout.size(); i++) {
-        if (fUnspent && IsSpent(tx.GetHash(), i)) continue;
-        nCredit += GetCredit(tx.vout[i], filter);
-    }
-    if (!MoneyRange(nCredit))
-        throw std::runtime_error("CWallet::GetCredit() : value out of range");
-    return nCredit;
-}
-
-CAmount CWallet::GetChange(const CTransaction& tx) const
-{
-    CAmount nChange = 0;
-    for (const CTxOut& txout : tx.vout) {
-        nChange += GetChange(txout);
-        if (!MoneyRange(nChange))
-            throw std::runtime_error("CWallet::GetChange() : value out of range");
-    }
-    return nChange;
-}
-
-void CWallet::Inventory(const uint256& hash)
-{
-    {
-        LOCK(cs_wallet);
-        std::map<uint256, int>::iterator mi = mapRequestCount.find(hash);
-        if (mi != mapRequestCount.end())
-            (*mi).second++;
-    }
-}
-
-unsigned int CWallet::GetKeyPoolSize()
-{
-    AssertLockHeld(cs_wallet); // setKeyPool
-    return setKeyPool.size();
-}
-
-int CWallet::GetVersion()
-{
-    LOCK(cs_wallet);
-    return nWalletVersion;
-}
-
-CWalletTx::CWalletTx()
-{
-    Init(NULL);
-}
-
-CWalletTx::CWalletTx(const CWallet* pwalletIn)
-{
-    Init(pwalletIn);
-}
-
-CWalletTx::CWalletTx(const CWallet* pwalletIn, const CMerkleTx& txIn) : CMerkleTx(txIn)
-{
-    Init(pwalletIn);
-}
-
-CWalletTx::CWalletTx(const CWallet* pwalletIn, const CTransaction& txIn) : CMerkleTx(txIn)
-{
-    Init(pwalletIn);
-}
-
-void CWalletTx::Init(const CWallet* pwalletIn)
-{
-    pwallet = pwalletIn;
-    mapValue.clear();
-    vOrderForm.clear();
-    fTimeReceivedIsTxTime = false;
-    nTimeReceived = 0;
-    nTimeSmart = 0;
-    fFromMe = false;
-    strFromAccount.clear();
-    fDebitCached = false;
-    fCreditCached = false;
-    fImmatureCreditCached = false;
-    fAvailableCreditCached = false;
-    fAnonymizableCreditCached = false;
-    fAnonymizedCreditCached = false;
-    fDenomUnconfCreditCached = false;
-    fDenomConfCreditCached = false;
-    fWatchDebitCached = false;
-    fWatchCreditCached = false;
-    fImmatureWatchCreditCached = false;
-    fAvailableWatchCreditCached = false;
-    fChangeCached = false;
-    fColdDebitCached = false;
-    fColdCreditCached = false;
-    fDelegatedDebitCached = false;
-    fDelegatedCreditCached = false;
-    fStakeDelegationVoided = false;
-    nDebitCached = 0;
-    nCreditCached = 0;
-    nImmatureCreditCached = 0;
-    nAvailableCreditCached = 0;
-    nAnonymizableCreditCached = 0;
-    nAnonymizedCreditCached = 0;
-    nDenomUnconfCreditCached = 0;
-    nDenomConfCreditCached = 0;
-    nWatchDebitCached = 0;
-    nWatchCreditCached = 0;
-    nAvailableWatchCreditCached = 0;
-    nImmatureWatchCreditCached = 0;
-    nColdDebitCached = 0;
-    nColdCreditCached = 0;
-    nDelegatedDebitCached = 0;
-    nDelegatedCreditCached = 0;
-    nChangeCached = 0;
-    nOrderPos = -1;
-}
-
-bool CWalletTx::IsTrusted() const
-{
-    // Quick answer in most cases
-    if (!IsFinalTx(*this))
-        return false;
-    int nDepth = GetDepthInMainChain();
-    if (nDepth >= 1)
-        return true;
-    if (nDepth < 0)
-        return false;
-    if (!bSpendZeroConfChange || !IsFromMe(ISMINE_ALL)) // using wtx's cached debit
-        return false;
-
-    // Don't trust unconfirmed transactions from us unless they are in the mempool.
-    {
-        LOCK(mempool.cs);
-        if (!mempool.exists(GetHash())) {
-            return false;
-        }
-    }
-
-    // Trusted if all inputs are from us and are in the mempool:
-    for (const CTxIn& txin : vin) {
-        // Transactions not sent by us: not trusted
-        const CWalletTx* parent = pwallet->GetWalletTx(txin.prevout.hash);
-        if (parent == NULL)
-            return false;
-        const CTxOut& parentOut = parent->vout[txin.prevout.n];
-        if (pwallet->IsMine(parentOut) != ISMINE_SPENDABLE)
-            return false;
-    }
-    return true;
-}
-
-int CWalletTx::GetDepthAndMempool(bool& fConflicted, bool enableIX) const
-{
-    int ret = GetDepthInMainChain(enableIX);
-    fConflicted = (ret == 0 && !InMempool());  // not in chain nor in mempool
-    return ret;
-}
-
-void CWalletTx::MarkDirty()
-{
-    fCreditCached = false;
-    fAvailableCreditCached = false;
-    fAnonymizableCreditCached = false;
-    fAnonymizedCreditCached = false;
-    fDenomUnconfCreditCached = false;
-    fDenomConfCreditCached = false;
-    fWatchDebitCached = false;
-    fWatchCreditCached = false;
-    fAvailableWatchCreditCached = false;
-    fImmatureWatchCreditCached = false;
-    fDebitCached = false;
-    fChangeCached = false;
-    fColdDebitCached = false;
-    fColdCreditCached = false;
-    fDelegatedDebitCached = false;
-    fDelegatedCreditCached = false;
-}
-
-void CWalletTx::BindWallet(CWallet* pwalletIn)
-{
-    pwallet = pwalletIn;
-    MarkDirty();
-}
-
-CAmount CWalletTx::GetChange() const
-{
-    if (fChangeCached)
-        return nChangeCached;
-    nChangeCached = pwallet->GetChange(*this);
-    fChangeCached = true;
-    return nChangeCached;
-}
-
-bool CWalletTx::IsFromMe(const isminefilter& filter) const
-{
-    return (GetDebit(filter) > 0);
-}

@@ -407,7 +407,7 @@ bool Stake(const CBlockIndex* pindexPrev, CStakeInput* stakeInput, unsigned int 
     while (nTryTime < maxTime)
     {
         //new block came in, move on
-        if (chainActive.Height() != prevHeight && Params().NetworkID() == CBaseChainParams::REGTEST)
+        if (chainActive.Height() != prevHeight)
             break;
 
         ++nTryTime;
@@ -451,13 +451,8 @@ bool initStakeInput(const CBlock block, std::unique_ptr<CStakeInput>& stake, int
             return error("CheckProofOfStake() : INFO: read txPrev failed");
 
         //verify signature and script
-        ScriptError serror;
-        if (!VerifyScript(txin.scriptSig, txPrev.vout[txin.prevout.n].scriptPubKey, STANDARD_SCRIPT_VERIFY_FLAGS, TransactionSignatureChecker(&tx, 0), &serror)) {
-            std::string strErr = "";
-            if (serror && ScriptErrorString(serror))
-                strErr = strprintf("with the following error: %s", ScriptErrorString(serror));
-            return error("%s : VerifyScript failed on coinstake %s %s", __func__, tx.GetHash().ToString(), strErr);
-        }
+        if (!VerifyScript(txin.scriptSig, txPrev.vout[txin.prevout.n].scriptPubKey, STANDARD_SCRIPT_VERIFY_FLAGS, TransactionSignatureChecker(&tx, 0)))
+            return error("CheckProofOfStake() : VerifySignature failed on coinstake %s", tx.GetHash().ToString().c_str());
 
         CDOGECStake* DOGECInput = new CDOGECStake();
         DOGECInput->SetInput(txPrev, txin.prevout.n);

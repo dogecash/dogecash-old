@@ -11,7 +11,11 @@
 #include "util.h"
 #include "utilstrencodings.h"
 
-typedef std::vector<unsigned char> valtype;
+#include <boost/foreach.hpp>
+
+using namespace std;
+
+typedef vector<unsigned char> valtype;
 
 unsigned nMaxDatacarrierBytes = MAX_OP_RETURN_RELAY;
 
@@ -26,7 +30,6 @@ const char* GetTxnOutputType(txnouttype t)
     case TX_PUBKEYHASH: return "pubkeyhash";
     case TX_SCRIPTHASH: return "scripthash";
     case TX_MULTISIG: return "multisig";
-    case TX_COLDSTAKE: return "coldstake";
     case TX_NULL_DATA: return "nulldata";
     case TX_ZEROCOINMINT: return "zerocoinmint";
     }
@@ -49,11 +52,7 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, vector<vector<unsi
         mTemplates.insert(make_pair(TX_PUBKEYHASH, CScript() << OP_DUP << OP_HASH160 << OP_PUBKEYHASH << OP_EQUALVERIFY << OP_CHECKSIG));
 
         // Sender provides N pubkeys, receivers provides M signatures
-        mTemplates.insert(std::make_pair(TX_MULTISIG, CScript() << OP_SMALLINTEGER << OP_PUBKEYS << OP_SMALLINTEGER << OP_CHECKMULTISIG));
-
-        // Cold Staking: sender provides P2CS scripts, receiver provides signature, staking-flag and pubkey
-        mTemplates.insert(std::make_pair(TX_COLDSTAKE, CScript() << OP_DUP << OP_HASH160 << OP_ROT << OP_IF << OP_CHECKCOLDSTAKEVERIFY <<
-                OP_PUBKEYHASH << OP_ELSE << OP_PUBKEYHASH << OP_ENDIF << OP_EQUALVERIFY << OP_CHECKSIG));
+        mTemplates.insert(make_pair(TX_MULTISIG, CScript() << OP_SMALLINTEGER << OP_PUBKEYS << OP_SMALLINTEGER << OP_CHECKMULTISIG));
     }
 
     // Shortcut for pay-to-script-hash, which are more constrained than the other types:
@@ -182,8 +181,6 @@ int ScriptSigArgsExpected(txnouttype t, const std::vector<std::vector<unsigned c
         return 1;
     case TX_PUBKEYHASH:
         return 2;
-    case TX_COLDSTAKE:
-        return 3;
     case TX_MULTISIG:
         if (vSolutions.size() < 1 || vSolutions[0].size() < 1)
             return -1;
@@ -216,30 +213,30 @@ bool IsStandard(const CScript& scriptPubKey, txnouttype& whichType)
     return whichType != TX_NONSTANDARD;
 }
 
-bool ExtractDestination(const CScript& scriptPubKey, CTxDestination& addressRet, bool fColdStake)
+bool ExtractDestination(const CScript& scriptPubKey, CTxDestination& addressRet)
 {
     vector<valtype> vSolutions;
     txnouttype whichType;
     if (!Solver(scriptPubKey, whichType, vSolutions))
         return false;
 
-    if (whichType == TX_PUBKEY) {
+    if (whichType == TX_PUBKEY)
+    {
         CPubKey pubKey(vSolutions[0]);
         if (!pubKey.IsValid())
             return false;
 
         addressRet = pubKey.GetID();
         return true;
-
-    } else if (whichType == TX_PUBKEYHASH) {
+    }
+    else if (whichType == TX_PUBKEYHASH)
+    {
         addressRet = CKeyID(uint160(vSolutions[0]));
         return true;
-
-    } else if (whichType == TX_SCRIPTHASH) {
+    }
+    else if (whichType == TX_SCRIPTHASH)
+    {
         addressRet = CScriptID(uint160(vSolutions[0]));
-        return true;
-    } else if (whichType == TX_COLDSTAKE) {
-        addressRet = CKeyID(uint160(vSolutions[!fColdStake]));
         return true;
     }
     // Multisig txns have more than one address...
@@ -273,17 +270,8 @@ bool ExtractDestinations(const CScript& scriptPubKey, txnouttype& typeRet, vecto
 
         if (addressRet.empty())
             return false;
-
-    } else if (typeRet == TX_COLDSTAKE)
-    {
-        if (vSolutions.size() < 2)
-            return false;
-        nRequiredRet = 2;
-        addressRet.push_back(CKeyID(uint160(vSolutions[0])));
-        addressRet.push_back(CKeyID(uint160(vSolutions[1])));
-        return true;
-
-    } else
+    }
+    else
     {
         nRequiredRet = 1;
         CTxDestination address;
@@ -331,14 +319,9 @@ CScript GetScriptForDestination(const CTxDestination& dest)
     return script;
 }
 
-CScript GetScriptForStakeDelegation(const CKeyID& stakingKey, const CKeyID& spendingKey)
+CScript GetScriptForRawPubKey(const CPubKey& pubKey)
 {
-    CScript script;
-    script << OP_DUP << OP_HASH160 << OP_ROT <<
-            OP_IF << OP_CHECKCOLDSTAKEVERIFY << ToByteVector(stakingKey) <<
-            OP_ELSE << ToByteVector(spendingKey) << OP_ENDIF <<
-            OP_EQUALVERIFY << OP_CHECKSIG;
-    return script;
+    return CScript() << std::vector<unsigned char>(pubKey.begin(), pubKey.end()) << OP_CHECKSIG;
 }
 
 CScript GetScriptForMultisig(int nRequired, const std::vector<CPubKey>& keys)

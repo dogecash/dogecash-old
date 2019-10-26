@@ -650,9 +650,6 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
     CReserveKey reservekey(pwallet);
     unsigned int nExtraNonce = 0;
     bool fLastLoopOrphan = false;
-    bool fColdStake = GetBoolArg("-coldstaking", true);
-    CAmount stakingBalance = 0;
-
     while (fGenerateBitcoins || fProofOfStake) {
         if (fProofOfStake) {
             //control the amount of times the client will check for mintable coins
@@ -660,12 +657,9 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
             {
                 nMintableLastCheck = GetTime();
                 fMintableCoins = pwallet->MintableCoins();
-                stakingBalance = pwallet->GetStakingBalance(fColdStake);
             }
 
-            while (vNodes.empty() || pwallet->IsLocked() || !fMintableCoins ||
-                   (stakingBalance > 0 && nReserveBalance >= stakingBalance) || !masternodeSync.IsSynced()) {
-                nLastCoinStakeSearchInterval = 0;
+            if (chainActive.Tip()->nHeight < Params().LAST_POW_BLOCK()) {
                 MilliSleep(5000);
                 continue;
             }
@@ -673,11 +667,12 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
             while (vNodes.empty() || pwallet->IsLocked() || !fMintableCoins || (pwallet->GetBalance() > 0 && nReserveBalance >= pwallet->GetBalance()) || !masternodeSync.IsSynced()) {
                 nLastCoinStakeSearchInterval = 0;
                 // Do a separate 1 minute check here to ensure fMintableCoins is updated
-                if (!fMintableCoins && (GetTime() - nMintableLastCheck > 1 * 60)) // 1 minute check time
-                {
-                    nMintableLastCheck = GetTime();
-                    fMintableCoins = pwallet->MintableCoins();
-                    stakingBalance = pwallet->GetStakingBalance(fColdStake);
+                if (!fMintableCoins) {
+                    if (GetTime() - nMintableLastCheck > 1 * 60) // 1 minute check time
+                    {
+                        nMintableLastCheck = GetTime();
+                        fMintableCoins = pwallet->MintableCoins();
+                    }
                 }
                 MilliSleep(5000);
                 if (!fGenerateBitcoins && !fProofOfStake)
