@@ -308,6 +308,7 @@ inline void Unserialize(Stream& s, SporkId& sporkID, int, int = 0)
     sporkID = (SporkId) f;
 }
 
+
 /**
  * Compact Size
  * size <  253        -- 1 byte

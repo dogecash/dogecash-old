@@ -45,7 +45,7 @@ void CSporkManager::Clear()
     mapSporksActive.clear();
 }
 
-// DogeCash: on startup load spork values from previous session if they exist in the sporkDB
+// PIVX: on startup load spork values from previous session if they exist in the sporkDB
 void CSporkManager::LoadSporksFromDB()
 {
     for (const auto& sporkDef : sporkDefs) {
@@ -77,7 +77,7 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
     if (fLiteMode || chainActive.Tip() == nullptr) return; // disable all obfuscation/masternode related functionality
 
     if (strCommand == "spork") {
-        
+
         CSporkMessage spork;
         vRecv >> spork;
 
@@ -115,24 +115,17 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
         LogPrintf("%s : new %s ID %d Time %d bestHeight %d\n", __func__, hash.ToString(), spork.nSporkID, spork.nValue, chainActive.Tip()->nHeight);
 
         bool fRequireNew = spork.nTimeSigned >= Params().NewSporkStart();
-            if (!spork.CheckSignature(fRequireNew)) {
-                LOCK(cs_main);
-                LogPrintf("%s : Invalid Signature\n", __func__);
-                Misbehaving(pfrom->GetId(), 100);
-                return;
-            }
-
-        if (!fValidSig) {
+        if (!spork.CheckSignature(fRequireNew)) {
             LOCK(cs_main);
             LogPrintf("%s : Invalid Signature\n", __func__);
             Misbehaving(pfrom->GetId(), 100);
             return;
         }
 
-        {           
-        LOCK(cs);
-        mapSporks[hash] = spork;
-        mapSporksActive[spork.nSporkID] = spork;
+        {
+            LOCK(cs);
+            mapSporks[hash] = spork;
+            mapSporksActive[spork.nSporkID] = spork;
         }
         spork.Relay();
 
@@ -176,17 +169,17 @@ bool CSporkManager::IsSporkActive(SporkId nSporkID)
 int64_t CSporkManager::GetSporkValue(SporkId nSporkID)
 {
     LOCK(cs);
-    int64_t r = -1;
 
     if (mapSporksActive.count(nSporkID)) {
         return mapSporksActive[nSporkID].nValue;
+
     } else {
-         auto it = sporkDefsById.find(nSporkID);
-         if (it != sporkDefsById.end()) {
-             return it->second->defaultValue;
-         } else {
-             LogPrintf("%s : Unknown Spork %d\n", __func__, nSporkID);
-         }
+        auto it = sporkDefsById.find(nSporkID);
+        if (it != sporkDefsById.end()) {
+            return it->second->defaultValue;
+        } else {
+            LogPrintf("%s : Unknown Spork %d\n", __func__, nSporkID);
+        }
     }
 
     return -1;
@@ -215,7 +208,9 @@ std::string CSporkManager::GetSporkNameByID(SporkId nSporkID)
 bool CSporkManager::SetPrivKey(std::string strPrivKey)
 {
     CSporkMessage spork;
+
     spork.Sign(strPrivKey);
+
     const bool fRequireNew = GetTime() >= Params().NewSporkStart();
     if (spork.CheckSignature(fRequireNew)) {
         LOCK(cs);
@@ -237,16 +232,17 @@ std::string CSporkManager::ToString() const
 bool CSporkMessage::Sign(std::string strSignKey)
 {
     std::string strMessage = std::to_string(nSporkID) + std::to_string(nValue) + std::to_string(nTimeSigned);
-    std::string errorMessage = "";
+
     CKey key;
     CPubKey pubkey;
-    
+    std::string errorMessage = "";
+
     if (!obfuScationSigner.SetKey(strSignKey, errorMessage, key, pubkey)) {
         return error("%s : SetKey error: '%s'\n", __func__, errorMessage);
     }
 
     if (!obfuScationSigner.SignMessage(strMessage, errorMessage, vchSig, key)) {
-        return error("%s : Sign message failed", __func__);    
+        return error("%s : Sign message failed", __func__);
     }
 
     if (!obfuScationSigner.VerifyMessage(pubkey, vchSig, strMessage, errorMessage)) {
@@ -274,7 +270,7 @@ bool CSporkMessage::CheckSignature(bool fRequireNew)
         return obfuScationSigner.VerifyMessage(pubkeyold, vchSig, strMessage, errorMessage);
     }
 
-    return fValidWithNewKey;    
+    return fValidWithNewKey;
 }
 
 void CSporkMessage::Relay()
@@ -282,3 +278,4 @@ void CSporkMessage::Relay()
     CInv inv(MSG_SPORK, GetHash());
     RelayInv(inv);
 }
+

@@ -7,6 +7,7 @@
 #define SPORK_H
 
 #include "base58.h"
+#include "hash.h"
 #include "key.h"
 #include "hash.h"
 #include "main.h"
@@ -20,12 +21,10 @@
 
 using namespace std;
 using namespace boost;
-
-extern std::vector<CSporkDef> sporkDefs;
-
 class CSporkMessage;
 class CSporkManager;
 
+extern std::vector<CSporkDef> sporkDefs;
 extern std::map<uint256, CSporkMessage> mapSporks;
 extern CSporkManager sporkManager;
 
@@ -93,7 +92,6 @@ public:
     }
 
     void Clear();
-
     void LoadSporksFromDB();
 
     void ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStream& vRecv);
@@ -104,6 +102,7 @@ public:
     bool IsSporkActive(SporkId nSporkID);
     std::string GetSporkNameByID(SporkId id);
     SporkId GetSporkIDByName(std::string strName);
+
     bool SetPrivKey(std::string strPrivKey);
     std::string ToString() const;
 };

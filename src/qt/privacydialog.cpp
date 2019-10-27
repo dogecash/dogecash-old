@@ -797,7 +797,8 @@ void PrivacyDialog::updateAutomintStatus()
 void PrivacyDialog::updateSPORK16Status()
 {
     // Update/enable labels, buttons and tooltips depending on the current SPORK_16 status
-    bool fButtonsEnabled =  ui->pushButtonMintzdogec->isEnabled();
+    //bool fButtonsEnabled =  ui->pushButtonMintzPIV->isEnabled();
+    bool fButtonsEnabled = false;
     bool fMaintenanceMode = sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE);
     if (fMaintenanceMode && fButtonsEnabled) {
         // Mint zdogec
