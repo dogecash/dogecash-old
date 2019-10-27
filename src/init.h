@@ -8,6 +8,7 @@
 #define BITCOIN_INIT_H
 
 #include <string>
+#include <vector>
 
 class CScheduler;
 class CWallet;
@@ -27,7 +28,7 @@ bool ShutdownRequested();
 void Interrupt();
 void Shutdown();
 void PrepareShutdown();
-bool AppInit2();
+bool AppInit2(const std::vector<std::string>& words);
 
 /** The help message mode determines what help message to show */
 enum HelpMessageMode {

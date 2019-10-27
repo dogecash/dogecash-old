@@ -140,7 +140,8 @@ bool AppInit(int argc, char* argv[])
 #endif
         SoftSetBoolArg("-server", true);
 
-        fRet = AppInit2();
+        std::vector<std::string> words;
+        fRet = AppInit2(words);
     } catch (const std::exception& e) {
         PrintExceptionContinue(&e, "AppInit()");
     } catch (...) {

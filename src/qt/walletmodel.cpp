@@ -796,6 +796,11 @@ bool WalletModel::isMine(CBitcoinAddress address)
     return IsMine(*wallet, address.Get());
 }
 
+bool WalletModel::hdEnabled() const
+{
+    return wallet->IsHDEnabled();
+}
+
 bool WalletModel::isUsed(CBitcoinAddress address)
 {
     return wallet->IsUsed(address);

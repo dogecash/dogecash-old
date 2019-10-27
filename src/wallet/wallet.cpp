@@ -805,7 +805,7 @@ bool CWallet::EncryptWallet(const SecureString& strWalletPassphrase)
 
     return true;
 }
-void CWallet::GenerateNewHDChain()
+void CWallet::GenerateNewHDChain(const std::vector<std::string>& words)
 {
     CHDChain newHdChain;
 
@@ -821,8 +821,15 @@ void CWallet::GenerateNewHDChain()
             LogPrintf("CWallet::GenerateNewHDChain -- Incorrect seed, generating random one instead\n");
 
         // NOTE: empty mnemonic means "generate a new one for me"
-        std::string strMnemonic = GetArg("-mnemonic", "");
-         // NOTE: default mnemonic passphrase is an empty string
+        //std::string strMnemonic = GetArg("-mnemonic", "");
+        std::string strMnemonic;
+        if (words.size() !=0) {
+            strMnemonic = join(words," ");
+        } else {
+            strMnemonic = GetArg("-mnemonic", "");
+        }
+
+        // NOTE: default mnemonic passphrase is an empty string
         std::string strMnemonicPassphrase = GetArg("-mnemonicpassphrase", "");
 
         SecureVector vchMnemonic(strMnemonic.begin(), strMnemonic.end());
@@ -841,7 +848,6 @@ void CWallet::GenerateNewHDChain()
     mapArgs.erase("-mnemonic");
     mapArgs.erase("-mnemonicpassphrase");
 }
-
 bool CWallet::SetHDChain(const CHDChain& chain, bool memonly)
 {
     LOCK(cs_wallet);

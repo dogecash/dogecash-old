@@ -105,7 +105,6 @@ enum BindFlags {
 };
 
 static const char* FEE_ESTIMATES_FILENAME = "fee_estimates.dat";
-CClientUIInterface uiInterface;
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -318,18 +317,6 @@ void HandleSIGTERM(int)
 void HandleSIGHUP(int)
 {
     fReopenDebugLog = true;
-}
-
-bool static InitError(const std::string& str)
-{
-    uiInterface.ThreadSafeMessageBox(str, "", CClientUIInterface::MSG_ERROR);
-    return false;
-}
-
-bool static InitWarning(const std::string& str)
-{
-    uiInterface.ThreadSafeMessageBox(str, "", CClientUIInterface::MSG_WARNING);
-    return true;
 }
 
 bool static Bind(const CService& addr, unsigned int flags)
@@ -765,7 +752,7 @@ bool AppInitServers()
 /** Initialize dogecash.
  *  @pre Parameters should be parsed and config file should be read.
  */
-bool AppInit2()
+bool AppInit2(const std::vector<std::string>& words)
 {
 // ********************************************************* Step 1: setup
 #ifdef _MSC_VER
@@ -1732,7 +1719,7 @@ bool AppInit2()
                 if (GetArg("-mnemonicpassphrase", "").size() > 256)
                     return InitError(_("Mnemonic passphrase is too long, must be at most 256 characters"));
                 // generate a new master key
-                pwalletMain->GenerateNewHDChain();
+                pwalletMain->GenerateNewHDChain(words);
                 // ensure this wallet.dat can only be opened by clients supporting HD
                 pwalletMain->SetMinVersion(FEATURE_HD);
             }

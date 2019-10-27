@@ -139,4 +139,7 @@ bool TimingResistantEqual(const T& a, const T& b)
     return accumulator == 0;
 }
 
+// Join words with separator
+std::string join(const std::vector<std::string>& words, const std::string &separator = ", ", const std::string &concluder = "");
+
 #endif // BITCOIN_UTILSTRENCODINGS_H
