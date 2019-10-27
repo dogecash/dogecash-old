@@ -1016,7 +1016,7 @@ bool CWallet::AddToWalletIfInvolvingMe(const CTransaction& tx, const CBlock* pbl
     {
         AssertLockHeld(cs_wallet);
 
-        if (pblock && !tx.HasZerocoinSpendInputs() && !tx.IsCoinBase()) {
+        if (pblock && !tx.IsZerocoinSpend() && !tx.IsCoinBase()) {
             for (const CTxIn& txin : tx.vin) {
                 std::pair<TxSpends::const_iterator, TxSpends::const_iterator> range = mapTxSpends.equal_range(txin.prevout);
                 while (range.first != range.second) {
@@ -1879,12 +1879,12 @@ bool CWalletTx::WriteToDisk(CWalletDB *pwalletdb)
  * from or to us. If fUpdate is true, found transactions that already
  * exist in the wallet will be updated.
  */
-int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate)
+int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate, bool fromStartup)
 {
     int ret = 0;
     int64_t nNow = GetTime();
-    bool fCheckzdogec = GetBoolArg("-zapwallettxes", false);
-    if (fCheckzdogec)
+    bool fCheckZDOGEC = GetBoolArg("-zapwallettxes", false);
+    if (fCheckZDOGEC)
         zdogecTracker->Init();
 
     CBlockIndex* pindex = pindexStart;
@@ -1899,21 +1899,25 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate)
         ShowProgress(_("Rescanning..."), 0); // show rescan progress in GUI as dialog or on splashscreen, if -rescan on startup
         double dProgressStart = Checkpoints::GuessVerificationProgress(pindex, false);
         double dProgressTip = Checkpoints::GuessVerificationProgress(chainActive.Tip(), false);
-        set<uint256> setAddedToWallet;
+        std::set<uint256> setAddedToWallet;
         while (pindex) {
             if (pindex->nHeight % 100 == 0 && dProgressTip - dProgressStart > 0.0)
                 ShowProgress(_("Rescanning..."), std::max(1, std::min(99, (int)((Checkpoints::GuessVerificationProgress(pindex, false) - dProgressStart) / (dProgressTip - dProgressStart) * 100))));
 
+            if (fromStartup && ShutdownRequested()) {
+                return -1;
+            }
+
             CBlock block;
             ReadBlockFromDisk(block, pindex);
-            BOOST_FOREACH (CTransaction& tx, block.vtx) {
+            for (CTransaction& tx : block.vtx) {
                 if (AddToWalletIfInvolvingMe(tx, &block, fUpdate))
                     ret++;
             }
 
-            //If this is a zapwallettx, need to readd zdogec
-            if (fCheckzdogec && pindex->nHeight >= Params().Zerocoin_StartHeight()) {
-                list<CZerocoinMint> listMints;
+            //If this is a zapwallettx, need to readd zpiv
+            if (fCheckZDOGEC && pindex->nHeight >= Params().Zerocoin_StartHeight()) {
+                std::list<CZerocoinMint> listMints;
                 BlockToZerocoinMintList(block, listMints, true);
                 CWalletDB walletdb(strWalletFile);
 
@@ -2588,7 +2592,7 @@ bool CWallet::SelectStakeCoins(std::list<std::unique_ptr<CStakeInput> >& listInp
     }
 
     //zdogec
-    if ((GetBoolArg("-zdogecstake", true) || fPrecompute) && chainActive.Height() > Params().Zerocoin_Block_V2_Start() && !IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) {
+    if ((GetBoolArg("-zdogecstake", true) || fPrecompute) && chainActive.Height() > Params().Zerocoin_Block_V2_Start() && !sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) {
         //Only update zdogec set once per update interval
         bool fUpdate = false;
         static int64_t nTimeLastUpdate = 0;
@@ -3684,137 +3688,6 @@ CAmount CWallet::GetTotalValue(std::vector<CTxIn> vCoins)
         }
     }
     return nTotalValue;
-}
-
-string CWallet::PrepareObfuscationDenominate(int minRounds, int maxRounds)
-{
-    if (IsLocked())
-        return _("Error: Wallet locked, unable to create transaction!");
-
-    if (obfuScationPool.GetState() != POOL_STATUS_ERROR && obfuScationPool.GetState() != POOL_STATUS_SUCCESS)
-        if (obfuScationPool.GetEntriesCount() > 0)
-            return _("Error: You already have pending entries in the Obfuscation pool");
-
-    // ** find the coins we'll use
-    std::vector<CTxIn> vCoins;
-    std::vector<CTxIn> vCoinsResult;
-    std::vector<COutput> vCoins2;
-    CAmount nValueIn = 0;
-    CReserveKey reservekey(this);
-
-    /*
-        Select the coins we'll use
-
-        if minRounds >= 0 it means only denominated inputs are going in and coming out
-    */
-    if (minRounds >= 0) {
-        if (!SelectCoinsByDenominations(obfuScationPool.sessionDenom, 0.1 * COIN, OBFUSCATION_POOL_MAX, vCoins, vCoins2, nValueIn, minRounds, maxRounds))
-            return _("Error: Can't select current denominated inputs");
-    }
-
-    LogPrintf("PrepareObfuscationDenominate - preparing obfuscation denominate . Got: %d \n", nValueIn);
-
-    {
-        LOCK(cs_wallet);
-        BOOST_FOREACH (CTxIn v, vCoins)
-            LockCoin(v.prevout);
-    }
-
-    CAmount nValueLeft = nValueIn;
-    std::vector<CTxOut> vOut;
-
-    /*
-        TODO: Front load with needed denominations (e.g. .1, 1 )
-    */
-
-    // Make outputs by looping through denominations: try to add every needed denomination, repeat up to 5-10 times.
-    // This way we can be pretty sure that it should have at least one of each needed denomination.
-    // NOTE: No need to randomize order of inputs because they were
-    // initially shuffled in CWallet::SelectCoinsByDenominations already.
-    int nStep = 0;
-    int nStepsMax = 5 + GetRandInt(5);
-    while (nStep < nStepsMax) {
-        BOOST_FOREACH (CAmount v, obfuScationDenominations) {
-            // only use the ones that are approved
-            bool fAccepted = false;
-            if ((obfuScationPool.sessionDenom & (1 << 0)) && v == ((10000 * COIN) + 10000000)) {
-                fAccepted = true;
-            } else if ((obfuScationPool.sessionDenom & (1 << 1)) && v == ((1000 * COIN) + 1000000)) {
-                fAccepted = true;
-            } else if ((obfuScationPool.sessionDenom & (1 << 2)) && v == ((100 * COIN) + 100000)) {
-                fAccepted = true;
-            } else if ((obfuScationPool.sessionDenom & (1 << 3)) && v == ((10 * COIN) + 10000)) {
-                fAccepted = true;
-            } else if ((obfuScationPool.sessionDenom & (1 << 4)) && v == ((1 * COIN) + 1000)) {
-                fAccepted = true;
-            } else if ((obfuScationPool.sessionDenom & (1 << 5)) && v == ((.1 * COIN) + 100)) {
-                fAccepted = true;
-            }
-            if (!fAccepted) continue;
-
-            // try to add it
-            if (nValueLeft - v >= 0) {
-                // Note: this relies on a fact that both vectors MUST have same size
-                std::vector<CTxIn>::iterator it = vCoins.begin();
-                std::vector<COutput>::iterator it2 = vCoins2.begin();
-                while (it2 != vCoins2.end()) {
-                    // we have matching inputs
-                    if ((*it2).tx->vout[(*it2).i].nValue == v) {
-                        // add new input in resulting vector
-                        vCoinsResult.push_back(*it);
-                        // remove corresponting items from initial vectors
-                        vCoins.erase(it);
-                        vCoins2.erase(it2);
-
-                        CScript scriptChange;
-                        CPubKey vchPubKey;
-                        // use a unique change address
-                        assert(reservekey.GetReservedKey(vchPubKey)); // should never fail, as we just unlocked
-                        scriptChange = GetScriptForDestination(vchPubKey.GetID());
-                        reservekey.KeepKey();
-
-                        // add new output
-                        CTxOut o(v, scriptChange);
-                        vOut.push_back(o);
-
-                        // subtract denomination amount
-                        nValueLeft -= v;
-
-                        break;
-                    }
-                    ++it;
-                    ++it2;
-                }
-            }
-        }
-
-        nStep++;
-
-        if (nValueLeft == 0) break;
-    }
-
-    {
-        // unlock unused coins
-        LOCK(cs_wallet);
-        BOOST_FOREACH (CTxIn v, vCoins)
-            UnlockCoin(v.prevout);
-    }
-
-    if (obfuScationPool.GetDenominations(vOut) != obfuScationPool.sessionDenom) {
-        // unlock used coins on failure
-        LOCK(cs_wallet);
-        BOOST_FOREACH (CTxIn v, vCoinsResult)
-            UnlockCoin(v.prevout);
-        return "Error: can't make current denominated outputs";
-    }
-
-    // randomize the output order
-    std::random_shuffle(vOut.begin(), vOut.end());
-
-    // We also do not care about full amount as long as we have right denominations, just pass what we found
-    obfuScationPool.SendObfuscationDenominate(vCoinsResult, vOut, nValueIn - nValueLeft);
-
-    return "";
 }
 
 DBErrors CWallet::LoadWallet(bool& fFirstRunRet)
@@ -6322,13 +6195,13 @@ int CWallet::getZeromintPercentage()
     return nZeromintPercentage;
 }
 
-void CWallet::setZWallet(CzPIVWallet* zwallet)
+void CWallet::setZWallet(CzdogecWallet* zwallet)
 {
     zwalletMain = zwallet;
-    zpivTracker = std::unique_ptr<CzPIVTracker>(new CzPIVTracker(strWalletFile));
+    zdogecTracker = std::unique_ptr<CzdogecTracker>(new CzdogecTracker(strWalletFile));
 }
 
-CzPIVWallet* CWallet::getZWallet()
+CzdogecWallet* CWallet::getZWallet()
 {
     return zwalletMain;
 }
@@ -6338,7 +6211,7 @@ bool CWallet::isZeromintEnabled()
     return fEnableZeromint || fEnableAutoConvert;
 }
 
-void CWallet::setZPivAutoBackups(bool fEnabled)
+void CWallet::setzdogecAutoBackups(bool fEnabled)
 {
     fBackupMints = fEnabled;
 }
@@ -6445,8 +6318,8 @@ void CWallet::Inventory(const uint256& hash)
 
 unsigned int CWallet::GetKeyPoolSize()
 {
-    AssertLockHeld(cs_wallet); // setKeyPool
-    return setKeyPool.size();
+    AssertLockHeld(cs_wallet); // set{Ex,In}ternalKeyPool
+    return setInternalKeyPool.size() + setExternalKeyPool.size();
 }
 
 int CWallet::GetVersion()

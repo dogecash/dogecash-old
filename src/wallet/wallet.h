@@ -218,6 +218,8 @@ private:
     void DeriveNewChildKey(const CKeyMetadata& metadata, CKey& secretRet, uint32_t nAccountIndex, bool fInternal = false);
 
 public:
+    static const int STAKE_SPLIT_THRESHOLD = 2000;
+
     bool MintableCoins();
     bool SelectStakeCoins(std::list<std::unique_ptr<CStakeInput> >& listInputs, CAmount nTargetAmount, int blockHeight, bool fPrecompute = false);
     bool SelectCoinsDark(CAmount nValueMin, CAmount nValueMax, std::vector<CTxIn>& setCoinsRet, CAmount& nValueRet, int nObfuscationRoundsMin, int nObfuscationRoundsMax) const;
@@ -325,10 +327,10 @@ public:
     ~CWallet();
     void SetNull();
     int getZeromintPercentage();
-    void setZWallet(CzPIVWallet* zwallet);
-    CzPIVWallet* getZWallet();
+    void setZWallet(CzdogecWallet* zwallet);
+    CzdogecWallet* getZWallet();
     bool isZeromintEnabled();
-    void setZPivAutoBackups(bool fEnabled);
+    void setzdogecAutoBackups(bool fEnabled);
     bool isMultiSendEnabled();
     void setMultiSendDisabled();
 
@@ -480,7 +482,6 @@ public:
     bool CreateTransaction(CScript scriptPubKey, const CAmount& nValue, CWalletTx& wtxNew, CReserveKey& reservekey, CAmount& nFeeRet, std::string& strFailReason, const CCoinControl* coinControl = NULL, AvailableCoinsType coin_type = ALL_COINS, bool useIX = false, CAmount nFeePay = 0);
     bool CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey, std::string strCommand = "tx");
     bool AddAccountingEntry(const CAccountingEntry&, CWalletDB & pwalletdb);
-    std::string PrepareObfuscationDenominate(int minRounds, int maxRounds);
     int GenerateObfuscationOutputs(int nTotalValue, std::vector<CTxOut>& vout);
     bool CreateCollateralTransaction(CMutableTransaction& txCollateral, std::string& strReason);
     bool ConvertList(std::vector<CTxIn> vCoins, std::vector<int64_t>& vecAmounts);

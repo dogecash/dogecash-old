@@ -4066,7 +4066,7 @@ CBlockIndex* AddToBlockIndex(const CBlock& block)
         pindexNew->bnChainTrust = (pindexNew->pprev ? pindexNew->pprev->bnChainTrust : 0) + pindexNew->GetBlockTrust();
 
         // ppcoin: compute stake entropy bit for stake modifier
-        if (!pindexNew->SetStakeEntropyBit(nEntropyBit))
+        if (!pindexNew->SetStakeEntropyBit(pindexNew->GetStakeEntropyBit()))
             LogPrintf("AddToBlockIndex() : SetStakeEntropyBit() failed \n");
 
         // ppcoin: record proof-of-stake hash value
