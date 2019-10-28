@@ -343,7 +343,7 @@ bool CheckStakeKernelHash(const CBlockIndex* pindexPrev, const unsigned int nBit
             __func__, HexStr(ssUniqueID), nTimeTx, hashProofOfStake.GetHex(),
             nBits, nValueIn, bnTarget.GetHex(), res);
     }
-    return (Params().IsStakeModifierV2(pindexPrev->nHeight + 1) ? res : hashProofOfStake < (bnWeight * bnTarget);
+    return (Params().IsStakeModifierV2(pindexPrev->nHeight + 1)) ? res : hashProofOfStake < (bnWeight * bnTarget);
 }
 
 bool GetHashProofOfStake(const CBlockIndex* pindexPrev, CStakeInput* stake, const unsigned int nTimeTx, const bool fVerify, uint256& hashProofOfStakeRet) {
