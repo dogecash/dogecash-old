@@ -40,6 +40,7 @@ public:
         SECRET_KEY,     // BIP16
         EXT_PUBLIC_KEY, // BIP32
         EXT_SECRET_KEY, // BIP32
+        STAKING_ADDRESS,
 
         MAX_BASE58_TYPES
     };
@@ -105,6 +106,8 @@ public:
     int GetBudgetCycleBlocks() const { return nBudgetCycleBlocks; }
     int64_t GetProposalEstablishmentTime() const { return nProposalEstablishmentTime; }
 
+    CAmount GetMinColdStakingAmount() const { return nMinColdStakingAmount; }
+
     /** Spork key and Masternode Handling **/
     std::string SporkPubKey() const { return strSporkPubKey; }
     std::string SporkPubKeyOld() const { return strSporkPubKeyOld; }
@@ -140,6 +143,8 @@ public:
     int Zerocoin_Block_V2_Start() const { return nBlockZerocoinV2; }
     int NewSigsActive(const int nHeight) const { return nHeight >= nBlockEnforceNewMessageSignatures; }
     bool IsStakeModifierV2(const int nHeight) const { return nHeight >= nBlockStakeModifierlV2; }
+    bool Cold_Staking_Enabled(const int height) const { return height >= nColdStakingStart; }
+    int Block_Enforce_Cold_Staking() const { return nColdStakingStart; }
 
     // fake serial attack
     int Zerocoin_Block_EndFakeSerial() const { return nFakeSerialBlockheightEnd; }
@@ -224,6 +229,8 @@ protected:
     int nBlockDoubleAccumulated;
     int nBlockEnforceNewMessageSignatures;
     int nBlockStakeModifierlV2;
+    int nColdStakingStart;
+    CAmount nMinColdStakingAmount;
     // fake serial attack
     int nFakeSerialBlockheightEnd = 0;
     CAmount nSupplyBeforeFakeSerial = 0;

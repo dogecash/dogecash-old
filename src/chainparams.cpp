@@ -103,9 +103,12 @@ libzerocoin::ZerocoinParams* CChainParams::Zerocoin_Params(bool useModulusV1) co
 
 bool CChainParams::HasStakeMinAgeOrDepth(const int contextHeight, const uint32_t contextTime, const int utxoFromBlockHeight, const uint32_t utxoFromBlockTime) const
 {
+    if (NetworkID() == CBaseChainParams::REGTEST)
+        return true;
+
     // before stake modifier V2, the age required was 60 * 60 (1 hour) / not required on regtest
     if (!IsStakeModifierV2(contextHeight))
-        return (NetworkID() == CBaseChainParams::REGTEST || (utxoFromBlockTime + 3600 <= contextTime));
+        return (utxoFromBlockTime + 3600 <= contextTime);
 
     // after stake modifier V2, we require the utxo to be nStakeMinDepth deep in the chain
     return(contextHeight - utxoFromBlockHeight >= nStakeMinDepth);
@@ -146,6 +149,7 @@ public:
         nMasternodeCollateralLimit = 5000; //MN collateral
         nStakeCollateralMin = 100 * COIN;
         nMaxMoneyOut = 21000000 * COIN; //21 mill
+        nMinColdStakingAmount = 1 * COIN;
         /** Height or Time Based Activations **/
         nLastPOWBlock = 200;
         nModifierUpdateBlock = INT_MAX;
@@ -169,6 +173,9 @@ public:
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 1686229;
       //  nSupplyBeforeFakeSerial = 4131563 * COIN;   // zerocoin supply at block nFakeSerialBlockheightEnd
+
+        // Cold Staking enforcement
+        nColdStakingStart = 2880000;
 
         /**
          * Build the genesis block. Note that the output of the genesis coinbase cannot
@@ -309,7 +316,10 @@ public:
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
         nSupplyBeforeFakeSerial = 0;
-	//MineGenesis(genesis);
+
+        // Cold Staking enforcement
+        nColdStakingStart = 2106100;
+
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1566214170;
         genesis.nBits = 0x1e0ffff0;
@@ -398,7 +408,10 @@ public:
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
-	//MineGenesis(genesis);
+
+        // Cold Staking enforcement
+        nColdStakingStart = 251;
+
         //! Modify the regtest genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1558130910; 
         genesis.nBits = 0x1e0ffff0;
