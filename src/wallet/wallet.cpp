@@ -2201,15 +2201,15 @@ CAmount CWallet::GetDelegatedBalance() const
 CAmount CWallet::GetZerocoinBalance(bool fMatureOnly) const
 {
     if (fMatureOnly) {
-        if (chainActive.Height() > nLastMaturityCheck)
-            mapMintMaturity = GetMintMaturityHeight();
-        nLastMaturityCheck = chainActive.Height();
+        // if (chainActive.Height() > nLastMaturityCheck)
+        //     mapMintMaturity = GetMintMaturityHeight();
+        // nLastMaturityCheck = chainActive.Height();
 
         CAmount nBalance = 0;
         vector<CMintMeta> vMints = zdogecTracker->GetMints(true);
         for (auto meta : vMints) {
-            if (meta.nHeight >= mapMintMaturity.at(meta.denom) || meta.nHeight >= chainActive.Height() || meta.nHeight == 0)
-                continue;
+            // if (meta.nHeight >= mapMintMaturity.at(meta.denom) || meta.nHeight >= chainActive.Height() || meta.nHeight == 0)
+            //     continue;
             nBalance += libzerocoin::ZerocoinDenominationToAmount(meta.denom);
         }
         return nBalance;
@@ -2756,6 +2756,7 @@ bool CWallet::MintableCoins()
         // include cold, exclude delegated
         const bool fIncludeCold = Params().Cold_Staking_Enabled(chainHeight) && GetBoolArg("-coldstaking", true);
         AvailableCoins(vCoins, true, NULL, false, STAKABLE_COINS, false, 1, fIncludeCold, false);
+        int64_t time = GetAdjustedTime();
 
         for (const COutput& out : vCoins) {
             CBlockIndex* utxoBlock = mapBlockIndex.at(out.tx->hashBlock);
@@ -6324,13 +6325,13 @@ int CWallet::getZeromintPercentage()
     return nZeromintPercentage;
 }
 
-void CWallet::setZWallet(CzPIVWallet* zwallet)
+void CWallet::setZWallet(CzdogecWallet* zwallet)
 {
     zwalletMain = zwallet;
-    zpivTracker = std::unique_ptr<CzPIVTracker>(new CzPIVTracker(strWalletFile));
+    zdogecTracker = std::unique_ptr<CzdogecTracker>(new CzdogecTracker(strWalletFile));
 }
 
-CzPIVWallet* CWallet::getZWallet()
+CzdogecWallet* CWallet::getZWallet()
 {
     return zwalletMain;
 }
@@ -6340,7 +6341,7 @@ bool CWallet::isZeromintEnabled()
     return fEnableZeromint || fEnableAutoConvert;
 }
 
-void CWallet::setZPivAutoBackups(bool fEnabled)
+void CWallet::setzdogecAutoBackups(bool fEnabled)
 {
     fBackupMints = fEnabled;
 }
@@ -6448,8 +6449,8 @@ void CWallet::Inventory(const uint256& hash)
 
 unsigned int CWallet::GetKeyPoolSize()
 {
-    AssertLockHeld(cs_wallet); // setKeyPool
-    return setKeyPool.size();
+    AssertLockHeld(cs_wallet); // set{Ex,In}ternalKeyPool
+    return setInternalKeyPool.size() + setExternalKeyPool.size();
 }
 
 int CWallet::GetVersion()

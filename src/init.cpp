@@ -1728,7 +1728,7 @@ bool AppInit2()
 
         if (fFirstRun) {
             // Create new keyUser and set as default key
-            
+
         if (GetBoolArg("-usehd", DEFAULT_USE_HD_WALLET) && !pwalletMain->IsHDEnabled()) {
                 if (GetArg("-mnemonicpassphrase", "").size() > 256)
                     return InitError(_("Mnemonic passphrase is too long, must be at most 256 characters"));
@@ -1737,14 +1737,12 @@ bool AppInit2()
                 // ensure this wallet.dat can only be opened by clients supporting HD
                 pwalletMain->SetMinVersion(FEATURE_HD);
             }
-
-            CPubKey newDefaultKey;
-            if (pwalletMain->GetKeyFromPool(newDefaultKey)) {
-                pwalletMain->SetDefaultKey(newDefaultKey);
-                if (!pwalletMain->SetAddressBook(pwalletMain->vchDefaultKey.GetID(), "", "receive"))
-                    strErrors << _("Cannot write default address") << "\n";
+            // Top up the keypool
+            if (!pwalletMain->TopUpKeyPool()) {
+                // Error generating keys
+                InitError(_("Unable to generate initial key") += "\n");
+                return error("%s %s", __func__ , "Unable to generate initial key");
             }
-
             pwalletMain->SetBestChain(chainActive.GetLocator());
         }
         else if (mapArgs.count("-usehd")) {
