@@ -71,10 +71,8 @@ public:
     void Reset();
     void Process();
     bool IsSynced();
-    bool NotCompleted();
     bool IsBlockchainSynced();
-    bool IsSporkListSynced();
-    bool IsMasternodeListSynced();
+    bool IsMasternodeListSynced() { return RequestedMasternodeAssets > MASTERNODE_SYNC_LIST; }
     void ClearFulfilledRequest();
 };
 
