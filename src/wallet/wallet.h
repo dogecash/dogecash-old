@@ -340,10 +340,17 @@ public:
     bool fCombineDust;
     CAmount nAutoCombineThreshold;
 
-    CWallet()
-    {
-        SetNull();
-    }
+    CWallet();
+    CWallet(std::string strWalletFileIn);
+    ~CWallet();
+    void SetNull();
+    int getZeromintPercentage();
+    void setZWallet(CzdogecWallet* zwallet);
+    CzdogecWallet* getZWallet();
+    bool isZeromintEnabled();
+    void setzdogecAutoBackups(bool fEnabled);
+    bool isMultiSendEnabled();
+    void setMultiSendDisabled();
 
     CWallet(std::string strWalletFileIn)
     {
@@ -589,7 +596,6 @@ public:
     bool CreateTransaction(CScript scriptPubKey, const CAmount& nValue, CWalletTx& wtxNew, CReserveKey& reservekey, CAmount& nFeeRet, std::string& strFailReason, const CCoinControl* coinControl = NULL, AvailableCoinsType coin_type = ALL_COINS, bool useIX = false, CAmount nFeePay = 0, bool fIncludeDelegated = false);
     bool CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey, std::string strCommand = "tx");
     bool AddAccountingEntry(const CAccountingEntry&, CWalletDB & pwalletdb);
-    std::string PrepareObfuscationDenominate(int minRounds, int maxRounds);
     int GenerateObfuscationOutputs(int nTotalValue, std::vector<CTxOut>& vout);
     bool CreateCollateralTransaction(CMutableTransaction& txCollateral, std::string& strReason);
     bool ConvertList(std::vector<CTxIn> vCoins, std::vector<int64_t>& vecAmounts);
