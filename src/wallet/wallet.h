@@ -1053,11 +1053,8 @@ public:
         fChangeCached = false;
     }
 
-    void BindWallet(CWallet* pwalletIn)
-    {
-        pwallet = pwalletIn;
-        MarkDirty();
-    }
+    void BindWallet(CWallet* pwalletIn);
+    int GetDepthAndMempool(bool& fConflicted, bool enableIX = true) const;
 
     //! filter decides which addresses will count towards the debit
     CAmount GetDebit(const isminefilter& filter) const;

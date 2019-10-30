@@ -168,7 +168,7 @@ UniValue delegatoradd(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid() || address.IsStakingAddress())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DOGEC address");
 
     CKeyID keyID;
     if (!address.GetKeyID(keyID))
@@ -197,7 +197,7 @@ UniValue delegatorremove(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid() || address.IsStakingAddress())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DOGEC address");
 
     CKeyID keyID;
     if (!address.GetKeyID(keyID))
@@ -272,7 +272,7 @@ UniValue liststakingaddresses(const UniValue& params, bool fHelp)
     return ListaddressesForPurpose("coldstaking");
 }
 
-CBitcoinAddress GetAccountAddress(std::string strAccount, bool bForceNew = false)
+UniValue getxpubkey(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
         throw runtime_error(
@@ -282,7 +282,7 @@ CBitcoinAddress GetAccountAddress(std::string strAccount, bool bForceNew = false
             "\"xpubkey\"    (string) The xpubkey of the wallet\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("getxprivkey", "") + HelpExampleRpc("getxprivkey", ""));
+            HelpExampleCli("getxpubkey", "") + HelpExampleRpc("getxpubkey", ""));
     if(!pwalletMain->IsHDEnabled()){
             throw JSONRPCError(RPC_MISC_ERROR, "wallet is not a HD Enabled Wallet.");
     }
@@ -625,7 +625,7 @@ UniValue sendtoaddress(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid() || address.IsStakingAddress())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DOGEC address");
 
     // Amount
     CAmount nAmount = AmountFromValue(params[1]);
@@ -878,7 +878,7 @@ UniValue sendtoaddressix(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid() || address.IsStakingAddress())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DOGEC address");
 
     // Amount
     CAmount nAmount = AmountFromValue(params[1]);
@@ -1108,14 +1108,17 @@ UniValue getreceivedbyaccount(const UniValue& params, bool fHelp)
 }
 
 
-CAmount GetAccountBalance(CWalletDB& walletdb, const string& strAccount, int nMinDepth, const isminefilter& filter)
+CAmount GetAccountBalance(CWalletDB& walletdb, const std::string& strAccount, int nMinDepth, const isminefilter& filter)
 {
     CAmount nBalance = 0;
 
     // Tally wallet transactions
-    for (map<uint256, CWalletTx>::iterator it = pwalletMain->mapWallet.begin(); it != pwalletMain->mapWallet.end(); ++it) {
+    for (std::map<uint256, CWalletTx>::iterator it = pwalletMain->mapWallet.begin(); it != pwalletMain->mapWallet.end(); ++it) {
         const CWalletTx& wtx = (*it).second;
-        if (!IsFinalTx(wtx) || wtx.GetBlocksToMaturity() > 0 || wtx.GetDepthInMainChain() < 0)
+        bool fConflicted;
+        int depth = wtx.GetDepthAndMempool(fConflicted);
+
+        if (!IsFinalTx(wtx) || wtx.GetBlocksToMaturity() > 0 || depth < 0 || fConflicted)
             continue;
 
         if (strAccount == "*") {
@@ -1395,7 +1398,7 @@ UniValue sendfrom(const UniValue& params, bool fHelp)
     string strAccount = AccountFromValue(params[0]);
     CBitcoinAddress address(params[1].get_str());
     if (!address.IsValid() || address.IsStakingAddress())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DOGEC address");
     CAmount nAmount = AmountFromValue(params[2]);
     int nMinDepth = 1;
     if (params.size() > 3)
@@ -1477,7 +1480,7 @@ UniValue sendmany(const UniValue& params, bool fHelp)
     BOOST_FOREACH(const string& name_, keys) {
         CBitcoinAddress address(name_);
         if (!address.IsValid() || address.IsStakingAddress())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid PIVX address: ")+name_);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid DOGEC address: ")+name_);
 
         if (setAddress.count(address))
             throw JSONRPCError(RPC_INVALID_PARAMETER, string("Invalid parameter, duplicated address: ")+name_);
@@ -3624,7 +3627,7 @@ UniValue spendzerocoinmints(const UniValue& params, bool fHelp)
         // to avoid type confusion from the JSON interpreter
         address = CBitcoinAddress(params[3].get_str());
         if(!address.IsValid() || address.IsStakingAddress())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DOGEC address");
     }
 
     return DozdogecSpend(nAmount, false, true, vMintsSelected, address_str);
