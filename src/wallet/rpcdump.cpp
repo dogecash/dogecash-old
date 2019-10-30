@@ -28,9 +28,6 @@
 
 #include <univalue.h>
 
-using namespace std;
-
-void EnsureWalletIsUnlocked(bool fAllowAnonOnly);
 
 std::string static EncodeDumpTime(int64_t nTime)
 {
@@ -199,7 +196,7 @@ UniValue importaddress(const UniValue& params, bool fHelp)
         fRescan = params[2].get_bool();
 
     {
-        if (::IsMine(*pwalletMain, script) == ISMINE_SPENDABLE)
+        if (::IsMine(*pwalletMain, script) & ISMINE_SPENDABLE_ALL)
             throw JSONRPCError(RPC_WALLET_ERROR, "The wallet already contains the private key for this address or script");
 
         // add to address book or update label
