@@ -1195,6 +1195,12 @@ bool CheckTransaction(const CTransaction& tx, bool fZerocoinActive, bool fReject
 
         //require that a zerocoinspend only has inputs that are zerocoins
         if (tx.IsZerocoinSpend()) {
+            for (const CTxIn& in : tx.vin) {
+                if (!in.scriptSig.IsZerocoinSpend())
+                    return state.DoS(100,
+                                     error("CheckTransaction() : zerocoinspend contains inputs that are not zerocoins"));
+            }
+
             // Do not require signature verification if this is initial sync and a block over 24 hours old
             bool fVerifySignature = !IsInitialBlockDownload() && (GetTime() - chainActive.Tip()->GetBlockTime() < (60*60*24));
             if (!CheckZerocoinSpend(tx, fVerifySignature, state, fFakeSerialAttack))
