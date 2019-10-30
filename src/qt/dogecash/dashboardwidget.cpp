@@ -709,11 +709,33 @@ void DashboardWidget::updateAxisX(const QStringList* args) {
     axisX->append(months);
 }
 
-void DashboardWidget::onChartArrowClicked() {
-    dayStart--;
-    if (dayStart == 0) {
-        dayStart = QDate(yearFilter, monthFilter, 1).daysInMonth();
+void DashboardWidget::onChartArrowClicked(bool goLeft) {
+    QDate currentDate = QDate::currentDate();
+    //get chart range
+    std::pair<int,int> range = getChartRange(chartData->amountsByCache);
+    //Check if lastday in data incremented by 1 is the current date
+    bool fEndDayisCurrent = range.second + 1 == currentDate.day() && monthFilter == currentDate.month();
+    ui->pushButtonChartRight->setEnabled(!fEndDayisCurrent);
+    if (goLeft) {
+        --dayStart;
+        if (dayStart == 0) {
+            monthFilter = (monthFilter - 1 <= 0) ? 1 : monthFilter - 1;
+            dayStart = QDate(yearFilter, monthFilter, 1).daysInMonth();
+        }
     }
+    else {
+        ++dayStart;
+    }
+    int daysInMonth = QDate(yearFilter, monthFilter, dayStart).daysInMonth();
+    //check if daystart is greater than days in the current month
+    if (dayStart > daysInMonth) {
+        dayStart = 1;
+        if(!goLeft)
+          ++monthFilter;
+    }
+    //Update Month Text in ComboBox
+    ui->comboBoxMonths->setCurrentIndex(monthFilter - 1);
+    //refresh chart
     refreshChart();
 }
 
