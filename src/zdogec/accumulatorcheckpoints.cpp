@@ -1,5 +1,4 @@
-// Copyright (c) 2018 The DogeCash developers
-// Copyright (c) 2019 The PIVX Developers
+// Copyright (c) 2018 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -22,6 +21,44 @@ namespace AccumulatorCheckpoints
 
     bool LoadCheckpoints(const std::string& strNetwork)
     {
+        UniValue v;
+        /*if (strNetwork == "main")
+            v = read_json(GetMainCheckpoints());
+        else if (strNetwork == "test")
+            v = read_json(GetTestCheckpoints());
+        else if (strNetwork == "regtest")
+            v = read_json(GetRegTestCheckpoints());
+        else
+            return false;*/
+
+        if (v.empty())
+            return false;
+
+        for (unsigned int idx = 0; idx < v.size(); idx++) {
+            const UniValue &val = v[idx];
+            const UniValue &o = val.get_obj();
+
+            const UniValue &vHeight = find_value(o, "height");
+            if (!vHeight.isNum())
+                return false;
+
+            int nHeight = vHeight.get_int();
+            if (nHeight < 0)
+                return false;
+
+            Checkpoint checkpoint;
+            for (auto denom : libzerocoin::zerocoinDenomList) {
+                const UniValue& vDenomValue = find_value(o, std::to_string(denom));
+                if (!vDenomValue.isStr()) {
+                    return false;
+                }
+                CBigNum bn = 0;
+                bn.SetHex(vDenomValue.get_str());
+                checkpoint.insert(std::make_pair(denom, bn));
+            }
+
+            mapCheckpoints.insert(make_pair(nHeight, checkpoint));
+        }
         return true;
     }
 

@@ -1,4 +1,5 @@
-// Copyright (c) 2015-2019 The DogeCash developers
+//
+// Copyright (c) 2015-2018 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 //
@@ -8,7 +9,7 @@
 #include "main.h"
 
 /****** Thread ********/
-void CLightWorker::ThreadLightZDOGECSimplified() {
+void CLightWorker::ThreadLightzdogecSimplified() {
     RenameThread("dogecash-light-thread");
     isWorkerRunning = true;
     while (true) {
@@ -35,11 +36,11 @@ void CLightWorker::ThreadLightZDOGECSimplified() {
                     libzerocoin::Accumulator accumulator(params, genWit.getDen(), genWit.getAccWitValue());
                     libzerocoin::PublicCoin temp(params);
                     libzerocoin::AccumulatorWitness witness(params, accumulator, temp);
-                    std::string strFailReason = "";
+                    string strFailReason = "";
                     int nMintsAdded = 0;
                     CZerocoinSpendReceipt receipt;
 
-                    std::list<CBigNum> ret;
+                    list<CBigNum> ret;
                     int heightStop;
 
                     bool res;
@@ -59,7 +60,7 @@ void CLightWorker::ThreadLightZDOGECSimplified() {
                                 heightStop
                         );
 
-                    } catch (const NotEnoughMintsException& e) {
+                    } catch (NotEnoughMintsException e) {
                         LogPrintStr(std::string("ThreadLightzdogecSimplified: ") + e.message + "\n");
                         rejectWork(genWit, blockHeight, NOT_ENOUGH_MINTS);
                         continue;
@@ -92,7 +93,7 @@ void CLightWorker::ThreadLightZDOGECSimplified() {
                     rejectWork(genWit, blockHeight, NON_DETERMINED);
                 }
             }
-        } catch (const std::exception& e) {
+        } catch (std::exception& e) {
             //std::cout << "exception in light loop, closing it. " << e.what() << std::endl;
             PrintExceptionContinue(&e, "lightzdogecthread");
             break;

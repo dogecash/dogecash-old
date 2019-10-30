@@ -1,6 +1,4 @@
 // Copyright (c) 2017-2019 The dogecash developers
-// Copyright (c) 2017-2019 The PIVX developers
-
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,7 +16,7 @@ class CWalletTx;
 class CStakeInput
 {
 protected:
-    CBlockIndex* pindexFrom = nullptr;
+    CBlockIndex* pindexFrom;
 
 public:
     virtual ~CStakeInput(){};
@@ -31,9 +29,6 @@ public:
     virtual bool Iszdogec() = 0;
     virtual CDataStream GetUniqueness() = 0;
     virtual uint256 GetSerialHash() const = 0;
-    virtual uint64_t getStakeModifierHeight() const {
-        return 0;
-    }
 };
 
 
@@ -53,6 +48,7 @@ public:
     {
         this->denom = denom;
         this->hashSerial = hashSerial;
+        this->pindexFrom = nullptr;
         fMint = true;
     }
 
@@ -78,14 +74,13 @@ class CDOGECStake : public CStakeInput
 private:
     CTransaction txFrom;
     unsigned int nPosition;
-    // cached data
-    uint64_t nStakeModifier = 0;
-    int nStakeModifierHeight = 0;
-    int64_t nStakeModifierTime = 0;
 public:
-    CDOGECStake(){}
+    CDOGECStake()
+    {
+        this->pindexFrom = nullptr;
+    }
 
-   bool SetInput(CTransaction txPrev, unsigned int n);
+    bool SetInput(CTransaction txPrev, unsigned int n);
 
     CBlockIndex* GetIndexFrom() override;
     bool GetTxFrom(CTransaction& tx) override;
@@ -93,10 +88,9 @@ public:
     bool GetModifier(uint64_t& nStakeModifier) override;
     CDataStream GetUniqueness() override;
     bool CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut = 0) override;
-    bool CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal) override;
+    bool CreateTxOuts(CWallet* pwallet, vector<CTxOut>& vout, CAmount nTotal) override;
     bool Iszdogec() override { return false; }
     uint256 GetSerialHash() const override { return uint256(0); }
-    uint64_t getStakeModifierHeight() const override { return nStakeModifierHeight; }
 };
 
 

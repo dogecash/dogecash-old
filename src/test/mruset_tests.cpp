@@ -6,7 +6,6 @@
 
 #include "random.h"
 #include "util.h"
-#include "test/test_dogecash.h"
 
 #include <set>
 
@@ -15,6 +14,7 @@
 #define NUM_TESTS 16
 #define MAX_SIZE 100
 
+using namespace std;
 
 class mrutester
 {
@@ -34,7 +34,7 @@ public:
     }
 };
 
-BOOST_FIXTURE_TEST_SUITE(mruset_tests, BasicTestingSetup)
+BOOST_AUTO_TEST_SUITE(mruset_tests)
 
 // Test that an mruset behaves like a set, as long as no more than MAX_SIZE elements are in it
 BOOST_AUTO_TEST_CASE(mruset_like_set)
@@ -87,8 +87,8 @@ BOOST_AUTO_TEST_CASE(mruset_window)
     {
         mru.insert(permute(n));
 
-        std::set<int> tester;
-        for (int m=std::max(0,n-MAX_SIZE+1); m<=n; m++)
+        set<int> tester;
+        for (int m=max(0,n-MAX_SIZE+1); m<=n; m++)
             tester.insert(permute(m));
 
         BOOST_CHECK(mru == tester);

@@ -9,8 +9,9 @@
  * @copyright  Copyright 2013 Ian Miers, Christina Garman and Matthew Green
  * @license    This project is released under the MIT license.
  **/
-// Copyright (c) 2017-2019 The PIVX developers
+// Copyright (c) 2017-2019 The dogecash developers
 
+#include "bignum.h"
 #include "CoinSpend.h"
 #include <iostream>
 #include <sstream>
@@ -18,15 +19,14 @@
 namespace libzerocoin
 {
     CoinSpend::CoinSpend(const ZerocoinParams* paramsCoin, const ZerocoinParams* paramsAcc, const PrivateCoin& coin, Accumulator& a, const uint32_t& checksum,
-                     const AccumulatorWitness& witness, const uint256& ptxHash, const SpendType& spendType) :
-                                                                                  coinSerialNumber((coin.getSerialNumber())),
-                                                                                  spendType(spendType),
+                     const AccumulatorWitness& witness, const uint256& ptxHash, const SpendType& spendType) : accChecksum(checksum),
                                                                                   ptxHash(ptxHash),
-                                                                                  accChecksum(checksum),
+                                                                                  coinSerialNumber((coin.getSerialNumber())),
                                                                                   accumulatorPoK(&paramsAcc->accumulatorParams),
                                                                                   serialNumberSoK(paramsCoin),
                                                                                   commitmentPoK(&paramsCoin->serialNumberSoKCommitmentGroup,
-                                                                                                &paramsAcc->accumulatorParams.accumulatorPoKCommitmentGroup)
+                                                                                                &paramsAcc->accumulatorParams.accumulatorPoKCommitmentGroup),
+                                                                                  spendType(spendType)
 {
     denomination = coin.getPublicCoin().getDenomination();
     version = coin.getVersion();

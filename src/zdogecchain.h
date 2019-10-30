@@ -1,9 +1,9 @@
-// Copyright (c) 2018 The DogeCash developers
+// Copyright (c) 2018 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DogeCash_ZDOGECCHAIN_H
-#define DogeCash_ZDOGECCHAIN_H
+#ifndef dogecash_zdogecCHAIN_H
+#define dogecash_zdogecCHAIN_H
 
 #include "libzerocoin/Coin.h"
 #include "libzerocoin/Denominations.h"
@@ -39,4 +39,4 @@ bool TxOutToPublicCoin(const CTxOut& txout, libzerocoin::PublicCoin& pubCoin, CV
 std::list<libzerocoin::CoinDenomination> ZerocoinSpendListFromBlock(const CBlock& block, bool fFilterInvalid);
 
 
-#endif //DogeCash_ZDOGECCHAIN_H
+#endif //dogecash_zdogecCHAIN_H

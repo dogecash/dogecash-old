@@ -9,7 +9,7 @@
  * @copyright  Copyright 2013 Ian Miers, Christina Garman and Matthew Green
  * @license    This project is released under the MIT license.
  **/
-// Copyright (c) 2017-2019 The PIVX developers
+// Copyright (c) 2017 The PIVX developers
 
 #ifndef COMMITMENT_H_
 #define COMMITMENT_H_
@@ -60,7 +60,6 @@ private:
  */
 class CommitmentProofOfKnowledge {
 public:
-    CommitmentProofOfKnowledge(){};
 	CommitmentProofOfKnowledge(const IntegerGroupParams* ap, const IntegerGroupParams* bp);
 	/** Generates a proof that two commitments, a and b, open to the same value.
 	 *

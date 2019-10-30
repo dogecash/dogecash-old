@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2019 The DogeCash developers
+// Copyright (c) 2017-2019 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DogeCash_ZEROCOIN_H
-#define DogeCash_ZEROCOIN_H
+#ifndef dogecash_ZEROCOIN_H
+#define dogecash_ZEROCOIN_H
 
 #include <amount.h>
 #include <limits.h>
@@ -43,7 +43,6 @@ private:
     CBigNum randomness;
     CBigNum serialNumber;
     uint256 txid;
-    int outputIndex = -1;
     CPrivKey privkey;
     uint8_t version;
     bool isUsed;
@@ -104,9 +103,6 @@ public:
     CPrivKey GetPrivKey() const { return this->privkey; }
     void SetPrivKey(const CPrivKey& privkey) { this->privkey = privkey; }
     bool GetKeyPair(CKey& key) const;
-
-    int GetOutputIndex() { return this->outputIndex; }
-    void SetOutputIndex(int index) { this->outputIndex = index; }
 
     inline bool operator <(const CZerocoinMint& a) const { return GetHeight() < a.GetHeight(); }
 
@@ -263,4 +259,4 @@ int GetWrapppedSerialInflation(libzerocoin::CoinDenomination denom);
 
 int64_t GetWrapppedSerialInflationAmount();
 
-#endif //DogeCash_ZEROCOIN_H
+#endif //dogecash_ZEROCOIN_H

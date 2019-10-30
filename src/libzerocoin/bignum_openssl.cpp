@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2017-2019 The PIVX developers
+// Copyright (c) 2017-2019 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -52,8 +52,8 @@ CBigNum::CBigNum(const std::vector<unsigned char>& vch)
     setvch(vch);
 }
 
-/** Generates a cryptographically secure random number between zero and range-1 (inclusive)
-* i.e. 0 <= returned number < range
+/** Generates a cryptographically secure random number between zero and range exclusive
+* i.e. 0 < returned number < range
 * @param range The upper bound on the number.
 * @return
 */
@@ -70,7 +70,7 @@ CBigNum CBigNum::randBignum(const CBigNum& range)
 * @param k The bit length of the number.
 * @return
 */
-CBigNum CBigNum::randKBitBignum(const uint32_t k)
+CBigNum CBigNum::RandKBitBigum(const uint32_t k)
 {
     CBigNum ret;
     if(!BN_rand(ret.bn, k, -1, 0)){
