@@ -1,5 +1,4 @@
 // Copyright (c) 2019 The DogeCash developers
-// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -29,9 +28,13 @@ public:
     explicit ContactsHolder(bool _isLightTheme) : FurListRow(), isLightTheme(_isLightTheme){}
 
     AddressLabelRow* createHolder(int pos) override{
-    if (!cachedRow) cachedRow = new AddressLabelRow();
-        cachedRow->init(isLightTheme, false);
-        return cachedRow;    
+        if (!cachedRow) {
+            cachedRow = new AddressLabelRow();
+            cachedRow->init(isLightTheme, false);
+            return cachedRow;
+        } else {
+            return cachedRow;
+        }
     }
 
     void init(QWidget* holder,const QModelIndex &index, bool isHovered, bool isSelected) const override{
@@ -53,7 +56,7 @@ public:
     ~ContactsHolder() override{}
 
     bool isLightTheme;
-    AddressLabelRow* cachedRow = nullptr;
+     AddressLabelRow* cachedRow = nullptr;
 };
 
 #include "qt/dogecash/moc_addresseswidget.cpp"

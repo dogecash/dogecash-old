@@ -9,6 +9,7 @@
 #include "qt/dogecash/furlistrow.h"
 #include "qt/dogecash/txrow.h"
 #include "bitcoinunits.h"
+#include "qt/dogecash/txrow.h"
 #include <transactionfilterproxy.h>
 
 QT_BEGIN_NAMESPACE

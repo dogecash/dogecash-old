@@ -1,5 +1,4 @@
 // Copyright (c) 2019 The DogeCash developers
-// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -25,9 +24,12 @@ public:
     explicit ContViewHolder(bool _isLightTheme) : FurListRow(), isLightTheme(_isLightTheme){}
 
     ContactDropdownRow* createHolder(int pos) override{
-        if (!row) row = new ContactDropdownRow();
-        row->init(true, false);
-        return row;
+        if (!row) {
+            row = new ContactDropdownRow();
+            row->init(true, false);
+            return row;
+        } else {
+            return row;
     }
 
     void init(QWidget* holder,const QModelIndex &index, bool isHovered, bool isSelected) const override{

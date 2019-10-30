@@ -1,5 +1,4 @@
 // Copyright (c) 2019 The DogeCash developers
-// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,6 +8,7 @@
 #include "qt/dogecash/loadingdialog.h"
 #include <QRunnable>
 #include <QThreadPool>
+
 PWidget::PWidget(DogeCashGUI* _window, QWidget *parent) : QWidget((parent) ? parent : _window), window(_window){init();}
 PWidget::PWidget(PWidget* parent) : QWidget(parent), window(parent->getWindow()){init();}
 
@@ -61,7 +61,8 @@ void PWidget::emitMessage(const QString& title, const QString& body, unsigned in
 
 class WorkerTask : public QRunnable {
 
-public:
+    public:
+
     WorkerTask(Worker* worker) {
         this->worker = worker;
     }
@@ -73,15 +74,14 @@ public:
     void run() override {
         if (worker) worker->process();
     }
-
     Worker* worker = nullptr;
 };
 
 bool PWidget::execute(int type){
+
     Worker* worker = new Worker(this, type);
     connect(worker, SIGNAL (error(QString&)), this, SLOT (errorString(QString)));
     connect(worker, SIGNAL (finished()), worker, SLOT (deleteLater()));
-
     WorkerTask* task = new WorkerTask(worker);
     task->setAutoDelete(true);
     QThreadPool::globalInstance()->start(task);

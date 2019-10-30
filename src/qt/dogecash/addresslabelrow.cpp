@@ -1,5 +1,4 @@
 // Copyright (c) 2019 The DogeCash developers
-// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,11 +10,13 @@ AddressLabelRow::AddressLabelRow(QWidget *parent) :
     ui(new Ui::AddressLabelRow)
 {
     ui->setupUi(this);
+
     ui->lblAddress->setProperty("cssClass", "text-list-body1");
     ui->lblLabel->setProperty("cssClass", "text-list-title1");
 }
 
 void AddressLabelRow::init(bool isLightTheme, bool isHover) {
+
     updateState(isLightTheme, isHover, false);
 }
 
