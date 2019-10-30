@@ -7,6 +7,7 @@
 #include "util.h"
 
 #include <vector>
+#include "test/test_dogecash.h"
 
 #include <boost/test/unit_test.hpp>
 

@@ -8,6 +8,8 @@
 #include "streams.h"
 #include "uint256.h"
 #include "version.h"
+#include "test/test_dogecash.h"
+#include "consensus/merkle.h"
 
 #include <vector>
 
@@ -20,8 +22,8 @@ class CPartialMerkleTreeTester : public CPartialMerkleTree
 public:
     // flip one bit in one of the hashes - this should break the authentication
     void Damage() {
-        unsigned int n = rand() % vHash.size();
-        int bit = rand() % 256;
+        unsigned int n = InsecureRandRange(vHash.size());
+        int bit = InsecureRandBits(8);
         uint256 &hash = vHash[n];
         hash ^= ((uint256)1 << bit);
     }
@@ -45,7 +47,7 @@ BOOST_AUTO_TEST_CASE(pmt_test1)
         }
 
         // calculate actual merkle root and height
-        uint256 merkleRoot1 = block.BuildMerkleTree();
+        uint256 merkleRoot1 = BlockMerkleRoot(block);
         std::vector<uint256> vTxid(nTx, 0);
         for (unsigned int j=0; j<nTx; j++)
             vTxid[j] = block.vtx[j].GetHash();
@@ -61,7 +63,7 @@ BOOST_AUTO_TEST_CASE(pmt_test1)
             std::vector<bool> vMatch(nTx, false);
             std::vector<uint256> vMatchTxid1;
             for (unsigned int j=0; j<nTx; j++) {
-                bool fInclude = (rand() & ((1 << (att/2)) - 1)) == 0;
+                bool fInclude = InsecureRandBits(att / 2) == 0;
                 vMatch[j] = fInclude;
                 if (fInclude)
                     vMatchTxid1.push_back(vTxid[j]);

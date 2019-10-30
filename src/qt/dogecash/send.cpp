@@ -383,7 +383,7 @@ bool SendWidget::sendZdogec(QList<SendCoinsRecipient> recipients){
     if (!walletModel || !walletModel->getOptionsModel())
         return false;
 
-    if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) {
+    if(GetAdjustedTime() > sporkManager.GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) {
         emit message(tr("Spend Zerocoin"), tr("zDOGEC is currently undergoing maintenance."), CClientUIInterface::MSG_ERROR);
         return false;
     }

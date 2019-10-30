@@ -1,8 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2018-2019 The DogeCash developers
-// Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2015-2018 The dogecash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -28,9 +27,8 @@
 
 #include <univalue.h>
 
-using namespace boost;
-using namespace boost::assign;
-using namespace std;
+extern std::vector<CSporkDef> sporkDefs;
+
 
 /**
  * @note Do not add or change anything in the information returned by this
@@ -300,22 +298,21 @@ UniValue spork(const UniValue& params, bool fHelp)
 {
     if (params.size() == 1 && params[0].get_str() == "show") {
         UniValue ret(UniValue::VOBJ);
-        for (int nSporkID = SPORK_START; nSporkID <= SPORK_END; nSporkID++) {
-            if (sporkManager.GetSporkNameByID(nSporkID) != "Unknown")
-                ret.push_back(Pair(sporkManager.GetSporkNameByID(nSporkID), GetSporkValue(nSporkID)));
+        for (const auto& sporkDef : sporkDefs) {
+            ret.push_back(Pair(sporkDef.name, sporkManager.GetSporkValue(sporkDef.sporkId)));
         }
         return ret;
     } else if (params.size() == 1 && params[0].get_str() == "active") {
         UniValue ret(UniValue::VOBJ);
-        for (int nSporkID = SPORK_START; nSporkID <= SPORK_END; nSporkID++) {
-            if (sporkManager.GetSporkNameByID(nSporkID) != "Unknown")
-                ret.push_back(Pair(sporkManager.GetSporkNameByID(nSporkID), IsSporkActive(nSporkID)));
+        for (const auto& sporkDef : sporkDefs) {
+            ret.push_back(Pair(sporkDef.name, sporkManager.IsSporkActive(sporkDef.sporkId)));
         }
         return ret;
     } else if (params.size() == 2) {
-        int nSporkID = sporkManager.GetSporkIDByName(params[0].get_str());
-        if (nSporkID == -1) {
-            return "Invalid spork name";
+        // advanced mode, update spork values
+        SporkId nSporkID = sporkManager.GetSporkIDByName(params[0].get_str());
+        if (nSporkID == SPORK_INVALID) {
+            throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid spork name");
         }
 
         // SPORK VALUE
@@ -489,7 +486,6 @@ UniValue createsporkkeypair(const UniValue& params, bool fHelp)
     }
     return ret;
 }
-
 
 /**
  * Used by addmultisigaddress / createmultisig:

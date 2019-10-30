@@ -3421,7 +3421,7 @@ UniValue mintzerocoin(const UniValue& params, bool fHelp)
     }
 
     int64_t nTime = GetTimeMillis();
-    if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
+    if(GetAdjustedTime() > sporkManager.GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
         throw JSONRPCError(RPC_WALLET_ERROR, "zdogec is currently disabled due to maintenance.");
 
     EnsureWalletIsUnlocked(true);
@@ -3524,7 +3524,7 @@ UniValue spendzerocoin(const UniValue& params, bool fHelp)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
+    if(GetAdjustedTime() > sporkManager.GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
         throw JSONRPCError(RPC_WALLET_ERROR, "zdogec is currently disabled due to maintenance.");
 
     EnsureWalletIsUnlocked();
@@ -3581,7 +3581,7 @@ UniValue spendzerocoinmints(const UniValue& params, bool fHelp)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
+    if(GetAdjustedTime() > sporkManager.GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
         throw JSONRPCError(RPC_WALLET_ERROR, "zdogec is currently disabled due to maintenance.");
 
     std::string address_str = "";
@@ -4365,7 +4365,7 @@ UniValue spendrawzerocoin(const UniValue& params, bool fHelp)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    if (GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
+    if (GetAdjustedTime() > sporkManager.GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
             throw JSONRPCError(RPC_WALLET_ERROR, "zdogec is currently disabled due to maintenance.");
 
     CBigNum serial;

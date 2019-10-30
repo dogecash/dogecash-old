@@ -235,7 +235,7 @@ void PrivacyWidget::onSendClicked(){
     if (!walletModel || !walletModel->getOptionsModel())
         return;
 
-    if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) {
+    if(GetAdjustedTime() > sporkManager.GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) {
         warn(tr("Zerocoin"), tr("zDOGEC is currently undergoing maintenance"));
         return;
     }

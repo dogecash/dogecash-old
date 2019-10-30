@@ -7,9 +7,11 @@
 #define SPORK_H
 
 #include "base58.h"
+#include "hash.h"
 #include "key.h"
 #include "main.h"
 #include "net.h"
+#include "sporkid.h"
 #include "sync.h"
 #include "util.h"
 
@@ -20,22 +22,16 @@
 class CSporkMessage;
 class CSporkManager;
 
+extern std::vector<CSporkDef> sporkDefs;
 extern std::map<uint256, CSporkMessage> mapSporks;
-extern std::map<int, CSporkMessage> mapSporksActive;
 extern CSporkManager sporkManager;
 
-void LoadSporksFromDB();
-void ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStream& vRecv);
-int64_t GetSporkValue(int nSporkID);
-bool IsSporkActive(int nSporkID);
-void ReprocessBlocks(int nBlocks);
-
 //
-// Spork Class
-// Keeps track of all of the network spork settings
+// Spork Classes
+// Keep track of all of the network spork settings
 //
 
-class CSporkMessage
+class CSporkMessage : public CSignedMessage
 {
 public:
     SporkId nSporkID;
@@ -78,6 +74,12 @@ public:
         READWRITE(nValue);
         READWRITE(nTimeSigned);
         READWRITE(vchSig);
+        try
+        {
+            READWRITE(nMessVersion);
+        } catch (...) {
+            nMessVersion = MessageVersion::MESS_VER_STRMESS;
+        }
     }
 };
 
@@ -85,21 +87,38 @@ public:
 class CSporkManager
 {
 private:
-    std::vector<unsigned char> vchSig;
+    mutable CCriticalSection cs;
     std::string strMasterPrivKey;
+    std::map<SporkId, CSporkDef*> sporkDefsById;
+    std::map<std::string, CSporkDef*> sporkDefsByName;
+    std::map<SporkId, CSporkMessage> mapSporksActive;
 
 public:
-    CSporkManager()
+    CSporkManager();
+
+    ADD_SERIALIZE_METHODS;
+
+    template <typename Stream, typename Operation>
+    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion)
     {
+        READWRITE(mapSporksActive);
+        // we don't serialize private key to prevent its leakage
     }
 
-    std::string GetSporkNameByID(int id);
-    int GetSporkIDByName(std::string strName);
-    bool UpdateSpork(int nSporkID, int64_t nValue);
+    void Clear();
+    void LoadSporksFromDB();
+
+    void ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStream& vRecv);
+    int64_t GetSporkValue(SporkId nSporkID);
+    void ExecuteSpork(SporkId nSporkID, int nValue);
+    bool UpdateSpork(SporkId nSporkID, int64_t nValue);
+
+    bool IsSporkActive(SporkId nSporkID);
+    std::string GetSporkNameByID(SporkId id);
+    SporkId GetSporkIDByName(std::string strName);
+
     bool SetPrivKey(std::string strPrivKey);
-    bool CheckSignature(CSporkMessage& spork, bool fCheckSigner = false);
-    bool Sign(CSporkMessage& spork);
-    void Relay(CSporkMessage& msg);
+    std::string ToString() const;
 };
 
 #endif

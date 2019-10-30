@@ -151,7 +151,7 @@ bool CCoinsViewDB::GetStats(CCoinsStats& stats) const
                 ss << VARINT(0);
             }
             pcursor->Next();
-        } catch (std::exception& e) {
+        } catch (const std::exception& e) {
             return error("%s : Deserialize or I/O error - %s", __func__, e.what());
         }
     }
@@ -258,7 +258,11 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
                 pindexNew->nMint = diskindex.nMint;
                 pindexNew->nMoneySupply = diskindex.nMoneySupply;
                 pindexNew->nFlags = diskindex.nFlags;
-                pindexNew->nStakeModifier = diskindex.nStakeModifier;
+                if (!Params().IsStakeModifierV2(pindexNew->nHeight)) {
+                    pindexNew->nStakeModifier = diskindex.nStakeModifier;
+                } else {
+                    pindexNew->nStakeModifierV2 = diskindex.nStakeModifierV2;
+                }
                 pindexNew->prevoutStake = diskindex.prevoutStake;
                 pindexNew->nStakeTime = diskindex.nStakeTime;
                 pindexNew->hashProofOfStake = diskindex.hashProofOfStake;
@@ -284,7 +288,7 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
             } else {
                 break; // if shutdown requested or finished loading block index
             }
-        } catch (std::exception& e) {
+        } catch (const std::exception& e) {
             return error("%s : Deserialize or I/O error - %s", __func__, e.what());
         }
     }
@@ -397,7 +401,7 @@ bool CZerocoinDB::WipeCoins(std::string strType)
             } else {
                 break; // if shutdown requested or finished loading block index
             }
-        } catch (std::exception& e) {
+        } catch (const std::exception& e) {
             return error("%s : Deserialize or I/O error - %s", __func__, e.what());
         }
     }
