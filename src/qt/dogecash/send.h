@@ -92,7 +92,7 @@ private:
     QString recipientsToString(QList<SendCoinsRecipient> recipients);
     SendMultiRow* createEntry();
     bool send(QList<SendCoinsRecipient> recipients);
-    bool sendZpiv(QList<SendCoinsRecipient> recipients);
+    bool sendZdogec(QList<SendCoinsRecipient> recipients);
     void updateEntryLabels(QList<SendCoinsRecipient> recipients);
 
     // Process WalletModel::SendCoinsReturn and generate a pair consisting

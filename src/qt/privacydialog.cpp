@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2019 The DogeCash developers
+// Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,7 +14,7 @@
 #include "sendcoinsentry.h"
 #include "walletmodel.h"
 #include "coincontrol.h"
-#include "zdogeccontroldialog.h"
+#include "zpivcontroldialog.h"
 #include "spork.h"
 #include "askpassphrasedialog.h"
 
@@ -22,14 +22,14 @@
 #include <QSettings>
 #include <utilmoneystr.h>
 #include <QtWidgets>
-#include <zdogec/deterministicmint.h>
-#include <zdogec/accumulators.h>
+#include <zpiv/deterministicmint.h>
+#include <zpiv/accumulators.h>
 
 PrivacyDialog::PrivacyDialog(QWidget* parent) : QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint | Qt::WindowCloseButtonHint),
-                                                          ui(new Ui::PrivacyDialog),
-                                                          walletModel(0),
-                                                          currentBalance(-1),
-                                                          fDenomsMinimized(true)
+                                                ui(new Ui::PrivacyDialog),
+                                                walletModel(0),
+                                                currentBalance(-1),
+                                                fDenomsMinimized(true)
 {
     nDisplayUnit = 0; // just make sure it's not unitialized
     ui->setupUi(this);
@@ -50,6 +50,7 @@ PrivacyDialog::PrivacyDialog(QWidget* parent) : QDialog(parent, Qt::WindowSystem
     ui->TEMintStatus->setPlainText(tr("Mint Status: Okay"));
 
     // Coin Control signals
+    /*                                                                            [disable MINT and coinControl]
     connect(ui->pushButtonCoinControl, SIGNAL(clicked()), this, SLOT(coinControlButtonClicked()));
 
     // Coin Control: clipboard actions
@@ -59,6 +60,7 @@ PrivacyDialog::PrivacyDialog(QWidget* parent) : QDialog(parent, Qt::WindowSystem
     connect(clipboardAmountAction, SIGNAL(triggered()), this, SLOT(coinControlClipboardAmount()));
     ui->labelCoinControlQuantity->addAction(clipboardQuantityAction);
     ui->labelCoinControlAmount->addAction(clipboardAmountAction);
+    */
 
     // Denomination labels
     ui->labelzDenom1Text->setText(tr("Denom. with value <b>1</b>:"));
@@ -83,7 +85,7 @@ PrivacyDialog::PrivacyDialog(QWidget* parent) : QDialog(parent, Qt::WindowSystem
     ui->labelZsupplyText1000->setText(tr("Denom. <b>1000</b>:"));
     ui->labelZsupplyText5000->setText(tr("Denom. <b>5000</b>:"));
 
-    // DogeCash settings
+    // PIVX settings
     QSettings settings;
     if (!settings.contains("fMinimizeChange")){
         fMinimizeChange = false;
@@ -109,6 +111,8 @@ PrivacyDialog::PrivacyDialog(QWidget* parent) : QDialog(parent, Qt::WindowSystem
     if(!settings.contains("fDenomsSectionMinimized"))
         settings.setValue("fDenomsSectionMinimized", true);
     minimizeDenomsSection(settings.value("fDenomsSectionMinimized").toBool());
+
+    ui->checkBoxMintChange->setVisible(false);
 }
 
 PrivacyDialog::~PrivacyDialog()
@@ -129,7 +133,7 @@ void PrivacyDialog::setModel(WalletModel* walletModel)
                    walletModel->getWatchBalance(), walletModel->getWatchUnconfirmedBalance(), walletModel->getWatchImmatureBalance());
 
         connect(walletModel, SIGNAL(balanceChanged(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)), this,
-                               SLOT(setBalance(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)));
+                SLOT(setBalance(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)));
         connect(walletModel->getOptionsModel(), SIGNAL(zeromintEnableChanged(bool)), this, SLOT(updateAutomintStatus()));
         connect(walletModel->getOptionsModel(), SIGNAL(zeromintPercentageChanged(int)), this, SLOT(updateAutomintStatus()));
     }
@@ -160,7 +164,7 @@ void PrivacyDialog::on_pushButtonMintzDOGEC_clicked()
     if (!walletModel || !walletModel->getOptionsModel())
         return;
 
-    if(sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) {
+    if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) {
         QMessageBox::information(this, tr("Mint Zerocoin"),
                                  tr("zDOGEC is currently undergoing maintenance."), QMessageBox::Ok,
                                  QMessageBox::Ok);
@@ -196,8 +200,8 @@ void PrivacyDialog::on_pushButtonMintzDOGEC_clicked()
     int64_t nTime = GetTimeMillis();
 
     CWalletTx wtx;
-    vector<CDeterministicMint> vMints;
-    string strError = pwalletMain->MintZerocoin(nAmount, wtx, vMints, CoinControlDialog::coinControl);
+    std::vector<CDeterministicMint> vMints;
+    std::string strError = pwalletMain->MintZerocoin(nAmount, wtx, vMints, CoinControlDialog::coinControl);
 
     // Return if something went wrong during minting
     if (strError != ""){
@@ -235,14 +239,14 @@ void PrivacyDialog::on_pushButtonMintzDOGEC_clicked()
 
     return;
 }
-
+*/
 void PrivacyDialog::on_pushButtonMintReset_clicked()
 {
     ui->TEMintStatus->setPlainText(tr("Starting ResetMintZerocoin: rescanning complete blockchain, this will need up to 30 minutes depending on your hardware.\nPlease be patient..."));
     ui->TEMintStatus->repaint ();
 
     int64_t nTime = GetTimeMillis();
-    string strResetMintResult = pwalletMain->ResetMintZerocoin();
+    std::string strResetMintResult = pwalletMain->ResetMintZerocoin();
     double fDuration = (double)(GetTimeMillis() - nTime)/1000.0;
     ui->TEMintStatus->setPlainText(QString::fromStdString(strResetMintResult) + tr("Duration: ") + QString::number(fDuration) + tr(" sec.\n"));
     ui->TEMintStatus->repaint ();
@@ -257,7 +261,7 @@ void PrivacyDialog::on_pushButtonSpentReset_clicked()
     ui->TEMintStatus->setPlainText(tr("Starting ResetSpentZerocoin: "));
     ui->TEMintStatus->repaint ();
     int64_t nTime = GetTimeMillis();
-    string strResetSpentResult = pwalletMain->ResetSpentZerocoin();
+    std::string strResetSpentResult = pwalletMain->ResetSpentZerocoin();
     double fDuration = (double)(GetTimeMillis() - nTime)/1000.0;
     ui->TEMintStatus->setPlainText(QString::fromStdString(strResetSpentResult) + tr("Duration: ") + QString::number(fDuration) + tr(" sec.\n"));
     ui->TEMintStatus->repaint ();
@@ -272,7 +276,7 @@ void PrivacyDialog::on_pushButtonSpendzDOGEC_clicked()
     if (!walletModel || !walletModel->getOptionsModel() || !pwalletMain)
         return;
 
-    if(sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) {
+    if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) {
         QMessageBox::information(this, tr("Mint Zerocoin"),
                                  tr("zDOGEC is currently undergoing maintenance."), QMessageBox::Ok, QMessageBox::Ok);
         return;
@@ -294,19 +298,19 @@ void PrivacyDialog::on_pushButtonSpendzDOGEC_clicked()
     sendzDOGEC();
 }
 
-void PrivacyDialog::on_pushButtonzdogecControl_clicked()
+void PrivacyDialog::on_pushButtonZPivControl_clicked()
 {
     if (!walletModel || !walletModel->getOptionsModel())
         return;
 
-    ZPivControlDialog* zDogecControl = new ZPivControlDialog(this);
-    zDogecControl->setModel(walletModel);
-    zDogecControl->exec();
+    ZPivControlDialog* zPivControl = new ZPivControlDialog(this);
+    zPivControl->setModel(walletModel);
+    zPivControl->exec();
 }
 
-void PrivacyDialog::setzdogecControlLabels(int64_t nAmount, int nQuantity)
+void PrivacyDialog::setZPivControlLabels(int64_t nAmount, int nQuantity)
 {
-    ui->labelzDogecSelected_int->setText(QString::number(nAmount));
+    ui->labelzPivSelected_int->setText(QString::number(nAmount));
     ui->labelQuantitySelected_int->setText(QString::number(nQuantity));
 }
 
@@ -326,7 +330,7 @@ void PrivacyDialog::sendzDOGEC()
     }
     else{
         if (!address.IsValid()) {
-            QMessageBox::warning(this, tr("Spend Zerocoin"), tr("Invalid DogeCash Address"), QMessageBox::Ok, QMessageBox::Ok);
+            QMessageBox::warning(this, tr("Spend Zerocoin"), tr("Invalid Pivx Address"), QMessageBox::Ok, QMessageBox::Ok);
             ui->payTo->setFocus();
             return;
         }
@@ -359,11 +363,11 @@ void PrivacyDialog::sendzDOGEC()
 
     if(!fWholeNumber && fMintChange){
         QString strFeeWarning = "You've entered an amount with fractional digits and want the change to be converted to Zerocoin.<br /><br /><b>";
-        strFeeWarning += QString::number(dzFee, 'f', 8) + " DOGEC </b>will be added to the standard transaction fees!<br />";
+        strFeeWarning += QString::number(dzFee, 'f', 8) + " PIV </b>will be added to the standard transaction fees!<br />";
         QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm additional Fees"),
-            strFeeWarning,
-            QMessageBox::Yes | QMessageBox::Cancel,
-            QMessageBox::Cancel);
+                                                                   strFeeWarning,
+                                                                   QMessageBox::Yes | QMessageBox::Cancel,
+                                                                   QMessageBox::Cancel);
 
         if (retval != QMessageBox::Yes) {
             // Sending canceled
@@ -394,9 +398,9 @@ void PrivacyDialog::sendzDOGEC()
 
     // Display message box
     QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm send coins"),
-        strQuestionString,
-        QMessageBox::Yes | QMessageBox::Cancel,
-        QMessageBox::Cancel);
+                                                               strQuestionString,
+                                                               QMessageBox::Yes | QMessageBox::Cancel,
+                                                               QMessageBox::Cancel);
 
     if (retval != QMessageBox::Yes) {
         // Sending canceled
@@ -428,17 +432,19 @@ void PrivacyDialog::sendzDOGEC()
     CWalletTx wtxNew;
     CZerocoinSpendReceipt receipt;
     bool fSuccess = false;
+    std::list<std::pair<CBitcoinAddress*, CAmount>> out;
     if(ui->payTo->text().isEmpty()){
         // Spend to newly generated local address
-        fSuccess = pwalletMain->SpendZerocoin(nAmount, wtxNew, receipt, vMintsSelected, fMintChange, fMinimizeChange);
+        fSuccess = pwalletMain->SpendZerocoin(nAmount, wtxNew, receipt, vMintsSelected, fMintChange, fMinimizeChange, out);
     }
     else {
         // Spend to supplied destination address
-        fSuccess = pwalletMain->SpendZerocoin(nAmount, wtxNew, receipt, vMintsSelected, fMintChange, fMinimizeChange, &address);
+        fSuccess = pwalletMain->SpendZerocoin(nAmount, wtxNew, receipt, vMintsSelected, fMintChange, fMinimizeChange, out, &address);
     }
 
     // Display errors during spend
     if (!fSuccess) {
+        /*
         int nNeededSpends = receipt.GetNeededSpends(); // Number of spends we would need for this transaction
         const int nMaxSpends = Params().Zerocoin_MaxSpendsPerTransaction(); // Maximum possible spends for one zDOGEC transaction
         if (nNeededSpends > nMaxSpends) {
@@ -467,9 +473,9 @@ void PrivacyDialog::sendzDOGEC()
             walletModel->updateAddressBookLabels(address.Get(), "(no label)", "send");
     }
 
-    // Clear zdogec selector in case it was used
+    // Clear zpiv selector in case it was used
     ZPivControlDialog::setSelectedMints.clear();
-    ui->labelzDogecSelected_int->setText(QString("0"));
+    ui->labelzPivSelected_int->setText(QString("0"));
     ui->labelQuantitySelected_int->setText(QString("0"));
 
     // Some statistics for entertainment
@@ -487,7 +493,7 @@ void PrivacyDialog::sendzDOGEC()
 
     CAmount nValueOut = 0;
     for (const CTxOut& txout: wtxNew.vout) {
-        strStats += tr("value out: ") + FormatMoney(txout.nValue).c_str() + " DOGEC, ";
+        strStats += tr("value out: ") + FormatMoney(txout.nValue).c_str() + " Piv, ";
         nValueOut += txout.nValue;
 
         strStats += tr("address: ");
@@ -519,6 +525,8 @@ void PrivacyDialog::on_payTo_textChanged(const QString& address)
 {
     updateLabel(address);
 }
+
+/* DISABLE MINTs: no need for coinCointrol
 
 // Coin Control: copy label "Quantity" to clipboard
 void PrivacyDialog::coinControlClipboardQuantity()
@@ -561,7 +569,7 @@ void PrivacyDialog::coinControlUpdateLabels()
         ui->labelCoinControlAmount->setText (tr("Coins automatically selected"));
     }
 }
-
+*/
 
 void PrivacyDialog::on_pushButtonShowDenoms_clicked()
 {
@@ -623,7 +631,7 @@ void PrivacyDialog::setBalance(const CAmount& balance, const CAmount& unconfirme
         mapImmature.insert(std::make_pair(denom, 0));
     }
 
-    std::vector<CMintMeta> vMints = pwalletMain->zdogecTracker->GetMints(false);
+    std::vector<CMintMeta> vMints = pwalletMain->zpivTracker->GetMints(false);
     std::map<libzerocoin::CoinDenomination, int> mapMaturityHeights = GetMintMaturityHeight();
     for (auto& meta : vMints){
         // All denominations
@@ -785,10 +793,10 @@ void PrivacyDialog::updateAutomintStatus()
     QString strAutomintStatus = tr("AutoMint Status:");
 
     if (pwalletMain->isZeromintEnabled ()) {
-       strAutomintStatus += tr(" <b>enabled</b>.");
+        strAutomintStatus += tr(" <b>enabled</b>.");
     }
     else {
-       strAutomintStatus += tr(" <b>disabled</b>.");
+        strAutomintStatus += tr(" <b>disabled</b>.");
     }
 
     strAutomintStatus += tr(" Configured target percentage: <b>") + QString::number(pwalletMain->getZeromintPercentage()) + "%</b>";
@@ -798,9 +806,9 @@ void PrivacyDialog::updateAutomintStatus()
 void PrivacyDialog::updateSPORK16Status()
 {
     // Update/enable labels, buttons and tooltips depending on the current SPORK_16 status
-    //bool fButtonsEnabled =  ui->pushButtonMintzPIV->isEnabled();
+    //bool fButtonsEnabled =  ui->pushButtonMintzDOGEC->isEnabled();
     bool fButtonsEnabled = false;
-    bool fMaintenanceMode = sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE);
+    bool fMaintenanceMode = GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE);
     if (fMaintenanceMode && fButtonsEnabled) {
         // Mint zDOGEC
         //ui->pushButtonMintzDOGEC->setEnabled(false);
@@ -812,7 +820,7 @@ void PrivacyDialog::updateSPORK16Status()
     } else if (!fMaintenanceMode && !fButtonsEnabled) {
         // Mint zDOGEC
         //ui->pushButtonMintzDOGEC->setEnabled(true);
-        //ui->pushButtonMintzDOGEC->setToolTip(tr("PrivacyDialog", "Enter an amount of DOGEC to convert to zDOGEC", 0));
+        //ui->pushButtonMintzDOGEC->setToolTip(tr("PrivacyDialog", "Enter an amount of PIV to convert to zDOGEC", 0));
 
         // Spend zDOGEC
         ui->pushButtonSpendzDOGEC->setEnabled(true);

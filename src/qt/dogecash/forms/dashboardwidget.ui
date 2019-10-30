@@ -569,7 +569,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="labelAmountZpiv">
+           <widget class="QLabel" name="labelAmountZdogec">
             <property name="text">
              <string>TextLabel</string>
             </property>
@@ -728,7 +728,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="labelZpiv">
+                 <widget class="QLabel" name="labelZdogec">
                   <property name="text">
                    <string>zDOGEC</string>
                   </property>

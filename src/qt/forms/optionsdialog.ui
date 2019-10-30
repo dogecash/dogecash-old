@@ -131,8 +131,8 @@
         </spacer>
        </item>
        <item>
-        <widget class="QWidget" name="verticalZpivOptionsWidget" native="true">
-         <layout class="QVBoxLayout" name="verticalZpivOptionsLayout">
+        <widget class="QWidget" name="verticalZdogecOptionsWidget" native="true">
+         <layout class="QVBoxLayout" name="verticalZdogecOptionsLayout">
           <property name="margin">
            <number>0</number>
           </property>

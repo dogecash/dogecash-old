@@ -1,11 +1,11 @@
-// Copyright (c) 2017-2019 The DogeCash developers
+// Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "zdogeccontroldialog.h"
-#include "ui_zdogeccontroldialog.h"
+#include "zpivcontroldialog.h"
+#include "ui_zpivcontroldialog.h"
 
-#include "zdogec/accumulators.h"
+#include "zpiv/accumulators.h"
 #include "main.h"
 #include "walletmodel.h"
 #include "guiutil.h"
@@ -132,9 +132,9 @@ void ZPivControlDialog::updateList()
         itemMint->setData(COLUMN_CONFIRMATIONS, Qt::UserRole, QVariant((qlonglong) nConfirmations));
 
         {
-            LOCK(pwalletMain->zdogecTracker->cs_spendcache);
+            LOCK(pwalletMain->zpivTracker->cs_spendcache);
 
-            CoinWitnessData *witnessData = pwalletMain->zdogecTracker->GetSpendCache(mint.hashStake);
+            CoinWitnessData *witnessData = pwalletMain->zpivTracker->GetSpendCache(mint.hashStake);
             if (witnessData->nHeightAccStart > 0  && witnessData->nHeightAccEnd > 0) {
                 int nPercent = std::max(0, std::min(100, (int)((double)(witnessData->nHeightAccEnd - witnessData->nHeightAccStart) / (double)(nBestHeight - witnessData->nHeightAccStart - 220) * 100)));
                 QString percent = QString::number(nPercent) + QString("%");

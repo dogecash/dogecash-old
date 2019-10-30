@@ -1,6 +1,5 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
-// Copyright (c) 2017-2018 The DogeCash developers
-// Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2017-2018 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -220,7 +219,7 @@ private slots:
     /** Switch to privacy page */
     void gotoReceiveCoinsPage();
     /** Switch to receive coins page */
-    // void gotoPrivacyPage();
+    void gotoPrivacyPage();
     /** Switch to send coins page */
     void gotoSendCoinsPage(QString addr = "");
 

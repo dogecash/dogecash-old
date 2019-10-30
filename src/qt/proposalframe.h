@@ -1,9 +1,9 @@
-// Copyright (c) 2018 The DogeCash developers
+// Copyright (c) 2018 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DogeCash_QT_PROPOSALFRAME_H
-#define DogeCash_QT_PROPOSALFRAME_H
+#ifndef PIVX_QT_PROPOSALFRAME_H
+#define PIVX_QT_PROPOSALFRAME_H
 
 #include <QFrame>
 #include <QLabel>
@@ -51,4 +51,4 @@ private Q_SLOTS:
     void proposalLink_clicked(const QString &link);
 };
 
-#endif //DogeCash_QT_PROPOSALFRAME_H
+#endif //PIVX_QT_PROPOSALFRAME_H

@@ -194,7 +194,7 @@
         <file alias="ic-close-white">dogecash/res/img/ic-close-white.svg</file>
         <file alias="ic-close">dogecash/res/img/ic-close.svg</file>
         <file alias="ic-coin-piv">dogecash/res/img/ic-coin-piv.svg</file>
-        <file alias="ic-coin-zdogec">dogecash/res/img/ic-coin-zdogec.svg</file>
+        <file alias="ic-coin-zpiv">dogecash/res/img/ic-coin-zpiv.svg</file>
         <file alias="ic-combo-box">dogecash/res/img/ic-combo-box.svg</file>
         <file alias="ic-connect">dogecash/res/img/ic-connect.svg</file>
         <file alias="ic-copy-liliac">dogecash/res/img/ic-copy-liliac.svg</file>

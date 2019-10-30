@@ -1,12 +1,12 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The DogeCash developers
-// Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2015-2018 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "askpassphrasedialog.h"
 #include "ui_askpassphrasedialog.h"
+#include <QGraphicsDropShadowEffect>
 
 #include "guiconstants.h"
 #include "guiutil.h"
@@ -16,8 +16,6 @@
 #include "qt/dogecash/defaultdialog.h"
 #include "qt/dogecash/dogecashgui.h"
 #include <QDebug>
-
-#include "allocators.h"
 
 #include <QKeyEvent>
 #include <QMessageBox>
@@ -29,10 +27,39 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
                                                                                                             mode(mode),
                                                                                                             model(model),
                                                                                                             context(context),
-                                                                                                            fCapsLock(false)
+                                                                                                            fCapsLock(false),
+                                                                                                            btnWatch(new QCheckBox())
 {
     ui->setupUi(this);
     this->setStyleSheet(GUIUtil::loadStyleSheet());
+
+    ui->left->setProperty("cssClass", "container-dialog");
+
+    ui->labelTitle->setText("Change passphrase");
+    ui->labelTitle->setProperty("cssClass", "text-title-screen");
+
+    ui->warningLabel->setProperty("cssClass", "text-subtitle");
+
+    ui->btnEsc->setText("");
+    ui->btnEsc->setProperty("cssClass", "ic-close");
+
+    ui->pushButtonOk->setText("OK");
+    ui->pushButtonOk->setProperty("cssClass", "btn-primary");
+
+    initCssEditLine(ui->passEdit1);
+    initCssEditLine(ui->passEdit2);
+    initCssEditLine(ui->passEdit3);
+
+    ui->passLabel1->setText("Current passphrase");
+    ui->passLabel1->setProperty("cssClass", "text-title");
+
+    ui->passLabel2->setText("New passphrase");
+    ui->passLabel2->setProperty("cssClass", "text-title");
+
+    ui->passLabel3->setText("Repeat passphrase");
+    ui->passLabel3->setProperty("cssClass", "text-title");
+
+    ui->capsLabel->setVisible(false);
 
     ui->passEdit1->setMinimumSize(ui->passEdit1->sizeHint());
     ui->passEdit2->setMinimumSize(ui->passEdit2->sizeHint());
@@ -42,6 +69,9 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
     ui->passEdit2->setMaxLength(MAX_PASSPHRASE_SIZE);
     ui->passEdit3->setMaxLength(MAX_PASSPHRASE_SIZE);
 
+    setShadow(ui->layoutEdit);
+    setShadow(ui->layoutEdit2);
+
     // Setup Caps Lock detection.
     ui->passEdit1->installEventFilter(this);
     ui->passEdit2->installEventFilter(this);
@@ -49,54 +79,69 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
 
     this->model = model;
 
+    QString title;
     switch (mode) {
     case Mode::Encrypt: // Ask passphrase x2
         ui->warningLabel->setText(tr("Enter the new passphrase to the wallet.<br/>Please use a passphrase of <b>ten or more random characters</b>, or <b>eight or more words</b>."));
         ui->passLabel1->hide();
         ui->passEdit1->hide();
-        setWindowTitle(tr("Encrypt wallet"));
+        ui->layoutEdit->hide();
+        title = tr("Encrypt wallet");
+        initWatch(ui->layoutEdit2);
         break;
     case Mode::UnlockAnonymize:
-        ui->anonymizationCheckBox->show();
+        ui->warningLabel->setText(tr("This operation needs your wallet passphrase to unlock the wallet."));
+        ui->passLabel2->hide();
+        ui->passEdit2->hide();
+        ui->layoutEdit2->hide();
+        ui->passLabel3->hide();
+        ui->passEdit3->hide();
+        title = tr("Unlock wallet\nfor staking");
+        initWatch(ui->layoutEdit);
+        break;
     case Mode::Unlock: // Ask passphrase
         ui->warningLabel->setText(tr("This operation needs your wallet passphrase to unlock the wallet."));
         ui->passLabel2->hide();
         ui->passEdit2->hide();
+        ui->layoutEdit2->hide();
         ui->passLabel3->hide();
         ui->passEdit3->hide();
-        setWindowTitle(tr("Unlock wallet"));
+        title = tr("Unlock wallet");
+        initWatch(ui->layoutEdit);
         break;
     case Mode::Decrypt: // Ask passphrase
         ui->warningLabel->setText(tr("This operation needs your wallet passphrase to decrypt the wallet."));
         ui->passLabel2->hide();
         ui->passEdit2->hide();
+        ui->layoutEdit2->hide();
         ui->passLabel3->hide();
         ui->passEdit3->hide();
-        setWindowTitle(tr("Decrypt wallet"));
+        title = tr("Decrypt wallet");
+        initWatch(ui->layoutEdit);
         break;
     case Mode::ChangePass: // Ask old passphrase + new passphrase x2
-        setWindowTitle(tr("Change passphrase"));
+        title = tr("Change passphrase");
         ui->warningLabel->setText(tr("Enter the old and new passphrase to the wallet."));
+        initWatch(ui->layoutEdit);
         break;
     }
 
-    // Set checkbox "For anonymization, automint, and staking only" depending on from where we were called
-    if (context == Context::Unlock_Menu || context == Context::Mint_zdogec || context == Context::BIP_38 || context == Context::UI_Vote) {
-        ui->anonymizationCheckBox->setChecked(true);
-    }
-    else {
-        ui->anonymizationCheckBox->setChecked(false);
-    }
-
-    // It doesn't make sense to show the checkbox for sending DOGEC because you wouldn't check it anyway.
-    if (context == Context::Send_DOGEC || context == Context::Send_zdogec) {
-        ui->anonymizationCheckBox->hide();
-    }
+    ui->labelTitle->setText(title);
 
     textChanged();
+    connect(btnWatch, SIGNAL(clicked()), this, SLOT(onWatchClicked()));
     connect(ui->passEdit1, SIGNAL(textChanged(QString)), this, SLOT(textChanged()));
     connect(ui->passEdit2, SIGNAL(textChanged(QString)), this, SLOT(textChanged()));
     connect(ui->passEdit3, SIGNAL(textChanged(QString)), this, SLOT(textChanged()));
+    connect(ui->pushButtonOk, SIGNAL(clicked()), this, SLOT(accept()));
+    connect(ui->btnEsc, SIGNAL(clicked()), this, SLOT(close()));
+}
+
+void AskPassphraseDialog::onWatchClicked(){
+    int state = btnWatch->checkState();
+    ui->passEdit3->setEchoMode(state == Qt::Checked ? QLineEdit::Normal : QLineEdit::Password );
+    ui->passEdit2->setEchoMode(state== Qt::Checked ? QLineEdit::Normal : QLineEdit::Password );
+    ui->passEdit1->setEchoMode(state == Qt::Checked ? QLineEdit::Normal : QLineEdit::Password );
 }
 
 AskPassphraseDialog::~AskPassphraseDialog()
@@ -106,6 +151,11 @@ AskPassphraseDialog::~AskPassphraseDialog()
     ui->passEdit2->setText(QString(" ").repeated(ui->passEdit2->text().size()));
     ui->passEdit3->setText(QString(" ").repeated(ui->passEdit3->text().size()));
     delete ui;
+}
+
+void AskPassphraseDialog::showEvent(QShowEvent *event)
+{
+    if (ui->passEdit1) ui->passEdit1->setFocus();
 }
 
 void AskPassphraseDialog::accept()
@@ -131,13 +181,13 @@ void AskPassphraseDialog::accept()
         hide();
         bool ret = openStandardDialog(
                 tr("Confirm wallet encryption"),
-                tr("Warning: If you encrypt your wallet and lose your passphrase, you will <b>LOSE ALL OF YOUR DOGEC</b>!") + "<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
+                tr("Warning: If you encrypt your wallet and lose your passphrase, you will <b>LOSE ALL OF YOUR PIV</b>!") + "<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
                 tr("ENCRYPT"), tr("CANCEL")
         );
         if (ret) {
             if (newpass1 == newpass2) {
                 newpassCache = newpass1;
-                DogeCashGUI* window = static_cast<DogeCashGUI*>(parentWidget());
+                PIVXGUI* window = static_cast<PIVXGUI*>(parentWidget());
                 LoadingDialog *dialog = new LoadingDialog(window);
                 dialog->execute(this, 1);
                 openDialogWithOpaqueBackgroundFullScreen(dialog, window);
@@ -150,8 +200,15 @@ void AskPassphraseDialog::accept()
         }
     } break;
     case Mode::UnlockAnonymize:
+        if (!model->setWalletLocked(false, oldpass, true)) {
+            QMessageBox::critical(this, tr("Wallet unlock failed"),
+                                  tr("The passphrase entered for the wallet decryption was incorrect."));
+        } else {
+            QDialog::accept(); // Success
+        }
+        break;
     case Mode::Unlock:
-        if (!model->setWalletLocked(false, oldpass, ui->anonymizationCheckBox->isChecked())) {
+        if (!model->setWalletLocked(false, oldpass, false)) {
             QMessageBox::critical(this, tr("Wallet unlock failed"),
                 tr("The passphrase entered for the wallet decryption was incorrect."));
         } else {
@@ -169,8 +226,8 @@ void AskPassphraseDialog::accept()
     case Mode::ChangePass:
         if (newpass1 == newpass2) {
             if (model->changePassphrase(oldpass, newpass1)) {
-                QMessageBox::information(this, tr("Wallet encrypted"),
-                    tr("Wallet passphrase was successfully changed."));
+                hide();
+                openStandardDialog(tr("Wallet encrypted"),tr("Wallet passphrase was successfully changed."));
                 QDialog::accept(); // Success
             } else {
                 QMessageBox::critical(this, tr("Wallet encryption failed"),
@@ -201,7 +258,7 @@ void AskPassphraseDialog::textChanged()
         acceptable = !ui->passEdit1->text().isEmpty() && !ui->passEdit2->text().isEmpty() && !ui->passEdit3->text().isEmpty();
         break;
     }
-    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(acceptable);
+    ui->pushButtonOk->setEnabled(acceptable);
 }
 
 bool AskPassphraseDialog::event(QEvent* event)
@@ -214,8 +271,10 @@ bool AskPassphraseDialog::event(QEvent* event)
         }
         if (fCapsLock) {
             ui->capsLabel->setText(tr("Warning: The Caps Lock key is on!"));
+            ui->capsLabel->setVisible(true);
         } else {
             ui->capsLabel->clear();
+            ui->capsLabel->setVisible(false);
         }
     }
     return QWidget::event(event);
@@ -238,9 +297,11 @@ bool AskPassphraseDialog::eventFilter(QObject* object, QEvent* event)
             if ((fShift && *psz >= 'a' && *psz <= 'z') || (!fShift && *psz >= 'A' && *psz <= 'Z')) {
                 fCapsLock = true;
                 ui->capsLabel->setText(tr("Warning: The Caps Lock key is on!"));
+                ui->capsLabel->setVisible(true);
             } else if (psz->isLetter()) {
                 fCapsLock = false;
                 ui->capsLabel->clear();
+                ui->capsLabel->setVisible(false);
             }
         }
     }
@@ -248,7 +309,7 @@ bool AskPassphraseDialog::eventFilter(QObject* object, QEvent* event)
 }
 
 bool AskPassphraseDialog::openStandardDialog(QString title, QString body, QString okBtn, QString cancelBtn){
-    DogeCashGUI* gui = static_cast<DogeCashGUI*>(parentWidget());
+    PIVXGUI* gui = static_cast<PIVXGUI*>(parentWidget());
     DefaultDialog *confirmDialog = new DefaultDialog(gui);
     confirmDialog->setText(title, body, okBtn, cancelBtn);
     confirmDialog->adjustSize();
@@ -260,13 +321,13 @@ bool AskPassphraseDialog::openStandardDialog(QString title, QString body, QStrin
 
 void AskPassphraseDialog::warningMessage() {
     hide();
-    static_cast<DogeCashGUI*>(parentWidget())->showHide(true);
+    static_cast<PIVXGUI*>(parentWidget())->showHide(true);
     openStandardDialog(
             tr("Wallet encrypted"),
             "<qt>" +
-            tr("DogeCash will close now to finish the encryption process. "
+            tr("PIVX will close now to finish the encryption process. "
                "Remember that encrypting your wallet cannot fully protect "
-               "your DOGECs from being stolen by malware infecting your computer.") +
+               "your PIVs from being stolen by malware infecting your computer.") +
             "<br><br><b>" +
             tr("IMPORTANT: Any previous backups you have made of your wallet file "
                "should be replaced with the newly generated, encrypted wallet file. "

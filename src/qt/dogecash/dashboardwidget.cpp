@@ -62,7 +62,7 @@ DashboardWidget::DashboardWidget(DogeCashGUI* parent) :
     setCssProperty(ui->labelSquarePiv, "square-chart-piv");
     setCssProperty(ui->labelSquarezDogec, "square-chart-zdogec");
     setCssProperty(ui->labelPiv, "text-chart-piv");
-    setCssProperty(ui->labelZpiv, "text-chart-zdogec");
+    setCssProperty(ui->labelZdogec, "text-chart-zdogec");
 
     // Staking Amount
     QFont fontBold;
@@ -70,10 +70,10 @@ DashboardWidget::DashboardWidget(DogeCashGUI* parent) :
 
     setCssProperty(ui->labelChart, "legend-chart");
 
-    ui->labelAmountZpiv->setText("0 zDOGEC");
+    ui->labelAmountZdogec->setText("0 zDOGEC");
     ui->labelAmountPiv->setText("0 DOGEC");
     setCssProperty(ui->labelAmountPiv, "text-stake-piv-disable");
-    setCssProperty(ui->labelAmountZpiv, "text-stake-zdogec-disable");
+    setCssProperty(ui->labelAmountZdogec, "text-stake-zdogec-disable");
 
     setCssProperty({ui->pushButtonAll,  ui->pushButtonMonth, ui->pushButtonYear}, "btn-check-time");
     setCssProperty({ui->comboBoxMonths,  ui->comboBoxYears}, "btn-combo-chart-selected");
@@ -501,7 +501,7 @@ QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
                 amountBy[time] = std::make_pair(amount, 0);
             } else {
                 amountBy[time] = std::make_pair(0, amount);
-                hasZpivStakes = true;
+                hasZdogecStakes = true;
             }
         }
     }
@@ -524,7 +524,7 @@ ChartData DashboardWidget::loadChartData(bool withMonthNames) {
             piv = (pair.first != 0) ? pair.first / 100000000 : 0;
             zdogec = (pair.second != 0) ? pair.second / 100000000 : 0;
             chartData.totalPiv += pair.first;
-            chartData.totalZpiv += pair.second;
+            chartData.totalZdogec += pair.second;
         }
 
         chartData.xLabels << ((withMonthNames) ? monthsNames[num - 1] : QString::number(num));
@@ -599,19 +599,19 @@ void DashboardWidget::onChartRefreshed() {
 
     // Total
     nDisplayUnit = walletModel->getOptionsModel()->getDisplayUnit();
-    if (chartData.totalPiv > 0 || chartData.totalZpiv > 0) {
+    if (chartData.totalPiv > 0 || chartData.totalZdogec > 0) {
         setCssProperty(ui->labelAmountPiv, "text-stake-piv");
-        setCssProperty(ui->labelAmountZpiv, "text-stake-zdogec");
+        setCssProperty(ui->labelAmountZdogec, "text-stake-zdogec");
     } else {
         setCssProperty(ui->labelAmountPiv, "text-stake-piv-disable");
-        setCssProperty(ui->labelAmountZpiv, "text-stake-zdogec-disable");
+        setCssProperty(ui->labelAmountZdogec, "text-stake-zdogec-disable");
     }
-    forceUpdateStyle({ui->labelAmountPiv, ui->labelAmountZpiv});
+    forceUpdateStyle({ui->labelAmountPiv, ui->labelAmountZdogec});
     ui->labelAmountPiv->setText(GUIUtil::formatBalance(chartData.totalPiv, nDisplayUnit));
-    ui->labelAmountZpiv->setText(GUIUtil::formatBalance(chartData.totalZpiv, nDisplayUnit, true));
+    ui->labelAmountZdogec->setText(GUIUtil::formatBalance(chartData.totalZdogec, nDisplayUnit, true));
 
     series->append(set0);
-    if(hasZpivStakes)
+    if(hasZdogecStakes)
         series->append(set1);
 
     // bar width

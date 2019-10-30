@@ -29,6 +29,6 @@ src/univalue
 src/univalue/include
 src/univalue/lib
 src/zmq
-src/qt/pivx
-src/qt/pivx/forms
-src/qt/pivx/settings/forms
+src/qt/dogecash
+src/qt/dogecash/forms
+src/qt/dogecash/settings/forms

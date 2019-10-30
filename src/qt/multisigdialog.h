@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The DogeCash developers
+// Copyright (c) 2017 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -47,7 +47,7 @@ private:
     CCoinsViewCache getInputsCoinsViewCache(const std::vector<CTxIn>& vin);
     QString buildMultisigTxStatusString(bool fComplete, const CMutableTransaction& tx);
     bool createRedeemScript(int m, std::vector<std::string> keys, CScript& redeemRet, std::string& errorRet);
-    bool createMultisigTransaction(std::vector<CTxIn> vUserIn, std::vector<CTxOut> vUserOut, string& feeStringRet, string& errorRet);
+    bool createMultisigTransaction(std::vector<CTxIn> vUserIn, std::vector<CTxOut> vUserOut, std::string& feeStringRet, std::string& errorRet);
     bool signMultisigTx(CMutableTransaction& txToSign, std::string& errorMessageRet, QVBoxLayout* keyList = nullptr);
     bool addMultisig(int m, std::vector<std::string> keys);
     bool isFullyVerified(CMutableTransaction& txToVerify);
