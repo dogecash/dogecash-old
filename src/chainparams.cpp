@@ -165,17 +165,17 @@ public:
         nBlockDoubleAccumulated = 1050010;
         nEnforceNewSporkKey = 1425158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
-        nBlockStakeModifierlV2 = 227769; //!> Enforce new Stake Protocols add test/regtest
+        nBlockStakeModifierlV2 = 243239; //!> Enforce new Stake Protocols add test/regtest
 
         // New P2P messages signatures
-        nBlockEnforceNewMessageSignatures = 2967000;
+        nBlockEnforceNewMessageSignatures = 243249;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 1686229;
       //  nSupplyBeforeFakeSerial = 4131563 * COIN;   // zerocoin supply at block nFakeSerialBlockheightEnd
 
         // Cold Staking enforcement
-        nColdStakingStart = 2880000;
+        nColdStakingStart = 243249;
 
         /**
          * Build the genesis block. Note that the output of the genesis coinbase cannot
