@@ -133,7 +133,7 @@ std::string CMasternode::GetStrMessage() const
 //
 bool CMasternode::UpdateFromNewBroadcast(CMasternodeBroadcast& mnb)
 {
-        if(mnb.sigTime <= sigTime) return false;
+    if (mnb.sigTime > sigTime) {
         pubKeyMasternode = mnb.pubKeyMasternode;
         pubKeyCollateralAddress = mnb.pubKeyCollateralAddress;
         sigTime = mnb.sigTime;
@@ -144,20 +144,11 @@ bool CMasternode::UpdateFromNewBroadcast(CMasternodeBroadcast& mnb)
         int nDoS = 0;
         if (mnb.lastPing == CMasternodePing() || (mnb.lastPing != CMasternodePing() && mnb.lastPing.CheckAndUpdate(nDoS, false))) {
             lastPing = mnb.lastPing;
-            mnodeman.mapSeenMasternodePing.insert(make_pair(lastPing.GetHash(), lastPing));
+            mnodeman.mapSeenMasternodePing.insert(std::make_pair(lastPing.GetHash(), lastPing));
         }
-        if(protocolVersion == PROTOCOL_VERSION) {
-            // ... and PROTOCOL_VERSION, then we've been remotely activated ...
-            activeMasternode.EnableHotColdMasterNode(vin, addr);
-        } else {
-            // ... otherwise we need to reactivate our node, do not add it to the list and do not relay
-            // but also do not ban the node we get this message from
-            char nProtoVersion = protocolVersion;
-            LogPrint("CMasternode::UpdateFromNewBroadcast -- wrong PROTOCOL_VERSION, re-activate your MN: message nProtocolVersion=%d  PROTOCOL_VERSION=%d\n", "blah",nProtoVersion);
-            return false;
-        }
-    return true;
-
+        return true;
+    }
+    return false;
 }
 
 //

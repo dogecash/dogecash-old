@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2015-2018 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -82,7 +82,7 @@ void checkBudgetInputs(const UniValue& params, std::string &strProposalName, std
 
     address = params[4].get_str();
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid dogecash address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DogeCash address");
 
     nAmount = AmountFromValue(params[5]);
 }
@@ -160,7 +160,7 @@ UniValue submitbudget(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 7)
         throw runtime_error(
-            "submitbudget \"proposal-name\" \"url\" payment-count block-start \"dogecash-address\" monthy-payment \"fee-tx\"\n"
+            "submitbudget \"proposal-name\" \"url\" payment-count block-start \"DogeCash-address\" monthy-payment \"fee-tx\"\n"
             "\nSubmit proposal to the network\n"
 
             "\nArguments:\n"
@@ -168,7 +168,7 @@ UniValue submitbudget(const UniValue& params, bool fHelp)
             "2. \"url\":            (string, required) URL of proposal details (64 character limit)\n"
             "3. payment-count:    (numeric, required) Total number of monthly payments\n"
             "4. block-start:      (numeric, required) Starting super block height\n"
-            "5. \"dogecash-address\":   (string, required) dogecash address to send payments to\n"
+            "5. \"DogeCash-address\":   (string, required) DogeCash address to send payments to\n"
             "6. monthly-payment:  (numeric, required) Monthly payment amount\n"
             "7. \"fee-tx\":         (string, required) Transaction hash from preparebudget command\n"
 
@@ -570,7 +570,7 @@ UniValue getbudgetprojection(const UniValue& params, bool fHelp)
             "    \"BlockEnd\": n,                (numeric) Proposal ending block\n"
             "    \"TotalPaymentCount\": n,       (numeric) Number of payments\n"
             "    \"RemainingPaymentCount\": n,   (numeric) Number of remaining payments\n"
-            "    \"PaymentAddress\": \"xxxx\",     (string) dogecash address of payment\n"
+            "    \"PaymentAddress\": \"xxxx\",     (string) DogeCash address of payment\n"
             "    \"Ratio\": x.xxx,               (numeric) Ratio of yeas vs nays\n"
             "    \"Yeas\": n,                    (numeric) Number of yea votes\n"
             "    \"Nays\": n,                    (numeric) Number of nay votes\n"
@@ -634,7 +634,7 @@ UniValue getbudgetinfo(const UniValue& params, bool fHelp)
             "    \"BlockEnd\": n,                (numeric) Proposal ending block\n"
             "    \"TotalPaymentCount\": n,       (numeric) Number of payments\n"
             "    \"RemainingPaymentCount\": n,   (numeric) Number of remaining payments\n"
-            "    \"PaymentAddress\": \"xxxx\",     (string) dogecash address of payment\n"
+            "    \"PaymentAddress\": \"xxxx\",     (string) DogeCash address of payment\n"
             "    \"Ratio\": x.xxx,               (numeric) Ratio of yeas vs nays\n"
             "    \"Yeas\": n,                    (numeric) Number of yea votes\n"
             "    \"Nays\": n,                    (numeric) Number of nay votes\n"

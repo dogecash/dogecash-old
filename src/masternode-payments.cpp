@@ -377,9 +377,8 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int64_t nFe
             txNew.vout[i].scriptPubKey = payee;
             txNew.vout[i].nValue = masternodePayment;
 
-            //subtract mn payment from the stake reward
-
-            if (!txNew.vout[1].IsZerocoinMint()){
+                        //subtract mn payment from the stake reward
+            if (!txNew.vout[1].IsZerocoinMint()) {
                 if (i == 2) {
                     // Majority of cases; do it quick and move on
                     txNew.vout[i - 1].nValue -= masternodePayment;
@@ -394,15 +393,13 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int64_t nFe
                     // in case it's not an even division, take the last bit of dust from the last one
                     txNew.vout[outputs].nValue -= mnPaymentRemainder;
                 }
-
-        else {
-
+            }
+        } else {
             txNew.vout.resize(2);
             txNew.vout[1].scriptPubKey = payee;
             txNew.vout[1].nValue = masternodePayment;
             txNew.vout[0].nValue = blockValue - masternodePayment;
         }
-    }
 
         CTxDestination address1;
         ExtractDestination(payee, address1);
@@ -410,7 +407,6 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int64_t nFe
 
         LogPrint("masternode","Masternode payment of %s to %s\n", FormatMoney(masternodePayment).c_str(), address2.ToString().c_str());
     }
-  }
 }
 
 int CMasternodePayments::GetMinMasternodePaymentsProto()
