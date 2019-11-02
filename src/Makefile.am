@@ -125,7 +125,6 @@ BITCOIN_CORE_H = \
   leveldbwrapper.h \
   limitedmap.h \
   main.h \
-  upgrade_check.h \
   masternode.h \
   masternode-payments.h \
   masternode-budget.h \
@@ -241,7 +240,6 @@ libbitcoin_server_a_SOURCES = \
   torcontrol.cpp \
   txdb.cpp \
   txmempool.cpp \
-  upgrade_check.cpp \
   validationinterface.cpp \
   zdogecchain.cpp \
   $(BITCOIN_CORE_H)
