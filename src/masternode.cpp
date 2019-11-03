@@ -546,7 +546,7 @@ bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
     }
 
     std::string strError = "";
-    if (!CheckSignature())
+    if ( chainActive.NewSigsActive() ? !CheckSignature():!obfuScationSigner.VerifyMessage(pubKeyCollateralAddress, vchSig, GetStrMessage(), strError))
     {
         // don't ban for old masternodes, their sigs could be broken because of the bug
         nDos = protocolVersion < MIN_PEER_MNANNOUNCE ? 0 : 100;

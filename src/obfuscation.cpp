@@ -25,6 +25,8 @@
 
 // The main object for accessing Obfuscation
 CObfuscationPool obfuScationPool;
+// A helper object for signing messages from Masternodes
+CObfuScationSigner obfuScationSigner;
 // The current Obfuscations in progress on the network
 std::vector<CObfuscationQueue> vecObfuscationQueue;
 // Keep track of the used Masternodes
@@ -618,4 +620,22 @@ void ThreadCheckObfuScationPool()
             obfuScationPool.CheckForCompleteQueue();
         }
     }
+}
+
+bool CObfuScationSigner::VerifyMessage(CPubKey pubkey, std::vector<unsigned char>& vchSig, std::string strMessage, std::string& errorMessage)
+{
+    CHashWriter ss(SER_GETHASH, 0);
+    ss << strMessageMagic;
+    ss << strMessage;
+
+    CPubKey pubkey2;
+    if (!pubkey2.RecoverCompact(ss.GetHash(), vchSig)) {
+        errorMessage = _("Error recovering public key.");
+        return false;
+    }
+
+    if (fDebug && pubkey2.GetID() != pubkey.GetID())
+        LogPrintf("CObfuScationSigner::VerifyMessage -- keys don't match: %s %s\n", pubkey2.GetID().ToString(), pubkey.GetID().ToString());
+
+    return (pubkey2.GetID() == pubkey.GetID());
 }

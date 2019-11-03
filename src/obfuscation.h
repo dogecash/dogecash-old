@@ -20,6 +20,7 @@ class CBitcoinAddress;
 class CObfuscationQueue;
 class CObfuscationBroadcastTx;
 class CActiveMasternode;
+class CObfuScationSigner;
 
 // pool states for mixing
 #define POOL_STATUS_UNKNOWN 0              // waiting for update
@@ -49,6 +50,7 @@ static const CAmount OBFUSCATION_COLLATERAL = (10 * COIN);
 static const CAmount OBFUSCATION_POOL_MAX = (99999.99 * COIN);
 
 extern CObfuscationPool obfuScationPool;
+extern CObfuScationSigner obfuScationSigner;
 extern std::vector<CObfuscationQueue> vecObfuscationQueue;
 extern std::string strMasterNodePrivKey;
 extern std::map<uint256, CObfuscationBroadcastTx> mapObfuscationBroadcastTxes;
@@ -195,7 +197,11 @@ public:
     std::vector<unsigned char> vchSig;
     int64_t sigTime;
 };
-
+class CObfuScationSigner {
+  public:
+    /// Verify the message, returns true if succcessful
+    bool VerifyMessage(CPubKey pubkey, std::vector<unsigned char>& vchSig, std::string strMessage, std::string& errorMessage);
+};
 /** Used to keep track of current status of Obfuscation pool
  */
 class CObfuscationPool
