@@ -28,7 +28,6 @@ uint256 CMessageSigner::GetMessageHash(const std::string& strMessage)
     CHashWriter ss(SER_GETHASH, 0);
     ss << strMessageMagic;
     ss << strMessage;
-    LogPrintf("StrMessage = %s\n",strMessage);
     return ss.GetHash();
 }
 
