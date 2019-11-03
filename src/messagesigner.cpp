@@ -10,7 +10,7 @@
 #include "masternodeman.h"  // For GetPublicKey (of MN from its vin)
 #include "tinyformat.h"
 #include "utilstrencodings.h"
-
+#include "util.h"
 bool CMessageSigner::GetKeysFromSecret(const std::string& strSecret, CKey& keyRet, CPubKey& pubkeyRet)
 {
     CBitcoinSecret vchSecret;
@@ -28,6 +28,7 @@ uint256 CMessageSigner::GetMessageHash(const std::string& strMessage)
     CHashWriter ss(SER_GETHASH, 0);
     ss << strMessageMagic;
     ss << strMessage;
+    LogPrintf("StrMessage = %s\n",strMessage);
     return ss.GetHash();
 }
 
