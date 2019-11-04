@@ -165,17 +165,17 @@ public:
         nBlockDoubleAccumulated = 1050010;
         nEnforceNewSporkKey = 1425158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
-        nBlockStakeModifierlV2 = 243239; //!> Enforce new Stake Protocols add test/regtest
+        nBlockStakeModifierlV2 = 247248; //!> Enforce new Stake Protocols add test/regtest
 
         // New P2P messages signatures
-        nBlockEnforceNewMessageSignatures = 243249;
+        nBlockEnforceNewMessageSignatures = 247258;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 1686229;
       //  nSupplyBeforeFakeSerial = 4131563 * COIN;   // zerocoin supply at block nFakeSerialBlockheightEnd
 
         // Cold Staking enforcement
-        nColdStakingStart = 243249;
+        nColdStakingStart = 247258;
 
         /**
          * Build the genesis block. Note that the output of the genesis coinbase cannot
@@ -217,6 +217,8 @@ public:
 	base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 122);
 	base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
 	base58Prefixes[EXT_SECRET_KEY] = list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
+    base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 63);     // starting with 'S'
+
         // 	BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         nExtCoinType = 385;
 
@@ -331,6 +333,7 @@ public:
 	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30);
 	base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
 	base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 122);
+    base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 73);     // starting with 'W'
 	base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
 	base58Prefixes[EXT_SECRET_KEY] = list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
         // 	BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
