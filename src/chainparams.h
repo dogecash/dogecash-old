@@ -226,7 +226,7 @@ protected:
     int nBlockZerocoinV2;
     int nBlockDoubleAccumulated;
     int nBlockEnforceNewMessageSignatures;
-
+    int nBlockStakeModifierlV2;
     CAmount nMinColdStakingAmount;
     // fake serial attack
     int nFakeSerialBlockheightEnd = 0;
