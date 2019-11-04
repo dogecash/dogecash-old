@@ -502,13 +502,13 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
                             const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance){
 
     CAmount nLockedBalance = 0;
-    if (!walletModel) {
+    if (walletModel) {
         nLockedBalance = walletModel->getLockedBalance();
     }
 
     // DOGEC Balance
-    //CAmount nTotalBalance = balance + unconfirmedBalance;
-    CAmount dogecAvailableBalance = balance - immatureBalance - nLockedBalance;
+    CAmount nTotalBalance = balance + unconfirmedBalance + immatureBalance;
+    CAmount dogecAvailableBalance = nTotalBalance - unconfirmedBalance - immatureBalance - nLockedBalance;
 
     // zDOGEC Balance
     CAmount matureZerocoinBalance = zerocoinBalance - unconfirmedZerocoinBalance - immatureZerocoinBalance;
