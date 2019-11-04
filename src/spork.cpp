@@ -259,30 +259,12 @@ std::string CSporkManager::ToString() const
 
 uint256 CSporkMessage::GetSignatureHash() const
 {
-    CSporkMessage msg;
-    msg.nSporkID = nSporkID;
-    msg.nValue = nValue;
-    msg.nTimeSigned = GetTime();
-
-    spork.Sign(strPrivKey, true);
-    const bool fRequireNew = GetTime() >= Params().NewSporkStart();
-    bool fValidSig = spork.CheckSignature();
-    if (!fValidSig && !fRequireNew) {
-    // See if window is open that allows for old spork key to sign messages
-    if (GetAdjustedTime() < Params().RejectOldSporkKey()) {
-        CPubKey pubkeyold = spork.GetPublicKeyOld();
-        fValidSig = spork.CheckSignature(pubkeyold);
-        }
-    }
-    if (fValidSig) {
-        LOCK(cs);
-        // Test signing successful, proceed
-        LogPrintf("%s : Successfully initialized as spork signer\n", __func__);
-        strMasterPrivKey = strPrivKey;
-        return true;
-    }
-
-    return false;
+    CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
+    ss << nMessVersion;
+    ss << nSporkID;
+    ss << nValue;
+    ss << nTimeSigned;
+    return ss.GetHash();
 }
 
 std::string CSporkMessage::GetStrMessage() const

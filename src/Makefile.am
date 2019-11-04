@@ -175,7 +175,6 @@ BITCOIN_CORE_H = \
   utilstrencodings.h \
   utilmoneystr.h \
   utiltime.h \
-  upgrade_check.h \
   utilsplitstring.h \
   validationinterface.h \
   version.h \
@@ -401,7 +400,6 @@ libbitcoin_common_a_SOURCES = \
   script/script_error.cpp \
   spork.cpp \
   sporkdb.cpp \
-  upgrade_check.cpp \
   $(BITCOIN_CORE_H)
 
 # util: shared between all executables.

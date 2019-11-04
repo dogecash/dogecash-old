@@ -1,4 +1,3 @@
-// Copyright (c) 2019 The DogeCash developers
 // Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -13,6 +12,7 @@
 #include "qt/dogecash/txviewholder.h"
 #include "transactionfilterproxy.h"
 
+#include <atomic>
 #include <cstdlib>
 #include <QWidget>
 #include <QLineEdit>
@@ -37,7 +37,7 @@ using namespace QtCharts;
 
 #endif
 
-class DogeCashGUI;
+class PIVXGUI;
 class WalletModel;
 
 namespace Ui {
@@ -144,10 +144,10 @@ private:
 #ifdef USE_QTCHARTS
 
     int64_t lastRefreshTime = 0;
+    std::atomic<bool> isLoading;
 
     // Chart
     TransactionFilterProxy* stakesFilter = nullptr;
-    TransactionFilterProxy* mnrewardFilter = nullptr;
     bool isChartInitialized = false;
     QChartView *chartView = nullptr;
     QBarSeries *series = nullptr;
@@ -166,18 +166,18 @@ private:
     bool hasZdogecStakes = false;
 
     ChartData* chartData = nullptr;
+    bool hasStakes = false;
 
     void initChart();
     void showHideEmptyChart(bool show, bool loading, bool forceView = false);
     bool refreshChart();
     void tryChartRefresh();
+    void updateStakeFilter();
     QMap<int, std::pair<qint64, qint64>> getAmountBy();
-    void loadChartData(bool withMonthNames);
+    bool loadChartData(bool withMonthNames);
     void updateAxisX(const QStringList *arg = nullptr);
     void setChartShow(ChartShowType type);
     std::pair<int, int> getChartRange(QMap<int, std::pair<qint64, qint64>> amountsBy);
-    bool hasStakes();
-    bool hasMNRewards();
 
 private slots:
     void onChartRefreshed();

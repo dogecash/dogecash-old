@@ -3649,7 +3649,7 @@ extern UniValue DozdogecSpend(const CAmount nAmount, bool fMintChange, bool fMin
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DOGEC address");
         outputs.push_back(std::pair<CBitcoinAddress*, CAmount>(&address, nAmount));
     }
-        fSuccess = pwalletMain->SpendZerocoin(nAmount, wtx, receipt, vMintsSelected, fMintChange, fMinimizeChange);
+        fSuccess = pwalletMain->SpendZerocoin(nAmount, wtx, receipt, vMintsSelected, fMintChange, fMinimizeChange, outputs);
 
     if (!fSuccess)
         throw JSONRPCError(RPC_WALLET_ERROR, receipt.GetStatusMessage());

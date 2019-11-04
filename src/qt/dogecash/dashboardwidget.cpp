@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -22,8 +22,6 @@
 #define SHOW_EMPTY_CHART_VIEW_THRESHOLD 4000
 #define REQUEST_LOAD_TASK 1
 #define CHART_LOAD_MIN_TIME_INTERVAL 15
-
-#include "moc_dashboardwidget.cpp"
 
 DashboardWidget::DashboardWidget(DogeCashGUI* parent) :
     PWidget(parent),
@@ -85,6 +83,7 @@ DashboardWidget::DashboardWidget(DogeCashGUI* parent) :
     ui->pushButtonYear->setChecked(true);
 
     setCssProperty(ui->pushButtonChartArrow, "btn-chart-arrow");
+    setCssProperty(ui->pushButtonChartRight, "btn-chart-arrow-right");
 
     connect(ui->comboBoxYears, SIGNAL(currentIndexChanged(const QString&)), this,SLOT(onChartYearChanged(const QString&)));
 
@@ -137,7 +136,7 @@ DashboardWidget::DashboardWidget(DogeCashGUI* parent) :
     setCssProperty(ui->chartContainer, "container-chart");
     setCssProperty(ui->pushImgEmptyChart, "img-empty-staking-on");
 
-    ui->btnHowTo->setText(tr("How to get DOGEC or zDOGEC"));
+    ui->btnHowTo->setText(tr("How to get DOGEC"));
     setCssBtnSecondary(ui->btnHowTo);
 
 
@@ -157,6 +156,7 @@ DashboardWidget::DashboardWidget(DogeCashGUI* parent) :
 bool hasCharts = false;
 #ifdef USE_QTCHARTS
     hasCharts = true;
+    isLoading = false;
     setChartShow(YEAR);
     connect(ui->pushButtonYear, &QPushButton::clicked, [this](){setChartShow(YEAR);});
     connect(ui->pushButtonMonth, &QPushButton::clicked, [this](){setChartShow(MONTH);});
@@ -227,18 +227,23 @@ void DashboardWidget::loadWalletModel(){
         stakesFilter->setOnlyStakes(true);
         stakesFilter->setSourceModel(txModel);
         stakesFilter->sort(TransactionTableModel::Date, Qt::AscendingOrder);
+        hasStakes = stakesFilter->rowCount() > 0;
         loadChart();
 #endif
     }
-    // update the display unit, to not use the default ("DOGEC")
+    // update the display unit, to not use the default ("PIV")
     updateDisplayUnit();
 }
 
 void DashboardWidget::onTxArrived(const QString& hash) {
     showList();
 #ifdef USE_QTCHARTS
-    if (walletModel->isCoinStakeMine(hash))
+    if (walletModel->isCoinStakeMine(hash)) {
+        // Update value if this is our first stake
+        if (!hasStakes)
+            hasStakes = stakesFilter->rowCount() > 0;
         tryChartRefresh();
+    }
 #endif
 }
 
@@ -328,12 +333,17 @@ void DashboardWidget::changeTheme(bool isLightTheme, QString& theme){
 #ifdef USE_QTCHARTS
 
 void DashboardWidget::tryChartRefresh() {
-    if (hasStakes()) {
-        // Check for min update time to not reload the UI so often if the node is syncing.
-        int64_t now = GetTime();
-        if (lastRefreshTime + CHART_LOAD_MIN_TIME_INTERVAL < now) {
-            lastRefreshTime = now;
-            refreshChart();
+    if (hasStakes) {
+        // First check that everything was loaded properly.
+        if (!chart) {
+            loadChart();
+        } else {
+            // Check for min update time to not reload the UI so often if the node is syncing.
+            int64_t now = GetTime();
+            if (lastRefreshTime + CHART_LOAD_MIN_TIME_INTERVAL < now) {
+                lastRefreshTime = now;
+                refreshChart();
+            }
         }
     }
 }
@@ -351,7 +361,7 @@ void DashboardWidget::setChartShow(ChartShowType type) {
 const QStringList monthsNames = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
 void DashboardWidget::loadChart(){
-    if (hasStakes()) {
+    if (hasStakes) {
         if (!chart) {
             showHideEmptyChart(false, false);
             initChart();
@@ -361,7 +371,8 @@ void DashboardWidget::loadChart(){
             for (int i = 1; i < 13; ++i) ui->comboBoxMonths->addItem(QString(monthsNames[i-1]), QVariant(i));
             ui->comboBoxMonths->setCurrentIndex(monthFilter - 1);
             connect(ui->comboBoxMonths, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(onChartMonthChanged(const QString&)));
-            connect(ui->pushButtonChartArrow, SIGNAL(clicked()), this, SLOT(onChartArrowClicked()));
+            connect(ui->pushButtonChartArrow, &QPushButton::clicked, [this](){ onChartArrowClicked(true); });
+            connect(ui->pushButtonChartRight, &QPushButton::clicked, [this](){ onChartArrowClicked(false); });
         }
         refreshChart();
         changeChartColors();
@@ -372,11 +383,18 @@ void DashboardWidget::loadChart(){
 
 void DashboardWidget::showHideEmptyChart(bool showEmpty, bool loading, bool forceView) {
     if (stakesFilter->rowCount() > SHOW_EMPTY_CHART_VIEW_THRESHOLD || forceView) {
-        if (!ui->layoutChart->isVisible()) {
+        if (ui->emptyContainerChart->isVisible() != showEmpty) {
             ui->layoutChart->setVisible(!showEmpty);
             ui->emptyContainerChart->setVisible(showEmpty);
         }
     }
+    // Enable/Disable sort buttons
+    bool invLoading = !loading;
+    ui->comboBoxMonths->setEnabled(invLoading);
+    ui->comboBoxYears->setEnabled(invLoading);
+    ui->pushButtonMonth->setEnabled(invLoading);
+    ui->pushButtonAll->setEnabled(invLoading);
+    ui->pushButtonYear->setEnabled(invLoading);
     ui->labelEmptyChart->setText(loading ? tr("Loading chart..") : tr("You have no staking rewards"));
 }
 
@@ -434,8 +452,7 @@ void DashboardWidget::changeChartColors(){
     if (set1) set1->setBorderColor(gridLineColorX);
 }
 
-// pair DOGEC, zDOGEC
-QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
+void DashboardWidget::updateStakeFilter() {
     if (chartShow != ALL) {
         bool filterByMonth = false;
         if (monthFilter != 0 && chartShow == MONTH) {
@@ -468,6 +485,11 @@ QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
     } else {
         stakesFilter->clearDateRange();
     }
+}
+
+// pair PIV, zPIV
+QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
+    updateStakeFilter();
     int size = stakesFilter->rowCount();
     QMap<int, std::pair<qint64, qint64>> amountBy;
     // Get all of the stakes
@@ -512,16 +534,22 @@ QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
     return amountBy;
 }
 
-void DashboardWidget::loadChartData(bool withMonthNames) {
+bool DashboardWidget::loadChartData(bool withMonthNames) {
 
     if (chartData) {
         delete chartData;
         chartData = nullptr;
     }
-    chartData = new ChartData();
 
-    chartData->amountsByCache = getAmountBy(); // pair DOGEC, zDOGEC
+    chartData = new ChartData();
+    chartData->amountsByCache = getAmountBy(); // pair DOGEC,zDOGEC
+
     std::pair<int,int> range = getChartRange(chartData->amountsByCache);
+    if (range.first == 0 && range.second == 0) {
+        // Problem loading the chart.
+        return false;
+    }
+
     bool isOrderedByMonth = chartShow == MONTH;
     int daysInMonth = QDate(yearFilter, monthFilter, 1).daysInMonth();
 
@@ -533,7 +561,7 @@ void DashboardWidget::loadChartData(bool withMonthNames) {
             std::pair <qint64, qint64> pair = chartData->amountsByCache[num];
             dogec = (pair.first != 0) ? pair.first / 100000000 : 0;
             zdogec = (pair.second != 0) ? pair.second / 100000000 : 0;
-            chartData->totalPiv += pair.first;
+            chartData->totalDogeC += pair.first;
             chartData->totalZdogec += pair.second;
         }
 
@@ -547,7 +575,8 @@ void DashboardWidget::loadChartData(bool withMonthNames) {
             chartData->maxValue = max;
         }
     }
-    return chartData;
+
+    return true;
 }
 
 void DashboardWidget::onChartYearChanged(const QString& yearStr) {
@@ -576,6 +605,8 @@ void DashboardWidget::onChartMonthChanged(const QString& monthStr) {
 }
 
 bool DashboardWidget::refreshChart(){
+    if (isLoading) return false;
+    isLoading = true;
     isChartMin = width() < 1300;
     isChartInitialized = false;
     showHideEmptyChart(true, true);
@@ -678,6 +709,7 @@ void DashboardWidget::onChartRefreshed() {
     // back to normal
     isChartInitialized = true;
     showHideEmptyChart(false, false, true);
+    isLoading = false;
 }
 
 std::pair<int, int> DashboardWidget::getChartRange(QMap<int, std::pair<qint64, qint64>> amountsBy) {
@@ -686,6 +718,11 @@ std::pair<int, int> DashboardWidget::getChartRange(QMap<int, std::pair<qint64, q
             return std::make_pair(1, 13);
         case ALL: {
             QList<int> keys = amountsBy.uniqueKeys();
+            if (keys.isEmpty()) {
+                // This should never happen, ALL means from the beginning of time and if this is called then it must have at least one stake..
+                inform(tr("Error loading chart, invalid data"));
+                return std::make_pair(0, 0);
+            }
             qSort(keys);
             return std::make_pair(keys.first(), keys.last() + 1);
         }
@@ -740,7 +777,7 @@ void DashboardWidget::onChartArrowClicked(bool goLeft) {
 }
 
 void DashboardWidget::windowResizeEvent(QResizeEvent *event){
-    if (hasStakes() > 0 && axisX) {
+    if (hasStakes && axisX) {
         if (width() > 1300) {
             if (isChartMin) {
                 isChartMin = false;
@@ -769,18 +806,14 @@ void DashboardWidget::windowResizeEvent(QResizeEvent *event){
     }
 }
 
-bool DashboardWidget::hasStakes() {
-    return stakesFilter->rowCount() > 0;
-}
-
 #endif
 
 void DashboardWidget::run(int type) {
 #ifdef USE_QTCHARTS
     if (type == REQUEST_LOAD_TASK) {
         bool withMonthNames = !isChartMin && (chartShow == YEAR);
-        chartData = loadChartData(withMonthNames);
-        QMetaObject::invokeMethod(this, "onChartRefreshed", Qt::QueuedConnection);
+        if (loadChartData(withMonthNames))
+            QMetaObject::invokeMethod(this, "onChartRefreshed", Qt::QueuedConnection);
     }
 #endif
 }
