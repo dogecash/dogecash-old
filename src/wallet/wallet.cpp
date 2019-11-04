@@ -1499,37 +1499,19 @@ CAmount CWalletTx::GetStakeDelegationDebit(bool fUseCache) const
     return UpdateAmount(nDelegatedDebitCached, fDelegatedDebitCached, fUseCache, ISMINE_SPENDABLE_DELEGATED, false);
 }
 
-CAmount CWalletTx::GetUnspentCredit(const isminefilter& filter) const
+CAmount CWalletTx::GetCredit(const isminefilter& filter, const bool fUnspent) const
 {
     // Must wait until coinbase is safely deep enough in the chain before valuing it
-    if (GetBlocksToMaturity() > 0)
+    if (IsCoinBase() && GetBlocksToMaturity() > 0)
         return 0;
 
-    CAmount credit = 0;
-    if (filter & ISMINE_SPENDABLE) {
-        credit += pwallet->GetCredit(*this, ISMINE_SPENDABLE, true);
-    }
-    if (filter & ISMINE_WATCH_ONLY) {
-        credit += pwallet->GetCredit(*this, ISMINE_WATCH_ONLY, true);
-    }
-    if (filter & ISMINE_COLD) {
-        credit += pwallet->GetCredit(*this, ISMINE_COLD, true);
-    }
-    if (filter & ISMINE_SPENDABLE_DELEGATED) {
-        credit += pwallet->GetCredit(*this, ISMINE_SPENDABLE_DELEGATED, true);
-    }
-    return credit;
-}
-
-CAmount CWalletTx::GetCredit(const isminefilter& filter) const
-{
     CAmount credit = 0;
     if (filter & ISMINE_SPENDABLE) {
         // GetBalance can assume transactions in mapWallet won't change
         if (fCreditCached)
             credit += nCreditCached;
         else {
-            nCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE, false);
+            nCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE, fUnspent);
             fCreditCached = true;
             credit += nCreditCached;
         }
@@ -1538,7 +1520,7 @@ CAmount CWalletTx::GetCredit(const isminefilter& filter) const
         if (fWatchCreditCached)
             credit += nWatchCreditCached;
         else {
-            nWatchCreditCached = pwallet->GetCredit(*this, ISMINE_WATCH_ONLY, false);
+            nWatchCreditCached = pwallet->GetCredit(*this, ISMINE_WATCH_ONLY, fUnspent);
             fWatchCreditCached = true;
             credit += nWatchCreditCached;
         }
@@ -1547,7 +1529,7 @@ CAmount CWalletTx::GetCredit(const isminefilter& filter) const
         if (fColdCreditCached)
             credit += nColdCreditCached;
         else {
-            nColdCreditCached = pwallet->GetCredit(*this, ISMINE_COLD, false);
+            nColdCreditCached = pwallet->GetCredit(*this, ISMINE_COLD, fUnspent);
             fColdCreditCached = true;
             credit += nColdCreditCached;
         }
@@ -1556,7 +1538,7 @@ CAmount CWalletTx::GetCredit(const isminefilter& filter) const
         if (fDelegatedCreditCached)
             credit += nDelegatedCreditCached;
         else {
-            nDelegatedCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE_DELEGATED, false);
+            nDelegatedCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE_DELEGATED, fUnspent);
             fDelegatedCreditCached = true;
             credit += nDelegatedCreditCached;
         }
@@ -1564,13 +1546,13 @@ CAmount CWalletTx::GetCredit(const isminefilter& filter) const
     return credit;
 }
 
-CAmount CWalletTx::GetImmatureCredit(bool fUseCache, const isminefilter& filter) const
+CAmount CWalletTx::GetImmatureCredit(bool fUseCache) const
 {
     LOCK(cs_main);
     if ((IsCoinBase() || IsCoinStake()) && GetBlocksToMaturity() > 0 && IsInMainChain()) {
-        if (fUseCache && fImmatureCreditCached && filter == ISMINE_SPENDABLE_ALL)
+        if (fUseCache && fImmatureCreditCached)
             return nImmatureCreditCached;
-        nImmatureCreditCached = pwallet->GetCredit(*this, filter);
+        nImmatureCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE);
         fImmatureCreditCached = true;
         return nImmatureCreditCached;
     }
@@ -1580,17 +1562,16 @@ CAmount CWalletTx::GetImmatureCredit(bool fUseCache, const isminefilter& filter)
 
 CAmount CWalletTx::GetAvailableCredit(bool fUseCache) const
 {
-    return GetUnspentCredit(ISMINE_SPENDABLE_ALL);
-}
+    return UpdateAmount(nAvailableCreditCached, fAvailableCreditCached, fUseCache, ISMINE_SPENDABLE);}
 
 CAmount CWalletTx::GetColdStakingCredit(bool fUseCache) const
 {
-    return GetUnspentCredit(ISMINE_COLD);
+    return UpdateAmount(nColdCreditCached, fColdCreditCached, fUseCache, ISMINE_COLD);
 }
 
 CAmount CWalletTx::GetStakeDelegationCredit(bool fUseCache) const
 {
-    return GetUnspentCredit(ISMINE_SPENDABLE_DELEGATED);
+    return UpdateAmount(nDelegatedCreditCached, fDelegatedCreditCached, fUseCache, ISMINE_SPENDABLE_DELEGATED);
 }
 
 CAmount CWalletTx::UpdateAmount(CAmount& amountToUpdate, bool& cacheFlagToUpdate, bool fUseCache, isminetype mimeType, bool fCredit) const
@@ -1605,7 +1586,7 @@ CAmount CWalletTx::UpdateAmount(CAmount& amountToUpdate, bool& cacheFlagToUpdate
     if (fUseCache && cacheFlagToUpdate)
         return amountToUpdate;
 
-    amountToUpdate = (fCredit) ? GetCredit(mimeType) : GetDebit(mimeType);
+    amountToUpdate = (fCredit) ? GetCredit(mimeType, true) : GetDebit(mimeType);
     cacheFlagToUpdate = true;
     return amountToUpdate;
 }
@@ -2405,21 +2386,7 @@ CAmount CWallet::GetUnconfirmedBalance() const
 CAmount CWallet::GetImmatureBalance() const
 {
     return loopTxsBalance([](const uint256& id, const CWalletTx& pcoin, CAmount& nTotal) {
-            nTotal += pcoin.GetImmatureCredit(false);
-    });
-}
-
-CAmount CWallet::GetImmatureColdStakingBalance() const
-{
-    return loopTxsBalance([](const uint256& id, const CWalletTx& pcoin, CAmount& nTotal) {
-            nTotal += pcoin.GetImmatureCredit(false, ISMINE_COLD);
-    });
-}
-
-CAmount CWallet::GetImmatureDelegatedBalance() const
-{
-    return loopTxsBalance([](const uint256& id, const CWalletTx& pcoin, CAmount& nTotal) {
-            nTotal += pcoin.GetImmatureCredit(false, ISMINE_SPENDABLE_DELEGATED);
+            nTotal += pcoin.GetImmatureCredit();
     });
 }
 
