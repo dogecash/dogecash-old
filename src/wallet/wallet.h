@@ -375,9 +375,7 @@ public:
     std::map<CKeyID, CHDPubKey> mapHdPubKeys; //<! memory map of HD extended pubkeys
 
     const CWalletTx* GetWalletTx(const uint256& hash) const;
-
     std::vector<CWalletTx> getWalletTxs();
-
 
     void PrecomputeSpends();
 
@@ -405,6 +403,8 @@ public:
     //  keystore implementation
     // Generate a new key
     CPubKey GenerateNewKey(uint32_t nAccountIndex, bool fInternal = false);
+    int64_t GetKeyCreationTime(CPubKey pubkey);
+    int64_t GetKeyCreationTime(const CBitcoinAddress& address);
     //! HaveKey implementation that also checks the mapHdPubKeys
     bool HaveKey(const CKeyID &address) const;
     //! GetPubKey implementation that also checks the mapHdPubKeys
@@ -416,8 +416,7 @@ public:
     //! loads a HDPubKey into the wallets memory
     bool LoadHDPubKey(const CHDPubKey &hdPubKey);
     CBitcoinAddress GenerateNewAutoMintKey();
-    int64_t GetKeyCreationTime(CPubKey pubkey);
-    int64_t GetKeyCreationTime(const CBitcoinAddress& address);
+
     //! Adds a key to the store, and saves it to disk.
     bool AddKeyPubKey(const CKey& key, const CPubKey& pubkey);
     //! Adds a key to the store, without saving it to disk (used by LoadWallet)
@@ -480,8 +479,10 @@ public:
     CAmount loopTxsBalance(std::function<void(const uint256&, const CWalletTx&, CAmount&)>method) const;
     CAmount GetBalance() const;
     CAmount GetColdStakingBalance() const;  // delegated coins for which we have the staking key
+    CAmount GetImmatureColdStakingBalance() const;
     CAmount GetStakingBalance(const bool fIncludeColdStaking = true) const;
     CAmount GetDelegatedBalance() const;    // delegated coins for which we have the spending key
+    CAmount GetImmatureDelegatedBalance() const;
     CAmount GetZerocoinBalance(bool fMatureOnly) const;
     CAmount GetUnconfirmedZerocoinBalance() const;
     CAmount GetImmatureZerocoinBalance() const;
@@ -885,8 +886,9 @@ public:
 
     //! filter decides which addresses will count towards the debit
     CAmount GetDebit(const isminefilter& filter) const;
-    CAmount GetCredit(const isminefilter& filter, const bool fUnspent = false) const;
-    CAmount GetImmatureCredit(bool fUseCache = true) const;
+    CAmount GetCredit(const isminefilter& filter) const;
+    CAmount GetUnspentCredit(const isminefilter& filter) const;
+    CAmount GetImmatureCredit(bool fUseCache = true, const isminefilter& filter = ISMINE_SPENDABLE_ALL) const;
     CAmount GetAvailableCredit(bool fUseCache = true) const;
     CAmount GetAnonymizableCredit(bool fUseCache = true) const;
     CAmount GetAnonymizedCredit(bool fUseCache = true) const;

@@ -4,8 +4,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DOGECASH_QT_WALLETMODEL_H
-#define DOGECASH_QT_WALLETMODEL_H
+#ifndef PIVX_QT_WALLETMODEL_H
+#define PIVX_QT_WALLETMODEL_H
 
 #include "askpassphrasedialog.h"
 #include "paymentrequestplus.h"
@@ -98,7 +98,7 @@ public:
     }
 };
 
-/** Interface to DogeCash wallet from Qt view code. */
+/** Interface to PIVX wallet from Qt view code. */
 class WalletModel : public QObject
 {
     Q_OBJECT
@@ -154,7 +154,7 @@ public:
     void decryptKey(const std::vector<unsigned char>& crypted, const std::string& slt, const std::string& pwd, CKey& key);
     void emitBalanceChanged(); // Force update of UI-elements even when no values have changed
 
-    // return minted zDOGEC
+    // return minted zPIV
     bool getMint(const uint256& hashSerial, CZerocoinMint& mint);
 
     // Check address for validity
@@ -177,7 +177,7 @@ public:
 
     // Send coins to a list of recipients
     SendCoinsReturn sendCoins(WalletModelTransaction& transaction);
-    // Mint zDOGEC
+    // Mint zPIV
     bool mintCoins(CAmount value, CCoinControl* coinControl, std::string &strError);
 
     bool createZdogecSpend(
@@ -204,8 +204,7 @@ public:
             std::vector<CZerocoinMint> &vMintsSelected,
             bool fMintChange,
             bool fMinimizeChange,
-            CZerocoinSpendReceipt &receipt,
-            CBitcoinAddress addressTo
+            CZerocoinSpendReceipt &receipt
     );
 
     // Wallet encryption
@@ -356,4 +355,4 @@ public slots:
     bool updateAddressBookLabels(const CTxDestination& address, const std::string& strName, const std::string& strPurpose);
 };
 
-#endif // DOGECASH_QT_WALLETMODEL_H
+#endif // PIVX_QT_WALLETMODEL_H

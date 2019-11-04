@@ -92,18 +92,6 @@ const CWalletTx* CWallet::GetWalletTx(const uint256& hash) const
     return &(it->second);
 }
 
-std::vector<CWalletTx> CWallet::getWalletTxs()
-{
-    LOCK(cs_wallet);
-    std::vector<CWalletTx> result;
-    result.reserve(mapWallet.size());
-    for (const auto& entry : mapWallet) {
-        result.emplace_back(entry.second);
-    }
-    return result;
-}
-
-
 CPubKey CWallet::GenerateNewKey(uint32_t nAccountIndex, bool fInternal)
 {
     AssertLockHeld(cs_wallet);                                 // mapKeyMetadata
@@ -139,23 +127,6 @@ CPubKey CWallet::GenerateNewKey(uint32_t nAccountIndex, bool fInternal)
             throw std::runtime_error(std::string(__func__) + ": AddKey failed");
     }
     return pubkey;
-}
-
-int64_t CWallet::GetKeyCreationTime(CPubKey pubkey)
-{
-    return mapKeyMetadata[pubkey.GetID()].nCreateTime;
-}
-
-int64_t CWallet::GetKeyCreationTime(const CBitcoinAddress& address)
-{
-    CKeyID keyID;
-    if (address.GetKeyID(keyID)) {
-        CPubKey keyRet;
-        if (GetPubKey(keyID, keyRet)) {
-            return GetKeyCreationTime(keyRet);
-        }
-    }
-    return 0;
 }
 
 CBitcoinAddress CWallet::GenerateNewAutoMintKey()
@@ -1528,7 +1499,7 @@ CAmount CWalletTx::GetStakeDelegationDebit(bool fUseCache) const
     return UpdateAmount(nDelegatedDebitCached, fDelegatedDebitCached, fUseCache, ISMINE_SPENDABLE_DELEGATED, false);
 }
 
-CAmount CWalletTx::GetCredit(const isminefilter& filter, const bool fUnspent) const
+CAmount CWalletTx::GetUnspentCredit(const isminefilter& filter) const
 {
     // Must wait until coinbase is safely deep enough in the chain before valuing it
     if (GetBlocksToMaturity() > 0)
@@ -1558,7 +1529,7 @@ CAmount CWalletTx::GetCredit(const isminefilter& filter) const
         if (fCreditCached)
             credit += nCreditCached;
         else {
-            nCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE, fUnspent);
+            nCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE, false);
             fCreditCached = true;
             credit += nCreditCached;
         }
@@ -1567,7 +1538,7 @@ CAmount CWalletTx::GetCredit(const isminefilter& filter) const
         if (fWatchCreditCached)
             credit += nWatchCreditCached;
         else {
-            nWatchCreditCached = pwallet->GetCredit(*this, ISMINE_WATCH_ONLY, fUnspent);
+            nWatchCreditCached = pwallet->GetCredit(*this, ISMINE_WATCH_ONLY, false);
             fWatchCreditCached = true;
             credit += nWatchCreditCached;
         }
@@ -1576,7 +1547,7 @@ CAmount CWalletTx::GetCredit(const isminefilter& filter) const
         if (fColdCreditCached)
             credit += nColdCreditCached;
         else {
-            nColdCreditCached = pwallet->GetCredit(*this, ISMINE_COLD, fUnspent);
+            nColdCreditCached = pwallet->GetCredit(*this, ISMINE_COLD, false);
             fColdCreditCached = true;
             credit += nColdCreditCached;
         }
@@ -1585,7 +1556,7 @@ CAmount CWalletTx::GetCredit(const isminefilter& filter) const
         if (fDelegatedCreditCached)
             credit += nDelegatedCreditCached;
         else {
-            nDelegatedCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE_DELEGATED, fUnspent);
+            nDelegatedCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE_DELEGATED, false);
             fDelegatedCreditCached = true;
             credit += nDelegatedCreditCached;
         }
@@ -1609,16 +1580,17 @@ CAmount CWalletTx::GetImmatureCredit(bool fUseCache, const isminefilter& filter)
 
 CAmount CWalletTx::GetAvailableCredit(bool fUseCache) const
 {
-    return UpdateAmount(nAvailableCreditCached, fAvailableCreditCached, fUseCache, ISMINE_SPENDABLE);}
+    return GetUnspentCredit(ISMINE_SPENDABLE_ALL);
+}
 
 CAmount CWalletTx::GetColdStakingCredit(bool fUseCache) const
 {
-    return UpdateAmount(nColdCreditCached, fColdCreditCached, fUseCache, ISMINE_COLD);
+    return GetUnspentCredit(ISMINE_COLD);
 }
 
 CAmount CWalletTx::GetStakeDelegationCredit(bool fUseCache) const
 {
-    return UpdateAmount(nDelegatedCreditCached, fDelegatedCreditCached, fUseCache, ISMINE_SPENDABLE_DELEGATED);
+    return GetUnspentCredit(ISMINE_SPENDABLE_DELEGATED);
 }
 
 CAmount CWalletTx::UpdateAmount(CAmount& amountToUpdate, bool& cacheFlagToUpdate, bool fUseCache, isminetype mimeType, bool fCredit) const
@@ -1633,7 +1605,7 @@ CAmount CWalletTx::UpdateAmount(CAmount& amountToUpdate, bool& cacheFlagToUpdate
     if (fUseCache && cacheFlagToUpdate)
         return amountToUpdate;
 
-    amountToUpdate = (fCredit) ? GetCredit(mimeType, true) : GetDebit(mimeType);
+    amountToUpdate = (fCredit) ? GetCredit(mimeType) : GetDebit(mimeType);
     cacheFlagToUpdate = true;
     return amountToUpdate;
 }
@@ -2433,7 +2405,7 @@ CAmount CWallet::GetUnconfirmedBalance() const
 CAmount CWallet::GetImmatureBalance() const
 {
     return loopTxsBalance([](const uint256& id, const CWalletTx& pcoin, CAmount& nTotal) {
-            nTotal += pcoin.GetImmatureCredit();
+            nTotal += pcoin.GetImmatureCredit(false);
     });
 }
 
@@ -2739,6 +2711,34 @@ bool CWallet::SelectStakeCoins(std::list<std::unique_ptr<CStakeInput> >& listInp
     }
 
     return true;
+}
+
+std::vector<CWalletTx> CWallet::getWalletTxs()
+{
+    LOCK(cs_wallet);
+    std::vector<CWalletTx> result;
+    result.reserve(mapWallet.size());
+    for (const auto& entry : mapWallet) {
+        result.emplace_back(entry.second);
+    }
+    return result;
+}
+
+int64_t CWallet::GetKeyCreationTime(CPubKey pubkey)
+{
+    return mapKeyMetadata[pubkey.GetID()].nCreateTime;
+}
+
+int64_t CWallet::GetKeyCreationTime(const CBitcoinAddress& address)
+{
+    CKeyID keyID;
+    if (address.GetKeyID(keyID)) {
+        CPubKey keyRet;
+        if (GetPubKey(keyID, keyRet)) {
+            return GetKeyCreationTime(keyRet);
+        }
+    }
+    return 0;
 }
 
 bool CWallet::MintableCoins()
@@ -5337,8 +5337,7 @@ bool CWallet::CreateZerocoinSpendTransaction(
         bool fMinimizeChange,
         std::list<std::pair<CBitcoinAddress*,CAmount>> addressesTo,
         CBitcoinAddress* changeAddress,
-        bool isPublicSpend)
-{
+        bool isPublicSpend){
     // Check available funds
     int nStatus = zdogec_TRX_FUNDS_PROBLEMS;
     if (nValue > GetZerocoinBalance(true)) {
@@ -5478,7 +5477,7 @@ bool CWallet::CreateZerocoinSpendTransaction(
                 return false;
             }
 
-            if (nChange > 0 && !changeAddress && addressesTo.size() == 0) {
+            if (nChange > 0 && !changeAddress) {
                 receipt.SetStatus(_("Need address because change is not exact"), nStatus);
                 return false;
             }

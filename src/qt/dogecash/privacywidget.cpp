@@ -292,9 +292,7 @@ void PrivacyWidget::spend(CAmount value){
             selectedMints,
             mintChange,
             minimizeChange,
-            receipt,
-            walletModel->getNewAddress()
-    )){
+            receipt    )){
         inform(receipt.GetStatusMessage().data());
     }else{
         // Spend succeed
