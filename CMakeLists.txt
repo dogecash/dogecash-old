@@ -21,6 +21,8 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set(ENV{CPPFLAGS} "-I${OPENSSL_ROOT_DIR}/include")
     set(ENV{LDFLAGS} "-L${OPENSSL_ROOT_DIR}/lib")
     set(BerkeleyDB_ROOT_DIR "/usr/local/Cellar/berkeley-db@4/${BDB_VER}/")
+    set(Boost_USE_MULTITHREADED ON)
+    set(Boost_NO_BOOST_CMAKE ON)
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     set(ENV{target} "Linux")
     file(READ "/proc/version" _SYS_VERSION)
@@ -211,8 +213,8 @@ set(libleveldb_a_sources
 set(libleveldb_cpp_flags)
 if($ENV{target} MATCHES "Windows")
     set(libleveldb_cpp_flags -DOS_WINDOWS -DLEVELDB_PLATFORM_WINDOWS -DWINVER=0x0500 -D__USE_MINGW_ANSI_STDIO=1)
-    set(libleveldb_a_sources ${libleveldb_a_sources ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/util/env_win.cc)
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/port/port_win.cc)
+    set(libleveldb_a_sources ${libleveldb_a_sources} ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/util/env_win.cc
+            ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/port/port_win.cc)
 else()
     if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         set(libleveldb_cpp_flags -DOS_MACOSX -DLEVELDB_PLATFORM_POSIX)
@@ -517,7 +519,7 @@ link_directories(
         ${CMAKE_SOURCE_DIR}/src/secp256k1/.libs
         )
 
-add_executable(dogecash-cli ${CMAKE_CURRENT_SOURCE_DIR}/src/dogecash-cli.cpp)
+set(dogecash-cli_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/dogecash-cli.cpp)
 if($ENV{target} MATCHES "Windows")
     list(APPEND dogecash-cli_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/dogecash-cli-res.rc)
 endif()
