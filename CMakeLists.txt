@@ -356,7 +356,6 @@ set(WALLET_SOURCES
         ./src/wallet/walletdb.cpp
         ./src/zdogec/zdogecwallet.cpp
         ./src/zdogec/zdogectracker.cpp
-        ./src/zdogec/zdogecmodule.cpp
         ./src/stakeinput.cpp
         ./src/genwit.cpp
         ./src/lightzdogecthread.cpp
