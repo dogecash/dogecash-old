@@ -2675,9 +2675,9 @@ QPushButton[cssClass="ic-step-confirm-welcome"] {
     background-image: url("://ic-check-white");
     background-position:center;
     background-repeat:no-repeat;
-    border:  1px solid #6C529D;
+    border:  1px solid rgb(126, 88, 66);
     border-radius:11px;
-    background-color:#6C529D;
+    background-color: rgb(126, 88, 66);
 }
 
 *[cssClass="text-title-welcome"] {
