@@ -405,7 +405,7 @@ UniValue dumphdinfo(const UniValue& params, bool fHelp)
 UniValue dumpwallet(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
-        throw runtime_error(
+        throw std::runtime_error(
             "dumpwallet \"filename\"\n"
             "\nDumps all wallet keys in a human-readable format.\n" +
             HelpRequiringPassphrase() + "\n"
@@ -415,76 +415,6 @@ UniValue dumpwallet(const UniValue& params, bool fHelp)
 
             "\nExamples:\n" +
             HelpExampleCli("dumpwallet", "\"test\"") + HelpExampleRpc("dumpwallet", "\"test\""));
-
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    EnsureWalletIsUnlocked();
-
-    boost::filesystem::path filepath = params[0].get_str().c_str();
-    filepath = boost::filesystem::absolute(filepath);
-
-    ofstream file;
-    file.open(params[0].get_str().c_str());
-    if (!file.is_open())
-        throw JSONRPCError(RPC_INVALID_PARAMETER, "Cannot open wallet dump file");
-
-    std::map<CKeyID, int64_t> mapKeyBirth;
-    std::set<CKeyID> setKeyPool;
-    pwalletMain->GetKeyBirthTimes(mapKeyBirth);
-    pwalletMain->GetAllReserveKeys(setKeyPool);
-
-    // sort time/key pairs
-    std::vector<std::pair<int64_t, CKeyID> > vKeyBirth;
-    for (std::map<CKeyID, int64_t>::const_iterator it = mapKeyBirth.begin(); it != mapKeyBirth.end(); it++) {
-        vKeyBirth.push_back(std::make_pair(it->second, it->first));
-    }
-    mapKeyBirth.clear();
-    std::sort(vKeyBirth.begin(), vKeyBirth.end());
-
-    // produce output
-    file << strprintf("# Wallet dump created by dogecash %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
-    file << strprintf("# * Created on %s\n", EncodeDumpTime(GetTime()));
-    file << strprintf("# * Best block at time of backup was %i (%s),\n", chainActive.Height(), chainActive.Tip()->GetBlockHash().ToString());
-    file << strprintf("#   mined on %s\n", EncodeDumpTime(chainActive.Tip()->GetBlockTime()));
-    file << "\n";
-    for (std::vector<std::pair<int64_t, CKeyID> >::const_iterator it = vKeyBirth.begin(); it != vKeyBirth.end(); it++) {
-        const CKeyID& keyid = it->second;
-        std::string strTime = EncodeDumpTime(it->first);
-        std::string strAddr = CBitcoinAddress(keyid).ToString();
-        CKey key;
-        if (pwalletMain->GetKey(keyid, key)) {
-            if (pwalletMain->mapAddressBook.count(keyid)) {
-                file << strprintf("%s %s label=%s # addr=%s\n", CBitcoinSecret(key).ToString(), strTime, EncodeDumpString(pwalletMain->mapAddressBook[keyid].name), strAddr);
-            } else if (setKeyPool.count(keyid)) {
-                file << strprintf("%s %s reserve=1 # addr=%s\n", CBitcoinSecret(key).ToString(), strTime, strAddr);
-            } else {
-                file << strprintf("%s %s change=1 # addr=%s\n", CBitcoinSecret(key).ToString(), strTime, strAddr);
-            }
-        }
-    }
-    file << "\n";
-    file << "# End of dump\n";
-    file.close();
-
-    UniValue reply(UniValue::VOBJ);
-    reply.push_back(Pair("filename", filepath.string()));
-
-    return reply;
-}
-
-UniValue dumpwallethd(const UniValue& params, bool fHelp)
-{
-    if (fHelp || params.size() != 1)
-        throw std::runtime_error(
-            "dumpwallethd \"filename\"\n"
-            "\nDumps all wallet keys in a human-readable format.\n" +
-            HelpRequiringPassphrase() + "\n"
-
-            "\nArguments:\n"
-            "1. \"filename\"    (string, required) The filename\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("dumpwallethd", "\"test\"") + HelpExampleRpc("dumpwallethd", "\"test\""));
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
     EnsureWalletIsUnlocked();
@@ -570,6 +500,7 @@ UniValue dumpwallethd(const UniValue& params, bool fHelp)
     reply.push_back(Pair("filename", filepath.string()));
     return reply;
 }
+
 UniValue bip38encrypt(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
