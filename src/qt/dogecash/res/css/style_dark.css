@@ -1064,7 +1064,7 @@ QPushButton[cssClass="btn-check-right"]:hover {
 
 QPushButton[cssClass="btn-check-right"]:pressed {
     border:  1px solid #7d644b;
-    background-color:#ffcd88;
+    background-color:#4Dffcd88;
     font-size:18px;
     color: #707070;
     border-top-right-radius:2px;
@@ -1086,7 +1086,7 @@ QPushButton[cssClass="btn-check-right"]:checked:hover {
     background-color:#b78e6f;
     font-size:18px;
     padding:4px;
-    color: #707070;
+    color: #FFFFFF;
     border-top-right-radius:2px;
     border-bottom-right-radius:2px;
 }
@@ -1123,7 +1123,7 @@ QPushButton[cssClass="btn-check-left"]:hover {
 
 QPushButton[cssClass="btn-check-left"]:pressed {
     border:  1px solid #7d644b;
-    background-color:#ffcd88;
+    background-color:#4Dffcd88;
     font-size:18px;
     color: #707070;
     border-top-left-radius:2px;
@@ -1278,7 +1278,7 @@ QPushButton[cssClass="btn-secondary"]:hover {
 
 QPushButton[cssClass="btn-secondary"]:pressed {
     border:  1px solid #9c7019;
-    background-color:#ffcd88;
+    background-color:#4Dffcd88;
     font-size:18px;
     padding:4px 10px;
     color: #9c7019;
@@ -1457,7 +1457,7 @@ QPushButton[cssClass="btn-secondary-clear"]:hover {
 
 QPushButton[cssClass="btn-secondary-clear"]:pressed {
     border:  1px solid #9c7019;
-    background-color:#ffcd88;
+    background-color:#4Dffcd88;
 }
 
 QPushButton[cssClass="btn-secondary-new-address"] {
@@ -1482,7 +1482,7 @@ QPushButton[cssClass="btn-secondary-new-address"]:hover {
 
 QPushButton[cssClass="btn-secondary-new-address"]:pressed {
     border:  1px solid #9c7019;
-    background-color:#ffcd88;
+    background-color:#4Dffcd88;
 }
 
 QPushButton[cssClass="btn-secondary-label"] {
@@ -1507,7 +1507,7 @@ QPushButton[cssClass="btn-secondary-label"]:hover {
 
 QPushButton[cssClass="btn-secondary-label"]:pressed {
     border:  1px solid #9c7019;
-    background-color:#ffcd88;
+    background-color:#4Dffcd88;
 }
 
 QPushButton[cssClass="btn-secondary-copy"] {
@@ -1533,7 +1533,7 @@ QPushButton[cssClass="btn-secondary-copy"]:hover {
 
 QPushButton[cssClass="btn-secondary-copy"]:pressed {
     border:  1px solid #9c7019;
-    background-color:#ffcd88;
+    background-color:#4Dffcd88;
 }
 
 
@@ -1560,7 +1560,7 @@ QPushButton[cssClass="btn-secondary-add"]:hover {
 
 QPushButton[cssClass="btn-secondary-add"]:pressed {
     border:  1px solid #9c7019;
-    background-color:#ffcd88;
+    background-color:#4Dffcd88;
 }
 
 
@@ -1877,7 +1877,7 @@ QPushButton[cssClass="btn-check-time"]:checked {
 }
 
 QPushButton[cssClass="btn-check-time"]:hover {
-    background-color:#7d714b;
+    background-color:#B37d714b;
     border-radius:2px;
     font-size:14px;
     padding:4px;
@@ -2942,7 +2942,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     background-color:#16110b;;
     background-position:center;
     background-repeat:no-repeat;
-    selection-background-color:#9c7019;
+    selection-background-color:#ff6d3388;
 
     selection-color: white;
     font-size:14px;
@@ -3011,7 +3011,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     border-bottom: 1px solid #40ffffff;
     border-radius:0px;
     color: #ffffff;
-    background-color:#9c7019;
+    background-color:#ba5c26ba;
 }
 
 #treeWidget::item:selected {
@@ -3019,7 +3019,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     border-bottom: 1px solid #40ffffff;
     border-radius:0px;
     color: #ffffff;
-    background-color:#9c7019;
+    background-color:#ff6d3388;
 
 }
 
@@ -3029,29 +3029,29 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     border-bottom: 1px solid #40ffffff;
     border-radius:0px;
     color: #ffffff;
-    background-color:#9c7019;
+    background-color:#ff6d3388;
 
 }
 
 
 #treeWidget::branch {
     background-color: #16110b;
-    selection-background-color:#9c7019;
+    selection-background-color:#ff6d3388;
 
 }
 
 #treeWidget::branch:selected {
-    background-color:#9c7019;
+    background-color:#ff6d3388;
 
 }
 
 #treeWidget::branch:!selected {
-    background-color:#9c7019;
+    background-color:#ff6d3388;
 
 }
 
 #treeWidget::branch:hover {
-    background-color:#260f0b;
+    background-color:#260f0b16;
 }
 
 #treeWidget::branch:!has-children {

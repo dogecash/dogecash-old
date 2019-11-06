@@ -157,17 +157,17 @@ void updateStyle(QWidget* widget){
 QColor getRowColor(bool isLightTheme, bool isHovered, bool isSelected){
     if(isLightTheme){
         if (isSelected) {
-            return QColor("#ffc488");
+            return QColor("#25ffcd88");
         }else if(isHovered){
-            return QColor("#bababa");
+            return QColor("#25bababa");
         } else{
             return QColor("#ffffff");
         }
     }else{
         if (isSelected) {
-            return QColor("#ffc488");
+            return QColor("#25ffcd88");
         }else if(isHovered){
-            return QColor("#bababa");
+            return QColor("#25bababa");
         } else{
             return QColor("#16110b");
         }

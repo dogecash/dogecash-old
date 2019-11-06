@@ -2919,7 +2919,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     background-color:#FFFFFF;
     background-position:center;
     background-repeat:no-repeat;
-    selection-background-color:#7d644b;
+    selection-background-color:#ff6d3388;
 
     selection-color: white;
     font-size:14px;
@@ -2988,15 +2988,15 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     border-bottom: 1px solid #bababa;
     border-radius:0px;
     color: #707070;
-    background-color:#7d644b;
+    background-color:#ba5c26ba;
 }
 
 #treeWidget::item:selected {
     border:none;
     border-bottom: 1px solid #bababa;
     border-radius:0px;
-    color: #3f3f3f;
-    background-color:#7d644b;
+    color: #707070;
+    background-color:#ff6d3388;
 
 }
 
@@ -3006,29 +3006,29 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     border-bottom: 1px solid #bababa;
     border-radius:0px;
     color: #707070;
-    background-color:#9c7019;
+    background-color:#ff6d3388;
 
 }
 
 
 #treeWidget::branch {
     background-color: #FFFFFF;
-    selection-background-color:#9c7019;
+    selection-background-color:#ff6d3388;
 
 }
 
 #treeWidget::branch:selected {
-    background-color:#9c7019;
+    background-color:#ff6d3388;
 
 }
 
 #treeWidget::branch:!selected {
-    background-color:#9c7019;
+    background-color:#ff6d3388;
 
 }
 
 #treeWidget::branch:hover {
-    background-color:#9c7019;
+    background-color:#ba5c26ba;
 }
 
 #treeWidget::branch:!has-children {
