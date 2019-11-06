@@ -549,7 +549,7 @@ public:
         labelTitle1->setText(QApplication::translate("WelcomeContentWidget", "Select your language", Q_NULLPTR));
         labelTitle2->setText(QApplication::translate("WelcomeContentWidget", "Welcome to\n"
 "DogeCash Core Wallet", Q_NULLPTR));
-        labelMessage2->setText(QApplication::translate("WelcomeContentWidget", "DogeCash (DOGEC) is a transparent, community governed cryptocurrency aimed at preserving what makes DogeCoin unique while offering an alternative way for the average investor to get involved. This is done through the creation of DogeNodes, utilization of Proof of Stake, and active governance.", Q_NULLPTR));
+        labelMessage2->setText(QApplication::translate("WelcomeContentWidget", "DogeCash is the world\342\200\231s most advanced privacy-enabled Proof of Stake blockchain technology, all developed by a team of highly experienced developers and cryptographers.", Q_NULLPTR));
         labelTitle3->setText(QApplication::translate("WelcomeContentWidget", "How DogeCash respects your privacy?", Q_NULLPTR));
         labelMessage3->setText(QApplication::translate("WelcomeContentWidget", "<html><head/><body><p>As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom the share their data whenever and with whomever they want - DogeCash believes in self sovereignty</p></body></html>", Q_NULLPTR));
         labelTitle4->setText(QApplication::translate("WelcomeContentWidget", "What is a Masternode?", Q_NULLPTR));

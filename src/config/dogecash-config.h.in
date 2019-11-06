@@ -409,8 +409,8 @@
 /* Define this symbol to use openssl implementation */
 #undef USE_NUM_OPENSSL
 
-/* Define if QR support should be compiled in */
-#undef USE_QRCODE
+/* Define if QTCHARTS support should be compiled in */
+#undef USE_QTCHARTS
 
 /* UPnP support not compiled if undefined, otherwise value (0 or 1) determines
    default state */
