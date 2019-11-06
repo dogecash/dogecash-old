@@ -11,6 +11,8 @@
 #include <QSettings>
 #include <QStringList>
 
+#include <iostream>
+
 BitcoinUnits::BitcoinUnits(QObject* parent) : QAbstractListModel(parent),
                                               unitlist(availableUnits())
 {
@@ -41,37 +43,39 @@ QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
     case DOGEC:
-        return QString("DogeCash");
+        return QString("dogecash");
     case mDOGEC:
-        return QString("mDogeCash");
+        return QString("mdogecash");
     case uDOGEC:
-        return QString::fromUtf8("uDogeCash");
+        return QString::fromUtf8("udogecash");
     default:
         return QString("???");
     }
 }
 
-QString BitcoinUnits::name(int unit)
+QString BitcoinUnits::name(int unit, bool isZdogec)
 {
+    QString z = "";
+    if(isZdogec) z = "z";
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
         case DOGEC:
-            return QString("DOGEC");
+            return z + QString("DOGEC");
         case mDOGEC:
-            return QString("mDOGEC");
+            return z + QString("mDOGEC");
         case uDOGEC:
-            return QString::fromUtf8("μDOGEC");
+            return z + QString::fromUtf8("μDOGEC");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
         case DOGEC:
-            return QString("tDOGEC");
+            return z + QString("tDOGEC");
         case mDOGEC:
-            return QString("mtDOGEC");
+            return z + QString("mtDOGEC");
         case uDOGEC:
-            return QString::fromUtf8("μtDOGEC");
+            return z + QString::fromUtf8("μtDOGEC");
         default:
             return QString("???");
         }
@@ -133,12 +137,13 @@ int BitcoinUnits::decimals(int unit)
     }
 }
 
-QString BitcoinUnits::format(int unit, const CAmount& nIn, bool fPlus, SeparatorStyle separators)
+QString BitcoinUnits::format(int unit, const CAmount& nIn, bool fPlus, SeparatorStyle separators, bool cleanRemainderZeros)
 {
     // Note: not using straight sprintf here because we do NOT want
     // localized number formatting.
-    if (!valid(unit))
+    if (!valid(unit)){
         return QString(); // Refuse to format invalid unit
+    }
     qint64 n = (qint64)nIn;
     qint64 coin = factor(unit);
     int num_decimals = decimals(unit);
@@ -163,6 +168,18 @@ QString BitcoinUnits::format(int unit, const CAmount& nIn, bool fPlus, Separator
 
     if (num_decimals <= 0)
         return quotient_str;
+
+    if(cleanRemainderZeros) {
+        // Clean remainder
+        QString cleanRemainder = remainder_str;
+        for (int i = (remainder_str.length() - 1); i > 1; i--) {
+            if (remainder_str.at(i) == QChar('0')) {
+                cleanRemainder = cleanRemainder.left(cleanRemainder.lastIndexOf("0"));
+            } else
+                break;
+        }
+        return quotient_str + QString(".") + cleanRemainder;
+    }
 
     return quotient_str + QString(".") + remainder_str;
 }
@@ -191,25 +208,34 @@ QString BitcoinUnits::formatWithUnit(int unit, const CAmount& amount, bool pluss
 QString BitcoinUnits::formatHtmlWithUnit(int unit, const CAmount& amount, bool plussign, SeparatorStyle separators)
 {
     QString str(formatWithUnit(unit, amount, plussign, separators));
-    str.replace(QChar(THIN_SP_CP), QString(THIN_SP_HTML));
+    str.replace(QChar(THIN_SP_CP), QString(COMMA_HTML));
     return QString("<span style='white-space: nowrap;'>%1</span>").arg(str);
 }
 
-QString BitcoinUnits::floorWithUnit(int unit, const CAmount& amount, bool plussign, SeparatorStyle separators)
+QString BitcoinUnits::floorWithUnit(int unit, const CAmount& amount, bool plussign, SeparatorStyle separators, bool cleanRemainderZeros, bool isZDOGEC)
 {
     QSettings settings;
     int digits = settings.value("digits").toInt();
 
-    QString result = format(unit, amount, plussign, separators);
-    if (decimals(unit) > digits) result.chop(decimals(unit) - digits);
+    QString result = format(unit, amount, plussign, separators, cleanRemainderZeros);
+    if(decimals(unit) > digits) {
+        if (!cleanRemainderZeros) {
+            result.chop(decimals(unit) - digits);
+        } else {
+            int lenght = result.mid(result.indexOf("."), result.length() - 1).length() - 1;
+            if (lenght > digits) {
+                result.chop(lenght - digits);
+            }
+        }
+    }
 
-    return result + QString(" ") + name(unit);
+    return result + QString(" ") + name(unit, isZDOGEC);
 }
 
-QString BitcoinUnits::floorHtmlWithUnit(int unit, const CAmount& amount, bool plussign, SeparatorStyle separators)
+QString BitcoinUnits::floorHtmlWithUnit(int unit, const CAmount& amount, bool plussign, SeparatorStyle separators, bool cleanRemainderZeros, bool isZDOGEC)
 {
-    QString str(floorWithUnit(unit, amount, plussign, separators));
-    str.replace(QChar(THIN_SP_CP), QString(THIN_SP_HTML));
+    QString str(floorWithUnit(unit, amount, plussign, separators, cleanRemainderZeros, isZDOGEC));
+    str.replace(QChar(THIN_SP_CP), QString(COMMA_HTML));
     return QString("<span style='white-space: nowrap;'>%1</span>").arg(str);
 }
 

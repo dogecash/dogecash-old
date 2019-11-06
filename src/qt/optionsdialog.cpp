@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -47,7 +47,7 @@ OptionsDialog::OptionsDialog(QWidget* parent, bool enableWallet) : QDialog(paren
     ui->threadsScriptVerif->setMinimum(-(int)boost::thread::hardware_concurrency());
     ui->threadsScriptVerif->setMaximum(MAX_SCRIPTCHECK_THREADS);
 
-/* Network elements init */
+    /* Network elements init */
 #ifndef USE_UPNP
     ui->mapPortUpnp->setEnabled(false);
 #endif
@@ -68,9 +68,12 @@ OptionsDialog::OptionsDialog(QWidget* parent, bool enableWallet) : QDialog(paren
     ui->tabWidget->removeTab(ui->tabWidget->indexOf(ui->tabWindow));
 #endif
 
-    /* remove Wallet tab in case of -disablewallet */
+    /* remove Wallet tab and zDogeC options in case of -disablewallet */
     if (!enableWallet) {
         ui->tabWidget->removeTab(ui->tabWidget->indexOf(ui->tabWallet));
+
+        ui->verticalZdogecOptionsWidget->hide();
+        ui->verticalZdogecDisplayWidget->hide();
     }
 
     /* Display elements init */

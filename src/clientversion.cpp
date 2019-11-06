@@ -1,14 +1,13 @@
 // Copyright (c) 2012-2017 The Bitcoin Core developers
-// Copyright (c) 2016-2017 The PIVX developers
+// Copyright (c) 2016-2018 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "clientversion.h"
-
+#include "utilsplitstring.h"
 #include "tinyformat.h"
 
-#include <utilstrencodings.h>
-#include <utilsplitstring.h>
+
 /**
  * Name of client reported in the 'version' message. Report the same name
  * for both dogecashd and dogecash-qt, to make it harder for attackers to
@@ -43,10 +42,11 @@ const std::string CLIENT_NAME("DogeCash Core");
 #include "obj/build.h"
 #endif
 
-//! git will put "#define GIT_ARCHIVE 1" on the next line inside archives. $Format:%n#define GIT_ARCHIVE 1$
+//! git will put "#define GIT_ARCHIVE 1" on the next line inside archives. 
+#define GIT_ARCHIVE 1
 #ifdef GIT_ARCHIVE
-#define GIT_COMMIT_ID "$Format:%H$"
-#define GIT_COMMIT_DATE "$Format:%cD$"
+#define GIT_COMMIT_ID "e815815fdc6a048cde1d95047ba820be40d94c86"
+#define GIT_COMMIT_DATE "Tue, 10 Sep 2019 09:18:13 +0200"
 #endif
 
 #define BUILD_DESC_WITH_SUFFIX(maj, min, rev, build, suffix) \
@@ -92,6 +92,11 @@ std::string FormatFullVersion()
     return CLIENT_BUILD;
 }
 
+std::string FormatVersionFriendly()
+{
+    return FormatVersion(CLIENT_VERSION);
+}
+
 /** 
  * Format the subversion field according to BIP 14 spec (https://github.com/bitcoin/bips/blob/master/bip-0014.mediawiki) 
  */
@@ -110,28 +115,33 @@ std::string FormatSubVersion(const std::string& name, int nClientVersion, const 
     ss << "/";
     return ss.str();
 }
-
 /**
- * Split the Sub Version string such as /DogeCash Core:x.y.z/
-* in order to get integer version number
-*/
+ * Split the Sub Version string such as /DogeCash Core:1.0.1(EB32.0)/
+ * in order to get integer version number
+ */
+int UnformatSubVersion(const std::string &name) {
 
-	int UnformatSubVersion(const std::string &name) {
-	    std::vector<std::string> split1;
-	    std::vector<std::string> split2;
-	    std::vector<std::string> ver_str;
-	
-	    // throw away /DeVault Core: part
-	    Split(split1, name, ":");
-	    // throw away (.../ part
-	    Split(split2, split1[1], "(");
-	    // Get individual numbers
-	    Split(ver_str, split2[0], ".");
-	
-	    if (ver_str.size() == 3) {
-	        int CLIENT_VER =  1000000 * std::stoi(ver_str[0]) + 10000 * std::stoi(ver_str[1]) + 100 * std::stoi(ver_str[2]);
-	        return CLIENT_VER;
-	    } else {
-	        return 0;
-	    }
-	}
+    std::vector<std::string> split1;
+    std::vector<std::string> split2;
+    std::vector<std::string> ver_str;
+    
+    // throw away /DogeCash Core: part
+    Split(split1, name, ":");
+    // throw away (.../ part
+    if (split1.size() == 2) Split(split2, split1[1], "(");
+    // Get individual numbers
+    if (split2.size() == 2) Split(ver_str, split2[0], ".");
+
+    if (ver_str.size() == 3) {
+      int CLIENT_VER = 0;
+      try {
+        CLIENT_VER =  1000000 * std::stoi(ver_str[0]) + 10000 * std::stoi(ver_str[1]) + 100 * std::stoi(ver_str[2]);
+        return CLIENT_VER;
+      }
+      catch (...) {
+        return 0;
+      }
+    } else {
+      return 0;
+    }
+}

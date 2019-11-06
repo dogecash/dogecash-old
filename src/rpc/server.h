@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2015-2018 The DogeCash developers
+// Copyright (c) 2015-2019 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -197,7 +197,6 @@ extern UniValue importprivkey(const UniValue& params, bool fHelp);
 extern UniValue importaddress(const UniValue& params, bool fHelp);
 extern UniValue dumphdinfo(const UniValue& params, bool fHelp);
 extern UniValue dumpwallet(const UniValue& params, bool fHelp);
-//extern UniValue dumpwallethd(const UniValue& params, bool fHelp);
 extern UniValue importwallet(const UniValue& params, bool fHelp);
 extern UniValue bip38encrypt(const UniValue& params, bool fHelp);
 extern UniValue bip38decrypt(const UniValue& params, bool fHelp);
@@ -249,7 +248,6 @@ extern UniValue listdelegators(const UniValue& params, bool fHelp);
 extern UniValue liststakingaddresses(const UniValue& params, bool fHelp);
 extern UniValue listsinceblock(const UniValue& params, bool fHelp);
 extern UniValue gettransaction(const UniValue& params, bool fHelp);
-extern UniValue abandontransaction(const UniValue& params, bool fHelp);
 extern UniValue backupwallet(const UniValue& params, bool fHelp);
 extern UniValue keypoolrefill(const UniValue& params, bool fHelp);
 extern UniValue walletpassphrase(const UniValue& params, bool fHelp);

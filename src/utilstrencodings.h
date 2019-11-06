@@ -31,6 +31,14 @@ enum SafeChars
     SAFE_CHARS_UA_COMMENT, //!< BIP-0014 subset
     SAFE_CHARS_FILENAME, //!< Chars allowed in filenames
 };
+/**
+* Check URL format for conformance for validity to a defined pattern
+* @param[in] strURL   The string to be processed for validity
+* @param[in] stdErr   A string that will be loaded with any validation error message
+* @param[in] maxSize  An unsigned int, defaulted to 64, to restrict the length
+* @return             A bool, true if valid, false if not (reason in stdErr)
+*/
+bool validateURL(std::string strURL, std::string& strErr, unsigned int maxSize = 64);
 
 /**
 * Remove unsafe chars. Safe chars chosen to allow simple messages/URLs/email

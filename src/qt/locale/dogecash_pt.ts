@@ -62,12 +62,12 @@
         <translation>Endereços de recebimento</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Esses são seus endereços dogecash para onde enviar pagamentos. Confira sempre o montante e os endereços de destino antes de enviar moedas.</translation>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Esses são seus endereços DogeCash para onde enviar pagamentos. Confira sempre o montante e os endereços de destino antes de enviar moedas.</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Esses são seus endereços dogecash onde receber pagamentos. Recomenda-se o uso de um novo endereço para cada transacção.</translation>
+        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Esses são seus endereços DogeCash onde receber pagamentos. Recomenda-se o uso de um novo endereço para cada transacção.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -172,8 +172,8 @@
         <translation>Confirmar encriptação da carteira</translation>
     </message>
     <message>
-        <source>dogecash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
-        <translation>dogecash encerrará para terminar o processo de encriptação. Lembre-se que encriptar sua carteira não protege completamente suas DOGECs contra roubo por malware infectando seu computador.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash encerrará para terminar o processo de encriptação. Lembre-se que encriptar sua carteira não protege completamente suas DOGECs contra roubo por malware infectando seu computador.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -435,9 +435,6 @@
     </message>
     </context>
 <context>
-    <name>ObfuscationConfig</name>
-    </context>
-<context>
     <name>OpenURIDialog</name>
     </context>
 <context>
@@ -454,10 +451,6 @@
     </context>
 <context>
     <name>PrivacyDialog</name>
-    <message>
-        <source>Amount:</source>
-        <translation>Quantidade:</translation>
-    </message>
     <message>
         <source>Choose previously used address</source>
         <translation>Escolha o endereço usado anteriormente.</translation>
@@ -676,8 +669,8 @@
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The dogecash address to sign the message with</source>
-        <translation>Um endereço dogecash para assinar a mensagem</translation>
+        <source>The DogeCash address to sign the message with</source>
+        <translation>Um endereço DogeCash para assinar a mensagem</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -708,12 +701,12 @@
         <translation>Copiar a assinatura para a area de trabalho</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this dogecash address</source>
-        <translation>Assinar a Mensagem para provar que você e dono desse endereço dogecash.</translation>
+        <source>Sign the message to prove you own this DogeCash address</source>
+        <translation>Assinar a Mensagem para provar que você e dono desse endereço DogeCash.</translation>
     </message>
     <message>
-        <source>The dogecash address the message was signed with</source>
-        <translation>O endereço dogecash que foi assinado com</translation>
+        <source>The DogeCash address the message was signed with</source>
+        <translation>O endereço DogeCash que foi assinado com</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>
@@ -911,7 +904,7 @@
     </message>
     </context>
 <context>
-    <name>zdogecControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     </context>
 <context>
     <name>dogecash-core</name>
@@ -936,10 +929,6 @@
         <translation>Erro: Espaço em disco baixo!</translation>
     </message>
     <message>
-        <source>Finalizing transaction.</source>
-        <translation>Finalizando transação.</translation>
-    </message>
-    <message>
         <source>Importing...</source>
         <translation>Importando...</translation>
     </message>
@@ -956,28 +945,8 @@
         <translation>Chave privada inválida.</translation>
     </message>
     <message>
-        <source>Invalid script detected.</source>
-        <translation>Script inválido detectado.</translation>
-    </message>
-    <message>
         <source>Loading wallet...</source>
         <translation>Carregando carteira...</translation>
-    </message>
-    <message>
-        <source>No Masternodes detected.</source>
-        <translation>Nenhum Masternode detectado.</translation>
-    </message>
-    <message>
-        <source>No compatible Masternode found.</source>
-        <translation>Nenhum Masternode compatível encontrado.</translation>
-    </message>
-    <message>
-        <source>Obfuscation request complete:</source>
-        <translation>Requisição de ofuscação completa:</translation>
-    </message>
-    <message>
-        <source>Obfuscation request incomplete:</source>
-        <translation>Requisição de ofuscação incompleta:</translation>
     </message>
     <message>
         <source>Options:</source>
@@ -1014,10 +983,6 @@
     <message>
         <source>Send transactions as zero-fee transactions if possible (default: %u)</source>
         <translation>Enviar transações como transações de taxa zero, se possível (padrão:%u)</translation>
-    </message>
-    <message>
-        <source>Session not complete!</source>
-        <translation>Sessão não concluída!</translation>
     </message>
     <message>
         <source>Session timed out.</source>
@@ -1112,18 +1077,6 @@
         <translation>Parar de executar após importar blocos do disco (padrão:%u)</translation>
     </message>
     <message>
-        <source>Submitted following entries to masternode: %u / %d</source>
-        <translation>Enviado as seguintes entradas para masternode:%u / %d</translation>
-    </message>
-    <message>
-        <source>Submitted to masternode, waiting for more entries ( %u / %d ) %s</source>
-        <translation>Enviado para masternode, aguardando mais entradas (%u / %d) %s</translation>
-    </message>
-    <message>
-        <source>Submitted to masternode, waiting in queue %s</source>
-        <translation>Enviado para masternode, esperando na fila %s</translation>
-    </message>
-    <message>
         <source>Synchronization failed</source>
         <translation>Sincronização falhou</translation>
     </message>
@@ -1164,10 +1117,6 @@
         <translation>Isso é destinado a ferramentas de teste de regressão e desenvolvimento de aplicativos.</translation>
     </message>
     <message>
-        <source>This is not a Masternode.</source>
-        <translation>Isto não e um Masternode</translation>
-    </message>
-    <message>
         <source>Threshold for disconnecting misbehaving peers (default: %u)</source>
         <translation>Limiar para desconectar pares com comportamentos incorretos (padrão:%u)</translation>
     </message>
@@ -1180,28 +1129,12 @@
         <translation>Os valores das transações devem ser positivos</translation>
     </message>
     <message>
-        <source>Transaction created successfully.</source>
-        <translation>Transação criada com sucesso.</translation>
-    </message>
-    <message>
-        <source>Transaction fees are too high.</source>
-        <translation>As taxas de transação são muito altas.</translation>
-    </message>
-    <message>
-        <source>Transaction not valid.</source>
-        <translation>A transação não é válida.</translation>
-    </message>
-    <message>
         <source>Transaction too large for fee policy</source>
         <translation>Transação muito grande para a política de tarifas</translation>
     </message>
     <message>
         <source>Transaction too large</source>
         <translation>Transmissão muito grande</translation>
-    </message>
-    <message>
-        <source>Transmitting final transaction.</source>
-        <translation>Transmissão da transação final.</translation>
     </message>
     <message>
         <source>Unable to bind to %s on this computer (bind returned error %s)</source>
@@ -1214,10 +1147,6 @@
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
         <translation>Rede desconhecida especificada em -onlynet: '%s'</translation>
-    </message>
-    <message>
-        <source>Unknown state: id = %u</source>
-        <translation>Estado desconhecido: id =%u</translation>
     </message>
     <message>
         <source>Upgrade wallet to latest format</source>
@@ -1240,10 +1169,6 @@
         <translation>Nome de usuário para conexões JSON-RPC</translation>
     </message>
     <message>
-        <source>Value more than Obfuscation pool maximum allows.</source>
-        <translation>Valor maior do que o máximo permitido pela pool.</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>verificando blocos...</translation>
     </message>
@@ -1254,10 +1179,6 @@
     <message>
         <source>Wallet %s resides outside data directory %s</source>
         <translation>carteira %s reside fora do diretório %s</translation>
-    </message>
-    <message>
-        <source>Wallet is locked.</source>
-        <translation>Carteira esta bloqueada.</translation>
     </message>
     <message>
         <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
@@ -1290,10 +1211,6 @@
     <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>Você precisa reconstruir a database usando -reindex para mudar -txindex</translation>
-    </message>
-    <message>
-        <source>Your transaction was accepted into the pool!</source>
-        <translation>Sua transação foi aceita na pool!</translation>
     </message>
     </context>
 </TS>

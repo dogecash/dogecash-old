@@ -17,16 +17,7 @@
    <string>MultiSend</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0">
-   <property name="leftMargin">
-    <number>6</number>
-   </property>
-   <property name="topMargin">
-    <number>6</number>
-   </property>
-   <property name="rightMargin">
-    <number>6</number>
-   </property>
-   <property name="bottomMargin">
+   <property name="margin">
     <number>6</number>
    </property>
    <item>
@@ -37,8 +28,8 @@
         <number>1</number>
        </property>
        <property name="text">
-        <string>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other dogecash addresses after it matures.
-To Add: enter percentage to give and dogecash address to add to the MultiSend vector.
+        <string>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other DogeCash addresses after it matures.
+To Add: enter percentage to give and DogeCash address to add to the MultiSend vector.
 To Delete: Enter address to delete and press delete.
 MultiSend will not be activated unless you have clicked Activate</string>
        </property>

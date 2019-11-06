@@ -62,11 +62,11 @@
         <translation>Ricevanta adresojn</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Ĉi tiuj estas viaj dogecash adreso por sendi pagojn. Ĉiam kontroku la kvanto kaj la ricevanta antaŭ ol sendi monerojn.</translation>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Ĉi tiuj estas viaj DogeCash adreso por sendi pagojn. Ĉiam kontroku la kvanto kaj la ricevanta antaŭ ol sendi monerojn.</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>Ĉi tiuj estas vian adreson por ricevi pagojn. Ĝi rekomendas uzi novajn ricenvantan adreson por ĉiu nova transakcio.</translation>
     </message>
     <message>
@@ -176,8 +176,8 @@
         <translation>Konfirmi monerĉifrado</translation>
     </message>
     <message>
-        <source>dogecash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
-        <translation>dogecash fermos nun por fini ĉifran procezon. Memoru ke ĉifri vian monujon ne povas plene protekti viajn DOGECs de esti ŝtelita per malware infektanta vian komputilon.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash fermos nun por fini ĉifran procezon. Memoru ke ĉifri vian monujon ne povas plene protekti viajn DOGECs de esti ŝtelita per malware infektanta vian komputilon.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -254,11 +254,11 @@
         <translation>Adreso:</translation>
     </message>
     <message>
-        <source>Enter a dogecash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Eniri unu dogecash adreso ke vi volus ĉifri per BIP 38. Eniri unu pasfrazon meze skatolo. Klaku ĉifri por komputi la ĉifrita privata ŝlosilo.</translation>
+        <source>Enter a DogeCash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>Eniri unu DogeCash adreso ke vi volus ĉifri per BIP 38. Eniri unu pasfrazon meze skatolo. Klaku ĉifri por komputi la ĉifrita privata ŝlosilo.</translation>
     </message>
     <message>
-        <source>The dogecash address to encrypt</source>
+        <source>The DogeCash address to encrypt</source>
         <translation>Adreson por ĉifri</translation>
     </message>
     <message>
@@ -290,8 +290,8 @@
         <translation>Kopiu la aktualan subskribo al la sistemo-poŝo</translation>
     </message>
     <message>
-        <source>Encrypt the private key for this dogecash address</source>
-        <translation>Ĉifri la privata ŝlosilo por ĉi tiu dogecash adreso</translation>
+        <source>Encrypt the private key for this DogeCash address</source>
+        <translation>Ĉifri la privata ŝlosilo por ĉi tiu DogeCash adreso</translation>
     </message>
     <message>
         <source>Reset all fields</source>
@@ -433,8 +433,8 @@
         <translation>&amp;Foliumi transakcio historio</translation>
     </message>
     <message>
-        <source>Privacy Actions for zdogec</source>
-        <translation>Privataj agoj por zdogec</translation>
+        <source>Privacy Actions for zDOGEC</source>
+        <translation>Privataj agoj por zDOGEC</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -642,11 +642,11 @@
     </message>
     <message>
         <source>DogeCash Core</source>
-        <translation>dogecash kerno</translation>
+        <translation>DogeCash kerno</translation>
     </message>
     <message>
-        <source>Send coins to a dogecash address</source>
-        <translation>Sendu mono al dogecash addreso</translation>
+        <source>Send coins to a DogeCash address</source>
+        <translation>Sendu mono al DogeCash addreso</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and dogecash: URIs)</source>
@@ -666,23 +666,23 @@
     </message>
     <message>
         <source>&amp;About DogeCash Core</source>
-        <translation>&amp;Pri dogecash Kerno</translation>
+        <translation>&amp;Pri DogeCash Kerno</translation>
     </message>
     <message>
         <source>Show information about DogeCash Core</source>
-        <translation>Montri informon pri dogecash Kerno</translation>
+        <translation>Montri informon pri DogeCash Kerno</translation>
     </message>
     <message>
-        <source>Modify configuration options for dogecash</source>
-        <translation>Modifi agordajn opciojn por dogecash</translation>
+        <source>Modify configuration options for DogeCash</source>
+        <translation>Modifi agordajn opciojn por DogeCash</translation>
     </message>
     <message>
-        <source>Sign messages with your dogecash addresses to prove you own them</source>
-        <translation>Subskribu mesaĝo per via dogecash adreso por pruvi vi posedas ĝin</translation>
+        <source>Sign messages with your DogeCash addresses to prove you own them</source>
+        <translation>Subskribu mesaĝo per via DogeCash adreso por pruvi vi posedas ĝin</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
-        <translation>Kontrolu mesaĝojn por certigi ke ili estas subskribita kun specifita dogecash adreso</translation>
+        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
+        <translation>Kontrolu mesaĝojn por certigi ke ili estas subskribita kun specifita DogeCash adreso</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -713,8 +713,8 @@
         <translation>Malfermi mastro-nodo agord-dosieron</translation>
     </message>
     <message>
-        <source>Open a dogecash: URI or payment request</source>
-        <translation>Malfermi unu dogecash: URI aŭ pago peto</translation>
+        <source>Open a DogeCash: URI or payment request</source>
+        <translation>Malfermi unu DogeCash: URI aŭ pago peto</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -725,12 +725,12 @@
         <translation>Bloko esplorilo fenestro</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>Montri la dogecash Kore help-mesaĝo por havi liston de havebla dogecash komandlinion opciojn</translation>
+        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
+        <translation>Montri la DogeCash Kore help-mesaĝo por havi liston de havebla DogeCash komandlinion opciojn</translation>
     </message>
     <message>
         <source>DogeCash Core client</source>
-        <translation>dogecash Kerno kliento</translation>
+        <translation>DogeCash Kerno kliento</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -1098,8 +1098,8 @@ Muktisendi: %1</translation>
         <translation>Ĉi tiun etikedo ruĝiĝas se iu ajna ricevanto ricevas totalo pli malgranda ol %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 uDOGEC per input.</source>
-        <translation>Povas varii +/- %1 uDOGEC per enigo.</translation>
+        <source>Can vary +/- %1 udogec per input.</source>
+        <translation>Povas varii +/- %1 udogec per enigo.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1153,8 +1153,8 @@ Muktisendi: %1</translation>
         <translation>Redaktu sendantan adreson</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid dogecash address.</source>
-        <translation>La enirita "%1" adreso ne estas validan dogecash adreson.</translation>
+        <source>The entered address "%1" is not a valid DogeCash address.</source>
+        <translation>La enirita "%1" adreso ne estas validan DogeCash adreson.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1211,7 +1211,7 @@ Muktisendi: %1</translation>
     </message>
     <message>
         <source>DogeCash Core</source>
-        <translation>dogecash kerno</translation>
+        <translation>DogeCash kerno</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
@@ -1219,7 +1219,7 @@ Muktisendi: %1</translation>
     </message>
     <message>
         <source>About DogeCash Core</source>
-        <translation>Pri dogecash Kerno</translation>
+        <translation>Pri DogeCash Kerno</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1262,15 +1262,15 @@ Muktisendi: %1</translation>
     </message>
     <message>
         <source>Welcome to DogeCash Core.</source>
-        <translation>Bonvenon al la dogecash Kerno.</translation>
+        <translation>Bonvenon al la DogeCash Kerno.</translation>
     </message>
     <message>
         <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
-        <translation>Ĉar estas la unuan fojon ke la programo estas lanĉita, vi povas elekti kie dogecash kernk storigis sian datumojn. </translation>
+        <translation>Ĉar estas la unuan fojon ke la programo estas lanĉita, vi povas elekti kie DogeCash kernk storigis sian datumojn. </translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>dogecash kerno elŝutos kaj konservi kopion de la dogecash blokĉeno. Almenaŭ %1GB datumoj stokitos en ĉi tiun dosierujo, kaj ĝi kresko kun la tempo. Monujo stokitos en ĉi tiun dosierujo.</translation>
+        <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DogeCash kerno elŝutos kaj konservi kopion de la DogeCash blokĉeno. Almenaŭ %1GB datumoj stokitos en ĉi tiun dosierujo, kaj ĝi kresko kun la tempo. Monujo stokitos en ĉi tiun dosierujo.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1282,7 +1282,7 @@ Muktisendi: %1</translation>
     </message>
     <message>
         <source>DogeCash Core</source>
-        <translation>dogecash kerno</translation>
+        <translation>DogeCash kerno</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1563,37 +1563,6 @@ Muktisendi: %1</translation>
     </message>
 </context>
 <context>
-    <name>ObfuscationConfig</name>
-    <message>
-        <source>Basic Privacy</source>
-        <translation>Baza privateco</translation>
-    </message>
-    <message>
-        <source>High Privacy</source>
-        <translation>Alta privateco</translation>
-    </message>
-    <message>
-        <source>Maximum Privacy</source>
-        <translation>Maximuma privateco</translation>
-    </message>
-    <message>
-        <source>Please select a privacy level.</source>
-        <translation>Bonvolu elekti privata nivelo.</translation>
-    </message>
-    <message>
-        <source>This option is the quickest and will cost about ~0.025 DOGEC to anonymize 10000 DOGEC</source>
-        <translation>Tion opcion estas la plej rapida kaji kostos ~0.025 DOGEC por anonimigi 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>This option is moderately fast and will cost about 0.05 DOGEC to anonymize 10000 DOGEC</source>
-        <translation>Tion opcion estas moderebla rapide kaj kostos ĉirkaŭ 0.05 DOGEC por anonimigi 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
-        <translation>Ĉi tio estas plej malrapida kaj plej sekura opcio. Uzante maximuma anonimeco kostos</translation>
-    </message>
-    </context>
-<context>
     <name>OpenURIDialog</name>
     <message>
         <source>Open URI</source>
@@ -1635,8 +1604,8 @@ Muktisendi: %1</translation>
         <translation>&amp;Monujo</translation>
     </message>
     <message>
-        <source>Automatically open the dogecash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Aŭtomate malfermi dogecash klienton havenon en la enkursigilo. Tio nur laboras kiam via enkursigilo subtenas UPnP kaj estas ebligita.</translation>
+        <source>Automatically open the DogeCash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Aŭtomate malfermi DogeCash klienton havenon en la enkursigilo. Tio nur laboras kiam via enkursigilo subtenas UPnP kaj estas ebligita.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1647,8 +1616,8 @@ Muktisendi: %1</translation>
         <translation>Sperta</translation>
     </message>
     <message>
-        <source>&amp;Start dogecash on system login</source>
-        <translation>&amp;Komencu dogecash en sistem-ensaluto</translation>
+        <source>&amp;Start DogeCash on system login</source>
+        <translation>&amp;Komencu DogeCash en sistem-ensaluto</translation>
     </message>
     <message>
         <source>&amp;Spend unconfirmed change</source>
@@ -1659,8 +1628,8 @@ Muktisendi: %1</translation>
         <translation>&amp;Reto</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting dogecash.</source>
-        <translation>La uzanta interfaco lingvo povas esti agordi ĉi tie. Tio agordo efektivigos post rekomenci dogecash.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting DogeCash.</source>
+        <translation>La uzanta interfaco lingvo povas esti agordi ĉi tie. Tio agordo efektivigos post rekomenci DogeCash.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -1669,8 +1638,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</source
 https://www.transifex.com/dogecash-project/dogecash-project-translations</translation>
     </message>
     <message>
-        <source>Connect to the dogecash network through a SOCKS5 proxy.</source>
-        <translation>Konekti al la dogecash reto per SOCKS5 prokurilo.</translation>
+        <source>Connect to the DogeCash network through a SOCKS5 proxy.</source>
+        <translation>Konekti al la DogeCash reto per SOCKS5 prokurilo.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1691,10 +1660,6 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
     <message>
         <source>User Interface Theme:</source>
         <translation>Usanto interfaco temo:</translation>
-    </message>
-    <message>
-        <source>&amp;Unit to show amounts in:</source>
-        <translation>&amp;Uneco per montri kvantojn:</translation>
     </message>
     <message>
         <source>Hide empty balances</source>
@@ -1748,12 +1713,12 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Nematura:</translation>
     </message>
     <message>
-        <source>Your current dogecash balance, unconfirmed and immature transactions included</source>
-        <translation>Via aktuala dogecash totalo, nekonformita kaj nematurita transakcioj inkluzivita</translation>
+        <source>Your current DogeCash balance, unconfirmed and immature transactions included</source>
+        <translation>Via aktuala DogeCash totalo, nekonformita kaj nematurita transakcioj inkluzivita</translation>
     </message>
     <message>
-        <source>zdogec Balance</source>
-        <translation>zdogec kvanto</translation>
+        <source>zDOGEC Balance</source>
+        <translation>zDOGEC kvanto</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
@@ -1762,8 +1727,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mintita</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
-        <translation>Montrata informon povas esti malmoderna. Via monujo automate sinkronigis kun la dogecash reto post konekcio establas, sed ĉi tio procezo ankoraŭ ne kompletigis.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
+        <translation>Montrata informon povas esti malmoderna. Via monujo automate sinkronigis kun la DogeCash reto post konekcio establas, sed ĉi tio procezo ankoraŭ ne kompletigis.</translation>
     </message>
     <message>
         <source>OVERVIEW</source>
@@ -1802,7 +1767,7 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
-        <translation>Pago peto dosiero ne povas estas legi! Ĉi tio DOGECas esti kauzita por nevalida pago peto dosiero.</translation>
+        <translation>Pago peto dosiero ne povas estas legi! Ĉi tio dogecas esti kauzita por nevalida pago peto dosiero.</translation>
     </message>
     <message>
         <source>Payment request rejected</source>
@@ -1815,40 +1780,28 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
 <context>
     <name>PrivacyDialog</name>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
-        <translation>Montrata informon povas esti malmoderna. Via monujo automate sinkronigis kun la dogecash reto post konekcio establas, sed ĉi tio procezo ankoraŭ ne kompletigis.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
+        <translation>Montrata informon povas esti malmoderna. Via monujo automate sinkronigis kun la DogeCash reto post konekcio establas, sed ĉi tio procezo ankoraŭ ne kompletigis.</translation>
     </message>
     <message>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <source>zdogec</source>
-        <translation>zdogec</translation>
-    </message>
-    <message>
-        <source>0.000 000 00 DOGEC</source>
-        <translation>0.000 000 00 DOGEC</translation>
+        <source>zDOGEC</source>
+        <translation>zDOGEC</translation>
     </message>
     <message>
         <source>Reset</source>
         <translation>Restarigi</translation>
     </message>
     <message>
-        <source>Quantity:</source>
-        <translation>Kvanto</translation>
+        <source>zDOGEC Control</source>
+        <translation>zDOGEC kontrolu</translation>
     </message>
     <message>
-        <source>Amount:</source>
-        <translation>Kvanto:</translation>
-    </message>
-    <message>
-        <source>zdogec Control</source>
-        <translation>zdogec kontrolu</translation>
-    </message>
-    <message>
-        <source>zdogec Selected:</source>
-        <translation>Elektita zdogec</translation>
+        <source>zDOGEC Selected:</source>
+        <translation>Elektita zDOGEC</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -1859,20 +1812,20 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
         <translation>Elspezi zerocoin</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zdogec for spending</source>
-        <translation>Havebla (matura kaj elspezebla) zdogec por elspezi</translation>
+        <source>Available (mature and spendable) zDOGEC for spending</source>
+        <translation>Havebla (matura kaj elspezebla) zDOGEC por elspezi</translation>
     </message>
     <message>
-        <source>0 zdogec</source>
-        <translation>0 zdogec</translation>
+        <source>0 zDOGEC</source>
+        <translation>0 zDOGEC</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
         <translation>Pagu &amp;Al:</translation>
     </message>
     <message>
-        <source>The dogecash address to send the payment to. Creates local payment to yourself when empty.</source>
-        <translation>dogecash adreso por alsendi la pago. Kreas lokala pago al vi mem kiam malplenija.</translation>
+        <source>The DogeCash address to send the payment to. Creates local payment to yourself when empty.</source>
+        <translation>DogeCash adreso por alsendi la pago. Kreas lokala pago al vi mem kiam malplenija.</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1933,14 +1886,6 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
         <translation>Ŝanĝu:</translation>
     </message>
     <message>
-        <source>Copy quantity</source>
-        <translation>Kopi kvanto</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>Kopii kvanto</translation>
-    </message>
-    <message>
         <source> &lt;b&gt;enabled&lt;/b&gt;.</source>
         <translation>&lt;b&gt;ebligita&lt;/b&gt;.</translation>
     </message>
@@ -1949,24 +1894,12 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
         <translation>&lt;b&gt;malebligita&lt;/b&gt;.</translation>
     </message>
     <message>
-        <source>Error: Your wallet is locked. Please enter the wallet passphrase first.</source>
-        <translation>Eraro: vian monujo estas fermita. Bonvolu eniri monujon pasfrazon unue.</translation>
-    </message>
-    <message>
-        <source>Message: Enter an amount &gt; 0.</source>
-        <translation>Mesaĝo: eniri kvanto &gt; 0.</translation>
-    </message>
-    <message>
-        <source>Invalid dogecash Address</source>
-        <translation>Nevalida dogecash adreso</translation>
+        <source>Invalid DogeCash Address</source>
+        <translation>Nevalida DogeCash adreso</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
         <translation>Konfirmu sendi monojn</translation>
-    </message>
-    <message>
-        <source>Too much inputs (</source>
-        <translation>Tro eniroj (</translation>
     </message>
     <message>
         <source>address: </source>
@@ -1996,7 +1929,7 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
     </message>
     <message>
         <source>DogeCash Core</source>
-        <translation>dogecash kerno</translation>
+        <translation>DogeCash kerno</translation>
     </message>
     </context>
 <context>
@@ -2061,8 +1994,8 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
         <translation>Rekonstrui indekson</translation>
     </message>
     <message>
-        <source>Welcome to the dogecash RPC console.</source>
-        <translation>Bonvenon al la dogecash RPC konzolo.</translation>
+        <source>Welcome to the DogeCash RPC console.</source>
+        <translation>Bonvenon al la DogeCash RPC konzolo.</translation>
     </message>
     <message>
         <source>1 &amp;hour</source>
@@ -2309,8 +2242,8 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
         <translation>Kopi ŝanĝo</translation>
     </message>
     <message>
-        <source>Warning: Invalid dogecash address</source>
-        <translation>Averto: nevalida dogecash adreson</translation>
+        <source>Warning: Invalid DogeCash address</source>
+        <translation>Averto: nevalida DogeCash adreson</translation>
     </message>
     <message>
         <source>Are you sure you want to send?</source>
@@ -2336,7 +2269,7 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
         <translation>Pagu &amp;Al:</translation>
     </message>
     <message>
-        <source>The dogecash address to send the payment to</source>
+        <source>The DogeCash address to send the payment to</source>
         <translation>DOGECC adreso por sendi la pago al</translation>
     </message>
     <message>
@@ -2372,7 +2305,7 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
     <name>ShutdownWindow</name>
     <message>
         <source>DogeCash Core is shutting down...</source>
-        <translation>dogecash kerno fermanta...</translation>
+        <translation>DogeCash kerno fermanta...</translation>
     </message>
     </context>
 <context>
@@ -2426,7 +2359,7 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
     <name>SplashScreen</name>
     <message>
         <source>DogeCash Core</source>
-        <translation>dogecash kerno</translation>
+        <translation>DogeCash kerno</translation>
     </message>
     <message>
         <source>The Bitcoin Core developers</source>
@@ -2438,7 +2371,7 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
     </message>
     <message>
         <source>The DogeCash Core developers</source>
-        <translation>La dogecash kerno programistoj</translation>
+        <translation>La DogeCash kerno programistoj</translation>
     </message>
     </context>
 <context>
@@ -2613,14 +2546,14 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
     </message>
     </context>
 <context>
-    <name>zdogecControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     <message>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <source>zdogec</source>
-        <translation>zdogec</translation>
+        <source>zDOGEC</source>
+        <translation>zDOGEC</translation>
     </message>
     </context>
 <context>
@@ -2658,24 +2591,8 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
         <translation>Ĉi tio estas eksperimenta programaro.</translation>
     </message>
     <message>
-        <source>Transaction created successfully.</source>
-        <translation>Transakcio verkita sukcese.</translation>
-    </message>
-    <message>
-        <source>Transaction fees are too high.</source>
-        <translation>Transakcio krompago estas tro alta.</translation>
-    </message>
-    <message>
-        <source>Transaction not valid.</source>
-        <translation>Transakcio nevalida.</translation>
-    </message>
-    <message>
         <source>Transaction too large</source>
         <translation>Tro longa transakcio</translation>
-    </message>
-    <message>
-        <source>Wallet is locked.</source>
-        <translation>Monujo estas ŝlosita.</translation>
     </message>
     <message>
         <source>Wallet options:</source>
@@ -2686,16 +2603,8 @@ Nematura: konfirmita, sed malpli ol 1 minto el la samo nomado post ĝin estis mi
         <translation>Averto</translation>
     </message>
     <message>
-        <source>Will retry...</source>
-        <translation>Reprovos</translation>
-    </message>
-    <message>
         <source>You don't have enough Zerocoins in your wallet</source>
         <translation>Vi ne havas sufiĉan Zeromonojn en vian monujon</translation>
-    </message>
-    <message>
-        <source>Your entries added successfully.</source>
-        <translation>Vian enirojn aldonis sukcese.</translation>
     </message>
     <message>
         <source>Zerocoin options:</source>

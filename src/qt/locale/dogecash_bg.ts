@@ -62,12 +62,12 @@
         <translation>Получаващ адрес</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Това са вашите dogecash адреси за изпращане на плащания. Винаги проверявайте количеството и адреса на получателя, преди да изпратите монети.</translation>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Това са вашите DogeCash адреси за изпращане на плащания. Винаги проверявайте количеството и адреса на получателя, преди да изпратите монети.</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Това са вашите dogecash адреси за получаване на плащания. Препоръчително е да използвате нови адреси за получаване за всяка транзакция.</translation>
+        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Това са вашите DogeCash адреси за получаване на плащания. Препоръчително е да използвате нови адреси за получаване за всяка транзакция.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -176,8 +176,8 @@
         <translation>Потвърдете шифрирането на портфейла</translation>
     </message>
     <message>
-        <source>dogecash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
-        <translation>dogecash сега ще се затвори, за да довърши процеса по шифриране. Запомнете, че шифрирането на вашия портфейл не може напълно да защити вашия dogecash от това, да бъде откраднат чрез злонамерен софутуер, инфектирал вашия компютър.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash сега ще се затвори, за да довърши процеса по шифриране. Запомнете, че шифрирането на вашия портфейл не може напълно да защити вашия DogeCash от това, да бъде откраднат чрез злонамерен софутуер, инфектирал вашия компютър.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -254,12 +254,12 @@
         <translation>Адрес:</translation>
     </message>
     <message>
-        <source>Enter a dogecash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Въведете dogecash адрес, който искате да криптиране с BIP 38. Въведете парола в средното поле. Натиснете 'криптирай', за да се изчисли криптирания таен ключ. </translation>
+        <source>Enter a DogeCash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>Въведете DogeCash адрес, който искате да криптиране с BIP 38. Въведете парола в средното поле. Натиснете 'криптирай', за да се изчисли криптирания таен ключ. </translation>
     </message>
     <message>
-        <source>The dogecash address to encrypt</source>
-        <translation>dogecash Адреса за криптиране</translation>
+        <source>The DogeCash address to encrypt</source>
+        <translation>DogeCash Адреса за криптиране</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -290,8 +290,8 @@
         <translation>Копирай сегашния подпис в системния буфер</translation>
     </message>
     <message>
-        <source>Encrypt the private key for this dogecash address</source>
-        <translation>Криптирай тайния ключ за този dogecash адрес</translation>
+        <source>Encrypt the private key for this DogeCash address</source>
+        <translation>Криптирай тайния ключ за този DogeCash адрес</translation>
     </message>
     <message>
         <source>Reset all fields</source>
@@ -433,8 +433,8 @@
         <translation>История на транзакциите</translation>
     </message>
     <message>
-        <source>Privacy Actions for zdogec</source>
-        <translation>Поверителни Действия за zdogec</translation>
+        <source>Privacy Actions for zDOGEC</source>
+        <translation>Поверителни Действия за ZDOGEC</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -642,15 +642,15 @@
     </message>
     <message>
         <source>DogeCash Core</source>
-        <translation>dogecash Ядро</translation>
+        <translation>DogeCash Ядро</translation>
     </message>
     <message>
-        <source>Send coins to a dogecash address</source>
-        <translation>Изпратете монети до dogecash адрес</translation>
+        <source>Send coins to a DogeCash address</source>
+        <translation>Изпратете монети до DogeCash адрес</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and dogecash: URIs)</source>
-        <translation>Поискай плащане (генерира QR кодове и  dogecash:URI)</translation>
+        <translation>Поискай плащане (генерира QR кодове и  DogeCash:URI)</translation>
     </message>
     <message>
         <source>&amp;Privacy</source>
@@ -666,23 +666,23 @@
     </message>
     <message>
         <source>&amp;About DogeCash Core</source>
-        <translation>&amp;Относно dogecash Ядрото</translation>
+        <translation>&amp;Относно DogeCash Ядрото</translation>
     </message>
     <message>
         <source>Show information about DogeCash Core</source>
-        <translation>Информациза за dogecash Ядрото</translation>
+        <translation>Информациза за DogeCash Ядрото</translation>
     </message>
     <message>
-        <source>Modify configuration options for dogecash</source>
-        <translation>Промени dogecash конфигурацията</translation>
+        <source>Modify configuration options for DogeCash</source>
+        <translation>Промени DogeCash конфигурацията</translation>
     </message>
     <message>
-        <source>Sign messages with your dogecash addresses to prove you own them</source>
-        <translation>Подпишете съобщения със своте dogecash адреси, за да докажете че са Ваши</translation>
+        <source>Sign messages with your DogeCash addresses to prove you own them</source>
+        <translation>Подпишете съобщения със своте DogeCash адреси, за да докажете че са Ваши</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
-        <translation>Проеврете съобщения, за да се убедите, че са подписани с указаните dogecash адреси</translation>
+        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
+        <translation>Проеврете съобщения, за да се убедите, че са подписани с указаните DogeCash адреси</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -713,8 +713,8 @@
         <translation>Отвори Мастърноуд конфигурационния файл</translation>
     </message>
     <message>
-        <source>Open a dogecash: URI or payment request</source>
-        <translation>Отвори dogecash:URI платежно нареждане</translation>
+        <source>Open a DogeCash: URI or payment request</source>
+        <translation>Отвори DogeCash:URI платежно нареждане</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -725,12 +725,12 @@
         <translation>Прозорец на блок сондата</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>Разкрийте Помощ за dogecash Ядрото, за да видите списък с възможни писмени команди.</translation>
+        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
+        <translation>Разкрийте Помощ за DogeCash Ядрото, за да видите списък с възможни писмени команди.</translation>
     </message>
     <message>
         <source>DogeCash Core client</source>
-        <translation>Клиент dogecash Ядро</translation>
+        <translation>Клиент DogeCash Ядро</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -1106,8 +1106,8 @@ Address: %4
         <translation>Етикета става червен, когато получателя ще получи сума по-малка от %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 uDOGEC per input.</source>
-        <translation>Може да има разлика от +/- %1 uDOGEC на вх.</translation>
+        <source>Can vary +/- %1 udogec per input.</source>
+        <translation>Може да има разлика от +/- %1 udogec на вх.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1161,8 +1161,8 @@ Address: %4
         <translation>Редактирай адрес за изпращане</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid dogecash address.</source>
-        <translation>Зададения адрес "%1"не е валиден dogecash адрес.</translation>
+        <source>The entered address "%1" is not a valid DogeCash address.</source>
+        <translation>Зададения адрес "%1"не е валиден DogeCash адрес.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1219,7 +1219,7 @@ Address: %4
     </message>
     <message>
         <source>DogeCash Core</source>
-        <translation>dogecash Ядро</translation>
+        <translation>DogeCash Ядро</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
@@ -1227,7 +1227,7 @@ Address: %4
     </message>
     <message>
         <source>About DogeCash Core</source>
-        <translation>Относно dogecash Ядрото</translation>
+        <translation>Относно DogeCash Ядрото</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1274,15 +1274,15 @@ Address: %4
     </message>
     <message>
         <source>Welcome to DogeCash Core.</source>
-        <translation>Добре Дошли в dogecash Ядрото</translation>
+        <translation>Добре Дошли в DogeCash Ядрото</translation>
     </message>
     <message>
         <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
-        <translation>Тъй като това е първия път, в който стартирате програмата, имате възможността да изберете къде dogecash Ядрото ще съхранява своите данни.</translation>
+        <translation>Тъй като това е първия път, в който стартирате програмата, имате възможността да изберете къде DogeCash Ядрото ще съхранява своите данни.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>dogecash Ядрото ще изтегли и запише копие на целия dogecash блокчейн. Поне %1 гигабайта ще бъдат съхранявани в тази папка, като тенденцията е файла да расте. Портфейла също ще бъде запазен в тази папка.</translation>
+        <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DogeCash Ядрото ще изтегли и запише копие на целия DogeCash блокчейн. Поне %1 гигабайта ще бъдат съхранявани в тази папка, като тенденцията е файла да расте. Портфейла също ще бъде запазен в тази папка.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1294,7 +1294,7 @@ Address: %4
     </message>
     <message>
         <source>DogeCash Core</source>
-        <translation>dogecash Ядро</translation>
+        <translation>DogeCash Ядро</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1435,12 +1435,12 @@ Address: %4
         <translation>Въведете адреса на Получателя</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other dogecash addresses after it matures.
-To Add: enter percentage to give and dogecash address to add to the MultiSend vector.
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other DogeCash addresses after it matures.
+To Add: enter percentage to give and DogeCash address to add to the MultiSend vector.
 To Delete: Enter address to delete and press delete.
 MultiSend will not be activated unless you have clicked Activate</source>
-        <translation>МултиИзпращане Ви позволява автоматично да изпращате до 100% от вашите стейк или мастърноуд възнаграждения към списък от други dogecash адреси.
-Да Добавите: въведете процент и задайте dogecash адрес към вектора за МултиИзпращане
+        <translation>МултиИзпращане Ви позволява автоматично да изпращате до 100% от вашите стейк или мастърноуд възнаграждения към списък от други DogeCash адреси.
+Да Добавите: въведете процент и задайте DogeCash адрес към вектора за МултиИзпращане
 Да Прамахнете: Въведете адрес за изстриване и натиснете истрий (del).
 МултиИзпращането няма да бъде активирано докато не кликнете "Активирай"</translation>
     </message>
@@ -1705,73 +1705,6 @@ Please be patient after clicking import.</source>
     </message>
 </context>
 <context>
-    <name>ObfuscationConfig</name>
-    <message>
-        <source>Configure Obfuscation</source>
-        <translation>Конфигурирай Обфускацията</translation>
-    </message>
-    <message>
-        <source>Basic Privacy</source>
-        <translation>Елементарна Поверителност</translation>
-    </message>
-    <message>
-        <source>High Privacy</source>
-        <translation>Високо ниво на Поверителност</translation>
-    </message>
-    <message>
-        <source>Maximum Privacy</source>
-        <translation>Максимална Поверителност</translation>
-    </message>
-    <message>
-        <source>Please select a privacy level.</source>
-        <translation>Изберете ниво на поверителност.</translation>
-    </message>
-    <message>
-        <source>Use 2 separate masternodes to mix funds up to 10000 DOGEC</source>
-        <translation>Използвай 2 различни мастърноуда за смесване на средства над 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>Use 8 separate masternodes to mix funds up to 10000 DOGEC</source>
-        <translation>Използвай 8 различни мастърноуда за да смесите средства до 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>Use 16 separate masternodes</source>
-        <translation>Използвай 16 различни мастърноуда</translation>
-    </message>
-    <message>
-        <source>This option is the quickest and will cost about ~0.025 DOGEC to anonymize 10000 DOGEC</source>
-        <translation>Това е най-бързия метод и ще струва около 0.025 DOGEC за да скриете 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>This option is moderately fast and will cost about 0.05 DOGEC to anonymize 10000 DOGEC</source>
-        <translation>Тази опция е сравнително бърза и ще струва около 0.05 DOGEC за да скриете 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
-        <translation>Това е най-бавния и най-сигурен вариант за скриване на DOGEC. Използването й ще струва</translation>
-    </message>
-    <message>
-        <source>0.1 DOGEC per 10000 DOGEC you anonymize.</source>
-        <translation>0.1 DOGEC за 10000 скрити DOGEC</translation>
-    </message>
-    <message>
-        <source>Obfuscation Configuration</source>
-        <translation>Конфигурация на Обфускацията</translation>
-    </message>
-    <message>
-        <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Обфускацията е успешно конфигурирана на елементарно ниво (%1 и 2 кръга). Moжете да промените тази настройка по всяко време от същото място.</translation>
-    </message>
-    <message>
-        <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Обфускацията е успешно конфигурирана на високо ниво (%1 и 8 кръга). Moжете да промените тази настройка по всяко време от същото място.</translation>
-    </message>
-    <message>
-        <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Обфускацията е успешно конфигурирана на максимално ниво (%1 и 16 кръга). Moжете да промените тази настройка по всяко време от същото място.</translation>
-    </message>
-</context>
-<context>
     <name>OpenURIDialog</name>
     <message>
         <source>Open URI</source>
@@ -1829,8 +1762,8 @@ Please be patient after clicking import.</source>
         <translation>Aко изключите харча на непотвърдено ресто, рестото от превод&lt;br/&gt;не може да се използва, докато превода не получи поне 1 потвърждение. &lt;br/&gt;Това влияе и на начина по който общите Ви средства се преизчисляват.</translation>
     </message>
     <message>
-        <source>Automatically open the dogecash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Автоматично отвори dogecash порта в рутера. Това става само ако рутера Ви подържа UPnP и последния е включен.</translation>
+        <source>Automatically open the DogeCash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Автоматично отвори DogeCash порта в рутера. Това става само ако рутера Ви подържа UPnP и последния е включен.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1849,12 +1782,12 @@ Please be patient after clicking import.</source>
         <translation>Експерт</translation>
     </message>
     <message>
-        <source>Automatically start dogecash after logging in to the system.</source>
-        <translation>Стартирай dogecash автоматично след влизане в системата.</translation>
+        <source>Automatically start DogeCash after logging in to the system.</source>
+        <translation>Стартирай DogeCash автоматично след влизане в системата.</translation>
     </message>
     <message>
-        <source>&amp;Start dogecash on system login</source>
-        <translation>&amp;Стартирай dogecash заедно с операционната система</translation>
+        <source>&amp;Start DogeCash on system login</source>
+        <translation>&amp;Стартирай DogeCash заедно с операционната система</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1881,7 +1814,7 @@ Please be patient after clicking import.</source>
         <translation>&amp;Мрежа</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting dogecash.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting DogeCash.</source>
         <translation>Промяна на езика. Настройката е активна след рестарт на портфейла.</translation>
     </message>
     <message>
@@ -1895,36 +1828,36 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Картографирай портовете използвайки &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of DOGEC units to zdogec</source>
-        <translation>Включи автоматичното емитиране на DOGEC единици в zdogec</translation>
+        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
+        <translation>Включи автоматичното емитиране на DOGEC единици в zDOGEC</translation>
     </message>
     <message>
-        <source>Enable zdogec Automint</source>
-        <translation>Включи Автоматично емитиране на zdogec</translation>
+        <source>Enable zDOGEC Automint</source>
+        <translation>Включи Автоматично емитиране на zDOGEC</translation>
     </message>
     <message>
-        <source>Percentage of incoming DOGEC which get automatically converted to zdogec via Zerocoin Protocol (min: 10%)</source>
-        <translation>Процент от входящите DOGEC, който автоматично да се конвертира в zdogec посредтвом Zerocoin Протокола (мин: 10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
+        <translation>Процент от входящите DOGEC, който автоматично да се конвертира в zDOGEC посредтвом Zerocoin Протокола (мин: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zdogec</source>
-        <translation>Процент автоматично сечени zdogec</translation>
+        <source>Percentage of autominted zDOGEC</source>
+        <translation>Процент автоматично сечени zDOGEC</translation>
     </message>
     <message>
         <source>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</source>
-        <translation>Не бързай с автоматичното конвертиране в zdogec докато не се съберат достатъчно DOGEC за тази деноминация</translation>
+        <translation>Не бързай с автоматичното конвертиране в zDOGEC докато не се съберат достатъчно DOGEC за тази деноминация</translation>
     </message>
     <message>
-        <source>Preferred Automint zdogec Denomination</source>
-        <translation>Предпочитани деноминации, в които да се сече автоматичен zdogec</translation>
+        <source>Preferred Automint zDOGEC Denomination</source>
+        <translation>Предпочитани деноминации, в които да се сече автоматичен zDOGEC</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>Праг на споделеното съхранение:</translation>
     </message>
     <message>
-        <source>Connect to the dogecash network through a SOCKS5 proxy.</source>
-        <translation>Свържи се с dogecash мрежата със SOCKS5 прокси.</translation>
+        <source>Connect to the DogeCash network through a SOCKS5 proxy.</source>
+        <translation>Свържи се с DogeCash мрежата със SOCKS5 прокси.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1973,10 +1906,6 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
     <message>
         <source>User Interface Theme:</source>
         <translation>Тема на интерфейса:</translation>
-    </message>
-    <message>
-        <source>&amp;Unit to show amounts in:</source>
-        <translation>Мерни единици:</translation>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
@@ -2102,18 +2031,18 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Сегашния баланс по портфейли в режим на наблюдение само</translation>
     </message>
     <message>
-        <source>Your current dogecash balance, unconfirmed and immature transactions included</source>
-        <translation>Вашите dogecash наличности, включително непотвърдените и неузрели преводи</translation>
+        <source>Your current DogeCash balance, unconfirmed and immature transactions included</source>
+        <translation>Вашите DogeCash наличности, включително непотвърдените и неузрели преводи</translation>
     </message>
     <message>
-        <source>zdogec Balance</source>
-        <translation>zdogec Наличности</translation>
+        <source>zDOGEC Balance</source>
+        <translation>zDOGEC Наличности</translation>
     </message>
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zdogec are spendable.</source>
+These zDOGEC are spendable.</source>
         <translation>Узрели: повече от 20 потвърждения и повече от 1 емисии от същата деноминация след като е била емитирана.
-Тези zdogec могат да се похарчат.</translation>
+Тези zDOGEC могат да се похарчат.</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
@@ -2122,8 +2051,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Неузрели: потвърдени, но с по-малко от 1 емисии от същата деноминация след като са биле емитирани</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
-        <translation>Информацията на вашия екран може би е стара. Вашия портфейла синхронизира автоматично с dogecash мрежата след като има успешна свръзка, но процеса отнема време и не е завършил все още.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
+        <translation>Информацията на вашия екран може би е стара. Вашия портфейла синхронизира автоматично с DogeCash мрежата след като има успешна свръзка, но процеса отнема време и не е завършил все още.</translation>
     </message>
     <message>
         <source>OVERVIEW</source>
@@ -2166,8 +2095,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <translation>Налични за харчене:</translation>
     </message>
     <message>
-        <source>Locked DOGEC or Masternode collaterals. These are excluded from zdogec minting.</source>
-        <translation>Заключен DOGEC или допълнителни гаранции в Главни Възли. Тези не са включени в zdogec емитирането.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
+        <translation>Заключен DOGEC или допълнителни гаранции в Главни Възли. Тези не са включени в zDOGEC емитирането.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2178,8 +2107,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <translation>Непотвърден</translation>
     </message>
     <message>
-        <source>Your current zdogec balance, unconfirmed and immature zdogec included.</source>
-        <translation>Вашите zdogec наличности, включеително непотвърдените и неузрелите zdogec.</translation>
+        <source>Your current zDOGEC balance, unconfirmed and immature zDOGEC included.</source>
+        <translation>Вашите zDOGEC наличности, включеително непотвърдените и неузрелите zDOGEC.</translation>
     </message>
     <message>
         <source>Recent transactions</source>
@@ -2231,8 +2160,8 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in dogecash.c
         <translation>Провал при стартирането на dogecash: click-to-pay обработвател</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid dogecash address or malformed URI parameters.</source>
-        <translation>URI не може да се парсне. Вероятна причина е невалиден dogecash адрес или зле-форматирани URI Параметри.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid DogeCash address or malformed URI parameters.</source>
+        <translation>URI не може да се парсне. Вероятна причина е невалиден DogeCash адрес или зле-форматирани URI Параметри.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2317,8 +2246,8 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in dogecash.c
         <translation>Zerocoin Действия:</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
-        <translation>Информацията на вашия екран може би е стара. Вашия портфейла синхронизира автоматично с dogecash мрежата след като има успешна свръзка, но процеса отнема време и не е завършил все още.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
+        <translation>Информацията на вашия екран може би е стара. Вашия портфейла синхронизира автоматично с DogeCash мрежата след като има успешна свръзка, но процеса отнема време и не е завършил все още.</translation>
     </message>
     <message>
         <source>Mint Zerocoin</source>
@@ -2329,20 +2258,8 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in dogecash.c
         <translation>0</translation>
     </message>
     <message>
-        <source>zdogec</source>
-        <translation>zdogec</translation>
-    </message>
-    <message>
-        <source>Available for minting are coins which are confirmed and not locked or Masternode collaterals.</source>
-        <translation>Наличните за емитиране са онези монети, които са биле потвърдени и не са заключени като гаранция в Главни Възли.</translation>
-    </message>
-    <message>
-        <source>Available for Minting:</source>
-        <translation>Налични за сечене:</translation>
-    </message>
-    <message>
-        <source>0.000 000 00 DOGEC</source>
-        <translation>0.000 000 00 DOGEC</translation>
+        <source>zDOGEC</source>
+        <translation>zDOGEC</translation>
     </message>
     <message>
         <source>Reset Zerocoin Wallet DB. Deletes transactions that did not make it into the blockchain.</source>
@@ -2351,18 +2268,6 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in dogecash.c
     <message>
         <source>Reset</source>
         <translation>Ресет</translation>
-    </message>
-    <message>
-        <source>Coin Control...</source>
-        <translation>Монетен контрол...</translation>
-    </message>
-    <message>
-        <source>Quantity:</source>
-        <translation>Количество:</translation>
-    </message>
-    <message>
-        <source>Amount:</source>
-        <translation>Сума:</translation>
     </message>
     <message>
         <source>Rescan the complete blockchain for  Zerocoin mints and their meta-data.</source>
@@ -2381,16 +2286,12 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in dogecash.c
         <translation>КОНФИДЕНЦИАЛНОСТ</translation>
     </message>
     <message>
-        <source>Enter an amount of DOGEC to convert to zdogec</source>
-        <translation>Въведете колко DOGEC  да се конвертират в zdogec</translation>
+        <source>zDOGEC Control</source>
+        <translation>zDOGEC Контрол</translation>
     </message>
     <message>
-        <source>zdogec Control</source>
-        <translation>zdogec Контрол</translation>
-    </message>
-    <message>
-        <source>zdogec Selected:</source>
-        <translation>Избрани zdogec:</translation>
+        <source>zDOGEC Selected:</source>
+        <translation>Избрани zDOGEC:</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -2405,31 +2306,31 @@ To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in dogecash.c
         <translation>Похарчи Zerocoin</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zdogec for spending</source>
-        <translation>Налични (узрели и готови за харчене) zdogec за употреба</translation>
+        <source>Available (mature and spendable) zDOGEC for spending</source>
+        <translation>Налични (узрели и готови за харчене) zDOGEC за употреба</translation>
     </message>
     <message>
         <source>Available Balance:</source>
         <translation>Налични:</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zdogec for spending
+        <source>Available (mature and spendable) zDOGEC for spending
 
-zdogec are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
-        <translation>Налични (узрели и готови за харчене) zdogec за употреба
+zDOGEC are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
+        <translation>Налични (узрели и готови за харчене) zDOGEC за употреба
 
-zdogec са узрели, тогава когато имат повече от 20 потвърждения И повече от 2 емисии от същата деноминация след като са биле емитирани</translation>
+zDOGEC са узрели, тогава когато имат повече от 20 потвърждения И повече от 2 емисии от същата деноминация след като са биле емитирани</translation>
     </message>
     <message>
-        <source>0 zdogec</source>
-        <translation>0 zdogec</translation>
+        <source>0 zDOGEC</source>
+        <translation>0 zDOGEC</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
         <translation>Плати На:</translation>
     </message>
     <message>
-        <source>The dogecash address to send the payment to. Creates local payment to yourself when empty.</source>
+        <source>The DogeCash address to send the payment to. Creates local payment to yourself when empty.</source>
         <translation>Адреса на който да изпратим плащането. Ако е празно - плащането е до себе си.</translation>
     </message>
     <message>
@@ -2462,7 +2363,7 @@ zdogec са узрели, тогава когато имат повече от 2
     </message>
     <message>
         <source>Convert Change to Zerocoin (might cost additional fees)</source>
-        <translation>Изсечи zdogec от рестото (ще струва допълнително заради таксите)</translation>
+        <translation>Изсечи zDOGEC от рестото (ще струва допълнително заради таксите)</translation>
     </message>
     <message>
         <source>If checked, the wallet tries to minimize the returning change instead of minimizing the number of spent denominations.</source>
@@ -2481,8 +2382,8 @@ zdogec са узрели, тогава когато имат повече от 2
         <translation>Zerocoin статистика:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zdogec</source>
-        <translation>Обща Наличност включеително непотвърдените и неузрели zdogec</translation>
+        <source>Total Balance including unconfirmed and immature zDOGEC</source>
+        <translation>Обща Наличност включеително непотвърдените и неузрели zDOGEC</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
@@ -2503,24 +2404,24 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Неузрели: потвърдени, но с по-малко от 1 емисии от същата деноминация след като са биле емитирани</translation>
     </message>
     <message>
-        <source>Show the current status of automatic zdogec minting.
+        <source>Show the current status of automatic zDOGEC minting.
 
 To change the status (restart required):
 - enable: add 'enablezeromint=1' to dogecash.conf
 - disable: add 'enablezeromint=0' to dogecash.conf
 
 To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zdogec
+- menu Settings-&gt;Options-&gt;Percentage of autominted zDOGEC
 
 </source>
-        <translation>Покажи състоянието на автоматичното zdogec емитиране.
+        <translation>Покажи състоянието на автоматичното zDOGEC емитиране.
 
 За да пормените състоянието (изисква рестарт):
 - вклчване: добавете 'enablezeromint=1' в dogecash.conf
 - изключване: добавете 'enablezeromint=0' в dogecash.conf
 
 За промяна в процентите (не изисква рестарт):
-- меню Настройки -&gt; Опции -&gt; Процент на автоемитиран zdogec
+- меню Настройки -&gt; Опции -&gt; Процент на автоемитиран zDOGEC
 </translation>
     </message>
     <message>
@@ -2688,32 +2589,18 @@ To change the percentage (no restart required):
         <translation>Състояние на монето-сечене: OK</translation>
     </message>
     <message>
-        <source>Copy quantity</source>
-        <translation>Копирай количеството</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>Копирай сумата</translation>
-    </message>
-    <message>
         <source>Starting ResetMintZerocoin: rescanning complete blockchain, this will need up to 30 minutes depending on your hardware.
 Please be patient...</source>
         <translation>Стартиране на ResetMintZerocoin: сканираме цялия блокчейн, това ще изисква около 30 минути, в зависимост от вашия компютър.
 Моля изчакате...</translation>
     </message>
     <message>
-        <source>) needed.
-Maximum allowed: </source>
-        <translation>) нужни.
-Максимум позволени:</translation>
+        <source>zDOGEC Spend #: </source>
+        <translation>zDOGEC Похарчени #:</translation>
     </message>
     <message>
-        <source>zdogec Spend #: </source>
-        <translation>zdogec Похарчени #:</translation>
-    </message>
-    <message>
-        <source>zdogec Mint</source>
-        <translation>Сечене на zdogec</translation>
+        <source>zDOGEC Mint</source>
+        <translation>Сечене на zDOGEC</translation>
     </message>
     <message>
         <source> &lt;b&gt;enabled&lt;/b&gt;.</source>
@@ -2728,12 +2615,12 @@ Maximum allowed: </source>
         <translation>Конфигуриран целеви процент: &lt;b&gt;</translation>
     </message>
     <message>
-        <source>zdogec is currently disabled due to maintenance.</source>
-        <translation>В момента zdogec не работи поради ремонт.</translation>
+        <source>zDOGEC is currently disabled due to maintenance.</source>
+        <translation>В момента zDOGEC не работи поради ремонт.</translation>
     </message>
     <message>
-        <source>zdogec is currently undergoing maintenance.</source>
-        <translation>В момента zdogec е в ремонт.</translation>
+        <source>zDOGEC is currently undergoing maintenance.</source>
+        <translation>В момента zDOGEC е в ремонт.</translation>
     </message>
     <message>
         <source>Denom. with value &lt;b&gt;1&lt;/b&gt;:</source>
@@ -2804,32 +2691,6 @@ Maximum allowed: </source>
         <translation>Деноминация. &lt;b&gt;5000&lt;/b&gt;:</translation>
     </message>
     <message>
-        <source>Error: Your wallet is locked. Please enter the wallet passphrase first.</source>
-        <translation>Грешка: Портфейла е заключен. Моля първо въведете Вашата парола.</translation>
-    </message>
-    <message>
-        <source>Message: Enter an amount &gt; 0.</source>
-        <translation>Съобщение: Въведете стойност &gt; 0.</translation>
-    </message>
-    <message>
-        <source>Minting </source>
-        <translation>Сечене</translation>
-    </message>
-    <message>
-        <source>Successfully minted </source>
-        <translation>Успешно изсечени</translation>
-    </message>
-    <message>
-        <source> zdogec in </source>
-        <translation>zdogec в</translation>
-    </message>
-    <message>
-        <source> sec. Used denominations:
-</source>
-        <translation>сек. Използвани деноминации:
-</translation>
-    </message>
-    <message>
         <source>Duration: </source>
         <translation>Времетраене:</translation>
     </message>
@@ -2848,8 +2709,8 @@ Maximum allowed: </source>
         <translation>Без 'Плати На' адрес, плащането е локално</translation>
     </message>
     <message>
-        <source>Invalid dogecash Address</source>
-        <translation>Невалиден dogecash адрес</translation>
+        <source>Invalid DogeCash Address</source>
+        <translation>Невалиден DogeCash адрес</translation>
     </message>
     <message>
         <source>Invalid Send Amount</source>
@@ -2878,16 +2739,6 @@ Maximum allowed: </source>
     <message>
         <source>Failed to fetch mint associated with serial hash</source>
         <translation>Неуспешно извличане на мента, свързана със сериен хеш</translation>
-    </message>
-    <message>
-        <source>Too much inputs (</source>
-        <translation>Твърде много входящи (</translation>
-    </message>
-    <message>
-        <source>
-Either mint higher denominations (so fewer inputs are needed) or reduce the amount to spend.</source>
-        <translation>
-Или емитирайте по-големи деноминации (за да се ползват по малко входящи) или намалете сумата за плащане.</translation>
     </message>
     <message>
         <source>Spend Zerocoin failed with status = </source>
@@ -2936,8 +2787,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Сума</translation>
     </message>
     <message>
-        <source>Enter a dogecash address (e.g. %1)</source>
-        <translation>Задайте dogecash адрес (например %1)</translation>
+        <source>Enter a DogeCash address (e.g. %1)</source>
+        <translation>Задайте DogeCash адрес (например %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2981,7 +2832,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
     <message>
         <source>DogeCash Core</source>
-        <translation>dogecash Ядро</translation>
+        <translation>DogeCash Ядро</translation>
     </message>
     </context>
 <context>
@@ -3078,8 +2929,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Блокчейн</translation>
     </message>
     <message>
-        <source>Open the dogecash debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Отвори dogecash дебъг лог файла от сегашната папка. Това може да отнеме известно време за по-дълги файлове.</translation>
+        <source>Open the DogeCash debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Отвори DogeCash дебъг лог файла от сегашната папка. Това може да отнеме известно време за по-дълги файлове.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -3214,8 +3065,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Персонален резервен път:</translation>
     </message>
     <message>
-        <source>Custom zdogec Backup Path:</source>
-        <translation>Персонализиран zdogec резервен път:</translation>
+        <source>Custom zDOGEC Backup Path:</source>
+        <translation>Персонализиран zDOGEC резервен път:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -3294,8 +3145,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Изходящи:</translation>
     </message>
     <message>
-        <source>Welcome to the dogecash RPC console.</source>
-        <translation>Добре Дошли в RPC конзолата на dogecash.</translation>
+        <source>Welcome to the DogeCash RPC console.</source>
+        <translation>Добре Дошли в RPC конзолата на DogeCash.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -3421,16 +3272,16 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Сума:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the dogecash network.</source>
-        <translation>Съобщение свободен текст, което да се прикачи към платежното нареждане, за да бъде показано когато нареждането се отвори от клиента на когото е изпратено. Обърнете внимание, че съобщението няма да бъде изпратено заедно с плащането по dogecash мрежата.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the DogeCash network.</source>
+        <translation>Съобщение свободен текст, което да се прикачи към платежното нареждане, за да бъде показано когато нареждането се отвори от клиента на когото е изпратено. Обърнете внимание, че съобщението няма да бъде изпратено заедно с плащането по DogeCash мрежата.</translation>
     </message>
     <message>
         <source>RECEIVE</source>
         <translation>ПОЛУЧИ</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the dogecash network.</source>
-        <translation>Съобщение свободен текст, което да се прикачи към платежното нареждане, за да бъде показано когато нареждането се отвори от клиента на когото е изпратено. &lt;br&gt;Обърнете внимание, че съобщението няма да бъде изпратено заедно с плащането по dogecash мрежата.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the DogeCash network.</source>
+        <translation>Съобщение свободен текст, което да се прикачи към платежното нареждане, за да бъде показано когато нареждането се отвори от клиента на когото е изпратено. &lt;br&gt;Обърнете внимание, че съобщението няма да бъде изпратено заедно с плащането по DogeCash мрежата.</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
@@ -3726,7 +3577,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Ако собствената такса е настроена на 1000 uDOGEC и превода е само 250 байта, то тогава "за килобайт" само плаща 250 uDOGEC входяща такса,&lt;br /&gt; докато "минимална сума" плаща 1000 uDOGEC. За транзакции по-големи от килобайт, и двете плащат за килобайт.</translation>
     </message>
     <message>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for dogecash transactions than the network can process.</source>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for DogeCash transactions than the network can process.</source>
         <translation>Няма проблем да платите минималната такса, стига обема преводи да е по-малък от наличното място в блоковете. &lt;br /&gt;Но имайте впредвид, че това може да се окаже в превод, който никога не получава потвърждение ако заявките за преводи са повече от колкото мрежата може да понесе.</translation>
     </message>
     <message>
@@ -3822,7 +3673,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Инструмента за разделяне на блока не работи, когато се изпраща до няколко адреса едновременно. Опитайте пак.</translation>
     </message>
     <message>
-        <source>Warning: Invalid dogecash address</source>
+        <source>Warning: Invalid DogeCash address</source>
         <translation>Предупреждение: Невалиден DOGEC адрес</translation>
     </message>
     <message>
@@ -3921,8 +3772,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Плати На:</translation>
     </message>
     <message>
-        <source>The dogecash address to send the payment to</source>
-        <translation>dogecash адреса - получател на плащането</translation>
+        <source>The DogeCash address to send the payment to</source>
+        <translation>DogeCash адреса - получател на плащането</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -3961,8 +3812,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Съобщение:</translation>
     </message>
     <message>
-        <source>A message that was attached to the dogecash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the dogecash network.</source>
-        <translation>Съобщение, което е било прикачено към dogecash:URI и което ще бъде запазено заедно с превода за ваша информация. Внимание: Това съобщение е само за Вас, то няма да бъде изпратено по dogecash мрежата.</translation>
+        <source>A message that was attached to the DogeCash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the DogeCash network.</source>
+        <translation>Съобщение, което е било прикачено към DogeCash:URI и което ще бъде запазено заедно с превода за ваша информация. Внимание: Това съобщение е само за Вас, то няма да бъде изпратено по DogeCash мрежата.</translation>
     </message>
     <message>
         <source>This is an unverified payment request.</source>
@@ -3989,7 +3840,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <name>ShutdownWindow</name>
     <message>
         <source>DogeCash Core is shutting down...</source>
-        <translation>Изключване на dogecash Ядрото...</translation>
+        <translation>Изключване на DogeCash Ядрото...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4011,8 +3862,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Може да подписвате съобщения с Вашите адреси, за да докажете че сте техен притежател. Внимавайте да не подписвате нищо съмнително, тъй като има хакерски атаки, които целят да придобият вашата самоличност. Само подписвайте пълен и ясен текст, с който сте напълно съгласни.</translation>
     </message>
     <message>
-        <source>The dogecash address to sign the message with</source>
-        <translation>dogecash адреса, с който да подпишете съобщението</translation>
+        <source>The DogeCash address to sign the message with</source>
+        <translation>DogeCash адреса, с който да подпишете съобщението</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -4043,16 +3894,16 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Копирай сегашния подпис в системния буфер</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this dogecash address</source>
-        <translation>Подпишете съобщението, за да докажете, че притежавате този dogecash адрес</translation>
+        <source>Sign the message to prove you own this DogeCash address</source>
+        <translation>Подпишете съобщението, за да докажете, че притежавате този DogeCash адрес</translation>
     </message>
     <message>
-        <source>The dogecash address the message was signed with</source>
-        <translation>dogecash адреса, който е подписано съобщението</translation>
+        <source>The DogeCash address the message was signed with</source>
+        <translation>DogeCash адреса, който е подписано съобщението</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
-        <translation>Поверете съобщението, за да се уверите, че е подписано със зададения dogecash адрес</translation>
+        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
+        <translation>Поверете съобщението, за да се уверите, че е подписано със зададения DogeCash адрес</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -4139,7 +3990,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <name>SplashScreen</name>
     <message>
         <source>DogeCash Core</source>
-        <translation>dogecash Ядро</translation>
+        <translation>DogeCash Ядро</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -4422,8 +4273,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>DOGEC Stake</translation>
     </message>
     <message>
-        <source>zdogec Stake</source>
-        <translation>zdogec Stake</translation>
+        <source>zDOGEC Stake</source>
+        <translation>zDOGEC Stake</translation>
     </message>
     <message>
         <source>Obfuscation Denominate</source>
@@ -4442,32 +4293,32 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Обфускация и направа на Деноминации</translation>
     </message>
     <message>
-        <source>Converted DOGEC to zdogec</source>
-        <translation>Конвертиран DOGEC във zdogec</translation>
+        <source>Converted DOGEC to zDOGEC</source>
+        <translation>Конвертиран DOGEC във zDOGEC</translation>
     </message>
     <message>
-        <source>Spent zdogec</source>
-        <translation>Похарчени zdogec</translation>
+        <source>Spent zDOGEC</source>
+        <translation>Похарчени zDOGEC</translation>
     </message>
     <message>
-        <source>Received DOGEC from zdogec</source>
-        <translation>Получен DOGEC от zdogec</translation>
+        <source>Received DOGEC from zDOGEC</source>
+        <translation>Получен DOGEC от zDOGEC</translation>
     </message>
     <message>
-        <source>Minted Change as zdogec from zdogec Spend</source>
-        <translation>Исечено ресто като zdogec от похарчените zdogec</translation>
+        <source>Minted Change as zDOGEC from zDOGEC Spend</source>
+        <translation>Исечено ресто като zDOGEC от похарчените zDOGEC</translation>
     </message>
     <message>
-        <source>Converted zdogec to DOGEC</source>
-        <translation>Конвертиран zdogec във DOGEC</translation>
+        <source>Converted zDOGEC to DOGEC</source>
+        <translation>Конвертиран zDOGEC във DOGEC</translation>
     </message>
     <message>
-        <source>Anonymous (zdogec Transaction)</source>
-        <translation>Анонимен (транзакция zdogec)</translation>
+        <source>Anonymous (zDOGEC Transaction)</source>
+        <translation>Анонимен (транзакция zDOGEC)</translation>
     </message>
     <message>
-        <source>Anonymous (zdogec Stake)</source>
-        <translation>Анонимен (zdogec Stake)</translation>
+        <source>Anonymous (zDOGEC Stake)</source>
+        <translation>Анонимен (zDOGEC Stake)</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -4677,12 +4528,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Експортирането Успешно</translation>
     </message>
     <message>
-        <source>Received DOGEC from zdogec</source>
-        <translation>Получен DOGEC от zdogec</translation>
+        <source>Received DOGEC from zDOGEC</source>
+        <translation>Получен DOGEC от zDOGEC</translation>
     </message>
     <message>
-        <source>Zerocoin Spend, Change in zdogec</source>
-        <translation>Харчене на Zerocoin, Ресто в zdogec</translation>
+        <source>Zerocoin Spend, Change in zDOGEC</source>
+        <translation>Харчене на Zerocoin, Ресто в zDOGEC</translation>
     </message>
     <message>
         <source>The transaction history was successfully saved to %1.</source>
@@ -4750,10 +4601,10 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
 </context>
 <context>
-    <name>zdogecControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     <message>
-        <source>Select zdogec to Spend</source>
-        <translation>Изберете zdogec за Изпращане</translation>
+        <source>Select zDOGEC to Spend</source>
+        <translation>Изберете zDOGEC за Изпращане</translation>
     </message>
     <message>
         <source>Quantity</source>
@@ -4764,8 +4615,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>0</translation>
     </message>
     <message>
-        <source>zdogec</source>
-        <translation>zdogec</translation>
+        <source>zDOGEC</source>
+        <translation>zDOGEC</translation>
     </message>
     <message>
         <source>Select/Deselect All</source>
@@ -4800,7 +4651,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
     <message>
         <source>Cannot obtain a lock on data directory %s. DogeCash Core is probably already running.</source>
-        <translation>Не може да заключи папката с данни %s. dogecash Портфейла вероятно вече е стартиран.</translation>
+        <translation>Не може да заключи папката с данни %s. DogeCash Портфейла вероятно вече е стартиран.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4827,12 +4678,16 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Разпространява се пот MIT софтуерен лиценз, виж съпровождащия файл от &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
     </message>
     <message>
+        <source>Enable automatic wallet backups triggered after each zDOGEC minting (0-1, default: %u)</source>
+        <translation>Включи автоматичните бекъпи на портфейла след всяко zDOGEC емитиране (0-1, по подразбиране: %u)</translation>
+    </message>
+    <message>
         <source>Enable or disable staking functionality for DOGEC inputs (0-1, default: %u)</source>
         <translation>Активиране или деактивиране на функцията за зареждане за DOGEC входове (0-1, по подразбиране: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for zdogec inputs (0-1, default: %u)</source>
-        <translation>Активиране или деактивиране на функцията за зареждане за zdogec входове (0-1, по подразбиране: %u)</translation>
+        <source>Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)</source>
+        <translation>Активиране или деактивиране на функцията за зареждане за zDOGEC входове (0-1, по подразбиране: %u)</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -4877,10 +4732,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
         <translation>Изпразни паметта за дейности по базата данни в лог файл на диска на всеки &lt;n&gt; мегабайта (default: %u)</translation>
-    </message>
-    <message>
-        <source>Found unconfirmed denominated outputs, will wait till they confirm to continue.</source>
-        <translation>Намерени са непотвърдени деноминации, ще изчакаме докато се потвърдят преди да продължим.</translation>
     </message>
     <message>
         <source>If paytxfee is not set, include enough fee so transactions begin confirmation on average within n blocks (default: %u)</source>
@@ -4972,7 +4823,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
     <message>
         <source>Unable to bind to %s on this computer. DogeCash Core is probably already running.</source>
-        <translation>Не може да се прикачи към %s на този компютър. dogecash Портфейла вероятно вече е стартиран.</translation>
+        <translation>Не може да се прикачи към %s на този компютър. DogeCash Портфейла вероятно вече е стартиран.</translation>
     </message>
     <message>
         <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
@@ -5000,7 +4851,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
     <message>
         <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
-        <translation>Внимание: Проверете дали датата и часа на компютъра са верни! Ако Вашият часовник греши, dogecash Портфейла няма да работи правилно.</translation>
+        <translation>Внимание: Проверете дали датата и часа на компютъра са верни! Ако Вашият часовник греши, DogeCash Портфейла няма да работи правилно.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5031,8 +4882,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Трябва да зададете masternodeprivkey в конфигурационния файл. Консултирайте се с документацията за повече помощ.</translation>
     </message>
     <message>
-        <source>(16740 could be used only on mainnet)</source>
-        <translation>(16740 може да се ползва само в mainnet)</translation>
+        <source>(56740 could be used only on mainnet)</source>
+        <translation>(56740 може да се ползва само в mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -5043,8 +4894,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>(по подразбиране: 1)</translation>
     </message>
     <message>
-        <source>(must be 16740 for mainnet)</source>
-        <translation>(трябва да е 16740 за mainnet)</translation>
+        <source>(must be 56740 for mainnet)</source>
+        <translation>(трябва да е 56740 за mainnet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
@@ -5067,10 +4918,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Позволявай DNS запитвания за -addnote, -seednode и -connect</translation>
     </message>
     <message>
-        <source>Already have that input.</source>
-        <translation>Този въвод вече съществува.</translation>
-    </message>
-    <message>
         <source>Always query for peer addresses via DNS lookup (default: %u)</source>
         <translation>Винаги извършвай запитване за пиъри посредствим DNS търсене (по подразбиране: %u)</translation>
     </message>
@@ -5091,18 +4938,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Изчислява липсващите акумулатори...</translation>
     </message>
     <message>
-        <source>Can't denominate: no compatible inputs left.</source>
-        <translation>Не може да деноминира: не са останали съвместими входящи.</translation>
-    </message>
-    <message>
-        <source>Can't find random Masternode.</source>
-        <translation>Не откривам случан Главен възел.</translation>
-    </message>
-    <message>
-        <source>Can't mix while sync in progress.</source>
-        <translation>Не може да се миксира по време на синхронизация.</translation>
-    </message>
-    <message>
         <source>Cannot downgrade wallet</source>
         <translation>Променяне софтуерната версия на портфейла към по-ниска е невъзможно.</translation>
     </message>
@@ -5121,10 +4956,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Cannot write default address</source>
         <translation>Не можем да запишем адреса по подразбиране</translation>
-    </message>
-    <message>
-        <source>Collateral not valid.</source>
-        <translation>Гаранцията е невалидна.</translation>
     </message>
     <message>
         <source>Connect only to the specified node(s)</source>
@@ -5211,14 +5042,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Вкл. клиента да действа като влаген възел (0-1, по подразбиране: %u)</translation>
     </message>
     <message>
-        <source>Entries are full.</source>
-        <translation>Запълнени полета.</translation>
-    </message>
-    <message>
-        <source>Error connecting to Masternode.</source>
-        <translation>Грешка при свързването с Главен възел.</translation>
-    </message>
-    <message>
         <source>Error initializing block database</source>
         <translation>Грешка при стартирането на блок базата данни</translation>
     </message>
@@ -5263,10 +5086,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Грешка: Фатална вътрешна грешка, вижте debug.log за повече подробности.</translation>
     </message>
     <message>
-        <source>Error: Can't select current denominated inputs</source>
-        <translation>Грешка: Така зададените деноминации не могат да бъдат избрани</translation>
-    </message>
-    <message>
         <source>Error: Disk space is low!</source>
         <translation>Грешка: Намаляващо Дисково пространство!</translation>
     </message>
@@ -5277,10 +5096,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Error: Wallet locked, unable to create transaction!</source>
         <translation>Грешка: Портфейла е заключен, неуспешен превод!</translation>
-    </message>
-    <message>
-        <source>Error: You already have pending entries in the Obfuscation pool</source>
-        <translation>Грешка: Вече имате изчакващи входящи в басейна за Обфускация</translation>
     </message>
     <message>
         <source>Failed to calculate accumulator checkpoint</source>
@@ -5299,20 +5114,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Такса (в DOGEC/kB), която да се добави към изходящи преводи (по подразбиране: %s)</translation>
     </message>
     <message>
-        <source>Finalizing transaction.</source>
-        <translation>Приключване на превода.</translation>
-    </message>
-    <message>
         <source>Force safe mode (default: %u)</source>
         <translation>Предизвикай безопасен режим (по подразбиране: %u)</translation>
-    </message>
-    <message>
-        <source>Found enough users, signing ( waiting %s )</source>
-        <translation>Имаме достатъчно потребители, подписване ( изчаква %s )</translation>
-    </message>
-    <message>
-        <source>Found enough users, signing ...</source>
-        <translation>Имаме достатучно потребители, подписване ...</translation>
     </message>
     <message>
         <source>Generate coins (default: %u)</source>
@@ -5339,14 +5142,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Включи и IP адресите при дебъг (по подразбиране: %u)</translation>
     </message>
     <message>
-        <source>Incompatible mode.</source>
-        <translation>Несъвместим режим.</translation>
-    </message>
-    <message>
-        <source>Incompatible version.</source>
-        <translation>Несъвместима версия.</translation>
-    </message>
-    <message>
         <source>Incorrect or no genesis block found. Wrong datadir for network?</source>
         <translation>Няма намерен генезис блок или намерения е несъвместим. Грешен datadlr за мрежата?</translation>
     </message>
@@ -5357,10 +5152,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Initialization sanity check failed. DogeCash Core is shutting down.</source>
         <translation>Стартирането на проверка на здравословното състояние на портфейла се провали. Изключваме Портфейла.</translation>
-    </message>
-    <message>
-        <source>Input is not valid.</source>
-        <translation>Зададените стойности са невалидни.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5419,16 +5210,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Грешен личен ключ.</translation>
     </message>
     <message>
-        <source>Invalid script detected.</source>
-        <translation>Невалиден скрипт, засечен.</translation>
-    </message>
-    <message>
         <source>Percentage of automatically minted Zerocoin  (1-100, default: %u)</source>
         <translation>Процент автоматично емитирани Zerocoin (1-100, по подразбиране: %u)</translation>
     </message>
     <message>
-        <source>Reindex the DOGEC and zdogec money supply statistics</source>
-        <translation>Индексирай наново DOGEC и zdogec данните по наличности</translation>
+        <source>Reindex the DOGEC and zDOGEC money supply statistics</source>
+        <translation>Индексирай наново DOGEC и zDOGEC данните по наличности</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5467,8 +5254,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
 </translation>
     </message>
     <message>
-        <source>Disable all dogecash specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Изключи dogecash специфичната функционалност (Главни възли, Zerocoin, SwiftX, Бюджетиране) (0-1, po podrazbirane: %u)</translation>
+        <source>Disable all DogeCash specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
+        <translation>Изключи DogeCash специфичната функционалност (Главни възли, Zerocoin, SwiftX, Бюджетиране) (0-1, po podrazbirane: %u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
@@ -5503,8 +5290,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Предпочитани деноминации за автоматично изсечените Zerocoin (1/5/10/50/100/500/1000/5000), 0 за каквито и да е. (По подразбиране: %u)</translation>
     </message>
     <message>
-        <source>Specify custom backup path to add a copy of any automatic zdogec backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
-        <translation>Посочете персонализиран път за архивиране, за да добавите копие на всяко автоматично архивиране zdogec. Ако е зададено като реж., Всеки архив генерира файл с времева маркировка. Ако е зададен като файл, ще пренапише към този файл всеки архив. Ако е зададено и резервно копие, ще се случат 4 архиви</translation>
+        <source>Specify custom backup path to add a copy of any automatic zDOGEC backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
+        <translation>Посочете персонализиран път за архивиране, за да добавите копие на всяко автоматично архивиране zDOGEC. Ако е зададено като реж., Всеки архив генерира файл с времева маркировка. Ако е зададен като файл, ще пренапише към този файл всеки архив. Ако е зададено и резервно копие, ще се случат 4 архиви</translation>
     </message>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
@@ -5587,14 +5374,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Пази най-много &lt;n&gt; несвързани превода в паметта (по подразбиране: %u)</translation>
     </message>
     <message>
-        <source>Last Obfuscation was too recent.</source>
-        <translation>Последната обфускация бе твърде скоро.</translation>
-    </message>
-    <message>
-        <source>Last successful Obfuscation action was too recent.</source>
-        <translation>Последното действие по Обфускация е било твърде скоро.</translation>
-    </message>
-    <message>
         <source>Limit size of signature cache to &lt;n&gt; entries (default: %u)</source>
         <translation>Ограничи размера на подписния кеш до &lt;n&gt; задания (по подразбиране: %u)</translation>
     </message>
@@ -5647,10 +5426,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Местоположение на оторизационната бисквитка (по подразбиране: data dir)</translation>
     </message>
     <message>
-        <source>Lock is already in place.</source>
-        <translation>Вече е заключен.</translation>
-    </message>
-    <message>
         <source>Lock masternodes from masternode configuration file (default: %u)</source>
         <translation>Заключи главен възел от конфигурационния файл (по подразбиране: %u)</translation>
     </message>
@@ -5667,14 +5442,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Опции за Главни възли</translation>
     </message>
     <message>
-        <source>Masternode queue is full.</source>
-        <translation>Опашката за Главни възли е пълна.</translation>
-    </message>
-    <message>
-        <source>Masternode:</source>
-        <translation>Главен Възел:</translation>
-    </message>
-    <message>
         <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: %u)</source>
         <translation>Максимум буфер за Получаване, за връзка, &lt;n&gt;*1000 байта (по подразбиране: %u)</translation>
     </message>
@@ -5687,14 +5454,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Емисията не успя да се включи в блокчейна</translation>
     </message>
     <message>
-        <source>Missing input transaction information.</source>
-        <translation>Липсваща вх. информация за превода.</translation>
-    </message>
-    <message>
-        <source>Mixing in progress...</source>
-        <translation>В момента тече смесване...</translation>
-    </message>
-    <message>
         <source>Need address because change is not exact</source>
         <translation>Необходим е адрес, понеже рестото не е кръгла сума</translation>
     </message>
@@ -5703,40 +5462,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Нужно е да се зададе порт с -whitebind: '%s'</translation>
     </message>
     <message>
-        <source>No Masternodes detected.</source>
-        <translation>Не се засичат Мастърноудове.</translation>
-    </message>
-    <message>
-        <source>No compatible Masternode found.</source>
-        <translation>Не е намерен съвместим Мастърноуд.</translation>
-    </message>
-    <message>
-        <source>No funds detected in need of denominating.</source>
-        <translation>Не засякохме средства, които да имат нужда от деноминация.</translation>
-    </message>
-    <message>
-        <source>No matching denominations found for mixing.</source>
-        <translation>Не намерихме съвпадащи деноминации за смесване.</translation>
-    </message>
-    <message>
         <source>Node relay options:</source>
         <translation>Опции на възел релето:</translation>
     </message>
     <message>
-        <source>Non-standard public key detected.</source>
-        <translation>Засякохме нестандартен публичен ключ.</translation>
-    </message>
-    <message>
-        <source>Not compatible with existing transactions.</source>
-        <translation>Несъвместимост със съществуващите преводи.</translation>
-    </message>
-    <message>
         <source>Not enough file descriptors available.</source>
         <translation>Недостатъчно налични файл описания.</translation>
-    </message>
-    <message>
-        <source>Not in the Masternode list.</source>
-        <translation>Не е в списъка с Главни възли.</translation>
     </message>
     <message>
         <source>Number of automatic wallet backups (default: 10)</source>
@@ -5745,18 +5476,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Number of custom location backups to retain (default: %d)</source>
         <translation>Брой запазени резервни копия за местоположението (по подразбиране: %d)</translation>
-    </message>
-    <message>
-        <source>Obfuscation is idle.</source>
-        <translation>Обфускацията е в режим на изчакване.</translation>
-    </message>
-    <message>
-        <source>Obfuscation request complete:</source>
-        <translation>Обфускацията приключи.</translation>
-    </message>
-    <message>
-        <source>Obfuscation request incomplete:</source>
-        <translation>Обфускацията не успя да приключи.</translation>
     </message>
     <message>
         <source>Only accept block chain matching built-in checkpoints (default: %u)</source>
@@ -5849,10 +5568,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Send transactions as zero-fee transactions if possible (default: %u)</source>
         <translation>Ако е възможно, изпращай транзакциите като нулево-таксуван превод (по подразбиране: %u)</translation>
-    </message>
-    <message>
-        <source>Session not complete!</source>
-        <translation>Недовърешна сесия!</translation>
     </message>
     <message>
         <source>Session timed out.</source>
@@ -5959,18 +5674,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Изключи се след импортирането на блоквоете от диска (default: %u)</translation>
     </message>
     <message>
-        <source>Submitted following entries to masternode: %u / %d</source>
-        <translation>Следните са изпратени до главния възел: %u / %d</translation>
-    </message>
-    <message>
-        <source>Submitted to masternode, waiting for more entries ( %u / %d ) %s</source>
-        <translation>Изпратени до главния възел, чакаме още ( %u %d ) %s</translation>
-    </message>
-    <message>
-        <source>Submitted to masternode, waiting in queue %s</source>
-        <translation>Изпратено до главния възел, чака си реда %s</translation>
-    </message>
-    <message>
         <source>Synchronization failed</source>
         <translation>Неуспешна синхронизация</translation>
     </message>
@@ -5999,8 +5702,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Синхронизиране на вилицо-лъжиците...</translation>
     </message>
     <message>
-        <source>Syncing zdogec wallet...</source>
-        <translation>Синхронизиране на zdogec портфейла ...</translation>
+        <source>Syncing zDOGEC wallet...</source>
+        <translation>Синхронизиране на zDOGEC портфейла ...</translation>
     </message>
     <message>
         <source>The coin spend has been used</source>
@@ -6021,10 +5724,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>This is intended for regression testing tools and app development.</source>
         <translation>Това е за регресионен тест и софтуерна разработка.</translation>
-    </message>
-    <message>
-        <source>This is not a Masternode.</source>
-        <translation>Това не е Главен Възел.</translation>
     </message>
     <message>
         <source>Threshold for disconnecting misbehaving peers (default: %u)</source>
@@ -6059,18 +5758,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Преводните суми трябва да са положително число</translation>
     </message>
     <message>
-        <source>Transaction created successfully.</source>
-        <translation>Превода е създаден успешно</translation>
-    </message>
-    <message>
-        <source>Transaction fees are too high.</source>
-        <translation>Преводните таски са твърде високи.</translation>
-    </message>
-    <message>
-        <source>Transaction not valid.</source>
-        <translation>Превода е невалиден.</translation>
-    </message>
-    <message>
         <source>Transaction too large for fee policy</source>
         <translation>Твърде голям превод за таксионната политика</translation>
     </message>
@@ -6079,24 +5766,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Твърде голям превод</translation>
     </message>
     <message>
-        <source>Transmitting final transaction.</source>
-        <translation>Изпращане на последния превод.</translation>
-    </message>
-    <message>
-        <source>Try to spend with a higher security level to include more coins</source>
-        <translation>Опитайте да платите с по-високо ниво на сигурност, за да включите повече монети.</translation>
-    </message>
-    <message>
         <source>Trying to spend an already spent serial #, try again.</source>
         <translation>Опитвате се да похарчите, вече похарчен сериен номер. Опитайте отново.</translation>
     </message>
     <message>
         <source>Unable to bind to %s on this computer (bind returned error %s)</source>
         <translation>Не можем да прикачим %s към този компютър (прикачването даде грешка %s)</translation>
-    </message>
-    <message>
-        <source>Unable to find transaction containing mint</source>
-        <translation>Не можем да намерим превод, който съдържа емисията</translation>
     </message>
     <message>
         <source>Unable to sign spork message, wrong key?</source>
@@ -6109,10 +5784,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
         <translation>Непозната мрежа е зададена в -onlynet: '%s'</translation>
-    </message>
-    <message>
-        <source>Unknown state: id = %u</source>
-        <translation>Непознато състояние: id = %u</translation>
     </message>
     <message>
         <source>Upgrade wallet to latest format</source>
@@ -6139,12 +5810,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Потребителско име за JSON-RPC свръзките</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zdogec</source>
-        <translation>Стойността е под най-малката налична деноминация (= 1) в zdogec</translation>
-    </message>
-    <message>
-        <source>Value more than Obfuscation pool maximum allows.</source>
-        <translation>Стойността е по-голяма от позволената от басейна Обфускация.</translation>
+        <source>Value is below the smallest available denomination (= 1) of zDOGEC</source>
+        <translation>Стойността е под най-малката налична деноминация (= 1) в zDOGEC</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -6157,10 +5824,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Wallet %s resides outside data directory %s</source>
         <translation>Портфейла %s е извън папката с данни %s</translation>
-    </message>
-    <message>
-        <source>Wallet is locked.</source>
-        <translation>Портфейла е заключен.</translation>
     </message>
     <message>
         <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
@@ -6191,24 +5854,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Внимание: Неподдържанния аргумент -debugnet бе игнориран, използвайте -debug=net.</translation>
     </message>
     <message>
-        <source>Will retry...</source>
-        <translation>Ще опита...</translation>
-    </message>
-    <message>
         <source>You don't have enough Zerocoins in your wallet</source>
         <translation>Нямате достатъчно Zerocoin в портфейла си</translation>
     </message>
     <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>Трябва да построите базата данни наново, използвайки -reindex вместо -txindex</translation>
-    </message>
-    <message>
-        <source>Your entries added successfully.</source>
-        <translation>Въведени успешно.</translation>
-    </message>
-    <message>
-        <source>Your transaction was accepted into the pool!</source>
-        <translation>Превода е приет в басейна!</translation>
     </message>
     <message>
         <source>Zapping all transactions from wallet...</source>

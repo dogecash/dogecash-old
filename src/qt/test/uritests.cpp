@@ -1,5 +1,6 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2017 The PIVX developers
+// Copyright (c) 2017-2019 The DogeCash developers
+// Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 

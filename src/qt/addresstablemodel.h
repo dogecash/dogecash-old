@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
-// Copyright (c) 2017 The PIVX developers
+// Copyright (c) 2017-2018 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -27,7 +27,8 @@ public:
 
     enum ColumnIndex {
         Label = 0,  /**< User specified label */
-        Address = 1 /**< Bitcoin address */
+        Address = 1, /**< Bitcoin address */
+        Date = 2 /**< Address creation date */
     };
 
     enum RoleIndex {
@@ -52,6 +53,8 @@ public:
         @{*/
     int rowCount(const QModelIndex& parent) const;
     int columnCount(const QModelIndex& parent) const;
+    int sizeSend() const;
+    int sizeRecv() const;
     QVariant data(const QModelIndex& index, int role) const;
     bool setData(const QModelIndex& index, const QVariant& value, int role);
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
@@ -73,6 +76,11 @@ public:
        Return -1 if not found.
      */
     int lookupAddress(const QString& address) const;
+
+    /**
+     * Return last unused address
+     */
+    QString getLastUnusedAddress() const;
 
     EditStatus getEditStatus() const { return editStatus; }
 

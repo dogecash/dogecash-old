@@ -1871,7 +1871,8 @@ void ListTransactions(const CWalletTx& wtx, const string& strAccount, int nMinDe
     }
 
     // Received
-    if (listReceived.size() > 0 && wtx.GetDepthInMainChain() >= nMinDepth) {
+    int depth = wtx.GetDepthInMainChain();
+    if (listReceived.size() > 0 && depth >= nMinDepth) {
         BOOST_FOREACH (const COutputEntry& r, listReceived) {
             string account;
             if (pwalletMain->mapAddressBook.count(r.destination))
@@ -1883,7 +1884,7 @@ void ListTransactions(const CWalletTx& wtx, const string& strAccount, int nMinDe
                 entry.push_back(Pair("account", account));
                 MaybePushAddress(entry, r.destination);
                 if (wtx.IsCoinBase()) {
-                    if (wtx.GetDepthInMainChain() < 1)
+                    if (depth < 1)
                         entry.push_back(Pair("category", "orphan"));
                     else if (wtx.GetBlocksToMaturity() > 0)
                         entry.push_back(Pair("category", "immature"));
@@ -2097,8 +2098,9 @@ UniValue listaccounts(const UniValue& params, bool fHelp)
         string strSentAccount;
         list<COutputEntry> listReceived;
         list<COutputEntry> listSent;
-        int nDepth = wtx.GetDepthInMainChain();
-        if (wtx.GetBlocksToMaturity() > 0 || nDepth < 0)
+        bool fConflicted;
+        int nDepth = wtx.GetDepthAndMempool(fConflicted);
+        if (wtx.GetBlocksToMaturity() > 0 || nDepth < 0 || fConflicted)
             continue;
         wtx.GetAmounts(listReceived, listSent, nFee, strSentAccount, includeWatchonly);
         mapAccountBalances[strSentAccount] -= nFee;
@@ -2795,12 +2797,6 @@ UniValue getwalletinfo(const UniValue& params, bool fHelp)
     obj.push_back(Pair("keypoolsize",   (int64_t)pwalletMain->KeypoolCountExternalKeys()));
     if (fHDEnabled) {
         obj.push_back(Pair("keypoolsize_hd_internal",   (int64_t)(pwalletMain->KeypoolCountInternalKeys())));
-    }
-
-    if (pwalletMain->IsCrypted())
-        obj.push_back(Pair("unlocked_until", nWalletUnlockTime));
-    obj.push_back(Pair("paytxfee",      ValueFromAmount(payTxFee.GetFeePerK())));
-    if (fHDEnabled) {
         obj.push_back(Pair("hdchainid", hdChainCurrent.GetID().GetHex()));
         obj.push_back(Pair("hdaccountcount", (int64_t)hdChainCurrent.CountAccounts()));
         UniValue accounts(UniValue::VARR);
@@ -2819,6 +2815,10 @@ UniValue getwalletinfo(const UniValue& params, bool fHelp)
         }
         obj.push_back(Pair("hdaccounts", accounts));
     }
+
+    if (pwalletMain->IsCrypted())
+        obj.push_back(Pair("unlocked_until", nWalletUnlockTime));
+    obj.push_back(Pair("paytxfee",      ValueFromAmount(payTxFee.GetFeePerK())));
     obj.push_back(Pair("automintaddresses", fEnableAutoConvert));
     return obj;
 }
@@ -3676,7 +3676,7 @@ extern UniValue DozdogecSpend(const CAmount nAmount, bool fMintChange, bool fMin
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid DOGEC address");
         outputs.push_back(std::pair<CBitcoinAddress*, CAmount>(&address, nAmount));
     }
-        fSuccess = pwalletMain->SpendZerocoin(nAmount, wtx, receipt, vMintsSelected, fMintChange, fMinimizeChange);
+    fSuccess = pwalletMain->SpendZerocoin(nAmount, wtx, receipt, vMintsSelected, fMintChange, fMinimizeChange, outputs, nullptr, false);
 
     if (!fSuccess)
         throw JSONRPCError(RPC_WALLET_ERROR, receipt.GetStatusMessage());

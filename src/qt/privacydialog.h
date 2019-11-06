@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -46,7 +46,7 @@ public:
 
     void setModel(WalletModel* model);
     void showOutOfSyncWarning(bool fShow);
-    void setzdogecControlLabels(int64_t nAmount, int nQuantity);
+    void setZDogeCControlLabels(int64_t nAmount, int nQuantity);
 
 public slots:
     void setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance,
@@ -76,19 +76,19 @@ private:
 
     int nDisplayUnit;
     bool updateLabel(const QString& address);
-    void sendzdogec();
+    void sendzDOGEC();
 
 private slots:
     void on_payTo_textChanged(const QString& address);
     void on_addressBookButton_clicked();
 //    void coinControlFeatureChanged(bool);
-    void coinControlButtonClicked();
+// MINT disabled   void coinControlButtonClicked();
 //    void coinControlChangeChecked(int);
 //    void coinControlChangeEdited(const QString&);
-    void coinControlUpdateLabels();
+// MINT disabled    void coinControlUpdateLabels();
 
-    void coinControlClipboardQuantity();
-    void coinControlClipboardAmount();
+// MINT disabled    void coinControlClipboardQuantity();
+// MINT disabled    void coinControlClipboardAmount();
 //    void coinControlClipboardFee();
 //    void coinControlClipboardAfterFee();
 //    void coinControlClipboardBytes();
@@ -96,11 +96,11 @@ private slots:
 //    void coinControlClipboardLowOutput();
 //    void coinControlClipboardChange();
 
-    void on_pushButtonMintzdogec_clicked();
+// MINT disabled    void on_pushButtonMintzDOGEC_clicked();
     void on_pushButtonMintReset_clicked();
     void on_pushButtonSpentReset_clicked();
-    void on_pushButtonSpendzdogec_clicked();
-    void on_pushButtonzdogecControl_clicked();
+    void on_pushButtonSpendzDOGEC_clicked();
+    void on_pushButtonZDogeCControl_clicked();
     void on_pushButtonHideDenoms_clicked();
     void on_pushButtonShowDenoms_clicked();
     void on_pasteButton_clicked();

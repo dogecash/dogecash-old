@@ -25,8 +25,6 @@
 
 // The main object for accessing Obfuscation
 CObfuscationPool obfuScationPool;
-// A helper object for signing messages from Masternodes
-CObfuScationSigner obfuScationSigner;
 // The current Obfuscations in progress on the network
 std::vector<CObfuscationQueue> vecObfuscationQueue;
 // Keep track of the used Masternodes

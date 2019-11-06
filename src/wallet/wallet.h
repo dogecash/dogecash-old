@@ -233,14 +233,35 @@ public:
 
     // Zerocoin additions
     bool CreateZerocoinMintTransaction(const CAmount nValue, CMutableTransaction& txNew, vector<CDeterministicMint>& vDMints, CReserveKey* reservekey, int64_t& nFeeRet, std::string& strFailReason, const CCoinControl* coinControl = NULL, const bool isZCSpendChange = false);
-    bool CreateZerocoinSpendTransaction(CAmount nValue, CWalletTx& wtxNew, CReserveKey& reserveKey, CZerocoinSpendReceipt& receipt, vector<CZerocoinMint>& vSelectedMints, vector<CDeterministicMint>& vNewMints, bool fMintChange,  bool fMinimizeChange, CBitcoinAddress* address = NULL);
+    bool CreateZerocoinSpendTransaction(
+            CAmount nValue,
+            CWalletTx& wtxNew,
+            CReserveKey& reserveKey,
+            CZerocoinSpendReceipt& receipt,
+            std::vector<CZerocoinMint>& vSelectedMints,
+            std::vector<CDeterministicMint>& vNewMints,
+            bool fMintChange,
+            bool fMinimizeChange,
+            std::list<std::pair<CBitcoinAddress*,CAmount>> addressesTo,
+            CBitcoinAddress* changeAddress = nullptr,
+            bool isPublicSpend = true);
     bool CheckCoinSpend(libzerocoin::CoinSpend& spend, libzerocoin::Accumulator& accumulator, CZerocoinSpendReceipt& receipt);
     bool MintToTxIn(CZerocoinMint mint, const uint256& hashTxOut, CTxIn& newTxIn, CZerocoinSpendReceipt& receipt, libzerocoin::SpendType spendType, CBlockIndex* pindexCheckpoint = nullptr);
     bool MintsToInputVector(std::map<CBigNum, CZerocoinMint>& mapMintsSelected, const uint256& hashTxOut, std::vector<CTxIn>& vin,
                             CZerocoinSpendReceipt& receipt, libzerocoin::SpendType spendType, CBlockIndex* pindexCheckpoint = nullptr);
     std::string MintZerocoinFromOutPoint(CAmount nValue, CWalletTx& wtxNew, std::vector<CDeterministicMint>& vDMints, const vector<COutPoint> vOutpts);
     std::string MintZerocoin(CAmount nValue, CWalletTx& wtxNew, vector<CDeterministicMint>& vDMints, const CCoinControl* coinControl = NULL);
-    bool SpendZerocoin(CAmount nValue, CWalletTx& wtxNew, CZerocoinSpendReceipt& receipt, vector<CZerocoinMint>& vMintsSelected, bool fMintChange, bool fMinimizeChange, CBitcoinAddress* addressTo = NULL);
+    bool SpendZerocoin(
+            CAmount nAmount,
+            CWalletTx& wtxNew,
+            CZerocoinSpendReceipt& receipt,
+            std::vector<CZerocoinMint>& vMintsSelected,
+            bool fMintChange,
+            bool fMinimizeChange,
+            std::list<std::pair<CBitcoinAddress*,CAmount>> addressesTo,
+            CBitcoinAddress* changeAddress = nullptr,
+            bool isPublicSpend = true
+    );
     std::string ResetMintZerocoin();
     std::string ResetSpentZerocoin();
     void ReconsiderZerocoins(std::list<CZerocoinMint>& listMintsRestored, std::list<CDeterministicMint>& listDMintsRestored);
@@ -354,6 +375,7 @@ public:
     std::map<CKeyID, CHDPubKey> mapHdPubKeys; //<! memory map of HD extended pubkeys
 
     const CWalletTx* GetWalletTx(const uint256& hash) const;
+    std::vector<CWalletTx> getWalletTxs();
 
     void PrecomputeSpends();
 
@@ -381,6 +403,8 @@ public:
     //  keystore implementation
     // Generate a new key
     CPubKey GenerateNewKey(uint32_t nAccountIndex, bool fInternal = false);
+    int64_t GetKeyCreationTime(CPubKey pubkey);
+    int64_t GetKeyCreationTime(const CBitcoinAddress& address);
     //! HaveKey implementation that also checks the mapHdPubKeys
     bool HaveKey(const CKeyID &address) const;
     //! GetPubKey implementation that also checks the mapHdPubKeys

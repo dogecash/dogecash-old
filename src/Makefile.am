@@ -172,10 +172,10 @@ BITCOIN_CORE_H = \
   uint256.h \
   undo.h \
   util.h \
-  utilsplitstring.h \
   utilstrencodings.h \
   utilmoneystr.h \
   utiltime.h \
+  utilsplitstring.h \
   validationinterface.h \
   version.h \
   wallet/wallet.h \
@@ -372,8 +372,8 @@ libbitcoin_common_a_SOURCES = \
   allocators.cpp \
   amount.cpp \
   base58.cpp \
-  bip39.cpp \
   bip38.cpp \
+  bip39.cpp \
   chainparams.cpp \
   coins.cpp \
   compressor.cpp \
@@ -423,7 +423,6 @@ libbitcoin_util_a_SOURCES = \
   uint256.cpp \
   util.cpp \
   utilmoneystr.cpp \
-  utilsplitstring.h \
   utilstrencodings.cpp \
   utiltime.cpp \
   $(BITCOIN_CORE_H)
@@ -545,10 +544,16 @@ CLEANFILES = $(EXTRA_LIBRARIES)
 CLEANFILES += *.gcda *.gcno
 CLEANFILES += compat/*.gcda compat/*.gcno
 CLEANFILES += crypto/*.gcda crypto/*.gcno
+CLEANFILES += libzerocoin/*.gcda libzerocoin/*.gcno
 CLEANFILES += primitives/*.gcda primitives/*.gcno
+CLEANFILES += rpc/*.gcda rpc/*.gcno
 CLEANFILES += script/*.gcda script/*.gcno
+CLEANFILES += support/*.gcda support/*.gcno
 CLEANFILES += univalue/*.gcda univalue/*.gcno
+CLEANFILES += wallet/*.gcda wallet/*.gcno
+CLEANFILES += wallet/test/*.gcda wallet/test/*.gcno
 CLEANFILES += zmq/*.gcda zmq/*.gcno
+CLEANFILES += zdogec/*.gcda zdogec/*.gcno
 CLEANFILES += obj/build.h
 
 EXTRA_DIST =
@@ -576,13 +581,13 @@ clean-local:
 check-symbols: $(bin_PROGRAMS)
 if GLIBC_BACK_COMPAT
 	@echo "Checking glibc back compat..."
-	$(AM_V_at) READELF=$(READELF) CPPFILT=$(CPPFILT) $(top_srcdir)/contrib/devtools/symbol-check.py < $(bin_PROGRAMS)
+	$(AM_V_at) READELF=$(READELF) CPPFILT=$(CPPFILT) $(PYTHON) $(top_srcdir)/contrib/devtools/symbol-check.py < $(bin_PROGRAMS)
 endif
 
 check-security: $(bin_PROGRAMS)
 if HARDEN
 	@echo "Checking binary security..."
-	$(AM_V_at) READELF=$(READELF) OBJDUMP=$(OBJDUMP) $(top_srcdir)/contrib/devtools/security-check.py < $(bin_PROGRAMS)
+	$(AM_V_at) READELF=$(READELF) OBJDUMP=$(OBJDUMP) $(PYTHON) $(top_srcdir)/contrib/devtools/security-check.py < $(bin_PROGRAMS)
 endif
 
 %.pb.cc %.pb.h: %.proto

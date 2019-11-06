@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -42,8 +42,6 @@
 #include <QTextDocument>
 #include <QUrlQuery>
 
-using namespace boost;
-using namespace std;
 
 const int BITCOIN_IPC_CONNECT_TIMEOUT = 1000; // milliseconds
 const QString BITCOIN_IPC_PREFIX("dogecash:");
@@ -80,7 +78,7 @@ namespace // Anon namespace
 //
 static QString ipcServerName()
 {
-    QString name("dogecashQt");
+    QString name("DogeCashQt");
 
     // Append a simple hash of the datadir
     // Note that GetDataDir(true) returns a different path
@@ -399,7 +397,7 @@ void PaymentServer::handleURIOrFile(const QString& s)
                     emit receivedPaymentRequest(recipient);
             } else
                 emit message(tr("URI handling"),
-                    tr("URI cannot be parsed! This can be caused by an invalid dogecash address or malformed URI parameters."),
+                    tr("URI cannot be parsed! This can be caused by an invalid DogeCash address or malformed URI parameters."),
                     CClientUIInterface::ICON_WARNING);
 
             return;
@@ -576,7 +574,7 @@ void PaymentServer::fetchPaymentACK(CWallet* wallet, SendCoinsRecipient recipien
     // Create a new refund address, or re-use:
     QString account = tr("Refund from %1").arg(recipient.authenticatedMerchant);
     std::string strAccount = account.toStdString();
-    set<CTxDestination> refundAddresses = wallet->GetAccountAddresses(strAccount);
+    std::set<CTxDestination> refundAddresses = wallet->GetAccountAddresses(strAccount);
     if (!refundAddresses.empty()) {
         CScript s = GetScriptForDestination(*refundAddresses.begin());
         payments::Output* refund_to = payment.add_refund_to();

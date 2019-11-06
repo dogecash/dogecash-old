@@ -91,7 +91,7 @@ static bool AppInitRPC(int argc, char* argv[])
     }
     try {
         ReadConfigFile(mapArgs, mapMultiArgs);
-    } catch (const std::exception& e) {
+    } catch (std::exception& e) {
         fprintf(stderr, "Error reading configuration file: %s\n", e.what());
         return false;
     }
@@ -274,9 +274,9 @@ int CommandLineRPC(int argc, char* argv[])
                     throw;
             }
         } while (fWait);
-    } catch (const boost::thread_interrupted&) {
+    } catch (boost::thread_interrupted) {
         throw;
-    } catch (const std::exception& e) {
+    } catch (std::exception& e) {
         strPrint = string("error: ") + e.what();
         nRet = EXIT_FAILURE;
     } catch (...) {
@@ -301,7 +301,7 @@ int main(int argc, char* argv[])
     try {
         if (!AppInitRPC(argc, argv))
             return EXIT_FAILURE;
-    } catch (const std::exception& e) {
+    } catch (std::exception& e) {
         PrintExceptionContinue(&e, "AppInitRPC()");
         return EXIT_FAILURE;
     } catch (...) {
@@ -312,7 +312,7 @@ int main(int argc, char* argv[])
     int ret = EXIT_FAILURE;
     try {
         ret = CommandLineRPC(argc, argv);
-    } catch (const std::exception& e) {
+    } catch (std::exception& e) {
         PrintExceptionContinue(&e, "CommandLineRPC()");
     } catch (...) {
         PrintExceptionContinue(NULL, "CommandLineRPC()");

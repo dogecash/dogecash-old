@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2018 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,6 +7,7 @@
 #define BITCOIN_QT_GUIUTIL_H
 
 #include "amount.h"
+#include "askpassphrasedialog.h"
 
 #include <QEvent>
 #include <QHeaderView>
@@ -31,7 +32,7 @@ class QUrl;
 class QWidget;
 QT_END_NAMESPACE
 
-/** Utility functions used by the dogecash Qt UI.
+/** Utility functions used by the DogeCash Qt UI.
  */
 namespace GUIUtil
 {
@@ -39,8 +40,17 @@ namespace GUIUtil
 QString dateTimeStr(const QDateTime& datetime);
 QString dateTimeStr(qint64 nTime);
 
-// Render dogecash addresses in monospace font
+// Render DogeCash addresses in monospace font
 QFont bitcoinAddressFont();
+
+// Parse string into a CAmount value
+CAmount parseValue(const QString& text, int displayUnit, bool* valid_out = 0);
+
+// Format an amount
+QString formatBalance(CAmount amount, int nDisplayUnit = 0, bool isZdogec = false);
+
+// Request wallet unlock
+bool requestUnlock(WalletModel* walletModel, AskPassphraseDialog::Context context, bool relock);
 
 // Set up widgets for address and amounts
 void setupAddressWidget(QValidatedLineEdit* widget, QWidget* parent);
@@ -110,16 +120,16 @@ Qt::ConnectionType blockingGUIThreadConnection();
 bool isObscured(QWidget* w);
 
 // Open debug.log
-void openDebugLogfile();
+bool openDebugLogfile();
 
 // Open dogecash.conf
-void openConfigfile();
+bool openConfigfile();
 
 // Open masternode.conf
-void openMNConfigfile();
+bool openMNConfigfile();
 
 // Browse backup folder
-void showBackups();
+bool showBackups();
 
 // Replace invalid default fonts with known good ones
 void SubstituteFonts(const QString& language);

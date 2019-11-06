@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -405,7 +405,7 @@ std::string AddressToString(const CBitcoinAddress& Address)
     {
         std::vector<CDiskTxPos> Txs;
         paddressmap->GetTxs(Txs, AddressScript.GetID());
-        BOOST_FOREACH (const CDiskTxPos& pos, Txs)
+        for (const CDiskTxPos& pos : Txs)
         {
             CTransaction tx;
             CBlock block;

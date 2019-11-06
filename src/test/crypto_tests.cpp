@@ -12,13 +12,13 @@
 #include "crypto/hmac_sha512.h"
 #include "random.h"
 #include "utilstrencodings.h"
-#include "test/test_dogecash.h"
 
 #include <vector>
 
 #include <boost/assign/list_of.hpp>
 #include <boost/test/unit_test.hpp>
 #include <openssl/evp.h>
+#include "test/test_dogecash.h"
 
 BOOST_AUTO_TEST_SUITE(crypto_tests)
 

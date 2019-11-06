@@ -13,8 +13,9 @@ can be found in the contrib/init folder.
 1. Service User
 ---------------------------------
 
-All three startup configurations assume the existence of a "dogecash" user
+All three Linux startup configurations assume the existence of a "dogecash" user
 and group.  They must be created before attempting to use these scripts.
+The macOS configuration assumes dogecashd will be set up for the current user.
 
 2. Configuration
 ---------------------------------
@@ -29,13 +30,14 @@ file, however it is recommended that a strong and secure password be used
 as this password is security critical to securing the wallet should the
 wallet be enabled.
 
-If dogecashd is run with "-daemon" flag, and no rpcpassword is set, it will
-print a randomly generated suitable password to stderr.  You can also
-generate one from the shell yourself like this:
+If dogecashd is run with the "-server" flag (set by default), and no rpcpassword is set,
+it will use a special cookie file for authentication. The cookie is generated with random
+content when the daemon starts, and deleted when it exits. Read access to this file
+controls who can access it through RPC.
 
 bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'
 
-Once you have a password in hand, set rpcpassword= in /etc/dogecash/dogecash.conf
+This allows for running dogecashd without having to do any manual configuration.
 
 For an example configuration file that describes the configuration settings,
 see contrib/debian/examples/dogecash.conf.
@@ -48,8 +50,8 @@ All three configurations assume several paths that might need to be adjusted.
 Binary:              /usr/bin/dogecashd
 Configuration file:  /etc/dogecash/dogecash.conf
 Data directory:      /var/lib/dogecashd
-PID file:            /var/run/dogecashd/dogecashd.pid (OpenRC and Upstart)
-                     /var/lib/dogecashd/dogecashd.pid (systemd)
+PID file:            `/var/run/dogecashd/dogecashd.pid` (OpenRC and Upstart) or `/run/dogecashd/dogecashd.pid` (systemd)
+Lock file:           `/var/lock/subsys/dogecashd` (CentOS)
 
 The configuration file, PID directory (if applicable) and data directory
 should all be owned by the dogecash user and group.  It is advised for security
@@ -57,7 +59,30 @@ reasons to make the configuration file and data directory only readable by the
 dogecash user and group.  Access to dogecash-cli and other dogecashd rpc clients
 can then be controlled by group membership.
 
-4. Installing Service Configuration
+NOTE: When using the systemd .service file, the creation of the aforementioned
+directories and the setting of their permissions is automatically handled by
+systemd. Directories are given a permission of 710, giving the dogecash group
+access to files under it _if_ the files themselves give permission to the
+dogecash group to do so (e.g. when `-sysperms` is specified). This does not allow
+for the listing of files under the directory.
+
+NOTE: It is not currently possible to override `datadir` in
+`/etc/dogecash/dogecash.conf` with the current systemd, OpenRC, and Upstart init
+files out-of-the-box. This is because the command line options specified in the
+init files take precedence over the configurations in
+`/etc/dogecash/dogecash.conf`. However, some init systems have their own
+configuration mechanisms that would allow for overriding the command line
+options specified in the init files (e.g. setting `BITCOIND_DATADIR` for
+OpenRC).
+
+### macOS
+
+Binary:              `/usr/local/bin/dogecashd`
+Configuration file:  `~/Library/Application Support/DogeCash/dogecash.conf`
+Data directory:      `~/Library/Application Support/DogeCash`
+Lock file:           `~/Library/Application Support/DogeCash/.lock`
+
+Installing Service Configuration
 -----------------------------------
 
 4a) systemd
@@ -66,19 +91,23 @@ Installing this .service file consists on just copying it to
 /usr/lib/systemd/system directory, followed by the command
 "systemctl daemon-reload" in order to update running systemd configuration.
 
-To test, run "systemctl start dogecashd" and to enable for system startup run
-"systemctl enable dogecashd"
+To test, run `systemctl start dogecashd` and to enable for system startup run
+`systemctl enable dogecashd`
 
 4b) OpenRC
 
+### OpenRC
+
 Rename dogecashd.openrc to dogecashd and drop it in /etc/init.d.  Double
 check ownership and permissions and make it executable.  Test it with
-"/etc/init.d/dogecashd start" and configure it to run on startup with
-"rc-update add dogecashd"
+`/etc/init.d/dogecashd start` and configure it to run on startup with
+`rc-update add dogecashd`
 
 4c) Upstart (for Debian/Ubuntu based distributions)
 
-Drop dogecashd.conf in /etc/init.  Test by running "service dogecashd start"
+Upstart is the default init system for Debian/Ubuntu versions older than 15.04. If you are using version 15.04 or newer and haven't manually configured upstart you should follow the systemd instructions instead.
+
+Drop dogecashd.conf in /etc/init.  Test by running `service dogecashd start`
 it will automatically start on reboot.
 
 NOTE: This script is incompatible with CentOS 5 and Amazon Linux 2014 as they
@@ -86,13 +115,24 @@ use old versions of Upstart and do not supply the start-stop-daemon uitility.
 
 4d) CentOS
 
-Copy dogecashd.init to /etc/init.d/dogecashd. Test by running "service dogecashd start".
+Copy dogecashd.init to /etc/init.d/dogecashd. Test by running `service dogecashd start`.
 
 Using this script, you can adjust the path and flags to the dogecashd program by
-setting the dogecashD and FLAGS environment variables in the file
+setting the DogeCashD and FLAGS environment variables in the file
 /etc/sysconfig/dogecashd. You can also use the DAEMONOPTS environment variable here.
 
-5. Auto-respawn
+### macOS
+
+Copy org.dogecash.dogecashd.plist into ~/Library/LaunchAgents. Load the launch agent by
+running `launchctl load ~/Library/LaunchAgents/org.dogecash.dogecashd.plist`.
+
+This Launch Agent will cause dogecashd to start whenever the user logs in.
+
+NOTE: This approach is intended for those wanting to run dogecashd as the current user.
+You will need to modify org.dogecash.dogecashd.plist if you intend to use it as a
+Launch Daemon with a dedicated dogecash user.
+
+Auto-respawn
 -----------------------------------
 
 Auto respawning is currently only configured for Upstart and systemd.

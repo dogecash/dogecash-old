@@ -103,9 +103,6 @@
     <name>MultisigDialog</name>
     </context>
 <context>
-    <name>ObfuscationConfig</name>
-    </context>
-<context>
     <name>OpenURIDialog</name>
     </context>
 <context>
@@ -195,7 +192,7 @@
     </message>
     </context>
 <context>
-    <name>zdogecControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     </context>
 <context>
     <name>dogecash-core</name>

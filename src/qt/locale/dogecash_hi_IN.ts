@@ -14,7 +14,7 @@
         <translation>सिक्कों को प्राप्त करने के लिए पता चुनें</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>पहले इस्तेमाल किए गए पते को चुनें</translation>
     </message>
     </context>
@@ -123,9 +123,6 @@
     </message>
     </context>
 <context>
-    <name>ObfuscationConfig</name>
-    </context>
-<context>
     <name>OpenURIDialog</name>
     </context>
 <context>
@@ -142,14 +139,6 @@
     </context>
 <context>
     <name>PrivacyDialog</name>
-    <message>
-        <source>Quantity:</source>
-        <translation>मात्रा:</translation>
-    </message>
-    <message>
-        <source>Amount:</source>
-        <translation>राशि:</translation>
-    </message>
     <message>
         <source>Fee:</source>
         <translation>फ़ीस:</translation>
@@ -335,7 +324,7 @@
     <name>WalletView</name>
     </context>
 <context>
-    <name>zdogecControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     </context>
 <context>
     <name>dogecash-core</name>

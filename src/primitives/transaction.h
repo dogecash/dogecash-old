@@ -304,6 +304,7 @@ public:
     {
         return a.hash != b.hash;
     }
+    unsigned int GetTotalSize() const;
 
     std::string ToString() const;
 };

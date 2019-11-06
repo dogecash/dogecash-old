@@ -1,7 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018-2019 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -96,6 +95,37 @@ QFont bitcoinAddressFont()
     return font;
 }
 
+/**
+ * Parse a string into a number of base monetary units and
+ * return validity.
+ * @note Must return 0 if !valid.
+ */
+CAmount parseValue(const QString& text, int displayUnit, bool* valid_out)
+{
+    CAmount val = 0;
+    bool valid = BitcoinUnits::parse(displayUnit, text, &val);
+    if (valid) {
+        if (val < 0 || val > BitcoinUnits::maxMoney())
+            valid = false;
+    }
+    if (valid_out)
+        *valid_out = valid;
+    return valid ? val : 0;
+}
+
+QString formatBalance(CAmount amount, int nDisplayUnit, bool isZdogec){
+    return (amount == 0) ? ("0.00 " + BitcoinUnits::name(nDisplayUnit, isZdogec)) : BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, amount, false, BitcoinUnits::separatorAlways, true, isZdogec);
+}
+
+bool requestUnlock(WalletModel* walletModel, AskPassphraseDialog::Context context, bool relock){
+    // Request unlock if wallet was locked or unlocked for mixing:
+    WalletModel::EncryptionStatus encStatus = walletModel->getEncryptionStatus();
+    if (encStatus == walletModel->Locked) {
+        return WalletModel::UnlockContext(walletModel->requestUnlock(context, relock)).isValid();
+    }
+    return true;
+}
+
 void setupAddressWidget(QValidatedLineEdit* widget, QWidget* parent)
 {
     parent->setFocusProxy(widget);
@@ -119,7 +149,7 @@ void setupAmountWidget(QLineEdit* widget, QWidget* parent)
 
 bool parseBitcoinURI(const QUrl& uri, SendCoinsRecipient* out)
 {
-    // return if URI is not valid or is no dogecash: URI
+    // return if URI is not valid or is no DogeCash: URI
     if (!uri.isValid() || uri.scheme() != QString(URI_SCHEME))
         return false;
 
@@ -340,40 +370,44 @@ bool isObscured(QWidget* w)
     return !(checkPoint(QPoint(0, 0), w) && checkPoint(QPoint(w->width() - 1, 0), w) && checkPoint(QPoint(0, w->height() - 1), w) && checkPoint(QPoint(w->width() - 1, w->height() - 1), w) && checkPoint(QPoint(w->width() / 2, w->height() / 2), w));
 }
 
-void openDebugLogfile()
+bool openDebugLogfile()
 {
     boost::filesystem::path pathDebug = GetDataDir() / "debug.log";
 
     /* Open debug.log with the associated application */
     if (boost::filesystem::exists(pathDebug))
-        QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathDebug)));
+        return QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathDebug)));
+    return false;
 }
 
-void openConfigfile()
+bool openConfigfile()
 {
     boost::filesystem::path pathConfig = GetConfigFile();
 
     /* Open dogecash.conf with the associated application */
     if (boost::filesystem::exists(pathConfig))
-        QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
+        return QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
+    return false;
 }
 
-void openMNConfigfile()
+bool openMNConfigfile()
 {
     boost::filesystem::path pathConfig = GetMasternodeConfigFile();
 
     /* Open masternode.conf with the associated application */
     if (boost::filesystem::exists(pathConfig))
-        QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
+        return QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
+    return false;
 }
 
-void showBackups()
+bool showBackups()
 {
     boost::filesystem::path pathBackups = GetDataDir() / "backups";
 
     /* Open folder with default browser */
     if (boost::filesystem::exists(pathBackups))
-        QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathBackups)));
+        return QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathBackups)));
+    return false;
 }
 
 void SubstituteFonts(const QString& language)
@@ -571,12 +605,12 @@ bool DHMSTableWidgetItem::operator<(QTableWidgetItem const& item) const
 #ifdef WIN32
 boost::filesystem::path static StartupShortcutPath()
 {
-    return GetSpecialFolderPath(CSIDL_STARTUP) / "dogecash.lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / "DogeCash.lnk";
 }
 
 bool GetStartOnSystemStartup()
 {
-    // check for dogecash.lnk
+    // check for DogeCash.lnk
     return boost::filesystem::exists(StartupShortcutPath());
 }
 
@@ -689,7 +723,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         // Write a dogecash.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
-        optionFile << "Name=dogecash\n";
+        optionFile << "Name=DogeCash\n";
         optionFile << "Exec=" << pszExePath << " -min\n";
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
@@ -803,7 +837,7 @@ bool isExternal(QString theme)
     if (theme.isEmpty())
         return false;
 
-    return (theme.operator!=("default"));
+    return (theme.operator!=("default") && theme.operator!=("default-dark"));
 }
 
 // Open CSS when configured

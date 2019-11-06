@@ -62,12 +62,12 @@
         <translation>Endereços de recebimento</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Esses são seus endereços dogecash para envio de pagamentos. Sempre verifique a quantia e os endereços de recebimento antes de enviar moedas.</translation>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Esses são seus endereços DogeCash para envio de pagamentos. Sempre verifique a quantia e os endereços de recebimento antes de enviar moedas.</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Esses são seus endereços dogecash para recebimento de pagamentos. É recomendado usar um novo endereço para cada transação.</translation>
+        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Esses são seus endereços DogeCash para recebimento de pagamentos. É recomendado usar um novo endereço para cada transação.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -176,8 +176,8 @@
         <translation>Confirmar criptografia de carteira</translation>
     </message>
     <message>
-        <source>dogecash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
-        <translation>dogecash vai fechar agora para finalizar o processo de criptografia. Lembre-se que encriptar sua carteira não pode proteger totalmente suas DOGECs de serem roubadas por malwares infectando seu computador.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash vai fechar agora para finalizar o processo de criptografia. Lembre-se que encriptar sua carteira não pode proteger totalmente suas DOGECs de serem roubadas por malwares infectando seu computador.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -254,7 +254,7 @@
         <translation>Endereço:</translation>
     </message>
     <message>
-        <source>Enter a dogecash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <source>Enter a DogeCash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
         <translation>Insira um endereço que você deseja criptografar usando a BIP 38. Insira a palavra-chave na caixa do meio. Pressione criptografar para computar a chave privada criptografada.</translation>
     </message>
     <message>
@@ -409,8 +409,8 @@
         <translation>Olhar histórico de transação</translation>
     </message>
     <message>
-        <source>Privacy Actions for zdogec</source>
-        <translation>Ações privadas para zdogec</translation>
+        <source>Privacy Actions for zDOGEC</source>
+        <translation>Ações privadas para zDOGEC</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -617,8 +617,8 @@
         <translation>DogeCash Core</translation>
     </message>
     <message>
-        <source>Send coins to a dogecash address</source>
-        <translation>Enviar moedas para um endereço dogecash</translation>
+        <source>Send coins to a DogeCash address</source>
+        <translation>Enviar moedas para um endereço DogeCash</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and dogecash: URIs)</source>
@@ -645,16 +645,16 @@
         <translation>Mostra informação sobre o DogeCash Core</translation>
     </message>
     <message>
-        <source>Modify configuration options for dogecash</source>
-        <translation>Modificar opções de configuração para dogecash</translation>
+        <source>Modify configuration options for DogeCash</source>
+        <translation>Modificar opções de configuração para DogeCash</translation>
     </message>
     <message>
-        <source>Sign messages with your dogecash addresses to prove you own them</source>
-        <translation>Assine mensagens com seus endereços dogecash para provar que você os detém</translation>
+        <source>Sign messages with your DogeCash addresses to prove you own them</source>
+        <translation>Assine mensagens com seus endereços DogeCash para provar que você os detém</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
-        <translation>Verifique as mensagens para ter certeza que estão assinadas com os endereços dogecash especificados</translation>
+        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
+        <translation>Verifique as mensagens para ter certeza que estão assinadas com os endereços DogeCash especificados</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -685,8 +685,8 @@
         <translation>Abrir arquivo de configuração de Masternode</translation>
     </message>
     <message>
-        <source>Open a dogecash: URI or payment request</source>
-        <translation>Abrir um dogecash: URI ou requisição de pagamento</translation>
+        <source>Open a DogeCash: URI or payment request</source>
+        <translation>Abrir um DogeCash: URI ou requisição de pagamento</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -697,12 +697,12 @@
         <translation>Janela de exploração de blocos</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>Mostra a ajuda da DogeCash Core para receber uma lista com possíveis opções de linha de comando dogecash</translation>
+        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
+        <translation>Mostra a ajuda da DogeCash Core para receber uma lista com possíveis opções de linha de comando DogeCash</translation>
     </message>
     <message>
         <source>DogeCash Core client</source>
-        <translation>Cliente Core dogecash</translation>
+        <translation>Cliente Core DogeCash</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -1118,8 +1118,8 @@ MultiSend: %1</translation>
         <translation>Editar endereço remetente</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid dogecash address.</source>
-        <translation>O endereço que você selecionou, "%1" , não é um endereço válido de dogecash</translation>
+        <source>The entered address "%1" is not a valid DogeCash address.</source>
+        <translation>O endereço que você selecionou, "%1" , não é um endereço válido de DogeCash</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1234,8 +1234,8 @@ MultiSend: %1</translation>
         <translation>Como essa é a primeira vez que o programa é utilizado, você pode escolher onde DogeCash Core vai armazenar os seus dados.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>DogeCash Core vai baixar e armazenar uma cópia da blockchain dogecash. Pelo menos %1GB de informação será armazenado neste diretório e irá aumentar com o tempo. A carteira também será armazenada neste diretório.</translation>
+        <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DogeCash Core vai baixar e armazenar uma cópia da blockchain DogeCash. Pelo menos %1GB de informação será armazenado neste diretório e irá aumentar com o tempo. A carteira também será armazenada neste diretório.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1528,73 +1528,6 @@ MultiSend: %1</translation>
     </message>
 </context>
 <context>
-    <name>ObfuscationConfig</name>
-    <message>
-        <source>Configure Obfuscation</source>
-        <translation>Configurar Ofuscação</translation>
-    </message>
-    <message>
-        <source>Basic Privacy</source>
-        <translation>Privacidade Básica</translation>
-    </message>
-    <message>
-        <source>High Privacy</source>
-        <translation>Alta Privacidade</translation>
-    </message>
-    <message>
-        <source>Maximum Privacy</source>
-        <translation>Privacidade Máxima</translation>
-    </message>
-    <message>
-        <source>Please select a privacy level.</source>
-        <translation>Favor selecionar o nível de privacidade.</translation>
-    </message>
-    <message>
-        <source>Use 2 separate masternodes to mix funds up to 10000 DOGEC</source>
-        <translation>Use 2 masternodes separados para embaralhar fundos até 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>Use 8 separate masternodes to mix funds up to 10000 DOGEC</source>
-        <translation>Use 8 masternodes separados para embaralhar fundos até 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>Use 16 separate masternodes</source>
-        <translation>Use 16 masternodes separados</translation>
-    </message>
-    <message>
-        <source>This option is the quickest and will cost about ~0.025 DOGEC to anonymize 10000 DOGEC</source>
-        <translation>Está opção é a mais rápida e vai custar em torno de ~0.025 DOGEC para anonimizar 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>This option is moderately fast and will cost about 0.05 DOGEC to anonymize 10000 DOGEC</source>
-        <translation>Está opção moderamente rápida e vai custar em torno de ~0.05 DOGEC para anonimizar 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
-        <translation>Esta é a opção mais lenta e mais segura. Usando a anonimização máxima vai custar</translation>
-    </message>
-    <message>
-        <source>0.1 DOGEC per 10000 DOGEC you anonymize.</source>
-        <translation>0.1 DOGEC por 10000 DOGEC que deixar anônima.</translation>
-    </message>
-    <message>
-        <source>Obfuscation Configuration</source>
-        <translation>Configuração de ofuscação</translation>
-    </message>
-    <message>
-        <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Ofuscação foi definida com sucesso para o básico (%1 e 2 rodadas) Você pode mudar isto a qualquer tempo ao abrir a configuração de tela dogecash's.</translation>
-    </message>
-    <message>
-        <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Ofuscação foi definida com sucesso para alto (%1 e 8 rodadas). Você pode mudar isto a qualquer tempo ao abrir a configuração de tela dogecash's.</translation>
-    </message>
-    <message>
-        <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Ofuscação foi definida com sucesso para máxima (%1 e 16 rodadas). Você pode mudar isto a qualquer tempo ao abrir a configuração de tela dogecash's.</translation>
-    </message>
-</context>
-<context>
     <name>OpenURIDialog</name>
     <message>
         <source>Open URI</source>
@@ -1644,8 +1577,8 @@ MultiSend: %1</translation>
         <translation>C&amp;arteira</translation>
     </message>
     <message>
-        <source>Automatically open the dogecash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Abrir automaticamente a porta do cliente dogecash no roteador. Isto somente funciona quando seu roteador suporta UPnP e este esteja habilitado.</translation>
+        <source>Automatically open the DogeCash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Abrir automaticamente a porta do cliente DogeCash no roteador. Isto somente funciona quando seu roteador suporta UPnP e este esteja habilitado.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1664,12 +1597,12 @@ MultiSend: %1</translation>
         <translation>Expert</translation>
     </message>
     <message>
-        <source>Automatically start dogecash after logging in to the system.</source>
-        <translation>Iniciar automaticamente dogecash depois de logar no sistema.</translation>
+        <source>Automatically start DogeCash after logging in to the system.</source>
+        <translation>Iniciar automaticamente DogeCash depois de logar no sistema.</translation>
     </message>
     <message>
-        <source>&amp;Start dogecash on system login</source>
-        <translation>&amp;Iniciar dogecash ao logar no sistema</translation>
+        <source>&amp;Start DogeCash on system login</source>
+        <translation>&amp;Iniciar DogeCash ao logar no sistema</translation>
     </message>
     <message>
         <source>Enable coin &amp;control features</source>
@@ -1684,8 +1617,8 @@ MultiSend: %1</translation>
         <translation>&amp;Rede</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting dogecash.</source>
-        <translation>A linguagem da interface pode ser definida aqui. Está configuração terá efeito após reinício do dogecash.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting DogeCash.</source>
+        <translation>A linguagem da interface pode ser definida aqui. Está configuração terá efeito após reinício do DogeCash.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -1694,8 +1627,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</source
 https://www.transifex.com/dogecash-project/dogecash-project-translations</translation>
     </message>
     <message>
-        <source>Connect to the dogecash network through a SOCKS5 proxy.</source>
-        <translation>Conectar à rede dogecash através de um proxy SOCKS5</translation>
+        <source>Connect to the DogeCash network through a SOCKS5 proxy.</source>
+        <translation>Conectar à rede DogeCash através de um proxy SOCKS5</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1740,10 +1673,6 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
     <message>
         <source>User Interface Theme:</source>
         <translation>Usar tema de inferface:</translation>
-    </message>
-    <message>
-        <source>&amp;Unit to show amounts in:</source>
-        <translation>&amp;Unidades para mostrar as quantias:</translation>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
@@ -1829,8 +1758,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Imaturo:</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
-        <translation>A informação mostrada pode estar desatualizada. A sua carteira se sincroniza automaticamente com a rede dogecash após estabelecer uma conexão, mas esse processo ainda não foi concluído.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
+        <translation>A informação mostrada pode estar desatualizada. A sua carteira se sincroniza automaticamente com a rede DogeCash após estabelecer uma conexão, mas esse processo ainda não foi concluído.</translation>
     </message>
     <message>
         <source>Unconfirmed transactions to watch-only addresses</source>
@@ -1926,32 +1855,20 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Ações Zerocoin:</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
-        <translation>A informação mostrada pode estar desatualizada. A sua carteira se sincroniza automaticamente com a rede dogecash após estabelecer uma conexão, mas esse processo ainda não foi concluído.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
+        <translation>A informação mostrada pode estar desatualizada. A sua carteira se sincroniza automaticamente com a rede DogeCash após estabelecer uma conexão, mas esse processo ainda não foi concluído.</translation>
     </message>
     <message>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <source>zdogec</source>
-        <translation>zdogec</translation>
-    </message>
-    <message>
-        <source>0.000 000 00 DOGEC</source>
-        <translation>0.000 000 00 DOGEC</translation>
+        <source>zDOGEC</source>
+        <translation>zDOGEC</translation>
     </message>
     <message>
         <source>Reset</source>
         <translation>Reinicia</translation>
-    </message>
-    <message>
-        <source>Quantity:</source>
-        <translation>Quantidade:</translation>
-    </message>
-    <message>
-        <source>Amount:</source>
-        <translation>Quantia:</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -1966,8 +1883,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Pagar &amp;Para:</translation>
     </message>
     <message>
-        <source>The dogecash address to send the payment to. Creates local payment to yourself when empty.</source>
-        <translation>O endereço dogecash para enviar o pagamento. Cria um pagamento local para si mesmo quando vazio.</translation>
+        <source>The DogeCash address to send the payment to. Creates local payment to yourself when empty.</source>
+        <translation>O endereço DogeCash para enviar o pagamento. Cria um pagamento local para si mesmo quando vazio.</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2006,8 +1923,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Estatísticas zerocoin:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zdogec</source>
-        <translation>Balanço Total incluindo não confirmadas e imaturas zdogec</translation>
+        <source>Total Balance including unconfirmed and immature zDOGEC</source>
+        <translation>Balanço Total incluindo não confirmadas e imaturas zDOGEC</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
@@ -2086,22 +2003,6 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>fora de sincronia</translation>
     </message>
     <message>
-        <source>Copy quantity</source>
-        <translation>Copiar quantidade</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>Copiar quantia</translation>
-    </message>
-    <message>
-        <source>Error: Your wallet is locked. Please enter the wallet passphrase first.</source>
-        <translation>Erro: Sua carteira está travada. Favor inserir a palavra-chave da carteira primeiro.</translation>
-    </message>
-    <message>
-        <source>Message: Enter an amount &gt; 0.</source>
-        <translation>Mensagem: Insira uma quantia &gt; 0.</translation>
-    </message>
-    <message>
         <source>Confirm additional Fees</source>
         <translation>Confirmar Taxas adicionais</translation>
     </message>
@@ -2144,8 +2045,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Quantidade</translation>
     </message>
     <message>
-        <source>Enter a dogecash address (e.g. %1)</source>
-        <translation>Insira um endereço dogecash (e.g. %1)</translation>
+        <source>Enter a DogeCash address (e.g. %1)</source>
+        <translation>Insira um endereço DogeCash (e.g. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2406,8 +2307,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>saída:</translation>
     </message>
     <message>
-        <source>Welcome to the dogecash RPC console.</source>
-        <translation>Bem-vindo ao console da dogecash RPC</translation>
+        <source>Welcome to the DogeCash RPC console.</source>
+        <translation>Bem-vindo ao console da DogeCash RPC</translation>
     </message>
     <message>
         <source>Do you want to continue?.&lt;br /&gt;</source>
@@ -2714,8 +2615,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Se a taxa padrão estiver definida para 1000 uDOGECs e a transação for somente de 250 bytes, então "por kilobyte" pagará somente 250 uDOGECs em taxa,&lt;br /&gt; pagará pelo menos 1000 uDOGECs. Para transações maiores que um kilobyte ambas pagam por kilobyte.</translation>
     </message>
     <message>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for dogecash transactions than the network can process.</source>
-        <translation>Pagar a taxa mínima é aceitável desde que existe menos volume de transações que espaço nos blocos. &lt;br/&gt; Mas fique atento que isso pode acabar em uma transação que nunca será confirmada caso haja mais demanda por transações de dogecash do que a rede pode processar.</translation>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for DogeCash transactions than the network can process.</source>
+        <translation>Pagar a taxa mínima é aceitável desde que existe menos volume de transações que espaço nos blocos. &lt;br/&gt; Mas fique atento que isso pode acabar em uma transação que nunca será confirmada caso haja mais demanda por transações de DogeCash do que a rede pode processar.</translation>
     </message>
     <message>
         <source>normal</source>
@@ -2798,8 +2699,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Copiar troco</translation>
     </message>
     <message>
-        <source>Warning: Invalid dogecash address</source>
-        <translation>Aviso: endereço dogecash inválido</translation>
+        <source>Warning: Invalid DogeCash address</source>
+        <translation>Aviso: endereço DogeCash inválido</translation>
     </message>
     <message>
         <source>%1 to %2</source>
@@ -2885,8 +2786,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Pagar &amp;Para:</translation>
     </message>
     <message>
-        <source>The dogecash address to send the payment to</source>
-        <translation>O endereço dogecash para enviar o pagamento</translation>
+        <source>The DogeCash address to send the payment to</source>
+        <translation>O endereço DogeCash para enviar o pagamento</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2967,8 +2868,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>&amp;Assinar mensagem</translation>
     </message>
     <message>
-        <source>The dogecash address to sign the message with</source>
-        <translation>O endereço dogecash para assinar a mensagem</translation>
+        <source>The DogeCash address to sign the message with</source>
+        <translation>O endereço DogeCash para assinar a mensagem</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2999,16 +2900,16 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Copia a assinatura atual do sistema de transferência</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this dogecash address</source>
-        <translation>Assine a mensagem para provar que você possui este endereço dogecash</translation>
+        <source>Sign the message to prove you own this DogeCash address</source>
+        <translation>Assine a mensagem para provar que você possui este endereço DogeCash</translation>
     </message>
     <message>
-        <source>The dogecash address the message was signed with</source>
-        <translation>O endereço dogecash que assinou a mensagem</translation>
+        <source>The DogeCash address the message was signed with</source>
+        <translation>O endereço DogeCash que assinou a mensagem</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
-        <translation>Verifique a mensagem para ter certeza que foi assinada com o endereço dogecash especificado.</translation>
+        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
+        <translation>Verifique a mensagem para ter certeza que foi assinada com o endereço DogeCash especificado.</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -3614,7 +3515,7 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
     </message>
 </context>
 <context>
-    <name>zdogecControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     <message>
         <source>Quantity</source>
         <translation>Quantia</translation>
@@ -3624,8 +3525,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>0</translation>
     </message>
     <message>
-        <source>zdogec</source>
-        <translation>zdogec</translation>
+        <source>zDOGEC</source>
+        <translation>zDOGEC</translation>
     </message>
     <message>
         <source>Select/Deselect All</source>
@@ -3692,7 +3593,7 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
     </message>
     <message>
         <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
-        <translation>Aviso: Favor verificar se o horário e data de seu computador estão corretos! Se o seu relógio estiver errado o Core dogecash não vai funcionar corretamente.</translation>
+        <translation>Aviso: Favor verificar se o horário e data de seu computador estão corretos! Se o seu relógio estiver errado o Core DogeCash não vai funcionar corretamente.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -3707,8 +3608,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Você deve especificar uma masternodeprivkey na configuração. Favor verificar o manual para obter ajuda.</translation>
     </message>
     <message>
-        <source>(16740 could be used only on mainnet)</source>
-        <translation>(16740 could be used only on mainnet)</translation>
+        <source>(56740 could be used only on mainnet)</source>
+        <translation>(56740 could be used only on mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -3719,8 +3620,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>(padrão: 1)</translation>
     </message>
     <message>
-        <source>(must be 16740 for mainnet)</source>
-        <translation>(deve ser 16740 para mainnet)</translation>
+        <source>(must be 56740 for mainnet)</source>
+        <translation>(deve ser 56740 para mainnet)</translation>
     </message>
     <message>
         <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
@@ -3731,20 +3632,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Adicionar um nó para conectar e tentar manter uma conexão aberta</translation>
     </message>
     <message>
-        <source>Already have that input.</source>
-        <translation>Já possui este input.</translation>
-    </message>
-    <message>
         <source>Block creation options:</source>
         <translation>Opções de criação de bloco:</translation>
-    </message>
-    <message>
-        <source>Can't find random Masternode.</source>
-        <translation>Não conseguiu encontrar um Masternode aleatório.</translation>
-    </message>
-    <message>
-        <source>Can't mix while sync in progress.</source>
-        <translation>Não é possível embaralhar enquanto a sincronia estiver em progresso.</translation>
     </message>
     <message>
         <source>Connect only to the specified node(s)</source>
@@ -3803,14 +3692,6 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Permite ao cliente atuar como um masternode (0-1, padrão: %u)</translation>
     </message>
     <message>
-        <source>Entries are full.</source>
-        <translation>As entradas estão cheias.</translation>
-    </message>
-    <message>
-        <source>Error connecting to Masternode.</source>
-        <translation>Erro ao conectar ao Masternode.</translation>
-    </message>
-    <message>
         <source>Error initializing block database</source>
         <translation>Erro ao inicializar a base de dados de blocos</translation>
     </message>
@@ -3863,10 +3744,6 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>erro: Carteira travada, não foi possível criar a transação!</translation>
     </message>
     <message>
-        <source>Error: You already have pending entries in the Obfuscation pool</source>
-        <translation>Erro: Você já possui entradas pendentes na pool de Ofuscação</translation>
-    </message>
-    <message>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
         <translation>Falhou em escutar qualquer porta. Use -listen=0 se você quiser isso.</translation>
     </message>
@@ -3879,20 +3756,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Taxa (em DOGEC/kB) a adicionar em transações que você enviar (padrão: %s)</translation>
     </message>
     <message>
-        <source>Finalizing transaction.</source>
-        <translation>Encerrando a transação.</translation>
-    </message>
-    <message>
         <source>Force safe mode (default: %u)</source>
         <translation>Forçar modo seguro (padrão: %u)</translation>
-    </message>
-    <message>
-        <source>Found enough users, signing ( waiting %s )</source>
-        <translation>Encontrou usuários suficientes, autenticando (aguardando %s)</translation>
-    </message>
-    <message>
-        <source>Found enough users, signing ...</source>
-        <translation>Encontrou usuários suficientes, autenticando...</translation>
     </message>
     <message>
         <source>Generate coins (default: %u)</source>
@@ -3907,24 +3772,12 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Importando...</translation>
     </message>
     <message>
-        <source>Incompatible mode.</source>
-        <translation>Modo incompatível.</translation>
-    </message>
-    <message>
-        <source>Incompatible version.</source>
-        <translation>Versão incompatível.</translation>
-    </message>
-    <message>
         <source>Incorrect or no genesis block found. Wrong datadir for network?</source>
         <translation>Incorreto ou bloco gênesis não encontrado. O datadir de rede estaria errado?</translation>
     </message>
     <message>
         <source>Information</source>
         <translation>Informação</translation>
-    </message>
-    <message>
-        <source>Input is not valid.</source>
-        <translation>O input não é válido.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -3979,10 +3832,6 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Chave privada inválida.</translation>
     </message>
     <message>
-        <source>Invalid script detected.</source>
-        <translation>Script inválido detectado.</translation>
-    </message>
-    <message>
         <source>SwiftX options:</source>
         <translation>opções SwiftX:</translation>
     </message>
@@ -3995,14 +3844,6 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
     <message>
         <source>&lt;category&gt; can be:</source>
         <translation>&lt;category&gt; pode ser:</translation>
-    </message>
-    <message>
-        <source>Last Obfuscation was too recent.</source>
-        <translation>Última ofuscação foi muito recente.</translation>
-    </message>
-    <message>
-        <source>Last successful Obfuscation action was too recent.</source>
-        <translation>Última ação de ofuscação com sucesso foi muito recente.</translation>
     </message>
     <message>
         <source>Limit size of signature cache to &lt;n&gt; entries (default: %u)</source>
@@ -4037,10 +3878,6 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Carregando carteira...</translation>
     </message>
     <message>
-        <source>Lock is already in place.</source>
-        <translation>Trava já está no lugar.</translation>
-    </message>
-    <message>
         <source>Maintain at most &lt;n&gt; connections to peers (default: %u)</source>
         <translation>Manter pelo menos &lt;n&gt; conexões aos pares (padrão: %u)</translation>
     </message>
@@ -4049,60 +3886,16 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Opções de Masternode:</translation>
     </message>
     <message>
-        <source>Masternode queue is full.</source>
-        <translation>A fila do Masternode está cheia.</translation>
-    </message>
-    <message>
-        <source>Masternode:</source>
-        <translation>Masternode:</translation>
-    </message>
-    <message>
-        <source>Mixing in progress...</source>
-        <translation>Embaralhamento em progresso.</translation>
-    </message>
-    <message>
         <source>Need to specify a port with -whitebind: '%s'</source>
         <translation>Necessário especificar uma porta com -whitebind: '%s'</translation>
-    </message>
-    <message>
-        <source>No Masternodes detected.</source>
-        <translation>Nenhum Masternode detectado.</translation>
-    </message>
-    <message>
-        <source>No compatible Masternode found.</source>
-        <translation>Nenhum Masternode compatível encontrado.</translation>
     </message>
     <message>
         <source>Node relay options:</source>
         <translation>Opções de propagação do Nó:</translation>
     </message>
     <message>
-        <source>Non-standard public key detected.</source>
-        <translation>Chave pública não-padronizada detectada.</translation>
-    </message>
-    <message>
-        <source>Not compatible with existing transactions.</source>
-        <translation>Não é compatível com as transações existentes.</translation>
-    </message>
-    <message>
-        <source>Not in the Masternode list.</source>
-        <translation>Não está na lista de Masternodes.</translation>
-    </message>
-    <message>
         <source>Number of automatic wallet backups (default: 10)</source>
         <translation>Número de backups automáticos da carteira (padrão: 10)</translation>
-    </message>
-    <message>
-        <source>Obfuscation is idle.</source>
-        <translation>Ofuscação está ociosa.</translation>
-    </message>
-    <message>
-        <source>Obfuscation request complete:</source>
-        <translation>Requisição de ofuscação completa:</translation>
-    </message>
-    <message>
-        <source>Obfuscation request incomplete:</source>
-        <translation>Requisição de ofuscação incompleta:</translation>
     </message>
     <message>
         <source>Only connect to nodes in network &lt;net&gt; (ipv4, ipv6 or onion)</source>
@@ -4135,10 +3928,6 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
     <message>
         <source>Send transactions as zero-fee transactions if possible (default: %u)</source>
         <translation>Enviar transações com taxa zero se possível (padrão: %u)</translation>
-    </message>
-    <message>
-        <source>Session not complete!</source>
-        <translation>Sessão não está completa!</translation>
     </message>
     <message>
         <source>Session timed out.</source>
@@ -4213,18 +4002,6 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Parar de rodar depois de importar blocos do disco (padrão: %u)</translation>
     </message>
     <message>
-        <source>Submitted following entries to masternode: %u / %d</source>
-        <translation>Enviadas as seguintes entradas ao masternode: %u / %d</translation>
-    </message>
-    <message>
-        <source>Submitted to masternode, waiting for more entries ( %u / %d ) %s</source>
-        <translation>Enviado ao masternode, aguardando por mais entradas ( %u / %d) %s</translation>
-    </message>
-    <message>
-        <source>Submitted to masternode, waiting in queue %s</source>
-        <translation>Enviado ao masternode, aguardando na fila %s</translation>
-    </message>
-    <message>
         <source>Synchronization failed</source>
         <translation>Sincronização falhou</translation>
     </message>
@@ -4249,28 +4026,12 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Este software é experimental.</translation>
     </message>
     <message>
-        <source>This is not a Masternode.</source>
-        <translation>Isto não é um Masternode.</translation>
-    </message>
-    <message>
         <source>Transaction amount too small</source>
         <translation>Quantia de transação muito pequena</translation>
     </message>
     <message>
         <source>Transaction amounts must be positive</source>
         <translation>Quantias de transação devem ser positivas</translation>
-    </message>
-    <message>
-        <source>Transaction created successfully.</source>
-        <translation>Transação criada com sucesso.</translation>
-    </message>
-    <message>
-        <source>Transaction fees are too high.</source>
-        <translation>Taxa de transação muito elevada.</translation>
-    </message>
-    <message>
-        <source>Transaction not valid.</source>
-        <translation>Transação não é válida.</translation>
     </message>
     <message>
         <source>Transaction too large for fee policy</source>
@@ -4281,16 +4042,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Transação muito grande</translation>
     </message>
     <message>
-        <source>Transmitting final transaction.</source>
-        <translation>Transmitindo transação final.</translation>
-    </message>
-    <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
         <translation>Rede desconhecida especificada em -onlynet: '%s'</translation>
-    </message>
-    <message>
-        <source>Unknown state: id = %u</source>
-        <translation>Estado desconhecido: id = %u</translation>
     </message>
     <message>
         <source>Upgrade wallet to latest format</source>
@@ -4305,20 +4058,12 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Nome de usuário para conexões JSON-RPC</translation>
     </message>
     <message>
-        <source>Value more than Obfuscation pool maximum allows.</source>
-        <translation>Valor maior que o máximo permitido pela pool de Ofuscação </translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>Verificando blocos...</translation>
     </message>
     <message>
         <source>Verifying wallet...</source>
         <translation>Verificando carteira...</translation>
-    </message>
-    <message>
-        <source>Wallet is locked.</source>
-        <translation>Carteira está travada.</translation>
     </message>
     <message>
         <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
@@ -4349,20 +4094,8 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Aviso: Argumento não suportado -debugnet ignorado, use -debug=net.</translation>
     </message>
     <message>
-        <source>Will retry...</source>
-        <translation>Tentando novamente...</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>Você precisa refazer a base de dados usando -reindex para mudar -txindex</translation>
-    </message>
-    <message>
-        <source>Your entries added successfully.</source>
-        <translation>Suas entradas foram adicionadas com sucesso.</translation>
-    </message>
-    <message>
-        <source>Your transaction was accepted into the pool!</source>
-        <translation>Sua transação foi aceita na pool!</translation>
     </message>
     <message>
         <source>Zapping all transactions from wallet...</source>

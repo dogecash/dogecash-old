@@ -68,6 +68,7 @@ AC_DEFUN([BITCOIN_QT_INIT],[
   AC_ARG_WITH([qt-libdir],[AS_HELP_STRING([--with-qt-libdir=LIB_DIR],[specify qt lib path (overridden by pkgconfig)])], [qt_lib_path=$withval], [])
   AC_ARG_WITH([qt-plugindir],[AS_HELP_STRING([--with-qt-plugindir=PLUGIN_DIR],[specify qt plugin path (overridden by pkgconfig)])], [qt_plugin_path=$withval], [])
   AC_ARG_WITH([qt-translationdir],[AS_HELP_STRING([--with-qt-translationdir=PLUGIN_DIR],[specify qt translation path (overridden by pkgconfig)])], [qt_translation_path=$withval], [])
+  AC_ARG_WITH([qt-svgdir],[AS_HELP_STRING([--with-qt-svgdir=PLUGIN_DIR],[specify qt svg path (overridden by pkgconfig)])], [qt_svg_path=$withval], [])
   AC_ARG_WITH([qt-bindir],[AS_HELP_STRING([--with-qt-bindir=BIN_DIR],[specify qt bin path])], [qt_bin_path=$withval], [])
 
   AC_ARG_WITH([qtdbus],
@@ -110,7 +111,7 @@ AC_DEFUN([BITCOIN_QT_CONFIGURE],[
   BITCOIN_QT_CHECK([
   TEMP_CPPFLAGS=$CPPFLAGS
   TEMP_CXXFLAGS=$CXXFLAGS
-  CPPFLAGS="$QT_INCLUDES $CPPFLAGS"
+  CPPFLAGS="$QT_INCLUDES $QT_SVG_INCLUDES $CPPFLAGS"
   CXXFLAGS="$PIC_FLAGS $CXXFLAGS"
   _BITCOIN_QT_IS_STATIC
   if test "x$bitcoin_cv_static_qt" = xyes; then
@@ -136,6 +137,8 @@ AC_DEFUN([BITCOIN_QT_CONFIGURE],[
     fi
     _BITCOIN_QT_CHECK_STATIC_PLUGINS([Q_IMPORT_PLUGIN(QMinimalIntegrationPlugin)],[-lqminimal])
     AC_DEFINE(QT_QPA_PLATFORM_MINIMAL, 1, [Define this symbol if the minimal qt platform exists])
+    _BITCOIN_QT_CHECK_STATIC_PLUGINS([Q_IMPORT_PLUGIN(QSvgPlugin)],[-lqsvg])
+    _BITCOIN_QT_CHECK_STATIC_PLUGINS([Q_IMPORT_PLUGIN(QSvgIconPlugin)],[-lqsvgicon])
     if test "x$TARGET_OS" = xwindows; then
       _BITCOIN_QT_CHECK_STATIC_PLUGINS([Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin)],[-lqwindows])
       AC_DEFINE(QT_QPA_PLATFORM_WINDOWS, 1, [Define this symbol if the qt platform is windows])
@@ -252,6 +255,8 @@ AC_DEFUN([BITCOIN_QT_CONFIGURE],[
   AC_SUBST(QT_INCLUDES)
   AC_SUBST(QT_LIBS)
   AC_SUBST(QT_LDFLAGS)
+  AC_SUBST(QT_SVG_INCLUDES)
+  AC_SUBST(QT_SVG_LIBS)
   AC_SUBST(QT_DBUS_INCLUDES)
   AC_SUBST(QT_DBUS_LIBS)
   AC_SUBST(QT_TEST_INCLUDES)
@@ -355,7 +360,7 @@ dnl Inputs: qt_plugin_path. optional.
 dnl Outputs: QT_LIBS is appended
 AC_DEFUN([_BITCOIN_QT_FIND_STATIC_PLUGINS],[
     if test "x$qt_plugin_path" != x; then
-      QT_LIBS="$QT_LIBS -L$qt_plugin_path/platforms"
+      QT_LIBS="$QT_LIBS -L$qt_plugin_path/platforms -L$qt_plugin_path/imageformats -L$qt_plugin_path/iconengines"
       if test -d "$qt_plugin_path/accessible"; then
         QT_LIBS="$QT_LIBS -L$qt_plugin_path/accessible"
       fi
@@ -438,6 +443,12 @@ AC_DEFUN([_BITCOIN_QT_FIND_LIBS_WITH_PKGCONFIG],[
       fi
     ])
     BITCOIN_QT_CHECK([
+      PKG_CHECK_MODULES([QT_SVG], [${QT_LIB_PREFIX}Svg], [QT_SVG_INCLUDES="$QT_SVG_CFLAGS"; QT_LIBS="$QT_LIBS $QT_SVG_LIBS"],, BITCOIN_QT_FAIL([QtSvg not found]))
+    ])
+    BITCOIN_QT_CHECK([
+      PKG_CHECK_MODULES([QT_CONCURRENT], [${QT_LIB_PREFIX}Concurrent], [QT_INCLUDES="$QT_INCLUDES $QT_CONCURRENT_CFLAGS"; QT_LIBS="$QT_LIBS $QT_CONCURRENT_LIBS"],, BITCOIN_QT_FAIL([QtConcurrent not found]))
+    ])
+    BITCOIN_QT_CHECK([
       PKG_CHECK_MODULES([QT_TEST], [${QT_LIB_PREFIX}Test], [QT_TEST_INCLUDES="$QT_TEST_CFLAGS"; have_qt_test=yes], [have_qt_test=no])
       if test "x$use_dbus" != xno; then
         PKG_CHECK_MODULES([QT_DBUS], [${QT_LIB_PREFIX}DBus], [QT_DBUS_INCLUDES="$QT_DBUS_CFLAGS"; have_qt_dbus=yes], [have_qt_dbus=no])
@@ -460,7 +471,7 @@ AC_DEFUN([_BITCOIN_QT_FIND_LIBS_WITHOUT_PKGCONFIG],[
   TEMP_LIBS="$LIBS"
   BITCOIN_QT_CHECK([
     if test "x$qt_include_path" != x; then
-      QT_INCLUDES="-I$qt_include_path -I$qt_include_path/QtCore -I$qt_include_path/QtGui -I$qt_include_path/QtWidgets -I$qt_include_path/QtNetwork -I$qt_include_path/QtTest -I$qt_include_path/QtDBus"
+      QT_INCLUDES="-I$qt_include_path -I$qt_include_path/QtCore -I$qt_include_path/QtGui -I$qt_include_path/QtWidgets -I$qt_include_path/QtNetwork -I$qt_include_path/QtTest -I$qt_include_path/QtDBus -I$qt_include_path/QtConcurrent -I$qt_include_path/QtSvg -I$qt_include_path/QtCharts"
       CPPFLAGS="$QT_INCLUDES $CPPFLAGS"
     fi
   ])
@@ -468,6 +479,7 @@ AC_DEFUN([_BITCOIN_QT_FIND_LIBS_WITHOUT_PKGCONFIG],[
   BITCOIN_QT_CHECK([AC_CHECK_HEADER([QtPlugin],,BITCOIN_QT_FAIL(QtCore headers missing))])
   BITCOIN_QT_CHECK([AC_CHECK_HEADER([QApplication],, BITCOIN_QT_FAIL(QtGui headers missing))])
   BITCOIN_QT_CHECK([AC_CHECK_HEADER([QLocalSocket],, BITCOIN_QT_FAIL(QtNetwork headers missing))])
+  BITCOIN_QT_CHECK([AC_CHECK_HEADER([QtConcurrent],, BITCOIN_QT_FAIL(QtConcurrent headers missing))])
 
   BITCOIN_QT_CHECK([
     if test "x$bitcoin_qt_want_version" = xauto; then
@@ -502,10 +514,19 @@ AC_DEFUN([_BITCOIN_QT_FIND_LIBS_WITHOUT_PKGCONFIG],[
   BITCOIN_QT_CHECK(AC_CHECK_LIB([${QT_LIB_PREFIX}Gui]    ,[main],,BITCOIN_QT_FAIL(lib${QT_LIB_PREFIX}Gui not found)))
   BITCOIN_QT_CHECK(AC_CHECK_LIB([${QT_LIB_PREFIX}Network],[main],,BITCOIN_QT_FAIL(lib${QT_LIB_PREFIX}Network not found)))
   BITCOIN_QT_CHECK(AC_CHECK_LIB([${QT_LIB_PREFIX}Widgets],[main],,BITCOIN_QT_FAIL(lib${QT_LIB_PREFIX}Widgets not found)))
+  BITCOIN_QT_CHECK(AC_CHECK_LIB([${QT_LIB_PREFIX}Concurrent],[main],,BITCOIN_QT_FAIL(lib${QT_LIB_PREFIX}Concurrent not found)))
   QT_LIBS="$LIBS"
   LIBS="$TEMP_LIBS"
 
   BITCOIN_QT_CHECK([
+    LIBS=
+    if test "x$qt_lib_path" != x; then
+      LIBS="-L$qt_lib_path"
+    fi
+    AC_CHECK_LIB([${QT_LIB_PREFIX}Svg],       [main],, BITCOIN_QT_FAIL(lib${QT_LIB_PREFIX}Svg not found))
+    AC_CHECK_HEADER([QtSvg],, BITCOIN_QT_FAIL(lib${QT_LIB_PREFIX}Svg not found))
+    QT_LIBS="$QT_LIBS $LIBS"
+    QT_SVG_LIBS="$LIBS"
     LIBS=
     if test "x$qt_lib_path" != x; then
       LIBS="-L$qt_lib_path"

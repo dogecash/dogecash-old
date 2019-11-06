@@ -62,12 +62,12 @@
         <translation>Adrese za primanje</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>To su vaše dogecash adrese za slanje plaćanja. Uvijek provjerite iznos i adresu primatelja prije slanja novca.</translation>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>To su vaše DogeCash adrese za slanje plaćanja. Uvijek provjerite iznos i adresu primatelja prije slanja novca.</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>To su vaše dogecash adrese za primanje uplata. Preporuča se upotreba nove adrese primanja za svaku transakciju.</translation>
+        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>To su vaše DogeCash adrese za primanje uplata. Preporuča se upotreba nove adrese primanja za svaku transakciju.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -172,8 +172,8 @@
         <translation>Potvrdite šifriranje novčanika</translation>
     </message>
     <message>
-        <source>dogecash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
-        <translation>dogecash se sada zatvara kako bi dovršio proces šifriranja. Ne zaboravite da šifriranje vašeg novčanika ne može u potpunosti zaštititi vaše DOGEC od krađe zlonamjernog softvera koji zarazi vaše računalo.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash se sada zatvara kako bi dovršio proces šifriranja. Ne zaboravite da šifriranje vašeg novčanika ne može u potpunosti zaštititi vaše DOGEC od krađe zlonamjernog softvera koji zarazi vaše računalo.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -409,8 +409,8 @@
         <translation>Pregledajte povijest transakcija</translation>
     </message>
     <message>
-        <source>Privacy Actions for zdogec</source>
-        <translation>Aktivnosti na privatnost za zdogec</translation>
+        <source>Privacy Actions for zDOGEC</source>
+        <translation>Aktivnosti na privatnost za zDOGEC</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -621,8 +621,8 @@
         <translation>DogeCash Core</translation>
     </message>
     <message>
-        <source>Send coins to a dogecash address</source>
-        <translation>Pošaljite kovanice na dogecash adresu</translation>
+        <source>Send coins to a DogeCash address</source>
+        <translation>Pošaljite kovanice na DogeCash adresu</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and dogecash: URIs)</source>
@@ -642,23 +642,23 @@
     </message>
     <message>
         <source>&amp;About DogeCash Core</source>
-        <translation>&amp; O dogecash Coreu</translation>
+        <translation>&amp; O DogeCash Coreu</translation>
     </message>
     <message>
         <source>Show information about DogeCash Core</source>
-        <translation>Prikaz informacija o dogecash Coreu</translation>
+        <translation>Prikaz informacija o DogeCash Coreu</translation>
     </message>
     <message>
-        <source>Modify configuration options for dogecash</source>
-        <translation>Izmijenite opcije konfiguracije za dogecash</translation>
+        <source>Modify configuration options for DogeCash</source>
+        <translation>Izmijenite opcije konfiguracije za DogeCash</translation>
     </message>
     <message>
-        <source>Sign messages with your dogecash addresses to prove you own them</source>
-        <translation>Potpišite poruke s vašim dogecash adresama kako biste dokazali da ih posjedujete</translation>
+        <source>Sign messages with your DogeCash addresses to prove you own them</source>
+        <translation>Potpišite poruke s vašim DogeCash adresama kako biste dokazali da ih posjedujete</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
-        <translation>Potvrdite poruke kako biste bili sigurni da su potpisani s određenim dogecash adresama</translation>
+        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
+        <translation>Potvrdite poruke kako biste bili sigurni da su potpisani s određenim DogeCash adresama</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -983,9 +983,6 @@
     </message>
     </context>
 <context>
-    <name>ObfuscationConfig</name>
-    </context>
-<context>
     <name>OpenURIDialog</name>
     </context>
 <context>
@@ -1005,14 +1002,6 @@
     <message>
         <source>0</source>
         <translation>0</translation>
-    </message>
-    <message>
-        <source>Quantity:</source>
-        <translation>Količina:</translation>
-    </message>
-    <message>
-        <source>Amount:</source>
-        <translation>Iznos:</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1049,14 +1038,6 @@
     <message>
         <source>Change:</source>
         <translation>Ostatak:</translation>
-    </message>
-    <message>
-        <source>Copy quantity</source>
-        <translation>Kopiraj količinu</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>Kopiraj iznos</translation>
     </message>
     </context>
 <context>
@@ -1348,8 +1329,8 @@
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The dogecash address to sign the message with</source>
-        <translation>dogecash adresa za potpisivanje poruke s</translation>
+        <source>The DogeCash address to sign the message with</source>
+        <translation>DogeCash adresa za potpisivanje poruke s</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1372,16 +1353,16 @@
         <translation>Kopirajte trenutačni potpis u međuspremnik sustava</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this dogecash address</source>
-        <translation>Potpišite poruku da biste dokazali da ste vlasnik ove dogecash adrese</translation>
+        <source>Sign the message to prove you own this DogeCash address</source>
+        <translation>Potpišite poruku da biste dokazali da ste vlasnik ove DogeCash adrese</translation>
     </message>
     <message>
-        <source>The dogecash address the message was signed with</source>
-        <translation>dogecash adresa s kojom je potpisana poruka</translation>
+        <source>The DogeCash address the message was signed with</source>
+        <translation>DogeCash adresa s kojom je potpisana poruka</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
-        <translation>Potvrdite poruku kako biste bili sigurni da je potpisan s navedenom dogecash adresom</translation>
+        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
+        <translation>Potvrdite poruku kako biste bili sigurni da je potpisan s navedenom DogeCash adresom</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>
@@ -1579,7 +1560,7 @@
     </message>
     </context>
 <context>
-    <name>zdogecControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     <message>
         <source>0</source>
         <translation>0</translation>
@@ -1624,20 +1605,12 @@
         <translation>Transakcija stvorena</translation>
     </message>
     <message>
-        <source>Transaction not valid.</source>
-        <translation>Transakcija nije valjana.</translation>
-    </message>
-    <message>
         <source>Transaction too large for fee policy</source>
         <translation>Transakcija je prevelika za trenutnu naknadu</translation>
     </message>
     <message>
         <source>Transaction too large</source>
         <translation>Transakcija je prevelika</translation>
-    </message>
-    <message>
-        <source>Unable to find transaction containing mint</source>
-        <translation>Nije moguće pronaći transakciju koja sadrži novcic</translation>
     </message>
     <message>
         <source>Use the test network</source>
@@ -1650,10 +1623,6 @@
     <message>
         <source>Verifying wallet...</source>
         <translation>Provjera novčanika...</translation>
-    </message>
-    <message>
-        <source>Wallet is locked.</source>
-        <translation>Novčanik je zaključan.</translation>
     </message>
     <message>
         <source>Wallet options:</source>

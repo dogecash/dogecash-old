@@ -62,12 +62,12 @@
         <translation>Adresy pro přijetí peněz</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Toto jsou Vaše dogecash adresy pro poslání platby. Vždy si překontrolujte množství peněz a cílovou adresu než platbu odešlete.</translation>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Toto jsou Vaše DogeCash adresy pro poslání platby. Vždy si překontrolujte množství peněz a cílovou adresu než platbu odešlete.</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Toto jsou Vaše dogecash adresy pro přijetí plateb. Je doporučeno použít novou adresu pro každou novou transakci.</translation>
+        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Toto jsou Vaše DogeCash adresy pro přijetí plateb. Je doporučeno použít novou adresu pro každou novou transakci.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -172,8 +172,8 @@
         <translation>Potvrdit zašifrování peněženky</translation>
     </message>
     <message>
-        <source>dogecash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
-        <translation>dogecash se teď zavře pro dokončení šifrovacího procesu. Prosím, vemte na vědomí, že zašifrování Vaší peněženky plně neochrání Vaše DOGECy před krádží, pokud je Váš počítač infikován malwarem.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash se teď zavře pro dokončení šifrovacího procesu. Prosím, vemte na vědomí, že zašifrování Vaší peněženky plně neochrání Vaše DOGECy před krádží, pokud je Váš počítač infikován malwarem.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -397,8 +397,8 @@
         <translation>Procházet historii transakcí</translation>
     </message>
     <message>
-        <source>Privacy Actions for zdogec</source>
-        <translation>Řešení soukromí pro zdogec</translation>
+        <source>Privacy Actions for zDOGEC</source>
+        <translation>Řešení soukromí pro zDOGEC</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -605,8 +605,8 @@
         <translation>DogeCash Core</translation>
     </message>
     <message>
-        <source>Send coins to a dogecash address</source>
-        <translation>Odeslat platbuna dogecash adresu</translation>
+        <source>Send coins to a DogeCash address</source>
+        <translation>Odeslat platbuna DogeCash adresu</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and dogecash: URIs)</source>
@@ -633,16 +633,16 @@
         <translation>Zobraz informace o DogeCash Core</translation>
     </message>
     <message>
-        <source>Modify configuration options for dogecash</source>
-        <translation>Upravit možnosti konfigurace pro dogecash</translation>
+        <source>Modify configuration options for DogeCash</source>
+        <translation>Upravit možnosti konfigurace pro DogeCash</translation>
     </message>
     <message>
-        <source>Sign messages with your dogecash addresses to prove you own them</source>
-        <translation>Podepsat zprávy Vaší dogecash adresou pro prokázaní, že jste jejich vlastníkem</translation>
+        <source>Sign messages with your DogeCash addresses to prove you own them</source>
+        <translation>Podepsat zprávy Vaší DogeCash adresou pro prokázaní, že jste jejich vlastníkem</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
-        <translation>Ověřit zprávy k zajištění, že bylypodepsány vybranými dogecash adresami</translation>
+        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
+        <translation>Ověřit zprávy k zajištění, že bylypodepsány vybranými DogeCash adresami</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -673,8 +673,8 @@
         <translation>Otevřít Masternodový konfigurační soubor</translation>
     </message>
     <message>
-        <source>Open a dogecash: URI or payment request</source>
-        <translation>Otevřít dogecash: URI nebo platební žádost</translation>
+        <source>Open a DogeCash: URI or payment request</source>
+        <translation>Otevřít DogeCash: URI nebo platební žádost</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -685,8 +685,8 @@
         <translation>Okno blokového průzkumníka</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>Zobrazit DogeCash Core pomocnou zpráv pro získání seznamu možných parametrů dogecash pro příkazy do příkazové řádky</translation>
+        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
+        <translation>Zobrazit DogeCash Core pomocnou zpráv pro získání seznamu možných parametrů DogeCash pro příkazy do příkazové řádky</translation>
     </message>
     <message>
         <source>DogeCash Core client</source>
@@ -1081,8 +1081,8 @@ MultiSend: %1</translation>
         <translation>Upravit adresu k odeslání platby</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid dogecash address.</source>
-        <translation>Zadaná adresa "%1" není validní dogecash adresa.</translation>
+        <source>The entered address "%1" is not a valid DogeCash address.</source>
+        <translation>Zadaná adresa "%1" není validní DogeCash adresa.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1185,8 +1185,8 @@ MultiSend: %1</translation>
         <translation>Při prvním spuštění programu si můžete vybrat, kam bude DogeCash Core ukládat svá data.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>DogeCash Core stáhne a uloží kopii dogecash blockchainu. Nejméně %1GB dat bude do této složky uloženo a v průběhu času bude ukládat další data. Peněženka bude v této složce uložena také.</translation>
+        <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DogeCash Core stáhne a uloží kopii DogeCash blockchainu. Nejméně %1GB dat bude do této složky uloženo a v průběhu času bude ukládat další data. Peněženka bude v této složce uložena také.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1423,53 +1423,6 @@ MultiSend: %1</translation>
     </message>
     </context>
 <context>
-    <name>ObfuscationConfig</name>
-    <message>
-        <source>Configure Obfuscation</source>
-        <translation>Konfigurace obfuskace</translation>
-    </message>
-    <message>
-        <source>Basic Privacy</source>
-        <translation>Základní ochrana soukromí</translation>
-    </message>
-    <message>
-        <source>High Privacy</source>
-        <translation>Vysoká ochrana soukromí</translation>
-    </message>
-    <message>
-        <source>Maximum Privacy</source>
-        <translation>Maximální ochrana soukromí</translation>
-    </message>
-    <message>
-        <source>Please select a privacy level.</source>
-        <translation>Vyberte úrpvěň ochrany soukromí</translation>
-    </message>
-    <message>
-        <source>Use 2 separate masternodes to mix funds up to 10000 DOGEC</source>
-        <translation>Použí 2 oddělené masternody k promíchání prostředků až do 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>Use 16 separate masternodes</source>
-        <translation>Použít 16 oddělených masternodů</translation>
-    </message>
-    <message>
-        <source>This option is the quickest and will cost about ~0.025 DOGEC to anonymize 10000 DOGEC</source>
-        <translation>Tato možnost je nejrychleší a bude stát zhruba ~0.025 DOGEC pro anonymizaci 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
-        <translation>Toto je nejpomalejší a nejvíce bezpečná volba. Použití maximalní anonymity bude stát</translation>
-    </message>
-    <message>
-        <source>0.1 DOGEC per 10000 DOGEC you anonymize.</source>
-        <translation>0.1 DOGEC za 10000 DOGEC anonymizujete.</translation>
-    </message>
-    <message>
-        <source>Obfuscation Configuration</source>
-        <translation>Konfigurace obufuskace</translation>
-    </message>
-    </context>
-<context>
     <name>OpenURIDialog</name>
     <message>
         <source>Open URI</source>
@@ -1527,12 +1480,12 @@ MultiSend: %1</translation>
         <translation>Expert</translation>
     </message>
     <message>
-        <source>Automatically start dogecash after logging in to the system.</source>
-        <translation>Automaticky spustit dogecash po přihlášení do systému</translation>
+        <source>Automatically start DogeCash after logging in to the system.</source>
+        <translation>Automaticky spustit DogeCash po přihlášení do systému</translation>
     </message>
     <message>
-        <source>&amp;Start dogecash on system login</source>
-        <translation>&amp;Spusti dogecash při přihlášení do systému</translation>
+        <source>&amp;Start DogeCash on system login</source>
+        <translation>&amp;Spusti DogeCash při přihlášení do systému</translation>
     </message>
     <message>
         <source>Show Masternodes Tab</source>
@@ -1651,14 +1604,6 @@ MultiSend: %1</translation>
         <translation>Reset</translation>
     </message>
     <message>
-        <source>Quantity:</source>
-        <translation>Množství:</translation>
-    </message>
-    <message>
-        <source>Amount:</source>
-        <translation>Hodnota:</translation>
-    </message>
-    <message>
         <source>Choose previously used address</source>
         <translation>Vyberte již dříve použitou adresu</translation>
     </message>
@@ -1713,14 +1658,6 @@ MultiSend: %1</translation>
     <message>
         <source>Change:</source>
         <translation>Změna:</translation>
-    </message>
-    <message>
-        <source>Copy quantity</source>
-        <translation>Kopíroat množstí</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>Kopírovat hodnotu</translation>
     </message>
     </context>
 <context>
@@ -2204,8 +2141,8 @@ MultiSend: %1</translation>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The dogecash address to sign the message with</source>
-        <translation>dogecash adresa pro podepsání zprávy</translation>
+        <source>The DogeCash address to sign the message with</source>
+        <translation>DogeCash adresa pro podepsání zprávy</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2232,16 +2169,16 @@ MultiSend: %1</translation>
         <translation>Kopírovat aktuální podpis do systémové mezipaměti</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this dogecash address</source>
-        <translation>Podepsat zprávu k prokázání, že vlastníte tuto dogecash adresu</translation>
+        <source>Sign the message to prove you own this DogeCash address</source>
+        <translation>Podepsat zprávu k prokázání, že vlastníte tuto DogeCash adresu</translation>
     </message>
     <message>
-        <source>The dogecash address the message was signed with</source>
-        <translation>dogecash adresa zprávy byla podpsána</translation>
+        <source>The DogeCash address the message was signed with</source>
+        <translation>DogeCash adresa zprávy byla podpsána</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
-        <translation>Verifikujte zprávu pro ujištění, že byla podepsána zmíněnou dogecash adresou</translation>
+        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
+        <translation>Verifikujte zprávu pro ujištění, že byla podepsána zmíněnou DogeCash adresou</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2387,7 +2324,7 @@ MultiSend: %1</translation>
     </message>
     </context>
 <context>
-    <name>zdogecControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     <message>
         <source>0</source>
         <translation>0</translation>
@@ -2432,28 +2369,12 @@ MultiSend: %1</translation>
         <translation>Toto je experimentální software.</translation>
     </message>
     <message>
-        <source>This is not a Masternode.</source>
-        <translation>Toto není Masternode.</translation>
-    </message>
-    <message>
         <source>Transaction amount too small</source>
         <translation>Hodnota transakce je příliš malá</translation>
     </message>
     <message>
         <source>Transaction amounts must be positive</source>
         <translation>Hodnota transakce musí být kladná</translation>
-    </message>
-    <message>
-        <source>Transaction created successfully.</source>
-        <translation>Transakce byla uspěšně vytvořena.</translation>
-    </message>
-    <message>
-        <source>Transaction fees are too high.</source>
-        <translation>Poplatek za transakci je příliš vysoký.</translation>
-    </message>
-    <message>
-        <source>Transaction not valid.</source>
-        <translation>Transakce není validní.</translation>
     </message>
     <message>
         <source>Transaction too large for fee policy</source>
@@ -2466,10 +2387,6 @@ MultiSend: %1</translation>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
         <translation>Neznámá síť uvedená v -onlynet: '%s'</translation>
-    </message>
-    <message>
-        <source>Unknown state: id = %u</source>
-        <translation>Neznámý stav: id = %u</translation>
     </message>
     <message>
         <source>Upgrade wallet to latest format</source>
@@ -2486,10 +2403,6 @@ MultiSend: %1</translation>
     <message>
         <source>Verifying wallet...</source>
         <translation>Ověřování peněženky...</translation>
-    </message>
-    <message>
-        <source>Wallet is locked.</source>
-        <translation>Peněženka je zamčená</translation>
     </message>
     <message>
         <source>Wallet options:</source>

@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -176,8 +176,8 @@ void Bip38ToolDialog::on_pasteButton_DEC_clicked()
 
 void Bip38ToolDialog::on_decryptKeyButton_DEC_clicked()
 {
-    string strPassphrase = ui->passphraseIn_DEC->text().toStdString();
-    string strKey = ui->encryptedKeyIn_DEC->text().toStdString();
+    std::string strPassphrase = ui->passphraseIn_DEC->text().toStdString();
+    std::string strKey = ui->encryptedKeyIn_DEC->text().toStdString();
 
     uint256 privKey;
     bool fCompressed;

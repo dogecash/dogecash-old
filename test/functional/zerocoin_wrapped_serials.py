@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 The DogeCash Core developers
+# Copyright (c) 2019 The DogeCash developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,9 +13,9 @@ from time import sleep
 from test_framework.authproxy import JSONRPCException
 from test_framework.util import assert_equal, assert_greater_than
 
-from fake_stake.base_test import dogecash_FakeStakeTest
+from fake_stake.base_test import DogeCash_FakeStakeTest
 
-class zdogecwrappedSerialsTest(dogecash_FakeStakeTest):
+class zDOGECwrappedSerialsTest(DogeCash_FakeStakeTest):
 
     def run_test(self):
         q = 73829871667027927151400291810255409637272593023945445234219354687881008052707
@@ -35,7 +35,7 @@ class zdogecwrappedSerialsTest(dogecash_FakeStakeTest):
         sleep(2)
 
         # 2) Mint zerocoins
-        self.log.info("Minting %d-denom zdogecs..." % DENOM_TO_USE)
+        self.log.info("Minting %d-denom zDOGECs..." % DENOM_TO_USE)
         balance = self.node.getbalance("*", 100)
         assert_greater_than(balance, DENOM_TO_USE)
         total_mints = 0
@@ -105,4 +105,4 @@ class zdogecwrappedSerialsTest(dogecash_FakeStakeTest):
 
 
 if __name__ == '__main__':
-    zdogecwrappedSerialsTest().main()
+    zDOGECwrappedSerialsTest().main()

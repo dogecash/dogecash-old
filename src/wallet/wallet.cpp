@@ -611,8 +611,11 @@ bool CWallet::IsSpent(const uint256& hash, unsigned int n) const
         const uint256& wtxid = it->second;
         std::map<uint256, CWalletTx>::const_iterator mit = mapWallet.find(wtxid);
         if (mit != mapWallet.end()) {
-            int depth = mit->second.GetDepthInMainChain();
-            if (depth > 0  || (depth == 0 && !mit->second.isAbandoned()))
+            bool fConflicted;
+            const int nDepth = mit->second.GetDepthAndMempool(fConflicted);
+            // not in mempool txes can spend coins only if not coinstakes
+            const bool fConflictedCoinstake = fConflicted && mit->second.IsCoinStake();
+            if (nDepth > 0  || (nDepth == 0 && !mit->second.isAbandoned() && !fConflictedCoinstake) )
                 return true; // Spent
         }
     }
@@ -1023,20 +1026,6 @@ bool CWallet::AddToWalletIfInvolvingMe(const CTransaction& tx, const CBlock* pbl
 {
     {
         AssertLockHeld(cs_wallet);
-
-        if (pblock && !tx.IsZerocoinSpend() && !tx.IsCoinBase()) {
-            for (const CTxIn& txin : tx.vin) {
-                std::pair<TxSpends::const_iterator, TxSpends::const_iterator> range = mapTxSpends.equal_range(txin.prevout);
-                while (range.first != range.second) {
-                    if (range.first->second != tx.GetHash()) {
-                        LogPrintf("Transaction %s (in block %s) conflicts with wallet transaction %s (both spend %s:%i)\n", tx.GetHash().ToString(), pblock->GetHash().ToString(), range.first->second.ToString(), range.first->first.hash.ToString(), range.first->first.n);
-                        MarkConflicted(pblock->GetHash(), range.first->second);
-                    }
-                    range.first++;
-                }
-            }
-        }
-
         bool fExisted = mapWallet.count(tx.GetHash()) != 0;
         if (fExisted && !fUpdate) return false;
         if (fExisted || IsMine(tx) || IsFromMe(tx)) {
@@ -2097,7 +2086,7 @@ bool CWalletTx::InMempool() const
 void CWalletTx::RelayWalletTransaction(std::string strCommand)
 {
     LOCK(cs_main);
-    if (!IsCoinBase()) {
+    if (!IsCoinBase() && !IsCoinStake()) {
         if (GetDepthInMainChain() == 0 && !isAbandoned()) {
             uint256 hash = GetHash();
             LogPrintf("Relaying wtx %s\n", hash.ToString());
@@ -2499,11 +2488,6 @@ void CWallet::AvailableCoins(
             if (nDepth == 0 && !pcoin->InMempool())
                 continue;
 
-            // We should not consider coins which aren't at least in our mempool
-            // It's possible for these to be conflicted via ancestors which we may never be able to detect
-            if (nDepth == 0 && !pcoin->InMempool())
-                continue;
-
             for (unsigned int i = 0; i < pcoin->vout.size(); i++) {
                 bool found = false;
                 if (nCoinType == ONLY_DENOMINATED) {
@@ -2711,6 +2695,34 @@ bool CWallet::SelectStakeCoins(std::list<std::unique_ptr<CStakeInput> >& listInp
     }
 
     return true;
+}
+
+std::vector<CWalletTx> CWallet::getWalletTxs()
+{
+    LOCK(cs_wallet);
+    std::vector<CWalletTx> result;
+    result.reserve(mapWallet.size());
+    for (const auto& entry : mapWallet) {
+        result.emplace_back(entry.second);
+    }
+    return result;
+}
+
+int64_t CWallet::GetKeyCreationTime(CPubKey pubkey)
+{
+    return mapKeyMetadata[pubkey.GetID()].nCreateTime;
+}
+
+int64_t CWallet::GetKeyCreationTime(const CBitcoinAddress& address)
+{
+    CKeyID keyID;
+    if (address.GetKeyID(keyID)) {
+        CPubKey keyRet;
+        if (GetPubKey(keyID, keyRet)) {
+            return GetKeyCreationTime(keyRet);
+        }
+    }
+    return 0;
 }
 
 bool CWallet::MintableCoins()
@@ -4110,7 +4122,10 @@ std::map<CTxDestination, CAmount> CWallet::GetAddressBalances()
             if (pcoin->IsCoinBase() && pcoin->GetBlocksToMaturity() > 0)
                 continue;
 
-            int nDepth = pcoin->GetDepthInMainChain();
+            bool fConflicted;
+            int nDepth = pcoin->GetDepthAndMempool(fConflicted);
+            if (fConflicted)
+                continue;
             if (nDepth < (pcoin->IsFromMe(ISMINE_ALL) ? 0 : 1))
                 continue;
 
@@ -5298,8 +5313,18 @@ bool CWallet::MintsToInputVector(std::map<CBigNum, CZerocoinMint>& mapMintsSelec
     return true;
 }
 
-bool CWallet::CreateZerocoinSpendTransaction(CAmount nValue, CWalletTx& wtxNew, CReserveKey& reserveKey, CZerocoinSpendReceipt& receipt, vector<CZerocoinMint>& vSelectedMints, vector<CDeterministicMint>& vNewMints, bool fMintChange,  bool fMinimizeChange, CBitcoinAddress* address)
-{
+bool CWallet::CreateZerocoinSpendTransaction(
+        CAmount nValue,
+        CWalletTx& wtxNew,
+        CReserveKey& reserveKey,
+        CZerocoinSpendReceipt& receipt,
+        std::vector<CZerocoinMint>& vSelectedMints,
+        std::vector<CDeterministicMint>& vNewMints,
+        bool fMintChange,
+        bool fMinimizeChange,
+        std::list<std::pair<CBitcoinAddress*,CAmount>> addressesTo,
+        CBitcoinAddress* changeAddress,
+        bool isPublicSpend){
     // Check available funds
     int nStatus = zdogec_TRX_FUNDS_PROBLEMS;
     if (nValue > GetZerocoinBalance(true)) {
@@ -5439,13 +5464,13 @@ bool CWallet::CreateZerocoinSpendTransaction(CAmount nValue, CWalletTx& wtxNew, 
                 return false;
             }
 
-            if (nChange > 0 && !address) {
+            if (nChange > 0 && !changeAddress) {
                 receipt.SetStatus(_("Need address because change is not exact"), nStatus);
                 return false;
             }
 
-            if (address) {
-                scriptZerocoinSpend = GetScriptForDestination(address->Get());
+            if (changeAddress) {
+                scriptZerocoinSpend = GetScriptForDestination(changeAddress->Get());
                 if (nChange) {
                     // Reserve a new key pair from key pool
                     CPubKey vchPubKey;
@@ -5796,8 +5821,17 @@ string CWallet::MintZerocoin(CAmount nValue, CWalletTx& wtxNew, vector<CDetermin
     return "";
 }
 
-bool CWallet::SpendZerocoin(CAmount nAmount, CWalletTx& wtxNew, CZerocoinSpendReceipt& receipt, vector<CZerocoinMint>& vMintsSelected, bool fMintChange, bool fMinimizeChange, CBitcoinAddress* addressTo)
-{
+bool CWallet::SpendZerocoin(
+        CAmount nAmount,
+        CWalletTx& wtxNew,
+        CZerocoinSpendReceipt& receipt,
+        std::vector<CZerocoinMint>& vMintsSelected,
+        bool fMintChange,
+        bool fMinimizeChange,
+        std::list<std::pair<CBitcoinAddress*,CAmount>> addressesTo,
+        CBitcoinAddress* changeAddress,
+        bool isPublicSpend
+){
     // Default: assume something goes wrong. Depending on the problem this gets more specific below
     int nStatus = zdogec_SPEND_ERROR;
 
@@ -5808,7 +5842,19 @@ bool CWallet::SpendZerocoin(CAmount nAmount, CWalletTx& wtxNew, CZerocoinSpendRe
 
     CReserveKey reserveKey(this);
     vector<CDeterministicMint> vNewMints;
-    if (!CreateZerocoinSpendTransaction(nAmount, wtxNew, reserveKey, receipt, vMintsSelected, vNewMints, fMintChange, fMinimizeChange, addressTo)) {
+    if (!CreateZerocoinSpendTransaction(
+            nAmount,
+            wtxNew,
+            reserveKey,
+            receipt,
+            vMintsSelected,
+            vNewMints,
+            fMintChange,
+            fMinimizeChange,
+            addressesTo,
+            changeAddress,
+            isPublicSpend
+    )) {
         return false;
     }
 

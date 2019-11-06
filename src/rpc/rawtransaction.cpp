@@ -1,7 +1,8 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2018-2019 The DogeCash developers
+// Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -943,8 +944,8 @@ UniValue createrawzerocoinstake(const UniValue& params, bool fHelp)
     assert(pwalletMain != NULL);
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    if(sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zDOGEC is currently disabled due to maintenance.");
+    if(GetAdjustedTime() > sporkManager.GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
+        throw JSONRPCError(RPC_WALLET_ERROR, "zdogec is currently disabled due to maintenance.");
 
     std::string serial_hash = params[0].get_str();
     if (!IsHex(serial_hash))

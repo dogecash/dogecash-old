@@ -1,7 +1,8 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2018-2019 The DogeCash developers
+// Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -218,7 +219,7 @@ string CRPCTable::help(string strCommand) const
             rpcfn_type pfn = pcmd->actor;
             if (setDone.insert(pfn).second)
                 (*pfn)(params, true);
-        } catch (const std::exception& e) {
+        } catch (std::exception& e) {
             // Help text is returned in an exception
             string strHelp = string(e.what());
             if (strCommand == "") {
@@ -241,32 +242,6 @@ string CRPCTable::help(string strCommand) const
         strRet = strprintf("help: unknown command: %s\n", strCommand);
     strRet = strRet.substr(0, strRet.size() - 1);
     return strRet;
-    }
-
-UniValue makekeypair(const UniValue& params, bool fHelp)
-{
-    if (fHelp || params.size() > 1)
-        throw runtime_error(
-            "makekeypair [prefix]\n"
-            "Make a public/private key pair.\n"
-            "[prefix] is optional preferred prefix for the public key.\n");
-
-    string strPrefix = "";
-    if (params.size() > 0)
-        strPrefix = params[0].get_str();
-
-    CKey key;
-    key.MakeNewKey(false);
-
-    CPrivKey vchPrivKey = key.GetPrivKey();
-    UniValue result(UniValue::VOBJ);
-    result.push_back(Pair("PrivateKey", HexStr<CPrivKey::iterator>(vchPrivKey.begin(), vchPrivKey.end())));
-    result.push_back(Pair("PublicKey", HexStr(key.GetPubKey())));
-
-    CBitcoinSecret bkey(key);
-    result.push_back(Pair("PrivKeyBase58",bkey.ToString()));
-
-    return result;
 }
 
 UniValue help(const UniValue& params, bool fHelp)
@@ -421,8 +396,6 @@ static const CRPCCommand vRPCCommands[] =
         {"dogecash", "mnsync", &mnsync, true, true, false},
         {"dogecash", "spork", &spork, true, true, false},
         {"dogecash", "getpoolinfo", &getpoolinfo, true, true, false},
-        {"dogecash", "makekeypair", &makekeypair, true, true, false},
-
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -435,7 +408,6 @@ static const CRPCCommand vRPCCommands[] =
         {"wallet", "dumpprivkey", &dumpprivkey, true, false, true},
         {"wallet", "dumphdinfo", &dumphdinfo, true, false, true},
         {"wallet", "dumpwallet", &dumpwallet, true, false, true},
-//        {"wallet", "dumpwallethd", &dumpwallethd, true, false, true},
         {"wallet", "bip38encrypt", &bip38encrypt, true, false, true},
         {"wallet", "bip38decrypt", &bip38decrypt, true, false, true},
         {"wallet", "encryptwallet", &encryptwallet, true, false, true},
@@ -454,7 +426,6 @@ static const CRPCCommand vRPCCommands[] =
         {"wallet", "getstakingstatus", &getstakingstatus, false, false, true},
         {"wallet", "getstakesplitthreshold", &getstakesplitthreshold, false, false, true},
         {"wallet", "gettransaction", &gettransaction, false, false, true},
-        {"wallet", "abandontransaction", &abandontransaction, false, false, true},
         {"wallet", "getunconfirmedbalance", &getunconfirmedbalance, false, false, true},
         {"wallet", "getwalletinfo", &getwalletinfo, false, false, true},
         {"wallet", "importprivkey", &importprivkey, true, false, true},
@@ -627,7 +598,7 @@ static UniValue JSONRPCExecOne(const UniValue& req)
         rpc_result = JSONRPCReplyObj(result, NullUniValue, jreq.id);
     } catch (const UniValue& objError) {
         rpc_result = JSONRPCReplyObj(NullUniValue, objError, jreq.id);
-    } catch (const std::exception& e) {
+    } catch (std::exception& e) {
         rpc_result = JSONRPCReplyObj(NullUniValue,
             JSONRPCError(RPC_PARSE_ERROR, e.what()), jreq.id);
     }
@@ -656,7 +627,7 @@ UniValue CRPCTable::execute(const std::string &strMethod, const UniValue &params
     try {
         // Execute
         return pcmd->actor(params, false);
-    } catch (const std::exception& e) {
+    } catch (std::exception& e) {
         throw JSONRPCError(RPC_MISC_ERROR, e.what());
     }
 

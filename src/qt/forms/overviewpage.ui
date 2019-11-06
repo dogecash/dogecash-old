@@ -58,31 +58,13 @@
       </property>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_Master" stretch="0,1">
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
+        <property name="margin">
          <number>0</number>
         </property>
         <item>
          <widget class="QFrame" name="frame_Header">
           <layout class="QVBoxLayout" name="verticalLayout_Header" stretch="0">
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
+           <property name="margin">
             <number>0</number>
            </property>
            <item>
@@ -201,16 +183,7 @@
                   <enum>QFrame::Raised</enum>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0">
-                  <property name="leftMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="topMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="rightMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="bottomMargin">
+                  <property name="margin">
                    <number>0</number>
                   </property>
                   <item>
@@ -438,7 +411,7 @@
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLabel" name="labelDOGECPercent">
+                        <widget class="QLabel" name="labelPIVPercent">
                          <property name="text">
                           <string notr="true">0 %</string>
                          </property>
@@ -677,7 +650,7 @@
                        <item row="4" column="0">
                         <widget class="QLabel" name="labelLockedBalanceText">
                          <property name="toolTip">
-                          <string>Locked DOGEC or Masternode collaterals. These are excluded from zdogec minting.</string>
+                          <string>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</string>
                          </property>
                          <property name="text">
                           <string>Locked:</string>
@@ -696,7 +669,7 @@
                           <cursorShape>IBeamCursor</cursorShape>
                          </property>
                          <property name="toolTip">
-                          <string>Locked DOGEC or Masternode collaterals. These are excluded from zdogec minting.</string>
+                          <string>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</string>
                          </property>
                          <property name="text">
                           <string notr="true">0.000 000 00 DOGEC</string>
@@ -756,7 +729,7 @@
                           <cursorShape>IBeamCursor</cursorShape>
                          </property>
                          <property name="toolTip">
-                          <string>Your current dogecash balance, unconfirmed and immature transactions included</string>
+                          <string>Your current DogeCash balance, unconfirmed and immature transactions included</string>
                          </property>
                          <property name="text">
                           <string notr="true">0.000 000 00 DOGEC</string>
@@ -852,12 +825,12 @@
                           </font>
                          </property>
                          <property name="text">
-                          <string>zdogec Balance</string>
+                          <string>zDOGEC Balance</string>
                          </property>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLabel" name="labelzdogecPercent">
+                        <widget class="QLabel" name="labelzDOGECPercent">
                          <property name="text">
                           <string notr="true">0 %</string>
                          </property>
@@ -906,7 +879,7 @@
                         <widget class="QLabel" name="labelzBalanceMatureText">
                          <property name="toolTip">
                           <string>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zdogec are spendable.</string>
+These zDOGEC are spendable.</string>
                          </property>
                          <property name="text">
                           <string>Available:</string>
@@ -923,7 +896,7 @@ These zdogec are spendable.</string>
                          </property>
                          <property name="toolTip">
                           <string>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zdogec are spendable.</string>
+These zDOGEC are spendable.</string>
                          </property>
                          <property name="text">
                           <string notr="true">0.000 000 00 DOGEC</string>
@@ -998,7 +971,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
                        <item row="4" column="0">
                         <widget class="QLabel" name="labelzBalanceText">
                          <property name="toolTip">
-                          <string>Your current zdogec balance, unconfirmed and immature zdogec included.</string>
+                          <string>Your current zDOGEC balance, unconfirmed and immature zDOGEC included.</string>
                          </property>
                          <property name="text">
                           <string>Total:</string>
@@ -1017,7 +990,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
                           <cursorShape>IBeamCursor</cursorShape>
                          </property>
                          <property name="toolTip">
-                          <string>Your current zdogec balance, unconfirmed and immature zdogec included.</string>
+                          <string>Your current zDOGEC balance, unconfirmed and immature zDOGEC included.</string>
                          </property>
                          <property name="text">
                           <string notr="true">0.000 000 00 DOGEC</string>
@@ -1111,7 +1084,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
                        <cursorShape>WhatsThisCursor</cursorShape>
                       </property>
                       <property name="toolTip">
-                       <string>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</string>
+                       <string>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</string>
                       </property>
                       <property name="styleSheet">
                        <string notr="true">QLabel { color: red; }</string>

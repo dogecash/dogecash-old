@@ -190,7 +190,7 @@ bool CSporkManager::UpdateSpork(SporkId nSporkID, int64_t nValue)
 // grab the spork value, and see if it's off
 bool CSporkManager::IsSporkActive(SporkId nSporkID)
 {
-    return GetSporkValue(nSporkID) < GetAdjustedTime();
+    return sporkManager.GetSporkValue(nSporkID) < GetAdjustedTime();
 }
 
 // grab the value of the spork on the network, or the default
@@ -238,15 +238,8 @@ bool CSporkManager::SetPrivKey(std::string strPrivKey)
     CSporkMessage spork;
 
     spork.Sign(strPrivKey, true);
-    const bool fRequireNew = GetTime() >= Params().NewSporkStart();
+
     bool fValidSig = spork.CheckSignature();
-    if (!fValidSig && !fRequireNew) {
-    // See if window is open that allows for old spork key to sign messages
-    if (GetAdjustedTime() < Params().RejectOldSporkKey()) {
-        CPubKey pubkeyold = spork.GetPublicKeyOld();
-        fValidSig = spork.CheckSignature(pubkeyold);
-        }
-    }
     if (fValidSig) {
         LOCK(cs);
         // Test signing successful, proceed
@@ -296,4 +289,3 @@ void CSporkMessage::Relay()
     CInv inv(MSG_SPORK, GetHash());
     RelayInv(inv);
 }
-

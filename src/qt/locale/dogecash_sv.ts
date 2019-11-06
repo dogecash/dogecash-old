@@ -62,12 +62,12 @@
         <translation>Mottagar adresser</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Det här är dina dogecash adresser för att skicka betalningar. Kontrollera alltid summan och mottagaradressen före du sänder mynt.</translation>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Det här är dina DogeCash adresser för att skicka betalningar. Kontrollera alltid summan och mottagaradressen före du sänder mynt.</translation>
     </message>
     <message>
-        <source>These are your dogecash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Det här är dina dogecash adresser för att ta emot betalningar. Det är rekomenderat att använda en ny mottagaradress för varje transaktion.</translation>
+        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Det här är dina DogeCash adresser för att ta emot betalningar. Det är rekomenderat att använda en ny mottagaradress för varje transaktion.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -176,8 +176,8 @@
         <translation>Bekräfta plånboks krypering</translation>
     </message>
     <message>
-        <source>dogecash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
-        <translation>dogecash kommer att stängas ner nu för att färdigställa kryperingsprocessen. Kom ihåg att kryptering av din plånbok inte kan säkerställa dina DOGECs från att bli stulna av skadeprogram som infekterat din dator.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash kommer att stängas ner nu för att färdigställa kryperingsprocessen. Kom ihåg att kryptering av din plånbok inte kan säkerställa dina DOGECs från att bli stulna av skadeprogram som infekterat din dator.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -232,7 +232,7 @@
     <name>BanTableModel</name>
     <message>
         <source>IP/Netmask</source>
-        <translation>IP/Nätmask</translation>
+        <translation>IP/Netmask</translation>
     </message>
     <message>
         <source>Banned Until</source>
@@ -247,19 +247,19 @@
     </message>
     <message>
         <source>&amp;BIP 38 Encrypt</source>
-        <translation>BIP 38 Kryptering</translation>
+        <translation>&amp;BIP 38 Kryptering</translation>
     </message>
     <message>
         <source>Address:</source>
         <translation>Adress:</translation>
     </message>
     <message>
-        <source>Enter a dogecash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Fyll i en dogecash Adress som du skulle vilja cryptera med BIP 38. Skriv in en lösenfras i den mittersta lådan. Tryck kryptera för att beräkna fram den krypterade privata nyckeln.</translation>
+        <source>Enter a DogeCash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>Fyll i en DogeCash Adress som du skulle vilja kryptera med BIP 38. Skriv in en lösenfras i den mittersta raden. Tryck kryptera för att beräkna fram den krypterade privata nyckeln.</translation>
     </message>
     <message>
-        <source>The dogecash address to encrypt</source>
-        <translation>dogecash adressen som ska krypteras</translation>
+        <source>The DogeCash address to encrypt</source>
+        <translation>DogeCash adressen som ska krypteras</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -290,8 +290,8 @@
         <translation>Kopiera den nuvarande signaturen till systemets urklipp</translation>
     </message>
     <message>
-        <source>Encrypt the private key for this dogecash address</source>
-        <translation>Kryptera den privata nyckeln för denna dogecash adressen</translation>
+        <source>Encrypt the private key for this DogeCash address</source>
+        <translation>Kryptera den privata nyckeln för denna DogeCash adressen</translation>
     </message>
     <message>
         <source>Reset all fields</source>
@@ -319,7 +319,7 @@
     </message>
     <message>
         <source>Enter the BIP 38 encrypted private key. Enter the passphrase in the middle box. Click Decrypt Key to compute the private key. After the key is decrypted, clicking 'Import Address' will add this private key to the wallet.</source>
-        <translation>Ange BIP 38 krypterade privata nyckeln. Ange lösenfrasen i med mittersta boxen. Tryck på krypetra nyckel för att beräkna den privata nyckeln. Efter att nyckeln är avkrypterad, tryck på 'Importera Adress' kommer att lägga till denna privata nyckel till plånboken.</translation>
+        <translation>Ange den BIP 38 krypterade privata nyckeln. Ange lösenfrasen i mittersta boxen. Tryck på kryptera nyckel för att göra den privat. Efter att nyckeln är krypterad, tryck på 'Importera Adress' och kommer sen att lägga till denna privata nyckel till plånboken.</translation>
     </message>
     <message>
         <source>Decrypt &amp;Key</source>
@@ -433,12 +433,20 @@
         <translation>Bläddra i transaktions historiken</translation>
     </message>
     <message>
-        <source>Privacy Actions for zdogec</source>
-        <translation>Integritets funktioner för zdogec</translation>
+        <source>Privacy Actions for zDOGEC</source>
+        <translation>Integritets funktioner för zDOGEC</translation>
+    </message>
+    <message>
+        <source>&amp;Governance</source>
+        <translation>&amp;Management</translation>
+    </message>
+    <message>
+        <source>Show Proposals</source>
+        <translation>Visa förslag</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation>gå ur</translation>
+        <translation>Exit</translation>
     </message>
     <message>
         <source>Quit application</source>
@@ -610,7 +618,7 @@
     </message>
     <message numerus="yes">
         <source>Processed %n blocks of transaction history.</source>
-        <translation><numerusform>Bearbetat %n block av transaktionshistoriken.</numerusform><numerusform>Bearbetat %n block av transaktionshistoriken.</numerusform></translation>
+        <translation><numerusform>Bearbetade %n block från transaktions historiken.</numerusform><numerusform>Bearbetade %n block från transaktions historiken.</numerusform></translation>
     </message>
     <message>
         <source>Synchronizing additional data: %p%</source>
@@ -653,8 +661,8 @@
         <translation>DogeCash Core</translation>
     </message>
     <message>
-        <source>Send coins to a dogecash address</source>
-        <translation>Skicka mynt till en dogecash adress</translation>
+        <source>Send coins to a DogeCash address</source>
+        <translation>Skicka mynt till en DogeCash adress</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and dogecash: URIs)</source>
@@ -674,23 +682,23 @@
     </message>
     <message>
         <source>&amp;About DogeCash Core</source>
-        <translation>Om dogecash Kärnan</translation>
+        <translation>Om DogeCash Kärnan</translation>
     </message>
     <message>
         <source>Show information about DogeCash Core</source>
-        <translation>Visa information om dogecash Kärnan</translation>
+        <translation>Visa information om DogeCash Kärnan</translation>
     </message>
     <message>
-        <source>Modify configuration options for dogecash</source>
-        <translation>Ändra konfigurationsval för dogecash</translation>
+        <source>Modify configuration options for DogeCash</source>
+        <translation>Ändra konfigurationsval för DogeCash</translation>
     </message>
     <message>
-        <source>Sign messages with your dogecash addresses to prove you own them</source>
-        <translation>Signera meddelanden med din dogecash adress för att visa att du äger dem</translation>
+        <source>Sign messages with your DogeCash addresses to prove you own them</source>
+        <translation>Signera meddelanden med din DogeCash adress för att visa att du äger dem</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified dogecash addresses</source>
-        <translation>Verifiera meddelandet för att säkerställa att de blev signerat med den specifika dogecash adressen.</translation>
+        <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
+        <translation>Verifiera meddelandet för att säkerställa att de blev signerat med den specifika DogeCash adressen.</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -721,8 +729,8 @@
         <translation>Öppna Huvudnodens konfigurations fil </translation>
     </message>
     <message>
-        <source>Open a dogecash: URI or payment request</source>
-        <translation>Öppna en dogecash: URI eller betalningsförfrågan</translation>
+        <source>Open a DogeCash: URI or payment request</source>
+        <translation>Öppna en DogeCash: URI eller betalningsförfrågan</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -733,16 +741,16 @@
         <translation>Blockera utforskarfönstret</translation>
     </message>
     <message>
-        <source>Show the DogeCash Core help message to get a list with possible dogecash command-line options</source>
-        <translation>Visa DogeCash Core hjälp meddelande för att få en lista med möjliga dogecash kommandorad alternativ</translation>
+        <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
+        <translation>Visa DogeCash Core hjälp meddelande för att få en lista med möjliga DogeCash kommandorad alternativ</translation>
     </message>
     <message>
         <source>DogeCash Core client</source>
-        <translation>dogecash kärn klient</translation>
+        <translation>DogeCash kärn klient</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to dogecash network</source>
-        <translation><numerusform>%n aktiva anslutning(ar) till dogecash nätverket</numerusform><numerusform>%n aktiva anslutning(ar) till dogecash nätverket</numerusform></translation>
+        <source>%n active connection(s) to DogeCash network</source>
+        <translation><numerusform>%n aktiva anslutningar till DogeCash nätverket</numerusform><numerusform>%n aktiva  anslutningar till DogeCash nätverket</numerusform></translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -868,7 +876,11 @@ MultiSend: %1</translation>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Plånbok är &lt;b&gt;krypterad&lt;/b&gt; och tillfälligt &lt;b&gt;låst&lt;/b&gt;</translation>
     </message>
-    </context>
+    <message>
+        <source>A fatal error occurred. DogeCash can no longer continue safely and will quit.</source>
+        <translation>Ett fel inträffade. DogeCash kan inte längre köras säkert och kommer att stängas ned för tillfället.</translation>
+    </message>
+</context>
 <context>
     <name>BlockExplorer</name>
     <message>
@@ -1134,8 +1146,8 @@ MultiSend: %1</translation>
         <translation>Den här etiketten blir röd, ifall någon mottagare får en mängd som är mindre än %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 uDOGEC per input.</source>
-        <translation>Kan variera med +/- %1 uDOGEC per inmatning.</translation>
+        <source>Can vary +/- %1 udogec per input.</source>
+        <translation>Kan variera med +/- %1 udogec per inmatning.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1189,8 +1201,8 @@ MultiSend: %1</translation>
         <translation>Redigera skickande adress</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid dogecash address.</source>
-        <translation>Den inmatade adressen "%1" är ej en giltig dogecash adress.</translation>
+        <source>The entered address "%1" is not a valid DogeCash address.</source>
+        <translation>Den inmatade adressen "%1" är ej en giltig DogeCash adress.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1235,10 +1247,42 @@ MultiSend: %1</translation>
         <translation>Formulär</translation>
     </message>
     <message>
+        <source>GOVERNANCE</source>
+        <translation>MANAGEMENT</translation>
+    </message>
+    <message>
+        <source>Update Proposals</source>
+        <translation>Uppdatera förslag</translation>
+    </message>
+    <message>
+        <source>Next super block:</source>
+        <translation>Nästa Superblock</translation>
+    </message>
+    <message>
         <source>0</source>
         <translation>0</translation>
     </message>
-    </context>
+    <message>
+        <source>Blocks to next super block:</source>
+        <translation>Block till nästa superblock:</translation>
+    </message>
+    <message>
+        <source>Days to budget payout (estimate):</source>
+        <translation>Dagar till budget utbetalning (estimerad):</translation>
+    </message>
+    <message>
+        <source>Allotted budget:</source>
+        <translation>Utvald budget:</translation>
+    </message>
+    <message>
+        <source>Budget left:</source>
+        <translation>Kvar av budget:</translation>
+    </message>
+    <message>
+        <source>Masternodes count:</source>
+        <translation>Masternode beräkning:</translation>
+    </message>
+</context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
@@ -1255,7 +1299,7 @@ MultiSend: %1</translation>
     </message>
     <message>
         <source>About DogeCash Core</source>
-        <translation>Om dogecash Kärna</translation>
+        <translation>Om DogeCash Kärna</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1309,8 +1353,8 @@ MultiSend: %1</translation>
         <translation>Eftersom detta är första gången programmet körs så kan du välja var DogeCash Core ska spara sin data.</translation>
     </message>
     <message>
-        <source>DogeCash Core will download and store a copy of the dogecash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>dogecash Kärnan kommer ladda ner och spara en kopia av dogecash block chain. Minst %1GB data kommer sparas i denna katalog och den kommer växa med tiden. Plånboken kommer också sparas i denna katalog.</translation>
+        <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DogeCash Kärnan kommer ladda ner och spara en kopia av DogeCash block chain. Minst %1GB data kommer sparas i denna katalog och den kommer växa med tiden. Plånboken kommer också sparas i denna katalog.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1463,12 +1507,12 @@ MultiSend: %1</translation>
         <translation>Mata in Adress att Skicka till</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other dogecash addresses after it matures.
-To Add: enter percentage to give and dogecash address to add to the MultiSend vector.
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other DogeCash addresses after it matures.
+To Add: enter percentage to give and DogeCash address to add to the MultiSend vector.
 To Delete: Enter address to delete and press delete.
 MultiSend will not be activated unless you have clicked Activate</source>
-        <translation>MultiSend tillåter dig att automatiskt skicka upp till 100% av dina staking eller huvudnod belöningar till en lista av andra dogecash adresser efter att belöningarna har mognat.
-För att Lägga till: Ange procent att ge och dogecash adress för att lägga till i MultiSend vektorn.
+        <translation>MultiSend tillåter dig att automatiskt skicka upp till 100% av dina staking eller huvudnod belöningar till en lista av andra DogeCash adresser efter att belöningarna har mognat.
+För att Lägga till: Ange procent att ge och DogeCash adress för att lägga till i MultiSend vektorn.
 För att Ta Bort: Ange adressen som ska tas bort och tryck ta bort.
 MultiSend kommer inte aktiveras om du inte tryckt på Aktivera</translation>
     </message>
@@ -1803,73 +1847,6 @@ Var god vänta efter att du trycker på importera.</translation>
     </message>
 </context>
 <context>
-    <name>ObfuscationConfig</name>
-    <message>
-        <source>Configure Obfuscation</source>
-        <translation>Konfigurera Fördunkling</translation>
-    </message>
-    <message>
-        <source>Basic Privacy</source>
-        <translation>Grundläggande sekretess</translation>
-    </message>
-    <message>
-        <source>High Privacy</source>
-        <translation>Hög Sekretess</translation>
-    </message>
-    <message>
-        <source>Maximum Privacy</source>
-        <translation>Maximal Sekretess</translation>
-    </message>
-    <message>
-        <source>Please select a privacy level.</source>
-        <translation>Var vänlig och välj en sekretess nivå.</translation>
-    </message>
-    <message>
-        <source>Use 2 separate masternodes to mix funds up to 10000 DOGEC</source>
-        <translation>Använd 2 separata huvudnoder för att blanda tillgångar upp till 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>Use 8 separate masternodes to mix funds up to 10000 DOGEC</source>
-        <translation>Använd 8 separata huvudnoderför att blanda tillgångar upp till 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>Use 16 separate masternodes</source>
-        <translation>Använd 16 separata huvudnoder</translation>
-    </message>
-    <message>
-        <source>This option is the quickest and will cost about ~0.025 DOGEC to anonymize 10000 DOGEC</source>
-        <translation>Det här alternativet är det snabbaste och kommer kostar ungefär ~0.025 DOGEC för att anonymisera 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>This option is moderately fast and will cost about 0.05 DOGEC to anonymize 10000 DOGEC</source>
-        <translation>Det här alternativet är måttligt snabb och kommer kostar ungefär 0.05 DOGEC för att anonymisera 10000 DOGEC</translation>
-    </message>
-    <message>
-        <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
-        <translation>Det här är det långsammaste och säkraste alternativet. Använda maximal anonymitet kommer kosta</translation>
-    </message>
-    <message>
-        <source>0.1 DOGEC per 10000 DOGEC you anonymize.</source>
-        <translation>0.1 DOGEC per 10000 DOGEC du anonymiserar.</translation>
-    </message>
-    <message>
-        <source>Obfuscation Configuration</source>
-        <translation>Fördunkling Konfiguration</translation>
-    </message>
-    <message>
-        <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Fördunkling sattes framgångsrikt till grundläggande (%1 och 2 rundor). Du kan ändra det här när du vill genom att öppna dogecash's konfigurationsskärm.</translation>
-    </message>
-    <message>
-        <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Fördunkling sattes framgångsrikt till hög (%1 och 8 rundor). Du kan ändra det här när du vill genom att öppna dogecash's konfigurationsskärm.</translation>
-    </message>
-    <message>
-        <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening dogecash's configuration screen.</source>
-        <translation>Fördunkling sattes framgångsrikt till maximal (%1 och 16 rundor). Du kan ändra det här när du vill genom att öppna dogecash's konfigurationsskärm.</translation>
-    </message>
-</context>
-<context>
     <name>OpenURIDialog</name>
     <message>
         <source>Open URI</source>
@@ -1927,8 +1904,8 @@ Var god vänta efter att du trycker på importera.</translation>
         <translation>Om du avaktiverar spenderandet av okonfirmerad växel så kommer växeln från en transaktion &lt;br/&gt;ej kunna användas föräns transaktionen har minst en bekräftelse. &lt;br/&gt; Detta påverkar även hur ditt saldo beräknas.</translation>
     </message>
     <message>
-        <source>Automatically open the dogecash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Öppna automatiskt dogecash klient porten på denna router. Detta funkar endast om din router stödjer UPnP och är påslaget.</translation>
+        <source>Automatically open the DogeCash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Öppna automatiskt DogeCash klient porten på denna router. Detta funkar endast om din router stödjer UPnP och är påslaget.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1947,12 +1924,12 @@ Var god vänta efter att du trycker på importera.</translation>
         <translation>Expert</translation>
     </message>
     <message>
-        <source>Automatically start dogecash after logging in to the system.</source>
-        <translation>Starta dogecash automatiskt efter inloggning på systemet.</translation>
+        <source>Automatically start DogeCash after logging in to the system.</source>
+        <translation>Starta DogeCash automatiskt efter inloggning på systemet.</translation>
     </message>
     <message>
-        <source>&amp;Start dogecash on system login</source>
-        <translation>&amp;Starta dogecash vid systeminloggning</translation>
+        <source>&amp;Start DogeCash on system login</source>
+        <translation>&amp;Starta DogeCash vid systeminloggning</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1979,8 +1956,8 @@ Var god vänta efter att du trycker på importera.</translation>
         <translation>&amp;Nätverk</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting dogecash.</source>
-        <translation>Användargränssnittets språk kan väljas här. Denna inställning börjar gälla efter att man startat om dogecash.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting DogeCash.</source>
+        <translation>Användargränssnittets språk kan väljas här. Denna inställning börjar gälla efter att man startat om DogeCash.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -1993,36 +1970,44 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Kartlägg port med &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of DOGEC units to zdogec</source>
-        <translation>Tillåt automatisk prägling med DOGEC enheter till zdogec</translation>
+        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
+        <translation>Tillåt automatisk prägling med DOGEC enheter till zDOGEC</translation>
     </message>
     <message>
-        <source>Enable zdogec Automint</source>
-        <translation>Tillåt zdogec Autoprägling</translation>
+        <source>Enable zDOGEC Automint</source>
+        <translation>Tillåt zDOGEC Autoprägling</translation>
     </message>
     <message>
-        <source>Percentage of incoming DOGEC which get automatically converted to zdogec via Zerocoin Protocol (min: 10%)</source>
-        <translation>Procent av inkommande DOGEC som automatiskt konverteras till zdogec via Zerocoin Protokollet (min: 10%)</translation>
+        <source>Enable automatic zDOGEC minting from specific addresses</source>
+        <translation>Aktivera automatisk zDOGEC prägling från specifika adresser</translation>
     </message>
     <message>
-        <source>Percentage of autominted zdogec</source>
-        <translation>Procent av autopräglade zdogec</translation>
+        <source>Enable Automint Addresses</source>
+        <translation>Aktivera autopräglingsadresser</translation>
+    </message>
+    <message>
+        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
+        <translation>Procent av inkommande DOGEC som automatiskt konverteras till zDOGEC via Zerocoin Protokollet (min: 10%)</translation>
+    </message>
+    <message>
+        <source>Percentage of autominted zDOGEC</source>
+        <translation>Procent av autopräglade zDOGEC</translation>
     </message>
     <message>
         <source>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</source>
         <translation>Vänta med automatisk omvandling till Zerocoin tills tillräckligt många DOGEC för denna valör är tillgängliga</translation>
     </message>
     <message>
-        <source>Preferred Automint zdogec Denomination</source>
-        <translation>Preferens på zdogec valör i autoprägling</translation>
+        <source>Preferred Automint zDOGEC Denomination</source>
+        <translation>Preferens på zDOGEC valör i autoprägling</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>Staking delnings tröskel:</translation>
     </message>
     <message>
-        <source>Connect to the dogecash network through a SOCKS5 proxy.</source>
-        <translation>Anslut till dogecash nätverket via en SOCKS5 proxy.</translation>
+        <source>Connect to the DogeCash network through a SOCKS5 proxy.</source>
+        <translation>Anslut till DogeCash nätverket via en SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2071,10 +2056,6 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
     <message>
         <source>User Interface Theme:</source>
         <translation>Användargränssnitts Tema:</translation>
-    </message>
-    <message>
-        <source>&amp;Unit to show amounts in:</source>
-        <translation>&amp;Enhet att visa mängd i:</translation>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
@@ -2208,18 +2189,18 @@ https://www.transifex.com/dogecash-project/dogecash-project-translations</transl
         <translation>Nuvarande låst saldo endast i "watch only" adresser</translation>
     </message>
     <message>
-        <source>Your current dogecash balance, unconfirmed and immature transactions included</source>
-        <translation>Ditt nuvarande dogecash saldo, obekräftade och omogna transaktioner är inkluderade</translation>
+        <source>Your current DogeCash balance, unconfirmed and immature transactions included</source>
+        <translation>Ditt nuvarande DogeCash saldo, obekräftade och omogna transaktioner är inkluderade</translation>
     </message>
     <message>
-        <source>zdogec Balance</source>
-        <translation>zdogec Saldo</translation>
+        <source>zDOGEC Balance</source>
+        <translation>zDOGEC Saldo</translation>
     </message>
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zdogec are spendable.</source>
+These zDOGEC are spendable.</source>
         <translation>Mogna: över 20 bekräftelser och över 1 prägling av samma valör efter den blev myntad.
-Dessa zdogec kan spenderas.</translation>
+Dessa zDOGEC kan spenderas.</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
@@ -2228,8 +2209,8 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Omogna: bekräftade men under 1 myntning av samma valör efter den blev präglad</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
-        <translation>nformationen kan vara föråldrad. Din plånbok synkroniserar automatiskt med dogecash nätverket efter att en anslutning är etablerad, men denna process har inte blivit klar än.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
+        <translation>nformationen kan vara föråldrad. Din plånbok synkroniserar automatiskt med DogeCash nätverket efter att en anslutning är etablerad, men denna process har inte blivit klar än.</translation>
     </message>
     <message>
         <source>OVERVIEW</source>
@@ -2272,8 +2253,8 @@ Omogna: bekräftade men under 1 myntning av samma valör efter den blev präglad
         <translation>Spenderbar:</translation>
     </message>
     <message>
-        <source>Locked DOGEC or Masternode collaterals. These are excluded from zdogec minting.</source>
-        <translation>Låsta DOGEC eller masternode som säkerhet. Dessa är uteslutna från zdogec minting.</translation>
+        <source>Locked DOGEC or Masternode collaterals. These are excluded from zDOGEC minting.</source>
+        <translation>Låsta DOGEC eller masternode som säkerhet. Dessa är uteslutna från zDOGEC minting.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2284,8 +2265,8 @@ Omogna: bekräftade men under 1 myntning av samma valör efter den blev präglad
         <translation>Obekräftade:</translation>
     </message>
     <message>
-        <source>Your current zdogec balance, unconfirmed and immature zdogec included.</source>
-        <translation>Ditt nuvarande zdogec saldo, obekräftade och omogna zdogec inräknade.</translation>
+        <source>Your current zDOGEC balance, unconfirmed and immature zDOGEC included.</source>
+        <translation>Ditt nuvarande zDOGEC saldo, obekräftade och omogna zDOGEC inräknade.</translation>
     </message>
     <message>
         <source>Recent transactions</source>
@@ -2296,10 +2277,10 @@ Omogna: bekräftade men under 1 myntning av samma valör efter den blev präglad
         <translation>osynkroniserad</translation>
     </message>
     <message>
-        <source>Current percentage of zdogec.
+        <source>Current percentage of zDOGEC.
 If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
 </source>
-        <translation>Nuvarande procent zdogec.
+        <translation>Nuvarande procent zDOGEC.
 Om AutoMint är tillåten så kommer denna procent att vara som den konfigurerade AutoMint procenten (standard = 10%).
 </translation>
     </message>
@@ -2345,8 +2326,8 @@ För att aktivera AutoMint ändra 'enablezeromint=0' till 'enablezeromint=1' i d
         <translation>Kan ej starta dogecash: klicka-för-att-betala hanterare</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid dogecash address or malformed URI parameters.</source>
-        <translation>URI kunde ej analyseras! Detta kan orsakas av en ogiltig dogecash adress eller felproducerade URI parametrar.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid DogeCash address or malformed URI parameters.</source>
+        <translation>URI kunde ej analyseras! Detta kan orsakas av en ogiltig DogeCash adress eller felproducerade URI parametrar.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2431,8 +2412,8 @@ För att aktivera AutoMint ändra 'enablezeromint=0' till 'enablezeromint=1' i d
         <translation>Zerocoin Handlingar:</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the dogecash network after a connection is established, but this process has not completed yet.</source>
-        <translation>nformationen kan vara föråldrad. Din plånbok synkroniserar automatiskt med dogecash nätverket efter att en anslutning är etablerad, men denna process har inte blivit klar än.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the DogeCash network after a connection is established, but this process has not completed yet.</source>
+        <translation>nformationen kan vara föråldrad. Din plånbok synkroniserar automatiskt med DogeCash nätverket efter att en anslutning är etablerad, men denna process har inte blivit klar än.</translation>
     </message>
     <message>
         <source>Mint Zerocoin</source>
@@ -2443,20 +2424,8 @@ För att aktivera AutoMint ändra 'enablezeromint=0' till 'enablezeromint=1' i d
         <translation>0</translation>
     </message>
     <message>
-        <source>zdogec</source>
-        <translation>zdogec</translation>
-    </message>
-    <message>
-        <source>Available for minting are coins which are confirmed and not locked or Masternode collaterals.</source>
-        <translation>Tillgänglig att prägla med mynt som är bekräftade och ej låsta eller som är en masternod säkerhet.</translation>
-    </message>
-    <message>
-        <source>Available for Minting:</source>
-        <translation>Tillgängligt att prägla:</translation>
-    </message>
-    <message>
-        <source>0.000 000 00 DOGEC</source>
-        <translation>0.000 000 00 DOGEC</translation>
+        <source>zDOGEC</source>
+        <translation>zDOGEC</translation>
     </message>
     <message>
         <source>Reset Zerocoin Wallet DB. Deletes transactions that did not make it into the blockchain.</source>
@@ -2465,18 +2434,6 @@ För att aktivera AutoMint ändra 'enablezeromint=0' till 'enablezeromint=1' i d
     <message>
         <source>Reset</source>
         <translation>Starta om</translation>
-    </message>
-    <message>
-        <source>Coin Control...</source>
-        <translation>Mynt Kontroll</translation>
-    </message>
-    <message>
-        <source>Quantity:</source>
-        <translation>Kvantitet:</translation>
-    </message>
-    <message>
-        <source>Amount:</source>
-        <translation>Antal:</translation>
     </message>
     <message>
         <source>Rescan the complete blockchain for  Zerocoin mints and their meta-data.</source>
@@ -2495,16 +2452,12 @@ För att aktivera AutoMint ändra 'enablezeromint=0' till 'enablezeromint=1' i d
         <translation>SEKRETESS</translation>
     </message>
     <message>
-        <source>Enter an amount of DOGEC to convert to zdogec</source>
-        <translation>Mata in en mängd DOGEC att konvertera till zdogec</translation>
+        <source>zDOGEC Control</source>
+        <translation>zDOGEC Kontroll</translation>
     </message>
     <message>
-        <source>zdogec Control</source>
-        <translation>zdogec Kontroll</translation>
-    </message>
-    <message>
-        <source>zdogec Selected:</source>
-        <translation>Valda zdogec:</translation>
+        <source>zDOGEC Selected:</source>
+        <translation>Valda zDOGEC:</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -2519,32 +2472,32 @@ För att aktivera AutoMint ändra 'enablezeromint=0' till 'enablezeromint=1' i d
         <translation>Spendera Zerocoin</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zdogec for spending</source>
-        <translation>Tillgängliga (mogna och spenderbara) zdogec att spendera</translation>
+        <source>Available (mature and spendable) zDOGEC for spending</source>
+        <translation>Tillgängliga (mogna och spenderbara) zDOGEC att spendera</translation>
     </message>
     <message>
         <source>Available Balance:</source>
         <translation>Tillgängligt Saldo:</translation>
     </message>
     <message>
-        <source>Available (mature and spendable) zdogec for spending
+        <source>Available (mature and spendable) zDOGEC for spending
 
-zdogec are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
-        <translation>Tillgängliga (mogna och spenderbara) zdogec att spendera
+zDOGEC are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
+        <translation>Tillgängliga (mogna och spenderbara) zDOGEC att spendera
 
-zdogec är mogna när de har över 20 bekräftelser OCH över 2 präglingar av samma valör efter de är myntade.</translation>
+zDOGEC är mogna när de har över 20 bekräftelser OCH över 2 präglingar av samma valör efter de är myntade.</translation>
     </message>
     <message>
-        <source>0 zdogec</source>
-        <translation>0 zdogec</translation>
+        <source>0 zDOGEC</source>
+        <translation>0 zDOGEC</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
         <translation>Betala &amp;Till:</translation>
     </message>
     <message>
-        <source>The dogecash address to send the payment to. Creates local payment to yourself when empty.</source>
-        <translation>dogecash adress att skicka betalningen till. Skapar betalning till dig själv när den är tom.</translation>
+        <source>The DogeCash address to send the payment to. Creates local payment to yourself when empty.</source>
+        <translation>DogeCash adress att skicka betalningen till. Skapar betalning till dig själv när den är tom.</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2595,8 +2548,8 @@ zdogec är mogna när de har över 20 bekräftelser OCH över 2 präglingar av s
         <translation>Zerocoin Stats:</translation>
     </message>
     <message>
-        <source>Total Balance including unconfirmed and immature zdogec</source>
-        <translation>Totalt Saldo, obekräftade och omogna zdogec inkluderade</translation>
+        <source>Total Balance including unconfirmed and immature zDOGEC</source>
+        <translation>Totalt Saldo, obekräftade och omogna zDOGEC inkluderade</translation>
     </message>
     <message>
         <source>Total Zerocoin  Balance:</source>
@@ -2617,24 +2570,24 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
 Omogna: bekräftade men under 1 myntning av samma valör efter den blev präglad</translation>
     </message>
     <message>
-        <source>Show the current status of automatic zdogec minting.
+        <source>Show the current status of automatic zDOGEC minting.
 
 To change the status (restart required):
 - enable: add 'enablezeromint=1' to dogecash.conf
 - disable: add 'enablezeromint=0' to dogecash.conf
 
 To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zdogec
+- menu Settings-&gt;Options-&gt;Percentage of autominted zDOGEC
 
 </source>
-        <translation>Visa den nuvarande statusen av automatisk zdogec minting.
+        <translation>Visa den nuvarande statusen av automatisk zDOGEC minting.
 
 För att ändra statusen (omstart krävs):
 -aktivera: lägg till 'enablezeromint=1' i dogecash.conf
 -inaktivera: lägg till 'enablezeromint=0' i dogecash.conf
 
 För att ändra procenten (ingen omstart krävs):
--meny Inställningar-&gt;Alternativ-&gt;Procent på autominted zdogec
+-meny Inställningar-&gt;Alternativ-&gt;Procent på autominted zDOGEC
 
 </translation>
     </message>
@@ -2683,12 +2636,20 @@ För att ändra procenten (ingen omstart krävs):
         <translation>0 x</translation>
     </message>
     <message>
-        <source>Show zdogec denominations list</source>
-        <translation>Visa zdogec valör lista</translation>
+        <source>Show zDOGEC denominations list</source>
+        <translation>Visa zDOGEC valör lista</translation>
     </message>
     <message>
         <source>Show Denominations</source>
         <translation>Visa Valörer</translation>
+    </message>
+    <message>
+        <source>zDOGEC minting is DISABLED</source>
+        <translation>zDOGEC prägling är inaktiverad</translation>
+    </message>
+    <message>
+        <source>zDOGEC spending is NOT private (links back to the mint transaction)</source>
+        <translation>Att spendera zDOGEC är INTE privat (länkar tillbaka till den myntade transaktionen)</translation>
     </message>
     <message>
         <source>Denominations with value 5:</source>
@@ -2815,32 +2776,18 @@ För att ändra procenten (ingen omstart krävs):
         <translation>Myntnings Status: Okej</translation>
     </message>
     <message>
-        <source>Copy quantity</source>
-        <translation>Kopiera kvantitet</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>Kopiera antal</translation>
-    </message>
-    <message>
         <source>Starting ResetMintZerocoin: rescanning complete blockchain, this will need up to 30 minutes depending on your hardware.
 Please be patient...</source>
         <translation>Startar ResetMintZerocoin: skannar om hela blockchain, detta kan ta upp till 30 minuter beroende på din hårdvara.
 Ha lite tålamod...</translation>
     </message>
     <message>
-        <source>) needed.
-Maximum allowed: </source>
-        <translation>) behövda.
-Högsta tillåtna:</translation>
+        <source>zDOGEC Spend #: </source>
+        <translation>zDOGEC spendering #:</translation>
     </message>
     <message>
-        <source>zdogec Spend #: </source>
-        <translation>zdogec spendering #:</translation>
-    </message>
-    <message>
-        <source>zdogec Mint</source>
-        <translation>zdogec Prägling</translation>
+        <source>zDOGEC Mint</source>
+        <translation>zDOGEC Prägling</translation>
     </message>
     <message>
         <source> &lt;b&gt;enabled&lt;/b&gt;.</source>
@@ -2855,12 +2802,12 @@ Högsta tillåtna:</translation>
         <translation>Konfigurerat procent mål: &lt;b&gt;</translation>
     </message>
     <message>
-        <source>zdogec is currently disabled due to maintenance.</source>
-        <translation>zdogec är för nuvarande inaktiverat p.g.a. underhåll.</translation>
+        <source>zDOGEC is currently disabled due to maintenance.</source>
+        <translation>zDOGEC är för nuvarande inaktiverat p.g.a. underhåll.</translation>
     </message>
     <message>
-        <source>zdogec is currently undergoing maintenance.</source>
-        <translation>zdogec genomgår för tillfället underhåll.</translation>
+        <source>zDOGEC is currently undergoing maintenance.</source>
+        <translation>zDOGEC genomgår för tillfället underhåll.</translation>
     </message>
     <message>
         <source>Denom. with value &lt;b&gt;1&lt;/b&gt;:</source>
@@ -2931,32 +2878,6 @@ Högsta tillåtna:</translation>
         <translation>Valör &lt;b&gt;5000&lt;/b&gt;:</translation>
     </message>
     <message>
-        <source>Error: Your wallet is locked. Please enter the wallet passphrase first.</source>
-        <translation>Fel: Din plånbok är låst. Var vänlig och mata in plånbokens lösenfras först.</translation>
-    </message>
-    <message>
-        <source>Message: Enter an amount &gt; 0.</source>
-        <translation>Message: Mata in en mängd &gt; 0.</translation>
-    </message>
-    <message>
-        <source>Minting </source>
-        <translation>Myntade</translation>
-    </message>
-    <message>
-        <source>Successfully minted </source>
-        <translation>Framgångsrikt Myntade</translation>
-    </message>
-    <message>
-        <source> zdogec in </source>
-        <translation>zdogec i</translation>
-    </message>
-    <message>
-        <source> sec. Used denominations:
-</source>
-        <translation>sek. Använda valörer:
-</translation>
-    </message>
-    <message>
         <source>Duration: </source>
         <translation>Varaktighet:</translation>
     </message>
@@ -2975,8 +2896,8 @@ Högsta tillåtna:</translation>
         <translation>Ingen 'Betala Till' adress inmatad, skapar lokal betalning</translation>
     </message>
     <message>
-        <source>Invalid dogecash Address</source>
-        <translation>Ogiltig dogecash Adress</translation>
+        <source>Invalid DogeCash Address</source>
+        <translation>Ogiltig DogeCash Adress</translation>
     </message>
     <message>
         <source>Invalid Send Amount</source>
@@ -3007,27 +2928,20 @@ Högsta tillåtna:</translation>
         <translation>Misslyckades med att hämta myntning associerat med serie hashen</translation>
     </message>
     <message>
-        <source>Too much inputs (</source>
-        <translation>För många input (</translation>
-    </message>
-    <message>
-        <source>
-Either mint higher denominations (so fewer inputs are needed) or reduce the amount to spend.</source>
-        <translation>
-Minta antingen högre valörer (så att färre inputs behövs) eller spendera mindre.</translation>
-    </message>
-    <message>
         <source>Spend Zerocoin failed with status = </source>
         <translation>Spendering av Zerocoin misslyckades med status =</translation>
-    </message>
-    <message numerus="yes">
-        <source>PrivacyDialog</source>
-        <comment>Enter an amount of DOGEC to convert to zdogec</comment>
-        <translation><numerusform>SekretessDialog</numerusform><numerusform>SekretessDialog</numerusform></translation>
     </message>
     <message>
         <source>denomination: </source>
         <translation>valör:</translation>
+    </message>
+    <message>
+        <source>Spending Zerocoin.
+Computationally expensive, might need several minutes depending on your hardware.
+Please be patient...</source>
+        <translation>Spendera Zerocoin.
+Beroende på maskinvaran kan det behövas flera minuter på datorn.
+Var tålmodig...</translation>
     </message>
     <message>
         <source>serial: </source>
@@ -3060,7 +2974,67 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
 </context>
 <context>
     <name>ProposalFrame</name>
-    </context>
+    <message>
+        <source>Open proposal page in browser</source>
+        <translation>Öppna förslagssida i webbläsare</translation>
+    </message>
+    <message>
+        <source> remaining payment(s).</source>
+        <translation>återstående betalningar</translation>
+    </message>
+    <message>
+        <source>Yes:</source>
+        <translation>Ja:</translation>
+    </message>
+    <message>
+        <source>Abstain:</source>
+        <translation>Avstå:</translation>
+    </message>
+    <message>
+        <source>No:</source>
+        <translation>Nej:</translation>
+    </message>
+    <message>
+        <source>Open link</source>
+        <translation>Öppna länk:</translation>
+    </message>
+    <message>
+        <source>Copy link</source>
+        <translation>Kopiera länk:</translation>
+    </message>
+    <message>
+        <source>Wallet Locked</source>
+        <translation>Plånbok låst:</translation>
+    </message>
+    <message>
+        <source>You must unlock your wallet to vote.</source>
+        <translation>Du måste låsa upp din plånbok för att rösta.</translation>
+    </message>
+    <message>
+        <source>Do you want to vote %1 on</source>
+        <translation>Vill du rösta %1 på</translation>
+    </message>
+    <message>
+        <source>using all your masternodes?</source>
+        <translation>använda alla dina masternodes ?</translation>
+    </message>
+    <message>
+        <source>Proposal Hash:</source>
+        <translation>Föreslags hash:</translation>
+    </message>
+    <message>
+        <source>Proposal URL:</source>
+        <translation>Föreslags URL:</translation>
+    </message>
+    <message>
+        <source>Confirm Vote</source>
+        <translation>Bekräfta Röst:</translation>
+    </message>
+    <message>
+        <source>Vote Results</source>
+        <translation>Röst resultat:</translation>
+    </message>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -3068,8 +3042,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Mängd</translation>
     </message>
     <message>
-        <source>Enter a dogecash address (e.g. %1)</source>
-        <translation>Mata in en dogecash adress (e.g. %1)</translation>
+        <source>Enter a DogeCash address (e.g. %1)</source>
+        <translation>Mata in en DogeCash adress (e.g. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -3096,6 +3070,10 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>"BLOOM"</translation>
     </message>
     <message>
+        <source>ZK_BLOOM</source>
+        <translation>ZK_BLOOM</translation>
+    </message>
+    <message>
         <source>UNKNOWN</source>
         <translation>OKÄND</translation>
     </message>
@@ -3115,7 +3093,19 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <source>DogeCash Core</source>
         <translation>DogeCash Core</translation>
     </message>
-    </context>
+    <message>
+        <source>Error: Specified data directory "%1" does not exist.</source>
+        <translation>Fel: Den angivna datakatalogen "%1" existerar inte.</translation>
+    </message>
+    <message>
+        <source>Error reading masternode configuration file: %1</source>
+        <translation>Fel vid inläsning av masternodens konfigurationsfil: %1</translation>
+    </message>
+    <message>
+        <source>DogeCash Core didn't yet exit safely...</source>
+        <translation>DogeCash Core avslutades ännu inte säkert...</translation>
+    </message>
+</context>
 <context>
     <name>QRImageWidget</name>
     <message>
@@ -3210,8 +3200,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Blockchain</translation>
     </message>
     <message>
-        <source>Open the dogecash debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Öppna dogecash felsökningslogg från den nuvarande data katalogen. Detta kan ta några sekunder för stora logg filer.</translation>
+        <source>Open the DogeCash debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Öppna DogeCash felsökningslogg från den nuvarande data katalogen. Detta kan ta några sekunder för stora logg filer.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -3346,8 +3336,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Vanlig Backup Sökväg:</translation>
     </message>
     <message>
-        <source>Custom zdogec Backup Path:</source>
-        <translation>Vanlig zdogec Backup Sökväg:</translation>
+        <source>Custom zDOGEC Backup Path:</source>
+        <translation>Vanlig zDOGEC Backup Sökväg:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -3426,8 +3416,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Ut:</translation>
     </message>
     <message>
-        <source>Welcome to the dogecash RPC console.</source>
-        <translation>Välkommen till dogecash RPC konsol.</translation>
+        <source>Welcome to the DogeCash RPC console.</source>
+        <translation>Välkommen till DogeCash RPC konsol.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -3452,6 +3442,10 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     <message>
         <source>1 &amp;year</source>
         <translation>1 &amp;år</translation>
+    </message>
+    <message>
+        <source>&amp;Unban Node</source>
+        <translation>&amp;Ta bort bann från Nod</translation>
     </message>
     <message>
         <source>This will delete your local blockchain folders and the wallet will synchronize the complete Blockchain from scratch.&lt;br /&gt;&lt;br /&gt;</source>
@@ -3565,16 +3559,16 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>&amp;Mängd:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the dogecash network.</source>
-        <translation>Ett frivilligt meddelande att bifoga till betalningsförfrågan, som kommer visas när förfrågan öppnas. Observera: Medelandet kommer inte skickas med betalningen över dogecash nätverket.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the DogeCash network.</source>
+        <translation>Ett frivilligt meddelande att bifoga till betalningsförfrågan, som kommer visas när förfrågan öppnas. Observera: Medelandet kommer inte skickas med betalningen över DogeCash nätverket.</translation>
     </message>
     <message>
         <source>RECEIVE</source>
         <translation>ERHÅLLA</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the dogecash network.</source>
-        <translation>Ett frivilligt meddelande att bifoga till betalningsförfrågan, vilket kommer visas när förfrågan öppnas.&lt;br&gt;Observera: Medelandet kommer inte skickas med betalningen över dogecash nätverket.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the DogeCash network.</source>
+        <translation>Ett frivilligt meddelande att bifoga till betalningsförfrågan, vilket kommer visas när förfrågan öppnas.&lt;br&gt;Observera: Medelandet kommer inte skickas med betalningen över DogeCash nätverket.</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
@@ -3878,8 +3872,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Om 1000 uDOGECs är den valda skräddarsydda avgiften och transaktionen är bara 250 bytes så kommer "per kilobyte" bara betala 250 uDOGECs i avgift,&lt;br /&gt;medans "minst totalt" betalar 1000 uDOGECs. För transaktioner större än en kilobyte så betalar båda per kilobyte.</translation>
     </message>
     <message>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for dogecash transactions than the network can process.</source>
-        <translation>Att endast betala minimum avgift är okej så länge som transaktionsvolymen är mindre än rummet i blocken.&lt;br /&gt;Men var medveten om att detta kan sluta som en transaktion som aldrig blir bekräftad när det finns ett större behov av dogecash transaktioner än nätverket kan bearbeta.</translation>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for DogeCash transactions than the network can process.</source>
+        <translation>Att endast betala minimum avgift är okej så länge som transaktionsvolymen är mindre än rummet i blocken.&lt;br /&gt;Men var medveten om att detta kan sluta som en transaktion som aldrig blir bekräftad när det finns ett större behov av DogeCash transaktioner än nätverket kan bearbeta.</translation>
     </message>
     <message>
         <source>normal</source>
@@ -3974,8 +3968,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Split block verktyget fungerar inte med flera adresser. Försök igen.</translation>
     </message>
     <message>
-        <source>Warning: Invalid dogecash address</source>
-        <translation>Varning: Ogiltig dogecash adress</translation>
+        <source>Warning: Invalid DogeCash address</source>
+        <translation>Varning: Ogiltig DogeCash adress</translation>
     </message>
     <message>
         <source>%1 to %2</source>
@@ -4000,10 +3994,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     <message>
         <source>A fee %1 times higher than %2 per kB is considered an insanely high fee.</source>
         <translation>En avgift %1 gånger större än %2 per kB anses vara en galet hög avgift.</translation>
-    </message>
-    <message numerus="yes">
-        <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>Uppskattat att starta konfirmation inom %n block.</numerusform><numerusform>Uppskattat att starta konfirmation inom %n block.</numerusform></translation>
     </message>
     <message>
         <source>The recipient address is not valid, please recheck.</source>
@@ -4081,8 +4071,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Betala &amp;Till:</translation>
     </message>
     <message>
-        <source>The dogecash address to send the payment to</source>
-        <translation>dogecash adressen att skicka betalningen till</translation>
+        <source>The DogeCash address to send the payment to</source>
+        <translation>DogeCash adressen att skicka betalningen till</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -4121,8 +4111,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Medelande:</translation>
     </message>
     <message>
-        <source>A message that was attached to the dogecash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the dogecash network.</source>
-        <translation>Ett medelande som var bifogat till dogecash: URI som kommer sparas med transaktionen som din referens. Lägg märke till: Detta meddelande kommer inte skickas genom dogecash nätverket.</translation>
+        <source>A message that was attached to the DogeCash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the DogeCash network.</source>
+        <translation>Ett medelande som var bifogat till DogeCash: URI som kommer sparas med transaktionen som din referens. Lägg märke till: Detta meddelande kommer inte skickas genom DogeCash nätverket.</translation>
     </message>
     <message>
         <source>This is an unverified payment request.</source>
@@ -4171,8 +4161,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Du kan signera meddelanden med din egna adress för att bevisa att du äger dem. Se upp för att signera något vagt, då phishing-attacker kan försöka lura dig att signera din identitet åt dom. Signera endast fullt detaljerade påståenden du går med på.</translation>
     </message>
     <message>
-        <source>The dogecash address to sign the message with</source>
-        <translation>dogecash adressen för signera meddelandet med</translation>
+        <source>The DogeCash address to sign the message with</source>
+        <translation>DogeCash adressen för signera meddelandet med</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -4203,16 +4193,16 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Kopiera den nuvarande signaturen till systemets urklipp</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this dogecash address</source>
-        <translation>Signera meddelandet för att bevisa att du äger denna dogecash adress</translation>
+        <source>Sign the message to prove you own this DogeCash address</source>
+        <translation>Signera meddelandet för att bevisa att du äger denna DogeCash adress</translation>
     </message>
     <message>
-        <source>The dogecash address the message was signed with</source>
-        <translation>dogecash adressen meddelandet blev signerat med</translation>
+        <source>The DogeCash address the message was signed with</source>
+        <translation>DogeCash adressen meddelandet blev signerat med</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified dogecash address</source>
-        <translation>Verifiera meddelandet för att säkerställa att de blev signerat med den specifika dogecash adressen.</translation>
+        <source>Verify the message to ensure it was signed with the specified DogeCash address</source>
+        <translation>Verifiera meddelandet för att säkerställa att de blev signerat med den specifika DogeCash adressen.</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -4333,7 +4323,7 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     <name>TransactionDesc</name>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Öppna för %n fler block</numerusform><numerusform>Öppna för %n fler block</numerusform></translation>
+        <translation><numerusform>Öppna till %n flera block</numerusform><numerusform>Öppna till %n flera block</numerusform></translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -4397,7 +4387,7 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     </message>
     <message numerus="yes">
         <source>, broadcast through %n node(s)</source>
-        <translation><numerusform>, sänder via %n nod</numerusform><numerusform>, sänder via %n noder</numerusform></translation>
+        <translation><numerusform>, sänder via %n noder</numerusform><numerusform>,sänder via %n noder </numerusform></translation>
     </message>
     <message>
         <source>Date</source>
@@ -4441,7 +4431,7 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>mognar om %n fler block</numerusform><numerusform>mognar om %n fler block</numerusform></translation>
+        <translation><numerusform>mognar på %n flera block</numerusform><numerusform>mognar på %n flera block    </numerusform></translation>
     </message>
     <message>
         <source>not accepted</source>
@@ -4541,10 +4531,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <source>Address</source>
         <translation>Adress</translation>
     </message>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation><numerusform>Öppna för %n fler block</numerusform><numerusform>Öppna för %n fler block</numerusform></translation>
-    </message>
     <message>
         <source>Open until %1</source>
         <translation>Öppna tills %1</translation>
@@ -4598,8 +4584,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>DOGEC staking</translation>
     </message>
     <message>
-        <source>zdogec Stake</source>
-        <translation>zdogec Staking</translation>
+        <source>zDOGEC Stake</source>
+        <translation>zDOGEC Staking</translation>
     </message>
     <message>
         <source>Obfuscation Denominate</source>
@@ -4618,32 +4604,32 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Obfuscation Skapa tecken</translation>
     </message>
     <message>
-        <source>Converted DOGEC to zdogec</source>
-        <translation>Konvertera DOGEC till zdogec</translation>
+        <source>Converted DOGEC to zDOGEC</source>
+        <translation>Konvertera DOGEC till zDOGEC</translation>
     </message>
     <message>
-        <source>Spent zdogec</source>
-        <translation>Spendera zdogec</translation>
+        <source>Spent zDOGEC</source>
+        <translation>Spendera zDOGEC</translation>
     </message>
     <message>
-        <source>Received DOGEC from zdogec</source>
-        <translation>Mottog DOGEC från zdogec</translation>
+        <source>Received DOGEC from zDOGEC</source>
+        <translation>Mottog DOGEC från zDOGEC</translation>
     </message>
     <message>
-        <source>Minted Change as zdogec from zdogec Spend</source>
-        <translation>Myntad Växel som zdogec från zdogec Spendering</translation>
+        <source>Minted Change as zDOGEC from zDOGEC Spend</source>
+        <translation>Myntad Växel som zDOGEC från zDOGEC Spendering</translation>
     </message>
     <message>
-        <source>Converted zdogec to DOGEC</source>
-        <translation>Konverterad zdogec till DOGEC</translation>
+        <source>Converted zDOGEC to DOGEC</source>
+        <translation>Konverterad zDOGEC till DOGEC</translation>
     </message>
     <message>
-        <source>Anonymous (zdogec Transaction)</source>
-        <translation>Anonym (zdogec Transaktion)</translation>
+        <source>Anonymous (zDOGEC Transaction)</source>
+        <translation>Anonym (zDOGEC Transaktion)</translation>
     </message>
     <message>
-        <source>Anonymous (zdogec Stake)</source>
-        <translation>Anonym (zdogec Stake)</translation>
+        <source>Anonymous (zDOGEC Stake)</source>
+        <translation>Anonym (zDOGEC Stake)</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -4857,12 +4843,12 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Exportering Lyckat</translation>
     </message>
     <message>
-        <source>Received DOGEC from zdogec</source>
-        <translation>Mottog DOGEC från zdogec</translation>
+        <source>Received DOGEC from zDOGEC</source>
+        <translation>Mottog DOGEC från zDOGEC</translation>
     </message>
     <message>
-        <source>Zerocoin Spend, Change in zdogec</source>
-        <translation>Zerocoin spendera, Växel i zdogec</translation>
+        <source>Zerocoin Spend, Change in zDOGEC</source>
+        <translation>Zerocoin spendera, Växel i zDOGEC</translation>
     </message>
     <message>
         <source>The transaction history was successfully saved to %1.</source>
@@ -4930,10 +4916,10 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     </message>
 </context>
 <context>
-    <name>zdogecControlDialog</name>
+    <name>ZDOGECControlDialog</name>
     <message>
-        <source>Select zdogec to Spend</source>
-        <translation>Välj zdogec att Spendera</translation>
+        <source>Select zDOGEC to Spend</source>
+        <translation>Välj zDOGEC att Spendera</translation>
     </message>
     <message>
         <source>Quantity</source>
@@ -4944,8 +4930,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>0</translation>
     </message>
     <message>
-        <source>zdogec</source>
-        <translation>zdogec</translation>
+        <source>zDOGEC</source>
+        <translation>zDOGEC</translation>
     </message>
     <message>
         <source>Select/Deselect All</source>
@@ -4980,7 +4966,7 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     </message>
     <message>
         <source>Cannot obtain a lock on data directory %s. DogeCash Core is probably already running.</source>
-        <translation>Kan ej låsa in på data katalog %s. dogecash Kärna körs förmodligen redan.</translation>
+        <translation>Kan ej låsa in på data katalog %s. DogeCash Kärna körs förmodligen redan.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5007,16 +4993,16 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Distribuerad under MIT mjukvarulicensen, se medföljande fil COPYING eller &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
     </message>
     <message>
-        <source>Enable automatic wallet backups triggered after each zdogec minting (0-1, default: %u)</source>
-        <translation>Aktivera automatisk plånboksbackup efter varje zdogec minting (0-1, standard: %u)</translation>
+        <source>Enable automatic wallet backups triggered after each zDOGEC minting (0-1, default: %u)</source>
+        <translation>Aktivera automatisk plånboksbackup efter varje zDOGEC minting (0-1, standard: %u)</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for DOGEC inputs (0-1, default: %u)</source>
         <translation>Aktivera eller avaktivera staking funktionalitet för DOGEC inmatningar (0-1, standard: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for zdogec inputs (0-1, default: %u)</source>
-        <translation>Aktivera eller avaktivera staking funktionalitet för zdogec inmatningar (0-1, standard: %u)</translation>
+        <source>Enable or disable staking functionality for zDOGEC inputs (0-1, default: %u)</source>
+        <translation>Aktivera eller avaktivera staking funktionalitet för zDOGEC inmatningar (0-1, standard: %u)</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -5061,10 +5047,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
         <translation>Spola databasaktivitet från minnes pool till disk log varje &lt;n&gt;megabytes (default: %u)</translation>
-    </message>
-    <message>
-        <source>Found unconfirmed denominated outputs, will wait till they confirm to continue.</source>
-        <translation>Obekräftade betecknade utmatningar hittade, kommer vänta tills de bekräftar för att fortsätta.</translation>
     </message>
     <message>
         <source>If paytxfee is not set, include enough fee so transactions begin confirmation on average within n blocks (default: %u)</source>
@@ -5219,8 +5201,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Du måste specifiera en masternodeprivkey i konfigurationen. Var vänlig se dokumentationen för hjälp.</translation>
     </message>
     <message>
-        <source>(16740 could be used only on mainnet)</source>
-        <translation>(16740 kunde endast användas på mainnet)</translation>
+        <source>(56740 could be used only on mainnet)</source>
+        <translation>(56740 kunde endast användas på mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -5231,8 +5213,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>(standard: 1)</translation>
     </message>
     <message>
-        <source>(must be 16740 for mainnet)</source>
-        <translation>(måste vara 16740 för mainnet)</translation>
+        <source>(must be 56740 for mainnet)</source>
+        <translation>(måste vara 56740 för mainnet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
@@ -5253,10 +5235,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     <message>
         <source>Allow DNS lookups for -addnode, -seednode and -connect</source>
         <translation>Tillåt DNS lookups för -addnode, -seednode och -connect</translation>
-    </message>
-    <message>
-        <source>Already have that input.</source>
-        <translation>Har redan den inmatningen.</translation>
     </message>
     <message>
         <source>Always query for peer addresses via DNS lookup (default: %u)</source>
@@ -5283,18 +5261,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Beräknar fattandes ackumulatorer...</translation>
     </message>
     <message>
-        <source>Can't denominate: no compatible inputs left.</source>
-        <translation>Kan ej kalla: inga kompatibla inmatningar kvar.</translation>
-    </message>
-    <message>
-        <source>Can't find random Masternode.</source>
-        <translation>Kan ej hitta slumpmässig Huvudnod.</translation>
-    </message>
-    <message>
-        <source>Can't mix while sync in progress.</source>
-        <translation>Kan ej blanda när synkronisering håller på.</translation>
-    </message>
-    <message>
         <source>Cannot downgrade wallet</source>
         <translation>Kan ej nergradera plånbok</translation>
     </message>
@@ -5313,10 +5279,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     <message>
         <source>Cannot write default address</source>
         <translation>Kan ej skriva standard adress</translation>
-    </message>
-    <message>
-        <source>Collateral not valid.</source>
-        <translation>Kollateral ej giltig.</translation>
     </message>
     <message>
         <source>Connect only to the specified node(s)</source>
@@ -5403,14 +5365,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Tillåt klinten att bete sig som en huvudnod (0-1, standard: %u)</translation>
     </message>
     <message>
-        <source>Entries are full.</source>
-        <translation>Poster är fulla.</translation>
-    </message>
-    <message>
-        <source>Error connecting to Masternode.</source>
-        <translation>Fel vid anslutning till Huvudnoder.</translation>
-    </message>
-    <message>
         <source>Error initializing block database</source>
         <translation>Fel vid initialisering av blockdatabas</translation>
     </message>
@@ -5432,7 +5386,7 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     </message>
     <message>
         <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
-        <translation>Fel vid laddning av wallet.dat: Plånbok  kräver nyare dogecash Kärna version</translation>
+        <translation>Fel vid laddning av wallet.dat: Plånbok  kräver nyare DogeCash Kärna version</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -5459,10 +5413,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Fel: Ett fatalt internt fel inträffade, se debug.log för detaljer</translation>
     </message>
     <message>
-        <source>Error: Can't select current denominated inputs</source>
-        <translation>Fel: Kan ej välja nuvarande benämnda inmatningar</translation>
-    </message>
-    <message>
         <source>Error: Disk space is low!</source>
         <translation>Fel: Diskutrymme lågt!</translation>
     </message>
@@ -5473,10 +5423,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     <message>
         <source>Error: Wallet locked, unable to create transaction!</source>
         <translation>Fel: Plånbok låst, kan ej genomföra transaktion!</translation>
-    </message>
-    <message>
-        <source>Error: You already have pending entries in the Obfuscation pool</source>
-        <translation>Fel: Du har redan avvaktande poster i Fördunklingspoolen</translation>
     </message>
     <message>
         <source>Failed to calculate accumulator checkpoint</source>
@@ -5499,20 +5445,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Avgift (i DOGEC/kB) för att lägga till transaktioner you skicka (standard: %s)</translation>
     </message>
     <message>
-        <source>Finalizing transaction.</source>
-        <translation>Slutgiltiggör transaktion.</translation>
-    </message>
-    <message>
         <source>Force safe mode (default: %u)</source>
         <translation>Tvinga säkert läga (standard: %u)</translation>
-    </message>
-    <message>
-        <source>Found enough users, signing ( waiting %s )</source>
-        <translation>Hittat tillräckligt många användare, signerar (väntar %s)</translation>
-    </message>
-    <message>
-        <source>Found enough users, signing ...</source>
-        <translation>Hittade tillräckligt många användare, signerar ...</translation>
     </message>
     <message>
         <source>Generate coins (default: %u)</source>
@@ -5539,14 +5473,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Inkludera IP adress i felsökningens utmatning (standard: %u)</translation>
     </message>
     <message>
-        <source>Incompatible mode.</source>
-        <translation>Okompatibel sätt.</translation>
-    </message>
-    <message>
-        <source>Incompatible version.</source>
-        <translation>Okompatibel version.</translation>
-    </message>
-    <message>
         <source>Incorrect or no genesis block found. Wrong datadir for network?</source>
         <translation>Ogiltig eller ingen tillblivelse block hittat. Fel datadir för nätverk?</translation>
     </message>
@@ -5556,11 +5482,7 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     </message>
     <message>
         <source>Initialization sanity check failed. DogeCash Core is shutting down.</source>
-        <translation>Initierings renlighetscheck misslyckades. dogecash Kärna stängs ner.</translation>
-    </message>
-    <message>
-        <source>Input is not valid.</source>
-        <translation>inmatning är inte giltig.</translation>
+        <translation>Initierings renlighetscheck misslyckades. DogeCash Kärna stängs ner.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5619,16 +5541,12 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Fel privat nyckel.</translation>
     </message>
     <message>
-        <source>Invalid script detected.</source>
-        <translation>Ogiltigt script upptäckt.</translation>
-    </message>
-    <message>
         <source>Percentage of automatically minted Zerocoin  (1-100, default: %u)</source>
         <translation>Procent automatiskt mintad Zerocoin (1-100, default: %u)</translation>
     </message>
     <message>
-        <source>Reindex the DOGEC and zdogec money supply statistics</source>
-        <translation>Indexera DOGEC och zdogec pengarna tillgång statistik på nytt</translation>
+        <source>Reindex the DOGEC and zDOGEC money supply statistics</source>
+        <translation>Indexera DOGEC och zDOGEC pengarna tillgång statistik på nytt</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5641,6 +5559,10 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     <message>
         <source>Selected coins value is less than payment target</source>
         <translation>Valda mynts värde är under betalningsmål</translation>
+    </message>
+    <message>
+        <source>Support the zerocoin light node protocol (default: %u)</source>
+        <translation>Stöd zerocoin protokollet för light node (standard: %u)</translation>
     </message>
     <message>
         <source>SwiftX options:</source>
@@ -5667,8 +5589,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
 </translation>
     </message>
     <message>
-        <source>Disable all dogecash specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Avaktivera all dogecash funktionalitet (Huvudnoder, Zerocoin, SwiftX, Budgeting) (0-1, standard: %u)</translation>
+        <source>Disable all DogeCash specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
+        <translation>Avaktivera all DogeCash funktionalitet (Huvudnoder, Zerocoin, SwiftX, Budgeting) (0-1, standard: %u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
@@ -5703,8 +5625,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Valör aatt föredra för automatiskt mintad Zerocoin (1/5/10/50/100/500/1000/5000), 0 för ingen preface. standard: %u)</translation>
     </message>
     <message>
-        <source>Specify custom backup path to add a copy of any automatic zdogec backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
-        <translation>Specifiera skräddarsydd backup väg att lägga till en kopia av alla automatisk zdogec backup. Om satt som dir, varje backup genererar en tidsstämplad fil. Om satt som fil, skriver över den filen vid varje backup. Om backupvägen också är satt, 4 backups kommer hända</translation>
+        <source>Specify custom backup path to add a copy of any automatic zDOGEC backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
+        <translation>Specifiera skräddarsydd backup väg att lägga till en kopia av alla automatisk zDOGEC backup. Om satt som dir, varje backup genererar en tidsstämplad fil. Om satt som fil, skriver över den filen vid varje backup. Om backupvägen också är satt, 4 backups kommer hända</translation>
     </message>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
@@ -5787,14 +5709,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Behåll som mest &lt;n&gt; oanslutningsbara transaktioner i minne (standard: %u)</translation>
     </message>
     <message>
-        <source>Last Obfuscation was too recent.</source>
-        <translation>Senaste obfuscation var för ny.</translation>
-    </message>
-    <message>
-        <source>Last successful Obfuscation action was too recent.</source>
-        <translation>Den senaste framgångsrika Obfuscation-åtgärden var för ny.</translation>
-    </message>
-    <message>
         <source>Limit size of signature cache to &lt;n&gt; entries (default: %u)</source>
         <translation>Begränsa storlek av signatur cache till &lt;n&gt; poster (standard: %u)</translation>
     </message>
@@ -5847,10 +5761,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Lokation av auth cookie (standard: data dir)</translation>
     </message>
     <message>
-        <source>Lock is already in place.</source>
-        <translation>Lås är redan på plats.</translation>
-    </message>
-    <message>
         <source>Lock masternodes from masternode configuration file (default: %u)</source>
         <translation>Lås huvudnoder från huvudnod konfigurations fil (standard: %u)</translation>
     </message>
@@ -5867,14 +5777,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Masternod val:</translation>
     </message>
     <message>
-        <source>Masternode queue is full.</source>
-        <translation>Masternodens kö är full.</translation>
-    </message>
-    <message>
-        <source>Masternode:</source>
-        <translation>Masternod:</translation>
-    </message>
-    <message>
         <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: %u)</source>
         <translation>Maximala mottagna per-anslutning buffer, &lt;n&gt;*1000 bytes (standard: %u)</translation>
     </message>
@@ -5887,14 +5789,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Mint kom inte med i blockchain</translation>
     </message>
     <message>
-        <source>Missing input transaction information.</source>
-        <translation>Inmatad transaktions information fattas.</translation>
-    </message>
-    <message>
-        <source>Mixing in progress...</source>
-        <translation>Blandning pågår...</translation>
-    </message>
-    <message>
         <source>Need address because change is not exact</source>
         <translation>Adress behövs för att växel ej är exakt</translation>
     </message>
@@ -5903,40 +5797,12 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Port behöver specifieras med -whitebind: '%s'</translation>
     </message>
     <message>
-        <source>No Masternodes detected.</source>
-        <translation>Inga Huvudnoder upptäckta.</translation>
-    </message>
-    <message>
-        <source>No compatible Masternode found.</source>
-        <translation>Inga kompatibla Huvudnoder hittade.</translation>
-    </message>
-    <message>
-        <source>No funds detected in need of denominating.</source>
-        <translation>Inga pengar o behov av benämnelse upptäckta.</translation>
-    </message>
-    <message>
-        <source>No matching denominations found for mixing.</source>
-        <translation>Inga matchande valörer hittade till blandning.</translation>
-    </message>
-    <message>
         <source>Node relay options:</source>
         <translation>Nod relä val:</translation>
     </message>
     <message>
-        <source>Non-standard public key detected.</source>
-        <translation>Ej-standard offentlig nyckel upptäckt.</translation>
-    </message>
-    <message>
-        <source>Not compatible with existing transactions.</source>
-        <translation>Ej kompatibel med existerande transaktioner.</translation>
-    </message>
-    <message>
         <source>Not enough file descriptors available.</source>
         <translation>Ej tillräckliga fil deskriptorer tillgängliga.</translation>
-    </message>
-    <message>
-        <source>Not in the Masternode list.</source>
-        <translation>Inte i Huvudnod listan.</translation>
     </message>
     <message>
         <source>Number of automatic wallet backups (default: 10)</source>
@@ -5945,18 +5811,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     <message>
         <source>Number of custom location backups to retain (default: %d)</source>
         <translation>Antal skräddarsydda platser för backup att behålla (standard: %d)</translation>
-    </message>
-    <message>
-        <source>Obfuscation is idle.</source>
-        <translation>Fördunkling är overksam.</translation>
-    </message>
-    <message>
-        <source>Obfuscation request complete:</source>
-        <translation>Fördunkling förfrågan avslutad:</translation>
-    </message>
-    <message>
-        <source>Obfuscation request incomplete:</source>
-        <translation>Fördunkling förfrågan ej avslutad:</translation>
     </message>
     <message>
         <source>Only accept block chain matching built-in checkpoints (default: %u)</source>
@@ -5973,6 +5827,10 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     <message>
         <source>Password for JSON-RPC connections</source>
         <translation>Lösenord för JSON-RPC anslutningar</translation>
+    </message>
+    <message>
+        <source>Unable to find transaction containing mint %s</source>
+        <translation>Det gick inte att hitta transaktionen som innehöll prägling %s</translation>
     </message>
     <message>
         <source>isValid(): Invalid -proxy address or hostname: '%s'</source>
@@ -6049,10 +5907,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     <message>
         <source>Send transactions as zero-fee transactions if possible (default: %u)</source>
         <translation>Skicka transaktioner som avgiftsfria transaktioner om möjligt (standard: %u)</translation>
-    </message>
-    <message>
-        <source>Session not complete!</source>
-        <translation>Sessionen är inte klar</translation>
     </message>
     <message>
         <source>Session timed out.</source>
@@ -6159,18 +6013,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Sluta kör efter block har importerats från disk (standard: %u)</translation>
     </message>
     <message>
-        <source>Submitted following entries to masternode: %u / %d</source>
-        <translation>Skickade in följande poster till huvudnod: %u / %d</translation>
-    </message>
-    <message>
-        <source>Submitted to masternode, waiting for more entries ( %u / %d ) %s</source>
-        <translation>Inskickat till huvudnod, väntar på fler poster ( %u / %d ) %s</translation>
-    </message>
-    <message>
-        <source>Submitted to masternode, waiting in queue %s</source>
-        <translation>Inskickat till huvudnod, väntar i kö %s</translation>
-    </message>
-    <message>
         <source>Synchronization failed</source>
         <translation>Synchronisering misslyckad</translation>
     </message>
@@ -6199,8 +6041,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Synkroniserar sporks...</translation>
     </message>
     <message>
-        <source>Syncing zdogec wallet...</source>
-        <translation>Synkroniserar zdogec plånbok...</translation>
+        <source>Syncing zDOGEC wallet...</source>
+        <translation>Synkroniserar zDOGEC plånbok...</translation>
     </message>
     <message>
         <source>The coin spend has been used</source>
@@ -6221,10 +6063,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     <message>
         <source>This is intended for regression testing tools and app development.</source>
         <translation>Det här är menat för regression testverktyg och app utveckling.</translation>
-    </message>
-    <message>
-        <source>This is not a Masternode.</source>
-        <translation>Dehär är ingen Masternod</translation>
     </message>
     <message>
         <source>Threshold for disconnecting misbehaving peers (default: %u)</source>
@@ -6259,18 +6097,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Transaktionens värde måste vara possitivt</translation>
     </message>
     <message>
-        <source>Transaction created successfully.</source>
-        <translation>Transaktion skapad framgångsrikt</translation>
-    </message>
-    <message>
-        <source>Transaction fees are too high.</source>
-        <translation>Transaktionsavgifter är för stora.</translation>
-    </message>
-    <message>
-        <source>Transaction not valid.</source>
-        <translation>Transaktionen inte giltig.</translation>
-    </message>
-    <message>
         <source>Transaction too large for fee policy</source>
         <translation>Transaktionen för stor för avgifts policy</translation>
     </message>
@@ -6279,24 +6105,12 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Transaktion för stor</translation>
     </message>
     <message>
-        <source>Transmitting final transaction.</source>
-        <translation>Sänder ut slutgiltig transaktion.</translation>
-    </message>
-    <message>
-        <source>Try to spend with a higher security level to include more coins</source>
-        <translation>Försök att spendera med en högre säkerhetsnivå för att inkludera fler mynt</translation>
-    </message>
-    <message>
         <source>Trying to spend an already spent serial #, try again.</source>
         <translation>Försöker spendera en redan spendera serie #, försök igen.</translation>
     </message>
     <message>
         <source>Unable to bind to %s on this computer (bind returned error %s)</source>
         <translation>Kan ej binda till %s på denna dator (bind återgav fel %s)</translation>
-    </message>
-    <message>
-        <source>Unable to find transaction containing mint</source>
-        <translation>Kan ej hitta transaktion innehållandes mint</translation>
     </message>
     <message>
         <source>Unable to sign spork message, wrong key?</source>
@@ -6309,10 +6123,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
         <translation>Okänt nätverk specifierat i -onlynet: '%s'</translation>
-    </message>
-    <message>
-        <source>Unknown state: id = %u</source>
-        <translation>Okänt tillstånd: id = %u</translation>
     </message>
     <message>
         <source>Upgrade wallet to latest format</source>
@@ -6343,12 +6153,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Användarnamn för JSON-RPC anslutningar</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zdogec</source>
-        <translation>Värde är under den minsta tillgängliga valören (=1) av zdogec</translation>
-    </message>
-    <message>
-        <source>Value more than Obfuscation pool maximum allows.</source>
-        <translation>Värde högre än fördunklingspoolen maximalt tillåter.</translation>
+        <source>Value is below the smallest available denomination (= 1) of zDOGEC</source>
+        <translation>Värde är under den minsta tillgängliga valören (=1) av zDOGEC</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -6363,12 +6169,8 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Plånbok %s finns utanför data katalog %s</translation>
     </message>
     <message>
-        <source>Wallet is locked.</source>
-        <translation>Plånboken är låst.</translation>
-    </message>
-    <message>
         <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
-        <translation>Plånbok behöver skrivas om: starta om dogecash Kärna för att göra klart</translation>
+        <translation>Plånbok behöver skrivas om: starta om DogeCash Kärna för att göra klart</translation>
     </message>
     <message>
         <source>Wallet options:</source>
@@ -6395,24 +6197,12 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Varning: Argument -debugnet stödjes ej, ignoreras. Använd -debug=net.</translation>
     </message>
     <message>
-        <source>Will retry...</source>
-        <translation>Kommer försöka igen...</translation>
-    </message>
-    <message>
         <source>You don't have enough Zerocoins in your wallet</source>
         <translation>Du har inte tillräckligt med Zerocoins i din plånbok</translation>
     </message>
     <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>Du behöver bygga om databasen genom att använda -reindex för att ändra -txindex</translation>
-    </message>
-    <message>
-        <source>Your entries added successfully.</source>
-        <translation>Dina poster lyckades läggas till.</translation>
-    </message>
-    <message>
-        <source>Your transaction was accepted into the pool!</source>
-        <translation>Din transaktion accepterades in i poolen!</translation>
     </message>
     <message>
         <source>Zapping all transactions from wallet...</source>

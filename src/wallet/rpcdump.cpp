@@ -1,6 +1,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2018-2019 The DogeCash developers
+// Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -404,7 +405,7 @@ UniValue dumphdinfo(const UniValue& params, bool fHelp)
 UniValue dumpwallet(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
-        throw runtime_error(
+        throw std::runtime_error(
             "dumpwallet \"filename\"\n"
             "\nDumps all wallet keys in a human-readable format.\n" +
             HelpRequiringPassphrase() + "\n"
@@ -414,113 +415,6 @@ UniValue dumpwallet(const UniValue& params, bool fHelp)
 
             "\nExamples:\n" +
             HelpExampleCli("dumpwallet", "\"test\"") + HelpExampleRpc("dumpwallet", "\"test\""));
-
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    EnsureWalletIsUnlocked();
-
-    boost::filesystem::path filepath = params[0].get_str().c_str();
-    filepath = boost::filesystem::absolute(filepath);
-
-    ofstream file;
-    file.open(params[0].get_str().c_str());
-    if (!file.is_open())
-        throw JSONRPCError(RPC_INVALID_PARAMETER, "Cannot open wallet dump file");
-
-    std::map<CKeyID, int64_t> mapKeyBirth;
-    std::set<CKeyID> setKeyPool;
-    pwalletMain->GetKeyBirthTimes(mapKeyBirth);
-    pwalletMain->GetAllReserveKeys(setKeyPool);
-
-    // sort time/key pairs
-    std::vector<std::pair<int64_t, CKeyID> > vKeyBirth;
-    for (std::map<CKeyID, int64_t>::const_iterator it = mapKeyBirth.begin(); it != mapKeyBirth.end(); it++) {
-        vKeyBirth.push_back(std::make_pair(it->second, it->first));
-    }
-    mapKeyBirth.clear();
-    std::sort(vKeyBirth.begin(), vKeyBirth.end());
-
-    // produce output
-    file << strprintf("# Wallet dump created by dogecash %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
-    file << strprintf("# * Created on %s\n", EncodeDumpTime(GetTime()));
-    file << strprintf("# * Best block at time of backup was %i (%s),\n", chainActive.Height(), chainActive.Tip()->GetBlockHash().ToString());
-    file << strprintf("#   mined on %s\n", EncodeDumpTime(chainActive.Tip()->GetBlockTime()));
-    file << "\n";
-
-    // add the base58check encoded extended master if the wallet uses HD
-    CHDChain hdChainCurrent;
-    if (pwalletMain->GetHDChain(hdChainCurrent))
-    {
-        if (!pwalletMain->GetDecryptedHDChain(hdChainCurrent))
-            throw JSONRPCError(RPC_INTERNAL_ERROR, "Cannot decrypt HD chain");
-
-        SecureString ssMnemonic;
-        SecureString ssMnemonicPassphrase;
-        hdChainCurrent.GetMnemonic(ssMnemonic, ssMnemonicPassphrase);
-        file << "# mnemonic: " << ssMnemonic << "\n";
-        file << "# mnemonic passphrase: " << ssMnemonicPassphrase << "\n\n";
-        SecureVector vchSeed = hdChainCurrent.GetSeed();
-        file << "# HD seed: " << HexStr(vchSeed) << "\n\n";
-        CExtKey masterKey;
-        masterKey.SetMaster(&vchSeed[0], vchSeed.size());
-        CBitcoinExtKey b58extkey;
-        b58extkey.SetKey(masterKey);
-        file << "# extended private masterkey: " << b58extkey.ToString() << "\n";
-        CExtPubKey masterPubkey;
-        masterPubkey = masterKey.Neuter();
-        CBitcoinExtPubKey b58extpubkey;
-        b58extpubkey.SetKey(masterPubkey);
-        file << "# extended public masterkey: " << b58extpubkey.ToString() << "\n\n";
-        for (size_t i = 0; i < hdChainCurrent.CountAccounts(); ++i)
-        {
-            CHDAccount acc;
-            if(hdChainCurrent.GetAccount(i, acc)) {
-                file << "# external chain counter: " << acc.nExternalChainCounter << "\n";
-                file << "# internal chain counter: " << acc.nInternalChainCounter << "\n\n";
-            } else {
-                file << "# WARNING: ACCOUNT " << i << " IS MISSING!" << "\n\n";
-            }
-        }
-    }
-
-    for (std::vector<std::pair<int64_t, CKeyID> >::const_iterator it = vKeyBirth.begin(); it != vKeyBirth.end(); it++) {
-        const CKeyID& keyid = it->second;
-        std::string strTime = EncodeDumpTime(it->first);
-        std::string strAddr = CBitcoinAddress(keyid).ToString();
-        CKey key;
-        if (pwalletMain->GetKey(keyid, key)) {
-            if (pwalletMain->mapAddressBook.count(keyid)) {
-                file << strprintf("%s %s label=%s # addr=%s\n", CBitcoinSecret(key).ToString(), strTime, EncodeDumpString(pwalletMain->mapAddressBook[keyid].name), strAddr);
-            } else if (setKeyPool.count(keyid)) {
-                file << strprintf("%s %s reserve=1 # addr=%s\n", CBitcoinSecret(key).ToString(), strTime, strAddr);
-            } else {
-                file << strprintf("%s %s change=1 # addr=%s\n", CBitcoinSecret(key).ToString(), strTime, strAddr);
-            }
-        }
-    }
-    file << "\n";
-    file << "# End of dump\n";
-    file.close();
-
-    UniValue reply(UniValue::VOBJ);
-    reply.push_back(Pair("filename", filepath.string()));
-
-    return reply;
-}
-
-/*UniValue dumpwallethd(const UniValue& params, bool fHelp)
-{
-    if (fHelp || params.size() != 1)
-        throw std::runtime_error(
-            "dumpwallethd \"filename\"\n"
-            "\nDumps all wallet keys in a human-readable format.\n" +
-            HelpRequiringPassphrase() + "\n"
-
-            "\nArguments:\n"
-            "1. \"filename\"    (string, required) The filename\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("dumpwallethd", "\"test\"") + HelpExampleRpc("dumpwallethd", "\"test\""));
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
     EnsureWalletIsUnlocked();
@@ -543,7 +437,7 @@ UniValue dumpwallet(const UniValue& params, bool fHelp)
     mapKeyBirth.clear();
     std::sort(vKeyBirth.begin(), vKeyBirth.end());
     // produce output
-    file << strprintf("# Wallet dump created by PIVX %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
+    file << strprintf("# Wallet dump created by DogeCash %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
     file << strprintf("# * Created on %s\n", EncodeDumpTime(GetTime()));
     file << strprintf("# * Best block at time of backup was %i (%s),\n", chainActive.Height(), chainActive.Tip()->GetBlockHash().ToString());
     file << strprintf("#   mined on %s\n", EncodeDumpTime(chainActive.Tip()->GetBlockTime()));
@@ -605,7 +499,8 @@ UniValue dumpwallet(const UniValue& params, bool fHelp)
     UniValue reply(UniValue::VOBJ);
     reply.push_back(Pair("filename", filepath.string()));
     return reply;
-}*/
+}
+
 UniValue bip38encrypt(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)

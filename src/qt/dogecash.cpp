@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +8,7 @@
 #include "config/dogecash-config.h"
 #endif
 
-#include "bitcoingui.h"
+#include "qt/dogecash/dogecashgui.h"
 
 #include "clientmodel.h"
 #include "guiconstants.h"
@@ -17,7 +17,8 @@
 #include "net.h"
 #include "networkstyle.h"
 #include "optionsmodel.h"
-#include "splashscreen.h"
+#include "qt/dogecash/splash.h"
+#include "qt/dogecash/welcomecontentwidget.h"
 #include "utilitydialog.h"
 #include "winshutdownmonitor.h"
 
@@ -65,6 +66,8 @@ Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin);
 #elif defined(QT_QPA_PLATFORM_COCOA)
 Q_IMPORT_PLUGIN(QCocoaIntegrationPlugin);
 #endif
+Q_IMPORT_PLUGIN(QSvgPlugin);
+Q_IMPORT_PLUGIN(QSvgIconPlugin);
 #endif
 
 // Declare meta types used for QMetaObject::invokeMethod
@@ -169,10 +172,10 @@ private:
     bool execute_restart;
 
     /// Pass fatal exception message to UI thread
-    void handleRunawayException(const std::exception* e);
+    void handleRunawayException(std::exception* e);
 };
 
-/** Main dogecash application object */
+/** Main DogeCash application object */
 class BitcoinApplication : public QApplication
 {
     Q_OBJECT
@@ -191,6 +194,9 @@ public:
     /// Create splash screen
     void createSplashScreen(const NetworkStyle* networkStyle);
 
+    /// Create tutorial screen
+    bool createTutorialScreen();
+
     /// Request core initialization
     void requestInitialize();
     /// Request core shutdown
@@ -199,7 +205,7 @@ public:
     /// Get process return value
     int getReturnValue() { return returnValue; }
 
-    /// Get window identifier of QMainWindow (BitcoinGUI)
+    /// Get window identifier of QMainWindow (DogeCashGUI)
     WId getMainWinId() const;
 
 public slots:
@@ -207,6 +213,7 @@ public slots:
     void shutdownResult(int retval);
     /// Handle runaway exceptions. Shows a message box with the problem and quits the program.
     void handleRunawayException(const QString& message);
+    void updateTranslation();
 
 signals:
     void requestedInitialize();
@@ -219,13 +226,14 @@ private:
     QThread* coreThread;
     OptionsModel* optionsModel;
     ClientModel* clientModel;
-    BitcoinGUI* window;
+    DogeCashGUI* window;
     QTimer* pollShutdownTimer;
 #ifdef ENABLE_WALLET
     PaymentServer* paymentServer;
     WalletModel* walletModel;
 #endif
     int returnValue;
+    QTranslator qtTranslatorBase, qtTranslator, translatorBase, translator;
 
     void startThread();
 };
@@ -236,7 +244,7 @@ BitcoinCore::BitcoinCore() : QObject()
 {
 }
 
-void BitcoinCore::handleRunawayException(const std::exception* e)
+void BitcoinCore::handleRunawayException(std::exception* e)
 {
     PrintExceptionContinue(e, "Runaway exception");
     emit runawayException(QString::fromStdString(strMiscWarning));
@@ -250,7 +258,7 @@ void BitcoinCore::initialize()
         qDebug() << __func__ << ": Running AppInit2 in thread";
         int rv = AppInit2();
         emit initializeResult(rv);
-    } catch (const std::exception& e) {
+    } catch (std::exception& e) {
         handleRunawayException(&e);
     } catch (...) {
         handleRunawayException(NULL);
@@ -271,7 +279,7 @@ void BitcoinCore::restart(QStringList args)
             QProcess::startDetached(QApplication::applicationFilePath(), args);
             qDebug() << __func__ << ": Restart initiated...";
             QApplication::quit();
-        } catch (const std::exception& e) {
+        } catch (std::exception& e) {
             handleRunawayException(&e);
         } catch (...) {
             handleRunawayException(NULL);
@@ -287,7 +295,7 @@ void BitcoinCore::shutdown()
         Shutdown();
         qDebug() << __func__ << ": Shutdown finished";
         emit shutdownResult(1);
-    } catch (const std::exception& e) {
+    } catch (std::exception& e) {
         handleRunawayException(&e);
     } catch (...) {
         handleRunawayException(NULL);
@@ -348,7 +356,7 @@ void BitcoinApplication::createOptionsModel()
 
 void BitcoinApplication::createWindow(const NetworkStyle* networkStyle)
 {
-    window = new BitcoinGUI(networkStyle, 0);
+    window = new DogeCashGUI(networkStyle, 0);
 
     pollShutdownTimer = new QTimer(window);
     connect(pollShutdownTimer, SIGNAL(timeout()), window, SLOT(detectShutdown()));
@@ -357,12 +365,33 @@ void BitcoinApplication::createWindow(const NetworkStyle* networkStyle)
 
 void BitcoinApplication::createSplashScreen(const NetworkStyle* networkStyle)
 {
-    SplashScreen* splash = new SplashScreen(0, networkStyle);
+    Splash* splash = new Splash(0);
     // We don't hold a direct pointer to the splash screen after creation, so use
     // Qt::WA_DeleteOnClose to make sure that the window will be deleted eventually.
     splash->setAttribute(Qt::WA_DeleteOnClose);
     splash->show();
     connect(this, SIGNAL(splashFinished(QWidget*)), splash, SLOT(slotFinish(QWidget*)));
+}
+
+bool BitcoinApplication::createTutorialScreen()
+{
+    WelcomeContentWidget* widget = new WelcomeContentWidget();
+    //widget->setOptionsModel(optionsModel);
+
+    connect(widget, &WelcomeContentWidget::onLanguageSelected, [this](){
+        std::cout << "updating translations.." << std::endl;
+        updateTranslation();
+    });
+
+    widget->exec();
+    bool ret = widget->isOk;
+    widget->deleteLater();
+    return ret;
+}
+
+void BitcoinApplication::updateTranslation(){
+    // Re-initialize translations after change them
+    initTranslations(this->qtTranslatorBase, this->qtTranslator, this->translatorBase, this->translator);
 }
 
 void BitcoinApplication::startThread()
@@ -435,8 +464,8 @@ void BitcoinApplication::initializeResult(int retval)
         if (pwalletMain) {
             walletModel = new WalletModel(pwalletMain, optionsModel);
 
-            window->addWallet(BitcoinGUI::DEFAULT_WALLET, walletModel);
-            window->setCurrentWallet(BitcoinGUI::DEFAULT_WALLET);
+            window->addWallet(DogeCashGUI::DEFAULT_WALLET, walletModel);
+            window->setCurrentWallet(DogeCashGUI::DEFAULT_WALLET);
 
             connect(walletModel, SIGNAL(coinsSent(CWallet*, SendCoinsRecipient, QByteArray)),
                 paymentServer, SLOT(fetchPaymentACK(CWallet*, const SendCoinsRecipient&, QByteArray)));
@@ -453,7 +482,7 @@ void BitcoinApplication::initializeResult(int retval)
 
 #ifdef ENABLE_WALLET
         // Now that initialization/startup is done, process any command-line
-        // dogecash: URIs or payment requests:
+        // DogeCash: URIs or payment requests:
         connect(paymentServer, SIGNAL(receivedPaymentRequest(SendCoinsRecipient)),
             window, SLOT(handlePaymentRequest(SendCoinsRecipient)));
         connect(window, SIGNAL(receivedURI(QString)),
@@ -475,7 +504,7 @@ void BitcoinApplication::shutdownResult(int retval)
 
 void BitcoinApplication::handleRunawayException(const QString& message)
 {
-    QMessageBox::critical(0, "Runaway exception", BitcoinGUI::tr("A fatal error occurred. DogeCash can no longer continue safely and will quit.") + QString("\n\n") + message);
+    QMessageBox::critical(0, "Runaway exception", DogeCashGUI::tr("A fatal error occurred. DogeCash can no longer continue safely and will quit.") + QString("\n\n") + message);
     ::exit(1);
 }
 
@@ -530,8 +559,8 @@ int main(int argc, char* argv[])
 
     /// 4. Initialization of translations, so that intro dialog is in user's language
     // Now that QSettings are accessible, initialize translations
-    QTranslator qtTranslatorBase, qtTranslator, translatorBase, translator;
-    initTranslations(qtTranslatorBase, qtTranslator, translatorBase, translator);
+    //initTranslations(qtTranslatorBase, qtTranslator, translatorBase, translator);
+    app.updateTranslation();
     uiInterface.Translate.connect(Translate);
 
     // Show help message immediately after parsing command-line options (for "-lang") and setting locale,
@@ -556,7 +585,7 @@ int main(int argc, char* argv[])
     }
     try {
         ReadConfigFile(mapArgs, mapMultiArgs);
-    } catch (const std::exception& e) {
+    } catch (std::exception& e) {
         QMessageBox::critical(0, QObject::tr("DogeCash Core"),
             QObject::tr("Error: Cannot parse configuration file: %1. Only use key=value syntax.").arg(e.what()));
         return 0;
@@ -583,11 +612,11 @@ int main(int argc, char* argv[])
     // Allow for separate UI settings for testnets
     QApplication::setApplicationName(networkStyle->getAppName());
     // Re-initialize translations after changing application name (language in network-specific settings can be different)
-    initTranslations(qtTranslatorBase, qtTranslator, translatorBase, translator);
+    app.updateTranslation();
 
 #ifdef ENABLE_WALLET
     /// 7a. parse masternode.conf
-    string strErr;
+    std::string strErr;
     if (!masternodeConfig.read(strErr)) {
         QMessageBox::critical(0, QObject::tr("DogeCash Core"),
             QObject::tr("Error reading masternode configuration file: %1").arg(strErr.c_str()));
@@ -623,6 +652,27 @@ int main(int argc, char* argv[])
     // Subscribe to global signals from core
     uiInterface.InitMessage.connect(InitMessage);
 
+    bool ret = true;
+#ifdef ENABLE_WALLET
+    // Check if the wallet exists or need to be created
+    std::string strWalletFile = GetArg("-wallet", "wallet.dat");
+    std::string strDataDir = GetDataDir().string();
+    // Wallet file must be a plain filename without a directory
+    if (strWalletFile != boost::filesystem::basename(strWalletFile) + boost::filesystem::extension(strWalletFile)){
+        throw std::runtime_error(strprintf(_("Wallet %s resides outside data directory %s"), strWalletFile, strDataDir));
+    }
+
+    boost::filesystem::path pathBootstrap = GetDataDir() / strWalletFile;
+    if (!boost::filesystem::exists(pathBootstrap)) {
+        // wallet doesn't exist, popup tutorial screen.
+        ret = app.createTutorialScreen();
+    }
+#endif
+    if(!ret){
+        // wallet not loaded.
+        return 0;
+    }
+
     if (GetBoolArg("-splash", true) && !GetBoolArg("-min", false))
         app.createSplashScreen(networkStyle.data());
 
@@ -635,7 +685,7 @@ int main(int argc, char* argv[])
         app.exec();
         app.requestShutdown();
         app.exec();
-    } catch (const std::exception& e) {
+    } catch (std::exception& e) {
         PrintExceptionContinue(&e, "Runaway exception");
         app.handleRunawayException(QString::fromStdString(strMiscWarning));
     } catch (...) {

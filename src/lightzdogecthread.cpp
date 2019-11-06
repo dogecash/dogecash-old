@@ -1,5 +1,5 @@
-//
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2016-2019 The PIVX developers
+// Copyright (c) 2015-2019 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 //
@@ -60,7 +60,7 @@ void CLightWorker::ThreadLightzdogecSimplified() {
                                 heightStop
                         );
 
-                    } catch (const NotEnoughMintsException& e) {
+                    } catch (NotEnoughMintsException e) {
                         LogPrintStr(std::string("ThreadLightzdogecSimplified: ") + e.message + "\n");
                         rejectWork(genWit, blockHeight, NOT_ENOUGH_MINTS);
                         continue;
@@ -93,7 +93,7 @@ void CLightWorker::ThreadLightzdogecSimplified() {
                     rejectWork(genWit, blockHeight, NON_DETERMINED);
                 }
             }
-        } catch (const std::exception& e) {
+        } catch (std::exception& e) {
             //std::cout << "exception in light loop, closing it. " << e.what() << std::endl;
             PrintExceptionContinue(&e, "lightzdogecthread");
             break;

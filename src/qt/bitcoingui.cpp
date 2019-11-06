@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -88,6 +88,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMai
                                                                             aboutAction(0),
                                                                             receiveCoinsAction(0),
                                                                             governanceAction(0),
+                                                                            privacyAction(0),
                                                                             optionsAction(0),
                                                                             toggleHideAction(0),
                                                                             encryptWalletAction(0),
@@ -307,7 +308,7 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     tabGroup->addAction(overviewAction);
 
     sendCoinsAction = new QAction(QIcon(":/icons/send"), tr("&Send"), this);
-    sendCoinsAction->setStatusTip(tr("Send coins to a dogecash address"));
+    sendCoinsAction->setStatusTip(tr("Send coins to a DogeCash address"));
     sendCoinsAction->setToolTip(sendCoinsAction->statusTip());
     sendCoinsAction->setCheckable(true);
 #ifdef Q_OS_MAC
@@ -318,7 +319,7 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     tabGroup->addAction(sendCoinsAction);
 
     receiveCoinsAction = new QAction(QIcon(":/icons/receiving_addresses"), tr("&Receive"), this);
-    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and DogeCash: URIs)"));
+    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and dogecash: URIs)"));
     receiveCoinsAction->setToolTip(receiveCoinsAction->statusTip());
     receiveCoinsAction->setCheckable(true);
 #ifdef Q_OS_MAC
@@ -339,16 +340,16 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
 #endif
     tabGroup->addAction(historyAction);
 
-//     privacyAction = new QAction(QIcon(":/icons/privacy"), tr("&Privacy"), this);
-//     privacyAction->setStatusTip(tr("Privacy Actions for zDOGEC"));
-//     privacyAction->setToolTip(privacyAction->statusTip());
-//     privacyAction->setCheckable(true);
-// #ifdef Q_OS_MAC
-//     privacyAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_5));
-// #else
-//     privacyAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
-// #endif
-//     tabGroup->addAction(privacyAction);
+    privacyAction = new QAction(QIcon(":/icons/privacy"), tr("&Privacy"), this);
+    privacyAction->setStatusTip(tr("Privacy Actions for zDOGEC"));
+    privacyAction->setToolTip(privacyAction->statusTip());
+    privacyAction->setCheckable(true);
+#ifdef Q_OS_MAC
+    privacyAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_5));
+#else
+    privacyAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
+#endif
+    tabGroup->addAction(privacyAction);
 
 #ifdef ENABLE_WALLET
 
@@ -387,8 +388,8 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     connect(sendCoinsAction, SIGNAL(triggered()), this, SLOT(gotoSendCoinsPage()));
     connect(receiveCoinsAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(receiveCoinsAction, SIGNAL(triggered()), this, SLOT(gotoReceiveCoinsPage()));
-    // connect(privacyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-    // connect(privacyAction, SIGNAL(triggered()), this, SLOT(gotoPrivacyPage()));
+    connect(privacyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(privacyAction, SIGNAL(triggered()), this, SLOT(gotoPrivacyPage()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
     connect(governanceAction, SIGNAL(triggered()), this, SLOT(gotoGovernancePage()));
@@ -421,9 +422,9 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     unlockWalletAction->setToolTip(tr("Unlock wallet"));
     lockWalletAction = new QAction(tr("&Lock Wallet"), this);
     signMessageAction = new QAction(QIcon(":/icons/edit"), tr("Sign &message..."), this);
-    signMessageAction->setStatusTip(tr("Sign messages with your dogecash addresses to prove you own them"));
+    signMessageAction->setStatusTip(tr("Sign messages with your DogeCash addresses to prove you own them"));
     verifyMessageAction = new QAction(QIcon(":/icons/transaction_0"), tr("&Verify message..."), this);
-    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified dogecash addresses"));
+    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified DogeCash addresses"));
     bip38ToolAction = new QAction(QIcon(":/icons/key"), tr("&BIP38 tool"), this);
     bip38ToolAction->setToolTip(tr("Encrypt and decrypt private keys using a passphrase"));
     multiSendAction = new QAction(QIcon(":/icons/edit"), tr("&MultiSend"), this);
@@ -460,13 +461,13 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     multisigSignAction->setStatusTip(tr("Sign with a multisignature address"));
 
     openAction = new QAction(QApplication::style()->standardIcon(QStyle::SP_FileIcon), tr("Open &URI..."), this);
-    openAction->setStatusTip(tr("Open a dogecash: URI or payment request"));
+    openAction->setStatusTip(tr("Open a DogeCash: URI or payment request"));
     openBlockExplorerAction = new QAction(QIcon(":/icons/explorer"), tr("&Blockchain explorer"), this);
     openBlockExplorerAction->setStatusTip(tr("Block explorer window"));
 
     showHelpMessageAction = new QAction(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation), tr("&Command-line options"), this);
     showHelpMessageAction->setMenuRole(QAction::NoRole);
-    showHelpMessageAction->setStatusTip(tr("Show the DogeCash Core help message to get a list with possible dogecash command-line options"));
+    showHelpMessageAction->setStatusTip(tr("Show the DogeCash Core help message to get a list with possible DogeCash command-line options"));
 
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
@@ -570,9 +571,9 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(overviewAction);
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
-        // toolbar->addAction(privacyAction);
+        toolbar->addAction(privacyAction);
         toolbar->addAction(historyAction);
-        // toolbar->addAction(privacyAction);
+        toolbar->addAction(privacyAction);
         QSettings settings;
         if (settings.value("fShowMasternodesTab").toBool()) {
             toolbar->addAction(masternodeAction);
@@ -676,7 +677,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     overviewAction->setEnabled(enabled);
     sendCoinsAction->setEnabled(enabled);
     receiveCoinsAction->setEnabled(enabled);
-    // privacyAction->setEnabled(enabled);
+    privacyAction->setEnabled(enabled);
     historyAction->setEnabled(enabled);
     QSettings settings;
     if (settings.value("fShowMasternodesTab").toBool()) {
@@ -733,7 +734,7 @@ void BitcoinGUI::createTrayIconMenu()
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(sendCoinsAction);
     trayIconMenu->addAction(receiveCoinsAction);
-    // trayIconMenu->addAction(privacyAction);
+    trayIconMenu->addAction(privacyAction);
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(signMessageAction);
     trayIconMenu->addAction(verifyMessageAction);
@@ -836,11 +837,11 @@ void BitcoinGUI::gotoReceiveCoinsPage()
     if (walletFrame) walletFrame->gotoReceiveCoinsPage();
 }
 
-// void BitcoinGUI::gotoPrivacyPage()
-// {
-//     privacyAction->setChecked(true);
-//     if (walletFrame) walletFrame->gotoPrivacyPage();
-// }
+void BitcoinGUI::gotoPrivacyPage()
+{
+    privacyAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoPrivacyPage();
+}
 
 void BitcoinGUI::gotoSendCoinsPage(QString addr)
 {
@@ -1074,7 +1075,7 @@ void BitcoinGUI::message(const QString& title, const QString& message, unsigned 
             break;
         }
     }
-    // Append title to "dogecash - "
+    // Append title to "DogeCash - "
     if (!msgType.isEmpty())
         strTitle += " - " + msgType;
 

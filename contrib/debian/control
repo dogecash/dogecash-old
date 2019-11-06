@@ -29,14 +29,14 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage: http://www.dogec.io
-Vcs-Git: git://github.com/dogecash-Project/dogecash.git
-Vcs-Browser: http://github.com/dogecash-Project/dogecash
+Vcs-Git: git://github.com/DogeCash-Project/DogeCash.git
+Vcs-Browser: http://github.com/DogeCash-Project/DogeCash
 
 Package: dogecashd
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
- dogecash is a free open source peer-to-peer electronic cash system that
+ DogeCash is a free open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
@@ -52,7 +52,7 @@ Package: dogecash-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI
- dogecash is a free open source peer-to-peer electronic cash system that
+ DogeCash is a free open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
@@ -61,4 +61,4 @@ Description: peer-to-peer network based digital currency - Qt GUI
  Full transaction history is stored locally at each client.  This
  requires 10+ GB of space, slowly growing.
  .
- This package provides dogecash-Qt, a GUI for dogecash based on Qt.
+ This package provides DogeCash-Qt, a GUI for DogeCash based on Qt.
