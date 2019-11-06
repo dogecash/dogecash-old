@@ -2988,7 +2988,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     border-bottom: 1px solid #bababa;
     border-radius:0px;
     color: #707070;
-    background-color:#ba5c26ba;
+    background-color:#9c7019;
 }
 
 #treeWidget::item:selected {
@@ -2996,7 +2996,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     border-bottom: 1px solid #bababa;
     border-radius:0px;
     color: #707070;
-    background-color:#ff6d3388;
+    background-color:#9c7019;
 
 }
 
@@ -3006,7 +3006,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     border-bottom: 1px solid #bababa;
     border-radius:0px;
     color: #707070;
-    background-color:#ff6d3388;
+    background-color:#9c7019;
 
 }
 
@@ -3018,17 +3018,17 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 #treeWidget::branch:selected {
-    background-color:#ff6d3388;
+    background-color:#9c7019;
 
 }
 
 #treeWidget::branch:!selected {
-    background-color:#ff6d3388;
+    background-color:#9c7019;
 
 }
 
 #treeWidget::branch:hover {
-    background-color:#ba5c26ba;
+    background-color:#9c7019;
 }
 
 #treeWidget::branch:!has-children {
