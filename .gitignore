@@ -64,7 +64,7 @@ src/qt/test/moc*.cpp
 *.pyc
 *.o
 *.o-*
-# *.patch
+*.patch
 .dogecash
 *.a
 *.pb.cc
@@ -95,6 +95,8 @@ src/test/buildenv.py
 
 # Resources cpp
 qrc_*.cpp
+moc_*.cpp
+ui_*.h
 
 # Qt creator
 *.pro.user
