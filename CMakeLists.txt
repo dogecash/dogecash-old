@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
-project(DOGEC)
+project(PIVX)
 
 set(BDB_VER "4.8.30")
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/contrib/cmake")
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 ")
+set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -std=c++11 ")
 include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
@@ -38,7 +38,11 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     endif()
     list(APPEND CMAKE_PREFIX_PATH /usr/lib/x86_64-linux-gnu/cmake/Qt5)
     set(Qt5core_DIR "/usr/lib/x86_64-linux-gnu/cmake/Qt5/QtCore")
-    add_definitions("-D__BYTE_ORDER -D__LITTLE_ENDIAN -D__GLIBC__ -DHAVE_DECL_BSWAP_16=0 -DHAVE_DECL_BSWAP_32=0 -DHAVE_DECL_BSWAP_64=0")
+    find_path(ENDIAN_INCLUDES endian.h)
+    if(ENDIAN_INCLUDES)
+        message(STATUS "Found endian.h: ${ENDIAN_INCLUDES}")
+    endif()
+    #add_definitions("-D__BYTE_ORDER -D__LITTLE_ENDIAN -D__GLIBC__ -DHAVE_DECL_BSWAP_16=0 -DHAVE_DECL_BSWAP_32=0 -DHAVE_DECL_BSWAP_64=0")
 endif()
 
 # Find Dependencies
@@ -51,7 +55,7 @@ if(BerkeleyDB_FOUND)
 endif()
 
 find_package(OpenSSL REQUIRED)
-if (OPENSSL_FOUND)
+if(OPENSSL_FOUND)
     message(STATUS "Found OpenSSL (${OPENSSL_VERSION}): ${OPENSSL_LIBRARIES}")
     if(OPENSSL_VERSION VERSION_GREATER_EQUAL 1.1)
         message(STATUS "Found unsupported OpenSSL version!")
@@ -73,7 +77,7 @@ find_package(Miniupnp)
 find_package(Boost COMPONENTS system filesystem thread program_options REQUIRED)
 
 # run autogen.sh if missing header files from configure on Linux/Mac
-if (EXISTS	"${CMAKE_CURRENT_SOURCE_DIR}/configure")
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/configure")
 else()
     execute_process(
             COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/autogen.sh
@@ -82,10 +86,10 @@ else()
 endif()
 
 # run configure if dogecash_config.h doesn't exist
-if (EXISTS	"${CMAKE_CURRENT_SOURCE_DIR}/src/config/dogecash-config.h")
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/config/dogecash-config.h")
 else()
     execute_process(
-            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/configure ${CONFIGSITE} $BDB_CONFIGURE_FLAGS} ${BIGNUM_CONFIGURE_FLAGS} ${SSL_CONFIGURE_FLAGS}
+            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/configure ${CONFIGSITE} ${BDB_CONFIGURE_FLAGS} ${BIGNUM_CONFIGURE_FLAGS} ${SSL_CONFIGURE_FLAGS}
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     )
 endif()
@@ -98,7 +102,7 @@ ExternalProject_Add (
         BUILD_COMMAND $(MAKE)
         BUILD_IN_SOURCE 1
         INSTALL_COMMAND ""
-        )
+)
 
 ExternalProject_Add (
         libsecp256k1
@@ -109,9 +113,7 @@ ExternalProject_Add (
         INSTALL_COMMAND ""
 )
 
-
 set(libleveldb_a_headers
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/config/dogecash-config.h
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/port/atomic_pointer.h
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/port/port_example.h
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/port/port_posix.h
@@ -221,16 +223,15 @@ else()
     else()
         set(libleveldb_cpp_flags -DOS_LINUX -DLEVELDB_PLATFORM_POSIX)
     endif()
-    list(APPEND libleveldb_a_sources ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/port/port_posix.cc)
+    set(libleveldb_a_sources ${libleveldb_a_sources} ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/port/port_posix.cc)
 endif()
 
 add_library(leveldb STATIC ${libleveldb_a_headers} ${libleveldb_a_sources})
 target_compile_definitions(leveldb PUBLIC ${libleveldb_cpp_flags} -DLEVELDB_ATOMIC_PRESENT -D__STDC_LIMIT_MACROS)
-target_include_directories(leveldb PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb
+target_include_directories(leveldb PUBLIC ${ENDIAN_INCLUDES}
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/helpers/memenv
-        ${CMAKE_CURRENT_SOURCE_DIR}/src
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/compat
         )
 
 set(libmemenv_a_sources
@@ -246,7 +247,6 @@ target_include_directories(memenv PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb
 
 set(libleveldb_sse42_a_sources ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/port/port_posix_sse.cc)
 add_library(leveldb_sse42 ${libleveldb_sse42_a_sources})
-
 target_include_directories(leveldb_sse42 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/helpers/memenv
@@ -311,18 +311,18 @@ if(MINIUPNP_FOUND)
     target_compile_definitions(SERVER_A PUBLIC "-DSTATICLIB -DMINIUPNP_STATICLIB")
 endif()
 target_include_directories(SERVER_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/univalue/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/helpers/memenv
-    ${ZMQ_INCLUDE_DIR} ${LIBEVENT_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR} ${BerkeleyDB_INCLUDE_DIRS}
-    )
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/univalue/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/helpers/memenv
+        ${ZMQ_INCLUDE_DIR} ${LIBEVENT_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR} ${BerkeleyDB_INCLUDE_DIRS}
+        )
 
-if (ZMQ_FOUND)
+if(ZMQ_FOUND)
     set(ZMQ_SOURCES
-        ./src/zmq/zmqabstractnotifier.cpp
-        ./src/zmq/zmqnotificationinterface.cpp
-        ./src/zmq/zmqpublishnotifier.cpp
-    )
+            ./src/zmq/zmqabstractnotifier.cpp
+            ./src/zmq/zmqnotificationinterface.cpp
+            ./src/zmq/zmqpublishnotifier.cpp
+            )
     add_library(ZMQ_A STATIC ${BitcoinHeaders} ${ZMQ_SOURCES} ${ZMQ_LIB})
     target_include_directories(ZMQ_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src ${ZMQ_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR})
     target_compile_definitions(ZMQ_A PUBLIC "-DZMQ_STATIC")
@@ -344,8 +344,8 @@ set(WALLET_SOURCES
         ./src/masternode-sync.cpp
         ./src/masternodeconfig.cpp
         ./src/masternodeman.cpp
-        ./src/zdogec/mintpool.cpp
         ./src/messagesigner.cpp
+        ./src/zdogec/mintpool.cpp
         ./src/wallet/rpcdump.cpp
         ./src/zdogec/deterministicmint.cpp
         ./src/zdogec/zerocoin.cpp
@@ -356,7 +356,6 @@ set(WALLET_SOURCES
         ./src/wallet/walletdb.cpp
         ./src/zdogec/zdogecwallet.cpp
         ./src/zdogec/zdogectracker.cpp
-        ./src/zdogec/zdogecmodule.cpp
         ./src/stakeinput.cpp
         ./src/genwit.cpp
         ./src/lightzdogecthread.cpp
@@ -374,6 +373,7 @@ set(BITCOIN_CRYPTO_SOURCES
         ./src/crypto/sha1.cpp
         ./src/crypto/sha256.cpp
         ./src/crypto/sha512.cpp
+        ./src/crypto/chacha20.cpp
         ./src/crypto/hmac_sha256.cpp
         ./src/crypto/rfc6979_hmac_sha256.cpp
         ./src/crypto/hmac_sha512.cpp
@@ -389,6 +389,7 @@ set(BITCOIN_CRYPTO_SOURCES
         ./src/crypto/common.h
         ./src/crypto/sha256.h
         ./src/crypto/sha512.h
+        ./src/crypto/chacha20.h
         ./src/crypto/hmac_sha256.h
         ./src/crypto/rfc6979_hmac_sha256.h
         ./src/crypto/hmac_sha512.h
@@ -508,8 +509,9 @@ target_include_directories(UTIL_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/src/univalue/include
         ${OPENSSL_INCLUDE_DIR}
         )
-set(CLI_SOURCES ./src/rpc/client.cpp)
-add_library(CLI_A STATIC ${BitcoinHeaders} ${CLI_SOURCES})
+
+set(CLI_A_SOURCES ./src/rpc/client.cpp)
+add_library(CLI_A STATIC ${BitcoinHeaders} ${CLI_A_SOURCES})
 target_include_directories(CLI_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/src/univalue/include
         )
@@ -517,7 +519,7 @@ target_include_directories(CLI_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
 link_directories(
         ${CMAKE_SOURCE_DIR}/src/univalue/.libs
         ${CMAKE_SOURCE_DIR}/src/secp256k1/.libs
-        )
+)
 
 set(dogecash-cli_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/dogecash-cli.cpp)
 if($ENV{target} MATCHES "Windows")
@@ -536,10 +538,9 @@ if($ENV{target} MATCHES "Windows")
     target_link_libraries(dogecash-cli ${WINDOWS_LDADD})
 endif()
 
-
 set(dogecash-tx_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/dogecash-tx.cpp)
 if($ENV{target} MATCHES "Windows")
-    target_link_libraries(dogecash-tx ${WINDOWS_LDADD})
+    list(APPEND dogecash-tx_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/dogecash-tx-res.rc)
 endif()
 add_executable(dogecash-tx ${dogecash-tx_SOURCES})
 add_dependencies(dogecash-tx libunivalue libsecp256k1)
@@ -552,6 +553,9 @@ target_link_libraries(dogecash-tx
         secp256k1
         ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES} ${LIBEVENT_LIB}
         )
+if($ENV{target} MATCHES "Windows")
+    target_link_libraries(dogecash-tx ${WINDOWS_LDADD})
+endif()
 if(GMP_FOUND)
     target_link_libraries(dogecash-tx ${GMP_LIBRARY})
 endif()
@@ -572,11 +576,11 @@ target_include_directories(dogecashd PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
 target_link_libraries(dogecashd
         pthread
         SERVER_A
+        WALLET_A
         COMMON_A
         univalue
         ZEROCOIN_A
         UTIL_A
-        WALLET_A
         BITCOIN_CRYPTO_A
         ${CMAKE_BINARY_DIR}/libleveldb.a
         ${CMAKE_BINARY_DIR}/libleveldb_sse42.a
@@ -588,7 +592,6 @@ if($ENV{target} MATCHES "Windows")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wstack-protector -fstack-protector-all -fPIE -pipe -O2 -pthread -Wl,--dynamicbase -Wl,--nxcompat -Wl,--high-entropy-va -pie --static")
     target_link_libraries(dogecashd ${WINDOWS_LDADD})
 endif()
-
 if(GMP_FOUND)
     target_link_libraries(dogecashd ${GMP_LIBRARY})
     target_include_directories(dogecashd PUBLIC ${GMP_INCLUDE_DIR})
