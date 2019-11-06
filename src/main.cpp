@@ -4064,7 +4064,6 @@ CBlockIndex* AddToBlockIndex(const CBlock& block)
         pindexNew->pprev = (*miPrev).second;
         pindexNew->nHeight = pindexNew->pprev->nHeight + 1;
         pindexNew->BuildSkip();
-        unsigned int nEntropyBit;
         //update previous block pointer
         pindexNew->pprev->pnext = pindexNew;
 

@@ -438,9 +438,9 @@ void DashboardWidget::changeChartColors(){
         backgroundColor = linePenColorY;
         axisY->setGridLineColor(QColor("#1a000000"));
     }else{
-        gridY = QColor("#40ffffff");
+        gridY = QColor("#707070");
         axisY->setGridLineColor(gridY);
-        gridLineColorX = QColor(15,11,22);
+        gridLineColorX = QColor(22, 17, 11);
         linePenColorY =  gridLineColorX;
         backgroundColor = linePenColorY;
     }
@@ -625,8 +625,8 @@ void DashboardWidget::onChartRefreshed() {
     // init sets
     set0 = new QBarSet("DOGEC");
     set1 = new QBarSet("zDOGEC");
-    set0->setColor(QColor(92,75,125));
-    set1->setColor(QColor(176,136,255));
+    set0->setColor(QColor(171, 116, 77));
+    set1->setColor(QColor(252, 199, 134));
 
     if(!series) {
         series = new QBarSeries();
