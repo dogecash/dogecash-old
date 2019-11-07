@@ -73,7 +73,6 @@ SET(QT_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/bitcoinunits.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/clientmodel.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/csvmodelwriter.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/governancepage.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/guiutil.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/intro.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/networkstyle.cpp
@@ -109,6 +108,7 @@ SET(QT_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/zdogeccontroldialog.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/dogecashgui.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/loadingdialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/governancepage.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/pwidget.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/snackbar.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/navmenuwidget.cpp

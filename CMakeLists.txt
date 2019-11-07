@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(PIVX)
+project(DogeCash)
 
 set(BDB_VER "4.8.30")
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/contrib/cmake")
