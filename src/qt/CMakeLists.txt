@@ -73,6 +73,7 @@ SET(QT_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/bitcoinunits.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/clientmodel.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/csvmodelwriter.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/governancepage.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/guiutil.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/intro.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/networkstyle.cpp
@@ -204,6 +205,7 @@ QT5_ADD_RESOURCES(QRC_LOCALE_RESOURCE dogecash_locale.qrc)
 
 add_executable(dogecash-qt dogecash.cpp ${QM} ${QRC_RESOURCE} ${QRC_LOCALE_RESOURCE})
 add_dependencies(dogecash-qt translations_target libunivalue libsecp256k1 leveldb leveldb_sse42 memenv)
+target_include_directories(dogecash-qt PUBLIC ${ENDIAN_INCLUDES})
 target_link_libraries(dogecash-qt
         qt_stuff
         univalue
