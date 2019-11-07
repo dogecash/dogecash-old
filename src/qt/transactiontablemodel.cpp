@@ -189,47 +189,46 @@ public:
         case CT_NEW:
             if (inModel) {
                 qWarning() << "TransactionTablePriv::updateWallet : Warning: Got CT_NEW, but transaction is already in model";
+                break;
+            }
+            if (showTransaction) {
+                LOCK2(cs_main, wallet->cs_wallet);
+                // Find transaction in wallet
+                std::map<uint256, CWalletTx>::iterator mi = wallet->mapWallet.find(hash);
+                if (mi == wallet->mapWallet.end()) {
+                    qWarning() << "TransactionTablePriv::updateWallet : Warning: Got CT_NEW, but transaction is not in wallet";
                     break;
                 }
-                if (showTransaction) {
-                    LOCK2(cs_main, wallet->cs_wallet);
-                    // Find transaction in wallet
-                    auto mi = wallet->mapWallet.find(hash);
-                    if (mi == wallet->mapWallet.end()) {
-                        qWarning() << "TransactionTablePriv::updateWallet : Warning: Got CT_NEW, but transaction is not in wallet";
-                        break;
+                // Added -- insert at the right position
+                QList<TransactionRecord> toInsert =
+                    TransactionRecord::decomposeTransaction(wallet, mi->second);
+                if (!toInsert.isEmpty()) /* only if something to insert */
+                {
+                    parent->beginInsertRows(QModelIndex(), lowerIndex, lowerIndex + toInsert.size() - 1);
+                    int insert_idx = lowerIndex;
+                    foreach (const TransactionRecord& rec, toInsert) {
+                        cachedWallet.insert(insert_idx, rec);
+                        if (!hasZcTxes) hasZcTxes = HasZcTxesIfNeeded(rec);
+                        insert_idx += 1;
                     }
-                    // Added -- insert at the right position
-                    QList<TransactionRecord> toInsert = TransactionRecord::decomposeTransaction(wallet, mi->second);
-                    if (!toInsert.isEmpty()) /* only if something to insert */
-                    {
-                        parent->beginInsertRows(QModelIndex(), lowerIndex, lowerIndex + toInsert.size() - 1);
-                        int insert_idx = lowerIndex;
-                        for (const TransactionRecord& rec : toInsert) {
-                            cachedWallet.insert(insert_idx, rec);
-                            if (!hasZcTxes) hasZcTxes = HasZcTxesIfNeeded(rec);
-                            insert_idx += 1;
-                            // Return record
-                            ret = rec;
-                        }
-                        parent->endInsertRows();
-                    }
+                    parent->endInsertRows();
                 }
+            }
+            break;
+        case CT_DELETED:
+            if (!inModel) {
+                qWarning() << "TransactionTablePriv::updateWallet : Warning: Got CT_DELETED, but transaction is not in model";
                 break;
-            case CT_DELETED:
-                if (!inModel) {
-                    qWarning() << "TransactionTablePriv::updateWallet : Warning: Got CT_DELETED, but transaction is not in model";
-                        break;
-                }
-                // Removed -- remove entire transaction from table
-                parent->beginRemoveRows(QModelIndex(), lowerIndex, upperIndex - 1);
-                cachedWallet.erase(lower, upper);
-                parent->endRemoveRows();
-                break;
-            case CT_UPDATED:
-                // Miscellaneous updates -- nothing to do, status update will take care of this, and is only computed for
-                // visible transactions.
-                break;
+            }
+            // Removed -- remove entire transaction from table
+            parent->beginRemoveRows(QModelIndex(), lowerIndex, upperIndex - 1);
+            cachedWallet.erase(lower, upper);
+            parent->endRemoveRows();
+            break;
+        case CT_UPDATED:
+            // Miscellaneous updates -- nothing to do, status update will take care of this, and is only computed for
+            // visible transactions.
+            break;
         }
     }
 
@@ -316,11 +315,9 @@ void TransactionTableModel::updateTransaction(const QString& hash, int status, b
     uint256 updated;
     updated.SetHex(hash.toStdString());
 
-    TransactionRecord rec(0);
-    priv->updateWallet(updated, status, showTransaction, rec);
+    priv->updateWallet(updated, status, showTransaction);
 
-    if (!rec.isNull())
-        emit txArrived(hash, rec.isCoinStake());
+    emit txArrived(hash);
 }
 
 void TransactionTableModel::updateConfirmations()
