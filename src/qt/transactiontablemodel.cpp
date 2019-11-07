@@ -161,7 +161,7 @@ public:
        with that of the core.
        Call with transaction that was added, removed or changed.
      */
-    void updateWallet(const uint256& hash, int status, bool showTransaction)
+    void updateWallet(const uint256& hash, int status, bool showTransaction, TransactionRecord& ret)
     {
         qDebug() << "TransactionTablePriv::updateWallet : " + QString::fromStdString(hash.ToString()) + " " + QString::number(status);
 
