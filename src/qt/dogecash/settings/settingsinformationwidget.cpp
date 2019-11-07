@@ -38,7 +38,8 @@ SettingsInformationWidget::SettingsInformationWidget(DogeCashGUI* _window,QWidge
     ui->labelTitleTime->setText(tr("Startup Time:  "));
     ui->labelTitleNetwork->setText(tr("Network"));
     ui->labelTitleName->setText(tr("Name:"));
-    ui->labelTitleConnections->setText(tr("Number Connections:"));
+    ui->labelTitleConnections->setText(tr("Number of Connections:"));
+    ui->labelTitleMasternodes->setText(tr("Number of Masternodes:"));
 
     setCssProperty({
         ui->labelTitleDataDir,
@@ -48,8 +49,10 @@ SettingsInformationWidget::SettingsInformationWidget(DogeCashGUI* _window,QWidge
         ui->labelTitleTime,
         ui->labelTitleName,
         ui->labelTitleConnections,
+        ui->labelTitleMasternodes,
         ui->labelTitleBlockNumber,
         ui->labelTitleBlockTime,
+        ui->labelTitleBlockHash,
         ui->labelTitleNumberTransactions,
         ui->labelInfoNumberTransactions,
         ui->labelInfoClient,
@@ -58,6 +61,7 @@ SettingsInformationWidget::SettingsInformationWidget(DogeCashGUI* _window,QWidge
         ui->labelInfoDataDir,
         ui->labelInfoTime,
         ui->labelInfoConnections,
+        ui->labelInfoMasternodes,
         ui->labelInfoBlockNumber
         }, "text-main-settings");
 
@@ -72,6 +76,7 @@ SettingsInformationWidget::SettingsInformationWidget(DogeCashGUI* _window,QWidge
     ui->labelTitleBlockchain->setText(tr("Blockchain"));
     ui->labelTitleBlockNumber->setText(tr("Current Number of Blocks:"));
     ui->labelTitleBlockTime->setText(tr("Last Block Time:"));
+    ui->labelTitleBlockHash->setText(tr("Last Block Hash:"));
 
     ui->labelTitleMemory->setText(tr("Memory Pool"));
     ui->labelTitleMemory->setVisible(false);
@@ -86,11 +91,13 @@ SettingsInformationWidget::SettingsInformationWidget(DogeCashGUI* _window,QWidge
     ui->labelInfoName->setText(tr("Main"));
     ui->labelInfoName->setProperty("cssClass", "text-main-settings");
     ui->labelInfoConnections->setText("0 (In: 0 / Out:0)");
+    ui->labelInfoMasternodes->setText("Total: 0 (IPv4: 0 / IPv6: 0 / Tor: 0 / Unknown: 0");
 
     // Information Blockchain
     ui->labelInfoBlockNumber->setText("0");
     ui->labelInfoBlockTime->setText("Sept 6, 2018. Thursday, 8:21:49 PM");
     ui->labelInfoBlockTime->setProperty("cssClass", "text-main-grey");
+    ui->labelInfoBlockHash->setProperty("cssClass", "text-main-hash");
 
     // Buttons
     ui->pushButtonFile->setText(tr("Wallet Conf"));
@@ -128,6 +135,9 @@ void SettingsInformationWidget::loadClientModel(){
 
         setNumBlocks(clientModel->getNumBlocks());
         connect(clientModel, SIGNAL(numBlocksChanged(int)), this, SLOT(setNumBlocks(int)));
+
+        setMasternodeCount(clientModel->getMasternodeCountString());
+        connect(clientModel, &ClientModel::strMasternodesChanged, this, &SettingsInformationWidget::setMasternodeCount);
     }
 }
 
@@ -144,8 +154,15 @@ void SettingsInformationWidget::setNumConnections(int count){
 
 void SettingsInformationWidget::setNumBlocks(int count){
     ui->labelInfoBlockNumber->setText(QString::number(count));
-    if (clientModel)
+    if (clientModel) {
         ui->labelInfoBlockTime->setText(clientModel->getLastBlockDate().toString());
+        ui->labelInfoBlockHash->setText(clientModel->getLastBlockHash());
+    }
+}
+
+void SettingsInformationWidget::setMasternodeCount(const QString& strMasternodes)
+{
+    ui->labelInfoMasternodes->setText(strMasternodes);
 }
 
 void SettingsInformationWidget::openNetworkMonitor(){
