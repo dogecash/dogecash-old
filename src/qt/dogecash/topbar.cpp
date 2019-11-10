@@ -312,7 +312,7 @@ void TopBar::updateAutoMintStatus(){
 }
 
 void TopBar::updateStakingStatus(){
-    if (nLastCoinStakeSearchInterval) {
+    if (getStakingStatus()) {
         if (!ui->pushButtonStack->isChecked()) {
             ui->pushButtonStack->setButtonText(tr("Staking active"));
             ui->pushButtonStack->setChecked(true);

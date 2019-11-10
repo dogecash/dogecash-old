@@ -160,16 +160,19 @@ UniValue getinfo(const UniValue& params, bool fHelp)
     obj.push_back(Pair("paytxfee", ValueFromAmount(payTxFee.GetFeePerK())));
 #endif
     obj.push_back(Pair("relayfee", ValueFromAmount(::minRelayTxFee.GetFeePerK())));
+    obj.push_back(Pair("staking status", (getStakingStatus() ? "Staking Active" : "Staking Not Active")));
+    obj.push_back(Pair("errors", GetWarnings("statusbar")));
+    return obj;
+}
+bool getStakingStatus() {
     bool nStaking = false;
     if (mapHashedBlocks.count(chainActive.Tip()->nHeight))
         nStaking = true;
     else if (mapHashedBlocks.count(chainActive.Tip()->nHeight - 1) && nLastCoinStakeSearchInterval)
         nStaking = true;
-    obj.push_back(Pair("staking status", (nStaking ? "Staking Active" : "Staking Not Active")));
-    obj.push_back(Pair("errors", GetWarnings("statusbar")));
-    return obj;
-}
 
+    return nStaking;
+}
 UniValue mnsync(const UniValue& params, bool fHelp)
 {
     std::string strMode;
@@ -708,7 +711,7 @@ UniValue getstakingstatus(const UniValue& params, bool fHelp)
         nStaking = true;
     else if (mapHashedBlocks.count(chainActive.Tip()->nHeight - 1) && nLastCoinStakeSearchInterval)
         nStaking = true;
-    obj.push_back(Pair("staking status", nStaking));
+    obj.push_back(Pair("staking status", getStakingStatus()));
 
     return obj;
 }

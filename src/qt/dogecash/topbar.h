@@ -12,7 +12,7 @@
 #include "amount.h"
 #include <QTimer>
 #include <QProgressBar>
-
+#include "rpc/misc.h"
 class DogeCashGUI;
 class WalletModel;
 class ClientModel;
