@@ -20,7 +20,7 @@
 #include "wallet/wallet.h"
 #include "wallet/walletdb.h"
 #endif
-
+#include "misc.h"
 #include <stdint.h>
 
 #include <boost/assign/list_of.hpp>
