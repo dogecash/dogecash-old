@@ -628,7 +628,7 @@ void DashboardWidget::onChartRefreshed() {
     }
     // init sets
     set0 = new QBarSet("DOGEC");
-    set1 = new QBarSet("DOGEC MN Rewards");
+    set1 = new QBarSet("DOGEC MN");
     set0->setColor(QColor(171, 116, 77));
     set1->setColor(QColor(252, 199, 134));
 
