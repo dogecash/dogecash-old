@@ -569,7 +569,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="labelAmountZdogec">
+           <widget class="QLabel" name="labelAmountMNRewards">
             <property name="text">
              <string>TextLabel</string>
             </property>
@@ -709,7 +709,7 @@
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLabel" name="labelSquarezDogec">
+                 <widget class="QLabel" name="labelSquareMNRewards">
                   <property name="minimumSize">
                    <size>
                     <width>14</width>
@@ -728,7 +728,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="labelZdogec">
+                 <widget class="QLabel" name="labelMNRewards">
                   <property name="text">
                    <string>zDOGEC</string>
                   </property>

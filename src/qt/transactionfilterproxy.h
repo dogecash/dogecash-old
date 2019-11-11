@@ -62,10 +62,8 @@ public:
     /** Only zc txes **/
     void setShowZcTxes(bool fOnlyZc);
 
-    /** Only stakes txes **/
-    void setOnlyStakes(bool fOnlyStakes);
-    /** Only MN Rewards **/
-    void setOnlyMNRewards(bool fOnlyMNRewards);
+    /** Only stakes and masternode reward txes **/
+    void setOnlyStakesandMNTxes(bool fOnlyStakesandMN);
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const;
     static bool isOrphan(const int status, const int type);
@@ -86,8 +84,7 @@ private:
     bool showInactive;
     bool fHideOrphans = true;
     bool fOnlyZc = false;
-    bool fOnlyStakes = false;
-    bool fOnlyMNRewards = false;
+    bool fOnlyStakesandMN = false;
 
     bool isZcTx(int type) const;
     bool isStakeTx(int type) const;

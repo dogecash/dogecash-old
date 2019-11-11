@@ -61,10 +61,7 @@ bool TransactionFilterProxy::filterAcceptsRow(int sourceRow, const QModelIndex& 
     if (fOnlyZc && !isZcTx(type)){
         return false;
     }
-     if (fOnlyMNRewards && !isMasternodeRewardTx(type)){
-        return false;
-    }
-    if (fOnlyStakes && !isStakeTx(type))
+    if (fOnlyStakesandMN && !isStakeTx(type) && !isMasternodeRewardTx(type))
         return false;
 
     return true;
@@ -123,13 +120,8 @@ void TransactionFilterProxy::setShowZcTxes(bool fOnlyZc){
     invalidateFilter();
 }
 
-void TransactionFilterProxy::setOnlyStakes(bool fOnlyStakes){
-    this->fOnlyStakes = fOnlyStakes;
-    invalidateFilter();
-}
-
-void TransactionFilterProxy::setOnlyMNRewards(bool fOnlyMNRewards){
-    this->fOnlyMNRewards = fOnlyMNRewards;
+void TransactionFilterProxy::setOnlyStakesandMNTxes(bool fOnlyStakesandMN){
+    this->fOnlyStakesandMN = fOnlyStakesandMN;
     invalidateFilter();
 }
 
