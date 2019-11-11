@@ -165,15 +165,13 @@ public:
         nBlockDoubleAccumulated = 1050010;
         nEnforceNewSporkKey = 1425158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
-        nBlockStakeModifierlV2 = 252248; //!> Enforce new Stake Protocols add test/regtest
+        nBlockStakeModifierlV2 = 257579; //!> Enforce new Stake Protocols add test/regtest
 
         // New P2P messages signatures
-        nBlockEnforceNewMessageSignatures = 252258;
+        nBlockEnforceNewMessageSignatures = nBlockStakeModifierlV2 + 10;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 1686229;
-      //  nSupplyBeforeFakeSerial = 4131563 * COIN;   // zerocoin supply at block nFakeSerialBlockheightEnd
-
         /**
          * Build the genesis block. Note that the output of the genesis coinbase cannot
          * be spent as it did not originally exist in the database.
@@ -203,10 +201,10 @@ public:
         assert(genesis.hashMerkleRoot == uint256("0x7c3f1b5874e38c421d07fc20ce79ddb3bbaad19cdbad903a0b185070d6005b8c"));
 
 	vFixedSeeds.clear();
-    vSeeds.clear();
+        vSeeds.clear();
 	vSeeds.push_back(CDNSSeedData("seeds.dogec.io", "seeds.dogec.io")); //Primary DNS Seeder test
 	vSeeds.push_back(CDNSSeedData("seeds.dogec.xyz", "seeds.dogec.xyz"));
-    vSeeds.push_back(CDNSSeedData("x9.seeds.dogec.io", "x9.seeds.dogec.io")); // Single node address
+        vSeeds.push_back(CDNSSeedData("x9.seeds.dogec.io", "x9.seeds.dogec.io")); // Single node address
 
 
 	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30);
@@ -214,7 +212,7 @@ public:
 	base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 122);
 	base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
 	base58Prefixes[EXT_SECRET_KEY] = list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
-    base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 63);     // starting with 'S'
+        base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 63);     // starting with 'S'
 
         // 	BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         nExtCoinType = 385;
