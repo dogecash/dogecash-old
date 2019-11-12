@@ -363,10 +363,10 @@ function create_swap() {
 }
 
 function start_service() {
-  #systemctl daemon-reload
-  #sleep 11
-  #systemctl stop $COIN_NAME.service
-  #sleep 11
+  systemctl stop $COIN_NAME.service
+  sleep 11
+  systemctl daemon-reload
+  sleep 11
   systemctl enable $COIN_NAME.service
   sleep 11
   systemctl start $COIN_NAME.service
