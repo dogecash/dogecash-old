@@ -629,8 +629,8 @@ void DashboardWidget::onChartRefreshed() {
     // init sets
     set0 = new QBarSet("DOGEC");
     set1 = new QBarSet("DOGEC MN");
-    set0->setColor(QColor(171, 116, 77));
-    set1->setColor(QColor(252, 199, 134));
+    set0->setColor(QColor("#7d644b"));
+    set1->setColor(QColor("#9c7019"));
 
     if(!series) {
         series = new QBarSeries();
@@ -646,7 +646,7 @@ void DashboardWidget::onChartRefreshed() {
     nDisplayUnit = walletModel->getOptionsModel()->getDisplayUnit();
     if (chartData->totalDogeC > 0 || chartData->totalMNRewards > 0) {
         setCssProperty(ui->labelAmountDogeC, "text-stake-dogec");
-        setCssProperty(ui->labelAmountMNRewards, "text-stake-zdogec");
+        setCssProperty(ui->labelAmountMNRewards, "test-mnrewards-mnrdogec");
     } else {
         setCssProperty(ui->labelAmountDogeC, "text-stake-dogec-disable");
         setCssProperty(ui->labelAmountMNRewards, "text-stake-mnrewards-disable");

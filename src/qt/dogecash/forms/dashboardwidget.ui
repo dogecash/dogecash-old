@@ -649,7 +649,7 @@
                 <item>
                  <widget class="QLabel" name="labelChart">
                   <property name="text">
-                   <string>Staking statistics</string>
+                   <string>Staking and MNR statistics</string>
                   </property>
                  </widget>
                 </item>
@@ -730,7 +730,7 @@
                 <item>
                  <widget class="QLabel" name="labelMNRewards">
                   <property name="text">
-                   <string>zDOGEC</string>
+                   <string>DOGEC MNR</string>
                   </property>
                  </widget>
                 </item>
