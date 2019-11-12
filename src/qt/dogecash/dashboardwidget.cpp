@@ -523,6 +523,7 @@ QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
             }
             else if (isMN){
                 amountBy[time].second += amount;
+                hasMNRewards = true;
 
             }
         } else {
@@ -530,8 +531,7 @@ QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
                 amountBy[time] = std::make_pair(amount, 0);
             } else {
                 amountBy[time] = std::make_pair(0, amount);
-                //We never had zPOS so no use of this
-                hasZdogecStakes = false;
+                hasMNRewards = true;
             }
         }
     }
@@ -653,10 +653,10 @@ void DashboardWidget::onChartRefreshed() {
     }
     forceUpdateStyle({ui->labelAmountDogeC, ui->labelAmountMNRewards});
     ui->labelAmountDogeC->setText(GUIUtil::formatBalance(chartData->totalDogeC, nDisplayUnit));
-    ui->labelAmountMNRewards->setText(GUIUtil::formatBalance(chartData->totalMNRewards, nDisplayUnit, true));
+    ui->labelAmountMNRewards->setText(QString::number(chartData->totalMNRewards / COIN) +" DOGEC MNR");
 
     series->append(set0);
-    if(hasZdogecStakes)
+    if(hasMNRewards)
         series->append(set1);
 
     // bar width

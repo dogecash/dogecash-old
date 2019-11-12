@@ -163,7 +163,7 @@ private:
     int yearFilter = 0;
     int monthFilter = 0;
     int dayStart = 1;
-    bool hasZdogecStakes = false;
+    bool hasMNRewards = false;
 
     ChartData* chartData = nullptr;
     bool hasStakes = false;
