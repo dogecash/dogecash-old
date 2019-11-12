@@ -1,3 +1,4 @@
+// Copyright (c) 2019 The PIVX developers
 // Copyright (c) 2019 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -24,11 +25,9 @@ public:
     explicit ContViewHolder(bool _isLightTheme) : FurListRow(), isLightTheme(_isLightTheme){}
 
     ContactDropdownRow* createHolder(int pos) override{
-        if (!row) {
-            row = new ContactDropdownRow();
-            row->init(false, true);
-            return row;
-        }
+        if (!row) row = new ContactDropdownRow();
+        row->init(true, false);
+        return row;
     }
 
     void init(QWidget* holder,const QModelIndex &index, bool isHovered, bool isSelected) const override{
@@ -47,7 +46,7 @@ public:
     ~ContViewHolder() override{}
 
     bool isLightTheme;
-    ContactDropdownRow* row;
+    ContactDropdownRow* row = nullptr;
 };
 
 ContactsDropdown::ContactsDropdown(int minWidth, int minHeight, PWidget *parent) :
@@ -83,12 +82,21 @@ ContactsDropdown::ContactsDropdown(int minWidth, int minHeight, PWidget *parent)
     connect(list, SIGNAL(clicked(QModelIndex)), this, SLOT(handleClick(QModelIndex)));
 }
 
-void ContactsDropdown::setWalletModel(WalletModel* _model, QString type){
-    model = _model->getAddressTableModel();
-    this->filter = new AddressFilterProxyModel(type, this);
-    this->filter->setSourceModel(model);
-    list->setModel(this->filter);
-    list->setModelColumn(AddressTableModel::Address);
+void ContactsDropdown::setWalletModel(WalletModel* _model, const QString& type){
+    if (!model) {
+        model = _model->getAddressTableModel();
+        this->filter = new AddressFilterProxyModel(type, this);
+        this->filter->setSourceModel(model);
+        list->setModel(this->filter);
+        list->setModelColumn(AddressTableModel::Address);
+    } else {
+        setType(type);
+    }
+}
+
+void ContactsDropdown::setType(const QString& type) {
+    if (filter)
+        filter->setType(type);
 }
 
 void ContactsDropdown::resizeList(int minWidth, int mintHeight){
