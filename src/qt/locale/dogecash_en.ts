@@ -1107,21 +1107,21 @@ for staking</source>
     </message>
     <message>
         <location line="-650"/>
-        <source>Staking statistics</source>
+        <source>Staking and MNR statistics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+81"/>
+        <source>DOGEC MNR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-42"/>
         <source>DOGEC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+42"/>
-        <source>zDOGEC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+212"/>
+        <location line="+254"/>
         <source>Sort by</source>
         <translation type="unfinished"></translation>
     </message>
