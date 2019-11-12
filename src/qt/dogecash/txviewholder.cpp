@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,13 +10,9 @@
 #define ADDRESS_SIZE 12
 
 QWidget* TxViewHolder::createHolder(int pos){
-    if (!txRow) {
-        txRow = new TxRow();
-        txRow->init(isLightTheme);
-        return txRow;
-    } else {
-        return txRow;
-    }
+    if (!txRow) txRow = new TxRow();
+    txRow->init(isLightTheme);
+    return txRow;
 }
 
 void TxViewHolder::init(QWidget* holder,const QModelIndex &index, bool isHovered, bool isSelected) const{
