@@ -152,7 +152,6 @@ public:
         nMinColdStakingAmount = 1 * COIN;
         /** Height or Time Based Activations **/
         nLastPOWBlock = 200;
-        nModifierUpdateBlock = INT_MAX;
         nZerocoinStartHeight = INT_MAX;
         nZerocoinStartTime = INT_MAX; // October 17, 2017 4:30:00 AM
         nBlockEnforceSerialRange = 100; //Enforce serial range starting this block
@@ -165,7 +164,8 @@ public:
         nBlockDoubleAccumulated = 1050010;
         nEnforceNewSporkKey = 1425158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
-        nBlockStakeModifierlV2 = 257579; //!> Enforce new Stake Protocols add test/regtest
+        nBlockStakeModifierlV2 = 261028; //!> Enforce new Stake Protocols add test/regtest
+        nModifierUpdateBlock = nBlockStakeModifierlV2 + 5;
 
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = nBlockStakeModifierlV2 + 10;

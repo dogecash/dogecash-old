@@ -6,8 +6,8 @@ CONFIGFOLDER='/root/.dogecash'
 COIN_DAEMON='dogecashd'
 COIN_CLI='dogecash-cli'
 COIN_PATH='/usr/local/bin/'
-COIN_REPO='https://github.com/Liquid369/dogecash'
-COIN_TGZ='https://github.com/dogecash/dogecash/releases/download/4.0.0/DogeCash-4.0.0-x86_64-linux-gnu.tar.gz'
+COIN_REPO='https://github.com/dogecash/dogecash'
+COIN_TGZ='https://github.com/dogecash/dogecash/releases/download/v5.0.0/DogeCash-5.0.0-x86_64-linux-gnu.tar.gz'
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='DogeCash'
 COIN_PORT=56740 #Updated Port
@@ -117,8 +117,8 @@ function download_node() {
   compile_error
 #   tar xvzf $COIN_ZIP -C $COIN_PATH >/dev/null 2>&1
 # unzip dogecash.zip
-tar -xzf DogeCash-4.0.0-x86_64-linux-gnu.tar.gz
-cd DogeCash-4.0.0/bin
+tar -xzf DogeCash-5.0.0-x86_64-linux-gnu.tar.gz
+cd DogeCash-5.0.0/bin
 chmod -R 775 *
 cp * $COIN_PATH
 cd ..
@@ -363,10 +363,10 @@ function create_swap() {
 }
 
 function start_service() {
-  #systemctl daemon-reload
-  #sleep 11
-  #systemctl stop $COIN_NAME.service
-  #sleep 11
+  systemctl stop $COIN_NAME.service
+  sleep 11
+  systemctl daemon-reload
+  sleep 11
   systemctl enable $COIN_NAME.service
   sleep 11
   systemctl start $COIN_NAME.service

@@ -46,7 +46,7 @@ DashboardWidget::DashboardWidget(DogeCashGUI* parent) :
     ui->right->setContentsMargins(20,20,20,0);
 
     // Title
-    ui->labelTitle2->setText(tr("Staking Rewards"));
+    ui->labelTitle2->setText(tr("Staking & Masternode Rewards"));
     setCssTitleScreen(ui->labelTitle);
     setCssTitleScreen(ui->labelTitle2);
 
@@ -54,13 +54,13 @@ DashboardWidget::DashboardWidget(DogeCashGUI* parent) :
     ui->labelSubtitle->setText(tr("You can view your account's history"));
     setCssSubtitleScreen(ui->labelSubtitle);
 
-    // Staking Information
-    ui->labelMessage->setText(tr("Amount of DOGEC and zDOGEC staked."));
+    // Staking and masternode Information
+    ui->labelMessage->setText(tr("Amount of DOGEC staked and/or generated from Masternodes."));
     setCssSubtitleScreen(ui->labelMessage);
     setCssProperty(ui->labelSquareDogeC, "square-chart-dogec");
-    setCssProperty(ui->labelSquarezDogec, "square-chart-zdogec");
+    setCssProperty(ui->labelSquareMNRewards, "square-chart-mnrewards");
     setCssProperty(ui->labelDogeC, "text-chart-dogec");
-    setCssProperty(ui->labelZdogec, "text-chart-zdogec");
+    setCssProperty(ui->labelMNRewards, "text-chart-mnrewards");
 
     // Staking Amount
     QFont fontBold;
@@ -68,10 +68,10 @@ DashboardWidget::DashboardWidget(DogeCashGUI* parent) :
 
     setCssProperty(ui->labelChart, "legend-chart");
 
-    ui->labelAmountZdogec->setText("0 zDOGEC");
+    ui->labelAmountMNRewards->setText("0 DOGEC");
     ui->labelAmountDogeC->setText("0 DOGEC");
     setCssProperty(ui->labelAmountDogeC, "text-stake-dogec-disable");
-    setCssProperty(ui->labelAmountZdogec, "text-stake-zdogec-disable");
+    setCssProperty(ui->labelAmountMNRewards, "text-stake-mnrewards-disable");
 
     setCssProperty({ui->pushButtonAll,  ui->pushButtonMonth, ui->pushButtonYear}, "btn-check-time");
     setCssProperty({ui->comboBoxMonths,  ui->comboBoxYears}, "btn-combo-chart-selected");
@@ -164,7 +164,7 @@ bool hasCharts = false;
 #endif
 
     if (hasCharts) {
-        ui->labelEmptyChart->setText(tr("You have no staking rewards"));
+        ui->labelEmptyChart->setText(tr("You have no rewards"));
     } else {
         ui->labelEmptyChart->setText(tr("No charts library"));
     }
@@ -224,7 +224,7 @@ void DashboardWidget::loadWalletModel(){
         stakesFilter->setSortCaseSensitivity(Qt::CaseInsensitive);
         stakesFilter->setFilterCaseSensitivity(Qt::CaseInsensitive);
         stakesFilter->setSortRole(Qt::EditRole);
-        stakesFilter->setOnlyStakes(true);
+        stakesFilter->setOnlyStakesandMNTxes(true);
         stakesFilter->setSourceModel(txModel);
         stakesFilter->sort(TransactionTableModel::Date, Qt::AscendingOrder);
         hasStakes = stakesFilter->rowCount() > 0;
@@ -487,7 +487,7 @@ void DashboardWidget::updateStakeFilter() {
     }
 }
 
-// pair PIV, zPIV
+// pair DOGEC,MN rewards
 QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
     updateStakeFilter();
     int size = stakesFilter->rowCount();
@@ -497,8 +497,8 @@ QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
         QModelIndex modelIndex = stakesFilter->index(i, TransactionTableModel::ToAddress);
         qint64 amount = llabs(modelIndex.data(TransactionTableModel::AmountRole).toLongLong());
         QDate date = modelIndex.data(TransactionTableModel::DateRole).toDateTime().date();
-        bool isDogeC = modelIndex.data(TransactionTableModel::TypeRole).toInt() != TransactionRecord::Stakezdogec;
-
+        bool isDogeC = modelIndex.data(TransactionTableModel::TypeRole).toInt() != TransactionRecord::Stakezdogec && modelIndex.data(TransactionTableModel::TypeRole).toInt() != TransactionRecord::MNReward;
+        bool isMN = modelIndex.data(TransactionTableModel::TypeRole).toInt() == TransactionRecord::MNReward;
         int time = 0;
         switch (chartShow) {
             case YEAR: {
@@ -520,14 +520,18 @@ QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
         if (amountBy.contains(time)) {
             if (isDogeC) {
                 amountBy[time].first += amount;
-            } else
+            }
+            else if (isMN){
                 amountBy[time].second += amount;
+                hasMNRewards = true;
+
+            }
         } else {
             if (isDogeC) {
                 amountBy[time] = std::make_pair(amount, 0);
             } else {
                 amountBy[time] = std::make_pair(0, amount);
-                hasZdogecStakes = true;
+                hasMNRewards = true;
             }
         }
     }
@@ -542,7 +546,7 @@ bool DashboardWidget::loadChartData(bool withMonthNames) {
     }
 
     chartData = new ChartData();
-    chartData->amountsByCache = getAmountBy(); // pair DOGEC,zDOGEC
+    chartData->amountsByCache = getAmountBy(); // pair DOGEC,MN Rewards for DOGEC
 
     std::pair<int,int> range = getChartRange(chartData->amountsByCache);
     if (range.first == 0 && range.second == 0) {
@@ -556,21 +560,21 @@ bool DashboardWidget::loadChartData(bool withMonthNames) {
     for (int j = range.first; j < range.second; j++) {
         int num = (isOrderedByMonth && j > daysInMonth) ? (j % daysInMonth) : j;
         qreal dogec = 0;
-        qreal zdogec = 0;
+        qreal mnrewards = 0;
         if (chartData->amountsByCache.contains(num)) {
             std::pair <qint64, qint64> pair = chartData->amountsByCache[num];
             dogec = (pair.first != 0) ? pair.first / 100000000 : 0;
-            zdogec = (pair.second != 0) ? pair.second / 100000000 : 0;
+            mnrewards = (pair.second != 0) ? pair.second / 100000000 : 0;
             chartData->totalDogeC += pair.first;
-            chartData->totalZdogec += pair.second;
+            chartData->totalMNRewards += pair.second;
         }
 
         chartData->xLabels << ((withMonthNames) ? monthsNames[num - 1] : QString::number(num));
 
         chartData->valuesDogeC.append(dogec);
-        chartData->valueszDogec.append(zdogec);
+        chartData->valuesMNRewards.append(mnrewards);
 
-        int max = std::max(dogec, zdogec);
+        int max = std::max(dogec, mnrewards);
         if (max > chartData->maxValue) {
             chartData->maxValue = max;
         }
@@ -624,9 +628,9 @@ void DashboardWidget::onChartRefreshed() {
     }
     // init sets
     set0 = new QBarSet("DOGEC");
-    set1 = new QBarSet("zDOGEC");
-    set0->setColor(QColor(171, 116, 77));
-    set1->setColor(QColor(252, 199, 134));
+    set1 = new QBarSet("DOGEC MN");
+    set0->setColor(QColor("#7d644b"));
+    set1->setColor(QColor("#9c7019"));
 
     if(!series) {
         series = new QBarSeries();
@@ -636,23 +640,23 @@ void DashboardWidget::onChartRefreshed() {
     series->attachAxis(axisY);
 
     set0->append(chartData->valuesDogeC);
-    set1->append(chartData->valueszDogec);
+    set1->append(chartData->valuesMNRewards);
 
     // Total
     nDisplayUnit = walletModel->getOptionsModel()->getDisplayUnit();
-    if (chartData->totalDogeC > 0 || chartData->totalZdogec > 0) {
+    if (chartData->totalDogeC > 0 || chartData->totalMNRewards > 0) {
         setCssProperty(ui->labelAmountDogeC, "text-stake-dogec");
-        setCssProperty(ui->labelAmountZdogec, "text-stake-zdogec");
+        setCssProperty(ui->labelAmountMNRewards, "test-mnrewards-mnrdogec");
     } else {
         setCssProperty(ui->labelAmountDogeC, "text-stake-dogec-disable");
-        setCssProperty(ui->labelAmountZdogec, "text-stake-zdogec-disable");
+        setCssProperty(ui->labelAmountMNRewards, "text-stake-mnrewards-disable");
     }
-    forceUpdateStyle({ui->labelAmountDogeC, ui->labelAmountZdogec});
+    forceUpdateStyle({ui->labelAmountDogeC, ui->labelAmountMNRewards});
     ui->labelAmountDogeC->setText(GUIUtil::formatBalance(chartData->totalDogeC, nDisplayUnit));
-    ui->labelAmountZdogec->setText(GUIUtil::formatBalance(chartData->totalZdogec, nDisplayUnit, true));
+    ui->labelAmountMNRewards->setText(QString::number(chartData->totalMNRewards / COIN) +" DOGEC MNR");
 
     series->append(set0);
-    if(hasZdogecStakes)
+    if(hasMNRewards)
         series->append(set1);
 
     // bar width
@@ -750,8 +754,8 @@ void DashboardWidget::onChartArrowClicked(bool goLeft) {
     QDate currentDate = QDate::currentDate();
     //get chart range
     std::pair<int,int> range = getChartRange(chartData->amountsByCache);
-    //Check if lastday in data incremented by 1 is the current date
-    bool fEndDayisCurrent = range.second + 1 == currentDate.day() && monthFilter == currentDate.month();
+    //Check if lastday is the current date in the currentmonth
+    bool fEndDayisCurrent = range.second  == currentDate.day() && monthFilter == currentDate.month();
     ui->pushButtonChartRight->setEnabled(!fEndDayisCurrent);
     if (goLeft) {
         --dayStart;
