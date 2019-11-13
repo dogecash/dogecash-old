@@ -366,3 +366,13 @@ std::string TransactionRecord::statusToString(){
             return "No status";
     }
 }
+
+bool TransactionRecord::isCoinStake() const
+{
+    return (type == TransactionRecord::StakeMint || type == TransactionRecord::Generated || type == TransactionRecord::StakeZPIV);
+}
+
+bool TransactionRecord::isNull() const
+{
+    return hash.IsNull() || size == 0;
+}
