@@ -369,7 +369,7 @@ std::string TransactionRecord::statusToString(){
 
 bool TransactionRecord::isCoinStake() const
 {
-    return (type == TransactionRecord::StakeMint || type == TransactionRecord::Generated || type == TransactionRecord::StakeZPIV);
+    return (type == TransactionRecord::StakeMint || type == TransactionRecord::Generated || type == TransactionRecord::Stakezdogec);
 }
 
 bool TransactionRecord::isNull() const
