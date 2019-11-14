@@ -4264,8 +4264,7 @@ bool CheckColdStakeFreeOutput(const CTransaction& tx, const int nHeight)
     if (outs >=3 && lastOut.scriptPubKey != tx.vout[outs-2].scriptPubKey) {
         // last output can either be a mn reward or a budget payment
         // cold staking is active much after nPublicZCSpends so GetMasternodePayment is always 3 PIV.
-        // TODO: double check this if/when MN rewards change
-        if (lastOut.nValue == 3 * COIN)
+        if (lastOut.nValue == GetMasternodePayment(nHeight,GetBlockValue(nHeight),0,false))
             return true;
 
         if (budget.IsBudgetPaymentBlock(nHeight) &
@@ -6119,6 +6118,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         // available. If not, ask the first peer connected for them.
         bool fMissingSporks = !pSporkDB->SporkExists(SPORK_14_NEW_PROTOCOL_ENFORCEMENT) &&
                 !pSporkDB->SporkExists(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2) &&
+                !pSporkDB->SporkExists(SPORK_18_NEW_PROTOCOL_ENFORCEMENT_3) &&
                 !pSporkDB->SporkExists(SPORK_16_ZEROCOIN_MAINTENANCE_MODE);
 
         if (fMissingSporks || !fRequestedSporksIDB){
@@ -7000,7 +7000,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 int ActiveProtocol()
 {
     // SPORK_15 is used for 70916 (v5.0+)
-    if (sporkManager.IsSporkActive(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2))
+    if (sporkManager.IsSporkActive(SPORK_18_NEW_PROTOCOL_ENFORCEMENT_3))
             return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
 
     return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
