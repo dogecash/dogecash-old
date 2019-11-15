@@ -4715,6 +4715,9 @@ void CWallet::AutoCombineDust()
             //no coins should get this far if they dont have proper maturity, this is double checking
             if (out.tx->IsCoinStake() && out.tx->GetDepthInMainChain() < Params().COINBASE_MATURITY() + 1)
                 continue;
+            // no p2cs accepted, those coins are "locked"
+            if (out.tx->vout[out.i].scriptPubKey.IsPayToColdStaking())
+                continue;
 
             COutPoint outpt(out.tx->GetHash(), out.i);
             coinControl->Select(outpt);

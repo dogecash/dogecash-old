@@ -23,7 +23,7 @@ enum SporkId : int32_t {
     SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2         = 10014,
     SPORK_16_ZEROCOIN_MAINTENANCE_MODE          = 10015,
     SPORK_17_COLDSTAKING_ENFORCEMENT            = 10017,
-
+    SPORK_18_NEW_PROTOCOL_ENFORCEMENT_3         = 10018,
     SPORK_INVALID                               = -1
 };
 
