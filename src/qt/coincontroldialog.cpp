@@ -562,9 +562,6 @@ void CoinControlDialog::updateDialogLabels()
         // Amount
         nAmount += out.tx->vout[out.i].nValue;
     }
-
-    //MultisigDialog* multisigDialog = (MultisigDialog*)this->parentWidget();
-    //multisigDialog->updateCoinControl(nAmount, nQuantity);
 }
 
 void CoinControlDialog::updateLabels(WalletModel* model, QDialog* dialog)
