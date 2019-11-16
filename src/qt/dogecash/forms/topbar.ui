@@ -283,7 +283,6 @@ border:none;</string>
             </widget>
            </item>
            <item>
-           <item>
             <widget class="ExpandableButton" name="pushButtonColdStaking" native="true">
              <property name="minimumSize">
               <size>
@@ -293,6 +292,7 @@ border:none;</string>
              </property>
             </widget>
            </item>
+           <item>
             <widget class="ExpandableButton" name="pushButtonConnection" native="true">
              <property name="minimumSize">
               <size>

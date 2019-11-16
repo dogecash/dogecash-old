@@ -521,14 +521,14 @@ QString AddressTableModel::labelForAddress(const QString& address) const
     if (!address.isEmpty()) {
         {
             LOCK(wallet->cs_wallet);
-            CBitcoinAddress address_parsed(address);
+            CBitcoinAddress address_parsed(address.toStdString());
             std::map<CTxDestination, AddressBook::CAddressBookData>::iterator mi = wallet->mapAddressBook.find(address_parsed.Get());
             if (mi != wallet->mapAddressBook.end()) {
-                return mi->second.purpose;
+                return QString::fromStdString(mi->second.name);
             }
         }
     }
-    return "";
+    return QString();
 }
 
 /* Look up purpose for address in address book
@@ -537,13 +537,13 @@ std::string AddressTableModel::purposeForAddress(const std::string& address) con
 {
     {
         LOCK(wallet->cs_wallet);
-        CBitcoinAddress address_parsed(address.toStdString());
+        CBitcoinAddress address_parsed(address);
         std::map<CTxDestination, AddressBook::CAddressBookData>::iterator mi = wallet->mapAddressBook.find(address_parsed.Get());
         if (mi != wallet->mapAddressBook.end()) {
-            return QString::fromStdString(mi->second.name);
+            return mi->second.purpose;
         }
     }
-    return QString();
+    return "";
 }
 
 int AddressTableModel::lookupAddress(const QString& address) const

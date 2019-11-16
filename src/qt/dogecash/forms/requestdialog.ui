@@ -322,6 +322,7 @@
                     <widget class="QLabel" name="comboBoxCoin">
                      <property name="text">
                       <string>DOGEC</string>
+                       <size>
                        <width>0</width>
                        <height>50</height>
                       </size>

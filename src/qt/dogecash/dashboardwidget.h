@@ -37,7 +37,7 @@ using namespace QtCharts;
 
 #endif
 
-class PIVXGUI;
+class DogeCashGUI;
 class WalletModel;
 
 namespace Ui {

@@ -42,7 +42,6 @@ DogeCashGUI::DogeCashGUI(const NetworkStyle* networkStyle, QWidget* parent) :
     this->setMinimumSize(BASE_WINDOW_WIDTH, BASE_WINDOW_HEIGHT);
     GUIUtil::restoreWindowGeometry("nWindow", QSize(BASE_WINDOW_WIDTH, BASE_WINDOW_HEIGHT), this);
 
-    QString windowTitle = tr("DogeCash Core") + " - ";
 #ifdef ENABLE_WALLET
     /* if compiled with wallet support, -disablewallet can still disable the wallet */
     enableWallet = !GetBoolArg("-disablewallet", false);
@@ -194,8 +193,8 @@ void DogeCashGUI::connectActions() {
     connect(privacyWidget, &PrivacyWidget::showHide, this, &DogeCashGUI::showHide);
     connect(masterNodesWidget, &MasterNodesWidget::showHide, this, &DogeCashGUI::showHide);
     connect(masterNodesWidget, &MasterNodesWidget::execDialog, this, &DogeCashGUI::execDialog);
-    connect(coldStakingWidget, &ColdStakingWidget::showHide, this, &PIVXGUI::showHide);
-    connect(coldStakingWidget, &ColdStakingWidget::execDialog, this, &PIVXGUI::execDialog);
+    connect(coldStakingWidget, &ColdStakingWidget::showHide, this, &DogeCashGUI::showHide);
+    connect(coldStakingWidget, &ColdStakingWidget::execDialog, this, &DogeCashGUI::execDialog);
     connect(settingsWidget, &SettingsWidget::execDialog, this, &DogeCashGUI::execDialog);
 }
 
