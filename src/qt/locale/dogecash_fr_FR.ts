@@ -5143,12 +5143,12 @@ S'il vous plaît soyez patient ...</translation>
         <translation>Incapable de localiser suffisamment de fonds non-dénommés pour l'Obfuscation de cette transaction.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 DOGEC.</source>
-        <translation>Incapable de localiser suffisamment de fonds non-dénommés pour l'Obfuscation de cette transaction qui ne sont pas égaux à 10000 DOGEC.</translation>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 5000 DOGEC.</source>
+        <translation>Incapable de localiser suffisamment de fonds non-dénommés pour l'Obfuscation de cette transaction qui ne sont pas égaux à 5000 DOGEC.</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 DOGEC.</source>
-        <translation>Impossible de grouper assez de fonds pour cette transaction qui n'est pas égale à 10000 DOGEC.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 5000 DOGEC.</source>
+        <translation>Impossible de grouper assez de fonds pour cette transaction qui n'est pas égale à 5000 DOGEC.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>

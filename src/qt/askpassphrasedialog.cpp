@@ -321,7 +321,7 @@ bool AskPassphraseDialog::openStandardDialog(QString title, QString body, QStrin
     return ret;
 }
 
-void AskPassphraseDialog::warningMessage()0 
+void AskPassphraseDialog::warningMessage()
 {
     hide();
     static_cast<DogeCashGUI*>(parentWidget())->showHide(true);

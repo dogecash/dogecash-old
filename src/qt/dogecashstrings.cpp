@@ -212,9 +212,9 @@ QT_TRANSLATE_NOOP("dogecash-core", ""
 "Unable to locate enough Obfuscation denominated funds for this transaction."),
 QT_TRANSLATE_NOOP("dogecash-core", ""
 "Unable to locate enough Obfuscation non-denominated funds for this "
-"transaction that are not equal 10000 DOGEC."),
+"transaction that are not equal 5000 DOGEC."),
 QT_TRANSLATE_NOOP("dogecash-core", ""
-"Unable to locate enough funds for this transaction that are not equal 10000 "
+"Unable to locate enough funds for this transaction that are not equal 5000 "
 "DOGEC."),
 QT_TRANSLATE_NOOP("dogecash-core", ""
 "Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: "

@@ -6531,7 +6531,7 @@ Are you sure?
     </message>
     <message>
         <location line="+1"/>
-        <source>The PIVX Core developers</source>
+        <source>The DogeCash Core developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7372,7 +7372,7 @@ Are you sure?
     <message>
         <location line="-18"/>
         <location line="+9"/>
-        <source>SwiftX doesn&apos;t support sending values that high yet. Transactions are currently limited to %1 PIV.</source>
+        <source>SwiftX doesn&apos;t support sending values that high yet. Transactions are currently limited to %1 DOGEC.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7842,12 +7842,12 @@ DogeCash Core Wallet</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 DOGEC.</source>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 5000 DOGEC.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 DOGEC.</source>
+        <source>Unable to locate enough funds for this transaction that are not equal 5000 DOGEC.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8759,7 +8759,7 @@ DogeCash Core Wallet</source>
     </message>
     <message>
         <location line="-108"/>
-        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
+        <source>Copyright (C) 2015-%i The DogeCash Core Developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -4841,12 +4841,12 @@ Please be patient...</source>
         <translation>Не удалось найти достаточное количество средств, предназначенных для обфускации, для этой транзакции.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 DOGEC.</source>
-        <translation>Невозможно найти достаточное количество средств, не предназначенных для обфускации, для этой транзакции, которые не равны 10000 DOGEC.</translation>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 5000 DOGEC.</source>
+        <translation>Невозможно найти достаточное количество средств, не предназначенных для обфускации, для этой транзакции, которые не равны 5000 DOGEC.</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 DOGEC.</source>
-        <translation>Не удалось найти достаточное количество средств для этой транзакции, которые не равны 10000 DOGEC.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 5000 DOGEC.</source>
+        <translation>Не удалось найти достаточное количество средств для этой транзакции, которые не равны 5000 DOGEC.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>

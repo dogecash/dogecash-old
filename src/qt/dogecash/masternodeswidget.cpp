@@ -347,7 +347,7 @@ void MasterNodesWidget::onDeleteMNClicked(){
 
 void MasterNodesWidget::onCreateMNClicked(){
     if(verifyWalletUnlocked()) {
-        if(walletModel->getBalance() <= (COIN * 5000)){
+        if(walletModel->getBalance() <= (COIN * Params().MasternodeCollateralLimit())){
             inform(tr("Not enough balance to create a masternode, 5,000 DOGEC required."));
             return;
         }

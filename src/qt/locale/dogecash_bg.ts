@@ -4830,12 +4830,12 @@ Please be patient...</source>
         <translation>Не намираме достатъчно Обфускационно деноминирани средства за този превод.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 DOGEC.</source>
-        <translation>Не можем да намерим достатъчно Обфускационно не-деноминирани средства за този превод, които да не са равни на 10000 DOGEC.</translation>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 5000 DOGEC.</source>
+        <translation>Не можем да намерим достатъчно Обфускационно не-деноминирани средства за този превод, които да не са равни на 5000 DOGEC.</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 DOGEC.</source>
-        <translation>Не намираме достатъчно средства за този превод, които да не са равни на 10000 DOGEC.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 5000 DOGEC.</source>
+        <translation>Не намираме достатъчно средства за този превод, които да не са равни на 5000 DOGEC.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>

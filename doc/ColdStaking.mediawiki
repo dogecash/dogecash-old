@@ -84,7 +84,7 @@ Furthermore, a <code>-coldstaking</code> starting flag has been added to the wal
 Given the specification above, the basic interaction with the system can be summarized as follows:
 #) '''cold-staker''' creates a staking address (special address starting with 'S') <code>stakerAddr</code>.
 #) '''coin-owner''' creates a normal receiving address <code>ownerAddr</code>.
-#) '''coin-owner''' selects a number of coins (or choses a PIV amount letting the wallet pick the coins) and creates the special "stake delegation" transaction, using <code>ownerAddr</code> and <code>stakerAddr</code>, and broadcasts it to the network.
+#) '''coin-owner''' selects a number of coins (or choses a DOGEC amount letting the wallet pick the coins) and creates the special "stake delegation" transaction, using <code>ownerAddr</code> and <code>stakerAddr</code>, and broadcasts it to the network.
 #) '''cold-staker''' adds <code>ownerAddr</code> to the whitelist of delegators in his wallet (or simply "accepts" the delegation tx in the GUI). 
 
 From now on '''cold-staker''' stakes the coins sent in the stake delegation on behalf of '''coin-owner''', until the latter voids the contract, spending the coins.

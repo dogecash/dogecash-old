@@ -231,7 +231,7 @@ void DashboardWidget::loadWalletModel(){
         loadChart();
 #endif
     }
-    // update the display unit, to not use the default ("PIV")
+    // update the display unit, to not use the default ("DOGEC")
     updateDisplayUnit();
 }
 

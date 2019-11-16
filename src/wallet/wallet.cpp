@@ -1984,7 +1984,7 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate, b
                     ret++;
             }
 
-            //If this is a zapwallettx, need to readd zpiv
+            //If this is a zapwallettx, need to readd zDOGEC
             if (fCheckZDOGEC && pindex->nHeight >= Params().Zerocoin_StartHeight()) {
                 std::list<CZerocoinMint> listMints;
                 BlockToZerocoinMintList(block, listMints, true);
@@ -2961,7 +2961,7 @@ bool CWallet::SelectCoinsByDenominations(int nDenom, CAmount nValueMin, CAmount 
 
     BOOST_FOREACH (const COutput& out, vCoins) {
         // masternode-like input should not be selected by AvailableCoins now anyway
-        //if(out.tx->vout[out.i].nValue == 10000*COIN) continue;
+        //if(out.tx->vout[out.i].nValue == Params().MasternodeCollateralLimit()*COIN) continue;
         if (nValueRet + out.tx->vout[out.i].nValue <= nValueMax) {
             bool fAccepted = false;
 
@@ -3344,9 +3344,9 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend,
                     if (coin_type == ALL_COINS) {
                         strFailReason = _("Insufficient funds.");
                     } else if (coin_type == ONLY_NOT10000IFMN) {
-                        strFailReason = _("Unable to locate enough funds for this transaction that are not equal 10000 DOGEC.");
+                        strFailReason = _("Unable to locate enough funds for this transaction that are not equal 5000 DOGEC.");
                     } else if (coin_type == ONLY_NONDENOMINATED_NOT10000IFMN) {
-                        strFailReason = _("Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 DOGEC.");
+                        strFailReason = _("Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 5000 DOGEC.");
                     } else {
                         strFailReason = _("Unable to locate enough Obfuscation denominated funds for this transaction.");
                         strFailReason += " " + _("Obfuscation uses exact denominated amounts to send funds, you might simply need to anonymize some more coins.");

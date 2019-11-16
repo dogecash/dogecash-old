@@ -5131,12 +5131,12 @@ Proszę być cierpliwym...</translation>
         <translation>Nie można znaleźć wystarczającej liczby funduszy ukrytych dla tej transakcji.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 DOGEC.</source>
-        <translation>Nie można zlokalizować wystarczająco dużo zaciemnionych Środków. Ta transakcja nie jest równa 10000 DOGEC.</translation>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 5000 DOGEC.</source>
+        <translation>Nie można zlokalizować wystarczająco dużo zaciemnionych Środków. Ta transakcja nie jest równa 5000 DOGEC.</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 DOGEC.</source>
-        <translation>Nie można zlokalizować wystarczająco dużo Środków. Ta transakcja nie jest równa 10000 DOGEC.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 5000 DOGEC.</source>
+        <translation>Nie można zlokalizować wystarczająco dużo Środków. Ta transakcja nie jest równa 5000 DOGEC.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>

@@ -98,7 +98,7 @@ public:
     }
 };
 
-/** Interface to PIVX wallet from Qt view code. */
+/** Interface to DOGECX wallet from Qt view code. */
 class WalletModel : public QObject
 {
     Q_OBJECT
@@ -154,7 +154,7 @@ public:
     void decryptKey(const std::vector<unsigned char>& crypted, const std::string& slt, const std::string& pwd, CKey& key);
     void emitBalanceChanged(); // Force update of UI-elements even when no values have changed
 
-    // return minted zPIV
+    // return minted zDOGEC
     bool getMint(const uint256& hashSerial, CZerocoinMint& mint);
 
     // Check address for validity
@@ -175,7 +175,7 @@ public:
 
     // Send coins to a list of recipients
     SendCoinsReturn sendCoins(WalletModelTransaction& transaction);
-    // Mint zPIV
+    // Mint zDOGEC
     bool mintCoins(CAmount value, CCoinControl* coinControl, std::string &strError);
 
     bool createZdogecSpend(

@@ -1113,7 +1113,7 @@ bool AppInit2()
         if (!AppInitServers())
             return InitError(_("Unable to start HTTP server. See debug log for details."));
     }
-
+int64_t nStart;
 // ********************************************************* Step 5: Backup wallet and verify wallet database integrity
 #ifdef ENABLE_WALLET
     if (!fDisableWallet) {
