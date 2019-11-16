@@ -7,6 +7,7 @@
 #include "qt/dogecash/forms/ui_masternodewizarddialog.h"
 #include "qt/dogecash/qtutils.h"
 #include "optionsmodel.h"
+#include "pairresult.h"
 #include "activemasternode.h"
 #include <QFile>
 #include <QIntValidator>
@@ -179,7 +180,14 @@ bool MasterNodeWizardDialog::createMN(){
         std::string port = portStr.toStdString();
 
         // New receive address
-        CBitcoinAddress address = walletModel->getNewAddress(alias);
+        CBitcoinAddress address;
+        PairResult r = walletModel->getNewAddress(address, alias);
+
+        if (!r.result) {
+            // generate address fail
+            inform(tr(r.status->c_str()));
+            return false;
+        }
 
         // const QString& addr, const QString& label, const CAmount& amount, const QString& message
         SendCoinsRecipient sendCoinsRecipient(QString::fromStdString(address.ToString()), "", CAmount(5000) * COIN, "");

@@ -10,6 +10,7 @@
 #include "qt/dogecash/pwidget.h"
 #include "qt/dogecash/furabstractlistitemdelegate.h"
 #include "qt/dogecash/mnmodel.h"
+#include "qt/dogecash/mnrow.h"
 #include "qt/dogecash/tooltipmenu.h"
 #include <QTimer>
 

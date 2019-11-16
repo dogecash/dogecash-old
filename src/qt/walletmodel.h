@@ -4,8 +4,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_QT_WALLETMODEL_H
-#define PIVX_QT_WALLETMODEL_H
+#ifndef DOGEC_QT_WALLETMODEL_H
+#define DOGEC_QT_WALLETMODEL_H
 
 #include "askpassphrasedialog.h"
 #include "paymentrequestplus.h"
@@ -14,6 +14,7 @@
 #include "allocators.h" /* for SecureString */
 #include "swifttx.h"
 #include "wallet/wallet.h"
+#include "pairresult.h"
 
 #include <map>
 #include <vector>
@@ -53,6 +54,11 @@ public:
     QString label;
     AvailableCoinsType inputType;
     bool useSwiftTX = false;
+    // Cold staking.
+    bool isP2CS = false;
+    QString ownerAddress;
+
+    // Amount
     CAmount amount;
     // If from a payment request, this is used for storing the memo
     QString message;
@@ -98,7 +104,7 @@ public:
     }
 };
 
-/** Interface to DOGECX wallet from Qt view code. */
+/** Interface to DogeCash wallet from Qt view code. */
 class WalletModel : public QObject
 {
     Q_OBJECT
@@ -118,7 +124,8 @@ public:
         TransactionCreationFailed, // Error returned when wallet is still locked
         TransactionCommitFailed,
         AnonymizeOnlyUnlocked,
-        InsaneFee
+        InsaneFee,
+        CannotCreateInternalAddress
     };
 
     enum EncryptionStatus {
@@ -134,6 +141,8 @@ public:
     RecentRequestsTableModel* getRecentRequestsTableModel();
 
     bool isTestnet() const;
+    /** Whether cold staking is enabled or disabled in the network **/
+    bool isColdStakingNetworkelyEnabled() const;
 
     CAmount getBalance(const CCoinControl* coinControl = NULL) const;
     CAmount getUnconfirmedBalance() const;
@@ -146,6 +155,10 @@ public:
     CAmount getWatchBalance() const;
     CAmount getWatchUnconfirmedBalance() const;
     CAmount getWatchImmatureBalance() const;
+    CAmount getDelegatedBalance() const;
+    CAmount getColdStakedBalance() const;
+
+    bool isColdStaking() const;
     EncryptionStatus getEncryptionStatus() const;
     bool isWalletUnlocked() const;
     CKey generateNewKey() const; //for temporary paper wallet key generation
@@ -159,6 +172,7 @@ public:
 
     // Check address for validity
     bool validateAddress(const QString& address);
+    bool validateStakingAddress(const QString& address);
 
     // Return status record for SendCoins, contains error id + information
     struct SendCoinsReturn {
@@ -205,6 +219,19 @@ public:
             CZerocoinSpendReceipt &receipt
     );
 
+    // ###################
+    // Cold Staking
+    // ###################
+
+
+
+    // ###################
+    // End Cold Staking
+    // ###################
+
+
+
+
     // Wallet encryption
     bool setWalletEncrypted(bool encrypted, const SecureString& passphrase);
     // Passphrase only needed when unlocking
@@ -245,8 +272,20 @@ public:
     int64_t getCreationTime() const;
     int64_t getKeyCreationTime(const CPubKey& key);
     int64_t getKeyCreationTime(const CBitcoinAddress& address);
-    CBitcoinAddress getNewAddress(std::string label = "") const;
+    PairResult getNewAddress(CBitcoinAddress& ret, std::string label = "") const;
+    /**
+     * Return a new address used to receive for delegated cold stake purpose.
+     */
+    PairResult getNewStakingAddress(CBitcoinAddress& ret, std::string label = "") const;
+
+    bool whitelistAddressFromColdStaking(const QString &addressStr);
+    bool blacklistAddressFromColdStaking(const QString &address);
+    bool updateAddressBookPurpose(const QString &addressStr, const std::string& purpose);
+    std::string getLabelForAddress(const CBitcoinAddress& address);
+    bool getKeyId(const CBitcoinAddress& address, CKeyID& keyID);
+
     bool isMine(CBitcoinAddress address);
+    bool isMine(const QString& addressStr);
     bool isUsed(CBitcoinAddress address);
     void getOutputs(const std::vector<COutPoint>& vOutpoints, std::vector<COutput>& vOutputs);
     bool isSpent(const COutPoint& outpoint) const;
@@ -291,6 +330,8 @@ private:
     CAmount cachedWatchOnlyBalance;
     CAmount cachedWatchUnconfBalance;
     CAmount cachedWatchImmatureBalance;
+    CAmount cachedDelegatedBalance;
+    CAmount cachedColdStakedBalance;
     EncryptionStatus cachedEncryptionStatus;
     int cachedNumBlocks;
     int cachedTxLocks;
@@ -306,7 +347,8 @@ signals:
     // Signal that balance in wallet changed
     void balanceChanged(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance,
                         const CAmount& zerocoinBalance, const CAmount& unconfirmedZerocoinBalance, const CAmount& immatureZerocoinBalance,
-                        const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance);
+                        const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance,
+                        const CAmount& delegatedBalance, const CAmount& coldStakingBalance);
 
     // Encryption status of wallet changed
     void encryptionStatusChanged(int status);

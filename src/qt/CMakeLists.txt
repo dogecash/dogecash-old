@@ -111,6 +111,7 @@ SET(QT_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/loadingdialog.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/governancepage.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/pwidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/guitransactionsutils.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/snackbar.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/navmenuwidget.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/lockunlock.cpp
@@ -130,6 +131,7 @@ SET(QT_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/contactsdropdown.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/optionbutton.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/mninfodialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/coldstakingmodel.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/mnmodel.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/masternodewizarddialog.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/mnrow.cpp
@@ -145,11 +147,14 @@ SET(QT_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/requestdialog.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/receivewidget.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/myaddressrow.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/csrow.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/addressholder.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/tooltipmenu.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/addresseswidget.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/defaultdialog.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/denomgenerationdialog.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/privacywidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/coldstakingwidget.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/settings/settingsbackupwallet.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/settings/settingsbittoolwidget.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/settings/settingsconsolewidget.cpp

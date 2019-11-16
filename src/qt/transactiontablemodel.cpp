@@ -112,11 +112,12 @@ public:
 
             // Now take the remaining ones and do the work here
             std::size_t const remainingSize = txesSize - totalSumSize;
-            cachedWallet.append(convertTxToRecords(this, wallet,
-                                                   std::vector<CWalletTx>(walletTxes.end() - remainingSize, walletTxes.end())
-                                                   ));
+            auto res = convertTxToRecords(this, wallet,
+                                            std::vector<CWalletTx>(walletTxes.end() - remainingSize, walletTxes.end())
+            );
+            cachedWallet.append(res);
 
-            for (QFuture<QList<TransactionRecord>> &future : tasks) {
+            for (auto &future : tasks) {
                 future.waitForFinished();
                 cachedWallet.append(future.result());
             }
@@ -133,10 +134,10 @@ public:
             if (TransactionRecord::showTransaction(tx)) {
                 QList<TransactionRecord> records = TransactionRecord::decomposeTransaction(wallet, tx);
 
-                if (!hasZcTxes) {
-                    for (const TransactionRecord &record : records) {
+                for (const TransactionRecord &record : records) {
+                    // Check for zc txes.
+                    if (!hasZcTxes) {
                         hasZcTxes = HasZcTxesIfNeeded(record);
-                        if (hasZcTxes) break;
                     }
                 }
 
@@ -319,7 +320,7 @@ void TransactionTableModel::updateTransaction(const QString& hash, int status, b
     priv->updateWallet(updated, status, showTransaction, rec);
 
     if (!rec.isNull())
-        emit txArrived(hash, rec.isCoinStake());
+        emit txArrived(hash, rec.isCoinStake(), rec.isAnyColdStakingType());
 }
 
 void TransactionTableModel::updateConfirmations()
@@ -436,6 +437,13 @@ QString TransactionTableModel::formatTxType(const TransactionRecord* wtx) const
         return tr("DOGEC Stake");
     case TransactionRecord::Stakezdogec:
         return tr("zDOGEC Stake");
+    case TransactionRecord::StakeDelegated:
+        return tr("DOGEC Cold Stake");
+    case TransactionRecord::StakeHot:
+        return tr("DOGEC Stake in behalf of");
+    case TransactionRecord::P2CSDelegationSent:
+    case TransactionRecord::P2CSDelegation:
+        return tr("Stake delegation");
     case TransactionRecord::Generated:
         return tr("Mined");
     case TransactionRecord::ObfuscationDenominate:
@@ -514,6 +522,10 @@ QString TransactionTableModel::formatTxToAddress(const TransactionRecord* wtx, b
     case TransactionRecord::ZerocoinSpend_Change_zdogec:
     case TransactionRecord::Stakezdogec:
         return tr("Anonymous");
+    case TransactionRecord::P2CSDelegation:
+    case TransactionRecord::P2CSDelegationSent:
+    case TransactionRecord::StakeDelegated:
+    case TransactionRecord::StakeHot:
     case TransactionRecord::SendToSelf: {
         QString label = walletModel->getAddressTableModel()->labelForAddress(QString::fromStdString(wtx->address));
         return label.isEmpty() ? "" : label;

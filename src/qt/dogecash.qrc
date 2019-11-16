@@ -312,5 +312,22 @@
         <file alias="ani-loading-dark">dogecash/res/img/ani-loading-dark.gif</file>
         <file alias="ani-loading">dogecash/res/img/ani-loading.gif</file>
         <file alias="ic-pending">dogecash/res/img/ic-pending.svg</file>
+        <file alias="ic-transaction-stake-delegated">dogecash/res/img/ic-transaction-stake-delegated.svg</file>
+        <file alias="ic-transaction-stake-delegated-inactive">dogecash/res/img/ic-transaction-stake-delegated-inactive.svg</file>
+        <file alias="ic-transaction-stake-delegated-dark">dogecash/res/img/dark/ic-transaction-stake-delegated.svg</file>
+        <file alias="ic-transaction-stake-delegated-dark-inactive">dogecash/res/img/dark/ic-transaction-stake-delegated-inactive.svg</file>
+        <file alias="ic-transaction-stake-hot">dogecash/res/img/ic-transaction-stake-hot.svg</file>
+        <file alias="ic-transaction-stake-hot-inactive">dogecash/res/img/ic-transaction-stake-hot-inactive.svg</file>
+        <file alias="ic-transaction-stake-hot-dark">dogecash/res/img/dark/ic-transaction-stake-hot.svg</file>
+        <file alias="ic-transaction-stake-hot-dark-inactive">dogecash/res/img/dark/ic-transaction-stake-hot-inactive.svg</file>
+        <file alias="ic-transaction-cs-contract">dogecash/res/img/ic-transaction-cs-contract.svg</file>
+        <file alias="ic-transaction-cs-contract-dark">dogecash/res/img/dark/ic-transaction-cs-contract.svg</file>
+        <file alias="ic-transaction-cs-contract-dark-inactive">dogecash/res/img/dark/ic-transaction-cs-contract-inactive.svg</file>
+        <file alias="ic-transaction-cs-contract-inactive">dogecash/res/img/ic-transaction-cs-contract-inactive.svg</file>
+        <file alias="ic-nav-cold-staking">dogecash/res/img/ic-nav-cold-staking.svg</file>
+        <file alias="ic-nav-cold-staking-active">dogecash/res/img/ic-nav-cold-staking-active.svg</file>
+        <file alias="ic-check-cold-staking">dogecash/res/img/ic-check-cold-staking.svg</file>
+        <file alias="ic-check-cold-staking-off">dogecash/res/img/ic-check-cold-staking-off.svg</file>
+        <file alias="ic-check-cold-staking-enabled">dogecash/res/img/ic-check-cold-staking-enabled.svg</file>
     </qresource>
 </RCC>

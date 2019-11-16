@@ -8,11 +8,11 @@
 #include "qt/dogecash/dogecashgui.h"
 #include "qt/dogecash/qtutils.h"
 #include "clientversion.h"
+#include "optionsmodel.h"
 
 NavMenuWidget::NavMenuWidget(DogeCashGUI *mainWindow, QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::NavMenuWidget),
-    window(mainWindow)
+    PWidget(mainWindow, parent),
+    ui(new Ui::NavMenuWidget)
 {
     ui->setupUi(this);
     this->setFixedWidth(100);
@@ -44,6 +44,10 @@ NavMenuWidget::NavMenuWidget(DogeCashGUI *mainWindow, QWidget *parent) :
     ui->btnMaster->setText("MASTER\r\nNODES");
     ui->btnMaster->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
+    ui->btnColdStaking->setProperty("name", "cold-staking");
+    ui->btnColdStaking->setText("COLD\r\nSTAKING");
+    ui->btnColdStaking->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+
     ui->btnGovernance->setProperty("name", "governance");
     ui->btnGovernance->setText("GOVERNANCE");
     ui->btnGovernance->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
@@ -56,11 +60,18 @@ NavMenuWidget::NavMenuWidget(DogeCashGUI *mainWindow, QWidget *parent) :
     ui->btnReceive->setText("RECEIVE\n");
     ui->btnReceive->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
-    btns = {ui->btnDashboard, ui->btnSend, ui->btnReceive, ui->btnAddress, ui->btnPrivacy, ui->btnMaster, ui->btnGovernance, ui->btnSettings};
+    btns = {ui->btnDashboard, ui->btnSend, ui->btnReceive, ui->btnAddress, ui->btnPrivacy, ui->btnMaster, ui->btnColdStaking, ui->btnGovernance, ui->btnSettings, ui->btnColdStaking};
     onNavSelected(ui->btnDashboard, true);
 
     connectActions();
 }
+
+void NavMenuWidget::loadWalletModel() {
+    if (walletModel && walletModel->getOptionsModel()) {
+        ui->btnColdStaking->setVisible(walletModel->getOptionsModel()->isColdStakingScreenEnabled());
+    }
+}
+
 
 /**
  * Actions
@@ -71,6 +82,7 @@ void NavMenuWidget::connectActions() {
     connect(ui->btnAddress,SIGNAL(clicked()),this, SLOT(onAddressClicked()));
     connect(ui->btnPrivacy,SIGNAL(clicked()),this, SLOT(onPrivacyClicked()));
     connect(ui->btnMaster,SIGNAL(clicked()),this, SLOT(onMasterNodesClicked()));
+    connect(ui->btnColdStaking,SIGNAL(clicked()),this, SLOT(onColdStakingClicked()));
     connect(ui->btnGovernance,SIGNAL(clicked()),this, SLOT(onGovernanceClicked()));
     connect(ui->btnSettings,SIGNAL(clicked()),this, SLOT(onSettingsClicked()));
     connect(ui->btnReceive,SIGNAL(clicked()),this, SLOT(onReceiveClicked()));
@@ -81,8 +93,9 @@ void NavMenuWidget::connectActions() {
     ui->btnAddress->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_4));
     ui->btnPrivacy->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_5));
     ui->btnMaster->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_6));
-    ui->btnGovernance->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_7));
-    ui->btnSettings->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_8));
+    ui->btnColdStaking->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_7));
+    ui->btnGovernance->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_8));
+    ui->btnSettings->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_9));
 }
 
 void NavMenuWidget::onSendClicked(){
@@ -109,6 +122,11 @@ void NavMenuWidget::onPrivacyClicked(){
 void NavMenuWidget::onMasterNodesClicked(){
     window->goToMasterNodes();
     onNavSelected(ui->btnMaster);
+}
+
+void NavMenuWidget::onColdStakingClicked() {
+    window->goToColdStaking();
+    onNavSelected(ui->btnColdStaking);
 }
 
 void NavMenuWidget::onGovernanceClicked(){
@@ -138,6 +156,12 @@ void NavMenuWidget::onNavSelected(QWidget* active, bool startup) {
     if (!startup) updateButtonStyles();
 }
 
+void NavMenuWidget::onShowHideColdStakingChanged(bool show) {
+    ui->btnColdStaking->setVisible(show);
+    window->setMinimumHeight(show ? 780 : 740);
+}
+
+
 void NavMenuWidget::selectSettings(){
     onSettingsClicked();
 }
@@ -149,6 +173,7 @@ void NavMenuWidget::updateButtonStyles(){
          ui->btnAddress,
          ui->btnPrivacy,
          ui->btnMaster,
+         ui->btnColdStaking,
          ui->btnGovernance,
          ui->btnSettings,
          ui->btnReceive
