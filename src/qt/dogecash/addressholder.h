@@ -8,11 +8,10 @@
 
 #include <QWidget>
 #include <QColor>
-#include <qt/dogecash/myaddressrow.h>
+#include "qt/dogecash/myaddressrow.h"
 #include "qt/dogecash/furlistrow.h"
-#include "guiutil.h"
+#include "qt/guiutil.h"
 
-//class MyAddressRow;
 class AddressHolder : public FurListRow<QWidget*>
 {
 public:

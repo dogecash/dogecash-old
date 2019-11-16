@@ -212,7 +212,8 @@ QT_MOC = \
   qt/dogecash.moc \
   qt/bitcoinamountfield.moc \
   qt/intro.moc \
-  qt/rpcconsole.moc
+  qt/rpcconsole.moc \
+  qt/dogecash/settings/moc_settingsconsolewidget.cpp
 
 QT_QRC_CPP = qt/qrc_dogecash.cpp
 QT_QRC = qt/dogecash.qrc

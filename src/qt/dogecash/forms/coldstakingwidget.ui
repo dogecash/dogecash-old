@@ -769,7 +769,7 @@
   <customwidget>
    <class>OptionButton</class>
    <extends>QWidget</extends>
-   <header>qt/pivx/optionbutton.h</header>
+   <header>qt/dogecash/optionbutton.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

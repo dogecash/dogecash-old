@@ -119,7 +119,7 @@ void ReceiveWidget::loadWalletModel(){
 void ReceiveWidget::refreshView(QString refreshAddress){
     try {
         QString latestAddress = (refreshAddress.isEmpty()) ? this->addressTableModel->getLastUnusedAddress() : refreshAddress;
-        if (latestAddress.isEmpty()) // new default address
+        if (latestAddress.isEmpty()) { // new default address
            CBitcoinAddress newAddress;
             PairResult r = walletModel->getNewAddress(newAddress, "Default");
             // Check for generation errors
