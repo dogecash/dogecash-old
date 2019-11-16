@@ -28,6 +28,8 @@
 
 #include "util.h"
 
+#define BASE_WINDOW_WIDTH 1200
+#define BASE_WINDOW_HEIGHT 740
 
 const QString DogeCashGUI::DEFAULT_WALLET = "~Default";
 
@@ -37,8 +39,8 @@ DogeCashGUI::DogeCashGUI(const NetworkStyle* networkStyle, QWidget* parent) :
 
     /* Open CSS when configured */
     this->setStyleSheet(GUIUtil::loadStyleSheet());
-    this->setMinimumSize(1200, 780);
-    GUIUtil::restoreWindowGeometry("nWindow", QSize(1200, 780), this);
+    this->setMinimumSize(BASE_WINDOW_WIDTH, BASE_WINDOW_HEIGHT);
+    GUIUtil::restoreWindowGeometry("nWindow", QSize(BASE_WINDOW_WIDTH, BASE_WINDOW_HEIGHT), this);
 
     QString windowTitle = tr("DogeCash Core") + " - ";
 #ifdef ENABLE_WALLET
@@ -48,12 +50,9 @@ DogeCashGUI::DogeCashGUI(const NetworkStyle* networkStyle, QWidget* parent) :
     enableWallet = false;
 #endif // ENABLE_WALLET
 
-    if (enableWallet) {
-        windowTitle += tr("Wallet");
-    } else {
-        windowTitle += tr("Node");
-    }
-
+    QString windowTitle = tr("DogeCash Core") + " - ";
+    windowTitle += ((enableWallet) ? tr("Wallet") : tr("Node"));
+    windowTitle += " " + networkStyle->getTitleAddText();
     setWindowTitle(windowTitle);
 
 #ifndef Q_OS_MAC
@@ -71,8 +70,8 @@ DogeCashGUI::DogeCashGUI(const NetworkStyle* networkStyle, QWidget* parent) :
     if(enableWallet){
 
         QFrame* centralWidget = new QFrame(this);
-        this->setMinimumWidth(1200);
-        this->setMinimumHeight(740);
+        this->setMinimumWidth(BASE_WINDOW_WIDTH);
+        this->setMinimumHeight(BASE_WINDOW_HEIGHT);
         QHBoxLayout* centralWidgetLayouot = new QHBoxLayout();
         centralWidget->setLayout(centralWidgetLayouot);
         centralWidgetLayouot->setContentsMargins(0,0,0,0);
@@ -118,6 +117,7 @@ DogeCashGUI::DogeCashGUI(const NetworkStyle* networkStyle, QWidget* parent) :
         addressesWidget = new AddressesWidget(this);
         privacyWidget = new PrivacyWidget(this);
         masterNodesWidget = new MasterNodesWidget(this);
+        coldStakingWidget = new ColdStakingWidget(this);
         governancePage = new GovernancePage(this);
         settingsWidget = new SettingsWidget(this);
 
@@ -128,6 +128,7 @@ DogeCashGUI::DogeCashGUI(const NetworkStyle* networkStyle, QWidget* parent) :
         stackedContainer->addWidget(addressesWidget);
         stackedContainer->addWidget(privacyWidget);
         stackedContainer->addWidget(masterNodesWidget);
+        stackedContainer->addWidget(coldStakingWidget);
         stackedContainer->addWidget(governancePage);
         stackedContainer->addWidget(settingsWidget);
         stackedContainer->setCurrentWidget(dashboard);
@@ -185,6 +186,7 @@ void DogeCashGUI::connectActions() {
     });
     connect(topBar, &TopBar::showHide, this, &DogeCashGUI::showHide);
     connect(topBar, &TopBar::themeChanged, this, &DogeCashGUI::changeTheme);
+    connect(topBar, &TopBar::onShowHideColdStakingChanged, navMenu, &NavMenuWidget::onShowHideColdStakingChanged);
     connect(settingsWidget, &SettingsWidget::showHide, this, &DogeCashGUI::showHide);
     connect(sendWidget, &SendWidget::showHide, this, &DogeCashGUI::showHide);
     connect(receiveWidget, &ReceiveWidget::showHide, this, &DogeCashGUI::showHide);
@@ -192,6 +194,8 @@ void DogeCashGUI::connectActions() {
     connect(privacyWidget, &PrivacyWidget::showHide, this, &DogeCashGUI::showHide);
     connect(masterNodesWidget, &MasterNodesWidget::showHide, this, &DogeCashGUI::showHide);
     connect(masterNodesWidget, &MasterNodesWidget::execDialog, this, &DogeCashGUI::execDialog);
+    connect(coldStakingWidget, &ColdStakingWidget::showHide, this, &PIVXGUI::showHide);
+    connect(coldStakingWidget, &ColdStakingWidget::execDialog, this, &PIVXGUI::execDialog);
     connect(settingsWidget, &SettingsWidget::execDialog, this, &DogeCashGUI::execDialog);
 }
 
@@ -244,9 +248,11 @@ void DogeCashGUI::setClientModel(ClientModel* clientModel) {
         // Receive and report messages from client model
         connect(clientModel, SIGNAL(message(QString, QString, unsigned int)), this, SLOT(message(QString, QString, unsigned int)));
         connect(topBar, SIGNAL(walletSynced(bool)), dashboard, SLOT(walletSynced(bool)));
+        connect(topBar, SIGNAL(walletSynced(bool)), coldStakingWidget, SLOT(walletSynced(bool)));
 
         // Get restart command-line parameters and handle restart
         connect(settingsWidget, &SettingsWidget::handleRestart, [this](QStringList arg){handleRestart(arg);});
+        
 
         if (rpcConsole) {
             rpcConsole->setClientModel(clientModel);
@@ -472,6 +478,10 @@ void DogeCashGUI::goToMasterNodes(){
     showTop(masterNodesWidget);
 }
 
+void DogeCashGUI::goToColdStaking(){
+    showTop(coldStakingWidget);
+}
+
 void DogeCashGUI::goToGovernance(){
     showTop(governancePage);
 }
@@ -568,6 +578,7 @@ bool DogeCashGUI::addWallet(const QString& name, WalletModel* walletModel)
     //connect(walletView, SIGNAL(showNormalIfMinimized()), gui, SLOT(showNormalIfMinimized()));
 
     // set the model for every view
+    navMenu->setWalletModel(walletModel);
     dashboard->setWalletModel(walletModel);
     topBar->setWalletModel(walletModel);
     receiveWidget->setWalletModel(walletModel);
@@ -575,6 +586,7 @@ bool DogeCashGUI::addWallet(const QString& name, WalletModel* walletModel)
     addressesWidget->setWalletModel(walletModel);
     privacyWidget->setWalletModel(walletModel);
     masterNodesWidget->setWalletModel(walletModel);
+    coldStakingWidget->setWalletModel(walletModel);
     governancePage->setWalletModel(walletModel);
     settingsWidget->setWalletModel(walletModel);
 
@@ -585,6 +597,7 @@ bool DogeCashGUI::addWallet(const QString& name, WalletModel* walletModel)
     connect(sendWidget, &SendWidget::message,this, &DogeCashGUI::message);
     connect(receiveWidget, &ReceiveWidget::message,this, &DogeCashGUI::message);
     connect(addressesWidget, &AddressesWidget::message,this, &DogeCashGUI::message);
+    connect(coldStakingWidget, &MasterNodesWidget::message, this, &DogeCashGUI::message);
     connect(settingsWidget, &SettingsWidget::message, this, &DogeCashGUI::message);
 
     // Pass through transaction notifications
