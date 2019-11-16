@@ -73,6 +73,7 @@ QT_FORMS_UI = \
   qt/dogecash/forms/mnrow.ui \
   qt/dogecash/forms/masternodeswidget.ui \
   qt/dogecash/forms/myaddressrow.ui \
+  qt/dogecash/forms/csrow.ui \
   qt/dogecash/forms/sendchangeaddressdialog.ui \
   qt/dogecash/forms/sendconfirmdialog.ui \
   qt/dogecash/forms/sendcustomfeedialog.ui \
@@ -89,6 +90,7 @@ QT_FORMS_UI = \
   qt/dogecash/forms/defaultdialog.ui \
   qt/dogecash/forms/denomgenerationdialog.ui \
   qt/dogecash/forms/privacywidget.ui \
+  qt/dogecash/forms/coldstakingwidget.ui \
   qt/dogecash/settings/forms/settingsbackupwallet.ui \
   qt/dogecash/settings/forms/settingsbittoolwidget.ui \
   qt/dogecash/settings/forms/settingsconsolewidget.ui \
@@ -162,11 +164,13 @@ QT_MOC_CPP = \
   qt/dogecash/moc_mninfodialog.cpp \
   qt/dogecash/moc_optionbutton.cpp \
   qt/dogecash/moc_governancepage.cpp \
+  qt/dogecash/moc_coldstakingmodel.cpp \
   qt/dogecash/moc_mnmodel.cpp \
   qt/dogecash/moc_masternodewizarddialog.cpp \
   qt/dogecash/moc_mnrow.cpp \
   qt/dogecash/moc_masternodeswidget.cpp \
   qt/dogecash/moc_myaddressrow.cpp \
+  qt/dogecash/moc_csrow.cpp \
   qt/dogecash/moc_contactsdropdown.cpp \
   qt/dogecash/moc_sendchangeaddressdialog.cpp \
   qt/dogecash/moc_sendconfirmdialog.cpp \
@@ -183,6 +187,7 @@ QT_MOC_CPP = \
   qt/dogecash/moc_defaultdialog.cpp \
   qt/dogecash/moc_denomgenerationdialog.cpp \
   qt/dogecash/moc_privacywidget.cpp \
+  qt/dogecash/moc_coldstakingwidget.cpp \
   qt/dogecash/settings/moc_settingsbackupwallet.cpp \
   qt/dogecash/settings/moc_settingsbittoolwidget.cpp \
   qt/dogecash/settings/moc_settingsconsolewidget.cpp \
@@ -267,6 +272,7 @@ BITCOIN_QT_H = \
   qt/winshutdownmonitor.h \
   qt/zdogeccontroldialog.h \
   qt/dogecash/pwidget.h \
+  qt/dogecash/guitransactionsutils.h \
   qt/dogecash/snackbar.h \
   qt/dogecash/navmenuwidget.h \
   qt/dogecash/lockunlock.h \
@@ -279,6 +285,7 @@ BITCOIN_QT_H = \
   qt/dogecash/walletpassworddialog.h \
   qt/dogecash/topbar.h \
   qt/dogecash/txrow.h \
+  qt/dogecash/addressholder.h \
   qt/dogecash/addressfilterproxymodel.h \
   qt/dogecash/dashboardwidget.h \
   qt/dogecash/coincontroldogecwidget.h \
@@ -288,11 +295,13 @@ BITCOIN_QT_H = \
   qt/dogecash/proposalframe.h \
   qt/dogecash/governancepage.h \
   qt/dogecash/optionbutton.h \
+  qt/dogecash/coldstakingmodel.h \
   qt/dogecash/mnmodel.h \
   qt/dogecash/masternodewizarddialog.h \
   qt/dogecash/mnrow.h \
   qt/dogecash/masternodeswidget.h \
   qt/dogecash/myaddressrow.h \
+  qt/dogecash/csrow.h \
   qt/dogecash/contactsdropdown.h \
   qt/dogecash/sendchangeaddressdialog.h \
   qt/dogecash/sendconfirmdialog.h \
@@ -309,6 +318,7 @@ BITCOIN_QT_H = \
   qt/dogecash/defaultdialog.h \
   qt/dogecash/denomgenerationdialog.h \
   qt/dogecash/privacywidget.h \
+  qt/dogecash/coldstakingwidget.h \
   qt/dogecash/settings/settingsbackupwallet.h \
   qt/dogecash/settings/settingsbittoolwidget.h \
   qt/dogecash/settings/settingsconsolewidget.h \
@@ -405,6 +415,8 @@ RES_ICONS = \
   qt/dogecash/res/img/ic-update.svg \
   qt/dogecash/res/img/bg-multi-number.svg \
   qt/dogecash/res/img/ic-check-mint-off.svg \
+  qt/dogecash/res/img/ic-nav-cold-staking.svg \
+  qt/dogecash/res/img/ic-nav-cold-staking-active.svg \
   qt/dogecash/res/img/ic-nav-dashboard-active.svg \
   qt/dogecash/res/img/ic-wallet-status-locked.svg \
   qt/dogecash/res/img/bg-splash.svg \
@@ -550,6 +562,11 @@ RES_ICONS = \
   qt/dogecash/res/img/ic-transaction-warning.svg \
   qt/dogecash/res/img/ic-transaction-mint.svg \
   qt/dogecash/res/img/ic-transaction-mint-inactive.svg \
+  qt/dogecash/res/img/ic-check-cold-staking.svg \
+  qt/dogecash/res/img/ic-check-cold-staking-off.svg \
+  qt/dogecash/res/img/ic-check-cold-staking-enabled.svg \
+  qt/dogecash/res/img/dark/ic-transaction-cs-contract.svg \
+  qt/dogecash/res/img/dark/ic-transaction-cs-contract-inactive.svg \
   qt/dogecash/res/img/img-qr.svg \
   qt/dogecash/res/img/ic-check-connect-off.svg \
   qt/dogecash/res/img/ic-label.svg \
@@ -587,6 +604,16 @@ RES_ICONS = \
   qt/dogecash/res/img/ic-check-liliac-indeterminate.svg \
   qt/dogecash/res/img/ic-check-box-liliac-indeterminate.svg \
   qt/dogecash/res/img/ic-check-box-indeterminate.svg \
+  qt/dogecash/res/img/ic-transaction-stake-delegated.svg \
+  qt/dogecash/res/img/ic-transaction-stake-delegated-inactive.svg \
+  qt/dogecash/res/img/ic-transaction-stake-hot.svg \
+  qt/dogecash/res/img/ic-transaction-stake-hot-inactive.svg \
+  qt/dogecash/res/img/dark/ic-transaction-stake-hot.svg \
+  qt/dogecash/res/img/dark/ic-transaction-stake-hot-inactive.svg \
+  qt/dogecash/res/img/dark/ic-transaction-stake-delegated.svg \
+  qt/dogecash/res/img/dark/ic-transaction-stake-delegated-inactive.svg \
+  qt/dogecash/res/img/ic-transaction-cs-contract.svg \
+  qt/dogecash/res/img/ic-transaction-cs-contract-inactive.svg \
   qt/dogecash/res/img/ani-loading-dark.gif \
   qt/dogecash/res/img/ani-loading.gif
 
@@ -641,6 +668,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/dogecash/loadingdialog.cpp \
   qt/zdogeccontroldialog.cpp \
   qt/dogecash/pwidget.cpp \
+  qt/dogecash/guitransactionsutils.cpp \
   qt/dogecash/snackbar.cpp \
   qt/dogecash/navmenuwidget.cpp \
   qt/dogecash/lockunlock.cpp \
@@ -653,6 +681,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/dogecash/governancepage.cpp \
   qt/dogecash/topbar.cpp \
   qt/dogecash/txrow.cpp \
+  qt/dogecash/addressholder.cpp \
   qt/dogecash/addressfilterproxymodel.cpp \
   qt/dogecash/dashboardwidget.cpp \
   qt/dogecash/coincontroldogecwidget.cpp \
@@ -662,11 +691,13 @@ BITCOIN_QT_WALLET_CPP = \
   qt/dogecash/contactsdropdown.cpp \
   qt/dogecash/optionbutton.cpp \
   qt/dogecash/mninfodialog.cpp \
+  qt/dogecash/coldstakingmodel.cpp \
   qt/dogecash/mnmodel.cpp \
   qt/dogecash/masternodewizarddialog.cpp \
   qt/dogecash/mnrow.cpp \
   qt/dogecash/masternodeswidget.cpp \
   qt/dogecash/myaddressrow.cpp \
+  qt/dogecash/csrow.cpp \
   qt/dogecash/sendchangeaddressdialog.cpp \
   qt/dogecash/sendconfirmdialog.cpp \
   qt/dogecash/sendcustomfeedialog.cpp \
@@ -682,6 +713,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/dogecash/defaultdialog.cpp \
   qt/dogecash/denomgenerationdialog.cpp \
   qt/dogecash/privacywidget.cpp \
+  qt/dogecash/coldstakingwidget.cpp \
   qt/dogecash/settings/settingsbackupwallet.cpp \
   qt/dogecash/settings/settingsbittoolwidget.cpp \
   qt/dogecash/settings/settingsconsolewidget.cpp \

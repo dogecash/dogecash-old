@@ -39,7 +39,8 @@ public:
 public slots:
     void updateBalances(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance,
                         const CAmount& zerocoinBalance, const CAmount& unconfirmedZerocoinBalance, const CAmount& immatureZerocoinBalance,
-                        const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance);
+                        const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance,
+                        const CAmount& delegatedBalance, const CAmount& coldStakedBalance);
     void updateDisplayUnit();
 
     void setNumConnections(int count);
@@ -50,6 +51,7 @@ public slots:
 signals:
     void themeChanged(bool isLight);
     void walletSynced(bool isSync);
+    void onShowHideColdStakingChanged(bool show);
     /** HD-Enabled status of wallet changed (only possible during startup) */
     void hdEnabledStatusChanged(bool hdEnabled);
 protected:
@@ -62,6 +64,7 @@ private slots:
     void lockDropdownClicked(const StateClicked&);
     void refreshStatus();
     void openLockUnlock();
+    void onColdStakingClicked();
     void setHDStatus(bool hdEnabled);
 private:
     Ui::TopBar *ui;
@@ -70,6 +73,7 @@ private:
 
     int nDisplayUnit = -1;
     QTimer* timerStakingIcon = nullptr;
+    bool isInitializing = true;
 };
 
 #endif // TOPBAR_H

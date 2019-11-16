@@ -5,6 +5,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#include "addressbook.h"
 #include "amount.h"
 #include "base58.h"
 #include "core_io.h"
@@ -82,7 +83,7 @@ string AccountFromValue(const UniValue& value)
     return strAccount;
 }
 
-CBitcoinAddress GetNewAddressFromAccount(const std::string name, const UniValue &params,
+CBitcoinAddress GetNewAddressFromAccount(const std::string purpose, const UniValue &params,
         const CChainParams::Base58Type addrType = CChainParams::PUBKEY_ADDRESS)
 {
     LOCK2(cs_main, pwalletMain->cs_wallet);
@@ -91,18 +92,11 @@ CBitcoinAddress GetNewAddressFromAccount(const std::string name, const UniValue 
     if (!params.isNull() && params.size() > 0)
         strAccount = AccountFromValue(params[0]);
 
-    if (!pwalletMain->IsLocked())
-        pwalletMain->TopUpKeyPool();
-
-    // Generate a new key that is added to wallet
-    CPubKey newKey;
-    if (!pwalletMain->GetKeyFromPool(newKey))
-        throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out, please call keypoolrefill first");
-    CKeyID keyID = newKey.GetID();
-
-    pwalletMain->SetAddressBook(keyID, strAccount, name);
-
-    return CBitcoinAddress(keyID, addrType);
+    CBitcoinAddress address;
+    PairResult r = pwalletMain->getNewAddress(address, strAccount, purpose, addrType);
+    if(!r.result)
+        throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, *r.status);
+    return address;
 }
 
 UniValue getnewaddress(const UniValue& params, bool fHelp)
@@ -175,7 +169,7 @@ UniValue delegatoradd(const UniValue& params, bool fHelp)
     if (!address.GetKeyID(keyID))
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Unable to get KeyID from PIVX address");
 
-    return pwalletMain->SetAddressBook(keyID, "", "delegator");
+    return pwalletMain->SetAddressBook(keyID, "", AddressBook::AddressBookPurpose::DELEGATOR);
 }
 
 UniValue delegatorremove(const UniValue& params, bool fHelp)
@@ -183,7 +177,7 @@ UniValue delegatorremove(const UniValue& params, bool fHelp)
     if (fHelp || params.size() != 1)
         throw std::runtime_error(
             "delegatorremove \"addr\"\n"
-            "\nRemoves the provided address <addr> from the allowed delegators keystore.\n"
+            "\nUpdates the provided address <addr> from the allowed delegators keystore to a \"delegable\" status.\n"
             "This disables the staking of coins delegated to this wallet, owned by <addr>\n"
 
             "\nArguments:\n"
@@ -202,9 +196,21 @@ UniValue delegatorremove(const UniValue& params, bool fHelp)
 
     CKeyID keyID;
     if (!address.GetKeyID(keyID))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Unable to get KeyID from PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Unable to get KeyID from DogeCash address");
 
-    return pwalletMain->DelAddressBook(keyID);
+    if (!pwalletMain->HasAddressBook(keyID))
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Unable to get DogeCash address from addressBook");
+
+    std::string label = "";
+    {
+        LOCK(pwalletMain->cs_wallet);
+        std::map<CTxDestination, AddressBook::CAddressBookData>::iterator mi = pwalletMain->mapAddressBook.find(address.Get());
+        if (mi != pwalletMain->mapAddressBook.end()) {
+            label = mi->second.name;
+        }
+    }
+
+    return pwalletMain->SetAddressBook(keyID, label, AddressBook::AddressBookPurpose::DELEGABLE);
 }
 
 UniValue ListaddressesForPurpose(const std::string strPurpose)
@@ -463,7 +469,7 @@ UniValue getaccount(const UniValue& params, bool fHelp)
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid dogecash address");
 
     string strAccount;
-    map<CTxDestination, CAddressBookData>::iterator mi = pwalletMain->mapAddressBook.find(address.Get());
+    map<CTxDestination, AddressBook::CAddressBookData>::iterator mi = pwalletMain->mapAddressBook.find(address.Get());
     if (mi != pwalletMain->mapAddressBook.end() && !(*mi).second.name.empty())
         strAccount = (*mi).second.name;
     return strAccount;
@@ -495,7 +501,7 @@ UniValue getaddressesbyaccount(const UniValue& params, bool fHelp)
 
     // Find all addresses that have the given account
     UniValue ret(UniValue::VARR);
-    BOOST_FOREACH (const PAIRTYPE(CBitcoinAddress, CAddressBookData) & item, pwalletMain->mapAddressBook) {
+    BOOST_FOREACH (const PAIRTYPE(CBitcoinAddress, AddressBook::CAddressBookData) & item, pwalletMain->mapAddressBook) {
         const CBitcoinAddress& address = item.first;
         const string& strName = item.second.name;
         if (strName == strAccount)
@@ -1631,7 +1637,7 @@ UniValue ListReceived(const UniValue& params, bool fByAccounts)
     // Reply
     UniValue ret(UniValue::VARR);
     map<string, tallyitem> mapAccountTally;
-    BOOST_FOREACH (const PAIRTYPE(CBitcoinAddress, CAddressBookData) & item, pwalletMain->mapAddressBook) {
+    BOOST_FOREACH (const PAIRTYPE(CBitcoinAddress, AddressBook::CAddressBookData) & item, pwalletMain->mapAddressBook) {
         const CBitcoinAddress& address = item.first;
         const string& strAccount = item.second.name;
         map<CBitcoinAddress, tallyitem>::iterator it = mapTally.find(address);
@@ -2087,7 +2093,7 @@ UniValue listaccounts(const UniValue& params, bool fHelp)
             includeWatchonly = includeWatchonly | ISMINE_WATCH_ONLY;
 
     map<string, CAmount> mapAccountBalances;
-    BOOST_FOREACH (const PAIRTYPE(CTxDestination, CAddressBookData) & entry, pwalletMain->mapAddressBook) {
+    BOOST_FOREACH (const PAIRTYPE(CTxDestination, AddressBook::CAddressBookData) & entry, pwalletMain->mapAddressBook) {
         if (IsMine(*pwalletMain, entry.first) & includeWatchonly) // This address belongs to me
             mapAccountBalances[entry.second.name] = 0;
     }

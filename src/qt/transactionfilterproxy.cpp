@@ -21,7 +21,7 @@ TransactionFilterProxy::TransactionFilterProxy(QObject* parent) : QSortFilterPro
                                                                   dateFrom(MIN_DATE),
                                                                   dateTo(MAX_DATE),
                                                                   addrPrefix(),
-                                                                  typeFilter(COMMON_TYPES),
+                                                                  typeFilter(ALL_TYPES),
                                                                   watchOnlyFilter(WatchOnlyFilter_All),
                                                                   minAmount(0),
                                                                   limitRows(-1),
@@ -54,14 +54,18 @@ bool TransactionFilterProxy::filterAcceptsRow(int sourceRow, const QModelIndex& 
         return false;
     if (datetime < dateFrom || datetime > dateTo)
         return false;
-    if (!address.contains(addrPrefix, Qt::CaseInsensitive) && !label.contains(addrPrefix, Qt::CaseInsensitive))
-        return false;
+    if (!addrPrefix.isEmpty()) {
+        if (!address.contains(addrPrefix, Qt::CaseInsensitive) && !label.contains(addrPrefix, Qt::CaseInsensitive))
+            return false;
+    }
     if (amount < minAmount)
         return false;
     if (fOnlyZc && !isZcTx(type)){
         return false;
     }
     if (fOnlyStakesandMN && !isStakeTx(type) && !isMasternodeRewardTx(type))
+        return false;
+    if (fOnlyColdStaking && !isColdStake(type))
         return false;
 
     return true;
@@ -125,6 +129,12 @@ void TransactionFilterProxy::setOnlyStakesandMNTxes(bool fOnlyStakesandMN){
     invalidateFilter();
 }
 
+void TransactionFilterProxy::setOnlyColdStakes(bool fOnlyColdStakes)
+{
+    this->fOnlyColdStaking = fOnlyColdStakes;
+    invalidateFilter();
+}
+
 int TransactionFilterProxy::rowCount(const QModelIndex& parent) const
 {
     if (limitRows != -1) {
@@ -152,6 +162,10 @@ bool TransactionFilterProxy::isStakeTx(int type) const {
 
 bool TransactionFilterProxy::isMasternodeRewardTx(int type) const {
     return (type == TransactionRecord::MNReward);
+}
+
+bool TransactionFilterProxy::isColdStake(int type) const {
+    return (type == TransactionRecord::P2CSDelegation || type == TransactionRecord::P2CSDelegationSent || type == TransactionRecord::StakeDelegated || type == TransactionRecord::StakeHot);
 }
 
 /*QVariant TransactionFilterProxy::dataFromSourcePos(int sourceRow, int role) const {
