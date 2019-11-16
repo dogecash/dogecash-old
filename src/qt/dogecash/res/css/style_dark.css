@@ -107,25 +107,25 @@ QPushButton[cssClass="img-nav-logo"] {
     qproperty-iconSize: 24px 40px;
     background-color:transparent;
     font-size:14px;
-    color: #938da5;
+    color: #9c7019;
 }
 
 *[cssClass="btn-nav-cold-staking"]:checked {
     background-color: #0f0b16;
     font-size:14px;
-    color: #B088FF;
+    color: #b88a63;
 }
 
 *[cssClass="btn-nav-cold-staking"]:checked:hover {
     background-color: #0f0b16;
-    color: #B088FF;
+    color: #b88a63;
 }
 
 *[cssClass="btn-nav-cold-staking"]:hover {
     qproperty-icon: url("://ic-nav-cold-staking-hover");
     qproperty-iconSize: 24px 40px;
     background-color: #1A000000;
-    color: #938da5;
+    color: #9c7019;
 }
 
 *[cssClass="btn-nav-cold-staking-active"] {
@@ -133,7 +133,7 @@ QPushButton[cssClass="img-nav-logo"] {
     qproperty-iconSize: 24px 40px;
     background-color: #0f0b16;
     font-size:14px;
-    color: #B088FF;
+    color: #b88a63;
 }
 
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
@@ -149,7 +149,7 @@ QPushButton[cssClass="btn-check-cold-staking"] {
     qproperty-iconSize: 24px 24px;
     color:#ffffff;
     background-color:#505c4b7d;
-    border-bottom:2px solid #5C4B7D;
+    border-bottom:2px solid #9c7019;
     border-radius:2px;
 }
 
@@ -159,7 +159,7 @@ QPushButton[cssClass="btn-check-cold-staking-inactive"] {
     qproperty-iconSize: 24px 24px;
     color:#B3FFFFFF;
     background-color:#405c4b7d;
-    border-bottom:2px solid #5C4B7D;
+    border-bottom:2px solid #9c7019;
     border-radius:2px;
 }
 
@@ -168,7 +168,7 @@ QPushButton[cssClass="btn-check-cold-staking-checked"] {
     qproperty-iconSize: 24px 24px;
     background-color:#505c4b7d;
     color:#ffffff;
-    border-bottom:2px solid #b088ff;
+    border-bottom:2px solid #b88a63;
 }
 
 QPushButton[cssClass="btn-check-cold-staking-unchecked"] {
@@ -176,7 +176,7 @@ QPushButton[cssClass="btn-check-cold-staking-unchecked"] {
     qproperty-iconSize: 24px 24px;
     color:#B3FFFFFF;
     background-color:#405c4b7d;
-    border-bottom:2px solid #5C4B7D;
+    border-bottom:2px solid #9c7019;
     border-radius:2px;
 }
 
@@ -185,7 +185,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 24px;
     background-color:#505c4b7d;
     color:#ffffff;
-    border-bottom:2px solid #b088ff;
+    border-bottom:2px solid #b88a63;
 }
 
 /*******************
@@ -960,7 +960,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-title-right"] {
-    color:#b088ff;
+    color:#b88a63;
     font-size:14px;
 }
 
@@ -2057,10 +2057,10 @@ QComboBox[cssClass="btn-combo-coins"] {
 }
 
 QLabel[cssClass="btn-combo-coins"] {
-    background-color:#5c4b7d;
+    background-color:#7d644b;
     padding:10px 10px 10px 10px;
     font-size:16px;
-    border:1px solid #5c4b7d;
+    border:1px solid #7d644b;
     color: #FFFFFF;
 }
 
