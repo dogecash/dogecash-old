@@ -281,7 +281,7 @@ void ColdStakingWidget::onContactsClicked(){
         menu->hide();
     }
 
-    int contactsSize = isContactOwnerSelected ? walletModel->getAddressTableModel()->sizeSend() : walletModel->getAddressTableModel()->sizeDell();
+    int contactsSize = isContactOwnerSelected ? walletModel->getAddressTableModel()->sizeSend() : walletModel->getAddressTableModel()->sizeColdSend();
     if(contactsSize == 0) {
         inform(tr("No contacts available, you can go to the contacts screen and add some there!"));
         return;
@@ -291,17 +291,7 @@ void ColdStakingWidget::onContactsClicked(){
     int width;
     QPoint pos;
 
-    if (isContactOwnerSelected) {
-        height = ui->lineEditOwnerAddress->height();
-        width = ui->lineEditOwnerAddress->width();
-        pos = ui->containerSend->rect().bottomLeft();
-        pos.setY((pos.y() + (height - 12) * 3));
-    } else {
-        height = sendMultiRow->getEditHeight();
-        width = sendMultiRow->getEditWidth();
-        pos = sendMultiRow->getEditLineRect().bottomLeft();
-        pos.setY((pos.y() + (height - 14) * 4));
-    }
+    menuContacts->setWalletModel(walletModel, isContactOwnerSelected ? AddressTableModel::Receive : AddressTableModel::ColdStakingSend);
 
     pos.setX(pos.x() + 40);
     height = (contactsSize <= 2) ? height * ( 2 * (contactsSize + 1 )) : height * 4;

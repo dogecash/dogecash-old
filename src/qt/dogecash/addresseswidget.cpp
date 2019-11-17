@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The DogeCash developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -28,13 +28,9 @@ public:
     explicit ContactsHolder(bool _isLightTheme) : FurListRow(), isLightTheme(_isLightTheme){}
 
     AddressLabelRow* createHolder(int pos) override{
-        if (!cachedRow) {
-            cachedRow = new AddressLabelRow();
-            cachedRow->init(isLightTheme, false);
-            return cachedRow;
-        } else {
-            return cachedRow;
-        }
+        if (!cachedRow) cachedRow = new AddressLabelRow();
+        cachedRow->init(isLightTheme, false);
+        return cachedRow;
     }
 
     void init(QWidget* holder,const QModelIndex &index, bool isHovered, bool isSelected) const override{
@@ -59,7 +55,6 @@ public:
     AddressLabelRow* cachedRow = nullptr;
 };
 
-#include "qt/dogecash/moc_addresseswidget.cpp"
 
 AddressesWidget::AddressesWidget(DogeCashGUI* parent) :
     PWidget(parent),
@@ -158,7 +153,7 @@ void AddressesWidget::handleAddressClicked(const QModelIndex &index){
 void AddressesWidget::loadWalletModel(){
     if(walletModel) {
         addressTablemodel = walletModel->getAddressTableModel();
-        this->filter = new AddressFilterProxyModel(AddressTableModel::Send, this);
+        this->filter = new AddressFilterProxyModel(QStringList({AddressTableModel::Send, AddressTableModel::ColdStakingSend}), this);
         this->filter->setSourceModel(addressTablemodel);
         ui->listAddresses->setModel(this->filter);
         ui->listAddresses->setModelColumn(AddressTableModel::Address);
@@ -198,7 +193,9 @@ void AddressesWidget::onStoreContactClicked(){
             return;
         }
 
-        if (walletModel->updateAddressBookLabels(dogecAdd.Get(), label.toUtf8().constData(), "send")) {
+        if (walletModel->updateAddressBookLabels(dogecAdd.Get(), label.toUtf8().constData(),
+                dogecAdd.IsStakingAddress() ? AddressBook::AddressBookPurpose::COLD_STAKING_SEND : AddressBook::AddressBookPurpose::SEND)
+                ) {
             ui->lineEditAddress->setText("");
             ui->lineEditName->setText("");
             setCssEditLine(ui->lineEditAddress, true, true);
@@ -223,7 +220,7 @@ void AddressesWidget::onEditClicked(){
     dialog->setData(address, currentLabel);
     if(openDialogWithOpaqueBackground(dialog, window)){
         if(walletModel->updateAddressBookLabels(
-                CBitcoinAddress(address.toStdString()).Get(), dialog->getLabel().toStdString(), "send")){
+                CBitcoinAddress(address.toStdString()).Get(), dialog->getLabel().toStdString(), addressTablemodel->purposeForAddress(address.toStdString()))){
             inform(tr("Contact edited"));
         }else{
             inform(tr("Contact edit failed"));
