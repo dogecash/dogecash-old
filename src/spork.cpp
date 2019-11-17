@@ -75,15 +75,7 @@ void CSporkManager::LoadSporksFromDB()
 
 void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
 {
-    if (fLiteMode) return; // disable all obfuscation/masternode related functionality
-
-    int nChainHeight = 0;
-    {
-        LOCK(cs_main);
-        if (chainActive.Tip() == nullptr)
-            return;
-        nChainHeight = chainActive.Height();
-    }
+    if (fLiteMode || chainActive.Tip() == nullptr) return; // disable all obfuscation/masternode related functionality
 
     if (strCommand == "spork") {
 
@@ -104,8 +96,13 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
 
         // reject old signatures 600 blocks after hard-fork
         if (spork.nMessVersion != MessageVersion::MESS_VER_HASH) {
-            if (Params().NewSigsActive(nChainHeight - 600)) {
-                LogPrintf("%s : nMessVersion=%d not accepted anymore at block %d", __func__, spork.nMessVersion, nChainHeight);
+            int nHeight;
+            {
+                LOCK(cs_main);
+                nHeight = chainActive.Height();
+            }
+            if (Params().NewSigsActive(nHeight - 600)) {
+                LogPrintf("%s : nMessVersion=%d not accepted anymore at block %d", __func__, spork.nMessVersion, nHeight);
                 return;
             }
         }
@@ -118,19 +115,19 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
                 // spork is active
                 if (mapSporksActive[spork.nSporkID].nTimeSigned >= spork.nTimeSigned) {
                     // spork in memory has been signed more recently
-                    if (fDebug) LogPrintf("%s : seen %s block %d \n", __func__, hash.ToString(), nChainHeight);
+                    if (fDebug) LogPrintf("%s : seen %s block %d \n", __func__, hash.ToString(), chainActive.Tip()->nHeight);
                     return;
                 } else {
                     // update active spork
-                    if (fDebug) LogPrintf("%s : got updated spork %s block %d \n", __func__, hash.ToString(), nChainHeight);
+                    if (fDebug) LogPrintf("%s : got updated spork %s block %d \n", __func__, hash.ToString(), chainActive.Tip()->nHeight);
                 }
             } else {
                 // spork is not active
-                if (fDebug) LogPrintf("%s : got new spork %s block %d \n", __func__, hash.ToString(), nChainHeight);
+                if (fDebug) LogPrintf("%s : got new spork %s block %d \n", __func__, hash.ToString(), chainActive.Tip()->nHeight);
             }
         }
 
-        LogPrintf("%s : new %s ID %d Time %d bestHeight %d\n", __func__, hash.ToString(), spork.nSporkID, spork.nValue, nChainHeight);
+        LogPrintf("%s : new %s ID %d Time %d bestHeight %d\n", __func__, hash.ToString(), spork.nSporkID, spork.nValue, chainActive.Tip()->nHeight);
 
         const bool fRequireNew = spork.nTimeSigned >= Params().NewSporkStart();
         bool fValidSig = spork.CheckSignature();
