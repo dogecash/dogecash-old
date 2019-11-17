@@ -1735,8 +1735,9 @@ int64_t nStart;
                 // ensure this wallet.dat can only be opened by clients supporting HD
                 pwalletMain->SetMinVersion(FEATURE_HD);
             }
+
             // Top up the keypool
-            if (!pwalletMain->TopUpKeyPool()) {
+            if (!pwalletMain->TopUpKeyPool() && !pwalletMain->IsLocked()) {
                 // Error generating keys
                 InitError(_("Unable to generate initial key") += "\n");
                 return error("%s %s", __func__ , "Unable to generate initial key");
