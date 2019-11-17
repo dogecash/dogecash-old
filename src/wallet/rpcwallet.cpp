@@ -750,7 +750,7 @@ UniValue delegatestake(const UniValue& params, bool fHelp)
 
             "\nArguments:\n"
             "1. \"stakingaddress\"      (string, required) The DogeCash staking address to delegate.\n"
-            "2. \"amount\"              (numeric, required) The amount in PIV to delegate for staking. eg 100\n"
+            "2. \"amount\"              (numeric, required) The amount in DOGEC to delegate for staking. eg 100\n"
             "3. \"owneraddress\"        (string, optional) The DogeCash address corresponding to the key that will be able to spend the stake. \n"
             "                               If not provided, or empty string, a new wallet address is generated.\n"
             "4. \"fExternalOwner\"      (boolean, optional, default = false) use the provided 'owneraddress' anyway, even if not present in this wallet.\n"
@@ -794,7 +794,7 @@ UniValue rawdelegatestake(const UniValue& params, bool fHelp)
 
             "\nArguments:\n"
             "1. \"stakingaddress\"      (string, required) The DogeCash staking address to delegate.\n"
-            "2. \"amount\"              (numeric, required) The amount in PIV to delegate for staking. eg 100\n"
+            "2. \"amount\"              (numeric, required) The amount in DOGEC to delegate for staking. eg 100\n"
             "3. \"owneraddress\"        (string, optional) The DogeCash address corresponding to the key that will be able to spend the stake. \n"
             "                               If not provided, or empty string, a new wallet address is generated.\n"
             "4. \"fExternalOwner\"      (boolean, optional, default = false) use the provided 'owneraddress' anyway, even if not present in this wallet.\n"
