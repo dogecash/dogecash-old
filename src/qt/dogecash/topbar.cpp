@@ -105,9 +105,7 @@ TopBar::TopBar(DogeCashGUI* _mainWindow, QWidget *parent) :
     ui->pushButtonLock->setButtonText("Wallet Locked  ");
     ui->pushButtonLock->setButtonClassStyle("cssClass", "btn-check-status-lock");
 
-    ui->pushButtonHD->setButtonText("HD Disabled");
-    ui->pushButtonHD->setButtonClassStyle("cssClass", "btn-check-hd-disabled");
-
+    setHDStatus(walletModel->hdEnabled())
 
     connect(ui->pushButtonQR, SIGNAL(clicked()), this, SLOT(onBtnReceiveClicked()));
     connect(ui->btnQr, SIGNAL(clicked()), this, SLOT(onBtnReceiveClicked()));
