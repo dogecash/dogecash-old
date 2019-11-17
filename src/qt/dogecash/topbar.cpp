@@ -105,7 +105,8 @@ TopBar::TopBar(DogeCashGUI* _mainWindow, QWidget *parent) :
     ui->pushButtonLock->setButtonText("Wallet Locked  ");
     ui->pushButtonLock->setButtonClassStyle("cssClass", "btn-check-status-lock");
 
-    setHDStatus(walletModel->hdEnabled());
+    ui->pushButtonHD->setButtonText("HD Enabled");
+    ui->pushButtonHD->setButtonClassStyle("cssClass", "btn-check-hd-enabled");
 
     connect(ui->pushButtonQR, SIGNAL(clicked()), this, SLOT(onBtnReceiveClicked()));
     connect(ui->btnQr, SIGNAL(clicked()), this, SLOT(onBtnReceiveClicked()));
@@ -113,8 +114,6 @@ TopBar::TopBar(DogeCashGUI* _mainWindow, QWidget *parent) :
     connect(ui->pushButtonTheme, SIGNAL(Mouse_Pressed()), this, SLOT(onThemeClicked()));
     connect(ui->pushButtonFAQ, SIGNAL(Mouse_Pressed()), _mainWindow, SLOT(openFAQ()));
     connect(ui->pushButtonColdStaking, SIGNAL(Mouse_Pressed()), this, SLOT(onColdStakingClicked()));
-    // Connect HD enabled state signal
-    connect(this, SIGNAL(hdEnabledStatusChanged(bool)), this, SLOT(setHDStatus(bool)));
 }
 
 void TopBar::onThemeClicked(){
@@ -470,10 +469,11 @@ void TopBar::loadWalletModel(){
             SLOT(updateBalances(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)));
     connect(walletModel->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
     connect(walletModel, &WalletModel::encryptionStatusChanged, this, &TopBar::refreshStatus);
+    // Connect HD enabled state signal
+    connect(this, SIGNAL(hdEnabledStatusChanged(bool)), this, SLOT(setHDStatus(bool)));
     Q_EMIT hdEnabledStatusChanged(walletModel->hdEnabled());
     // update the display unit, to not use the default ("DogeCash")
     updateDisplayUnit();
-
     refreshStatus();
     onColdStakingClicked();
 
@@ -494,7 +494,7 @@ void TopBar::refreshStatus(){
     // Check lock status
     if (!this->walletModel)
         return;
-
+    setHDStatus(walletModel->hdEnabled());
     WalletModel::EncryptionStatus encStatus = walletModel->getEncryptionStatus();
 
     switch (encStatus){
