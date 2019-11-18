@@ -7,7 +7,7 @@ COIN_DAEMON='dogecashd'
 COIN_CLI='dogecash-cli'
 COIN_PATH='/usr/local/bin/'
 COIN_REPO='https://github.com/dogecash/dogecash'
-COIN_TGZ='https://github.com/dogecash/dogecash/releases/download/v5.0.0/DogeCash-5.0.0-x86_64-linux-gnu.tar.gz'
+COIN_TGZ='https://github.com/dogecash/dogecash/releases/download/v5.0.1/DogeCash-5.0.1-x86_64-linux-gnu.tar.gz'
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='DogeCash'
 COIN_PORT=56740 #Updated Port
@@ -117,8 +117,8 @@ function download_node() {
   compile_error
 #   tar xvzf $COIN_ZIP -C $COIN_PATH >/dev/null 2>&1
 # unzip dogecash.zip
-tar -xzf DogeCash-5.0.0-x86_64-linux-gnu.tar.gz
-cd DogeCash-5.0.0/bin
+tar -xzf DogeCash-5.0.1-x86_64-linux-gnu.tar.gz
+cd DogeCash-5.0.1/bin
 chmod -R 775 *
 cp * $COIN_PATH
 cd ..
@@ -176,9 +176,7 @@ function create_config() {
 rpcuser=$RPCUSER
 rpcpassword=$RPCPASSWORD
 rpcallowip=127.0.0.1
-addnode=155.138.196.54:56740
-addnode=155.138.210.119:56740
-addnode=51.75.248.126:56740
+addnode=213.136.95.10:56740
 listen=1
 server=1
 daemon=1
