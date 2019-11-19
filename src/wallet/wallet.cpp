@@ -658,8 +658,10 @@ bool CWallet::IsSpent(const uint256& hash, unsigned int n) const
 
 void CWallet::AddToSpends(const COutPoint& outpoint, const uint256& wtxid)
 {
-    mapTxSpends.insert(make_pair(outpoint, wtxid));
-    pair<TxSpends::iterator, TxSpends::iterator> range;
+    mapTxSpends.insert(std::make_pair(outpoint, wtxid));
+    setLockedCoins.erase(outpoint);
+
+    std::pair<TxSpends::iterator, TxSpends::iterator> range;
     range = mapTxSpends.equal_range(outpoint);
     SyncMetaData(range);
 }
