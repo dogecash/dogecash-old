@@ -494,7 +494,6 @@ void TopBar::refreshStatus(){
     // Check lock status
     if (!this->walletModel)
         return;
-    setHDStatus(walletModel->hdEnabled());
     WalletModel::EncryptionStatus encStatus = walletModel->getEncryptionStatus();
 
     switch (encStatus){
