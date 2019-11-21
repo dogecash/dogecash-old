@@ -63,7 +63,7 @@ bool TransactionFilterProxy::filterAcceptsRow(int sourceRow, const QModelIndex& 
     if (fOnlyZc && !isZcTx(type)){
         return false;
     }
-    if (fOnlyStakesandMN && !isStakeTx(type) && !isMasternodeRewardTx(type))
+    if (fOnlyStakesandMN && !isStakeTx(type) && !isMasternodeRewardTx(type) && !isColdStake(type))
         return false;
     if (fOnlyColdStaking && !isColdStake(type))
         return false;
