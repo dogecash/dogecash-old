@@ -13,6 +13,7 @@
 class DogeCashGUI;
 class ClientModel;
 class WalletModel;
+class WorkerTask;
 
 namespace Ui {
 class PWidget;
@@ -66,7 +67,7 @@ protected:
     bool verifyWalletUnlocked();
 
 private:
-
+    QSharedPointer<WorkerTask> task = nullptr;
     void init();
     private slots:
     void errorString(QString, int);

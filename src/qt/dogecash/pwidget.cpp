@@ -63,28 +63,30 @@ class WorkerTask : public QRunnable {
 
     public:
 
-    WorkerTask(Worker* worker) {
+    WorkerTask(QPointer<Worker> worker) {
         this->worker = worker;
     }
 
     ~WorkerTask() {
-        delete this->worker;
+        if (!worker.isNull()) worker.clear();
     }
 
     void run() override {
-        if (worker) worker->process();
+        if (!worker.isNull()) worker.data()->process();
     }
-    Worker* worker = nullptr;
+    QPointer<Worker> worker;
 };
 
 bool PWidget::execute(int type){
+    if (task.isNull()) {
+        Worker* worker = new Worker(this, type);
+        connect(worker, SIGNAL (error(QString, int)), this, SLOT (errorString(QString, int)));
 
-    Worker* worker = new Worker(this, type);
-    connect(worker, SIGNAL (error(QString, int)), this, SLOT (errorString(QString, int)));
-    connect(worker, SIGNAL (finished()), worker, SLOT (deleteLater()));
-    WorkerTask* task = new WorkerTask(worker);
-    task->setAutoDelete(true);
-    QThreadPool::globalInstance()->start(task);
+        WorkerTask* workerTask = new WorkerTask(QPointer<Worker>(worker));
+        workerTask->setAutoDelete(false);
+        task = QSharedPointer<WorkerTask>(workerTask);
+    }
+    QThreadPool::globalInstance()->start(task.data());
     return true;
 }
 

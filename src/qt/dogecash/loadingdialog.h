@@ -8,6 +8,7 @@
 
 #include <QDialog>
 #include <QThread>
+#include <QPointer>
 #include <iostream>
 #include <QTimer>
 #include "qt/dogecash/prunnable.h"
@@ -20,7 +21,9 @@ class Worker : public QObject {
     Q_OBJECT
 public:
     Worker(Runnable* runnable, int type):runnable(runnable), type(type){}
-    ~Worker(){}
+    ~Worker(){
+        runnable = nullptr;
+    }
 public slots:
     void process();
 signals:

@@ -75,7 +75,6 @@ public:
     void Process();
     bool IsSynced();
     bool NotCompleted();
-    bool IsBlockchainSynced();
     bool IsSporkListSynced();
     bool IsMasternodeListSynced();
     bool IsBlockchainSynced();
