@@ -39,6 +39,9 @@ public:
     int64_t lastFailure;
     int nCountFailures;
 
+    std::atomic<int64_t> lastProcess;
+    std::atomic<bool> fBlockchainSynced;
+
     // sum of all counts
     int sumMasternodeList;
     int sumMasternodeWinner;
@@ -75,6 +78,7 @@ public:
     bool IsBlockchainSynced();
     bool IsSporkListSynced();
     bool IsMasternodeListSynced();
+    bool IsBlockchainSynced();
     void ClearFulfilledRequest();
 };
 
