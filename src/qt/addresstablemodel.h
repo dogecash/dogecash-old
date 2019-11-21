@@ -91,7 +91,7 @@ public:
     /**
      * Return last unused address
      */
-    QString getLastUnusedAddress() const;
+    QString getAddressToShow() const;
 
     EditStatus getEditStatus() const { return editStatus; }
 

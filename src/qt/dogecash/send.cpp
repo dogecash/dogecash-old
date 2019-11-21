@@ -448,7 +448,7 @@ bool SendWidget::sendZdogec(QList<SendCoinsRecipient> recipients){
     if(!boost::get<CNoDestination>(&CoinControlDialog::coinControl->destChange)){
         changeAddress = CBitcoinAddress(CoinControlDialog::coinControl->destChange).ToString();
     }else{
-        changeAddress = walletModel->getAddressTableModel()->getLastUnusedAddress().toStdString();
+        changeAddress = walletModel->getAddressTableModel()->getAddressToShow().toStdString();
     }
 
     if (walletModel->sendZdogec(
