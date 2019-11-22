@@ -184,7 +184,6 @@ protected:
     int nMasternodeCollateralLimit;
     int nMasternodeCountDrift;
     int nMaturity;
-    int nModifierUpdateBlock;
     int nStakeMinDepth;
     int nStakeMinAge;
     int nFutureTimeDriftPoW;
@@ -244,7 +243,6 @@ protected:
     int nBlockStakeModifierlV2;
     int nBlockTimeProtocolV2;
     int nBlockEnforceNewMessageSignatures;
-    int nBlockStakeModifierlV2;
     CAmount nMinColdStakingAmount;
     // fake serial attack
     int nFakeSerialBlockheightEnd = 0;
