@@ -63,6 +63,8 @@ private slots:
     void lockDropdownMouseLeave();
     void lockDropdownClicked(const StateClicked&);
     void refreshStatus();
+    void refreshProgressBarSize();
+    void expandSync();
     void openLockUnlock();
     void onColdStakingClicked();
     void setHDStatus(bool hdEnabled);

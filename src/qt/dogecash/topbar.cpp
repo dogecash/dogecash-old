@@ -114,6 +114,8 @@ TopBar::TopBar(DogeCashGUI* _mainWindow, QWidget *parent) :
     connect(ui->pushButtonTheme, SIGNAL(Mouse_Pressed()), this, SLOT(onThemeClicked()));
     connect(ui->pushButtonFAQ, SIGNAL(Mouse_Pressed()), _mainWindow, SLOT(openFAQ()));
     connect(ui->pushButtonColdStaking, SIGNAL(Mouse_Pressed()), this, SLOT(onColdStakingClicked()));
+    connect(ui->pushButtonSync, &ExpandableButton::Mouse_HoverLeave, this, &TopBar::refreshProgressBarSize);
+    connect(ui->pushButtonSync, &ExpandableButton::Mouse_Hover, this, &TopBar::refreshProgressBarSize);
 }
 
 void TopBar::onThemeClicked(){
@@ -125,12 +127,11 @@ void TopBar::onThemeClicked(){
     if(lightTheme){
         ui->pushButtonTheme->setButtonClassStyle("cssClass", "btn-check-theme-light",  true);
         ui->pushButtonTheme->setButtonText("Light Theme");
-        updateStyle(ui->pushButtonTheme);
     }else{
         ui->pushButtonTheme->setButtonClassStyle("cssClass", "btn-check-theme-dark", true);
         ui->pushButtonTheme->setButtonText("Dark Theme");
-        updateStyle(ui->pushButtonTheme);
     }
+    updateStyle(ui->pushButtonTheme);
 
     emit themeChanged(lightTheme);
 }
@@ -572,4 +573,16 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
 void TopBar::resizeEvent(QResizeEvent *event){
     if (lockUnlockWidget && lockUnlockWidget->isVisible()) lockDropdownMouseLeave();
     QWidget::resizeEvent(event);
+}
+
+void TopBar::refreshProgressBarSize() {
+    QMetaObject::invokeMethod(this, "expandSync", Qt::QueuedConnection);
+}
+
+void TopBar::expandSync() {
+    if (progressBar) {
+        progressBar->setMaximumWidth(ui->pushButtonSync->maximumWidth());
+        progressBar->setFixedWidth(ui->pushButtonSync->width());
+        progressBar->setMinimumWidth(ui->pushButtonSync->width() - 2);
+    }
 }
