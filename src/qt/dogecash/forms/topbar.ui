@@ -188,7 +188,7 @@ border:none;</string>
                </size>
               </property>
               <property name="text">
-               <string>1,000 zDOGEC</string>
+               <string>DOGEC</string>
               </property>
              </widget>
             </item>
@@ -518,14 +518,14 @@ border:none;</string>
                <item>
                 <widget class="QLabel" name="labelTitle2">
                  <property name="text">
-                  <string>Available</string>
+                  <string>Total</string>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QLabel" name="labelAmountzDogec">
                  <property name="text">
-                  <string>1,000 zDOGEC</string>
+                  <string>1,000 DOGEC</string>
                  </property>
                 </widget>
                </item>
@@ -541,14 +541,14 @@ border:none;</string>
                  <item>
                   <widget class="QLabel" name="labelTitle5">
                    <property name="text">
-                    <string>Pending</string>
+                    <string>Locked</string>
                    </property>
                   </widget>
                  </item>
                  <item>
                   <widget class="QLabel" name="labelPendingzDogec">
                    <property name="text">
-                    <string>60 zDOGEC</string>
+                    <string>60 DOGEC</string>
                    </property>
                   </widget>
                  </item>
@@ -575,14 +575,14 @@ border:none;</string>
                  <item>
                   <widget class="QLabel" name="labelTitle6">
                    <property name="text">
-                    <string>Immature</string>
+                    <string>Delegated</string>
                    </property>
                   </widget>
                  </item>
                  <item>
                   <widget class="QLabel" name="labelImmaturezDogec">
                    <property name="text">
-                    <string>10 zDOGEC</string>
+                    <string>DOGEC</string>
                    </property>
                   </widget>
                  </item>

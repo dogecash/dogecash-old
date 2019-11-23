@@ -549,11 +549,11 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
     CAmount dogecAvailableBalance = nTotalBalance + delegatedBalance - unconfirmedBalance - immatureBalance - nLockedBalance;
 
     // zDOGEC Balance
-    CAmount matureZerocoinBalance = zerocoinBalance - unconfirmedZerocoinBalance - immatureZerocoinBalance;
+    CAmount matureZerocoinBalance = balance + unconfirmedBalance + immatureBalance + nLockedBalance + delegatedBalance;
 
     // Set
     QString totalDogeC = GUIUtil::formatBalance(dogecAvailableBalance, nDisplayUnit);
-    QString totalzDogec = GUIUtil::formatBalance(matureZerocoinBalance, nDisplayUnit, true);
+    QString totalzDogec = GUIUtil::formatBalance(matureZerocoinBalance, nDisplayUnit);
     // Top
     ui->labelAmountTopDogeC->setText(totalDogeC);
     ui->labelAmountTopzDogec->setText(totalzDogec);
@@ -563,10 +563,10 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
     ui->labelAmountzDogec->setText(totalzDogec);
 
     ui->labelPendingDogeC->setText(GUIUtil::formatBalance(unconfirmedBalance, nDisplayUnit));
-    ui->labelPendingzDogec->setText(GUIUtil::formatBalance(unconfirmedZerocoinBalance, nDisplayUnit, true));
+    ui->labelPendingzDogec->setText(GUIUtil::formatBalance(nLockedBalance, nDisplayUnit));
 
     ui->labelImmatureDogeC->setText(GUIUtil::formatBalance(immatureBalance, nDisplayUnit));
-    ui->labelImmaturezDogec->setText(GUIUtil::formatBalance(immatureZerocoinBalance, nDisplayUnit, true));
+    ui->labelImmaturezDogec->setText(GUIUtil::formatBalance(delegatedBalance, nDisplayUnit));
 }
 
 void TopBar::resizeEvent(QResizeEvent *event){
