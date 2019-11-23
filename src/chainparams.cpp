@@ -170,6 +170,10 @@ public:
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = nBlockStakeModifierlV2 + 10;
 
+        // Blocks v7
+        nBlockLastAccumulatorCheckpoint = 1686240;
+        nBlockV7StartHeight = 2967000;
+
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 1686229;
         /**
@@ -304,6 +308,10 @@ public:
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = 2214000;
 
+        // Blocks v7
+        nBlockLastAccumulatorCheckpoint = nPublicZCSpends - 10;
+        nBlockV7StartHeight = 2214000;
+
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
         nSupplyBeforeFakeSerial = 0;
@@ -391,6 +399,10 @@ public:
         nBlockRecalculateAccumulators = 999999999; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = 999999999; //First block that bad serials emerged
         nBlockLastGoodCheckpoint = 999999999; //Last valid accumulator checkpoint
+
+        // Blocks v7
+        nBlockV7StartHeight = nPublicZCSpends + 1;
+        nBlockLastAccumulatorCheckpoint = nPublicZCSpends - 10;
 
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = 1;
