@@ -550,11 +550,10 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
     CAmount dogecAvailableBalance = nTotalBalance + delegatedBalance - unconfirmedBalance - immatureBalance - nLockedBalance;
 
     // zDOGEC Balance
-    CAmount matureZerocoinBalance = balance + unconfirmedBalance + immatureBalance + nLockedBalance + delegatedBalance;
 
     // Set
     QString totalDogeC = GUIUtil::formatBalance(dogecAvailableBalance, nDisplayUnit);
-    QString totalzDogec = GUIUtil::formatBalance(matureZerocoinBalance, nDisplayUnit);
+    QString totalzDogec = GUIUtil::formatBalance(nTotalBalance, nDisplayUnit);
     // Top
     ui->labelAmountTopDogeC->setText(totalDogeC);
     ui->labelAmountTopzDogec->setText(totalzDogec);
