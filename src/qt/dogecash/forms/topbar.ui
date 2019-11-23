@@ -546,7 +546,7 @@ border:none;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="labelPendingzDogec">
+                  <widget class="QLabel" name="labelLockedDogec">
                    <property name="text">
                     <string>60 DOGEC</string>
                    </property>
@@ -580,7 +580,7 @@ border:none;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="labelImmaturezDogec">
+                  <widget class="QLabel" name="labelDelegatedDogec">
                    <property name="text">
                     <string>DOGEC</string>
                    </property>

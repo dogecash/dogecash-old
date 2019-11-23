@@ -46,7 +46,7 @@ TopBar::TopBar(DogeCashGUI* _mainWindow, QWidget *parent) :
     ui->widgetTopAmount->setVisible(false);
     setCssProperty({ui->labelAmountTopDogeC, ui->labelAmountTopzDogec}, "amount-small-topbar");
     setCssProperty({ui->labelAmountDogeC, ui->labelAmountzDogec}, "amount-topbar");
-    setCssProperty({ui->labelPendingDogeC, ui->labelPendingzDogec, ui->labelImmatureDogeC, ui->labelImmaturezDogec}, "amount-small-topbar");
+    setCssProperty({ui->labelPendingDogeC, ui->labelLockedDogec, ui->labelImmatureDogeC, ui->labelDelegatedDogec}, "amount-small-topbar");
 
     // Progress Sync
     progressBar = new QProgressBar(ui->layoutSync);
@@ -563,10 +563,10 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
     ui->labelAmountzDogec->setText(totalzDogec);
 
     ui->labelPendingDogeC->setText(GUIUtil::formatBalance(unconfirmedBalance, nDisplayUnit));
-    ui->labelPendingzDogec->setText(GUIUtil::formatBalance(nLockedBalance, nDisplayUnit));
+    ui->labelLockedDogec->setText(GUIUtil::formatBalance(nLockedBalance, nDisplayUnit));
 
     ui->labelImmatureDogeC->setText(GUIUtil::formatBalance(immatureBalance, nDisplayUnit));
-    ui->labelImmaturezDogec->setText(GUIUtil::formatBalance(delegatedBalance, nDisplayUnit));
+    ui->labelDelegatedDogec->setText(GUIUtil::formatBalance(delegatedBalance, nDisplayUnit));
 }
 
 void TopBar::resizeEvent(QResizeEvent *event){
