@@ -22,7 +22,6 @@ CzdogecStake::CzdogecStake(const libzerocoin::CoinSpend& spend)
 int CzdogecStake::GetChecksumHeightFromMint()
 {
     int nHeightChecksum = chainActive.Height() - Params().Zerocoin_RequiredStakeDepth();
-    nHeightChecksum = std::min(nHeightChecksum, Params().Zerocoin_Block_Last_Checkpoint());
 
     //Need to return the first occurance of this checksum in order for the validation process to identify a specific
     //block height
@@ -86,18 +85,17 @@ bool CzdogecStake::GetModifier(uint64_t& nStakeModifier)
     }
 
     int64_t nTimeBlockFrom = pindex->GetBlockTime();
-    // zPIV staking is disabled long before block v7 (and checkpoint is not included in blocks since v7)
-    // just return false for now. !TODO: refactor/remove this method
-    while (pindex && pindex->nHeight + 1 <= std::min(chainActive.Height(), Params().Zerocoin_Block_Last_Checkpoint()-1)) {
+    while (true) {
         if (pindex->GetBlockTime() - nTimeBlockFrom > 60 * 60) {
             nStakeModifier = pindex->nAccumulatorCheckpoint.Get64();
             return true;
         }
 
-        pindex = chainActive.Next(pindex);
+        if (pindex->nHeight + 1 <= chainActive.Height())
+            pindex = chainActive.Next(pindex);
+        else
+            return false;
     }
-
-    return false;
 }
 
 CDataStream CzdogecStake::GetUniqueness()

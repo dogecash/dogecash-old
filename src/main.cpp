@@ -2695,7 +2695,7 @@ bool DisconnectBlock(CBlock& block, CValidationState& state, CBlockIndex* pindex
     // move best block pointer to prevout block
     view.SetBestBlock(pindex->pprev->GetBlockHash());
 
-    if (!fVerifyingBlocks && pindex->nHeight <= Params().Zerocoin_Block_Last_Checkpoint()) {
+    if (!fVerifyingBlocks) {
         //if block is an accumulator checkpoint block, remove checkpoint and checksums from db
         uint256 nCheckpoint = pindex->nAccumulatorCheckpoint;
         if(nCheckpoint != pindex->pprev->nAccumulatorCheckpoint) {
@@ -2939,7 +2939,7 @@ bool ReindexAccumulators(list<uint256>& listMissingCheckpoints, string& strError
 
         // find each checkpoint that is missing
         CBlockIndex* pindex = chainActive[nZerocoinStart];
-        while (pindex && pindex->nHeight <= Params().Zerocoin_Block_Last_Checkpoint()) {
+        while (pindex) {
             uiInterface.ShowProgress(_("Calculating missing accumulators..."), std::max(1, std::min(99, (int)((double)(pindex->nHeight - nZerocoinStart) / (double)(chainActive.Height() - nZerocoinStart) * 100))));
 
             if (ShutdownRequested())
