@@ -62,7 +62,7 @@ CDBEnv::~CDBEnv()
 {
     EnvShutdown();
     delete dbenv;
-    dbenv = NULL;
+    dbenv = nullptr;
 }
 
 void CDBEnv::Close()

@@ -623,7 +623,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         CoInitialize(NULL);
 
         // Get a pointer to the IShellLink interface.
-        IShellLink* psl = NULL;
+        IShellLink* psl = nullptr;
         HRESULT hres = CoCreateInstance(CLSID_ShellLink, NULL,
             CLSCTX_INPROC_SERVER, IID_IShellLink,
             reinterpret_cast<void**>(&psl));
@@ -644,7 +644,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
 
             // Query IShellLink for the IPersistFile interface for
             // saving the shortcut in persistent storage.
-            IPersistFile* ppf = NULL;
+            IPersistFile* ppf = nullptr;
             hres = psl->QueryInterface(IID_IPersistFile,
                 reinterpret_cast<void**>(&ppf));
             if (SUCCEEDED(hres)) {

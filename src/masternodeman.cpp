@@ -479,7 +479,7 @@ CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight
 {
     LOCK(cs);
 
-    CMasternode* pBestMasternode = NULL;
+    CMasternode* pBestMasternode = nullptr;
     std::vector<pair<int64_t, CTxIn> > vecMasternodeLastPaid;
 
     /*
@@ -571,7 +571,7 @@ CMasternode* CMasternodeMan::FindRandomNotInVec(std::vector<CTxIn>& vecToExclude
 CMasternode* CMasternodeMan::GetCurrentMasterNode(int mod, int64_t nBlockHeight, int minProtocol)
 {
     int64_t score = 0;
-    CMasternode* winner = NULL;
+    CMasternode* winner = nullptr;
 
     // scan for winner
     BOOST_FOREACH (CMasternode& mn, vMasternodes) {

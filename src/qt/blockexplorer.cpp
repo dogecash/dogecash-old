@@ -20,7 +20,7 @@
 #include <QMessageBox>
 #include <set>
 
-extern double GetDifficulty(const CBlockIndex* blockindex = NULL);
+extern double GetDifficulty(const CBlockIndex* blockindex = nullptr);
 
 inline std::string utostr(unsigned int n)
 {
