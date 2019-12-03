@@ -1,5 +1,5 @@
 ---
-name: "dogecash-linux-3.2"
+name: "dogecash-linux-5.1"
 enable_cache: true
 suites:
 - "bionic"

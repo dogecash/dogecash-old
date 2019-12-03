@@ -1,5 +1,5 @@
 ---
-name: "dogecash-win-3.2"
+name: "dogecash-win-5.1"
 enable_cache: true
 suites:
 - "bionic"
