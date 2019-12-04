@@ -5084,9 +5084,9 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDis
     }
     //Both vars need reinit due to the bracket above this line.
     // Preliminary checks
-    int64_t nStartTime = GetTimeMillis();
+    //int64_t nStartTime = GetTimeMillis();
     // check block
-    bool checked = CheckBlock(*pblock, state);
+    //bool checked = CheckBlock(*pblock, state);
     if (!ActivateBestChain(state, pblock, checked))
         return error("%s : ActivateBestChain failed", __func__);
 
