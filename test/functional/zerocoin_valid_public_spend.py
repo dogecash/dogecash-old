@@ -73,20 +73,11 @@ class zDOGECValidCoinSpendTest(DogeCash_FakeStakeTest):
         randomness = zc[0]["r"]
         privkey = zc[0]["k"]
 
-        # 7) Check spend v2 disabled
-        self.log.info("%s: Trying to spend using the old coin spend method.." % self.__class__.__name__)
+        tx = None
         try:
-            res = self.nodes[0].spendzerocoin(DENOM_TO_USE, False, False, "", False)
+            tx = self.node.spendrawzerocoin(serial, randomness, DENOM_TO_USE, privkey)
         except JSONRPCException as e:
-            # JSONRPCException was thrown as expected. Check the code and message values are correct.
-            if e.error["code"] != -4:
-                raise AssertionError("Unexpected JSONRPC error code %i" % e.error["code"])
-            if ("Couldn't generate the accumulator witness" not in e.error['message'])\
-                    and ("The transaction was rejected!" not in e.error['message']):
-                raise AssertionError("Expected substring not found:" + e.error['message'])
-        except Exception as e:
-            raise AssertionError("Unexpected exception raised: " + type(e).__name__)
-        self.log.info("GOOD: spendzerocoin old spend did not verify.")
+            self.log.info("GOOD: Transaction did not verify")
 
         if tx is not None:
             self.log.warning("Tx is: %s" % tx)
