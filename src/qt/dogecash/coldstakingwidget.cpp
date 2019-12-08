@@ -255,8 +255,19 @@ bool ColdStakingWidget::refreshDelegations(){
 
 void ColdStakingWidget::onDelegationsRefreshed() {
     isLoading = false;
-    if (ui->pushLeft->isChecked())
-        showList(csModel->rowCount() > 0);
+    bool hasDel = csModel->rowCount() > 0;
+
+    // Update the total value.
+    CAmount total = csModel->getTotalAmount();
+    ui->labelStakingTotal->setText(tr("Total Staking: %1").arg(
+            (total == 0) ? "0.00 DOGEC" : GUIUtil::formatBalance(total, nDisplayUnit))
+    );
+
+    // Update list if we are showing that section.
+    if (!isInDelegation) {
+        showList(hasDel);
+        ui->labelStakingTotal->setVisible(hasDel);
+    }
 }
 
 void ColdStakingWidget::run(int type) {
@@ -331,6 +342,7 @@ void ColdStakingWidget::onContactsClicked(){
 }
 
 void ColdStakingWidget::onDelegateSelected(bool delegate){
+    isInDelegation = delegate;
     if (menu && menu->isVisible()) {
         menu->hide();
     }
@@ -339,7 +351,7 @@ void ColdStakingWidget::onDelegateSelected(bool delegate){
         menuAddresses->hide();
     }
 
-    if(delegate){
+    if(isInDelegation){
         ui->btnCoinControl->setVisible(true);
         ui->containerSend->setVisible(true);
         ui->containerBtn->setVisible(true);
@@ -393,9 +405,11 @@ void ColdStakingWidget::onSendClicked(){
     SendCoinsRecipient dest = sendMultiRow->getValue();
     dest.isP2CS = true;
 
-    // Amount must be < 10 DOGEC, check chainparams minColdStakingAmount
-    if (dest.amount < (COIN * 10)) {
-        inform(tr("Invalid entry, minimum delegable amount is 10 DOGEC"));
+    // Amount must be >= minColdStakingAmount
+    const CAmount& minColdStakingAmount = walletModel->getMinColdStakingAmount();
+    if (dest.amount < minColdStakingAmount) {
+        inform(tr("Invalid entry, minimum delegable amount is ") +
+               BitcoinUnits::formatWithUnit(nDisplayUnit, minColdStakingAmount));
         return;
     }
 
@@ -442,8 +456,7 @@ void ColdStakingWidget::onSendClicked(){
             this,
             prepareStatus,
             walletModel,
-            BitcoinUnits::formatWithUnit(walletModel->getOptionsModel()->getDisplayUnit(),
-                                         currentTransaction.getTransactionFee()),
+            BitcoinUnits::formatWithUnit(nDisplayUnit, currentTransaction.getTransactionFee()),
             true
     );
 
@@ -454,7 +467,7 @@ void ColdStakingWidget::onSendClicked(){
 
     showHideOp(true);
     TxDetailDialog* dialog = new TxDetailDialog(window);
-    dialog->setDisplayUnit(walletModel->getOptionsModel()->getDisplayUnit());
+    dialog->setDisplayUnit(nDisplayUnit);
     dialog->setData(walletModel, currentTransaction);
     dialog->adjustSize();
     openDialogWithOpaqueBackgroundY(dialog, window, 3, 5);
@@ -488,7 +501,7 @@ void ColdStakingWidget::clearAll() {
 }
 
 void ColdStakingWidget::onCoinControlClicked(){
-    if(ui->pushRight->isChecked()) {
+    if(isInDelegation) {
         if (walletModel->getBalance() > 0) {
             if (!coinControlDialog) {
                 coinControlDialog = new CoinControlDialog();

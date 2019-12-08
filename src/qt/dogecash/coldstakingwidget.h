@@ -93,6 +93,7 @@ private:
     TooltipMenu* menuAddresses = nullptr;
     SendMultiRow *sendMultiRow = nullptr;
     bool isShowingDialog = false;
+    bool isInDelegation = true;
 
     bool isContactOwnerSelected;
     int64_t lastRefreshTime = 0;

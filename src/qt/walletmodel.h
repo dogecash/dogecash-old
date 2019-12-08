@@ -144,6 +144,7 @@ public:
     /** Whether cold staking is enabled or disabled in the network **/
     bool isColdStakingNetworkelyEnabled() const;
 
+    CAmount getMinColdStakingAmount() const;
     CAmount getBalance(const CCoinControl* coinControl = nullptr) const;
     CAmount getUnconfirmedBalance() const;
     CAmount getImmatureBalance() const;
