@@ -94,6 +94,7 @@ private:
     SendMultiRow *sendMultiRow = nullptr;
     bool isShowingDialog = false;
     bool isInDelegation = true;
+    bool isChainSync = false;
 
     bool isContactOwnerSelected;
     int64_t lastRefreshTime = 0;

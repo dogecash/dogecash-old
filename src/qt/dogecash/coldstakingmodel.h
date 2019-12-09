@@ -68,6 +68,7 @@ public:
     bool whitelist(const QModelIndex& modelIndex);
     bool blacklist(const QModelIndex& index);
     void updateCSList();
+    CAmount getTotalAmount() { return cachedAmount; }
 
     void refresh();
 
@@ -78,6 +79,7 @@ private:
     WalletModel* model = nullptr;
     TransactionTableModel* tableModel = nullptr;
     AddressTableModel* addressTableModel = nullptr;
+    CAmount cachedAmount;
 
     /**
      * List with all of the grouped delegations received by this wallet

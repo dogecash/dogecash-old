@@ -201,16 +201,6 @@ void ColdStakingWidget::loadWalletModel(){
         ui->listView->setModel(csModel);
         ui->listView->setModelColumn(ColdStakingModel::OWNER_ADDRESS);
 
-        if (csModel->rowCount() > 0) {
-            CAmount coldStaking = walletModel->getColdStakedBalance();
-            ui->labelStakingTotal->setText(tr("Total Staking: %1").arg(
-                    (coldStaking == 0) ? "0.00 DOGEC" : GUIUtil::formatBalance(coldStaking, nDisplayUnit))
-            );
-            ui->labelStakingTotal->setVisible(true);
-        } else {
-            ui->labelStakingTotal->setVisible(false);
-        }
-
         addressTableModel = walletModel->getAddressTableModel();
         addressesFilter = new AddressFilterProxyModel(AddressTableModel::ColdStaking, this);
         addressesFilter->setSourceModel(addressTableModel);
@@ -224,6 +214,8 @@ void ColdStakingWidget::loadWalletModel(){
         ui->containerHistoryLabel->setVisible(false);
         ui->emptyContainer->setVisible(false);
         ui->listView->setVisible(false);
+
+        tryRefreshDelegations();
     }
 
 }
@@ -235,7 +227,10 @@ void ColdStakingWidget::onTxArrived(const QString& hash, const bool& isCoinStake
 }
 
 void ColdStakingWidget::walletSynced(bool sync) {
-    tryRefreshDelegations();
+    if (this->isChainSync != sync) {
+        this->isChainSync = sync;
+        tryRefreshDelegations();
+    }
 }
 
 void ColdStakingWidget::tryRefreshDelegations() {
@@ -292,9 +287,12 @@ void ColdStakingWidget::onContactsClicked(){
         menu->hide();
     }
 
-    int contactsSize = isContactOwnerSelected ? walletModel->getAddressTableModel()->sizeSend() : walletModel->getAddressTableModel()->sizeColdSend();
+    int contactsSize = isContactOwnerSelected ? walletModel->getAddressTableModel()->sizeRecv() : walletModel->getAddressTableModel()->sizeColdSend();
     if(contactsSize == 0) {
-        inform(tr("No contacts available, you can go to the contacts screen and add some there!"));
+        inform(isContactOwnerSelected ?
+                 tr( "No receive addresses available, you can go to the receive screen and create some there!") :
+                 tr("No contacts available, you can go to the contacts screen and add some there!")
+        );
         return;
     }
 
@@ -302,7 +300,17 @@ void ColdStakingWidget::onContactsClicked(){
     int width;
     QPoint pos;
 
-    menuContacts->setWalletModel(walletModel, isContactOwnerSelected ? AddressTableModel::Receive : AddressTableModel::ColdStakingSend);
+    if (isContactOwnerSelected) {
+        height = ui->lineEditOwnerAddress->height();
+        width = ui->lineEditOwnerAddress->width();
+        pos = ui->containerSend->rect().bottomLeft();
+        pos.setY((pos.y() + (height - 12) * 3));
+    } else {
+        height = sendMultiRow->getEditHeight();
+        width = sendMultiRow->getEditWidth();
+        pos = sendMultiRow->getEditLineRect().bottomLeft();
+        pos.setY((pos.y() + (height - 14) * 4));
+    }
 
     pos.setX(pos.x() + 40);
     height = (contactsSize <= 2) ? height * ( 2 * (contactsSize + 1 )) : height * 4;
@@ -328,12 +336,7 @@ void ColdStakingWidget::onContactsClicked(){
         return;
     }
 
-    if (isContactOwnerSelected) {
-        menuContacts->setWalletModel(walletModel, AddressTableModel::Receive);
-    } else {
-        menuContacts->setWalletModel(walletModel, AddressTableModel::Delegators);
-    }
-
+    menuContacts->setWalletModel(walletModel, isContactOwnerSelected ? AddressTableModel::Receive : AddressTableModel::ColdStakingSend);
     menuContacts->resizeList(width, height);
     menuContacts->setStyleSheet(styleSheet());
     menuContacts->adjustSize();
@@ -369,7 +372,6 @@ void ColdStakingWidget::onDelegateSelected(bool delegate){
         ui->containerBtn->setVisible(false);
         ui->btnColdStaking->setVisible(true);
         showList(csModel->rowCount() > 0);
-
         ui->btnMyStakingAddresses->setVisible(true);
         ui->listViewStakingAddress->setVisible(false);
     }
@@ -378,7 +380,6 @@ void ColdStakingWidget::onDelegateSelected(bool delegate){
 void ColdStakingWidget::updateDisplayUnit() {
     if (walletModel && walletModel->getOptionsModel()) {
         nDisplayUnit = walletModel->getOptionsModel()->getDisplayUnit();
-        ui->listView->update();
     }
 }
 
@@ -426,8 +427,8 @@ void ColdStakingWidget::onSendClicked(){
 
     if (!isOwnerAddressFromThisWallet) {
         isOwnerAddressFromThisWallet = walletModel->isMine(inputOwner);
-    }
-    // Warn the user if the owner address is not from this wallet
+
+        // Warn the user if the owner address is not from this wallet
         if (!isOwnerAddressFromThisWallet &&
             !ask(tr("ALERT!"),
                     tr("Delegating to an external owner address!\n\n"
@@ -436,6 +437,7 @@ void ColdStakingWidget::onSendClicked(){
             ) {
                 return;
         }
+    }
 
     // Don't try to delegate the balance if both addresses are from this wallet
     if (isStakingAddressFromThisWallet && isOwnerAddressFromThisWallet) {
