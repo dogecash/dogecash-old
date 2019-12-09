@@ -172,7 +172,6 @@ public:
         nBlockEnforceNewMessageSignatures = nBlockStakeModifierlV2 + 10;
 
         // New P2P messages signatures
-        nBlockEnforceNewMessageSignatures = 2967000;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 1686229;
@@ -308,9 +307,6 @@ public:
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = 2214000;
 
-        // New P2P messages signatures
-        nBlockEnforceNewMessageSignatures = 2214000;
-
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
         nSupplyBeforeFakeSerial = 0;
@@ -398,9 +394,6 @@ public:
         nBlockRecalculateAccumulators = 999999999; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = 999999999; //First block that bad serials emerged
         nBlockLastGoodCheckpoint = 999999999; //Last valid accumulator checkpoint
-
-        // New P2P messages signatures
-        nBlockEnforceNewMessageSignatures = 1;
 
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = 1;
