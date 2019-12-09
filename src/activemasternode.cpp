@@ -291,12 +291,6 @@ bool CActiveMasternode::CreateBroadcast(CTxIn vin, CService service, CKey keyCol
         fNewSigs = chainActive.NewSigsActive();
     }
 
-    bool fNewSigs = false;
-    {
-        LOCK(cs_main);
-        fNewSigs = chainActive.NewSigsActive();
-    }
-
     CMasternodePing mnp(vin);
     if (!mnp.Sign(keyMasternode, pubKeyMasternode, fNewSigs)) {
         errorMessage = strprintf("Failed to sign ping, vin: %s", vin.ToString());
