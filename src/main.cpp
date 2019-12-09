@@ -1290,7 +1290,8 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
 
     //Temporarily disable zerocoin for maintenance
     if (sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE) && tx.ContainsZerocoins())
-        return state.DoS(10, error("AcceptToMemoryPool : Zerocoin transactions are temporarily disabled for maintenance"), REJECT_INVALID, "bad-tx");
+        return state.DoS(10, error("%s : Zerocoin transactions are temporarily disabled for maintenance",
+                __func__), REJECT_INVALID, "bad-tx");
 
     // Check transaction
     int chainHeight = chainActive.Height();

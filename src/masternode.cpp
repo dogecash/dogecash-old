@@ -121,9 +121,12 @@ uint256 CMasternode::GetSignatureHash() const
 
 std::string CMasternode::GetStrMessage() const
 {
-           std::string vchPubKey(pubKeyCollateralAddress.begin(), pubKeyCollateralAddress.end());
-           std::string vchPubKey2(pubKeyMasternode.begin(), pubKeyMasternode.end());
-           return addr.ToString() + std::to_string(sigTime) + vchPubKey + vchPubKey2 + std::to_string(protocolVersion);
+    return (addr.ToString() +
+            std::to_string(sigTime) +
+            pubKeyCollateralAddress.GetID().ToString() +
+            pubKeyMasternode.GetID().ToString() +
+            std::to_string(protocolVersion)
+    );
 }
 
 //
