@@ -23,6 +23,7 @@ public:
     ~SettingsSignMessageWidgets();
 
     void setAddress_SM(const QString& address);
+    void showEvent(QShowEvent *event) override;
 protected:
     void resizeEvent(QResizeEvent *event) override;
 public slots:

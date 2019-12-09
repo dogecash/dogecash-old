@@ -33,6 +33,7 @@ public:
     ~SettingsConsoleWidget();
 
     void loadClientModel() override;
+    void showEvent(QShowEvent *event) override;
 
     enum MessageClass {
         MC_ERROR,

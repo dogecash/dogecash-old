@@ -91,6 +91,11 @@ MasterNodeWizardDialog::MasterNodeWizardDialog(WalletModel *model, QWidget *pare
     connect(ui->btnBack, SIGNAL(clicked()), this, SLOT(onBackClicked()));
 }
 
+void MasterNodeWizardDialog::showEvent(QShowEvent *event)
+{
+    if (ui->btnNext) ui->btnNext->setFocus();
+}
+
 void MasterNodeWizardDialog::onNextClicked(){
     switch(pos){
         case 0:{
@@ -100,7 +105,7 @@ void MasterNodeWizardDialog::onNextClicked(){
             ui->pushName1->setChecked(true);
             icConfirm1->setVisible(true);
             ui->pushNumber3->setChecked(true);
-
+            ui->lineEditName->setFocus();
             ui->btnBack->setVisible(true);
             break;
         }
@@ -120,6 +125,7 @@ void MasterNodeWizardDialog::onNextClicked(){
             icConfirm3->setVisible(true);
             ui->pushNumber4->setChecked(true);
             ui->btnBack->setVisible(true);
+            ui->lineEditIpAddress->setFocus();
             break;
         }
         case 2:{
@@ -329,6 +335,7 @@ void MasterNodeWizardDialog::onBackClicked(){
     switch(pos){
         case 0:{
             ui->stackedWidget->setCurrentIndex(0);
+            ui->btnNext->setFocus();
             ui->pushNumber1->setChecked(true);
             ui->pushNumber4->setChecked(false);
             ui->pushNumber3->setChecked(false);
@@ -341,6 +348,7 @@ void MasterNodeWizardDialog::onBackClicked(){
         }
         case 1:{
             ui->stackedWidget->setCurrentIndex(1);
+            ui->lineEditName->setFocus();
             ui->pushNumber4->setChecked(false);
             ui->pushNumber3->setChecked(true);
             ui->pushName4->setChecked(false);

@@ -371,6 +371,11 @@ void SettingsConsoleWidget::loadClientModel() {
     }
 }
 
+void SettingsConsoleWidget::showEvent(QShowEvent *event)
+{
+    if (ui->lineEdit) ui->lineEdit->setFocus();
+}
+
 static QString categoryClass(int category)
 {
     switch (category) {
