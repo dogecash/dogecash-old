@@ -216,7 +216,7 @@ void TopBar::lockDropdownClicked(const StateClicked& state){
                                         AskPassphraseDialog::Context::ToggleLock);
                 dlg->adjustSize();
                 openDialogWithOpaqueBackgroundY(dlg, window);
-                if (this->walletModel->getEncryptionStatus() == WalletModel::Unlocked) {
+                if (walletModel->getEncryptionStatus() == WalletModel::Unlocked) {
                     ui->pushButtonLock->setButtonText("Wallet Unlocked");
                     ui->pushButtonLock->setButtonClassStyle("cssClass", "btn-check-status-unlock", true);
                 }
