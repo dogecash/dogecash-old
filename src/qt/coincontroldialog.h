@@ -100,6 +100,7 @@ private slots:
     void clipboardBytes();
     void clipboardLowOutput();
     void clipboardChange();
+    void treeListModeChanged();
     void radioTreeMode(bool);
     void radioListMode(bool);
     void viewItemChanged(QTreeWidgetItem*, int);
