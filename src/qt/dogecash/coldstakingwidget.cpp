@@ -509,7 +509,7 @@ void ColdStakingWidget::onCoinControlClicked(){
                 coinControlDialog = new CoinControlDialog();
                 coinControlDialog->setModel(walletModel);
             } else {
-                coinControlDialog->updateView();
+                coinControlDialog->updateCoinControlLabels();
             }
             coinControlDialog->exec();
             ui->btnCoinControl->setActive(CoinControlDialog::coinControl->HasSelected());
