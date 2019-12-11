@@ -166,9 +166,6 @@ CoinControlDialog::CoinControlDialog(QWidget* parent, bool fMultisigEnabled) : Q
     // toggle tree/list mode
     connect(ui->radioTreeMode, SIGNAL(toggled(bool)), this, SLOT(radioTreeMode(bool)));
     connect(ui->radioListMode, SIGNAL(toggled(bool)), this, SLOT(radioListMode(bool)));
-    // Look for state change to update Coin Control                                                        
-    connect(ui->radioTreeMode, SIGNAL(stateChanged(int)), this, SLOT(treeListModeChanged()));
-    connect(ui->radioListMode, SIGNAL(stateChanged(int)), this, SLOT(treeListModeChanged()));
 
     // click on checkbox
     connect(ui->treeWidget, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(viewItemChanged(QTreeWidgetItem*, int)));
@@ -237,9 +234,6 @@ void CoinControlDialog::setModel(WalletModel* model)
         CoinControlDialog::updateLabels(model, this);
         updateDialogLabels();
     }
-    updateLabelLocked();
-    CoinControlDialog::updateLabels(model, this);
-    updateDialogLabels();
 }
 
 // (un)select all
@@ -451,12 +445,6 @@ void CoinControlDialog::headerSectionClicked(int logicalIndex)
 
         sortView(sortColumn, sortOrder);
     }
-}
-//State Change update coincontrol
-void CoinControlDialog::treeListModeChanged()
-{
-    if (model)
-        updateView();
 }
 // toggle tree mode
 void CoinControlDialog::radioTreeMode(bool checked)
@@ -938,4 +926,12 @@ void CoinControlDialog::updateView()
     // sort view
     sortView(sortColumn, sortOrder);
     ui->treeWidget->setEnabled(true);
+}
+
+void CoinControlDialog::updateCoinControlLabels()
+{
+    updateView();
+    updateLabelLocked();
+    CoinControlDialog::updateLabels(model, this);
+    updateDialogLabels();
 }

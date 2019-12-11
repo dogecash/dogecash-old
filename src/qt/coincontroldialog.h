@@ -49,6 +49,7 @@ public:
     void setModel(WalletModel* model);
     void updateDialogLabels();
     void updateView();
+    void updateCoinControlLabels();
 
     // static because also called from sendcoinsdialog
     static void updateLabels(WalletModel*, QDialog*);
@@ -99,8 +100,7 @@ private slots:
     void clipboardAfterFee();
     void clipboardBytes();
     void clipboardLowOutput();
-    void clipboardChange();
-    void treeListModeChanged();
+    void clipboardChange();;
     void radioTreeMode(bool);
     void radioListMode(bool);
     void viewItemChanged(QTreeWidgetItem*, int);

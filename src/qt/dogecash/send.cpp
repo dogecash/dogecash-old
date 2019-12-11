@@ -218,7 +218,6 @@ void SendWidget::loadWalletModel() {
         // Coin Control
         //connect(model->getOptionsModel(), SIGNAL(coinControlFeaturesChanged(bool)), this, SLOT(coinControlFeatureChanged(bool)));
         //ui->frameCoinControl->setVisible(model->getOptionsModel()->getCoinControlFeatures());
-        //coinControlUpdateLabels();
     }
 }
 
@@ -591,10 +590,11 @@ void SendWidget::onCoinControlClicked(){
             if (!coinControlDialog) {
                 coinControlDialog = new CoinControlDialog();
                 coinControlDialog->setModel(walletModel);
+            } else {
+                coinControlDialog->updateView();
             }
             coinControlDialog->exec();
             ui->btnCoinControl->setActive(CoinControlDialog::coinControl->HasSelected());
-            refreshAmounts();
         } else {
             inform(tr("You don't have any DOGEC to select."));
         }
