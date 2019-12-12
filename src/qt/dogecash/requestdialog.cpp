@@ -6,7 +6,6 @@
 #include "qt/dogecash/requestdialog.h"
 #include "qt/dogecash/forms/ui_requestdialog.h"
 #include <QListView>
-#include <QDoubleValidator>
 
 #include "qt/dogecash/qtutils.h"
 #include "guiutil.h"
@@ -45,10 +44,7 @@ RequestDialog::RequestDialog(QWidget *parent) :
     setCssProperty(ui->labelSubtitleAmount, "text-title2-dialog");
     ui->lineEditAmount->setPlaceholderText("0.00 DOGEC");
     setCssEditLineDialog(ui->lineEditAmount, true);
-
-    QDoubleValidator *doubleValidator = new QDoubleValidator(0, 9999999, 7, this);
-    doubleValidator->setNotation(QDoubleValidator::StandardNotation);
-    ui->lineEditAmount->setValidator(doubleValidator);
+    GUIUtil::setupAmountWidget(ui->lineEditAmount, this);
 
     // Description
     ui->labelSubtitleDescription->setText(tr("Description (optional)"));
