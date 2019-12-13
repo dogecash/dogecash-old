@@ -235,8 +235,7 @@ public:
         nBlockDoubleAccumulated = 1050010;
         nEnforceNewSporkKey = 1566860400; //!> Sporks signed after Monday, August 26, 2019 11:00:00 PM GMT must use the new spork key
         nRejectOldSporkKey = 1569538800; //!> Fully reject old spork key after Thursday, September 26, 2019 11:00:00 PM GMT
-        nBlockStakeModifierlV2 = 1967000;
-        nBIP65ActivationHeight = 1808634;
+        nBlockStakeModifierlV2 = 261028;
         nBlockTimeProtocolV2 = 299700;
 
         // New P2P messages signatures
@@ -354,8 +353,8 @@ public:
         nToCheckBlockUpgradeMajority = 5760; // 4 days
         nMinerThreads = 0;
         nLastPOWBlock = 200;
-        nPivxBadBlockTime = 1489001494; // Skip nBit validation of Block 259201 per PR #915
-        nPivxBadBlocknBits = 0x1e0a20bd; // Skip nBit validation of Block 201 per PR #915
+        nDogecBadBlockTime = 1558145668; // Skip nBit validation of Block 259201 per PR #915
+        nDogecBadBlocknBits = 0x1d19b36d; // Skip nBit validation of Block 201 per PR #915
         nMaturity = 15;
         nStakeMinDepth = 50;
         nMasternodeCountDrift = 4;

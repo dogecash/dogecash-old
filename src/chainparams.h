@@ -117,6 +117,8 @@ public:
     int64_t GetProposalEstablishmentTime() const { return nProposalEstablishmentTime; }
 
     CAmount GetMinColdStakingAmount() const { return nMinColdStakingAmount; }
+    int DogecBadBlockTime() const { return nDogecBadBlockTime; }
+    int DogecBadBlocknBits() const { return nDogecBadBlocknBits; }
 
     /** Spork key and Masternode Handling **/
     std::string SporkPubKey() const { return strSporkPubKey; }
@@ -181,6 +183,8 @@ protected:
     int64_t nTargetTimespan;
     int64_t nTargetTimespan_V2;
     int nLastPOWBlock;
+    int64_t nDogecBadBlockTime;
+    unsigned int nDogecBadBlocknBits;
     int nMinStakeReserve;
     int nMasternodeCollateralLimit;
     int nMasternodeCountDrift;
