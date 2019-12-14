@@ -84,7 +84,7 @@ public:
 
     DbTxn* TxnBegin(int flags = DB_TXN_WRITE_NOSYNC)
     {
-        DbTxn* ptxn = nullptr;
+        DbTxn* ptxn = NULL;
         int ret = dbenv->txn_begin(NULL, &ptxn, flags);
         if (!ptxn || ret != 0)
             return NULL;
@@ -287,7 +287,7 @@ public:
         if (!pdb || !activeTxn)
             return false;
         int ret = activeTxn->commit(0);
-        activeTxn = nullptr;
+        activeTxn = NULL;
         return (ret == 0);
     }
 
@@ -296,7 +296,7 @@ public:
         if (!pdb || !activeTxn)
             return false;
         int ret = activeTxn->abort();
-        activeTxn = nullptr;
+        activeTxn = NULL;
         return (ret == 0);
     }
 
@@ -311,7 +311,7 @@ public:
         return Write(std::string("version"), nVersion);
     }
 
-    bool static Rewrite(const std::string& strFile, const char* pszSkip = nullptr);
+    bool static Rewrite(const std::string& strFile, const char* pszSkip = NULL);
 };
 
 #endif // BITCOIN_DB_H

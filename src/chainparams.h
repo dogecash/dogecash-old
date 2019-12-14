@@ -196,7 +196,7 @@ protected:
     int nFutureTimeDriftPoS;
     int nTimeSlotLength;
 
-    int nModifierUpdateBlock;
+
     //Stake Protocol Switch
     int nBlockNewStakeProtocol;
     CAmount nStakeCollateralMin;

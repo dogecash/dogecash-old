@@ -425,7 +425,7 @@ bool StakeV1(const CBlockIndex* pindexPrev, CStakeInput* stakeInput, const uint3
     return fSuccess;
 }
 
-bool initStakeInput(const CBlock block, std::unique_ptr<CStakeInput>& stake, int nPreviousBlockHeight) {
+bool initStakeInput(const CBlock& block, std::unique_ptr<CStakeInput>& stake, int nPreviousBlockHeight) {
     const CTransaction tx = block.vtx[1];
     if (!tx.IsCoinStake())
         return error("%s : called on non-coinstake %s", __func__, tx.GetHash().ToString().c_str());
@@ -433,7 +433,7 @@ bool initStakeInput(const CBlock block, std::unique_ptr<CStakeInput>& stake, int
     // Kernel (input 0) must match the stake hash target per coin age (nBits)
     const CTxIn& txin = tx.vin[0];
 
-        //Construct the stakeinput object
+    //Construct the stakeinput object
         // First try finding the previous transaction in database
         uint256 hashBlock;
         CTransaction txPrev;
@@ -450,10 +450,10 @@ bool initStakeInput(const CBlock block, std::unique_ptr<CStakeInput>& stake, int
             return error("%s : VerifyScript failed on coinstake %s %s", __func__, tx.GetHash().ToString(), strErr);
         }
 
-        CDOGECStake* dogecInput = new CDOGECStake();
-        dogecInput->SetInput(txPrev, txin.prevout.n);
-        stake = std::unique_ptr<CStakeInput>(dogecInput);
-
+        CDOGECStake* DogecInput = new CDOGECStake();
+        DogecInput->SetInput(txPrev, txin.prevout.n);
+        stake = std::unique_ptr<CStakeInput>(DogecInput);
+        
     return true;
 }
 

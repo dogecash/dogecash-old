@@ -519,7 +519,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
     if (pindexPrev != chainActive.Tip() ||
         (mempool.GetTransactionsUpdated() != nTransactionsUpdatedLast && GetTime() - nStart > 5)) {
         // Clear pindexPrev so future calls make a new block, despite any failures from here on
-        pindexPrev = nullptr;
+        pindexPrev = NULL;
 
         // Store the chainActive.Tip() used before CreateNewBlock, to avoid races
         nTransactionsUpdatedLast = mempool.GetTransactionsUpdated();
@@ -529,7 +529,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
         // Create new block
         if (pblocktemplate) {
             delete pblocktemplate;
-            pblocktemplate = nullptr;
+            pblocktemplate = NULL;
         }
         CScript scriptDummy = CScript() << OP_TRUE;
         pblocktemplate = CreateNewBlock(scriptDummy, pwalletMain, false);
