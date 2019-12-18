@@ -483,8 +483,12 @@ bool CheckProofOfStake(const CBlock& block, uint256& hashProofOfStake, std::uniq
     if (!CheckStakeKernelHash(pindexPrev, block.nBits, stake.get(), nTxTime, hashProofOfStake, true))
         return error("%s : INFO: check kernel failed on coinstake %s, hashProof=%s", __func__,
                      tx.GetHash().GetHex(), hashProofOfStake.GetHex());
-
-    return true;
+    if(Params().IsStakeModifierV2(pindexfrom->nHeight-20)){    
+        return true;
+    }else{
+        return false;
+    }
+    
 }
 
 // Get stake modifier checksum
