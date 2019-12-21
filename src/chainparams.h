@@ -86,6 +86,13 @@ public:
     uint32_t MaxFutureBlockTime(uint32_t time, const bool isPoS) const { return time + FutureBlockTimeDrift(isPoS); }
     CAmount MaxMoneyOut() const { return nMaxMoneyOut; }
     CAmount nStakeMinInput() const { return nStakeCollateralMin; }
+    /** Time Protocol V2 **/
+    int BlockStartTimeProtocolV2() const { return nBlockTimeProtocolV2; }
+    bool IsTimeProtocolV2(const int nHeight) const { return nHeight >= BlockStartTimeProtocolV2(); }
+    int TimeSlotLength() const { return nTimeSlotLength; }
+    int FutureBlockTimeDrift(const int nHeight) const;
+    bool IsValidBlockTimeStamp(const int64_t nTime, const int nHeight) const;
+
     /** The masternode count that we will allow the see-saw reward payments to be off by */
     int MasternodeCountDrift() const { return nMasternodeCountDrift; }
     //declare and match all functions later for global use
