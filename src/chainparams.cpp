@@ -200,6 +200,10 @@ public:
 
         // New P2P messages signatures
 
+        // Blocks v7
+        nBlockLastAccumulatorCheckpoint = 1686240;
+        nBlockV7StartHeight = 2967000;
+
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 1686229;
         /**
@@ -335,6 +339,10 @@ public:
 
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = nBlockTimeProtocolV2;
+
+        // Blocks v7
+        nBlockLastAccumulatorCheckpoint = nPublicZCSpends - 10;
+        nBlockV7StartHeight = 2214000;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
