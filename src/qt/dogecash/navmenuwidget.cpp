@@ -10,6 +10,8 @@
 #include "clientversion.h"
 #include "optionsmodel.h"
 
+#include <QScrollBar>
+
 NavMenuWidget::NavMenuWidget(DogeCashGUI *mainWindow, QWidget *parent) :
     PWidget(mainWindow, parent),
     ui(new Ui::NavMenuWidget)
@@ -55,6 +57,16 @@ NavMenuWidget::NavMenuWidget(DogeCashGUI *mainWindow, QWidget *parent) :
     ui->btnSettings->setProperty("name", "settings");
     ui->btnSettings->setText("SETTINGS\n");
     ui->btnSettings->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+
+    ui->scrollAreaNav->setWidgetResizable(true);
+
+    QSizePolicy scrollAreaPolicy = ui->scrollAreaNav->sizePolicy();
+    scrollAreaPolicy.setVerticalStretch(1);
+    ui->scrollAreaNav->setSizePolicy(scrollAreaPolicy);
+
+    QSizePolicy scrollVertPolicy = ui->scrollAreaNavVert->sizePolicy();
+    scrollVertPolicy.setVerticalStretch(1);
+    ui->scrollAreaNavVert->setSizePolicy(scrollVertPolicy);
 
     ui->btnReceive->setProperty("name", "receive");
     ui->btnReceive->setText("RECEIVE\n");
@@ -158,7 +170,8 @@ void NavMenuWidget::onNavSelected(QWidget* active, bool startup) {
 
 void NavMenuWidget::onShowHideColdStakingChanged(bool show) {
     ui->btnColdStaking->setVisible(show);
-    window->setMinimumHeight(show ? 780 : 740);
+    if (show)
+        ui->scrollAreaNav->verticalScrollBar()->setValue(ui->btnColdStaking->y());
 }
 
 
