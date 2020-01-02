@@ -159,6 +159,9 @@ PrivacyWidget::PrivacyWidget(DogeCashGUI* parent) :
     ui->listView->setMinimumHeight(NUM_ITEMS * (DECORATION_SIZE + 2));
     ui->listView->setAttribute(Qt::WA_MacShowFocusRect, false);
     ui->listView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->listView->setLayoutMode(QListView::LayoutMode::Batched);
+    ui->listView->setBatchSize(30);
+    ui->listView->setUniformItemSizes(true);
 }
 
 void PrivacyWidget::loadWalletModel(){
