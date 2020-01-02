@@ -796,7 +796,7 @@
                            zDOGEC is an optional privacy-centric method of coin mixing on the
                            DogeCash blockchain. Basically all your transactions cannot be tracked
                            on to any block explorer. You can read more about the technicals in the
-                           &lt;a style='color: #9c7019' href='https://dogec.io/zdogec/'&gt;
+                           &lt;a style='color: #9c7019' href='https://dogec.io/'&gt;
                            &quot;DogeCash Zerocoin (zDOGEC) Technical Paper&quot;&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </string>
@@ -997,7 +997,7 @@
                            marks and restart your wallet to disable automint.&lt;/p&gt;
                            &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;
                            You can read more about zDOGEC in the
-                           &lt;a style='color: #9c7019' href='https://dogec.io/zdogec/'&gt; &quot;DogeCash Zerocoin (zDOGEC) Technical Paper&quot;&lt;/a&gt;.
+                           &lt;a style='color: #9c7019' href='https://dogec.io/'&gt; &quot;DogeCash Zerocoin (zDOGEC) Technical Paper&quot;&lt;/a&gt;.
                            If you would like to keep and stake your zDOGEC, please read the &quot;How do I stake&quot;
                            section of the FAQ below.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
@@ -1198,7 +1198,7 @@
                            &lt;ol&gt;&lt;li&gt;
                            Make sure your wallet is completely synchronized and you are using the latest release.
                            &lt;li&gt;
-                           You must have a balance of DogeCash with a minimum of 101 confirmations.
+                           You must have a balance of DogeCash with a minimum of 31 confirmations.
                            &lt;li&gt;
                            Your wallet must stay online and be unlocked for anonymization and staking purposes.
                            &lt;li&gt;
@@ -1311,7 +1311,7 @@
                          <string>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #9c7019' href='https://Discord.DogeCash.com'&gt;
+                           &lt;a style='color: #9c7019' href='https://discord.dogec.io/'&gt;
                            #support in our Discord&lt;/a&gt;.
                            If you prefer to submit a ticket, One can be
                            &lt;a style='color: #9c7019' href='https://DogeCash.FreshDesk.com'&gt;
