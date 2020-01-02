@@ -196,11 +196,7 @@ public:
     std::vector<unsigned char> vchSig;
     int64_t sigTime;
 };
-class CObfuScationSigner {
-  public:
-    /// Verify the message, returns true if succcessful
-    bool VerifyMessage(CPubKey pubkey, std::vector<unsigned char>& vchSig, std::string strMessage, std::string& errorMessage);
-};
+
 /** Used to keep track of current status of Obfuscation pool
  */
 class CObfuscationPool

@@ -28,9 +28,7 @@ SendMultiRow::SendMultiRow(PWidget *parent) :
 
     ui->lineEditAmount->setPlaceholderText("0.00 DOGEC ");
     initCssEditLine(ui->lineEditAmount);
-    QDoubleValidator *doubleValidator = new QDoubleValidator(0, 9999999, 8, this);
-    doubleValidator->setNotation(QDoubleValidator::StandardNotation);
-    ui->lineEditAmount->setValidator(doubleValidator);
+    GUIUtil::setupAmountWidget(ui->lineEditAmount, this);
 
     /* Description */
     ui->labelSubtitleDescription->setText("Label address (optional)");
@@ -69,13 +67,9 @@ SendMultiRow::SendMultiRow(PWidget *parent) :
 void SendMultiRow::amountChanged(const QString& amount){
     if(!amount.isEmpty()) {
         QString amountStr = amount;
-        int commaIndex = amountStr.indexOf(',');
-        if (commaIndex != -1) {
-            amountStr = amountStr.remove(commaIndex, 1);
-        }
         CAmount value = getAmountValue(amountStr);
         if (value > 0) {
-            ui->lineEditAmount->setText(amountStr);
+            GUIUtil::updateWidgetTextAndCursorPosition(ui->lineEditAmount, amountStr);
             setCssEditLine(ui->lineEditAmount, true, true);
         }
     }

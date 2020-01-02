@@ -241,7 +241,15 @@ bool CSporkManager::SetPrivKey(std::string strPrivKey)
 
     spork.Sign(strPrivKey, true);
 
+    const bool fRequireNew = GetTime() >= Params().NewSporkStart();
     bool fValidSig = spork.CheckSignature();
+    if (!fValidSig && !fRequireNew) {
+        // See if window is open that allows for old spork key to sign messages
+        if (GetAdjustedTime() < Params().RejectOldSporkKey()) {
+            CPubKey pubkeyold = spork.GetPublicKeyOld();
+            fValidSig = spork.CheckSignature(pubkeyold);
+        }
+    }
     if (fValidSig) {
         LOCK(cs);
         // Test signing successful, proceed

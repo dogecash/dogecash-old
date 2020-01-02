@@ -3,6 +3,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#include "qt/coincontroldialog.h"
 #include "qt/dogecash/coincontroldogecwidget.h"
 #include "qt/dogecash/forms/ui_coincontroldogecwidget.h"
 
@@ -81,6 +82,8 @@ CoinControlDogeCWidget::CoinControlDogeCWidget(QWidget *parent) :
 
     connect(ui->btnEsc, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->btnCancel, SIGNAL(clicked()), this, SLOT(close()));
+    //CoinControlDialog *coinControlDialog = new CoinControlDialog();
+    //coinControlDialog->updateView();
 
 }
 

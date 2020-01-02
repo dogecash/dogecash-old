@@ -446,7 +446,6 @@ void CoinControlDialog::headerSectionClicked(int logicalIndex)
         sortView(sortColumn, sortOrder);
     }
 }
-
 // toggle tree mode
 void CoinControlDialog::radioTreeMode(bool checked)
 {
@@ -927,4 +926,12 @@ void CoinControlDialog::updateView()
     // sort view
     sortView(sortColumn, sortOrder);
     ui->treeWidget->setEnabled(true);
+}
+
+void CoinControlDialog::updateCoinControlLabels()
+{
+    updateView();
+    updateLabelLocked();
+    CoinControlDialog::updateLabels(model, this);
+    updateDialogLabels();
 }

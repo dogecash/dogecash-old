@@ -61,7 +61,7 @@ void URITests::uriTests()
     QVERIFY(GUIUtil::parseBitcoinURI(uri, &rv));
 
     uri.setUrl(QString("dogecash:D72dLgywmL73JyTwQBfuU29CADz9yCJ99v?amount=1,000&label=Some Example"));
-    QVERIFY(!GUIUtil::parseBitcoinURI(uri, &rv));
+    QVERIFY(GUIUtil::parseBitcoinURI(uri, &rv));
 
     uri.setUrl(QString("dogecash:D72dLgywmL73JyTwQBfuU29CADz9yCJ99v?amount=1,000.0&label=Some Example"));
     QVERIFY(!GUIUtil::parseBitcoinURI(uri, &rv));

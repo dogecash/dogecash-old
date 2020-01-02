@@ -67,7 +67,7 @@ protected:
     bool verifyWalletUnlocked();
 
 private:
-    QSharedPointer<WorkerTask> task = nullptr;
+    QSharedPointer<WorkerTask> task;
     void init();
     private slots:
     void errorString(QString, int);

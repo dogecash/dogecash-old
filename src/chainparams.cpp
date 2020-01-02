@@ -171,6 +171,8 @@ public:
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = nBlockStakeModifierlV2 + 10;
 
+        // New P2P messages signatures
+
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 1686229;
         /**
