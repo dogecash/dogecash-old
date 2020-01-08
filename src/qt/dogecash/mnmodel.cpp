@@ -151,3 +151,12 @@ bool MNModel::addMn(CMasternodeConfig::CMasternodeEntry* mne){
     endInsertRows();
     return true;
 }
+
+bool MNModel::isMNMissingOrExpired(QString mnAlias) {
+    QMap<QString, std::pair<QString, CMasternode*>>::const_iterator it = nodes.find(mnAlias);
+    if (it != nodes.end()) {
+        int activeState = it.value().second->activeState;
+        return activeState == CMasternode::MASTERNODE_MISSING || activeState == CMasternode::MASTERNODE_EXPIRED;
+    }
+    throw std::runtime_error(std::string("Masternode alias not found"));
+}

@@ -42,10 +42,12 @@ public:
     bool addMn(CMasternodeConfig::CMasternodeEntry* entry);
     void updateMNList();
 
+    // Checks if the masternode is in missing state
+    bool isMNMissingOrExpired(QString mnAlias);
 
 private:
     // alias mn node ---> pair <ip, master node>
-    QMap<QString, std::pair<QString,CMasternode*>> nodes;
+    QMap<QString, std::pair<QString, CMasternode*>> nodes;
     QMap<std::string, bool> collateralTxAccepted;
 };
 
