@@ -372,8 +372,16 @@ bool Stake(const CBlockIndex* pindexPrev, CStakeInput* stakeInput, unsigned int 
     // but not after the max allowed future blocktime drift (3 minutes for PoS)
     const unsigned int maxTime = std::min(nTimeTx + nHashDrift, Params().MaxFutureBlockTime(GetAdjustedTime(), true));
 
-    while (nTryTime < maxTime)
-    {
+    if (maxTime <= minTime) {
+        // too early to stake
+        return false;
+    }
+
+    while (nTryTime > minTime) {
+        // store a time stamp of when we last hashed on this block
+        mapHashedBlocks.clear();
+        mapHashedBlocks[pindexPrev->nHeight] = GetTime();
+
         //new block came in, move on
         if (chainActive.Height() != prevHeight && Params().NetworkID() == CBaseChainParams::REGTEST)
             break;
