@@ -274,9 +274,16 @@ def main():
     if not args.keepcache:
         shutil.rmtree("%s/test/cache" % config["environment"]["BUILDDIR"], ignore_errors=True)
 
-    run_tests(test_list, config["environment"]["SRCDIR"], config["environment"]["BUILDDIR"], config["environment"]["EXEEXT"], tmpdir, args.jobs, args.coverage, passon_args, args.combinedlogslen)
+    run_tests(test_list,
+              config["environment"]["SRCDIR"],
+              config["environment"]["BUILDDIR"],
+              config["environment"]["EXEEXT"],
+              tmpdir,
+              args.jobs, args.coverage,
+              passon_args, args.combinedlogslen,
+              args.keepcache)
 
-def run_tests(test_list, src_dir, build_dir, exeext, tmpdir, jobs=1, enable_coverage=False, args=[], combined_logs_len=0):
+def run_tests(test_list, src_dir, build_dir, exeext, tmpdir, jobs=1, enable_coverage=False, args=[], combined_logs_len=0, keep_cache=False):
     # Warn if bitcoind is already running (unix only)
     try:
         if subprocess.check_output(["pidof", "dogecashd"]) is not None:
@@ -308,6 +315,20 @@ def run_tests(test_list, src_dir, build_dir, exeext, tmpdir, jobs=1, enable_cove
 
     if len(test_list) > 1 and jobs > 1:
         # Populate cache
+        # Send a ping message every 5 minutes to not get stalled on Travis.
+        import threading
+        pingTime = 5 * 60
+        stopTimer = False
+
+        def pingTravis():
+            if stopTimer:
+                return
+            print("- Creating cache in progress...")
+            sys.stdout.flush()
+            threading.Timer(pingTime, pingTravis).start()
+
+        if not keep_cache:
+            pingTravis()
         try:
             subprocess.check_output([tests_dir + 'create_cache.py'] + flags + ["--tmpdir=%s/cache" % tmpdir])
         except subprocess.CalledProcessError as e:

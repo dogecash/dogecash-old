@@ -78,8 +78,8 @@ std::string DecodeDumpString(const std::string& str)
 
 UniValue importprivkey(const UniValue& params, bool fHelp)
 {
-    if (fHelp || params.size() < 1 || params.size() > 3)
-        throw runtime_error(
+    if (fHelp || params.size() < 1 || params.size() > 4)
+        throw std::runtime_error(
             "importprivkey \"dogecashprivkey\" ( \"label\" rescan )\n"
             "\nAdds a private key (as returned by dumpprivkey) to your wallet.\n" +
             HelpRequiringPassphrase() + "\n"
@@ -88,6 +88,7 @@ UniValue importprivkey(const UniValue& params, bool fHelp)
             "1. \"dogecashprivkey\"   (string, required) The private key (see dumpprivkey)\n"
             "2. \"label\"            (string, optional, default=\"\") An optional label\n"
             "3. rescan               (boolean, optional, default=true) Rescan the wallet for transactions\n"
+            "4. fStakingAddress      (boolean, optional, default=false) Whether this key refers to a (cold) staking address\n"
 
             "\nNote: This call can take minutes to complete if rescan is true.\n"
 
@@ -101,7 +102,10 @@ UniValue importprivkey(const UniValue& params, bool fHelp)
             "\nAs a JSON-RPC call\n" +
             HelpExampleRpc("importprivkey", "\"mykey\", \"testing\", false"));
 
-    LOCK2(cs_main, pwalletMain->cs_wallet);
+    const std::string strSecret = params[0].get_str();
+    const std::string strLabel = (params.size() > 1 ? params[1].get_str() : "");
+    const bool fRescan = (params.size() > 2 ? params[2].get_bool() : true);
+    const bool fStakingAddress = (params.size() > 3 ? params[3].get_bool() : false);
 
     EnsureWalletIsUnlocked();
 
@@ -116,19 +120,25 @@ UniValue importprivkey(const UniValue& params, bool fHelp)
         fRescan = params[2].get_bool();
 
     CBitcoinSecret vchSecret;
-    bool fGood = vchSecret.SetString(strSecret);
-
-    if (!fGood) throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid private key encoding");
+    if (!vchSecret.SetString(strSecret))
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid private key encoding");
 
     CKey key = vchSecret.GetKey();
-    if (!key.IsValid()) throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Private key outside allowed range");
+    if (!key.IsValid())
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Private key outside allowed range");
 
     CPubKey pubkey = key.GetPubKey();
     assert(key.VerifyPubKey(pubkey));
     CKeyID vchAddress = pubkey.GetID();
     {
+        LOCK2(cs_main, pwalletMain->cs_wallet);
+        EnsureWalletIsUnlocked();
+
         pwalletMain->MarkDirty();
-        pwalletMain->SetAddressBook(vchAddress, strLabel, "receive");
+        pwalletMain->SetAddressBook(vchAddress, strLabel, (
+                fStakingAddress ?
+                        AddressBook::AddressBookPurpose::COLD_STAKING :
+                        AddressBook::AddressBookPurpose::RECEIVE));
 
         // Don't throw error in case a key is already there
         if (pwalletMain->HaveKey(vchAddress))
@@ -143,7 +153,12 @@ UniValue importprivkey(const UniValue& params, bool fHelp)
         pwalletMain->nTimeFirstKey = 1; // 0 would be considered 'no value'
 
         if (fRescan) {
-            pwalletMain->ScanForWalletTransactions(chainActive.Genesis(), true);
+            CBlockIndex *pindex = chainActive.Genesis();
+            if (fStakingAddress && Params().NetworkID() != CBaseChainParams::REGTEST) {
+                // cold staking was activated after nBlockTimeProtocolV2. No need to scan the whole chain
+                pindex = chainActive[Params().BlockStartTimeProtocolV2()];
+            }
+            pwalletMain->ScanForWalletTransactions(pindex, true);
         }
     }
 
@@ -200,8 +215,12 @@ UniValue importaddress(const UniValue& params, bool fHelp)
             throw JSONRPCError(RPC_WALLET_ERROR, "The wallet already contains the private key for this address or script");
 
         // add to address book or update label
-        if (address.IsValid())
-            pwalletMain->SetAddressBook(address.Get(), strLabel, "receive");
+        if (address.IsValid()) {
+            pwalletMain->SetAddressBook(address.Get(), strLabel,
+                    (address.IsStakingAddress() ?
+                            AddressBook::AddressBookPurpose::COLD_STAKING :
+                            AddressBook::AddressBookPurpose::RECEIVE));
+        }
 
         // Don't throw error in case an address is already there
         if (pwalletMain->HaveWatchOnly(script))
