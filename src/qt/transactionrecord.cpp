@@ -302,11 +302,16 @@ void TransactionRecord::loadHotOrColdStakeOrContract(
             break;
         }
     }
-    bool isSpendable = wallet->IsMine(p2csUtxo) & ISMINE_SPENDABLE_DELEGATED;
+
+    bool isSpendable = (wallet->IsMine(p2csUtxo) & ISMINE_SPENDABLE_DELEGATED);
+    bool isFromMe = wallet->IsFromMe(wtx);
 
     if (isContract) {
-        if (isSpendable) {
+        if (isSpendable && isFromMe) {
             // Wallet delegating balance
+            record.type = TransactionRecord::P2CSDelegationSentOwner;
+        } else if (isFromMe){
+            // Wallet delegating balance and transfering ownership
             record.type = TransactionRecord::P2CSDelegationSent;
         } else {
             // Wallet receiving a delegation
@@ -453,6 +458,19 @@ int TransactionRecord::getOutputIndex() const
     return idx;
 }
 
+
+bool TransactionRecord::isAnyColdStakingType() const
+{
+    return (type == TransactionRecord::P2CSDelegation || type == TransactionRecord::P2CSDelegationSent
+            || type == TransactionRecord::P2CSDelegationSentOwner
+            || type == TransactionRecord::StakeDelegated || type == TransactionRecord::StakeHot
+            || type == TransactionRecord::P2CSUnlockOwner || type == TransactionRecord::P2CSUnlockStaker);
+}
+
+bool TransactionRecord::isNull() const
+{
+    return hash.IsNull() || size == 0;
+}
 
 std::string TransactionRecord::statusToString(){
     switch (status.status){
