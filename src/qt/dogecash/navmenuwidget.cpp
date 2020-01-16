@@ -179,6 +179,13 @@ void NavMenuWidget::selectSettings(){
     onSettingsClicked();
 }
 
+void NavMenuWidget::showEvent(QShowEvent *event) {
+    if (!init) {
+        init = true;
+        ui->scrollAreaNav->verticalScrollBar()->setValue(ui->btnDashboard->y());
+    }
+}
+
 void NavMenuWidget::updateButtonStyles(){
     forceUpdateStyle({
          ui->btnDashboard,

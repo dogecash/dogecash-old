@@ -24,6 +24,7 @@ public:
     ~NavMenuWidget();
 
     void loadWalletModel() override;
+    virtual void showEvent(QShowEvent *event) override;
 
 public slots:
     void selectSettings();
@@ -46,6 +47,8 @@ private:
 
     void connectActions();
     void onNavSelected(QWidget* active, bool startup = false);
+
+    bool init = false;
 };
 
 #endif // NAVMENUWIDGET_H
