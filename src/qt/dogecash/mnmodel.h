@@ -42,6 +42,7 @@ public:
     bool addMn(CMasternodeConfig::CMasternodeEntry* entry);
     void updateMNList();
 
+    bool isMNsNetworkSynced();
     // Checks if the masternode is in missing state
     bool isMNMissingOrExpired(QString mnAlias);
 
