@@ -62,6 +62,7 @@ private:
 
     void startAlias(QString strAlias);
     bool startAll(QString& failedMN, bool onlyMissing);
+    bool checkMNsNetwork();
     bool startMN(CMasternodeConfig::CMasternodeEntry mne, std::string& strError);
 };
 

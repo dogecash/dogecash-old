@@ -160,3 +160,7 @@ bool MNModel::isMNMissingOrExpired(QString mnAlias) {
     }
     throw std::runtime_error(std::string("Masternode alias not found"));
 }
+
+bool MNModel::isMNsNetworkSynced() {
+    return masternodeSync.IsSynced();
+}
