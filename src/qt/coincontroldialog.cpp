@@ -19,7 +19,7 @@
 #include "obfuscation.h"
 #include "wallet/wallet.h"
 
-#include "qt/pivx/qtutils.h"
+#include "qt/dogecash/qtutils.h"
 
 #include <boost/assign/list_of.hpp> // for 'map_list_of()'
 
