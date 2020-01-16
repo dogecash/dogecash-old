@@ -379,9 +379,9 @@ UniValue validateaddress(const UniValue& params, bool fHelp)
             "  \"hex\" : \"hex\",                (string, optional) The redeemscript for the P2SH address\n"
             "  \"pubkey\" : \"publickeyhex\",    (string) The hex value of the raw public key\n"
             "  \"iscompressed\" : true|false,    (boolean) If the address is compressed\n"
-            "  \"account\" : \"account\"         (string) The account associated with the address, \"\" is the default account\n"
             "  \"hdkeypath\" : \"keypath\"       (string, optional) The HD keypath if the key is HD and available\n"
             "  \"hdchainid\" : \"<hash>\"        (string, optional) The ID of the HD chain\n"
+            "  \"account\" : \"account\"         (string) DEPRECATED. The account associated with the address, \"\" is the default account\n"
             "}\n"
 
             "\nExamples:\n" +
