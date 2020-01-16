@@ -1746,12 +1746,9 @@ CAmount CWalletTx::GetLockedCredit() const
         // Skip spent coins
         if (pwallet->IsSpent(hashTx, i)) continue;
 
-        // Add delegated coins
-        nCredit += pwallet->GetCredit(txout, ISMINE_SPENDABLE_DELEGATED);
-
         // Add locked coins
         if (pwallet->IsLockedCoin(hashTx, i)) {
-            nCredit += pwallet->GetCredit(txout, ISMINE_SPENDABLE);
+            nCredit += pwallet->GetCredit(txout, ISMINE_SPENDABLE_ALL);
         }
 
         // Add masternode collaterals which are handled likc locked coins
