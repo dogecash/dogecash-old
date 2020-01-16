@@ -48,6 +48,8 @@ DogeCashGUI::DogeCashGUI(const NetworkStyle* networkStyle, QWidget* parent) :
     GUIUtil::restoreWindowGeometry(
             "nWindow",
             QSize(BASE_WINDOW_WIDTH, adaptedHeight),
+            this
+            );
         
 
 #ifdef ENABLE_WALLET
