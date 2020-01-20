@@ -1871,8 +1871,8 @@ void RelayTransactionLockReq(const CTransaction& tx, bool relayToAll)
 void RelayInv(CInv& inv)
 {
     LOCK(cs_vNodes);
-    BOOST_FOREACH (CNode* pnode, vNodes){
-        if((pnode->nServices == NODE_BLOOM_WITHOUT_MN || pnode->nServices == NODE_BLOOM_LIGHT_ZC) && inv.IsMasterNodeType())continue;
+    for (CNode* pnode : vNodes){
+        if((pnode->nServices == NODE_BLOOM_WITHOUT_MN) && inv.IsMasterNodeType())continue;
         if (pnode->nVersion >= ActiveProtocol())
             pnode->PushInventory(inv);
     }

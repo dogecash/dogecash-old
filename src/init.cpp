@@ -292,10 +292,6 @@ void Shutdown()
     }
     // Shutdown part 2: Stop TOR thread and delete wallet instance
     StopTorControl();
-    // Shutdown witness thread if it's enabled
-    if (nLocalServices == NODE_BLOOM_LIGHT_ZC) {
-        lightWorker.StopLightzdogecThread();
-    }
 #ifdef ENABLE_WALLET
     delete pwalletMain;
     pwalletMain = NULL;
@@ -429,7 +425,6 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-onlynet=<net>", _("Only connect to nodes in network <net> (ipv4, ipv6 or onion)"));
     strUsage += HelpMessageOpt("-permitbaremultisig", strprintf(_("Relay non-P2SH multisig (default: %u)"), 1));
     strUsage += HelpMessageOpt("-peerbloomfilters", strprintf(_("Support filtering of blocks and transaction with bloom filters (default: %u)"), DEFAULT_PEERBLOOMFILTERS));
-    strUsage += HelpMessageOpt("-peerbloomfilterszc", strprintf(_("Support the zerocoin light node protocol (default: %u)"), DEFAULT_PEERBLOOMFILTERS_ZC));
     strUsage += HelpMessageOpt("-port=<port>", strprintf(_("Listen for connections on <port> (default: %u or testnet: %u)"), 16740, 51474));
     strUsage += HelpMessageOpt("-proxy=<ip:port>", _("Connect through SOCKS5 proxy"));
     strUsage += HelpMessageOpt("-proxyrandomize", strprintf(_("Randomize credentials for every proxy connection. This enables Tor stream isolation (default: %u)"), 1));
@@ -1029,15 +1024,8 @@ bool AppInit2()
 
     fAlerts = GetBoolArg("-alerts", DEFAULT_ALERTS);
 
-    if (GetBoolArg("-peerbloomfilterszc", DEFAULT_PEERBLOOMFILTERS_ZC))
-        nLocalServices |= NODE_BLOOM_LIGHT_ZC;
-
-    if (nLocalServices != NODE_BLOOM_LIGHT_ZC) {
-
-        if (GetBoolArg("-peerbloomfilters", DEFAULT_PEERBLOOMFILTERS))
-            nLocalServices |= NODE_BLOOM;
-
-    }
+    if (GetBoolArg("-peerbloomfilters", DEFAULT_PEERBLOOMFILTERS))
+        nLocalServices |= NODE_BLOOM;
 
     nMaxTipAge = GetArg("-maxtipage", DEFAULT_MAX_TIP_AGE);
 
@@ -2045,11 +2033,6 @@ int64_t nStart;
         StartTorControl(threadGroup);
 
     StartNode(threadGroup, scheduler);
-
-    if (nLocalServices & NODE_BLOOM_LIGHT_ZC) {
-        // Run a thread to compute witnesses
-        lightWorker.StartLightzdogecThread(threadGroup);
-    }
 
 #ifdef ENABLE_WALLET
     // Generate coins in the background

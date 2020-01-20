@@ -194,9 +194,6 @@ BITCOIN_CORE_H = \
   zdogec/zerocoin.h \
   zdogec/zdogectracker.h \
   zdogec/zdogecwallet.h \
-  genwit.h \
-  concurrentqueue.h \
-  lightzdogecthread.h \
   zmq/zmqabstractnotifier.h \
   zmq/zmqconfig.h \
   zmq/zmqnotificationinterface.h \
@@ -291,8 +288,6 @@ libbitcoin_wallet_a_SOURCES = \
   zdogec/zdogecwallet.cpp \
   zdogec/zdogectracker.cpp \
   stakeinput.cpp \
-  genwit.cpp \
-  lightzdogecthread.cpp \
   $(BITCOIN_CORE_H)
 
 # crypto primitives library
