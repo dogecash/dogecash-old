@@ -553,7 +553,7 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
 
     // DOGEC Balance
     CAmount nTotalBalance = balance + unconfirmedBalance + immatureBalance;
-    CAmount dogecAvailableBalance = nTotalBalance + delegatedBalance - unconfirmedBalance - immatureBalance - nLockedBalance;
+    CAmount dogecAvailableBalance = nTotalBalance - delegatedBalance - unconfirmedBalance - immatureBalance - nLockedBalance;
 
     // zDOGEC Balance
 
