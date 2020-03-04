@@ -40,7 +40,7 @@ public:
     bool GetMetaFromStakeHash(const uint256& hashStake, CMintMeta& meta) const;
     CAmount GetBalance(bool fConfirmedOnly, bool fUnconfirmedOnly) const;
     std::vector<uint256> GetSerialHashes();
-    mutable CCriticalSection cs_spendcache;
+    mutable RecursiveMutex cs_spendcache;
     CoinWitnessData* GetSpendCache(const uint256& hashStake) EXCLUSIVE_LOCKS_REQUIRED(cs_spendcache);
     bool ClearSpendCache() EXCLUSIVE_LOCKS_REQUIRED(cs_spendcache);
     std::vector<CMintMeta> GetMints(bool fConfirmedOnly) const;

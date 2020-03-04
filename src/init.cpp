@@ -1821,18 +1821,15 @@ int64_t nStart;
         }
         fVerifyingBlocks = false;
 
-        //Inititalize zdogecWallet
-        uiInterface.InitMessage(_("Syncing zdogec wallet..."));
+        if (zwalletMain->GetMasterSeed() != 0) {
+            //Inititalize zdogecWallet
+            uiInterface.InitMessage(_("Syncing zDOGEC wallet..."));
 
-        pwalletMain->InitAutoConvertAddresses();
-
-        bool fEnablezdogecBackups = GetBoolArg("-backupzdogec", true);
-        pwalletMain->setzdogecAutoBackups(fEnablezdogecBackups);
-
-        //Load zerocoin mint hashes to memory
-        pwalletMain->zdogecTracker->Init();
-        zwalletMain->LoadMintPoolFromDB();
-        zwalletMain->SyncWithChain();
+            //Load zerocoin mint hashes to memory
+            pwalletMain->zdogecTracker->Init();
+            zwalletMain->LoadMintPoolFromDB();
+            zwalletMain->SyncWithChain();
+        }
     }  // (!fDisableWallet)
 #else  // ENABLE_WALLET
     LogPrintf("No wallet compiled in!\n");
@@ -1852,7 +1849,7 @@ int64_t nStart;
 
     // update g_best_block if needed
     {
-        WaitableLock lock(g_best_block_mutex);
+        LOCK(g_best_block_mutex);
         if (g_best_block.IsNull() && chainActive.Tip()) {
             g_best_block = chainActive.Tip()->GetBlockHash();
             g_best_block_cv.notify_all();
