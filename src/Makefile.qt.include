@@ -92,6 +92,7 @@ QT_FORMS_UI = \
   qt/dogecash/forms/privacywidget.ui \
   qt/dogecash/forms/coldstakingwidget.ui \
   qt/dogecash/settings/forms/settingsbackupwallet.ui \
+  qt/dogecash/settings/forms/settingsexportcsv.ui \
   qt/dogecash/settings/forms/settingsbittoolwidget.ui \
   qt/dogecash/settings/forms/settingsconsolewidget.ui \
   qt/dogecash/settings/forms/settingsdisplayoptionswidget.ui \
@@ -189,6 +190,7 @@ QT_MOC_CPP = \
   qt/dogecash/moc_privacywidget.cpp \
   qt/dogecash/moc_coldstakingwidget.cpp \
   qt/dogecash/settings/moc_settingsbackupwallet.cpp \
+  qt/dogecash/settings/moc_settingsexportcsv.cpp \
   qt/dogecash/settings/moc_settingsbittoolwidget.cpp \
   qt/dogecash/settings/moc_settingsconsolewidget.cpp \
   qt/dogecash/settings/moc_settingsdisplayoptionswidget.cpp \
@@ -320,6 +322,7 @@ BITCOIN_QT_H = \
   qt/dogecash/privacywidget.h \
   qt/dogecash/coldstakingwidget.h \
   qt/dogecash/settings/settingsbackupwallet.h \
+  qt/dogecash/settings/settingsexportcsv.h \
   qt/dogecash/settings/settingsbittoolwidget.h \
   qt/dogecash/settings/settingsconsolewidget.h \
   qt/dogecash/settings/settingsdisplayoptionswidget.h \
@@ -715,6 +718,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/dogecash/privacywidget.cpp \
   qt/dogecash/coldstakingwidget.cpp \
   qt/dogecash/settings/settingsbackupwallet.cpp \
+  qt/dogecash/settings/settingsexportcsv.cpp \
   qt/dogecash/settings/settingsbittoolwidget.cpp \
   qt/dogecash/settings/settingsconsolewidget.cpp \
   qt/dogecash/settings/settingsdisplayoptionswidget.cpp \

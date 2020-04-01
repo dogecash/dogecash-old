@@ -154,6 +154,7 @@ SET(QT_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/privacywidget.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/coldstakingwidget.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/settings/settingsbackupwallet.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/settings/settingsexportcsv.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/settings/settingsbittoolwidget.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/settings/settingsconsolewidget.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/dogecash/settings/settingsdisplayoptionswidget.cpp

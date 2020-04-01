@@ -9,6 +9,7 @@
 #include <QWidget>
 #include "qt/dogecash/pwidget.h"
 #include "qt/dogecash/settings/settingsbackupwallet.h"
+#include "qt/dogecash/settings/settingsexportcsv.h"
 #include "qt/dogecash/settings/settingsbittoolwidget.h"
 #include "qt/dogecash/settings/settingssignmessagewidgets.h"
 #include "qt/dogecash/settings/settingswalletrepairwidget.h"
@@ -56,6 +57,7 @@ private slots:
     void onConfigurationClicked();
     void onBipToolClicked();
     void onMultisendClicked();
+    void onExportCSVClicked();
 
     // Options
     void onOptionsClicked();
@@ -81,6 +83,7 @@ private:
     Ui::SettingsWidget *ui;
 
     SettingsBackupWallet *settingsBackupWallet;
+    SettingsExportCSV *settingsExportCsvWidget;
     SettingsBitToolWidget *settingsBitToolWidget;
     SettingsSignMessageWidgets *settingsSingMessageWidgets;
     SettingsWalletRepairWidget *settingsWalletRepairWidget;

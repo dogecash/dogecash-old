@@ -22,13 +22,11 @@ public:
     ~SettingsBackupWallet();
 
 private slots:
-    void backupWallet();
     void selectFileOutput();
     void changePassphrase();
 
 private:
     Ui::SettingsBackupWallet *ui;
-    QString filename;
 };
 
 #endif // SETTINGSBACKUPWALLET_H

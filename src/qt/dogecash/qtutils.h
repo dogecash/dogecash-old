@@ -45,6 +45,11 @@ void setTheme(bool isLight);
 
 void initComboBox(QComboBox* combo, QLineEdit* lineEdit = nullptr);
 
+// filters
+void setFilterAddressBook(QComboBox* filter, SortEdit* lineEdit);
+void setSortTx(QComboBox* filter, SortEdit* lineEdit);
+void setSortTxTypeFilter(QComboBox* filter, SortEdit* lineEdit);
+
 void initCssEditLine(QLineEdit *edit, bool isDialog = false);
 void setCssEditLine(QLineEdit *edit, bool isValid, bool forceUpdate = false);
 void setCssEditLineDialog(QLineEdit *edit, bool isValid, bool forceUpdate = false);
