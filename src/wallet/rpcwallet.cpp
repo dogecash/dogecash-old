@@ -134,7 +134,7 @@ UniValue getnewstakingaddress(const UniValue& params, bool fHelp)
 
 
             "\nResult:\n"
-            "\"pivxaddress\"    (string) The new DogeCash address\n"
+            "\"dogecashaddress\"    (string) The new DogeCash address\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getnewstakingaddress", "") + HelpExampleRpc("getnewstakingaddress", "\"\"") +
@@ -829,7 +829,7 @@ UniValue rawdelegatestake(const UniValue& params, bool fHelp)
             "         \"reqSigs\" : n,            (numeric) The required sigs\n"
             "         \"type\" : \"pubkeyhash\",  (string) The type, eg 'pubkeyhash'\n"
             "         \"addresses\" : [           (json array of string)\n"
-            "           \"pivxaddress\"        (string) DogeCash address\n"
+            "           \"dogecashaddress\"        (string) DogeCash address\n"
             "           ,...\n"
             "         ]\n"
             "       }\n"
@@ -1372,7 +1372,7 @@ UniValue sendfrom(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 3 || params.size() > 7)
         throw std::runtime_error(
-            "sendfrom \"fromaccount\" \"topivxaddress\" amount ( minconf \"comment\" \"comment-to\" includeDelegated)\n"
+            "sendfrom \"fromaccount\" \"todogecashaddress\" amount ( minconf \"comment\" \"comment-to\" includeDelegated)\n"
             "\nSent an amount from an account to a DogeCash address.\n"
             "The amount is a real and is rounded to the nearest 0.00000001." +
             HelpRequiringPassphrase() + "\n"

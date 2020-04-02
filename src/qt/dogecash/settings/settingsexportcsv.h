@@ -6,7 +6,7 @@
 #define SETTINGSEXPORTCSV_H
 
 #include <QWidget>
-#include "qt/pivx/pwidget.h"
+#include "qt/dogecash/pwidget.h"
 #include "transactionfilterproxy.h"
 #include <QSortFilterProxyModel>
 
@@ -19,7 +19,7 @@ class SettingsExportCSV : public PWidget
     Q_OBJECT
 
 public:
-    explicit SettingsExportCSV(PIVXGUI* _window, QWidget *parent = nullptr);
+    explicit SettingsExportCSV(DogeCashGUI* _window, QWidget *parent = nullptr);
     ~SettingsExportCSV();
 
 private Q_SLOTS:
