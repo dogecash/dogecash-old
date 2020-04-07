@@ -138,6 +138,7 @@ std::string CMasternode::GetStrMessage() const
             vchPubKey2 + 
             std::to_string(protocolVersion
     );
+    }
 }
 
 //
