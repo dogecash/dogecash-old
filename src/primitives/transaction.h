@@ -18,14 +18,14 @@
 class CTransaction;
 
 /** An outpoint - a combination of a transaction hash and an index n into its vout */
-class COutPoint
+class BaseOutPoint
 {
 public:
     uint256 hash;
     uint32_t n;
 
-    COutPoint() { SetNull(); }
-    COutPoint(uint256 hashIn, uint32_t nIn) { hash = hashIn; n = nIn; }
+    BaseOutPoint() { SetNull(); }
+    BaseOutPoint(uint256 hashIn, uint32_t nIn) { hash = hashIn; n = nIn; }
 
     ADD_SERIALIZE_METHODS;
 
@@ -38,17 +38,17 @@ public:
     void SetNull() { hash.SetNull(); n = (uint32_t) -1; }
     bool IsNull() const { return (hash.IsNull() && n == (uint32_t) -1); }
 
-    friend bool operator<(const COutPoint& a, const COutPoint& b)
+    friend bool operator<(const BaseOutPoint& a, const BaseOutPoint& b)
     {
         return (a.hash < b.hash || (a.hash == b.hash && a.n < b.n));
     }
 
-    friend bool operator==(const COutPoint& a, const COutPoint& b)
+    friend bool operator==(const BaseOutPoint& a, const BaseOutPoint& b)
     {
         return (a.hash == b.hash && a.n == b.n);
     }
 
-    friend bool operator!=(const COutPoint& a, const COutPoint& b)
+    friend bool operator!=(const BaseOutPoint& a, const BaseOutPoint& b)
     {
         return !(a == b);
     }
@@ -60,6 +60,15 @@ public:
 
     uint256 GetHash() const;
 
+};
+
+/** An outpoint - a combination of a transaction hash and an index n into its vout */
+class COutPoint : public BaseOutPoint
+{
+public:
+    COutPoint() : BaseOutPoint() {};
+    COutPoint(uint256 hashIn, uint32_t nIn) : BaseOutPoint(hashIn, nIn) {};
+    std::string ToString() const;
 };
 
 /** An input of a transaction.  It contains the location of the previous
