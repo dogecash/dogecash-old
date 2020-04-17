@@ -58,8 +58,14 @@ WalletModel::~WalletModel()
     unsubscribeFromCoreSignals();
 }
 
-bool WalletModel::isTestnet() const {
+bool WalletModel::isTestNetwork() const
+{
     return Params().NetworkID() == CBaseChainParams::TESTNET;
+}
+
+bool WalletModel::isRegTestNetwork() const
+{
+    return Params().NetworkID() == CBaseChainParams::REGTEST;
 }
 
 bool WalletModel::isColdStakingNetworkelyEnabled() const {

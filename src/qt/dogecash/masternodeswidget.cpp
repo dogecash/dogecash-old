@@ -37,14 +37,16 @@ class MNHolder : public FurListRow<QWidget*>
 public:
     MNHolder();
 
-    explicit MNHolder(bool _isLightTheme) : FurListRow(), isLightTheme(_isLightTheme){}
+    explicit MNHolder(bool _isLightTheme) : FurListRow(), isLightTheme(_isLightTheme) {}
 
-    MNRow* createHolder(int pos) override{
+    MNRow* createHolder(int pos) override
+    {
         if(!cachedRow) cachedRow = new MNRow();
         return cachedRow;
     }
 
-    void init(QWidget* holder,const QModelIndex &index, bool isHovered, bool isSelected) const override{
+    void init(QWidget* holder,const QModelIndex &index, bool isHovered, bool isSelected) const override
+    {
         MNRow* row = static_cast<MNRow*>(holder);
         QString label = index.data(Qt::DisplayRole).toString();
         QString address = index.sibling(index.row(), MNModel::ADDRESS).data(Qt::DisplayRole).toString();
@@ -53,7 +55,8 @@ public:
         row->updateView("Address: " + address, label, status, wasCollateralAccepted);
     }
 
-    QColor rectColor(bool isHovered, bool isSelected) override{
+    QColor rectColor(bool isHovered, bool isSelected) override
+    {
         return getRowColor(isLightTheme, isHovered, isSelected);
     }
 
@@ -200,7 +203,7 @@ bool MasterNodesWidget::checkMNsNetwork() {
 
 void MasterNodesWidget::onEditMNClicked(){
     if(walletModel) {
-        if (!checkMNsNetwork()) return;
+        if (!walletModel->isRegTestNetwork() && !checkMNsNetwork()) return;
         if (index.sibling(index.row(), MNModel::WAS_COLLATERAL_ACCEPTED).data(Qt::DisplayRole).toBool()) {
             // Start MN
             QString strAlias = this->index.data(Qt::DisplayRole).toString();
@@ -208,8 +211,9 @@ void MasterNodesWidget::onEditMNClicked(){
                 if (!verifyWalletUnlocked()) return;
                 startAlias(strAlias);
             }
-        }else {
-            inform(tr("Cannot start masternode, the collateral transaction has not been accepted by the network.\nPlease wait few more minutes."));
+        } else {
+            inform(tr("Cannot start masternode, the collateral transaction has not been confirmed by the network yet.\n"
+                    "Please wait few more minutes (masternode collaterals require %1 confirmations).").arg(MASTERNODE_MIN_CONFIRMATIONS));            
         }
     }
 }
@@ -331,7 +335,10 @@ void MasterNodesWidget::onInfoMNClicked(){
     dialog->deleteLater();
 }
 
-void MasterNodesWidget::onDeleteMNClicked(){
+void MasterNodesWidget::onDeleteMNClicked()
+{
+    QString txId = index.sibling(index.row(), MNModel::COLLATERAL_ID).data(Qt::DisplayRole).toString();
+    QString outIndex = index.sibling(index.row(), MNModel::COLLATERAL_OUT_INDEX).data(Qt::DisplayRole).toString();
     QString qAliasString = index.data(Qt::DisplayRole).toString();
     std::string aliasToRemove = qAliasString.toStdString();
 
@@ -412,6 +419,14 @@ void MasterNodesWidget::onDeleteMNClicked(){
             if (!pathNewConfFile.is_complete()) pathNewConfFile = GetDataDir() / pathNewConfFile;
             rename(pathConfigFile, pathNewConfFile);
 
+            // Unlock collateral
+            bool convertOK = false;
+            unsigned int indexOut = outIndex.toUInt(&convertOK);
+            if(convertOK) {
+                COutPoint collateralOut(uint256(txId.toStdString()), indexOut);
+                walletModel->unlockCoin(collateralOut);
+            }
+
             // Remove alias
             masternodeConfig.remove(aliasToRemove);
             // Update list
@@ -423,7 +438,8 @@ void MasterNodesWidget::onDeleteMNClicked(){
     }
 }
 
-void MasterNodesWidget::onCreateMNClicked(){
+void MasterNodesWidget::onCreateMNClicked()
+{
     if(verifyWalletUnlocked()) {
         if(walletModel->getBalance() <= (COIN * Params().MasternodeCollateralLimit())){
             inform(tr("Not enough balance to create a masternode, 5,000 DOGEC required."));
@@ -446,7 +462,8 @@ void MasterNodesWidget::onCreateMNClicked(){
     }
 }
 
-void MasterNodesWidget::changeTheme(bool isLightTheme, QString& theme){
+void MasterNodesWidget::changeTheme(bool isLightTheme, QString& theme)
+{
     static_cast<MNHolder*>(this->delegate->getRowFactory())->isLightTheme = isLightTheme;
 }
 

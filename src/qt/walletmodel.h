@@ -140,7 +140,8 @@ public:
     TransactionTableModel* getTransactionTableModel();
     RecentRequestsTableModel* getRecentRequestsTableModel();
 
-    bool isTestnet() const;
+    bool isTestNetwork() const;
+    bool isRegTestNetwork() const;
     /** Whether cold staking is enabled or disabled in the network **/
     bool isColdStakingNetworkelyEnabled() const;
 

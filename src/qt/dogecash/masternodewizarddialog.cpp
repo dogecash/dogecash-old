@@ -12,7 +12,6 @@
 #include <QFile>
 #include <QIntValidator>
 #include <QHostAddress>
-#include <QRegExpValidator>
 
 MasterNodeWizardDialog::MasterNodeWizardDialog(WalletModel *model, QWidget *parent) :
     QDialog(parent),
@@ -64,9 +63,12 @@ MasterNodeWizardDialog::MasterNodeWizardDialog(WalletModel *model, QWidget *pare
     initCssEditLine(ui->lineEditPort);
     ui->stackedWidget->setCurrentIndex(pos);
     ui->lineEditPort->setValidator(new QIntValidator(0, 9999999, ui->lineEditPort));
-    if(walletModel->isTestnet()){
+    if (walletModel->isRegTestNetwork()) {
         ui->lineEditPort->setEnabled(false);
-        ui->lineEditPort->setText("51474");
+        ui->lineEditPort->setText("51436");
+    } else if (walletModel->isTestNetwork()) {
+        ui->lineEditPort->setEnabled(false);
+        ui->lineEditPort->setText("40001");
     } else {
         ui->lineEditPort->setText("56740");
     }
@@ -319,7 +321,11 @@ bool MasterNodeWizardDialog::createMN(){
 
                 mnEntry = masternodeConfig.add(alias, ipAddress+":"+port, mnKeyString, txID, indexOutStr);
 
-                returnStr = tr("Masternode created!");
+                // Lock collateral output
+                COutPoint collateralOut(walletTx->GetHash(), indexOut);
+                walletModel->lockCoin(collateralOut);
+
+                returnStr = tr("Master node created! Wait %1 confirmations before starting it.").arg(MASTERNODE_MIN_CONFIRMATIONS);
                 return true;
             } else{
                 returnStr = tr("masternode.conf file doesn't exists");
