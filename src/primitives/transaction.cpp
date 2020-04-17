@@ -115,7 +115,7 @@ std::string CTxOut::ToString() const
 }
 
 CMutableTransaction::CMutableTransaction() : nVersion(CTransaction::CURRENT_VERSION), nLockTime(0) {}
-CMutableTransaction::CMutableTransaction(const CTransaction& tx) : nVersion(tx.nVersion), vin(tx.vin), vout(tx.vout), nLockTime(tx.nLockTime) {}
+CMutableTransaction::CMutableTransaction(const CTransaction& tx) : nVersion(tx.nVersion), vin(tx.vin), vout(tx.vout), nLockTime(tx.nLockTime), sapData(tx.sapData) {}
 
 uint256 CMutableTransaction::GetHash() const
 {
@@ -149,7 +149,7 @@ size_t CTransaction::DynamicMemoryUsage() const
 
 CTransaction::CTransaction() : nVersion(CTransaction::CURRENT_VERSION), vin(), vout(), nLockTime(0) { }
 
-CTransaction::CTransaction(const CMutableTransaction &tx) : nVersion(tx.nVersion), vin(tx.vin), vout(tx.vout), nLockTime(tx.nLockTime) {
+CTransaction::CTransaction(const CMutableTransaction &tx) : nVersion(tx.nVersion), vin(tx.vin), vout(tx.vout), nLockTime(tx.nLockTime), sapData(tx.sapData) {
     UpdateHash();
 }
 
@@ -159,6 +159,7 @@ CTransaction& CTransaction::operator=(const CTransaction &tx) {
     *const_cast<std::vector<CTxOut>*>(&vout) = tx.vout;
     *const_cast<unsigned int*>(&nLockTime) = tx.nLockTime;
     *const_cast<uint256*>(&hash) = tx.hash;
+    *const_cast<SaplingTxData*>(&sapData) = tx.sapData;
     return *this;
 }
 

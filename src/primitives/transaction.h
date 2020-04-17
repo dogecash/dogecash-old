@@ -13,6 +13,8 @@
 #include "serialize.h"
 #include "uint256.h"
 
+#include "sapling/sapling_transaction.h"
+
 #include <list>
 
 class CTransaction;
@@ -68,6 +70,16 @@ class COutPoint : public BaseOutPoint
 public:
     COutPoint() : BaseOutPoint() {};
     COutPoint(uint256 hashIn, uint32_t nIn) : BaseOutPoint(hashIn, nIn) {};
+    std::string ToString() const;
+};
+
+/** An outpoint - a combination of a transaction hash and an index n into its sapling
+ * output description (vShieldedOutput) */
+class SaplingOutPoint : public BaseOutPoint
+{
+public:
+    SaplingOutPoint() : BaseOutPoint() {};
+    SaplingOutPoint(uint256 hashIn, uint32_t nIn) : BaseOutPoint(hashIn, nIn) {};
     std::string ToString() const;
 };
 
@@ -230,7 +242,10 @@ private:
     void UpdateHash() const;
 
 public:
-    static const int32_t CURRENT_VERSION=1;
+    static const int32_t STANDARD_VERSION = 1;
+    static const int32_t SAPLING_VERSION = 2;
+
+    static const int32_t CURRENT_VERSION = STANDARD_VERSION;
 
     // The local variables are made const to prevent unintended modification
     // without updating the cached hash value. However, CTransaction is not
@@ -241,7 +256,7 @@ public:
     std::vector<CTxIn> vin;
     std::vector<CTxOut> vout;
     const uint32_t nLockTime;
-    //const unsigned int nTime;
+    SaplingTxData sapData;
 
     /** Construct a CTransaction that qualifies as IsNull() */
     CTransaction();
@@ -259,6 +274,11 @@ public:
         READWRITE(*const_cast<std::vector<CTxIn>*>(&vin));
         READWRITE(*const_cast<std::vector<CTxOut>*>(&vout));
         READWRITE(*const_cast<uint32_t*>(&nLockTime));
+
+        if (nVersion >= CTransaction::SAPLING_VERSION) {
+            READWRITE(*const_cast<SaplingTxData*>(&sapData));
+        }
+
         if (ser_action.ForRead())
             UpdateHash();
     }
@@ -327,6 +347,7 @@ struct CMutableTransaction
     std::vector<CTxIn> vin;
     std::vector<CTxOut> vout;
     uint32_t nLockTime;
+    SaplingTxData sapData;
 
     CMutableTransaction();
     CMutableTransaction(const CTransaction& tx);
@@ -339,6 +360,10 @@ struct CMutableTransaction
         READWRITE(vin);
         READWRITE(vout);
         READWRITE(nLockTime);
+
+        if (nVersion >= CTransaction::SAPLING_VERSION) {
+            READWRITE(*const_cast<SaplingTxData*>(&sapData));
+        }
     }
 
     /** Compute the hash of this CMutableTransaction. This is computed on the

@@ -135,7 +135,8 @@ LIBSAPLING_H = \
   sapling/note.hpp \
   sapling/zip32.h \
   sapling/saplingscriptpubkeyman.h \
-  sapling/proof.hpp
+  sapling/proof.hpp \
+  sapling/sapling_transaction.h
 
 .PHONY: FORCE cargo-build check-symbols check-security
 # pivx core #
