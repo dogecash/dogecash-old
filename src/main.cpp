@@ -3376,7 +3376,8 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             return state.Abort("Failed to write transaction index");
 
     // add this block to the view's block chain
-    view.SetBestBlock(pindex->GetBlockHash());
+    if (!fJustCheck)
+        view.SetBestBlock(pindex->GetBlockHash());
 
     int64_t nTime3 = GetTimeMicros();
     nTimeIndex += nTime3 - nTime2;
