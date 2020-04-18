@@ -12,6 +12,7 @@
 #include <assert.h>
 #include <ios>
 #include <limits>
+#include <list>
 #include <map>
 #include <set>
 #include <stdint.h>
@@ -697,6 +698,43 @@ void Unserialize(Stream& is, std::basic_string<C>& str)
         is.read((char*)&str[0], nSize * sizeof(str[0]));
 }
 
+/**
+  * list
+  */
+template<typename T, typename A> unsigned int GetSerializeSize(const std::list<T, A>& m, int nType, int nVersion);
+template<typename Stream, typename T, typename A> void Serialize(Stream& os, const std::list<T, A>& m, int nType, int nVersion);
+template<typename Stream, typename T, typename A> void Unserialize(Stream& is, std::list<T, A>& m, int nType, int nVersion);
+
+template<typename T, typename A>
+unsigned int GetSerializeSize(const std::list<T, A>& l, int nType, int nVersion)
+{
+    unsigned int nSize = GetSizeOfCompactSize(l.size());
+    for (typename std::list<T, A>::const_iterator it = l.begin(); it != l.end(); ++it)
+        nSize += GetSerializeSize((*it), nType, nVersion);
+    return nSize;
+}
+
+template<typename Stream, typename T, typename A>
+void Serialize(Stream& os, const std::list<T, A>& l, int nType, int nVersion)
+{
+    WriteCompactSize(os, l.size());
+    for (typename std::list<T, A>::const_iterator it = l.begin(); it != l.end(); ++it)
+        Serialize(os, (*it), nType, nVersion);
+}
+
+template<typename Stream, typename T, typename A>
+void Unserialize(Stream& is, std::list<T, A>& l, int nType, int nVersion)
+{
+    l.clear();
+    unsigned int nSize = ReadCompactSize(is);
+    typename std::list<T, A>::iterator it = l.begin();
+    for (unsigned int i = 0; i < nSize; i++)
+    {
+        T item;
+        Unserialize(is, item, nType, nVersion);
+        l.push_back(item);
+    }
+}
 
 
 /**
