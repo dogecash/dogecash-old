@@ -275,7 +275,7 @@ public:
         READWRITE(*const_cast<std::vector<CTxOut>*>(&vout));
         READWRITE(*const_cast<uint32_t*>(&nLockTime));
 
-        if (nVersion >= CTransaction::SAPLING_VERSION) {
+        if (nVersion == CTransaction::SAPLING_VERSION) {
             READWRITE(*const_cast<SaplingTxData*>(&sapData));
         }
 
