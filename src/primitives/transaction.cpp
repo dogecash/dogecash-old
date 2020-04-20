@@ -240,8 +240,7 @@ bool CTransaction::HasP2CSOutputs() const
 CAmount CTransaction::GetValueOut() const
 {
     CAmount nValueOut = 0;
-    for (std::vector<CTxOut>::const_iterator it(vout.begin()); it != vout.end(); ++it)
-    {
+    for (std::vector<CTxOut>::const_iterator it(vout.begin()); it != vout.end(); ++it) {
         // PIVX: previously MoneyRange() was called here. This has been replaced with negative check and boundary wrap check.
         if (it->nValue < 0)
             throw std::runtime_error("CTransaction::GetValueOut() : value out of range : less than 0");
@@ -251,7 +250,34 @@ CAmount CTransaction::GetValueOut() const
 
         nValueOut += it->nValue;
     }
+
+    // Sapling
+    if (sapData.valueBalance < 0) {
+        // NB: negative valueBalance "takes" money from the transparent value pool just as outputs do
+        nValueOut += -sapData.valueBalance;
+
+        // Verify Sapling
+        if (nVersion < SAPLING_VERSION)
+            throw std::runtime_error("GetValueOut(): sapData valueBalance invalid");
+    }
+
     return nValueOut;
+}
+
+CAmount CTransaction::GetShieldedValueIn() const
+{
+    CAmount nValue = 0;
+
+    if (sapData.valueBalance > 0) {
+        // NB: positive valueBalance "gives" money to the transparent value pool just as inputs do
+        nValue += sapData.valueBalance;
+
+        // Verify Sapling
+        if (nVersion < SAPLING_VERSION)
+            throw std::runtime_error("GetValueOut(): sapData valueBalance invalid");
+    }
+
+    return nValue;
 }
 
 CAmount CTransaction::GetZerocoinSpent() const
