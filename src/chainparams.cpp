@@ -202,18 +202,17 @@ public:
         assert(hashGenesisBlock == uint256("0x0000093cfce0a5a3cecea522e2c13bdf055d65c559fd2222730ba6f0d18dd2cd"));
         assert(genesis.hashMerkleRoot == uint256("0x7c3f1b5874e38c421d07fc20ce79ddb3bbaad19cdbad903a0b185070d6005b8c"));
 
-	vFixedSeeds.clear();
+	    vFixedSeeds.clear();
         vSeeds.clear();
-	vSeeds.push_back(CDNSSeedData("seeds.dogec.io", "seeds.dogec.io")); //Primary DNS Seeder test
-	vSeeds.push_back(CDNSSeedData("seeds.dogec.xyz", "seeds.dogec.xyz"));
+	    vSeeds.push_back(CDNSSeedData("seeds.dogec.io", "seeds.dogec.io")); //Primary DNS Seeder test
         vSeeds.push_back(CDNSSeedData("x9.seeds.dogec.io", "x9.seeds.dogec.io")); // Single node address
 
 
-	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30);
-	base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
-	base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 122);
-	base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
-	base58Prefixes[EXT_SECRET_KEY] = list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
+    	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30);
+	    base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
+	    base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 122);
+	    base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
+	    base58Prefixes[EXT_SECRET_KEY] = list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 63);     // starting with 'S'
 
         // 	BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
