@@ -1025,7 +1025,7 @@ bool AppInit2()
     fAlerts = GetBoolArg("-alerts", DEFAULT_ALERTS);
 
     if (GetBoolArg("-peerbloomfilters", DEFAULT_PEERBLOOMFILTERS))
-        nLocalServices |= NODE_BLOOM;
+        nLocalServices = ServiceFlags(nLocalServices & ~NODE_NETWORK);
 
     nMaxTipAge = GetArg("-maxtipage", DEFAULT_MAX_TIP_AGE);
 

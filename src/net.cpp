@@ -72,12 +72,15 @@ struct ListenSocket {
 };
 }
 
+/** Services this node implementation cares about */
+static const ServiceFlags nRelevantServices = NODE_NETWORK;
+
 //
 // Global state variables
 //
 bool fDiscover = true;
 bool fListen = true;
-uint64_t nLocalServices = NODE_NETWORK;
+ServiceFlags nLocalServices = NODE_NETWORK;
 CCriticalSection cs_mapLocalHost;
 map<CNetAddr, LocalServiceInfo> mapLocalHost;
 static bool vfLimited[NET_MAX] = {};
@@ -155,12 +158,11 @@ bool GetLocal(CService& addr, const CNetAddr* paddrPeer)
 // one by discovery.
 CAddress GetLocalAddress(const CNetAddr* paddrPeer)
 {
-    CAddress ret(CService("0.0.0.0", GetListenPort()), 0);
+    CAddress ret(CService("0.0.0.0", GetListenPort()),  NODE_NONE);
     CService addr;
     if (GetLocal(addr, paddrPeer)) {
-        ret = CAddress(addr);
+        ret = CAddress(addr, nLocalServices);
     }
-    ret.nServices = nLocalServices;
     ret.nTime = GetAdjustedTime();
     return ret;
 }
@@ -433,7 +435,7 @@ CNode* ConnectNode(CAddress addrConnect, const char* pszDest, bool obfuScationMa
             LOCK(cs_vNodes);
             vNodes.push_back(pnode);
         }
-
+        pnode->nServicesExpected = ServiceFlags(addrConnect.nServices & nRelevantServices);
         pnode->nTimeConnected = GetTime();
         if (obfuScationMaster) pnode->fObfuScationMaster = true;
 
@@ -479,14 +481,14 @@ void CNode::PushVersion()
 
     /// when NTP implemented, change to just nTime = GetAdjustedTime()
     int64_t nTime = (fInbound ? GetAdjustedTime() : GetTime());
-    CAddress addrYou = (addr.IsRoutable() && !IsProxy(addr) ? addr : CAddress(CService("0.0.0.0", 0)));
+    CAddress addrYou = (addr.IsRoutable() && !IsProxy(addr) ? addr : CAddress(CService("0.0.0.0", 0), addr.nServices));
     CAddress addrMe = GetLocalAddress(&addr);
     GetRandBytes((unsigned char*)&nLocalHostNonce, sizeof(nLocalHostNonce));
     if (fLogIPs)
         LogPrint("net", "send version message: version %d, blocks=%d, us=%s, them=%s, peer=%d\n", PROTOCOL_VERSION, nBestHeight, addrMe.ToString(), addrYou.ToString(), id);
     else
         LogPrint("net", "send version message: version %d, blocks=%d, us=%s, peer=%d\n", PROTOCOL_VERSION, nBestHeight, addrMe.ToString(), id);
-    PushMessage("version", PROTOCOL_VERSION, nLocalServices, nTime, addrYou, addrMe,
+    PushMessage("version", PROTOCOL_VERSION, (uint64_t)nLocalServices, nTime, addrYou, addrMe,
         nLocalHostNonce, strSubVersion, nBestHeight, true);
 }
 
@@ -1253,10 +1255,11 @@ void ThreadDNSAddressSeed()
         } else {
             vector<CNetAddr> vIPs;
             vector<CAddress> vAdd;
+            ServiceFlags requiredServiceBits = nRelevantServices;
             if (LookupHost(seed.host.c_str(), vIPs)) {
                 BOOST_FOREACH (CNetAddr& ip, vIPs) {
                     int nOneDay = 24 * 3600;
-                    CAddress addr = CAddress(CService(ip, Params().GetDefaultPort()));
+                    CAddress addr = CAddress(CService(ip, Params().GetDefaultPort()), requiredServiceBits);
                     addr.nTime = GetTime() - 3 * nOneDay - GetRand(4 * nOneDay); // use a random age between 3 and 7 days old
                     vAdd.push_back(addr);
                     found++;
@@ -1308,11 +1311,14 @@ void static ProcessOneShot()
 void ThreadOpenConnections()
 {
     // Connect to specific addresses
-    if (mapArgs.count("-connect") && mapMultiArgs["-connect"].size() > 0) {
-        for (int64_t nLoop = 0;; nLoop++) {
+    if (mapArgs.count("-connect") && mapMultiArgs["-connect"].size() > 0) 
+    {
+        for (int64_t nLoop = 0;; nLoop++) 
+        {
             ProcessOneShot();
-            BOOST_FOREACH (string strAddr, mapMultiArgs["-connect"]) {
-                CAddress addr;
+            BOOST_FOREACH (string strAddr, mapMultiArgs["-connect"]) 
+            {
+                CAddress addr(CService(), NODE_NONE);
                 OpenNetworkConnection(addr, NULL, strAddr.c_str());
                 for (int i = 0; i < 10 && i < nLoop; i++) {
                     MilliSleep(500);
@@ -1350,11 +1356,19 @@ void ThreadOpenConnections()
         // Only connect out to one peer per network group (/16 for IPv4).
         // Do this here so we don't have to critsect vNodes inside mapAddresses critsect.
         int nOutbound = 0;
+        int nOutboundRelevant = 0;
         set<vector<unsigned char> > setConnected;
         {
             LOCK(cs_vNodes);
-            BOOST_FOREACH (CNode* pnode, vNodes) {
-                if (!pnode->fInbound) {
+            BOOST_FOREACH (CNode* pnode, vNodes) 
+            {
+                if (!pnode->fInbound) 
+                {
+                    // Count the peers that have all relevant services
+                    if (pnode->fSuccessfullyConnected && !pnode->fFeeler && ((pnode->nServices & nRelevantServices) == nRelevantServices)) {
+                        nOutboundRelevant++;
+                    }
+
                     setConnected.insert(pnode->addr.GetGroup());
                     nOutbound++;
                 }
@@ -1380,16 +1394,31 @@ void ThreadOpenConnections()
 
             if (IsLimited(addr))
                 continue;
-
+            int nMaxOutbound = 0;
             // only consider very recently tried nodes after 30 failed attempts
-            if (nANow - addr.nLastTry < 600 && nTries < 30)
-                continue;
+            ServiceFlags nRequiredServices = nRelevantServices;
+            if (nTries >= 40 && nOutbound < (nMaxOutbound >> 1)) 
+            {
+                nRequiredServices = REQUIRED_SERVICES;
+            }
 
+            if ((addr.nServices & nRequiredServices) != nRequiredServices) 
+            {
+                continue;
+            }
             // do not allow non-default ports, unless after 50 invalid addresses selected already
             if (addr.GetPort() != Params().GetDefaultPort() && nTries < 50)
                 continue;
 
             addrConnect = addr;
+
+            // regardless of the services assumed to be available, only require the minimum if half or more outbound have relevant services
+            if (nOutboundRelevant >= (nMaxOutbound >> 1)) 
+            {
+                addrConnect.nServices = REQUIRED_SERVICES;
+            } else {
+                   addrConnect.nServices = nRequiredServices;
+            }
             break;
         }
 
@@ -1458,7 +1487,7 @@ void ThreadOpenAddedConnections()
         }
         BOOST_FOREACH (vector<CService>& vserv, lservAddressesToAdd) {
             CSemaphoreGrant grant(*semOutbound);
-            OpenNetworkConnection(CAddress(vserv[i % vserv.size()]), &grant);
+            OpenNetworkConnection(CAddress(vserv[i % vserv.size()], NODE_NONE), &grant);
             MilliSleep(500);
         }
         MilliSleep(120000); // Retry every 2 minutes
@@ -2035,7 +2064,8 @@ unsigned int SendBufferSize() { return 1000 * GetArg("-maxsendbuffer", 1 * 1000)
 
 CNode::CNode(SOCKET hSocketIn, CAddress addrIn, std::string addrNameIn, bool fInboundIn) : ssSend(SER_NETWORK, INIT_PROTO_VERSION), setAddrKnown(5000)
 {
-    nServices = 0;
+    nServices = NODE_NONE;
+    nServicesExpected = NODE_NONE;
     hSocket = hSocketIn;
     nRecvVersion = INIT_PROTO_VERSION;
     nLastSend = 0;

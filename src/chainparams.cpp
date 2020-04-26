@@ -45,9 +45,9 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
     for (unsigned int i = 0; i < count; i++) {
         struct in6_addr ip;
         memcpy(&ip, data[i].addr, sizeof(ip));
-        CAddress addr(CService(ip, data[i].port));
-        addr.nTime = GetTime() - GetRand(nOneWeek) - nOneWeek;
-        vSeedsOut.push_back(addr);
+        //CAddress addr(CService&(ip, data[i].port));
+        //addr.nTime = GetTime() - GetRand(nOneWeek) - nOneWeek;
+        //vSeedsOut.push_back(addr);
     }
 }
 

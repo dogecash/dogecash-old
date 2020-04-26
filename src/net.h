@@ -64,6 +64,8 @@ static const bool DEFAULT_UPNP = false;
 /** The maximum number of entries in mapAskFor */
 static const size_t MAPASKFOR_MAX_SZ = MAX_INV_SZ;
 
+static const ServiceFlags REQUIRED_SERVICES = NODE_NETWORK;
+
 unsigned int ReceiveFloodSize();
 unsigned int SendBufferSize();
 
@@ -126,7 +128,7 @@ CAddress GetLocalAddress(const CNetAddr* paddrPeer = nullptr);
 
 extern bool fDiscover;
 extern bool fListen;
-extern uint64_t nLocalServices;
+extern ServiceFlags nLocalServices;
 extern uint64_t nLocalHostNonce;
 extern CAddrMan addrman;
 extern int nMaxConnections;
@@ -159,7 +161,7 @@ class CNodeStats
 {
 public:
     NodeId nodeid;
-    uint64_t nServices;
+    ServiceFlags nServices;
     int64_t nLastSend;
     int64_t nLastRecv;
     int64_t nTimeConnected;
@@ -286,7 +288,8 @@ class CNode
 {
 public:
     // socket
-    uint64_t nServices;
+    ServiceFlags nServices;
+    ServiceFlags nServicesExpected;
     SOCKET hSocket;
     CDataStream ssSend;
     size_t nSendSize;   // total size of all vSendMsg entries
@@ -337,6 +340,7 @@ public:
     CBloomFilter* pfilter;
     int nRefCount;
     NodeId id;
+    bool fFeeler{false}; // If true this node is being used as a short lived feeler.
 
 protected:
     // Denial-of-service detection/prevention
