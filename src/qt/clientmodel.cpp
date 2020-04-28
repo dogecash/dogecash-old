@@ -169,7 +169,7 @@ void ClientModel::updateAlert(const QString& hash, int status)
 
 bool ClientModel::inInitialBlockDownload() const
 {
-    return IsInitialBlockDownload();
+    return cachedInitialSync;
 }
 
 enum BlockSource ClientModel::getBlockSource() const
@@ -254,6 +254,7 @@ static void BlockTipChanged(ClientModel *clientmodel, bool initialSync, const CB
         clientmodel->setCacheTip(pIndex);
         clientmodel->setCacheImporting(fImporting);
         clientmodel->setCacheReindexing(fReindex);
+        clientmodel->setCacheInitialSync(initialSync);
         Q_EMIT clientmodel->numBlocksChanged(pIndex->nHeight);
         nLastBlockTipUpdateNotification = now;
     }
