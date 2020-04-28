@@ -1824,6 +1824,15 @@ int64_t nStart;
     if (!ActivateBestChain(state))
         strErrors << "Failed to connect best block";
 
+    // update g_best_block if needed
+    {
+        WaitableLock lock(g_best_block_mutex);
+        if (g_best_block.IsNull() && chainActive.Tip()) {
+            g_best_block = chainActive.Tip()->GetBlockHash();
+            g_best_block_cv.notify_all();
+        }
+    }
+
     std::vector<boost::filesystem::path> vImportFiles;
     if (mapArgs.count("-loadblock")) {
         BOOST_FOREACH (string strFile, mapMultiArgs["-loadblock"])
