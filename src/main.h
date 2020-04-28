@@ -369,6 +369,7 @@ void AddWrappedSerialsInflation();
 void RecalculatezdogecSpent();
 void RecalculatezdogecMinted();
 bool RecalculateDOGECSupply(int nHeightStart, bool fSkipZdogec = true);
+bool UpdatezdogecSupply(const CBlock& block, CBlockIndex* pindex, bool fJustCheck);
 bool ReindexAccumulators(list<uint256>& listMissingCheckpoints, string& strError);
 
 // Fake Serial attack Range

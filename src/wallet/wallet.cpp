@@ -2222,7 +2222,7 @@ CAmount CWallet::GetStakingBalance(const bool fIncludeColdStaking) const
 {
     return std::max(CAmount(0), loopTxsBalance(
             [fIncludeColdStaking](const uint256& id, const CWalletTx& pcoin, CAmount& nTotal) {
-        if (pcoin.IsTrusted() && pcoin.GetDepthInMainChain() >= Params().COINSTAKE_MIN_DEPTH) {
+        if (pcoin.IsTrusted() && pcoin.GetDepthInMainChain() >= Params().COINSTAKE_MIN_DEPTH()) {
             nTotal += pcoin.GetAvailableCredit();       // available coins
             nTotal -= pcoin.GetStakeDelegationCredit(); // minus delegated coins, if any
             nTotal -= pcoin.GetLockedCredit();          // minus locked coins, if any

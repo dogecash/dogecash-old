@@ -2908,7 +2908,7 @@ bool RecalculateDOGECSupply(int nHeightStart, bool fSkipZdogec)
         nSupplyPrev = pindex->nMoneySupply;
 
         // Rewrite zpiv supply too
-        if (!fSkipZpiv && pindex->nHeight >= Params().Zerocoin_StartHeight()) {
+        if (!fSkipZdogec && pindex->nHeight >= Params().Zerocoin_StartHeight()) {
             UpdatezdogecSupply(block, pindex, true);
         }
 
@@ -2998,7 +2998,7 @@ bool UpdatezdogecSupply(const CBlock& block, CBlockIndex* pindex, bool fJustChec
     pindex->mapZerocoinSupply = pindex->pprev->mapZerocoinSupply;
 
     //Add mints to zPIV supply (mints are forever disabled after last checkpoint)
-    if (pindex->nHeight < Params().Zerocoin_Block_LastGoodCheckpoint) {
+    if (pindex->nHeight < Params().Zerocoin_Block_LastGoodCheckpoint()) {
         std::list<CZerocoinMint> listMints;
         std::set<uint256> setAddedToWallet;
         BlockToZerocoinMintList(block, listMints, true);
@@ -3025,6 +3025,7 @@ bool UpdatezdogecSupply(const CBlock& block, CBlockIndex* pindex, bool fJustChec
                     }
                 }
             }
+        }
 
     //Remove spends from zDOGEC supply        
     std::list<libzerocoin::CoinDenomination> listDenomsSpent = ZerocoinSpendListFromBlock(block, true);
@@ -3039,7 +3040,7 @@ bool UpdatezdogecSupply(const CBlock& block, CBlockIndex* pindex, bool fJustChec
     // A one-time event where only the zdogec supply was off (due to serial duplication off-chain on main net)
     if (Params().NetworkID() == CBaseChainParams::MAIN && pindex->nHeight == Params().Zerocoin_Block_EndFakeSerial() + 1
             && pindex->GetZerocoinSupply() < Params().GetSupplyBeforeFakeSerial() + GetWrapppedSerialInflationAmount()) {
-        for (auto const denom& : libzerocoin::zerocoinDenomList) {
+        for (const auto& denom : libzerocoin::zerocoinDenomList)
             pindex->mapZerocoinSupply.at(denom) += GetWrapppedSerialInflation(denom);
         }
     }
