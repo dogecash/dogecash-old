@@ -269,6 +269,11 @@ void CoinControlDialog::buttonToggleLockClicked()
             if (model->isLockedCoin(uint256(item->text(COLUMN_TXHASH).toStdString()), item->text(COLUMN_VOUT_INDEX).toUInt())) {
                 model->unlockCoin(outpt);
                 item->setDisabled(false);
+                // restore cold-stake snowflake icon for P2CS which were previously locked
+                if (item->data(COLUMN_CHECKBOX, Qt::UserRole) == QString("Delegated"))
+                    item->setIcon(COLUMN_CHECKBOX, QIcon("://ic-check-cold-staking-off"));
+                else
+                    item->setIcon(COLUMN_CHECKBOX, QIcon());
                 item->setIcon(COLUMN_CHECKBOX, QIcon());
             } else {
                 model->lockCoin(outpt);
@@ -368,6 +373,11 @@ void CoinControlDialog::unlockCoin()
     COutPoint outpt(uint256(contextMenuItem->text(COLUMN_TXHASH).toStdString()), contextMenuItem->text(COLUMN_VOUT_INDEX).toUInt());
     model->unlockCoin(outpt);
     contextMenuItem->setDisabled(false);
+    // restore cold-stake snowflake icon for P2CS which were previously locked
+    if (contextMenuItem->data(COLUMN_CHECKBOX, Qt::UserRole) == QString("Delegated"))
+        contextMenuItem->setIcon(COLUMN_CHECKBOX, QIcon("://ic-check-cold-staking-off"));
+    else
+        contextMenuItem->setIcon(COLUMN_CHECKBOX, QIcon());
     contextMenuItem->setIcon(COLUMN_CHECKBOX, QIcon());
     updateLabelLocked();
 }
@@ -839,9 +849,23 @@ void CoinControlDialog::updateView()
             }
 
             // address
+            const bool fDelegated = (bool)(mine & ISMINE_SPENDABLE_DELEGATED);
             CTxDestination outputAddress;
+            CTxDestination outputAddressStaker;
             QString sAddress = "";
-            if (ExtractDestination(out.tx->vout[out.i].scriptPubKey, outputAddress)) {
+            bool haveDest = false;
+            if (fDelegated) {
+                txnouttype type; std::vector<CTxDestination> addresses; int nRequired;
+                haveDest = (ExtractDestinations(out.tx->vout[out.i].scriptPubKey, type, addresses, nRequired)
+                            && addresses.size() == 2);
+                if (haveDest) {
+                    outputAddressStaker = addresses[0];
+                    outputAddress = addresses[1];
+                }
+            } else {
+                haveDest = ExtractDestination(out.tx->vout[out.i].scriptPubKey, outputAddress);
+            }
+            if (haveDest) {
                 sAddress = QString::fromStdString(CBitcoinAddress(outputAddress).ToString());
 
                 // if listMode or change => show DogeCash address. In tree mode, address is not shown again for direct wallet address outputs
@@ -895,7 +919,8 @@ void CoinControlDialog::updateView()
             itemOutput->setText(COLUMN_VOUT_INDEX, QString::number(out.i));
 
             // disable locked coins
-            if (model->isLockedCoin(txhash, out.i)) {
+            const bool isLockedCoin = model->isLockedCoin(txhash, out.i);
+            if (isLockedCoin) {
                 COutPoint outpt(txhash, out.i);
                 coinControl->UnSelect(outpt); // just to be sure
                 itemOutput->setDisabled(true);
@@ -905,6 +930,17 @@ void CoinControlDialog::updateView()
             // set checkbox
             if (coinControl->IsSelected(txhash, out.i))
                 itemOutput->setCheckState(COLUMN_CHECKBOX, Qt::Checked);
+            
+            // outputs delegated (for cold staking)
+            if (fDelegated) {
+                itemOutput->setData(COLUMN_CHECKBOX, Qt::UserRole, QString("Delegated"));
+                if (!isLockedCoin)
+                    itemOutput->setIcon(COLUMN_CHECKBOX, QIcon("://ic-check-cold-staking-off"));
+                if (haveDest) {
+                    sAddress = QString::fromStdString(CBitcoinAddress(outputAddressStaker, CChainParams::STAKING_ADDRESS).ToString());
+                    itemOutput->setToolTip(COLUMN_CHECKBOX, tr("delegated to %1 for cold staking").arg(sAddress));
+                }
+            }
         }
 
         // amount
