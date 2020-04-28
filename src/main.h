@@ -368,7 +368,7 @@ bool ValidOutPoint(const COutPoint out, int nHeight);
 void AddWrappedSerialsInflation();
 void RecalculatezdogecSpent();
 void RecalculatezdogecMinted();
-bool RecalculateDOGECSupply(int nHeightStart);
+bool RecalculateDOGECSupply(int nHeightStart, bool fSkipZdogec = true);
 bool ReindexAccumulators(list<uint256>& listMissingCheckpoints, string& strError);
 
 // Fake Serial attack Range

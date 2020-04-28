@@ -1546,7 +1546,7 @@ int64_t nStart;
                         RecalculatezdogecSpent();
                     }
                     // Recalculate from the zerocoin activation or from scratch.
-                    RecalculateDOGECSupply(reindexZerocoin ? Params().Zerocoin_StartHeight() : 1);
+                    RecalculateDOGECSupply(reindexZerocoin ? Params().Zerocoin_StartHeight() : 1, false);
                 }
 
                 // Check Recalculation result

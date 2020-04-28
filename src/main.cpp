@@ -2855,7 +2855,7 @@ void RecalculatezdogecSpent()
     uiInterface.ShowProgress("", 100);
 }
 
-bool RecalculateDOGECSupply(int nHeightStart)
+bool RecalculateDOGECSupply(int nHeightStart, bool fSkipZdogec)
 {
     if (nHeightStart > chainActive.Height())
         return false;
@@ -2907,6 +2907,11 @@ bool RecalculateDOGECSupply(int nHeightStart)
         pindex->nMoneySupply = nSupplyPrev + nValueOut - nValueIn;
         nSupplyPrev = pindex->nMoneySupply;
 
+        // Rewrite zpiv supply too
+        if (!fSkipZpiv && pindex->nHeight >= Params().Zerocoin_StartHeight()) {
+            UpdatezdogecSupply(block, pindex, true);
+        }
+
         // Add fraudulent funds to the supply and remove any recovered funds.
         if (pindex->nHeight == Params().Zerocoin_Block_RecalculateAccumulators()) {
             LogPrintf("%s : Original money supply=%s\n", __func__, FormatMoney(pindex->nMoneySupply));
@@ -2919,6 +2924,10 @@ bool RecalculateDOGECSupply(int nHeightStart)
             LogPrintf("%s : Removing locked from supply - %s : supply=%s\n", __func__, FormatMoney(nLocked), FormatMoney(pindex->nMoneySupply));
         }
         assert(pblocktree->WriteBlockIndex(CDiskBlockIndex(pindex)));
+
+        // Stop if shutdown was requested
+        if (ShutdownRequested()) return false;
+
 
         if (pindex->nHeight < chainActive.Height())
             pindex = chainActive.Next(pindex);
@@ -2981,27 +2990,20 @@ bool ReindexAccumulators(list<uint256>& listMissingCheckpoints, string& strError
 
 bool UpdatezdogecSupply(const CBlock& block, CBlockIndex* pindex, bool fJustCheck)
 {
-    std::list<CZerocoinMint> listMints;
-    bool fFilterInvalid = pindex->nHeight >= Params().Zerocoin_Block_RecalculateAccumulators();
-    BlockToZerocoinMintList(block, listMints, fFilterInvalid);
-    std::list<libzerocoin::CoinDenomination> listSpends = ZerocoinSpendListFromBlock(block, fFilterInvalid);
+    if (pindex->nHeight < Params().Zerocoin_StartHeight())
+        return true;
+    
 
-    // Initialize zerocoin supply to the supply from previous block
-    if (pindex->pprev && pindex->pprev->GetBlockHeader().nVersion > 3) {
-        for (auto& denom : zerocoinDenomList) {
-            pindex->mapZerocoinSupply.at(denom) = pindex->pprev->GetZcMints(denom);
-        }
-    }
+    //Reset the supply to previous block
+    pindex->mapZerocoinSupply = pindex->pprev->mapZerocoinSupply;
 
-    // Track zerocoin money supply
-    CAmount nAmountZerocoinSpent = 0;
-    pindex->vMintDenominationsInBlock.clear();
-    if (pindex->pprev) {
+    //Add mints to zPIV supply (mints are forever disabled after last checkpoint)
+    if (pindex->nHeight < Params().Zerocoin_Block_LastGoodCheckpoint) {
+        std::list<CZerocoinMint> listMints;
         std::set<uint256> setAddedToWallet;
-        for (auto& m : listMints) {
-            libzerocoin::CoinDenomination denom = m.GetDenomination();
-            pindex->vMintDenominationsInBlock.push_back(m.GetDenomination());
-            pindex->mapZerocoinSupply.at(denom)++;
+        BlockToZerocoinMintList(block, listMints, true);
+        for (const auto& m : listMints) {
+            pindex->mapZerocoinSupply.at(m.GetDenomination())++;
 
             //Remove any of our own mints from the mintpool
             if (!fJustCheck && pwalletMain) {
@@ -3023,29 +3025,28 @@ bool UpdatezdogecSupply(const CBlock& block, CBlockIndex* pindex, bool fJustChec
                     }
                 }
             }
-        }
 
-        for (auto& denom : listSpends) {
-            pindex->mapZerocoinSupply.at(denom)--;
-            nAmountZerocoinSpent += libzerocoin::ZerocoinDenominationToAmount(denom);
-
-            // zerocoin failsafe
-            if (pindex->GetZcMints(denom) < 0)
-                return error("Block contains zerocoins that spend more than are in the available supply to spend");
-        }
+    //Remove spends from zDOGEC supply        
+    std::list<libzerocoin::CoinDenomination> listDenomsSpent = ZerocoinSpendListFromBlock(block, true);
+    for (const auto& denom : listDenomsSpent) {
+        pindex->mapZerocoinSupply.at(denom)--;
+        // zerocoin failsafe
+        if (pindex->mapZerocoinSupply.at(denom) < 0)
+            return error("Block contains zerocoins that spend more than are in the available supply to spend");
     }
-
-    for (auto& denom : zerocoinDenomList)
-        LogPrint("zero", "%s coins for denomination %d pubcoin %s\n", __func__, denom, pindex->mapZerocoinSupply.at(denom));
 
     // Update Wrapped Serials amount
     // A one-time event where only the zdogec supply was off (due to serial duplication off-chain on main net)
     if (Params().NetworkID() == CBaseChainParams::MAIN && pindex->nHeight == Params().Zerocoin_Block_EndFakeSerial() + 1
             && pindex->GetZerocoinSupply() < Params().GetSupplyBeforeFakeSerial() + GetWrapppedSerialInflationAmount()) {
-        for (auto denom : libzerocoin::zerocoinDenomList) {
+        for (auto const denom& : libzerocoin::zerocoinDenomList) {
             pindex->mapZerocoinSupply.at(denom) += GetWrapppedSerialInflation(denom);
         }
     }
+
+    for (const auto& denom : libzerocoin::zerocoinDenomList)
+        LogPrint("zero", "%s coins for denomination %d pubcoin %s\n", __func__, denom, pindex->mapZerocoinSupply.at(denom));
+
     return true;
 }
 
