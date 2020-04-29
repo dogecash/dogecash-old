@@ -360,9 +360,22 @@
           <property name="spacing">
            <number>6</number>
           </property>
+          <property name="leftMargin">
+           <number>20</number>
+          </property>
           <property name="rightMargin">
            <number>20</number>
           </property>
+          <item>
+           <widget class="QCheckBox" name="checkBoxDelegations">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>Include delegated</string>
+            </property>
+           </widget>
+          </item>
           <item>
            <spacer name="horizontalSpacer_4">
             <property name="orientation">
@@ -370,7 +383,7 @@
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>40</width>
+              <width>10</width>
               <height>20</height>
              </size>
             </property>
@@ -393,7 +406,7 @@
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>20</width>
+              <width>10</width>
               <height>20</height>
              </size>
             </property>

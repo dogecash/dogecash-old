@@ -207,7 +207,8 @@ bool MasterNodeWizardDialog::createMN(){
         WalletModelTransaction currentTransaction(recipients);
         WalletModel::SendCoinsReturn prepareStatus;
 
-        prepareStatus = walletModel->prepareTransaction(currentTransaction);
+        // no coincontrol, no P2CS delegations
+        prepareStatus = walletModel->prepareTransaction(currentTransaction, nullptr, false);
 
         // process prepareStatus and on error generate message shown to user
         processSendCoinsReturn(prepareStatus,

@@ -606,7 +606,7 @@ bool DogeCashGUI::addWallet(const QString& name, WalletModel* walletModel)
     connect(sendWidget, &SendWidget::message,this, &DogeCashGUI::message);
     connect(receiveWidget, &ReceiveWidget::message,this, &DogeCashGUI::message);
     connect(addressesWidget, &AddressesWidget::message,this, &DogeCashGUI::message);
-    connect(coldStakingWidget, &MasterNodesWidget::message, this, &DogeCashGUI::message);
+    connect(coldStakingWidget, &ColdStakingWidget::message, this, &DogeCashGUI::message);
     connect(settingsWidget, &SettingsWidget::message, this, &DogeCashGUI::message);
 
     // Pass through transaction notifications
