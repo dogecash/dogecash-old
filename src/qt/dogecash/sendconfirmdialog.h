@@ -29,6 +29,7 @@ public:
     explicit TxDetailDialog(QWidget *parent = nullptr, bool isConfirmDialog = true, QString warningStr = QString());
     ~TxDetailDialog();
 
+    void showEvent(QShowEvent *event) override;
     bool isConfirm() { return this->confirm;}
     WalletModel::SendCoinsReturn getStatus() { return this->sendStatus;}
 
@@ -46,6 +47,7 @@ private:
     Ui::TxDetailDialog *ui;
     SnackBar *snackBar = nullptr;
     int nDisplayUnit = 0;
+    bool isConfirmDialog = false;
     bool confirm = false;
     WalletModel *model = nullptr;
     WalletModel::SendCoinsReturn sendStatus;
@@ -54,6 +56,9 @@ private:
 
     bool inputsLoaded = false;
     bool outputsLoaded = false;
+
+protected:
+    void keyPressEvent(QKeyEvent *e) override;
 };
 
 #endif // SENDCONFIRMDIALOG_H
