@@ -728,11 +728,13 @@ void ColdStakingWidget::onLabelClicked(QString dialogTitle, const QModelIndex &i
 void ColdStakingWidget::onMyStakingAddressesClicked(){
     bool isVisible = ui->listViewStakingAddress->isVisible();
     if(!isVisible){
+        ui->sortWidget->setVisible(true);
         ui->btnMyStakingAddresses->setRightIconClass("btn-dropdown", true);
         ui->listViewStakingAddress->setVisible(true);
         ui->rightContainer->removeItem(spacerDiv);
         ui->listViewStakingAddress->update();
     }else{
+        ui->sortWidget->setVisible(false);
         ui->btnMyStakingAddresses->setRightIconClass("ic-arrow", true);
         ui->rightContainer->addItem(spacerDiv);
         ui->listViewStakingAddress->setVisible(false);
@@ -744,6 +746,25 @@ void ColdStakingWidget::changeTheme(bool isLightTheme, QString& theme){
     static_cast<AddressHolder*>(addressDelegate->getRowFactory())->isLightTheme = isLightTheme;
     ui->listView->update();
 }
+
+void ColdStakingWidget::onSortChanged(int idx)
+{
+    sortType = (AddressTableModel::ColumnIndex) ui->comboBoxSort->itemData(idx).toInt();
+    sortAddresses();
+}
+
+void ColdStakingWidget::onSortOrderChanged(int idx)
+{
+    sortOrder = (Qt::SortOrder) ui->comboBoxSortOrder->itemData(idx).toInt();
+    sortAddresses();
+}
+
+void ColdStakingWidget::sortAddresses()
+{
+    if (this->addressesFilter)
+        this->addressesFilter->sort(sortType, sortOrder);
+}
+
 
 ColdStakingWidget::~ColdStakingWidget(){
     if (sendMultiRow)
