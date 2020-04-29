@@ -391,7 +391,7 @@ void ColdStakingWidget::onDelegateSelected(bool delegate){
         showList(csModel->rowCount() > 0);
         ui->btnMyStakingAddresses->setVisible(true);
         ui->listViewStakingAddress->setVisible(false);
-        ui->sortWidget->setVisible(isStakingAddressListVisible);
+        ui->sortWidget->setVisible(true);
     }
 }
 

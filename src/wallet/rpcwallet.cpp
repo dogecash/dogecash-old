@@ -3040,7 +3040,7 @@ UniValue printMultiSend()
 UniValue printAddresses()
 {
     std::vector<COutput> vCoins;
-    pwalletMain->AvailableCoins(vCoins);
+    pwalletMain->AvailableCoins(&vCoins);
     std::map<std::string, double> mapAddresses;
     BOOST_FOREACH (const COutput& out, vCoins) {
         CTxDestination utxoAddress;
