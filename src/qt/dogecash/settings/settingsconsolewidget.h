@@ -44,7 +44,7 @@ public:
     };
 
 public slots:
-    void clear();
+    void clear(bool clearHistory = true);
     void message(int category, const QString& message, bool html = false);
     /** Go forward or back in history */
     void browseHistory(int offset);
