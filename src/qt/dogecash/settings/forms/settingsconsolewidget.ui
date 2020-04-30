@@ -211,14 +211,7 @@
             </property>
            </widget>
           </item>
-         </layout>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </item>
-    <item>
+              <item>
            <widget class="QPushButton" name="pushButtonClear">
             <property name="minimumSize">
              <size>
@@ -228,15 +221,22 @@
             </property>
             <property name="maximumSize">
              <size>
-              <width>45</width>
+              <width>135</width>
               <height>45</height>
              </size>
             </property>
             <property name="text">
-             <string notr="true">-</string>
+             <string notr="true">Clear History</string>
             </property>
            </widget>
           </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>
