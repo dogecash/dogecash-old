@@ -402,7 +402,7 @@ void MasterNodeWizardDialog::processSendCoinsReturn(const WalletModel::SendCoins
             msgParams.first = tr("The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.");
             msgParams.second = CClientUIInterface::MSG_ERROR;
             break;
-        case WalletModel::AnonymizeOnlyUnlocked:
+        case WalletModel::StakingOnlyUnlocked:
             // Unlock is only need when the coins are send
             if(!fPrepare)
                 fAskForUnlock = true;
@@ -421,7 +421,7 @@ void MasterNodeWizardDialog::processSendCoinsReturn(const WalletModel::SendCoins
 
     // Unlock wallet if it wasn't fully unlocked already
     if(fAskForUnlock) {
-        walletModel->requestUnlock(AskPassphraseDialog::Context::Unlock_Full, false);
+        walletModel->requestUnlock();
         if(walletModel->getEncryptionStatus () != WalletModel::Unlocked) {
             msgParams.first = tr("Error: The wallet was unlocked only to anonymize coins. Unlock canceled.");
         }

@@ -27,6 +27,8 @@
 #include <iostream>
 #include <fstream>
 
+#include <QModelIndex>
+
 #define DECORATION_SIZE 65
 #define NUM_ITEMS 3
 #define REQUEST_START_ALL 1
@@ -126,6 +128,16 @@ MasterNodesWidget::MasterNodesWidget(DogeCashGUI *parent) :
     ui->labelEmpty->setText(tr("No active Masternode yet"));
     setCssProperty(ui->labelEmpty, "text-empty");
 
+    // Sort Controls
+    SortEdit* lineEdit = new SortEdit(ui->comboBoxSort);
+    connect(lineEdit, &SortEdit::Mouse_Pressed, [this](){ui->comboBoxSort->showPopup();});
+    connect(ui->comboBoxSort, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &MasterNodesWidget::onSortChanged);
+    SortEdit* lineEditOrder = new SortEdit(ui->comboBoxSortOrder);
+    connect(lineEditOrder, &SortEdit::Mouse_Pressed, [this](){ui->comboBoxSortOrder->showPopup();});
+    connect(ui->comboBoxSortOrder, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &MasterNodesWidget::onSortOrderChanged);
+    fillAddressSortControls(lineEdit, lineEditOrder, ui->comboBoxSort, ui->comboBoxSortOrder);
+    ui->sortWidget->setVisible(true);
+
     connect(ui->pushButtonSave, SIGNAL(clicked()), this, SLOT(onCreateMNClicked()));
     connect(ui->pushButtonStartAll, &QPushButton::clicked, [this]() {
         onStartAllClicked(REQUEST_START_ALL);
@@ -153,6 +165,10 @@ void MasterNodesWidget::hideEvent(QHideEvent *event){
 
 void MasterNodesWidget::loadWalletModel(){
     if(walletModel) {
+        addressTableModel = walletModel->getAddressTableModel();
+        this->filter = new AddressFilterProxyModel(QString(MNModel::ADDRESS),this);
+        this->filter->setSourceModel(addressTableModel);
+        this->filter->sort(sortType, sortOrder);
         ui->listMn->setModel(mnModel);
         ui->listMn->setModelColumn(AddressTableModel::Label);
         updateListState();
@@ -208,7 +224,12 @@ void MasterNodesWidget::onEditMNClicked(){
             // Start MN
             QString strAlias = this->index.data(Qt::DisplayRole).toString();
             if (ask(tr("Start MasterNode"), tr("Are you sure you want to start masternode %1?\n").arg(strAlias))) {
-                if (!verifyWalletUnlocked()) return;
+                WalletModel::UnlockContext ctx(walletModel->requestUnlock());
+                if (!ctx.isValid()) {
+                    // Unlock wallet was cancelled
+                    inform(tr("Cannot edit masternode, wallet locked"));
+                    return;
+                }
                 startAlias(strAlias);
             }
         } else {
@@ -248,8 +269,14 @@ bool MasterNodesWidget::startMN(CMasternodeConfig::CMasternodeEntry mne, std::st
     return true;
 }
 
-void MasterNodesWidget::onStartAllClicked(int type) {
-    if (!verifyWalletUnlocked()) return;
+void MasterNodesWidget::onStartAllClicked(int type) 
+{
+    WalletModel::UnlockContext ctx(walletModel->requestUnlock());
+    if (!ctx.isValid()) {
+        // Unlock wallet was cancelled
+        inform(tr("Cannot perform Mastenodes start, wallet locked"));
+        return;
+    }
     if (!checkMNsNetwork()) return;
     if (isLoading) {
         inform(tr("Background task is being executed, please wait"));
@@ -304,7 +331,12 @@ void MasterNodesWidget::onError(QString error, int type) {
 }
 
 void MasterNodesWidget::onInfoMNClicked(){
-    if(!verifyWalletUnlocked()) return;
+    WalletModel::UnlockContext ctx(walletModel->requestUnlock());
+    if (!ctx.isValid()) {
+        // Unlock wallet was cancelled
+        inform(tr("Cannot show Mastenode information, wallet locked"));
+        return;
+    }
     showHideOp(true);
     MnInfoDialog* dialog = new MnInfoDialog(window);
     QString label = index.data(Qt::DisplayRole).toString();
@@ -440,26 +472,49 @@ void MasterNodesWidget::onDeleteMNClicked()
 
 void MasterNodesWidget::onCreateMNClicked()
 {
-    if(verifyWalletUnlocked()) {
-        if(walletModel->getBalance() <= (COIN * Params().MasternodeCollateralLimit())){
-            inform(tr("Not enough balance to create a masternode, 5,000 DOGEC required."));
-            return;
-        }
-        showHideOp(true);
-        MasterNodeWizardDialog *dialog = new MasterNodeWizardDialog(walletModel, window);
-        if(openDialogWithOpaqueBackgroundY(dialog, window, 5, 7)) {
-            if (dialog->isOk) {
-                // Update list
-                mnModel->addMn(dialog->mnEntry);
-                updateListState();
-                // add mn
-                inform(dialog->returnStr);
-            } else {
-                warn(tr("Error creating masternode"), dialog->returnStr);
-            }
-        }
-        dialog->deleteLater();
+    WalletModel::UnlockContext ctx(walletModel->requestUnlock());
+    if (!ctx.isValid()) {
+        // Unlock wallet was cancelled
+        inform(tr("Cannot create Mastenode controller, wallet locked"));
+        return;
     }
+
+    if (walletModel->getBalance() <= (COIN * 10000)) {
+        inform(tr("Not enough balance to create a masternode, 10,000 PIV required."));
+        return;
+    }
+    showHideOp(true);
+    MasterNodeWizardDialog *dialog = new MasterNodeWizardDialog(walletModel, window);
+    if (openDialogWithOpaqueBackgroundY(dialog, window, 5, 7)) {
+        if (dialog->isOk) {
+            // Update list
+            mnModel->addMn(dialog->mnEntry);
+            updateListState();
+            // add mn
+            inform(dialog->returnStr);
+        } else {
+            warn(tr("Error creating masternode"), dialog->returnStr);
+        }
+    }
+    dialog->deleteLater();
+}
+
+void MasterNodesWidget::onSortChanged(int idx)
+{
+    sortType = (AddressTableModel::ColumnIndex) ui->comboBoxSort->itemData(idx).toInt();
+    sortAddresses();
+}
+
+void MasterNodesWidget::onSortOrderChanged(int idx)
+{
+    sortOrder = (Qt::SortOrder) ui->comboBoxSortOrder->itemData(idx).toInt();
+    sortAddresses();
+}
+
+void MasterNodesWidget::sortAddresses()
+{
+    if (this->filter)
+        this->filter->sort(sortType, sortOrder);
 }
 
 void MasterNodesWidget::changeTheme(bool isLightTheme, QString& theme)

@@ -7,6 +7,7 @@
 #define MASTERNODESWIDGET_H
 
 #include <QWidget>
+#include "qt/dogecash/addressfilterproxymodel.h"
 #include "qt/dogecash/pwidget.h"
 #include "qt/dogecash/furabstractlistitemdelegate.h"
 #include "qt/dogecash/mnmodel.h"
@@ -50,6 +51,8 @@ private slots:
     void onInfoMNClicked();
     void updateListState();
     void updateModelAndInform(QString informText);
+    void onSortChanged(int idx);
+    void onSortOrderChanged(int idx);
 
 private:
     Ui::MasterNodesWidget *ui;
@@ -60,10 +63,18 @@ private:
     QTimer *timer = nullptr;
     std::atomic<bool> isLoading;
 
+    AddressTableModel* addressTableModel = nullptr;
+    AddressFilterProxyModel *filter = nullptr;
+
+    // Cached sort type and order
+    AddressTableModel::ColumnIndex sortType = AddressTableModel::Label;
+    Qt::SortOrder sortOrder = Qt::AscendingOrder;
+
     void startAlias(QString strAlias);
     bool startAll(QString& failedMN, bool onlyMissing);
     bool checkMNsNetwork();
     bool startMN(CMasternodeConfig::CMasternodeEntry mne, std::string& strError);
+    void sortAddresses();
 };
 
 #endif // MASTERNODESWIDGET_H

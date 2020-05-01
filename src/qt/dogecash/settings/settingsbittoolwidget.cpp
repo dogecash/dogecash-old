@@ -180,7 +180,7 @@ void SettingsBitToolWidget::onEncryptKeyButtonENCClicked()
         return;
     }
 
-    WalletModel::UnlockContext ctx(walletModel->requestUnlock(AskPassphraseDialog::Context::BIP_38, true));
+    WalletModel::UnlockContext ctx(walletModel->requestUnlock());
     if (!ctx.isValid()) {
         ui->statusLabel_ENC->setStyleSheet("QLabel { color: red; }");
         ui->statusLabel_ENC->setText(tr("Wallet unlock was cancelled."));
@@ -286,7 +286,7 @@ void SettingsBitToolWidget::onDecryptClicked(){
 }
 
 void SettingsBitToolWidget::importAddressFromDecKey(){
-    WalletModel::UnlockContext ctx(walletModel->requestUnlock(AskPassphraseDialog::Context::BIP_38, true));
+    WalletModel::UnlockContext ctx(walletModel->requestUnlock());
     if (!ctx.isValid()) {
         ui->statusLabel_DEC->setStyleSheet("QLabel { color: red; }");
         ui->statusLabel_DEC->setText(tr("Wallet unlock was cancelled."));

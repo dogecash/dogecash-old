@@ -45,12 +45,18 @@ namespace GuiTransactionsUtils {
                         "The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.");
                 msgParams.second = CClientUIInterface::MSG_ERROR;
                 break;
-            case WalletModel::AnonymizeOnlyUnlocked:
+            case WalletModel::StakingOnlyUnlocked:
                 // Unlock is only need when the coins are send
-                if (!fPrepare)
-                    fAskForUnlock = true;
-                else
-                    msgParams.first = parent->translate("Error: The wallet was unlocked only to anonymize coins.");
+                if (!fPrepare) {
+                    // Unlock wallet if it wasn't fully unlocked already
+                    WalletModel::UnlockContext ctx(walletModel->requestUnlock());
+                    if (!ctx.isValid()) {
+                        msgParams.first = parent->translate(
+                                "Error: The wallet was unlocked for staking only. Unlock canceled.");
+                    }
+                } else
+                    msgParams.first = parent->translate(
+                        "Error: The wallet is unlocked for staking only. Fully unlock the wallet to send the transaction.");
                 break;
 
             case WalletModel::InsaneFee:
@@ -67,7 +73,7 @@ namespace GuiTransactionsUtils {
 
         // Unlock wallet if it wasn't fully unlocked already
         if (fAskForUnlock) {
-            walletModel->requestUnlock(AskPassphraseDialog::Context::Unlock_Full, false);
+            walletModel->requestUnlock();
             if (walletModel->getEncryptionStatus() != WalletModel::Unlocked) {
                 msgParams.first = parent->translate(
                         "Error: The wallet was unlocked only to anonymize coins. Unlock canceled.");

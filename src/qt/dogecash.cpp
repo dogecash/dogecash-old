@@ -371,6 +371,7 @@ void BitcoinApplication::createSplashScreen(const NetworkStyle* networkStyle)
     splash->setAttribute(Qt::WA_DeleteOnClose);
     splash->show();
     connect(this, SIGNAL(splashFinished(QWidget*)), splash, SLOT(slotFinish(QWidget*)));
+    connect(this, &BitcoinApplication::requestedShutdown, splash, &QWidget::close);
 }
 
 bool BitcoinApplication::createTutorialScreen()
@@ -483,8 +484,8 @@ void BitcoinApplication::initializeResult(int retval)
 #ifdef ENABLE_WALLET
         // Now that initialization/startup is done, process any command-line
         // DogeCash: URIs or payment requests:
-        connect(paymentServer, SIGNAL(receivedPaymentRequest(SendCoinsRecipient)),
-            window, SLOT(handlePaymentRequest(SendCoinsRecipient)));
+        //connect(paymentServer, SIGNAL(receivedPaymentRequest(SendCoinsRecipient)),
+        //    window, SLOT(handlePaymentRequest(SendCoinsRecipient)));
         connect(window, SIGNAL(receivedURI(QString)),
             paymentServer, SLOT(handleURIOrFile(QString)));
         connect(paymentServer, SIGNAL(message(QString, QString, unsigned int)),

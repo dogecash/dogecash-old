@@ -63,8 +63,6 @@ protected:
     void warn(const QString& title, const QString& message);
     bool ask(const QString& title, const QString& message);
     void showDialog(QDialog *dialog, int xDiv = 3, int yDiv = 5);
-    
-    bool verifyWalletUnlocked();
 
 private:
     QSharedPointer<WorkerTask> task;

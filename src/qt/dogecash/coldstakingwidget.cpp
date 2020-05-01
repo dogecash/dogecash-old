@@ -407,9 +407,17 @@ void ColdStakingWidget::showList(bool show){
     ui->containerHistoryLabel->setVisible(show);
 }
 
-void ColdStakingWidget::onSendClicked(){
-    if (!walletModel || !walletModel->getOptionsModel() || !verifyWalletUnlocked())
+void ColdStakingWidget::onSendClicked()
+{
+    if (!walletModel || !walletModel->getOptionsModel())
         return;
+
+    WalletModel::UnlockContext ctx(walletModel->requestUnlock());
+    if (!ctx.isValid()) {
+        // Unlock wallet was cancelled
+        inform(tr("Cannot send delegation, wallet locked"));
+        return;
+    }
 
     if (!walletModel->isColdStakingNetworkelyEnabled()) {
         inform(tr("Cold staking is networkely disabled"));
@@ -541,9 +549,15 @@ void ColdStakingWidget::onColdStakeClicked() {
     showAddressGenerationDialog(false);
 }
 
-void ColdStakingWidget::showAddressGenerationDialog(bool isPaymentRequest) {
-    if(walletModel && !isShowingDialog) {
-        if (!verifyWalletUnlocked()) return;
+void ColdStakingWidget::showAddressGenerationDialog(bool isPaymentRequest)
+{
+    if (walletModel && !isShowingDialog) {
+        WalletModel::UnlockContext ctx(walletModel->requestUnlock());
+        if (!ctx.isValid()) {
+            // Unlock wallet was cancelled
+            inform(tr("Cannot perform operation, wallet locked"));
+            return;
+        }
         isShowingDialog = true;
         showHideOp(true);
         RequestDialog *dialog = new RequestDialog(window);
