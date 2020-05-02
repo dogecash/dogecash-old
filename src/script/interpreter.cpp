@@ -1042,6 +1042,7 @@ public:
             nInput = nIn;
         // Serialize the prevout
         ::Serialize(s, txTo.vin[nInput].prevout);
+        assert(nInput != NOT_AN_INPUT);
         // Serialize the script
         if (nInput != nIn)
             // Blank out other inputs' signatures
@@ -1160,7 +1161,7 @@ PrecomputedTransactionData::PrecomputedTransactionData(const CTransaction& txTo)
 
 uint256 SignatureHash(const CScript& scriptCode, const CTransaction& txTo, unsigned int nIn, int nHashType, const CAmount& amount, SigVersion sigversion, const PrecomputedTransactionData* cache)
 {
-    if (nIn >= txTo.vin.size()) {
+    if (nIn >= txTo.vin.size() && nIn != NOT_AN_INPUT) {
         //  nIn out of range
         return UINT256_ONE;
     }
@@ -1226,13 +1227,15 @@ uint256 SignatureHash(const CScript& scriptCode, const CTransaction& txTo, unsig
             ss << txTo.sapData->valueBalance;
         }
 
-        // The input being signed (replacing the scriptSig with scriptCode + amount)
-        // The prevout may already be contained in hashPrevout, and the nSequence
-        // may already be contained in hashSequence.
-        ss << txTo.vin[nIn].prevout;
-        ss << static_cast<const CScriptBase&>(scriptCode);
-        ss << amount;
-        ss << txTo.vin[nIn].nSequence;
+        if (nIn != NOT_AN_INPUT) {
+            // The input being signed (replacing the scriptSig with scriptCode + amount)
+            // The prevout may already be contained in hashPrevout, and the nSequence
+            // may already be contained in hashSequence.
+            ss << txTo.vin[nIn].prevout;
+            ss << static_cast<const CScriptBase&>(scriptCode);
+            ss << amount;
+            ss << txTo.vin[nIn].nSequence;
+        }
 
         // Locktime
         ss << txTo.nLockTime;
