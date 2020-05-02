@@ -1092,6 +1092,12 @@ const unsigned char PIVX_SEQUENCE_HASH_PERSONALIZATION[crypto_generichash_blake2
         {'P','I','V','X','S','e','q','u','e','n','c','H','a','s','h'};
 const unsigned char PIVX_OUTPUTS_HASH_PERSONALIZATION[crypto_generichash_blake2b_PERSONALBYTES] =
         {'P','I','V','X','O','u','t','p','u','t','s','H','a','s','h'};
+const unsigned char PIVX_SHIELDED_SPENDS_HASH_PERSONALIZATION[crypto_generichash_blake2b_PERSONALBYTES] =
+        {'P','I','V','X','S','S','p','e','n','d','s','H','a','s','h'};
+const unsigned char PIVX_SHIELDED_OUTPUTS_HASH_PERSONALIZATION[crypto_generichash_blake2b_PERSONALBYTES] =
+        {'P','I','V','X','S','O','u','t','p','u','t','H','a','s','h'};
+
+
 
 uint256 GetPrevoutHash(const CTransaction& txTo) {
     CBLAKE2bWriter ss(SER_GETHASH, 0, PIVX_PREVOUTS_HASH_PERSONALIZATION);
@@ -1117,6 +1123,28 @@ uint256 GetOutputsHash(const CTransaction& txTo) {
     return ss.GetHash();
 }
 
+uint256 GetShieldedSpendsHash(const CTransaction& txTo) {
+    CBLAKE2bWriter ss(SER_GETHASH, 0, PIVX_SHIELDED_SPENDS_HASH_PERSONALIZATION);
+    auto sapData = txTo.sapData;
+    for (const auto& n : sapData->vShieldedSpend) {
+        ss << n.cv;
+        ss << n.anchor;
+        ss << n.nullifier;
+        ss << n.rk;
+        ss << n.zkproof;
+    }
+    return ss.GetHash();
+}
+
+uint256 GetShieldedOutputsHash(const CTransaction& txTo) {
+    CBLAKE2bWriter ss(SER_GETHASH, 0, PIVX_SHIELDED_OUTPUTS_HASH_PERSONALIZATION);
+    auto sapData = txTo.sapData;
+    for (const auto& n : sapData->vShieldedOutput) {
+        ss << n;
+    }
+    return ss.GetHash();
+}
+
 } // anon namespace
 
 PrecomputedTransactionData::PrecomputedTransactionData(const CTransaction& txTo)
@@ -1124,6 +1152,10 @@ PrecomputedTransactionData::PrecomputedTransactionData(const CTransaction& txTo)
     hashPrevouts = GetPrevoutHash(txTo);
     hashSequence = GetSequenceHash(txTo);
     hashOutputs = GetOutputsHash(txTo);
+    if (txTo.sapData) {
+        hashShieldedSpends = GetShieldedSpendsHash(txTo);
+        hashShieldedOutputs = GetShieldedOutputsHash(txTo);
+    }
 }
 
 uint256 SignatureHash(const CScript& scriptCode, const CTransaction& txTo, unsigned int nIn, int nHashType, const CAmount& amount, SigVersion sigversion, const PrecomputedTransactionData* cache)
@@ -1138,6 +1170,9 @@ uint256 SignatureHash(const CScript& scriptCode, const CTransaction& txTo, unsig
         uint256 hashPrevouts;
         uint256 hashSequence;
         uint256 hashOutputs;
+        uint256 hashShieldedSpends;
+        uint256 hashShieldedOutputs;
+        bool hasSapData = false;
 
         if (!(nHashType & SIGHASH_ANYONECANPAY)) {
             hashPrevouts = cache ? cache->hashPrevouts : GetPrevoutHash(txTo);
@@ -1155,6 +1190,18 @@ uint256 SignatureHash(const CScript& scriptCode, const CTransaction& txTo, unsig
             hashOutputs = ss.GetHash();
         }
 
+        if (txTo.sapData) {
+            if (!txTo.sapData->vShieldedSpend.empty()) {
+                hashShieldedSpends = cache ? cache->hashShieldedSpends : GetShieldedSpendsHash(txTo);
+                hasSapData = true;
+            }
+
+            if (!txTo.sapData->vShieldedOutput.empty()) {
+                hashShieldedOutputs = cache ? cache->hashShieldedOutputs : GetShieldedOutputsHash(txTo);
+                hasSapData = true;
+            }
+        }
+
         // todo: complete branch id with the active network upgrade
         uint32_t leConsensusBranchId = htole32(0);
         unsigned char personalization[16] = {};
@@ -1167,6 +1214,18 @@ uint256 SignatureHash(const CScript& scriptCode, const CTransaction& txTo, unsig
         // Input prevouts/nSequence (none/all, depending on flags)
         ss << hashPrevouts;
         ss << hashSequence;
+        // Outputs (none/one/all, depending on flags)
+        ss << hashOutputs;
+
+        if (hasSapData) {
+            // Spend descriptions
+            ss << hashShieldedSpends;
+            // Output descriptions
+            ss << hashShieldedOutputs;
+            // Sapling value balance
+            ss << txTo.sapData->valueBalance;
+        }
+
         // The input being signed (replacing the scriptSig with scriptCode + amount)
         // The prevout may already be contained in hashPrevout, and the nSequence
         // may already be contained in hashSequence.
@@ -1174,8 +1233,7 @@ uint256 SignatureHash(const CScript& scriptCode, const CTransaction& txTo, unsig
         ss << static_cast<const CScriptBase&>(scriptCode);
         ss << amount;
         ss << txTo.vin[nIn].nSequence;
-        // Outputs (none/one/all, depending on flags)
-        ss << hashOutputs;
+
         // Locktime
         ss << txTo.nLockTime;
         // Sighash type
