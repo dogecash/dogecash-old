@@ -72,12 +72,12 @@ bool WalletModel::isColdStakingNetworkelyEnabled() const {
     return sporkManager.IsSporkActive(SPORK_17_COLDSTAKING_ENFORCEMENT);
 }
 
-CAmount WalletModel::getBalance(const CCoinControl* coinControl, bool fIncludeDelegated) const
+CAmount WalletModel::getBalance(const CCoinControl* coinControl) const
 {
     if (coinControl) {
         CAmount nBalance = 0;
         std::vector<COutput> vCoins;
-        wallet->AvailableCoins(&vCoins, coinControl, fIncludeDelegated);
+        wallet->AvailableCoins(vCoins, true, coinControl);
         for (const COutput& out : vCoins)
             if (out.fSpendable)
                 nBalance += out.tx->vout[out.i].nValue;
@@ -85,7 +85,7 @@ CAmount WalletModel::getBalance(const CCoinControl* coinControl, bool fIncludeDe
         return nBalance;
     }
 
-    return wallet->GetBalance(fIncludeDelegated);
+    return wallet->GetBalance();
 }
 
 CAmount WalletModel::getMinColdStakingAmount() const
@@ -354,7 +354,7 @@ bool WalletModel::updateAddressBookLabels(const CTxDestination& dest, const std:
     return false;
 }
 
-WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransaction& transaction, const CCoinControl* coinControl, bool fIncludeDelegations)
+WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransaction& transaction, const CCoinControl* coinControl)
 {
     CAmount total = 0;
     QList<SendCoinsRecipient> recipients = transaction.getRecipients();
@@ -431,7 +431,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
         return DuplicateAddress;
     }
 
-    CAmount nBalance = getBalance(coinControl, fIncludeDelegations);
+    CAmount nBalance = getBalance(coinControl);
 
     if (total > nBalance) {
         return AmountExceedsBalance;
@@ -463,7 +463,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
                                                   recipients[0].inputType,
                                                   recipients[0].useSwiftTX,
                                                   0,
-                                                  fIncludeDelegations);
+                                                  true);
         transaction.setTransactionFee(nFeeRequired);
 
         if (recipients[0].useSwiftTX && newTx->GetValueOut() > sporkManager.GetSporkValue(SPORK_5_MAX_VALUE) * COIN) {

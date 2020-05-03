@@ -58,7 +58,6 @@ public slots:
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
-    void showEvent(QShowEvent *event) override;
 
 private slots:
     void onDOGECSelected(bool _isDOGEC);
@@ -69,11 +68,9 @@ private slots:
     void clearEntries();
     void clearAll();
     void refreshView();
-    void onCheckBoxChanged();
     void onContactMultiClicked();
     void onDeleteClicked();
     void onResetCustomOptions(bool fRefreshAmounts);
-
 private:
     Ui::send *ui;
     QPushButton *coinIcon;
@@ -81,8 +78,6 @@ private:
 
     SendCustomFeeDialog* customFeeDialog = nullptr;
     bool isCustomFeeSelected = false;
-    bool fDelegationsChecked = false;
-    CAmount cachedDelegatedBalance{0};
 
     int nDisplayUnit;
     QList<SendMultiRow*> entries;
@@ -99,8 +94,6 @@ private:
     SendMultiRow* createEntry();
     bool send(QList<SendCoinsRecipient> recipients);
     bool sendZdogec(QList<SendCoinsRecipient> recipients);
-    void setFocusOnLastEntry();
-    void showHideCheckBoxDelegations();
     void updateEntryLabels(QList<SendCoinsRecipient> recipients);
 
     };

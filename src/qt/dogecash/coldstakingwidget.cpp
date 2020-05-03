@@ -188,16 +188,6 @@ ColdStakingWidget::ColdStakingWidget(DogeCashGUI* parent) :
     ui->listViewStakingAddress->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->listViewStakingAddress->setUniformItemSizes(true);
 
-    // Sort Controls
-    SortEdit* lineEdit = new SortEdit(ui->comboBoxSort);
-    connect(lineEdit, &SortEdit::Mouse_Pressed, [this](){ui->comboBoxSort->showPopup();});
-    connect(ui->comboBoxSort, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &ColdStakingWidget::onSortChanged);
-    SortEdit* lineEditOrder = new SortEdit(ui->comboBoxSortOrder);
-    connect(lineEditOrder, &SortEdit::Mouse_Pressed, [this](){ui->comboBoxSortOrder->showPopup();});
-    connect(ui->comboBoxSortOrder, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &ColdStakingWidget::onSortOrderChanged);
-    fillAddressSortControls(lineEdit, lineEditOrder, ui->comboBoxSort, ui->comboBoxSortOrder);
-    ui->sortWidget->setVisible(false);
-
     connect(ui->pushButtonSend, &QPushButton::clicked, this, &ColdStakingWidget::onSendClicked);
     connect(btnOwnerContact, &QAction::triggered, [this](){ onContactsClicked(true); });
     connect(ui->listView, SIGNAL(clicked(QModelIndex)), this, SLOT(handleAddressClicked(QModelIndex)));
@@ -216,7 +206,6 @@ void ColdStakingWidget::loadWalletModel(){
         addressTableModel = walletModel->getAddressTableModel();
         addressesFilter = new AddressFilterProxyModel(AddressTableModel::ColdStaking, this);
         addressesFilter->setSourceModel(addressTableModel);
-        addressesFilter->sort(sortType, sortOrder);
         ui->listViewStakingAddress->setModel(addressesFilter);
         ui->listViewStakingAddress->setModelColumn(AddressTableModel::Address);
 
@@ -381,8 +370,8 @@ void ColdStakingWidget::onDelegateSelected(bool delegate){
         ui->btnColdStaking->setVisible(false);
         ui->btnMyStakingAddresses->setVisible(false);
         ui->listViewStakingAddress->setVisible(false);
-        ui->sortWidget->setVisible(false);
-        ui->rightContainer->addItem(spacerDiv);
+        if (ui->rightContainer->count() == 2)
+            ui->rightContainer->addItem(spacerDiv);
     }else{
         ui->btnCoinControl->setVisible(false);
         ui->containerSend->setVisible(false);
@@ -475,9 +464,9 @@ void ColdStakingWidget::onSendClicked()
     QList<SendCoinsRecipient> recipients;
     recipients.append(dest);
 
-    // Prepare transaction for getting txFee earlier (exlude delegated coins)
+    // Prepare transaction for getting txFee earlier
     WalletModelTransaction currentTransaction(recipients);
-    WalletModel::SendCoinsReturn prepareStatus = walletModel->prepareTransaction(currentTransaction, CoinControlDialog::coinControl, false);
+    WalletModel::SendCoinsReturn prepareStatus = walletModel->prepareTransaction(currentTransaction, CoinControlDialog::coinControl);
 
     // process prepareStatus and on error generate message shown to user
     GuiTransactionsUtils::ProcessSendCoinsReturn(
