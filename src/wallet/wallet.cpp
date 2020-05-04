@@ -2719,7 +2719,7 @@ bool CWallet::SelectStakeCoins(std::list<std::unique_ptr<CStakeInput> >& listInp
     std::vector<COutput> vCoins;
     // include cold, exclude delegated
     const bool fIncludeCold = sporkManager.IsSporkActive(SPORK_17_COLDSTAKING_ENFORCEMENT) && GetBoolArg("-coldstaking", true);
-    AvailableCoins(pCoins, true, NULL, false, STAKABLE_COINS, false, 1, fIncludeCold, false);
+    AvailableCoins(vCoins, true, NULL, false, STAKABLE_COINS, false, 1, fIncludeCold, false);
     CAmount nAmountSelected = 0;
     if (GetBoolArg("-DOGECstake", true) && !fPrecompute) {
         for (const COutput &out : vCoins) {
@@ -2822,7 +2822,7 @@ bool CWallet::MintableCoins()
         std::vector<COutput> vCoins;
         // include cold, exclude delegated
         const bool fIncludeCold = sporkManager.IsSporkActive(SPORK_17_COLDSTAKING_ENFORCEMENT) && GetBoolArg("-coldstaking", true);
-            AvailableCoins(pCoins,
+            AvailableCoins(vCoins,
             nullptr,            // coin control
             false,              // fIncludeDelegated
             fIncludeCold,       // fIncludeColdStaking
