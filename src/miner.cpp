@@ -603,7 +603,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
     {
         WaitableLock lock(g_best_block_mutex);
         if (pblock->hashPrevBlock != g_best_block)
-            return error("PIVXMiner : generated block is stale");
+            return error("DOGECMiner : generated block is stale");
     }
 
     // Remove key from key pool

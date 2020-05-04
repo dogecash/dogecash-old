@@ -601,8 +601,8 @@ bool DogeCashGUI::addWallet(const QString& name, WalletModel* walletModel)
         stackedContainer->addWidget(privacyWidget);
 
         privacyWidget->setWalletModel(walletModel);
-        connect(privacyWidget, &PrivacyWidget::message, this, &PIVXGUI::message);
-        connect(privacyWidget, &PrivacyWidget::showHide, this, &PIVXGUI::showHide);
+        connect(privacyWidget, &PrivacyWidget::message, this, &DogeCashGUI::message);
+        connect(privacyWidget, &PrivacyWidget::showHide, this, &DogeCashGUI::showHide);
     }
 
     // Connect actions..
