@@ -2822,11 +2822,7 @@ bool CWallet::MintableCoins()
         std::vector<COutput> vCoins;
         // include cold, exclude delegated
         const bool fIncludeCold = sporkManager.IsSporkActive(SPORK_17_COLDSTAKING_ENFORCEMENT) && GetBoolArg("-coldstaking", true);
-            AvailableCoins(vCoins,
-            nullptr,            // coin control
-            false,              // fIncludeDelegated
-            fIncludeCold,       // fIncludeColdStaking
-            STAKABLE_COINS);  // coin type
+            AvailableCoins(vCoins, true, NULL, false, STAKABLE_COINS, false, 1, fIncludeCold, false);
         int64_t time = GetAdjustedTime();
 
         for (const COutput& out : vCoins) {
@@ -3129,7 +3125,7 @@ bool CWallet::SelectCoinsDark(CAmount nValueMin, CAmount nValueMax, std::vector<
     nValueRet = 0;
 
     vector<COutput> vCoins;
-    AvailableCoins(vCoins, coinControl, true, false, nObfuscationRoundsMin < 0 ? ONLY_NONDENOMINATED_NOT10000IFMN : ONLY_DENOMINATED);
+    AvailableCoins(vCoins, true, coinControl, false, nObfuscationRoundsMin < 0 ? ONLY_NONDENOMINATED_NOT10000IFMN : ONLY_DENOMINATED);
 
     set<pair<const CWalletTx*, unsigned int> > setCoinsRet2;
 
