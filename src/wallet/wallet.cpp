@@ -2534,7 +2534,7 @@ void CWallet::AvailableCoins(
         bool fIncludeColdStaking,
         bool fIncludeDelegated) const
 {
-    if (pCoins) pCoins->clear();
+    vCoins.clear();
     const bool fCoinsSelected = (coinControl != nullptr) && coinControl->HasSelected();
     // include delegated coins when coinControl is active
     if (!fIncludeDelegated && fCoinsSelected)
@@ -2622,10 +2622,9 @@ void CWallet::AvailableCoins(
                         ((mine & (ISMINE_MULTISIG | (fIncludeColdStaking ? ISMINE_COLD : ISMINE_NO) |
                                 (fIncludeDelegated ? ISMINE_SPENDABLE_DELEGATED : ISMINE_NO) )) != ISMINE_NO));
 
-                pCoins->emplace_back(COutput(pcoin, i, nDepth, fIsValid));
+                vCoins.emplace_back(COutput(pcoin, i, nDepth, fIsValid));
             }
         }
-        return (pCoins && pCoins->size() > 0);
     }
 }
 
@@ -2720,7 +2719,7 @@ bool CWallet::SelectStakeCoins(std::list<std::unique_ptr<CStakeInput> >& listInp
     std::vector<COutput> vCoins;
     // include cold, exclude delegated
     const bool fIncludeCold = sporkManager.IsSporkActive(SPORK_17_COLDSTAKING_ENFORCEMENT) && GetBoolArg("-coldstaking", true);
-    AvailableCoins(vCoins, true, NULL, false, STAKABLE_COINS, false, 1, fIncludeCold, false);
+    AvailableCoins(pCoins, true, NULL, false, STAKABLE_COINS, false, 1, fIncludeCold, false);
     CAmount nAmountSelected = 0;
     if (GetBoolArg("-DOGECstake", true) && !fPrecompute) {
         for (const COutput &out : vCoins) {
@@ -2823,7 +2822,7 @@ bool CWallet::MintableCoins()
         std::vector<COutput> vCoins;
         // include cold, exclude delegated
         const bool fIncludeCold = sporkManager.IsSporkActive(SPORK_17_COLDSTAKING_ENFORCEMENT) && GetBoolArg("-coldstaking", true);
-            AvailableCoins(&vCoins,
+            AvailableCoins(pCoins,
             nullptr,            // coin control
             false,              // fIncludeDelegated
             fIncludeCold,       // fIncludeColdStaking
@@ -2963,7 +2962,7 @@ bool CWallet::SelectCoins(const CAmount& nTargetValue, std::set<std::pair<const 
 {
     // Note: this function should never be used for "always free" tx types like dstx
     std::vector<COutput> vCoins;
-    AvailableCoins(vCoins, true, coinControl, false, coin_type, useIX, 1, fIncludeColdStaking, fIncludeDelegated);
+    AvailableCoins(vCoins, coinControl, true, false, coin_type, useIX, 1, fIncludeColdStaking, fIncludeDelegated);
 
     // coin control -> return all selected outputs (we want all selected to go into the transaction for sure)
     if (coinControl && coinControl->HasSelected()) {
@@ -3024,7 +3023,7 @@ bool CWallet::SelectCoinsByDenominations(int nDenom, CAmount nValueMin, CAmount 
 
     vCoinsRet2.clear();
     vector<COutput> vCoins;
-    AvailableCoins(&vCoins, nullptr, true, false, ONLY_DENOMINATED);
+    AvailableCoins(vCoins, true, nullptr, false, ONLY_DENOMINATED);
 
     std::random_shuffle(vCoins.rbegin(), vCoins.rend());
 
@@ -3130,7 +3129,7 @@ bool CWallet::SelectCoinsDark(CAmount nValueMin, CAmount nValueMax, std::vector<
     nValueRet = 0;
 
     vector<COutput> vCoins;
-    AvailableCoins(&vCoins, coinControl, true, false, nObfuscationRoundsMin < 0 ? ONLY_NONDENOMINATED_NOT10000IFMN : ONLY_DENOMINATED);
+    AvailableCoins(vCoins, coinControl, true, false, nObfuscationRoundsMin < 0 ? ONLY_NONDENOMINATED_NOT10000IFMN : ONLY_DENOMINATED);
 
     set<pair<const CWalletTx*, unsigned int> > setCoinsRet2;
 
@@ -3168,10 +3167,10 @@ bool CWallet::SelectCoinsCollateral(std::vector<CTxIn>& setCoinsRet, CAmount& nV
 {
     vector<COutput> vCoins;
 
-    //LogPrintf(" selecting coins for collateral\n");
-    AvailableCoins(&vCoins);
+    LogPrintf(" selecting coins for collateral\n");
+    AvailableCoins(vCoins);
 
-    //LogPrintf("found coins %d\n", (int)vCoins.size());
+    LogPrintf("found coins %d\n", (int)vCoins.size());
 
     set<pair<const CWalletTx*, unsigned int> > setCoinsRet2;
 
@@ -3221,7 +3220,7 @@ int CWallet::CountInputsWithAmount(CAmount nInputAmount)
 bool CWallet::HasCollateralInputs(bool fOnlyConfirmed) const
 {
     vector<COutput> vCoins;
-    AvailableCoins(&vCoins, nullptr, false, false, STAKABLE_COINS, fOnlyConfirmed);
+    AvailableCoins(vCoins, fOnlyConfirmed);
 
     int nFound = 0;
     BOOST_FOREACH (const COutput& out, vCoins)
@@ -4890,7 +4889,7 @@ bool CWallet::MultiSend()
     }
 
     std::vector<COutput> vCoins;
-    AvailableCoins(&vCoins);
+    AvailableCoins(vCoins);
     bool stakeSent = false;
     bool mnSent = false;
     for (const COutput& out : vCoins) {
