@@ -2139,10 +2139,10 @@ QComboBox[cssClass="btn-combo"]::down-arrow {
 }
 
 QComboBox[cssClass="btn-combo-small"] {
-    background-color:#0f0b16;
+    background-color:#16110b;
     padding:8px 14px 8px 8px;
     font-size:13px;
-    border:1px solid #0f0b16;
+    border:1px solid #16110b;
     color: #707070;
     text-align: right;
 }
