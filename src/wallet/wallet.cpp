@@ -2825,15 +2825,23 @@ bool CWallet::MintableCoins()
 {
     LOCK(cs_main);
     CAmount nBalance = GetStakingBalance(GetBoolArg("-coldstaking", true));
-    CAmount nzdogecBalance = GetZerocoinBalance(false);
+    const bool fIncludeCold = (sporkManager.IsSporkActive(SPORK_17_COLDSTAKING_ENFORCEMENT) &&
+                               GetBoolArg("-coldstaking", true));
+    
+    std::vector<COutput> vCoins;
+
+    AvailableCoins(vCoins,
+            true,
+            nullptr,            // coin control
+            false,              // include zerovalue
+            STAKABLE_COINS,     // coin type
+            false,              // use IX
+            1,                  // watchonly config
+            fIncludeCold,       // fIncludeColdStaking
+            true);              // delegated
 
     int chainHeight = chainActive.Height();
-    // Regular DOGEC
-    if (nBalance > 0) {
-        if (mapArgs.count("-reservebalance") && !ParseMoney(mapArgs["-reservebalance"], nReserveBalance))
-            return error("%s : invalid reserve balance amount", __func__);
-        if (nBalance <= nReserveBalance)
-            return false;
+    int64_t time = GetAdjustedTime();
 
         std::vector<COutput> vCoins;
         // include cold, exclude delegated
@@ -2850,20 +2858,6 @@ bool CWallet::MintableCoins()
             if (Params().HasStakeMinAgeOrDepth(chainHeight, time, utxoBlock->nHeight, utxoBlock->nTime))
                 return true;
         }
-    }
-
-    // zdogec
-    if (nzdogecBalance > 0) {
-        set<CMintMeta> setMints = zdogecTracker->ListMints(true, true, true);
-        for (auto mint : setMints) {
-            if (mint.nVersion < CZerocoinMint::STAKABLE_VERSION)
-                continue;
-            if (mint.nHeight > chainHeight- Params().Zerocoin_RequiredStakeDepth())
-                continue;
-           return true;
-        }
-    }
-
     return false;
 }
 
