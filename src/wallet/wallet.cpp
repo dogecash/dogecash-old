@@ -2828,14 +2828,13 @@ bool CWallet::MintableCoins()
     const bool fIncludeCold = (sporkManager.IsSporkActive(SPORK_17_COLDSTAKING_ENFORCEMENT) &&
                                GetBoolArg("-coldstaking", true));
     
-    std::vector<COutput> vCoins;
+    std::vector<COutput>* vCoins;
 
     AvailableCoins(vCoins,
-            true,
             nullptr,            // coin control
             false,              // include zerovalue
-            STAKABLE_COINS,     // coin type
             false,              // use IX
+            STAKABLE_COINS,     // coin type
             1,                  // watchonly config
             fIncludeCold,       // fIncludeColdStaking
             true);              // delegated
@@ -2843,17 +2842,13 @@ bool CWallet::MintableCoins()
     int chainHeight = chainActive.Height();
     int64_t time = GetAdjustedTime();
 
-        std::vector<COutput> vCoins;
-        // include cold, exclude delegated
-        const bool fIncludeCold = sporkManager.IsSporkActive(SPORK_17_COLDSTAKING_ENFORCEMENT) && GetBoolArg("-coldstaking", true);
-            AvailableCoins(&vCoins,
+            AvailableCoins(vCoins,
             nullptr,            // coin control
             false,              // fIncludeDelegated
             fIncludeCold,       // fIncludeColdStaking
             STAKABLE_COINS);  // coin type
-        int64_t time = GetAdjustedTime();
 
-        for (const COutput& out : vCoins) {
+        for (const COutput& out : *vCoins) {
             CBlockIndex* utxoBlock = mapBlockIndex.at(out.tx->hashBlock);
             if (Params().HasStakeMinAgeOrDepth(chainHeight, time, utxoBlock->nHeight, utxoBlock->nTime))
                 return true;
