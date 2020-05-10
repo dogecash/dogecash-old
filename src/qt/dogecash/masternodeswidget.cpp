@@ -105,7 +105,7 @@ MasterNodesWidget::MasterNodesWidget(DogeCashGUI *parent) :
     setCssSubtitleScreen(ui->labelSubtitle1);
 
     /* Buttons */
-    ui->pushButtonSave->setText(tr("Create Masternode Controller"));
+    ui->pushButtonSave->setText(tr("Create Masternode"));
     setCssBtnPrimary(ui->pushButtonSave);
     setCssBtnPrimary(ui->pushButtonStartAll);
     setCssBtnPrimary(ui->pushButtonStartMissing);
