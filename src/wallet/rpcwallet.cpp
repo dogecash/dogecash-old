@@ -35,7 +35,7 @@ using namespace boost;
 using namespace boost::assign;
 
 int64_t nWalletUnlockTime;
-static CCriticalSection cs_nWalletUnlockTime;
+static RecursiveMutex cs_nWalletUnlockTime;
 
 std::string HelpRequiringPassphrase()
 {

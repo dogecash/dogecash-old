@@ -25,8 +25,8 @@
 
 using namespace std;
 
-map<uint256, CAlert> mapAlerts;
-CCriticalSection cs_mapAlerts;
+std::map<uint256, CAlert> mapAlerts;
+RecursiveMutex cs_mapAlerts;
 
 void CUnsignedAlert::SetNull()
 {

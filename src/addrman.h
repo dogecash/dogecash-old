@@ -177,7 +177,7 @@ class CAddrMan
 {
 private:
     //! critical section to protect the inner data structures
-    mutable CCriticalSection cs;
+    mutable RecursiveMutex cs;
 
     //! secret key to randomize bucket select with
     uint256 nKey;
