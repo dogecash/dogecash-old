@@ -2828,9 +2828,9 @@ bool CWallet::MintableCoins()
     const bool fIncludeCold = (sporkManager.IsSporkActive(SPORK_17_COLDSTAKING_ENFORCEMENT) &&
                                GetBoolArg("-coldstaking", true));
     
-    std::vector<COutput>* vCoins;
+    std::vector<COutput> vCoins;
 
-    AvailableCoins(vCoins,
+    AvailableCoins(&vCoins,
             nullptr,            // coin control
             false,              // include zerovalue
             false,              // use IX
@@ -2842,13 +2842,7 @@ bool CWallet::MintableCoins()
     int chainHeight = chainActive.Height();
     int64_t time = GetAdjustedTime();
 
-            AvailableCoins(vCoins,
-            nullptr,            // coin control
-            false,              // fIncludeDelegated
-            fIncludeCold,       // fIncludeColdStaking
-            STAKABLE_COINS);  // coin type
-
-        for (const COutput& out : *vCoins) {
+        for (const COutput& out : vCoins) {
             CBlockIndex* utxoBlock = mapBlockIndex.at(out.tx->hashBlock);
             if (Params().HasStakeMinAgeOrDepth(chainHeight, time, utxoBlock->nHeight, utxoBlock->nTime))
                 return true;
@@ -3179,10 +3173,10 @@ bool CWallet::SelectCoinsCollateral(std::vector<CTxIn>& setCoinsRet, CAmount& nV
 {
     vector<COutput> vCoins;
 
-    //LogPrintf(" selecting coins for collateral\n");
+    LogPrintf(" selecting coins for collateral\n");
     AvailableCoins(&vCoins);
 
-    //LogPrintf("found coins %d\n", (int)vCoins.size());
+    LogPrintf("found coins %d\n", (int)vCoins.size());
 
     set<pair<const CWalletTx*, unsigned int> > setCoinsRet2;
 
