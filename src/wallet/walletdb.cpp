@@ -940,7 +940,7 @@ DBErrors CWalletDB::ZapWalletTx(CWallet* pwallet, vector<CWalletTx>& vWtx)
 void ThreadFlushWalletDB(const string& strFile)
 {
     // Make this thread recognisable as the wallet flushing thread
-    RenameThread("dogecash-wallet");
+    util::ThreadRename("dogecash-wallet");
 
     static bool fOneThread;
     if (fOneThread)
