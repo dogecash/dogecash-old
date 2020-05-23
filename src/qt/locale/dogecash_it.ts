@@ -243,11 +243,11 @@
     <name>Bip38ToolDialog</name>
     <message>
         <source>BIP 38 Tool</source>
-        <translation>BIP 38 Strumento</translation>
+        <translation>Strumento BIP 38</translation>
     </message>
     <message>
         <source>&amp;BIP 38 Encrypt</source>
-        <translation>&amp;BIP 38 Criptato</translation>
+        <translation>&amp;Codifica BIP 38</translation>
     </message>
     <message>
         <source>Address:</source>
@@ -255,7 +255,7 @@
     </message>
     <message>
         <source>Enter a DogeCash Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Inserire un indirizzo DogeCash da crittografare utilizzando BIP 38. Inserire una password nel campo centrale. Cliccare su "cripta" per generare la chiave privata crittografata.</translation>
+        <translation>Inserire un indirizzo DogeCash da crittografare utilizzando BIP 38. Inserire una frase d'accesso nel campo centrale. Cliccare su "cripta" per generare la chiave privata crittografata.</translation>
     </message>
     <message>
         <source>The DogeCash address to encrypt</source>
@@ -279,7 +279,7 @@
     </message>
     <message>
         <source>Passphrase: </source>
-        <translation>Passphrase:</translation>
+        <translation>Frase d'accesso:</translation>
     </message>
     <message>
         <source>Encrypted Key:</source>
@@ -287,7 +287,7 @@
     </message>
     <message>
         <source>Copy the current signature to the system clipboard</source>
-        <translation>Copiare la firma corrente negli Appunti di sistema</translation>
+        <translation>Copia la firma corrente negli appunti di sistema</translation>
     </message>
     <message>
         <source>Encrypt the private key for this DogeCash address</source>
@@ -303,27 +303,27 @@
     </message>
     <message>
         <source>Decrypt the entered key using the passphrase</source>
-        <translation>Decrittografa la chiave inserita utilizzando la password</translation>
+        <translation>Decrittografa la chiave inserita utilizzando la frase d'accesso</translation>
     </message>
     <message>
         <source>Encrypt &amp;Key</source>
-        <translation>Cripta &amp;Key</translation>
+        <translation>Cripta la &amp;chiave</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
-        <translation>Cancella &amp;All</translation>
+        <translation>Cancella &amp;tutto</translation>
     </message>
     <message>
         <source>&amp;BIP 38 Decrypt</source>
-        <translation>&amp;BIP 38 Decripta</translation>
+        <translation>&amp;Decodifica BIP 38</translation>
     </message>
     <message>
         <source>Enter the BIP 38 encrypted private key. Enter the passphrase in the middle box. Click Decrypt Key to compute the private key. After the key is decrypted, clicking 'Import Address' will add this private key to the wallet.</source>
-        <translation>Immettere la chiave privata codificata BIP 38. Inserire la passphrase nella casella centrale. Fare clic su Decripta Chiave per calcolare la chiave privata. Dopo che la chiave viene decrittata, cliccando su "Importa indirizzo" verrà aggiunta questa chiave privata al portafoglio.</translation>
+        <translation>Immettere la chiave privata codificata con BIP 38. Inserire la frase d'accesso nella casella centrale. Fare clic su "Decripta la chiave" per avviare la decodifica della chiave privata. Dopo che la chiave privata &egrave; stata decrittata, cliccando su "Importa indirizzo", la chiave verrà aggiunta al portafoglio.</translation>
     </message>
     <message>
         <source>Decrypt &amp;Key</source>
-        <translation>Decripta &amp;Key</translation>
+        <translation>Decripta la &amp;chiave</translation>
     </message>
     <message>
         <source>Decrypted Key:</source>
@@ -335,11 +335,11 @@
     </message>
     <message>
         <source>Click "Decrypt Key" to compute key</source>
-        <translation>Fai clic su "Decripta Chiave" per calcolare la chiave</translation>
+        <translation>Fai clic su "Decripta la chiave" per decodificare la chiave</translation>
     </message>
     <message>
         <source>The entered passphrase is invalid. </source>
-        <translation>La frase inserita non è valida.</translation>
+        <translation>La frase d'accesso inserita non &egrave; valida.</translation>
     </message>
     <message>
         <source>Allowed: 0-9,a-z,A-Z,</source>
@@ -347,11 +347,11 @@
     </message>
     <message>
         <source>The entered address is invalid.</source>
-        <translation>L'indirizzo inserito non è valido.</translation>
+        <translation>L'indirizzo inserito non &egrave; valido.</translation>
     </message>
     <message>
         <source>Please check the address and try again.</source>
-        <translation>Per favore controlla l'indirizzo e riprova.</translation>
+        <translation>Per favore, controlla l'indirizzo e riprova.</translation>
     </message>
     <message>
         <source>The entered address does not refer to a key.</source>
@@ -359,11 +359,11 @@
     </message>
     <message>
         <source>Wallet unlock was cancelled.</source>
-        <translation>Lo sblocco portafoglio è stato annullato.</translation>
+        <translation>Lo sblocco del portafoglio &egrave; stato annullato.</translation>
     </message>
     <message>
         <source>Private key for the entered address is not available.</source>
-        <translation>La chiave privata per l'indirizzo inserito non è disponibile.</translation>
+        <translation>La chiave privata non &egrave; disponibile per l'indirizzo inserito.</translation>
     </message>
     <message>
         <source>Failed to decrypt.</source>
@@ -371,7 +371,7 @@
     </message>
     <message>
         <source>Please check the key and passphrase and try again.</source>
-        <translation>Controllare la chiave e la frase e riprovare.</translation>
+        <translation>Controllare la chiave e la frase d'accesso e riprovare.</translation>
     </message>
     <message>
         <source>Data Not Valid.</source>
@@ -379,15 +379,15 @@
     </message>
     <message>
         <source>Please try again.</source>
-        <translation>Per favore prova ancora.</translation>
+        <translation>Per favore, prova di nuovo.</translation>
     </message>
     <message>
         <source>Please wait while key is imported</source>
-        <translation>Per favore attendere l'importazione della chiave</translation>
+        <translation>Attendere l'importazione della chiave</translation>
     </message>
     <message>
         <source>Key Already Held By Wallet</source>
-        <translation>Chiave già presente nel portafoglio</translation>
+        <translation>Chiave gi&agrave; presente nel portafoglio</translation>
     </message>
     <message>
         <source>Error Adding Key To Wallet</source>
