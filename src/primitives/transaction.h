@@ -206,7 +206,7 @@ public:
         return 3 * minRelayTxFee.GetFee(nSize);
     }
 
-    bool IsDust(CFeeRate minRelayTxFee) const
+    bool IsDust(const CFeeRate& minRelayTxFee) const
     {
         return (nValue < GetDustThreshold(minRelayTxFee));
     }
@@ -294,14 +294,14 @@ public:
 
     bool hasSaplingData() const
     {
-        return sapData != nullopt;
+        return sapData != nullopt &&
+            (!sapData->vShieldedOutput.empty() ||
+            !sapData->vShieldedSpend.empty());
     };
 
-    // Cleanup the following method when the proper Sapling parsing gets implemented.
     bool isSapling() const
     {
-        return hasSaplingData() &&
-                (!sapData.get().vShieldedOutput.empty() || !sapData.get().vShieldedSpend.empty());
+        return nVersion == SAPLING_VERSION;
     }
 
     /*
@@ -384,7 +384,7 @@ struct CMutableTransaction
         READWRITE(vout);
         READWRITE(nLockTime);
 
-        if (nVersion >= CTransaction::SAPLING_VERSION) {
+        if (nVersion == CTransaction::SAPLING_VERSION) {
             READWRITE(*const_cast<Optional<SaplingTxData>*>(&sapData));
         }
     }
