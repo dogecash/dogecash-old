@@ -50,6 +50,7 @@ SendWidget::SendWidget(DogeCashGUI* parent) :
     ui->pushLeft->setText("DOGEC");
     setCssProperty(ui->pushLeft, "btn-check-left");
     ui->pushLeft->setChecked(true);
+    ui->pushRight->setVisible(false);
     ui->pushRight->setText("zDOGEC");
     setCssProperty(ui->pushRight, "btn-check-right");
 
