@@ -639,7 +639,7 @@ void DashboardWidget::onChartRefreshed() {
     }
     forceUpdateStyle({ui->labelAmountDogeC, ui->labelAmountMNRewards});
     ui->labelAmountDogeC->setText(GUIUtil::formatBalance(chartData->totalDogeC, nDisplayUnit));
-    ui->labelAmountMNRewards->setText(QString::number(chartData->totalMNRewards / COIN) +" DOGEC MNR");
+    ui->labelAmountMNRewards->setText(GUIUtil::formatBalance(chartData->totalMNRewards +" DOGEC MNR"));
 
     series->append(set0);
     if(hasMNRewards)
