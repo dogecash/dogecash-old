@@ -3,7 +3,7 @@
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
-        <translation>Fare click col pulsante destro per modificare l'indirizzo o l'etichetta</translation>
+        <translation>Fai click col pulsante destro per modificare l'indirizzo o l'etichetta</translation>
     </message>
     <message>
         <source>Create a new address</source>
@@ -47,7 +47,7 @@
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>Seleziona l'indirizzo a cui ricevere valuta</translation>
+        <translation>Seleziona l'indirizzo con cui ricevere valuta</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -55,7 +55,7 @@
     </message>
     <message>
         <source>Sending addresses</source>
-        <translation>Indirizzi di destinazione</translation>
+        <translation>Indirizzi di invio</translation>
     </message>
     <message>
         <source>Receiving addresses</source>
@@ -83,11 +83,11 @@
     </message>
     <message>
         <source>Export Address List</source>
-        <translation>Esporta elenco indirizzi</translation>
+        <translation>Esporta l'elenco degli indirizzi</translation>
     </message>
     <message>
         <source>Comma separated file (*.csv)</source>
-        <translation>File separato da virgola (*.csv)</translation>
+        <translation>File di testo CSV, contenente i dati (*.csv)</translation>
     </message>
     <message>
         <source>Exporting Failed</source>
@@ -95,7 +95,7 @@
     </message>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>Si è verificato un errore nel salvataggio dell'elenco indirizzi in %1. Si prega di ritentare.</translation>
+        <translation>Si è verificato un errore nel salvataggio dell'elenco degli indirizzi in %1. Riprovare.</translation>
     </message>
 </context>
 <context>
@@ -117,67 +117,67 @@
     <name>AskPassphraseDialog</name>
     <message>
         <source>Passphrase Dialog</source>
-        <translation>Inserimento parola d'ordine</translation>
+        <translation>Inserimento della frase d'accesso</translation>
     </message>
     <message>
         <source>Enter passphrase</source>
-        <translation>Inserire parola d'ordine</translation>
+        <translation>Inserire la frase d'accesso</translation>
     </message>
     <message>
         <source>New passphrase</source>
-        <translation>Nuova parola d'ordine</translation>
+        <translation>Nuova frase d'accesso</translation>
     </message>
     <message>
         <source>Repeat new passphrase</source>
-        <translation>Ripetere la nuova parola d'ordine</translation>
+        <translation>Ripetere la nuova frase d'accesso</translation>
     </message>
     <message>
         <source>Serves to disable the trivial sendmoney when OS account compromised. Provides no real security.</source>
-        <translation>Serve per impedire invii accidentali nel caso in cui l'utenza del sistema operativo sia stata compromessa. Non garantisce alcuna reale sicurezza.</translation>
+        <translation>Serve per impedire invii accidentali nel caso in cui l'account del sistema operativo sia stato compromesso. Non garantisce alcuna reale sicurezza.</translation>
     </message>
     <message>
         <source>For anonymization, automint, and staking only</source>
-        <translation>Solo per anonimizzazione, conio automatico e stake</translation>
+        <translation>Anonimizzazione, conio automatico e modalit&agrave; staking only</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Inserisci la nuova parola d'ordine per il portafoglio.&lt;br/&gt;Si raccomanda di usare una parola d'ordine di &lt;b&gt;dieci o più caratteri casuali&lt;/b&gt;, oppure di &lt;b&gt;otto o più parole&lt;/b&gt;.</translation>
+        <translation>Inserisci la nuova frase d'accesso per il portafoglio.&lt;br/&gt;Si raccomanda di usare una frase d'accesso di &lt;b&gt;dieci o più caratteri casuali&lt;/b&gt;, oppure di &lt;b&gt;otto o più parole&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Encrypt wallet</source>
-        <translation>Crittografa portafoglio</translation>
+        <translation>Crittografa il portafoglio</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>Questa operazione richiede la parola d'ordine per sbloccare il portafoglio.</translation>
+        <translation>Questa operazione richiede la frase d'accesso per sbloccare il portafoglio.</translation>
     </message>
     <message>
         <source>Unlock wallet</source>
-        <translation>Sblocca portafoglio</translation>
+        <translation>Sblocca il portafoglio</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>Questa operazione richiede la parola d'ordine per decrittografare il portafoglio.</translation>
+        <translation>Questa operazione richiede la frase d'accesso per decrittografare il portafoglio.</translation>
     </message>
     <message>
         <source>Decrypt wallet</source>
-        <translation>Decrittografa portafoglio</translation>
+        <translation>Decrittografa il portafoglio</translation>
     </message>
     <message>
         <source>Change passphrase</source>
-        <translation>Cambia parola d'ordine</translation>
+        <translation>Cambia la frase d'accesso</translation>
     </message>
     <message>
         <source>Enter the old and new passphrase to the wallet.</source>
-        <translation>Inserire la vecchia e la nuova parola d'ordine per il portafoglio.</translation>
+        <translation>Inserire la vecchia e la nuova frase d'accesso per il portafoglio.</translation>
     </message>
     <message>
         <source>Confirm wallet encryption</source>
-        <translation>Conferma cifratura portafoglio</translation>
+        <translation>Conferma la cifratura del portafoglio</translation>
     </message>
     <message>
         <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
-        <translation>DogeCash verrà ora chiuso per completare il processo di cifratura. Ricorda che crittografare il tuo portafoglio non protegge completamente i tuoi DOGEC dal furto da parte di software malevoli che potrebbero infettare il tuo computer.</translation>
+        <translation>DogeCash verrà chiuso per completare il processo di cifratura. Ricorda che crittografare il tuo portafoglio non offre una protezione totale dei tuoi DOGEC dal furto da parte di software malevoli che potrebbero infettare il tuo computer.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -185,7 +185,7 @@
     </message>
     <message>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR DOGEC&lt;/b&gt;!</source>
-        <translation>Attenzione: Se crittografi il portafoglio e poi perdi la parola d'ordine, &lt;b&gt;PERDERAI TUTTI I TUOI DOGEC&lt;7b&gt;!</translation>
+        <translation>Attenzione: se crittografi il portafoglio e poi perdi la frase d'accesso, &lt;b&gt;PERDERAI TUTTI I TUOI DOGEC&lt;7b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>IMPORTANTE: Eventuali file di back-up precedenti del tuo portafoglio dovrebbero essere sostituiti con il nuovo file criptato generato. Per motivi di sicurezza, precedenti file di back-up del portafoglio non criptato diventeranno inutilizzabili nel momento in cui inizierai ad utilizzare il nuovo portafoglio criptato.</translation>
+        <translation>IMPORTANTE: Eventuali file di backup precedenti del tuo portafoglio dovrebbero essere sostituiti con il nuovo file criptato generato. Per motivi di sicurezza, i precedenti file di backup del portafoglio non criptato diventeranno inutilizzabili nel momento in cui inizierai ad utilizzare il nuovo portafoglio criptato.</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
-        <translation>Cifratura portafoglio fallita</translation>
+        <translation>Cifratura del portafoglio fallita</translation>
     </message>
     <message>
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
@@ -205,27 +205,27 @@
     </message>
     <message>
         <source>The supplied passphrases do not match.</source>
-        <translation>Le parole d'ordine fornite con coincidono.</translation>
+        <translation>Le frasi d'accesso fornite non coincidono.</translation>
     </message>
     <message>
         <source>Wallet unlock failed</source>
-        <translation>Sblocco portafoglio fallito</translation>
+        <translation>Sblocco del portafoglio fallito</translation>
     </message>
     <message>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>La frase immessa per la decifrazione del portafoglio era errata.</translation>
+        <translation>La frase d'accesso immessa per la decifrazione del portafoglio &egrave; errata.</translation>
     </message>
     <message>
         <source>Wallet decryption failed</source>
-        <translation>Decriptazione portafoglio fallita</translation>
+        <translation>Decriptazione del portafoglio fallita</translation>
     </message>
     <message>
         <source>Wallet passphrase was successfully changed.</source>
-        <translation>La passphrase del portafoglio è stata modificata correttamente.</translation>
+        <translation>La frase d'accesso del portafoglio è stata modificata correttamente.</translation>
     </message>
     <message>
         <source>Warning: The Caps Lock key is on!</source>
-        <translation>Attenzione: il tasto Caps Lock è attivato!</translation>
+        <translation>Attenzione: il tasto Blocco Maiuscole è attivato!</translation>
     </message>
 </context>
 <context>
