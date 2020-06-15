@@ -734,19 +734,19 @@
     </message>
     <message>
         <source>Synchronizing with network...</source>
-        <translation>Sincronizzazione con la rete ...</translation>
+        <translation>Sincronizzazione con la rete...</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
-        <translation>Importazione dei blocchi dal disco ...</translation>
+        <translation>Importazione dei blocchi dal disco...</translation>
     </message>
     <message>
         <source>Reindexing blocks on disk...</source>
-        <translation>Reindicizzazione dei blocchi sul disco ...</translation>
+        <translation>Reindicizzazione dei blocchi sul disco...</translation>
     </message>
     <message>
         <source>No block source available...</source>
-        <translation>Nessuna sorgente dei blocchi disponibile ...</translation>
+        <translation>Nessuna sorgente dei blocchi disponibile...</translation>
     </message>
     <message>
         <source>Up to date</source>
