@@ -3,7 +3,7 @@
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
-        <translation>Fare click col pulsante destro per modificare l'indirizzo o l'etichetta</translation>
+        <translation>Fai click con il pulsante destro del mouse per modificare l'indirizzo o l'etichetta</translation>
     </message>
     <message>
         <source>Create a new address</source>
@@ -47,7 +47,7 @@
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>Seleziona l'indirizzo a cui ricevere valuta</translation>
+        <translation>Seleziona l'indirizzo con cui ricevere valuta</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -55,7 +55,7 @@
     </message>
     <message>
         <source>Sending addresses</source>
-        <translation>Indirizzi di destinazione</translation>
+        <translation>Indirizzi di invio</translation>
     </message>
     <message>
         <source>Receiving addresses</source>
@@ -63,7 +63,7 @@
     </message>
     <message>
         <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Questi sono gli indirizzi DogeCash per l'invio di pagamenti. Controlla sempre l'importo e l'indirizzo di ricezione prima di inviare valuta.</translation>
+        <translation>Questi sono gli indirizzi DogeCash per l'invio di pagamenti. Controlla sempre l'importo e l'indirizzo di destinazione prima di inviare valuta.</translation>
     </message>
     <message>
         <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
@@ -83,11 +83,11 @@
     </message>
     <message>
         <source>Export Address List</source>
-        <translation>Esporta elenco indirizzi</translation>
+        <translation>Esporta l'elenco degli indirizzi</translation>
     </message>
     <message>
         <source>Comma separated file (*.csv)</source>
-        <translation>File separato da virgola (*.csv)</translation>
+        <translation>File di testo CSV (*.csv)</translation>
     </message>
     <message>
         <source>Exporting Failed</source>
@@ -95,7 +95,7 @@
     </message>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>Si è verificato un errore nel salvataggio dell'elenco indirizzi in %1. Si prega di ritentare.</translation>
+        <translation>Si è verificato un errore nel salvataggio dell'elenco indirizzi in %1. Riprovare.</translation>
     </message>
 </context>
 <context>
