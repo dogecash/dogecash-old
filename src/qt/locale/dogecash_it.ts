@@ -114,21 +114,6 @@
     </message>
 </context>
 <context>
-    <name>AddressTableModel</name>
-    <message>
-        <source>Label</source>
-        <translation>Etichetta</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Indirizzo</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(nessuna etichetta)</translation>
-    </message>
-</context>
-<context>
     <name>AskPassphraseDialog</name>
     <message>
         <source>Passphrase Dialog</source>
