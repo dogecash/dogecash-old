@@ -137,7 +137,7 @@
     </message>
     <message>
         <source>For anonymization, automint, and staking only</source>
-        <translation>Anonimizzazione, conio automatico e modalit&agrave; staking only</translation>
+        <translation>Anonimizzazione, conio automatico e modalità staking only</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -213,7 +213,7 @@
     </message>
     <message>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>La frase d'accesso immessa per la decifrazione del portafoglio &egrave; errata.</translation>
+        <translation>La frase d'accesso immessa per la decifrazione del portafoglio è errata.</translation>
     </message>
     <message>
         <source>Wallet decryption failed</source>
@@ -490,7 +490,7 @@
     </message>
     <message>
         <source>&amp;Unlock Wallet...</source>
-        <translation>&amp;Sblocca il portafoglio</translation>
+        <translation>&amp;Sblocca il portafoglio...</translation>
     </message>
     <message>
         <source>Unlock wallet</source>
@@ -570,7 +570,7 @@
     </message>
     <message>
         <source>&amp;Receiving addresses...</source>
-        <translation>&amp;Indirizzi di ricezione</translation>
+        <translation>&amp;Indirizzi di ricezione...</translation>
     </message>
     <message>
         <source>Show the list of used receiving addresses and labels</source>
@@ -836,7 +836,7 @@ Indirizzo: %4
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Il portafoglio è &lt;b&gt;crittografato&lt;/b&gt; e attualmente &lt;b&gt;bloccato&lt;/b&gt;</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>BlockExplorer</name>
     <message>
