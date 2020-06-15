@@ -339,7 +339,7 @@
     </message>
     <message>
         <source>The entered passphrase is invalid. </source>
-        <translation>La frase d'accesso inserita non &egrave; valida.</translation>
+        <translation>La frase d'accesso inserita non è valida.</translation>
     </message>
     <message>
         <source>Allowed: 0-9,a-z,A-Z,</source>
@@ -347,7 +347,7 @@
     </message>
     <message>
         <source>The entered address is invalid.</source>
-        <translation>L'indirizzo inserito non &egrave; valido.</translation>
+        <translation>L'indirizzo inserito non è valido.</translation>
     </message>
     <message>
         <source>Please check the address and try again.</source>
@@ -359,11 +359,11 @@
     </message>
     <message>
         <source>Wallet unlock was cancelled.</source>
-        <translation>Lo sblocco del portafoglio &egrave; stato annullato.</translation>
+        <translation>Lo sblocco del portafoglio è stato annullato.</translation>
     </message>
     <message>
         <source>Private key for the entered address is not available.</source>
-        <translation>La chiave privata non &egrave; disponibile per l'indirizzo inserito.</translation>
+        <translation>La chiave privata non è disponibile per l'indirizzo inserito.</translation>
     </message>
     <message>
         <source>Failed to decrypt.</source>
@@ -387,7 +387,7 @@
     </message>
     <message>
         <source>Key Already Held By Wallet</source>
-        <translation>Chiave gi&agrave; presente nel portafoglio</translation>
+        <translation>Chiave già presente nel portafoglio</translation>
     </message>
     <message>
         <source>Error Adding Key To Wallet</source>
