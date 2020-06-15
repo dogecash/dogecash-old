@@ -445,7 +445,7 @@
     </message>
     <message>
         <source>Browse transaction history</source>
-        <translation>Espora la cronologia delle transazioni</translation>
+        <translation>Esplora la cronologia delle transazioni</translation>
     </message>
     <message>
         <source>Privacy Actions for zDOGEC</source>
@@ -457,7 +457,7 @@
     </message>
     <message>
         <source>Quit application</source>
-        <translation>Chiude l'applicazione</translation>
+        <translation>Chiudi l'applicazione</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
@@ -465,7 +465,7 @@
     </message>
     <message>
         <source>Show information about Qt</source>
-        <translation>Visualizza informazioni su Qt</translation>
+        <translation>Visualizza le informazioni su Qt</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
@@ -481,47 +481,47 @@
     </message>
     <message>
         <source>&amp;Encrypt Wallet...</source>
-        <translation>&amp;Cifra portafoglio...</translation>
+        <translation>&amp;Cifra il portafoglio...</translation>
     </message>
     <message>
         <source>Encrypt the private keys that belong to your wallet</source>
-        <translation>Crittografa le chiavi private nel tuo portafoglio</translation>
+        <translation>Crittografa le chiavi private del tuo portafoglio</translation>
     </message>
     <message>
         <source>&amp;Backup Wallet...</source>
-        <translation>&amp;Backup portafoglio...</translation>
+        <translation>&amp;Backup del portafoglio...</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
-        <translation>Fa una copia di sicurezza del tuo portafoglio in un'altra posizione</translation>
+        <translation>Crea una copia di sicurezza del tuo portafoglio in un'altra posizione</translation>
     </message>
     <message>
         <source>&amp;Change Passphrase...</source>
-        <translation>&amp;Modifica parola d'ordine...</translation>
+        <translation>&amp;Modifica la frase d'accesso...</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
-        <translation>Modifica la parola d'ordine utilizzata per la crittografia del portafoglio</translation>
+        <translation>Modifica la frase d'accesso utilizzata per cifrare il portafoglio</translation>
     </message>
     <message>
         <source>&amp;Unlock Wallet...</source>
-        <translation>&amp;Sblocca portafoglio</translation>
+        <translation>&amp;Sblocca il portafoglio</translation>
     </message>
     <message>
         <source>Unlock wallet</source>
-        <translation>Sblocca portafoglio</translation>
+        <translation>Sblocca il portafoglio</translation>
     </message>
     <message>
         <source>&amp;Lock Wallet</source>
-        <translation>&amp;Blocca portafoglio</translation>
+        <translation>&amp;Blocca il portafoglio</translation>
     </message>
     <message>
         <source>Sign &amp;message...</source>
-        <translation>&amp;Firma messaggio...</translation>
+        <translation>&amp;Firma il messaggio...</translation>
     </message>
     <message>
         <source>&amp;Verify message...</source>
-        <translation>&amp;Verifica messaggio...</translation>
+        <translation>&amp;Verifica il messaggio...</translation>
     </message>
     <message>
         <source>&amp;Information</source>
@@ -529,7 +529,7 @@
     </message>
     <message>
         <source>Show diagnostic information</source>
-        <translation>Visualizza informazioni di diagnostica</translation>
+        <translation>Visualizza le informazioni di diagnostica</translation>
     </message>
     <message>
         <source>&amp;Debug console</source>
@@ -541,15 +541,15 @@
     </message>
     <message>
         <source>&amp;Network Monitor</source>
-        <translation>&amp;Monitor rete</translation>
+        <translation>&amp;Monitor di rete</translation>
     </message>
     <message>
         <source>Show network monitor</source>
-        <translation>Mostra monitor di rete</translation>
+        <translation>Mostra il monitor di rete</translation>
     </message>
     <message>
         <source>&amp;Peers list</source>
-        <translation>&amp;Lista peers</translation>
+        <translation>&amp;Lista dei peer</translation>
     </message>
     <message>
         <source>Show peers info</source>
@@ -557,11 +557,11 @@
     </message>
     <message>
         <source>Wallet &amp;Repair</source>
-        <translation>&amp;Ripara portafoglio</translation>
+        <translation>&amp;Ripara il portafoglio</translation>
     </message>
     <message>
         <source>Show wallet repair options</source>
-        <translation>Mostra opzioni di riparazione del portafoglio</translation>
+        <translation>Mostra le opzioni di riparazione per il portafoglio</translation>
     </message>
     <message>
         <source>Open configuration file</source>
@@ -573,11 +573,11 @@
     </message>
     <message>
         <source>Show automatically created wallet backups</source>
-        <translation>Mostra i backup dei portafogli creati automaticamente</translation>
+        <translation>Mostra le copie di backup del portafoglio, create automaticamente</translation>
     </message>
     <message>
         <source>&amp;Sending addresses...</source>
-        <translation>&amp;Indirizzi Sorgente</translation>
+        <translation>&amp;Indirizzi di invio...</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -585,7 +585,7 @@
     </message>
     <message>
         <source>&amp;Receiving addresses...</source>
-        <translation>&amp;Indirizzi di Destinazione</translation>
+        <translation>&amp;Indirizzi di ricezione</translation>
     </message>
     <message>
         <source>Show the list of used receiving addresses and labels</source>
@@ -593,47 +593,47 @@
     </message>
     <message>
         <source>&amp;Multisignature creation...</source>
-        <translation>Creazione &amp;Firma multipla...</translation>
+        <translation>Creazione della &amp;firma multipla...</translation>
     </message>
     <message>
         <source>Create a new multisignature address and add it to this wallet</source>
-        <translation>Aggiunta di un nuovo indirizzo a firma multipla a questo wallet</translation>
+        <translation>Aggiunta di un nuovo indirizzo con firma multipla a questo wallet</translation>
     </message>
     <message>
         <source>&amp;Multisignature spending...</source>
-        <translation>Pagamento a firma &amp;Multipla...</translation>
+        <translation>Pagamento con firma &amp;multipla...</translation>
     </message>
     <message>
         <source>Spend from a multisignature address</source>
-        <translation>Paga da un indirizzo a firma multipla</translation>
+        <translation>Paga da un indirizzo con firma multipla</translation>
     </message>
     <message>
         <source>&amp;Multisignature signing...</source>
-        <translation>Firma digitale &amp;Multipla...</translation>
+        <translation>Firma digitale &amp;multipla...</translation>
     </message>
     <message>
         <source>Sign with a multisignature address</source>
-        <translation>Firma digitale con un indirizzo a firma multipla</translation>
+        <translation>Firma digitale con un indirizzo con firma multipla</translation>
     </message>
     <message>
         <source>Open &amp;URI...</source>
-        <translation>Apri URL</translation>
+        <translation>Apri &amp;URI...</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
-        <translation>Opzioni riga di &amp;Comando</translation>
+        <translation>&amp;Opzioni della riga di comando</translation>
     </message>
     <message>
         <source>Synchronizing additional data: %p%</source>
-        <translation>Sincronizzazione dati addizionali: %p%</translation>
+        <translation>Sincronizzazione dei dati addizionali: %p%</translation>
     </message>
     <message>
         <source>%1 behind. Scanning block %2</source>
-        <translation>%1 arretrati. Scansione blocco %2</translation>
+        <translation>%1 arretrati. Scansione del blocco %2</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt; for anonymization and staking only</source>
-        <translation>Il wallet è &lt;b&gt;crittografato&lt;/b&gt; e attualmente &lt;b&gt; sbloccato&lt;/b&gt; solo per anonimizzazione e staking</translation>
+        <translation>Il wallet è &lt;b&gt;crittografato&lt;/b&gt; e attualmente &lt;b&gt; sbloccato&lt;/b&gt; per l'anonimizzazione e per lo staking</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -665,27 +665,27 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and dogecash: URIs)</source>
-        <translation>Richiedi pagamenti (genera codici QR e dogecash: URIs)</translation>
+        <translation>Richiedi pagamenti (genera codici QR e DogeCash: URI)</translation>
     </message>
     <message>
         <source>&amp;Privacy</source>
-        <translation>&amp;pRIVACY</translation>
+        <translation>&amp;Privacy</translation>
     </message>
     <message>
         <source>&amp;Masternodes</source>
-        <translation>&amp;Masternodes</translation>
+        <translation>&amp;Masternode</translation>
     </message>
     <message>
         <source>Browse masternodes</source>
-        <translation>Esplora i masternodes</translation>
+        <translation>Esplora i masternode</translation>
     </message>
     <message>
         <source>&amp;About DogeCash Core</source>
-        <translation>&amp;Informazioni DogeCash Core</translation>
+        <translation>&amp;Informazioni su DogeCash Core</translation>
     </message>
     <message>
         <source>Show information about DogeCash Core</source>
-        <translation>Visualizza informazioni su DogeCash Core</translation>
+        <translation>Visualizza le informazioni su DogeCash Core</translation>
     </message>
     <message>
         <source>Modify configuration options for DogeCash</source>
@@ -693,19 +693,19 @@
     </message>
     <message>
         <source>Sign messages with your DogeCash addresses to prove you own them</source>
-        <translation>Firma i messaggi con i tuoi indirizzi DogeCash per dimostrare di essere il proprietario </translation>
+        <translation>Firma i messaggi con i tuoi indirizzi DogeCash per dimostrare di esserne il proprietario</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified DogeCash addresses</source>
-        <translation>Verifica i messaggi per assicurarsi che siano stati firmati con indirizzi DogeCash specifici</translation>
+        <translation>Verifica i messaggi per assicurare che siano stati firmati con indirizzi DogeCash specifici</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
-        <translation>Strumenti &amp;BIP38</translation>
+        <translation>&amp;Strumento BIP38</translation>
     </message>
     <message>
         <source>Encrypt and decrypt private keys using a passphrase</source>
-        <translation>Crittografa e decrittografa le chiavi private usando una passphrase</translation>
+        <translation>Crittografa e decrittografa le chiavi private usando una frase d'accesso</translation>
     </message>
     <message>
         <source>&amp;MultiSend</source>
@@ -717,31 +717,31 @@
     </message>
     <message>
         <source>Open Wallet &amp;Configuration File</source>
-        <translation>Apri file di &amp;Configurazione wallet</translation>
+        <translation>Apri il &amp;file di configurazione del wallet</translation>
     </message>
     <message>
         <source>Open &amp;Masternode Configuration File</source>
-        <translation>Apri file di configurazione &amp;Masternodo</translation>
+        <translation>Apri il &amp;file di configurazione dei masternode</translation>
     </message>
     <message>
         <source>Open Masternode configuration file</source>
-        <translation>Apri file di configurazione del Masternodo</translation>
+        <translation>Apri il file di configurazione dei Masternode</translation>
     </message>
     <message>
         <source>Open a DogeCash: URI or payment request</source>
-        <translation>Apri un DogeCash: URI o richiesta di pagamento</translation>
+        <translation>Apri un URI o una richiesta di pagamento di DogeCash</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
-        <translation>Esplora &amp;Blockchain</translation>
+        <translation>&amp;Blockchain explorer</translation>
     </message>
     <message>
         <source>Block explorer window</source>
-        <translation>Finestra Block Explorer</translation>
+        <translation>Finestra del block explorer</translation>
     </message>
     <message>
         <source>Show the DogeCash Core help message to get a list with possible DogeCash command-line options</source>
-        <translation>Mostra il messaggio di aiuto DogeCash Core per ottenere un elenco con le possibili opzioni di riga di comando DogeCash</translation>
+        <translation>Mostra il messaggio di aiuto di DogeCash Core per ottenere un elenco con le possibili opzioni della riga di comando di DogeCash</translation>
     </message>
     <message>
         <source>DogeCash Core client</source>
@@ -753,11 +753,11 @@
     </message>
     <message>
         <source>Importing blocks from disk...</source>
-        <translation>Importazione di blocchi dal disco ...</translation>
+        <translation>Importazione dei blocchi dal disco ...</translation>
     </message>
     <message>
         <source>Reindexing blocks on disk...</source>
-        <translation>Reindicizzazione blocchi su disco ...</translation>
+        <translation>Reindicizzazione dei blocchi sul disco ...</translation>
     </message>
     <message>
         <source>No block source available...</source>
@@ -793,7 +793,7 @@
     </message>
     <message>
         <source>Sent transaction</source>
-        <translation>Transazioni Inviate</translation>
+        <translation>Transazioni inviate</translation>
     </message>
     <message>
         <source>Incoming transaction</source>
@@ -819,29 +819,29 @@ Indirizzo: %4
         <source>Staking is active
  MultiSend: %1</source>
         <translation>Lo Stacking è attivo
-MultiSend: %1</translation>
+ MultiSend: %1</translation>
     </message>
     <message>
         <source>Active</source>
-        <translation>Attivo </translation>
+        <translation>Attivo</translation>
     </message>
     <message>
         <source>Not Active</source>
-        <translation>Non Attivo</translation>
+        <translation>Non attivo</translation>
     </message>
     <message>
         <source>Staking is not active
  MultiSend: %1</source>
         <translation>Lo Staking non è attivo
-MultiSend: %1</translation>
+ MultiSend: %1</translation>
     </message>
     <message>
         <source>AutoMint is currently enabled and set to </source>
-        <translation>Conio automatico è attivo e impostato su</translation>
+        <translation>Il conio automatico è attivo e impostato su </translation>
     </message>
     <message>
         <source>AutoMint is disabled</source>
-        <translation>Conio automatico disabilitato</translation>
+        <translation>Il conio automatico è disabilitato</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
