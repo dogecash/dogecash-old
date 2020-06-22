@@ -425,7 +425,7 @@ bool StakeV1(const CBlockIndex* pindexPrev, CStakeInput* stakeInput, const uint3
     return fSuccess;
 }
 
-bool initStakeInput(const CBlock block, std::unique_ptr<CStakeInput>& stake, int nPreviousBlockHeight) {
+bool initStakeInput(const CBlock& block, std::unique_ptr<CStakeInput>& stake, int nPreviousBlockHeight) {
     const CTransaction tx = block.vtx[1];
     if (!tx.IsCoinStake())
         return error("%s : called on non-coinstake %s", __func__, tx.GetHash().ToString().c_str());

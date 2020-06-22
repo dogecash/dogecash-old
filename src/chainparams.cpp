@@ -236,7 +236,7 @@ public:
         nEnforceNewSporkKey = 1566860400; //!> Sporks signed after Monday, August 26, 2019 11:00:00 PM GMT must use the new spork key
         nRejectOldSporkKey = 1569538800; //!> Fully reject old spork key after Thursday, September 26, 2019 11:00:00 PM GMT
         nBlockStakeModifierlV2 = 261028;
-        nBlockTimeProtocolV2 = 299700;
+        nBlockTimeProtocolV2 = 9999700;
 
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = nBlockStakeModifierlV2 + 10;
@@ -244,8 +244,8 @@ public:
         // New P2P messages signatures
 
         // Blocks v7
-        nBlockLastAccumulatorCheckpoint = 1686240;
-        nBlockV7StartHeight = 2967000;
+        nBlockLastAccumulatorCheckpoint = nBlockV7StartHeight - 10;
+        nBlockV7StartHeight = nBlockTimeProtocolV2 - 10;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 1686229;
@@ -378,14 +378,13 @@ public:
         nRejectOldSporkKey = 1522454400; //!> Reject old spork key after Saturday, March 31, 2018 12:00:00 AM GMT
         nBlockStakeModifierlV2 = 1214000;
         nBlockTimeProtocolV2 = 2214000;
-        nBIP65ActivationHeight = 851019;
 
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = 1;
 
         // Blocks v7
-        nBlockLastAccumulatorCheckpoint = nPublicZCSpends - 10;
-        nBlockV7StartHeight = 2214000;
+        nBlockLastAccumulatorCheckpoint = nBlockV7StartHeight - 10;
+        nBlockV7StartHeight = nBlockTimeProtocolV2 - 10;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
