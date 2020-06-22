@@ -4514,11 +4514,12 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
 
     if (block.nBits != nBitsRequired) {
         // DOGEC Specific reference to the block with the wrong threshold was used.
-        if ((block.nTime >= Params().DogecBadBlockTime()) || (block.nBits == Params().DogecBadBlocknBits())) {
+        if (block.nTime >= (uint32_t) Params().DogecBadBlockTime()) {
+        //if ( Params().IsStakeModifierV2(pindexPrev->nHeight+21) >= (pindexPrev->nHeight + 1) ) {    
+        
             // accept DOGEC block minted with incorrect proof of work threshold
-            return true;
+            return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
         }
-        return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
     }
     return true;
 }
@@ -4763,21 +4764,12 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
         isPoS = true;
         uint256 hashProofOfStake = 0;
         unique_ptr<CStakeInput> stake;
-        if ( (block.nTime >= Params().DogecBadBlockTime()) || !Params().IsStakeModifierV2(pindex->nHeight+20) ) {
-        
-        } else {
+        if (block.nTime >= (uint32_t)Params().DogecBadBlockTime()) {
 
             if (!CheckProofOfStake(block, hashProofOfStake, stake, pindexPrev->nHeight))
                 return state.DoS(100, error("%s: proof of stake check failed", __func__));
-            
 
-            if (!stake)
-                return error("%s: null stake ptr", __func__);
-        
-        
-            if (stake->Iszdogec() && !ContextualCheckZerocoinStake(pindexPrev->nHeight, stake.get()))
-                return state.DoS(100, error("%s: staked zdogec fails context checks", __func__));
-            }
+        }
         uint256 hash = block.GetHash();
         if(!mapProofOfStake.count(hash)) // add to mapProofOfStake
             mapProofOfStake.insert(make_pair(hash, hashProofOfStake));

@@ -220,7 +220,7 @@ public:
         nMaxMoneyOut = 21000000 * COIN; //21 mill
         nMinColdStakingAmount = 1 * COIN;
 
-        nDogecBadBlockTime = 1558145668; // Skip nBit validation of Block 259201 per PR #915
+        nDogecBadBlockTime = 1572848426; // Skip nBit validation of Block 259201 per PR #915
         nDogecBadBlocknBits = 0x1d19b36d; // Skip nBit validation of Block 201 per PR #915
 
         /** Height or Time Based Activations **/
