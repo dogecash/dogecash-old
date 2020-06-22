@@ -122,6 +122,9 @@ EXPECTED_HOLDER_NAMES = [
     "The PIVX developers\n",
     "The DogeCash developers\n",
     "The PPCoin developers\n",
+    "The NovaCoin Developers",
+    "The BlackCoin Developers\n",
+    "The Blackcoin More developers\n",
 ]
 
 DOMINANT_STYLE_COMPILED = {}

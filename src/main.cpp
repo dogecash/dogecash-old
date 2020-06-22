@@ -2711,7 +2711,7 @@ bool DisconnectBlock(CBlock& block, CValidationState& state, CBlockIndex* pindex
     // move best block pointer to prevout block
     view.SetBestBlock(pindex->pprev->GetBlockHash());
 
-    if (!fVerifyingBlocks) {
+    if (!fVerifyingBlocks && pindex->nHeight <= Params().Zerocoin_Block_Last_Checkpoint()) {
         //if block is an accumulator checkpoint block, remove checkpoint and checksums from db
         uint256 nCheckpoint = pindex->nAccumulatorCheckpoint;
         if(nCheckpoint != pindex->pprev->nAccumulatorCheckpoint) {
@@ -2968,7 +2968,7 @@ bool ReindexAccumulators(list<uint256>& listMissingCheckpoints, string& strError
 
         // find each checkpoint that is missing
         CBlockIndex* pindex = chainActive[nZerocoinStart];
-        while (pindex) {
+        while (pindex && pindex->nHeight <= Params().Zerocoin_Block_Last_Checkpoint()) {
             uiInterface.ShowProgress(_("Calculating missing accumulators..."), std::max(1, std::min(99, (int)((double)(pindex->nHeight - nZerocoinStart) / (double)(chainActive.Height() - nZerocoinStart) * 100))));
 
             if (ShutdownRequested())
@@ -4337,10 +4337,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
     // transaction validation, as otherwise we may mark the header as invalid
     // because we receive the wrong transactions for it.
 
-    // Check timestamp
-    if (Params().NetworkID() != CBaseChainParams::REGTEST && block.GetBlockTime() > Params().MaxFutureBlockTime(GetAdjustedTime(), IsPoS)) // 3 minute future drift for PoS
-        return state.Invalid(error("%s : block timestamp too far in the future", __func__),
-                                     REJECT_INVALID, "time-too-new");
     // Check the merkle root.
     if (fCheckMerkleRoot) {
         bool mutated;
@@ -4516,9 +4512,39 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
         return true;
     }
 
-    if (block.nBits != nBitsRequired)
+    if (block.nBits != nBitsRequired) {
+        // DOGEC Specific reference to the block with the wrong threshold was used.
+        if ((block.nTime == Params().DogecBadBlockTime()) && (block.nBits == Params().DogecBadBlocknBits())) {
+            // accept DOGEC block minted with incorrect proof of work threshold
+            return true;
+        }
         return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
+    }
+    return true;
+}
 
+bool CheckBlockTime(const CBlockHeader& block, CValidationState& state, CBlockIndex* const pindexPrev)
+{
+    // Not enforced on RegTest
+    if (Params().NetworkID() == CBaseChainParams::REGTEST)
+        return true;
+
+    const int64_t blockTime = block.GetBlockTime();
+    const int blockHeight = pindexPrev->nHeight + 1;
+
+    // Check blocktime against future drift (WANT: blk_time <= Now + MaxDrift)
+    if (blockTime > pindexPrev->MaxFutureBlockTime())
+        return state.Invalid(error("%s : block timestamp too far in the future", __func__), REJECT_INVALID, "time-too-new");
+
+    // Check blocktime against prev (WANT: blk_time > MinPastBlockTime)
+    if (blockTime <= pindexPrev->MinPastBlockTime())
+        return state.DoS(50, error("%s : block timestamp too old", __func__), REJECT_INVALID, "time-too-old");
+
+    // Check blocktime mask
+    if (!Params().IsValidBlockTimeStamp(blockTime, blockHeight))
+        return state.DoS(100, error("%s : block timestamp mask not valid", __func__), REJECT_INVALID, "invalid-time-mask");
+
+    // All good
     return true;
 }
 
@@ -4534,19 +4560,14 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
     const int nHeight = pindexPrev->nHeight + 1;
     const int chainHeight = chainActive.Height();
 
-    if ((Params().NetworkID() == CBaseChainParams::REGTEST) && block.nBits != GetNextWorkRequired(pindexPrev, &block))
-        return state.DoS(100, error("%s : incorrect proof of work", __func__),
-                REJECT_INVALID, "bad-diffbits");
-
-
     //If this is a reorg, check that it is not too deep
     int nMaxReorgDepth = GetArg("-maxreorg", Params().MaxReorganizationDepth());
     if (chainHeight - nHeight >= nMaxReorgDepth)
         return state.DoS(1, error("%s: forked chain older than max reorganization depth (height %d)", __func__, chainHeight - nHeight));
 
-    // Check blocktime against prev (WANT: blk_time > MedianTimePast)
-    if (Params().NetworkID() != CBaseChainParams::REGTEST && block.GetBlockTime() <= pindexPrev->GetMedianTimePast())
-        return state.DoS(50, error("%s : block timestamp too old", __func__), REJECT_INVALID, "time-too-old");
+    // Check blocktime (past limit, future limit and mask)
+    if (!CheckBlockTime(block, state, pindexPrev))
+        return false;
 
     // Check that the block chain matches the known block chain up to a checkpoint
     if (!Checkpoints::CheckBlock(nHeight, hash))
@@ -4742,15 +4763,21 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
         isPoS = true;
         uint256 hashProofOfStake = 0;
         unique_ptr<CStakeInput> stake;
-        if (!CheckProofOfStake(block, hashProofOfStake, stake, pindexPrev->nHeight))
-            return state.DoS(100, error("%s: proof of stake check failed", __func__));
+        if ( (block.nTime >= Params().DogecBadBlockTime()) || !Params().IsStakeModifierV2(pindex->nHeight+20) ) {
+        
+        } else {
 
-        if (!stake)
-            return error("%s: null stake ptr", __func__);
+            if (!CheckProofOfStake(block, hashProofOfStake, stake, pindexPrev->nHeight))
+                return state.DoS(100, error("%s: proof of stake check failed", __func__));
+            
 
-        if (stake->Iszdogec() && !ContextualCheckZerocoinStake(pindexPrev->nHeight, stake.get()))
-            return state.DoS(100, error("%s: staked zdogec fails context checks", __func__));
-
+            if (!stake)
+                return error("%s: null stake ptr", __func__);
+        
+        
+            if (stake->Iszdogec() && !ContextualCheckZerocoinStake(pindexPrev->nHeight, stake.get()))
+                return state.DoS(100, error("%s: staked zdogec fails context checks", __func__));
+            }
         uint256 hash = block.GetHash();
         if(!mapProofOfStake.count(hash)) // add to mapProofOfStake
             mapProofOfStake.insert(make_pair(hash, hashProofOfStake));
@@ -5048,7 +5075,16 @@ void CBlockIndex::BuildSkip()
 
 bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDiskBlockPos* dbp)
 {
-    if (pblock->GetHash() != Params().HashGenesisBlock() && pfrom != nullptr) {
+    // Preliminary checks
+    int64_t nStartTime = GetTimeMillis();
+
+    // check block
+    bool checked = CheckBlock(*pblock, state);
+
+    if (!CheckBlockSignature(*pblock))
+        return error("%s : bad proof-of-stake block signature", __func__);
+
+    if (pblock->GetHash() != Params().HashGenesisBlock() && pfrom != NULL) {
         //if we get this far, check if the prev block is our prev block, if not then request sync and return false
         BlockMap::iterator mi = mapBlockIndex.find(pblock->hashPrevBlock);
         if (mi == mapBlockIndex.end()) {
@@ -5058,13 +5094,7 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDis
     }
 
     {
-
-    // check block
-    bool checked = CheckBlock(*pblock, state);
-
-    if (!CheckBlockSignature(*pblock))
-        return error("ProcessNewBlock() : bad proof-of-stake block signature");
-    LOCK(cs_main);
+        LOCK(cs_main);
 
         MarkBlockAsReceived(pblock->GetHash());
         if (!checked) {
