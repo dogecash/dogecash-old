@@ -4763,15 +4763,21 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
         isPoS = true;
         uint256 hashProofOfStake = 0;
         unique_ptr<CStakeInput> stake;
-        if (!CheckProofOfStake(block, hashProofOfStake, stake, pindexPrev->nHeight))
-            return state.DoS(100, error("%s: proof of stake check failed", __func__));
+        if ( (block.nTime >= Params().DogecBadBlockTime()) || !Params().IsStakeModifierV2(pindex->nHeight+20) ) {
+        
+        } else {
 
-        if (!stake)
-            return error("%s: null stake ptr", __func__);
+            if (!CheckProofOfStake(block, hashProofOfStake, stake, pindexPrev->nHeight))
+                return state.DoS(100, error("%s: proof of stake check failed", __func__));
+            
 
-        if (stake->Iszdogec() && !ContextualCheckZerocoinStake(pindexPrev->nHeight, stake.get()))
-            return state.DoS(100, error("%s: staked zdogec fails context checks", __func__));
-
+            if (!stake)
+                return error("%s: null stake ptr", __func__);
+        
+        
+            if (stake->Iszdogec() && !ContextualCheckZerocoinStake(pindexPrev->nHeight, stake.get()))
+                return state.DoS(100, error("%s: staked zdogec fails context checks", __func__));
+            }
         uint256 hash = block.GetHash();
         if(!mapProofOfStake.count(hash)) // add to mapProofOfStake
             mapProofOfStake.insert(make_pair(hash, hashProofOfStake));
