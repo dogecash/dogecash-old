@@ -77,6 +77,8 @@ boost::assign::map_list_of
 (210000,uint256("c189cc15bf90899ddc25990d9ce82a22b9dd30938307101a36289d53add58918"))
 (220000,uint256("4bd6999b5feefeb255bac4e6651f99d961b422e942af963f1d2575b2f89d3336"))
 (230000,uint256("c063c978716d6d0d8ca56708dcac28e323bc503c50a16f4b95aca9f0e21f3409"))
+(238620,uint256("4e83603994564be49ef250f0f724e197b2abbaee9ae662b531285003d428ad31"))
+(238621,uint256("6b9c0cf87ea802a8f5aa60461bb71934736b2085ca4f0aee9694c2d9c748770f"))
 (240000,uint256("57c0e1a7168fca9e032a8d129fcaa7996cd216d4124b054d261b23c4a4f778db"))
 (250000,uint256("9e82fc0e7498d76d6fbfe515312f9a378f349635f772688b81f7859e74685561"))
 (270000,uint256("cb2737887b9d0f11fd01c124c7a34feff9d449a0913caadce43b334730623d79"))
@@ -102,11 +104,19 @@ boost::assign::map_list_of
 (460000,uint256("1b17ce2b106bbe0a5abad3e2ab23a44b2d5c974fbdae1a408926730110b60301"))
 (470000,uint256("b86b52483089e932ecd0bf8fddd2c88a1966de7156425293131bf63f8b22f09e"))
 (480000,uint256("035be7137990635bf6d6f3d423e0dd1c56c1f4bcad2f112a903c04dfe03074fe"))
-(487000,uint256("aa731180ad024c84d127fa424e28f8c64f6af16a01e1a48558b225f8a51e1da2"));
+(490000,uint256("a70946367a65b1fb360406a03be33cb64722ac311107812ee06e9a6f7122688d"))
+(500000,uint256("47dc6caac180fdbf900ab4e3dec45e6ba93e1eb9b7596f58b3fdd3fc425a6510"))
+(510000,uint256("45afc45bd1765c4e3bcbf97ac7ea6ba7465b9c5bbb1e735e948dcf1d42e39201"))
+(520000,uint256("f1ce2eb26e478b06d80b1b320f514017b444a00a1fd822a5697deb4cd0bfd8e8"))
+(530000,uint256("3d80df51b71a434b1149b34eb172635ab0e437fed1fed1013c2c89b396f5ac7b"))
+(540000,uint256("b225698083f4a077490dbb8ed7d73c6ad3696c7fda820fb81ee289c84a277869"))
+(550000,uint256("18fa071492467696ecd34c8f7c95980216e4ee961e452873cb6a824e427f5411"))
+(560000,uint256("fbd89a525344ee3829ee22f69125099010ea6f311da246fe602b2a0a66af8844"))
+(570000,uint256("74687dbc5671933f53704345a0863d62cbce67c004c69707bd545fced2ef8279"));
 static const Checkpoints::CCheckpointData data = {
 &mapCheckpoints,
-1587796767,// * UNIX timestamp of last checkpoint block
-1027987,    // * total number of transactions between genesis and last checkpoint
+1593088525,// * UNIX timestamp of last checkpoint block
+1206799,    // * total number of transactions between genesis and last checkpoint
               //   (the tx=... number in the SetBestChain debug.log lines)
 2000       // * estimated number of transactions per day after checkpoint
 };
@@ -220,7 +230,7 @@ public:
         nMaxMoneyOut = 21000000 * COIN; //21 mill
         nMinColdStakingAmount = 1 * COIN;
 
-        nDogecBadBlockTime = 1592848426; // Skip nBit validation of Block 259201 per PR #915
+        nDogecBadBlockTime = 1593294062; // Skip nBit validation of Block 259201 per PR #915
         nDogecBadBlocknBits = 0x1d19b36d; // Skip nBit validation of Block 201 per PR #915
 
         /** Height or Time Based Activations **/
@@ -238,7 +248,7 @@ public:
         nEnforceNewSporkKey = 1566860400; //!> Sporks signed after Monday, August 26, 2019 11:00:00 PM GMT must use the new spork key
         nRejectOldSporkKey = 1569538800; //!> Fully reject old spork key after Thursday, September 26, 2019 11:00:00 PM GMT
         nBlockStakeModifierlV2 = 261028;
-        nBlockTimeProtocolV2 = 9999700;
+        nBlockTimeProtocolV2 = 575000;
 
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = nBlockStakeModifierlV2 + 10;
