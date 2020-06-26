@@ -3240,57 +3240,6 @@ bool CWallet::IsCollateralAmount(CAmount nInputAmount) const
     return nInputAmount != 0 && nInputAmount % OBFUSCATION_COLLATERAL == 0 && nInputAmount < OBFUSCATION_COLLATERAL * 5 && nInputAmount > OBFUSCATION_COLLATERAL;
 }
 
-bool CWallet::CreateCollateralTransaction(CMutableTransaction& txCollateral, std::string& strReason)
-{
-    /*
-        To doublespend a collateral transaction, it will require a fee higher than this. So there's
-        still a significant cost.
-    */
-    CAmount nFeeRet = 1 * COIN;
-
-    txCollateral.vin.clear();
-    txCollateral.vout.clear();
-
-    CReserveKey reservekey(this);
-    CAmount nValueIn2 = 0;
-    std::vector<CTxIn> vCoinsCollateral;
-
-    if (!SelectCoinsCollateral(vCoinsCollateral, nValueIn2)) {
-        strReason = "Error: Obfuscation requires a collateral transaction and could not locate an acceptable input!";
-        return false;
-    }
-
-    // make our change address
-    CScript scriptChange;
-    CPubKey vchPubKey;
-    assert(reservekey.GetReservedKey(vchPubKey)); // should never fail, as we just unlocked
-    scriptChange = GetScriptForDestination(vchPubKey.GetID());
-    reservekey.KeepKey();
-
-    BOOST_FOREACH (CTxIn v, vCoinsCollateral)
-        txCollateral.vin.push_back(v);
-
-    if (nValueIn2 - OBFUSCATION_COLLATERAL - nFeeRet > 0) {
-        //pay collateral charge in fees
-        CTxOut vout3 = CTxOut(nValueIn2 - OBFUSCATION_COLLATERAL, scriptChange);
-        txCollateral.vout.push_back(vout3);
-    }
-
-    int vinNumber = 0;
-    BOOST_FOREACH (CTxIn v, txCollateral.vin) {
-        if (!SignSignature(*this, v.prevPubKey, txCollateral, vinNumber, int(SIGHASH_ALL | SIGHASH_ANYONECANPAY))) {
-            BOOST_FOREACH (CTxIn v, vCoinsCollateral)
-                UnlockCoin(v.prevout);
-
-            strReason = "CObfuscationPool::Sign - Unable to sign collateral transaction! \n";
-            return false;
-        }
-        vinNumber++;
-    }
-
-    return true;
-}
-
 bool CWallet::GetBudgetSystemCollateralTX(CWalletTx& tx, uint256 hash, bool useIX)
 {
     // make our change address
@@ -3334,21 +3283,6 @@ bool CWallet::GetBudgetFinalizationCollateralTX(CWalletTx& tx, uint256 hash, boo
         return false;
     }
 
-    return true;
-}
-
-bool CWallet::ConvertList(std::vector<CTxIn> vCoins, std::vector<CAmount>& vecAmounts)
-{
-    BOOST_FOREACH (CTxIn i, vCoins) {
-        if (mapWallet.count(i.prevout.hash)) {
-            CWalletTx& wtx = mapWallet[i.prevout.hash];
-            if (i.prevout.n < wtx.vout.size()) {
-                vecAmounts.push_back(wtx.vout[i.prevout.n].nValue);
-            }
-        } else {
-            LogPrintf("ConvertList -- Couldn't find transaction\n");
-        }
-    }
     return true;
 }
 
@@ -3601,16 +3535,13 @@ bool CWallet::CreateTransaction(CScript scriptPubKey, const CAmount& nValue, CWa
 // ppcoin: create coin stake transaction
 bool CWallet::CreateCoinStake(
         const CKeyStore& keystore,
+        const CBlockIndex* pindexPrev,
         unsigned int nBits,
         int64_t nSearchInterval,
         CMutableTransaction& txNew,
-        unsigned int& nTxNewTime
+        int64_t& nTxNewTime
         )
 {
-    // The following split & combine thresholds are important to security
-    // Should not be adjusted if you don't understand the consequences
-    //int64_t nCombineThreshold = 0;
-    const CBlockIndex* pindexPrev = chainActive.Tip();
     txNew.vin.clear();
     txNew.vout.clear();
 
@@ -3641,7 +3572,7 @@ bool CWallet::CreateCoinStake(
         return false;
     }
 
-    if (GetAdjustedTime() - chainActive.Tip()->GetBlockTime() < 60) {
+    if (GetAdjustedTime() - pindexPrev->GetBlockTime() < 60) {
         if (Params().NetworkID() == CBaseChainParams::REGTEST) {
             MilliSleep(1000);
         }
@@ -3651,12 +3582,6 @@ bool CWallet::CreateCoinStake(
     CScript scriptPubKeyKernel;
     bool fKernelFound = false;
     int nAttempts = 0;
-    // Block time.
-    nTxNewTime = GetAdjustedTime();
-    // If the block time is in the future, then starts there.
-    if (pindexPrev->nTime > nTxNewTime) {
-        nTxNewTime = pindexPrev->nTime;
-    }
 
     for (std::unique_ptr<CStakeInput>& stakeInput : listInputs) {
         nCredit = 0;
@@ -6422,9 +6347,7 @@ void CWallet::SetNull()
     fBackupMints = false;
 
     // Stake Settings
-    nHashDrift = 45;
     nStakeSplitThreshold = STAKE_SPLIT_THRESHOLD;
-    nHashInterval = 22;
     nStakeSetUpdateTime = 300; // 5 minutes
 
     //MultiSend

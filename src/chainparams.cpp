@@ -77,6 +77,8 @@ boost::assign::map_list_of
 (210000,uint256("c189cc15bf90899ddc25990d9ce82a22b9dd30938307101a36289d53add58918"))
 (220000,uint256("4bd6999b5feefeb255bac4e6651f99d961b422e942af963f1d2575b2f89d3336"))
 (230000,uint256("c063c978716d6d0d8ca56708dcac28e323bc503c50a16f4b95aca9f0e21f3409"))
+(238620,uint256("4e83603994564be49ef250f0f724e197b2abbaee9ae662b531285003d428ad31"))
+(238621,uint256("6b9c0cf87ea802a8f5aa60461bb71934736b2085ca4f0aee9694c2d9c748770f"))
 (240000,uint256("57c0e1a7168fca9e032a8d129fcaa7996cd216d4124b054d261b23c4a4f778db"))
 (250000,uint256("9e82fc0e7498d76d6fbfe515312f9a378f349635f772688b81f7859e74685561"))
 (270000,uint256("cb2737887b9d0f11fd01c124c7a34feff9d449a0913caadce43b334730623d79"))
@@ -110,8 +112,7 @@ boost::assign::map_list_of
 (540000,uint256("b225698083f4a077490dbb8ed7d73c6ad3696c7fda820fb81ee289c84a277869"))
 (550000,uint256("18fa071492467696ecd34c8f7c95980216e4ee961e452873cb6a824e427f5411"))
 (560000,uint256("fbd89a525344ee3829ee22f69125099010ea6f311da246fe602b2a0a66af8844"))
-(570000,uint256("74687dbc5671933f53704345a0863d62cbce67c004c69707bd545fced2ef8279"))
-(573154,uint256("ec34e12befff7dbffb79c0945fe4b21eddaec39e2e4b733d36cb08ae11fcff60"));
+(570000,uint256("74687dbc5671933f53704345a0863d62cbce67c004c69707bd545fced2ef8279"));
 static const Checkpoints::CCheckpointData data = {
 &mapCheckpoints,
 1593088525,// * UNIX timestamp of last checkpoint block
@@ -157,15 +158,33 @@ libzerocoin::ZerocoinParams* CChainParams::Zerocoin_Params(bool useModulusV1) co
 
 bool CChainParams::HasStakeMinAgeOrDepth(const int contextHeight, const uint32_t contextTime, const int utxoFromBlockHeight, const uint32_t utxoFromBlockTime) const
 {
-    if (NetworkID() == CBaseChainParams::REGTEST)
-        return true;
-
-    // before stake modifier V2, the age required was 60 * 60 (1 hour) / not required on regtest
+    // before stake modifier V2, the age required was 60 * 60 (1 hour). Not required for regtest
     if (!IsStakeModifierV2(contextHeight))
-        return (utxoFromBlockTime + 3600 <= contextTime);
+        return NetworkID() == CBaseChainParams::REGTEST || (utxoFromBlockTime + nStakeMinAge <= contextTime);
 
     // after stake modifier V2, we require the utxo to be nStakeMinDepth deep in the chain
     return(contextHeight - utxoFromBlockHeight >= nStakeMinDepth);
+}
+
+int CChainParams::FutureBlockTimeDrift(const int nHeight) const
+{
+    if (IsTimeProtocolV2(nHeight))
+        // PoS (TimeV2): 14 seconds
+        return TimeSlotLength() - 1;
+
+    // PoS (TimeV1): 3 minutes
+    // PoW: 2 hours
+    return (nHeight > LAST_POW_BLOCK()) ? nFutureTimeDriftPoS : nFutureTimeDriftPoW;
+}
+
+bool CChainParams::IsValidBlockTimeStamp(const int64_t nTime, const int nHeight) const
+{
+    // Before time protocol V2, blocks can have arbitrary timestamps
+    if (!IsTimeProtocolV2(nHeight))
+        return true;
+
+    // Time protocol v2 requires time in slots
+    return (nTime % TimeSlotLength()) == 0;
 }
 
 class CMainParams : public CChainParams
@@ -188,13 +207,20 @@ public:
         vAlertPubKey = ParseHex("04e70ca66d0bc8bd6c105952488fcdbd9f809d459af257646e35c5ec36f5e03158c916442aaa9592e63eeca8afa9660e505b160ee599c8efcc0a5f111058ba8c74");
         nDefaultPort = 56740;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // dogecash starting difficulty is 1 / 2^12
+        bnProofOfStakeLimit = ~uint256(0) >> 24;
+        bnProofOfStakeLimit_V2 = ~uint256(0) >> 20; // 60/4 = 15 ==> use 2**4 higher limit
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 8100; // 75%
         nRejectBlockOutdatedMajority = 10260; // 95%
         nToCheckBlockUpgradeMajority = 10800; // Approximate expected amount of blocks in 7 days (1440*7.5)
         nMinerThreads = 0;
-        nTargetSpacing = 1 * 60; //dogecash: 1 Min
+        nTargetSpacing = 1 * 60;                        // 1 minute
+        nTargetTimespan = 40 * 60;                      // 40 minutes
+        nTimeSlotLength = 15;                           // 15 seconds
+        nTargetTimespan_V2 = 2 * nTimeSlotLength * 60;  // 30 minutes
+        nMaturity = 100;
+        nStakeMinAge = 60 * 60;                         // 1 hour
         nStakeMinDepth = 100;
         nFutureTimeDriftPoW = 7200;
         nFutureTimeDriftPoS = 180;
@@ -204,6 +230,10 @@ public:
         nStakeCollateralMin = 100 * COIN;
         nMaxMoneyOut = 21000000 * COIN; //21 mill
         nMinColdStakingAmount = 1 * COIN;
+
+        nDogecBadBlockTime = 1593294062; // Skip nBit validation of Block 259201 per PR #915
+        nDogecBadBlocknBits = 0x1d19b36d; // Skip nBit validation of Block 201 per PR #915
+
         /** Height or Time Based Activations **/
         nLastPOWBlock = 200;
         nZerocoinStartHeight = INT_MAX;
@@ -216,15 +246,19 @@ public:
         //nInvalidAmountFiltered = 268200*COIN; //Amount of invalid coins filtered through exchanges, that should be considered valid
         nBlockZerocoinV2 = INT_MAX; //!> The block that zerocoin v2 becomes active - roughly Tuesday, May 8, 2018 4:00:00 AM GMT
         nBlockDoubleAccumulated = 1050010;
-        nEnforceNewSporkKey = 1425158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
-        nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
-        nBlockStakeModifierlV2 = 261028; //!> Enforce new Stake Protocols add test/regtest
-        nModifierUpdateBlock = nBlockStakeModifierlV2 + 5;
+        nEnforceNewSporkKey = 1566860400; //!> Sporks signed after Monday, August 26, 2019 11:00:00 PM GMT must use the new spork key
+        nRejectOldSporkKey = 1569538800; //!> Fully reject old spork key after Thursday, September 26, 2019 11:00:00 PM GMT
+        nBlockStakeModifierlV2 = 261028;
+        nBlockTimeProtocolV2 = 575000;
 
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = nBlockStakeModifierlV2 + 10;
 
         // New P2P messages signatures
+
+        // Blocks v7
+        nBlockLastAccumulatorCheckpoint = nBlockV7StartHeight - 10;
+        nBlockV7StartHeight = nBlockTimeProtocolV2 - 10;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 1686229;
@@ -335,9 +369,10 @@ public:
         nRejectBlockOutdatedMajority = 5472; // 95%
         nToCheckBlockUpgradeMajority = 5760; // 4 days
         nMinerThreads = 0;
-        nTargetSpacing = 1 * 60;  // dogecash: 1 minute
-        nLastPOWBlock = 125;
-        nMaturity = 1;
+        nLastPOWBlock = 200;
+        nDogecBadBlockTime = 1558145668; // Skip nBit validation of Block 259201 per PR #915
+        nDogecBadBlocknBits = 0x1d19b36d; // Skip nBit validation of Block 201 per PR #915
+        nMaturity = 15;
         nStakeMinDepth = 50;
         nMasternodeCountDrift = 4;
         nStakeCollateralMin = 10;
@@ -354,10 +389,15 @@ public:
         nBlockZerocoinV2 = INT_MAX; //!> The block that zerocoin v2 becomes active
         nEnforceNewSporkKey = 1521604800; //!> Sporks signed after Wednesday, March 21, 2018 4:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1522454400; //!> Reject old spork key after Saturday, March 31, 2018 12:00:00 AM GMT
-        nBlockStakeModifierlV2 = 125; //!> Enforce new Stake Protocols add test/regtest
+        nBlockStakeModifierlV2 = 1214000;
+        nBlockTimeProtocolV2 = 2214000;
 
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = 1;
+
+        // Blocks v7
+        nBlockLastAccumulatorCheckpoint = nBlockV7StartHeight - 10;
+        nBlockV7StartHeight = nBlockTimeProtocolV2 - 10;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
@@ -435,17 +475,22 @@ public:
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         nLastPOWBlock = 250;
         nMaturity = 100;
+        nStakeMinAge = 0;
+        nStakeMinDepth = 0;
+        nTimeSlotLength = 1;            // time not masked on RegNet
         nMasternodeCountDrift = 4;
-        nStakeCollateralMin = 0;
-        nModifierUpdateBlock = 0; //approx Mon, 17 Apr 2017 04:00:00 GMT
+        nModifierUpdateBlock = 0;       //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 21000000 * COIN;
         nZerocoinStartHeight = INT_MAX;
+        nStakeCollateralMin = 0;
         nBlockZerocoinV2 = 300;
         nZerocoinStartTime = INT_MAX;
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
         nBlockRecalculateAccumulators = 999999999; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = 999999999; //First block that bad serials emerged
         nBlockLastGoodCheckpoint = 999999999; //Last valid accumulator checkpoint
+        nBlockStakeModifierlV2 = 255;
+        nBlockTimeProtocolV2 = 999999999;
 
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = 1;

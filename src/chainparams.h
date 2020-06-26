@@ -51,6 +51,7 @@ public:
     const std::vector<unsigned char>& AlertKey() const { return vAlertPubKey; }
     int GetDefaultPort() const { return nDefaultPort; }
     const uint256& ProofOfWorkLimit() const { return bnProofOfWorkLimit; }
+    const uint256& ProofOfStakeLimit(const bool fV2) const { return fV2 ? bnProofOfStakeLimit_V2 : bnProofOfStakeLimit; }
     int SubsidyHalvingInterval() const { return nSubsidyHalvingInterval; }
     /** Used to check majorities for block version upgrade */
     int EnforceBlockUpgradeMajority() const { return nEnforceBlockUpgradeMajority; }
@@ -74,15 +75,23 @@ public:
     /** Make standard checks */
     bool RequireStandard() const { return fRequireStandard; }
     int64_t TargetSpacing() const { return nTargetSpacing; }
-        /** returns the coinbase maturity **/
+    int64_t TargetTimespan(const bool fV2 = true) const { return fV2 ? nTargetTimespan_V2 : nTargetTimespan; }
+
+    /** returns the coinbase maturity **/
     int COINBASE_MATURITY() const { return nMaturity; }
 
     /** returns the coinstake maturity (min depth required) **/
+    int COINSTAKE_MIN_AGE() const { return nStakeMinAge; }
     int COINSTAKE_MIN_DEPTH() const { return nStakeMinDepth; }
     bool HasStakeMinAgeOrDepth(const int contextHeight, const uint32_t contextTime, const int utxoFromBlockHeight, const uint32_t utxoFromBlockTime) const;
 
-    /** returns the max future time (and drift in seconds) allowed for a block in the future **/
-    int FutureBlockTimeDrift(const bool isPoS) const { return isPoS ? nFutureTimeDriftPoS : nFutureTimeDriftPoW; }
+    /** Time Protocol V2 **/
+    int BlockStartTimeProtocolV2() const { return nBlockTimeProtocolV2; }
+    bool IsTimeProtocolV2(const int nHeight) const { return nHeight >= BlockStartTimeProtocolV2(); }
+    int TimeSlotLength() const { return nTimeSlotLength; }
+    int FutureBlockTimeDrift(const int nHeight) const;
+    bool IsValidBlockTimeStamp(const int64_t nTime, const int nHeight) const;
+
     uint32_t MaxFutureBlockTime(uint32_t time, const bool isPoS) const { return time + FutureBlockTimeDrift(isPoS); }
     CAmount MaxMoneyOut() const { return nMaxMoneyOut; }
     CAmount nStakeMinInput() const { return nStakeCollateralMin; }
@@ -108,6 +117,8 @@ public:
     int64_t GetProposalEstablishmentTime() const { return nProposalEstablishmentTime; }
 
     CAmount GetMinColdStakingAmount() const { return nMinColdStakingAmount; }
+    int DogecBadBlockTime() const { return nDogecBadBlockTime; }
+    int DogecBadBlocknBits() const { return nDogecBadBlocknBits; }
 
     /** Spork key and Masternode Handling **/
     std::string SporkPubKey() const { return strSporkPubKey; }
@@ -144,6 +155,7 @@ public:
     int Zerocoin_Block_V2_Start() const { return nBlockZerocoinV2; }
     int NewSigsActive(const int nHeight) const { return nHeight >= nBlockEnforceNewMessageSignatures; }
     bool IsStakeModifierV2(const int nHeight) const { return nHeight >= nBlockStakeModifierlV2; }
+    int Block_V7_StartHeight() const { return nBlockV7StartHeight; }
 
     // fake serial attack
     int Zerocoin_Block_EndFakeSerial() const { return nFakeSerialBlockheightEnd; }
@@ -152,6 +164,7 @@ public:
     int Zerocoin_Block_Double_Accumulated() const { return nBlockDoubleAccumulated; }
     CAmount InvalidAmountFiltered() const { return nInvalidAmountFiltered; };
 
+    int Zerocoin_Block_Last_Checkpoint() const { return nBlockLastAccumulatorCheckpoint; }
 protected:
     CChainParams() {}
 
@@ -161,21 +174,30 @@ protected:
     std::vector<unsigned char> vAlertPubKey;
     int nDefaultPort;
     uint256 bnProofOfWorkLimit;
+    uint256 bnProofOfStakeLimit;
+    uint256 bnProofOfStakeLimit_V2;
     int nMaxReorganizationDepth;
     int nSubsidyHalvingInterval;
     int nEnforceBlockUpgradeMajority;
     int nRejectBlockOutdatedMajority;
     int nToCheckBlockUpgradeMajority;
     int64_t nTargetSpacing;
+    int64_t nTargetTimespan;
+    int64_t nTargetTimespan_V2;
     int nLastPOWBlock;
+    int64_t nDogecBadBlockTime;
+    unsigned int nDogecBadBlocknBits;
     int nMinStakeReserve;
     int nMasternodeCollateralLimit;
     int nMasternodeCountDrift;
     int nMaturity;
     int nModifierUpdateBlock;
     int nStakeMinDepth;
+    int nStakeMinAge;
     int nFutureTimeDriftPoW;
     int nFutureTimeDriftPoS;
+    int nTimeSlotLength;
+
     //Stake Protocol Switch
     int nBlockNewStakeProtocol;
     CAmount nStakeCollateralMin;
@@ -228,6 +250,9 @@ protected:
     int nBlockDoubleAccumulated;
     int nBlockEnforceNewMessageSignatures;
     int nBlockStakeModifierlV2;
+    int nBlockTimeProtocolV2;
+    int nBlockV7StartHeight;
+    int nBlockLastAccumulatorCheckpoint;
     CAmount nMinColdStakingAmount;
     // fake serial attack
     int nFakeSerialBlockheightEnd = 0;
