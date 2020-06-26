@@ -1931,9 +1931,9 @@ int64_t GetBlockValue(int nHeight)
         nSubsidy = 25000 * COIN;
 	} else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight > 1) { //end PoW
         nSubsidy = 10.8 * COIN;
-	} else if (nHeight <= 238620 && nHeight > Params().LAST_POW_BLOCK()) { //Start PoS
+	} else if (nHeight <= 238621 && nHeight > Params().LAST_POW_BLOCK()) { //Start PoS
         nSubsidy = 10.8 * COIN;
-	} else if (nHeight <= 764221 && nHeight >= 238621) {
+	} else if (nHeight <= 764221 && nHeight >= 238622) {
         nSubsidy = 9 * COIN;
 	} else if (nHeight <= 1289222 && nHeight >= 764222) {
         nSubsidy = 5 * COIN;
@@ -1949,9 +1949,9 @@ int64_t GetBlockValue(int nHeight)
         nSubsidy = 25000 * COIN;
 	} else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight > 1) { //end PoW
         nSubsidy = 12 * COIN;
-	} else if (nHeight <= 238620 && nHeight > Params().LAST_POW_BLOCK()) { //Start PoS
+	} else if (nHeight <= 238621 && nHeight > Params().LAST_POW_BLOCK()) { //Start PoS
         nSubsidy = 12 * COIN;
-	} else if (nHeight <= 764221 && nHeight >= 238621) {
+	} else if (nHeight <= 764221 && nHeight >= 238622) {
         nSubsidy = 10 * COIN;
 	} else if (nHeight <= 1289222 && nHeight >= 764222) {
         nSubsidy = 6 * COIN;
@@ -1967,9 +1967,9 @@ int64_t GetBlockValue(int nHeight)
         nSubsidy = 7000000 * COIN;
 	} else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight > 1) { //end PoW
         nSubsidy = 10.8 * COIN;
-	} else if (nHeight <= 238620 && nHeight > Params().LAST_POW_BLOCK()) { //Start PoS
+	} else if (nHeight <= 238621 && nHeight > Params().LAST_POW_BLOCK()) { //Start PoS
         nSubsidy = 10.8 * COIN;
-	} else if (nHeight <= 764221 && nHeight >= 238621) {
+	} else if (nHeight <= 764221 && nHeight >= 238622) {
         nSubsidy = 9 * COIN;
 	} else if (nHeight <= 1289222 && nHeight >= 764222) {
         nSubsidy = 5.4 * COIN;
@@ -3310,9 +3310,9 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         nExpectedMint += nFees;
 
     //Check that the block does not overmint
-    if (!IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
+    if (!IsBlockValueValid(block, nExpectedMint, pindex->pprev->nMint)) {
         return state.DoS(100, error("ConnectBlock() : reward pays too much (actual=%s vs limit=%s)",
-                                    FormatMoney(pindex->nMint), FormatMoney(nExpectedMint)),
+                                    FormatMoney(pindex->pprev->nMint), FormatMoney(nExpectedMint)),
                          REJECT_INVALID, "bad-cb-amount");
     }
 
