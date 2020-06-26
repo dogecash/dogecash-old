@@ -120,6 +120,7 @@ static const Checkpoints::CCheckpointData data = {
               //   (the tx=... number in the SetBestChain debug.log lines)
 2000       // * estimated number of transactions per day after checkpoint
 };
+
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
     boost::assign::map_list_of
     (0, uint256("0x41577c87741784ac470def77dac139b0cf08a3b65d2955273f3cbc0cb17f49c0"));
