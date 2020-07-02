@@ -146,7 +146,10 @@ public:
     bool isColdStakingNetworkelyEnabled() const;
 
     CAmount getMinColdStakingAmount() const;
-    CAmount getBalance(const CCoinControl* coinControl = nullptr, bool fIncludeDelegated = true) const;
+    /* current staking status from the miner thread **/
+    bool isStakingStatusActive() const;
+
+    CAmount getBalance(const CCoinControl* coinControl = NULL) const;
     CAmount getUnconfirmedBalance() const;
     CAmount getImmatureBalance() const;
     CAmount getLockedBalance() const;
@@ -162,8 +165,8 @@ public:
 
     bool isColdStaking() const;
     EncryptionStatus getEncryptionStatus() const;
-    bool isWalletUnlocked();
-    bool isWalletLocked(bool fFullUnlocked = true) const;
+    bool isWalletUnlocked() const;
+    bool isWalletLocked() const;
     CKey generateNewKey() const; //for temporary paper wallet key generation
     bool setAddressBook(const CTxDestination& address, const std::string& strName, const std::string& strPurpose);
     void encryptKey(const CKey key, const std::string& pwd, const std::string& slt, std::vector<unsigned char>& crypted);
@@ -221,19 +224,6 @@ public:
             bool fMinimizeChange,
             CZerocoinSpendReceipt &receipt
     );
-
-    // ###################
-    // Cold Staking
-    // ###################
-
-
-
-    // ###################
-    // End Cold Staking
-    // ###################
-
-
-
 
     // Wallet encryption
     bool setWalletEncrypted(bool encrypted, const SecureString& passphrase);
