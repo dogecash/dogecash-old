@@ -146,9 +146,11 @@ public:
     bool isColdStakingNetworkelyEnabled() const;
 
     CAmount getMinColdStakingAmount() const;
+
     CAmount getBalance(const CCoinControl* coinControl = nullptr, bool fIncludeDelegated = true) const;
     /* current staking status from the miner thread **/
     bool isStakingStatusActive() const;
+
     CAmount getUnconfirmedBalance() const;
     CAmount getImmatureBalance() const;
     CAmount getLockedBalance() const;
@@ -223,19 +225,6 @@ public:
             bool fMinimizeChange,
             CZerocoinSpendReceipt &receipt
     );
-
-    // ###################
-    // Cold Staking
-    // ###################
-
-
-
-    // ###################
-    // End Cold Staking
-    // ###################
-
-
-
 
     // Wallet encryption
     bool setWalletEncrypted(bool encrypted, const SecureString& passphrase);

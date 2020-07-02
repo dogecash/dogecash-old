@@ -3571,11 +3571,9 @@ bool CWallet::CreateCoinStake(
         return false;
     }
 
-    if (GetAdjustedTime() - pindexPrev->GetBlockTime() < 60) {
-        if (Params().NetworkID() == CBaseChainParams::REGTEST) {
-            MilliSleep(1000);
-        }
-    }
+    // update staker status (hash)
+    pStakerStatus->SetLastTip(pindexPrev);
+    pStakerStatus->SetLastCoins(listInputs.size());
 
     CAmount nCredit;
     CScript scriptPubKeyKernel;
@@ -3592,35 +3590,34 @@ bool CWallet::CreateCoinStake(
         if (IsLocked() || ShutdownRequested()) return false;
 
         nCredit = 0;
-        uint256 hashProofOfStake = uint256();
+        uint256 hashProofOfStake = 0;
         nAttempts++;
-
         fKernelFound = Stake(pindexPrev, stakeInput.get(), nBits, nTxNewTime, hashProofOfStake);
 
-            // update staker status (time)
-            pStakerStatus->SetLastTime(nTxNewTime);
+        // update staker status (time, attempts)
+        pStakerStatus->SetLastTime(nTxNewTime);
+        pStakerStatus->SetLastTries(nAttempts);
 
-            if (!fKernelFound) continue;
+        if (!fKernelFound) continue;
 
-            // Found a kernel
-            LogPrintf("CreateCoinStake : kernel found\n");
-            nCredit += stakeInput->GetValue();
+        // Found a kernel
+        LogPrintf("CreateCoinStake : kernel found\n");
+        nCredit += stakeInput->GetValue();
 
-            // Calculate reward
-            CAmount nReward;
-            nReward = GetBlockValue(chainActive.Height() + 1);
-            nCredit += nReward;
+        // Calculate reward
+        CAmount nReward;
+        nReward = GetBlockValue(chainActive.Height() + 1);
+        nCredit += nReward;
 
-            // Create the output transaction(s)
-            std::vector<CTxOut> vout;
-            if (!stakeInput->CreateTxOuts(this, vout, nCredit)) {
-                LogPrintf("%s : failed to create output\n", __func__);
-                continue;
-                }
+        // Create the output transaction(s)
+        std::vector<CTxOut> vout;
+        if (!stakeInput->CreateTxOuts(this, vout, nCredit)) {
+            LogPrintf("%s : failed to create output\n", __func__);
+            continue;
+        }
         txNew.vout.insert(txNew.vout.end(), vout.begin(), vout.end());
 
         CAmount nMinFee = 0;
-        if (!stakeInput->Iszdogec()) {
             // Set output amount
             int outputs = txNew.vout.size() - 1;
             CAmount nRemaining = nCredit - nMinFee;
@@ -3631,14 +3628,15 @@ bool CWallet::CreateCoinStake(
                     // loop through all but the last one.
                     txNew.vout[i].nValue = nShare;
                     nRemaining -= nShare;
+            if (!stakeInput->Iszdogec()) {
                 }
             }
             // put the remaining on the last output (which all into the first if only one output)
             txNew.vout[outputs].nValue += nRemaining;
         }
 
-            // Limit size
-            unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
+        // Limit size
+        unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
         if (nBytes >= DEFAULT_BLOCK_MAX_SIZE / 5)
             return error("CreateCoinStake : exceeded coinstake size limit");
 
@@ -3656,12 +3654,6 @@ bool CWallet::CreateCoinStake(
         txNew.vin.emplace_back(in);
 
 
-        //Mark mints as spent
-        if (stakeInput->Iszdogec()) {
-            CzdogecStake* z = (CzdogecStake*)stakeInput.get();
-            if (!z->MarkSpent(this, txNew.GetHash()))
-                return error("%s: failed to mark mint as used\n", __func__);
-        }
         break;
     }
     LogPrint("staking", "%s: attempted staking %d times\n", __func__, nAttempts);

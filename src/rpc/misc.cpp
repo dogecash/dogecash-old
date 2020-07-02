@@ -52,18 +52,19 @@ UniValue getinfo(const UniValue& params, bool fHelp)
 
             "\nResult:\n"
             "{\n"
-            "  \"version\": xxxxx,           (numeric) the server version\n"
-            "  \"protocolversion\": xxxxx,   (numeric) the protocol version\n"
-            "  \"walletversion\": xxxxx,     (numeric) the wallet version\n"
-            "  \"balance\": xxxxxxx,         (numeric) the total dogecash balance of the wallet (excluding zerocoins)\n"
-            "  \"zerocoinbalance\": xxxxxxx, (numeric) the total zerocoin balance of the wallet\n"
-            "  \"blocks\": xxxxxx,           (numeric) the current number of blocks processed in the server\n"
-            "  \"timeoffset\": xxxxx,        (numeric) the time offset\n"
-            "  \"connections\": xxxxx,       (numeric) the number of connections\n"
-            "  \"proxy\": \"host:port\",     (string, optional) the proxy used by the server\n"
-            "  \"difficulty\": xxxxxx,       (numeric) the current difficulty\n"
-            "  \"testnet\": true|false,      (boolean) if the server is using testnet or not\n"
-            "  \"moneysupply\" : \"supply\"       (numeric) The money supply when this block was added to the blockchain\n"
+            "  \"version\": xxxxx,             (numeric) the server version\n"
+            "  \"protocolversion\": xxxxx,     (numeric) the protocol version\n"
+            "  \"walletversion\": xxxxx,       (numeric) the wallet version\n"
+            "  \"balance\": xxxxxxx,           (numeric) the total pivx balance of the wallet (excluding zerocoins)\n"
+            "  \"zerocoinbalance\": xxxxxxx,   (numeric) the total zerocoin balance of the wallet\n"
+            "  \"staking status\": true|false, (boolean) if the wallet is staking or not\n"
+            "  \"blocks\": xxxxxx,             (numeric) the current number of blocks processed in the server\n"
+            "  \"timeoffset\": xxxxx,          (numeric) the time offset\n"
+            "  \"connections\": xxxxx,         (numeric) the number of connections\n"
+            "  \"proxy\": \"host:port\",       (string, optional) the proxy used by the server\n"
+            "  \"difficulty\": xxxxxx,         (numeric) the current difficulty\n"
+            "  \"testnet\": true|false,        (boolean) if the server is using testnet or not\n"
+            "  \"moneysupply\" : \"supply\"    (numeric) The money supply when this block was added to the blockchain\n"
             "  \"zdogecsupply\" :\n"
             "  {\n"
             "     \"1\" : n,            (numeric) supply of 1 zdogec denomination\n"
@@ -76,13 +77,12 @@ UniValue getinfo(const UniValue& params, bool fHelp)
             "     \"5000\" : n,         (numeric) supply of 5000 zdogec denomination\n"
             "     \"total\" : n,        (numeric) The total supply of all zdogec denominations\n"
             "  }\n"
-            "  \"keypoololdest\": xxxxxx,    (numeric) the timestamp (seconds since GMT epoch) of the oldest pre-generated key in the key pool\n"
-            "  \"keypoolsize\": xxxx,        (numeric) how many new keys are pre-generated\n"
-            "  \"unlocked_until\": ttt,      (numeric) the timestamp in seconds since epoch (midnight Jan 1 1970 GMT) that the wallet is unlocked for transfers, or 0 if the wallet is locked\n"
-            "  \"paytxfee\": x.xxxx,         (numeric) the transaction fee set in dogecash/kb\n"
-            "  \"relayfee\": x.xxxx,         (numeric) minimum relay fee for non-free transactions in dogecash/kb\n"
-            "  \"staking status\": true|false,  (boolean) if the wallet is staking or not\n"
-            "  \"errors\": \"...\"           (string) any error messages\n"
+            "  \"keypoololdest\": xxxxxx,      (numeric) the timestamp (seconds since GMT epoch) of the oldest pre-generated key in the key pool\n"
+            "  \"keypoolsize\": xxxx,          (numeric) how many new keys are pre-generated\n"
+            "  \"unlocked_until\": ttt,        (numeric) the timestamp in seconds since epoch (midnight Jan 1 1970 GMT) that the wallet is unlocked for transfers, or 0 if the wallet is locked\n"
+            "  \"paytxfee\": x.xxxx,           (numeric) the transaction fee set in pivx/kb\n"
+            "  \"relayfee\": x.xxxx,           (numeric) minimum relay fee for non-free transactions in pivx/kb\n"
+            "  \"errors\": \"...\"             (string) any error messages\n"
             "}\n"
 
             "\nExamples:\n" +
@@ -124,6 +124,9 @@ UniValue getinfo(const UniValue& params, bool fHelp)
         obj.push_back(Pair("walletversion", pwalletMain->GetVersion()));
         obj.push_back(Pair("balance", ValueFromAmount(pwalletMain->GetBalance())));
         obj.push_back(Pair("zerocoinbalance", ValueFromAmount(pwalletMain->GetZerocoinBalance(true))));
+        obj.push_back(Pair("staking status", (pwalletMain->pStakerStatus->IsActive() ?
+                                                "Staking Active" :
+                                                "Staking Not Active")));
     }
 #endif
     obj.push_back(Pair("blocks", (int)chainActive.Height()));
@@ -157,18 +160,8 @@ UniValue getinfo(const UniValue& params, bool fHelp)
     obj.push_back(Pair("paytxfee", ValueFromAmount(payTxFee.GetFeePerK())));
 #endif
     obj.push_back(Pair("relayfee", ValueFromAmount(::minRelayTxFee.GetFeePerK())));
-    obj.push_back(Pair("staking status", (getStakingStatus() ? "Staking Active" : "Staking Not Active")));
     obj.push_back(Pair("errors", GetWarnings("statusbar")));
     return obj;
-}
-bool getStakingStatus() {
-    bool nStaking = false;
-    if (mapHashedBlocks.count(chainActive.Tip()->nHeight))
-        nStaking = true;
-    else if (mapHashedBlocks.count(chainActive.Tip()->nHeight - 1) && nLastCoinStakeSearchInterval)
-        nStaking = true;
-
-    return nStaking;
 }
 UniValue mnsync(const UniValue& params, bool fHelp)
 {
@@ -675,41 +668,54 @@ UniValue getstakingstatus(const UniValue& params, bool fHelp)
 
             "\nResult:\n"
             "{\n"
-            "  \"validtime\": true|false,          (boolean) if the chain tip is within staking phases\n"
-            "  \"haveconnections\": true|false,    (boolean) if network connections are present\n"
-            "  \"walletunlocked\": true|false,     (boolean) if the wallet is unlocked\n"
-            "  \"mintablecoins\": true|false,      (boolean) if the wallet has mintable coins\n"
-            "  \"enoughcoins\": true|false,        (boolean) if available coins are greater than reserve balance\n"
-            "  \"mnsync\": true|false,             (boolean) if masternode data is synced\n"
-            "  \"staking status\": true|false,     (boolean) if the wallet is staking or not\n"
+            "  \"staking_status\": true|false,      (boolean) whether the wallet is staking or not\n"
+            "  \"staking_enabled\": true|false,     (boolean) whether staking is enabled/disabled in pivx.conf\n"
+            "  \"coldstaking_enabled\": true|false, (boolean) whether cold-staking is enabled/disabled in pivx.conf\n"
+            "  \"haveconnections\": true|false,     (boolean) whether network connections are present\n"
+            "  \"mnsync\": true|false,              (boolean) whether the required masternode/spork data is synced\n"
+            "  \"walletunlocked\": true|false,      (boolean) whether the wallet is unlocked\n"
+            "  \"stakeablecoins\": n                (numeric) number of stakeable UTXOs\n"
+            "  \"stakingbalance\": d                (numeric) PIV value of the stakeable coins (minus reserve balance, if any)\n"
+            "  \"stakesplitthreshold\": d           (numeric) value of the current threshold for stake split\n"
+            "  \"lastattempt_age\": n               (numeric) seconds since last stake attempt\n"
+            "  \"lastattempt_depth\": n             (numeric) depth of the block on top of which the last stake attempt was made\n"
+            "  \"lastattempt_hash\": xxx            (hex string) hash of the block on top of which the last stake attempt was made\n"
+            "  \"lastattempt_coins\": n             (numeric) number of stakeable coins available during last stake attempt\n"
+            "  \"lastattempt_tries\": n             (numeric) number of stakeable coins checked during last stake attempt\n"
             "}\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getstakingstatus", "") + HelpExampleRpc("getstakingstatus", ""));
 
-#ifdef ENABLE_WALLET
-    LOCK2(cs_main, pwalletMain ? &pwalletMain->cs_wallet : NULL);
-#else
-    LOCK(cs_main);
-#endif
 
-    UniValue obj(UniValue::VOBJ);
-    obj.push_back(Pair("validtime", chainActive.Tip()->nTime > 1471482000));
-    obj.push_back(Pair("haveconnections", !vNodes.empty()));
-    if (pwalletMain) {
+    if (!pwalletMain)
+        throw JSONRPCError(RPC_IN_WARMUP, "Try again after active chain is loaded");
+    {
+        LOCK2(cs_main, &pwalletMain->cs_wallet);
+        UniValue obj(UniValue::VOBJ);
+        obj.push_back(Pair("staking_status", pwalletMain->pStakerStatus->IsActive()));
+        obj.push_back(Pair("staking_enabled", GetBoolArg("-staking", true)));
+        bool fColdStaking = GetBoolArg("-coldstaking", true);
+        obj.push_back(Pair("coldstaking_enabled", fColdStaking));
+        obj.push_back(Pair("haveconnections", !vNodes.empty()));
+        obj.push_back(Pair("mnsync", !masternodeSync.NotCompleted()));
         obj.push_back(Pair("walletunlocked", !pwalletMain->IsLocked()));
-        obj.push_back(Pair("mintablecoins", pwalletMain->MintableCoins()));
-        obj.push_back(Pair("enoughcoins", nReserveBalance <= pwalletMain->GetBalance()));
+        std::vector<COutput> vCoins;
+        pwalletMain->StakeableCoins(&vCoins);
+        obj.push_back(Pair("stakeablecoins", (int)vCoins.size()));
+        obj.push_back(Pair("stakingbalance", ValueFromAmount(pwalletMain->GetStakingBalance(fColdStaking))));
+        obj.push_back(Pair("stakesplitthreshold", ValueFromAmount(pwalletMain->nStakeSplitThreshold)));
+        CStakerStatus* ss = pwalletMain->pStakerStatus;
+        if (ss) {
+            obj.push_back(Pair("lastattempt_age", (int)(GetTime() - ss->GetLastTime())));
+            obj.push_back(Pair("lastattempt_depth", (chainActive.Height() - ss->GetLastHeight())));
+            obj.push_back(Pair("lastattempt_hash", ss->GetLastHash().GetHex()));
+            obj.push_back(Pair("lastattempt_coins", ss->GetLastCoins()));
+            obj.push_back(Pair("lastattempt_tries", ss->GetLastTries()));
+        }
+        return obj;
     }
-    obj.push_back(Pair("mnsync", masternodeSync.IsSynced()));
 
-    bool nStaking = false;
-    if (mapHashedBlocks.count(chainActive.Tip()->nHeight))
-        nStaking = true;
-    else if (mapHashedBlocks.count(chainActive.Tip()->nHeight - 1) && nLastCoinStakeSearchInterval)
-        nStaking = true;
-    obj.push_back(Pair("staking status", getStakingStatus()));
 
-    return obj;
 }
 #endif // ENABLE_WALLET

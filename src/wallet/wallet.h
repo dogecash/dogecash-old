@@ -100,23 +100,23 @@ enum AvailableCoinsType {
 
 // Possible states for zdogec send
 enum ZerocoinSpendStatus {
-    zdogec_SPEND_OKAY = 0,                            // No error
-    zdogec_SPEND_ERROR = 1,                           // Unspecified class of errors, more details are (hopefully) in the returning text
-    zdogec_WALLET_LOCKED = 2,                         // Wallet was locked
-    zdogec_COMMIT_FAILED = 3,                         // Commit failed, reset status
-    zdogec_ERASE_SPENDS_FAILED = 4,                   // Erasing spends during reset failed
-    zdogec_ERASE_NEW_MINTS_FAILED = 5,                // Erasing new mints during reset failed
-    zdogec_TRX_FUNDS_PROBLEMS = 6,                    // Everything related to available funds
-    zdogec_TRX_CREATE = 7,                            // Everything related to create the transaction
-    zdogec_TRX_CHANGE = 8,                            // Everything related to transaction change
-    zdogec_TXMINT_GENERAL = 9,                        // General errors in MintToTxIn
-    zdogec_INVALID_COIN = 10,                         // Selected mint coin is not valid
-    zdogec_FAILED_ACCUMULATOR_INITIALIZATION = 11,    // Failed to initialize witness
-    zdogec_INVALID_WITNESS = 12,                      // Spend coin transaction did not verify
-    zdogec_BAD_SERIALIZATION = 13,                    // Transaction verification failed
-    zdogec_SPENT_USED_zdogec = 14,                      // Coin has already been spend
-    zdogec_TX_TOO_LARGE = 15,                          // The transaction is larger than the max tx size
-    zdogec_SPEND_V1_SEC_LEVEL                         // Spend is V1 and security level is not set to 100
+    ZPIV_SPEND_OKAY = 0,                            // No error
+    ZPIV_SPEND_ERROR = 1,                           // Unspecified class of errors, more details are (hopefully) in the returning text
+    ZPIV_WALLET_LOCKED = 2,                         // Wallet was locked
+    ZPIV_COMMIT_FAILED = 3,                         // Commit failed, reset status
+    ZPIV_ERASE_SPENDS_FAILED = 4,                   // Erasing spends during reset failed
+    ZPIV_ERASE_NEW_MINTS_FAILED = 5,                // Erasing new mints during reset failed
+    ZPIV_TRX_FUNDS_PROBLEMS = 6,                    // Everything related to available funds
+    ZPIV_TRX_CREATE = 7,                            // Everything related to create the transaction
+    ZPIV_TRX_CHANGE = 8,                            // Everything related to transaction change
+    ZPIV_TXMINT_GENERAL = 9,                        // General errors in MintsToInputVectorPublicSpend
+    ZPIV_INVALID_COIN = 10,                         // Selected mint coin is not valid
+    ZPIV_FAILED_ACCUMULATOR_INITIALIZATION = 11,    // Failed to initialize witness
+    ZPIV_INVALID_WITNESS = 12,                      // Spend coin transaction did not verify
+    ZPIV_BAD_SERIALIZATION = 13,                    // Transaction verification failed
+    ZPIV_SPENT_USED_ZPIV = 14,                      // Coin has already been spend
+    ZPIV_TX_TOO_LARGE = 15,                         // The transaction is larger than the max tx size
+    ZPIV_SPEND_V1_SEC_LEVEL                         // Spend is V1 and security level is not set to 100
 };
 
 struct CompactTallyItem {
@@ -165,26 +165,42 @@ public:
     }
 };
 
-/** Record info about last kernel stake operation (time and chainTip)**/
-class CStakerStatus {
+/** Record info about last stake attempt:
+ *  - tipBlock       index of the block on top of which last stake attempt was made
+ *  - nTime          time slot of last attempt
+ *  - nTries         number of UTXOs hashed during last attempt
+ *  - nCoins         number of stakeable utxos during last attempt
+**/
+class CStakerStatus
+{
 private:
-    const CBlockIndex* tipLastStakeAttempt = nullptr;
-    int64_t timeLastStakeAttempt;
+    const CBlockIndex* tipBlock{nullptr};
+    int64_t nTime{0};
+    int nTries{0};
+    int nCoins{0};
+
 public:
-    const CBlockIndex* GetLastTip() const { return tipLastStakeAttempt; }
-    uint256 GetLastHash() const
-    {
-        return (tipLastStakeAttempt == nullptr ? 0 : tipLastStakeAttempt->GetBlockHash());
-    }
-    int64_t GetLastTime() const { return timeLastStakeAttempt; }
-    void SetLastTip(const CBlockIndex* lastTip) { tipLastStakeAttempt = lastTip; }
-    void SetLastTime(const uint64_t lastTime) { timeLastStakeAttempt = lastTime; }
+    // Get
+    const CBlockIndex* GetLastTip() const { return tipBlock; }
+    uint256 GetLastHash() const { return (GetLastTip() == nullptr ? UINT256_ZERO : GetLastTip()->GetBlockHash()); }
+    int GetLastHeight() const { return (GetLastTip() == nullptr ? 0 : GetLastTip()->nHeight); }
+    int GetLastCoins() const { return nCoins; }
+    int GetLastTries() const { return nTries; }
+    int64_t GetLastTime() const { return nTime; }
+    // Set
+    void SetLastCoins(const int coins) { nCoins = coins; }
+    void SetLastTries(const int tries) { nTries = tries; }
+    void SetLastTip(const CBlockIndex* lastTip) { tipBlock = lastTip; }
+    void SetLastTime(const uint64_t lastTime) { nTime = lastTime; }
     void SetNull()
     {
+        SetLastCoins(0);
+        SetLastTries(0);
         SetLastTip(nullptr);
         SetLastTime(0);
     }
-    bool IsActive() { return (timeLastStakeAttempt + 30) >= GetTime(); }
+    // Check whether staking status is active (last attempt earlier than 30 seconds ago)
+    bool IsActive() const { return (nTime + 30) >= GetTime(); }
 };
 
 /**

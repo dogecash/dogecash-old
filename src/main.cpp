@@ -75,9 +75,7 @@ using namespace libzerocoin;
 RecursiveMutex cs_main;
 
 BlockMap mapBlockIndex;
-map<uint256, uint256> mapProofOfStake;
-set<pair<COutPoint, unsigned int> > setStakeSeen;
-map<unsigned int, unsigned int> mapHashedBlocks;
+std::map<uint256, uint256> mapProofOfStake;
 CChain chainActive;
 CBlockIndex* pindexBestHeader = nullptr;
 int64_t nTimeBestReceived = 0;
