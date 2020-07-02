@@ -891,7 +891,7 @@ WalletModel::UnlockContext WalletModel::requestUnlock()
         emit requireUnlock();
     }
     // If wallet is still locked, unlock was failed or cancelled, mark context as invalid
-    bool valid = getEncryptionStatus() != Locked;
+    bool valid = isWalletUnlocked();
 
     return UnlockContext(this, valid, status_before);
 }
@@ -1116,13 +1116,10 @@ bool WalletModel::isUsed(CBitcoinAddress address)
     return wallet->IsUsed(address);
 }
 
-std::string WalletModel::resetMintZerocoin(){
-    return wallet->ResetMintZerocoin();
-}
+std::string WalletModel::resetMintZerocoin() { return wallet->ResetMintZerocoin(); }
 
-std::string WalletModel::resetSpentZerocoin(){
-    return wallet->ResetSpentZerocoin();
-}
+std::string WalletModel::resetSpentZerocoin() { return wallet->ResetSpentZerocoin(); }
+
 bool WalletModel::hdEnabled() const
 {
     return wallet->IsHDEnabled();

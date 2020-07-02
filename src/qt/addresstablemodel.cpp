@@ -263,27 +263,11 @@ public:
 
     }
 
-
-    int size()
-    {
-        return cachedAddressTable.size();
-    }
-
-    int sizeSend(){
-        return sendNum;
-    }
-
-    int sizeRecv(){
-        return recvNum;
-    }
-
-    int sizeDell(){
-        return dellNum;
-    }
-
-    int SizeColdSend() {
-        return coldSendNum;
-    }
+    int size() { return cachedAddressTable.size(); }
+    int sizeSend() { return sendNum; }
+    int sizeRecv() { return recvNum; }
+    int sizeDell() { return dellNum; }
+    int SizeColdSend() { return coldSendNum; }
 
     AddressTableEntry* index(int idx)
     {
@@ -319,20 +303,10 @@ int AddressTableModel::columnCount(const QModelIndex& parent) const
     return columns.length();
 }
 
-int AddressTableModel::sizeSend() const{
-    return priv->sizeSend();
-}
-int AddressTableModel::sizeRecv() const{
-    return priv->sizeRecv();
-}
-
-int AddressTableModel::sizeDell() const {
-    return priv->sizeDell();
-}
-
-int AddressTableModel::sizeColdSend() const {
-    return priv->SizeColdSend();
-}
+int AddressTableModel::sizeSend() const { return priv->sizeSend(); }
+int AddressTableModel::sizeRecv() const { return priv->sizeRecv(); }
+int AddressTableModel::sizeDell() const { return priv->sizeDell(); }
+int AddressTableModel::sizeColdSend() const { return priv->SizeColdSend(); }
 
 QVariant AddressTableModel::data(const QModelIndex& index, int role) const
 {

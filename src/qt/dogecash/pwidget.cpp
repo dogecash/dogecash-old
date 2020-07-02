@@ -99,21 +99,8 @@ void PWidget::errorString(QString error, int type) {
 ////////////////////////////////////////////////////////////////
 
 
-void PWidget::loadClientModel(){
-    // override
-}
-
-void PWidget::loadWalletModel(){
-    // override
-}
-
-void PWidget::changeTheme(bool isLightTheme, QString& theme){
-    // override
-}
-
-void PWidget::run(int type) {
-    // override
-}
-void PWidget::onError(QString error, int type) {
-    // override
-}
+void PWidget::loadClientModel() { /* override*/ }
+void PWidget::loadWalletModel() { /* override*/ }
+void PWidget::changeTheme(bool isLightTheme, QString& theme) { /* override*/ }
+void PWidget::run(int type) { /* override*/ }
+void PWidget::onError(QString error, int type) { /* override*/ }

@@ -60,7 +60,6 @@ QT_FORMS_UI = \
   qt/dogecash/forms/lockunlock.ui \
   qt/dogecash/forms/expandablebutton.ui \
   qt/dogecash/forms/receivedialog.ui \
-  qt/dogecash/forms/walletpassworddialog.ui \
   qt/dogecash/forms/topbar.ui \
   qt/dogecash/forms/txrow.ui \
   qt/dogecash/forms/dashboardwidget.ui \
@@ -155,7 +154,6 @@ QT_MOC_CPP = \
   qt/dogecash/moc_proposalframe.cpp \
   qt/dogecash/moc_furabstractlistitemdelegate.cpp \
   qt/dogecash/moc_receivedialog.cpp \
-  qt/dogecash/moc_walletpassworddialog.cpp \
   qt/dogecash/moc_topbar.cpp \
   qt/dogecash/moc_txrow.cpp \
   qt/dogecash/moc_dashboardwidget.cpp \
@@ -284,7 +282,6 @@ BITCOIN_QT_H = \
   qt/dogecash/txviewholder.h \
   qt/dogecash/qtutils.h \
   qt/dogecash/expandablebutton.h \
-  qt/dogecash/walletpassworddialog.h \
   qt/dogecash/topbar.h \
   qt/dogecash/txrow.h \
   qt/dogecash/addressholder.h \
@@ -680,7 +677,6 @@ BITCOIN_QT_WALLET_CPP = \
   qt/dogecash/txviewholder.cpp \
   qt/dogecash/qtutils.cpp \
   qt/dogecash/expandablebutton.cpp \
-  qt/dogecash/walletpassworddialog.cpp \
   qt/dogecash/governancepage.cpp \
   qt/dogecash/topbar.cpp \
   qt/dogecash/txrow.cpp \

@@ -76,7 +76,7 @@ namespace GuiTransactionsUtils {
             walletModel->requestUnlock();
             if (walletModel->getEncryptionStatus() != WalletModel::Unlocked) {
                 msgParams.first = parent->translate(
-                        "Error: The wallet was unlocked only to anonymize coins. Unlock canceled.");
+                        "Error: The wallet was unlocked only to Stake coins. Unlock canceled.");
             } else {
                 // Wallet unlocked
                 return;
