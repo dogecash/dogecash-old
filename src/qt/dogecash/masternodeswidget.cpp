@@ -271,22 +271,25 @@ bool MasterNodesWidget::startMN(CMasternodeConfig::CMasternodeEntry mne, std::st
 
 void MasterNodesWidget::onStartAllClicked(int type) 
 {
-    WalletModel::UnlockContext ctx(walletModel->requestUnlock());
-    if (!ctx.isValid()) {
-        // Unlock wallet was cancelled
-        inform(tr("Cannot perform Mastenodes start, wallet locked"));
-        return;
-    }
-    if (!checkMNsNetwork()) return;
-    if (isLoading) {
-        inform(tr("Background task is being executed, please wait"));
-    } else {
-        isLoading = true;
-        if (!execute(type)) {
-            isLoading = false;
-            inform(tr("Cannot perform Mastenodes start"));
+    if (type == REQUEST_START_ALL)
+    {
+        WalletModel::UnlockContext ctx(walletModel->requestUnlock());
+        if (!ctx.isValid()) {
+            // Unlock wallet was cancelled
+            inform(tr("Cannot perform Mastenodes start, wallet locked"));
+            return;
         }
     }
+        if (!checkMNsNetwork()) return;
+        if (isLoading) {
+            inform(tr("Background task is being executed, please wait"));
+        } else {
+            isLoading = true;
+            if (!execute(type)) {
+                isLoading = false;
+                inform(tr("Cannot perform Mastenodes start"));
+            }
+        }
 }
 
 bool MasterNodesWidget::startAll(QString& failText, bool onlyMissing) {
