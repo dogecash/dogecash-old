@@ -411,4 +411,6 @@ inline uint512 uint512S(const std::string& str)
     return rv;
 }
 
+const uint256 UINT256_ZERO = uint256();
+
 #endif // dogecash_UINT256_H

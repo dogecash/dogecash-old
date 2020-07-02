@@ -166,7 +166,7 @@ When calling `getreceivedbyaddress` with a non-wallet address, return a proper e
      "mnsync": true|false,               (boolean) whether masternode data is synced
      "walletunlocked": true|false,       (boolean) whether the wallet is unlocked
      "stakeablecoins": n,                (numeric) number of stakeable UTXOs
-     "stakingbalance": d,                (numeric) PIV value of the stakeable coins (minus reserve balance, if any)
+     "stakingbalance": d,                (numeric) DOGEC value of the stakeable coins (minus reserve balance, if any)
      "stakesplitthreshold": d,           (numeric) value of the current threshold for stake split
      "lastattempt_age": n,               (numeric) seconds since last stake attempt
      "lastattempt_depth": n,             (numeric) depth of the block on top of which the last stake attempt was made

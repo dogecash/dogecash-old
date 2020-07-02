@@ -467,7 +467,7 @@ class BitcoinTestFramework():
         # 62 pow + 20 pos (26 immature)
         # - Nodes 3 gets 84 blocks:
         # 64 pow + 20 pos (34 immature)
-        # - Nodes 2 and 3 have 6666 PIV worth of zerocoins
+        # - Nodes 2 and 3 have 6666 DOGEC worth of zerocoins
         zc_tot = sum(vZC_DENOMS)
         zc_fee = len(vZC_DENOMS) * 0.01
         used_utxos = (zc_tot // 250) + 1
@@ -530,9 +530,9 @@ class BitcoinTestFramework():
                  nHeight:                   (int) height of the previous block. used only if zpos=True for
                                             stake checksum. Optional, if not provided rpc_conn's height is used.
         :return: prevouts:         ({bytes --> (int, bytes, int)} dictionary)
-                                   maps CStake "uniqueness" (i.e. serialized COutPoint -or hash stake, for zpiv-)
+                                   maps CStake "uniqueness" (i.e. serialized COutPoint -or hash stake, for zdogec-)
                                    to (amount, prevScript, timeBlockFrom).
-                                   For zpiv prevScript is replaced with serialHash hex string.
+                                   For zdogec prevScript is replaced with serialHash hex string.
         """
         assert_greater_than(len(self.nodes), node_id)
         rpc_conn = self.nodes[node_id]
@@ -563,9 +563,9 @@ class BitcoinTestFramework():
         """ makes a list of CTransactions each spending an input from spending PrevOuts to an output to_pubKey
         :param   node_id:            (int) index of the CTestNode used as rpc connection. Must own spendingPrevOuts.
                  spendingPrevouts:   ({bytes --> (int, bytes, int)} dictionary)
-                                     maps CStake "uniqueness" (i.e. serialized COutPoint -or hash stake, for zpiv-)
+                                     maps CStake "uniqueness" (i.e. serialized COutPoint -or hash stake, for zdogec-)
                                      to (amount, prevScript, timeBlockFrom).
-                                     For zpiv prevScript is replaced with serialHash hex string.
+                                     For zdogec prevScript is replaced with serialHash hex string.
                  to_pubKey           (bytes) recipient public key
         :return: block_txes:         ([CTransaction] list)
         """
@@ -574,11 +574,11 @@ class BitcoinTestFramework():
         block_txes = []
         for uniqueness in spendingPrevOuts:
             if is_zerocoin(uniqueness):
-                # spend zPIV
+                # spend zdogec
                 _, serialHash, _ = spendingPrevOuts[uniqueness]
                 raw_spend = rpc_conn.createrawzerocoinspend(serialHash, "", False)
             else:
-                # spend PIV
+                # spend DOGEC
                 value_out = int(spendingPrevOuts[uniqueness][0] - DEFAULT_FEE * COIN)
                 scriptPubKey = CScript([to_pubKey, OP_CHECKSIG])
                 prevout = COutPoint()
@@ -608,9 +608,9 @@ class BitcoinTestFramework():
                  prevHash:          (string) hex string of the previous block hash
                  prevModifier       (string) hex string of the previous block stake modifier
                  stakeableUtxos:    ({bytes --> (int, bytes, int)} dictionary)
-                                    maps CStake "uniqueness" (i.e. serialized COutPoint -or hash stake, for zpiv-)
+                                    maps CStake "uniqueness" (i.e. serialized COutPoint -or hash stake, for zdogec-)
                                     to (amount, prevScript, timeBlockFrom).
-                                    For zpiv prevScript is replaced with serialHash hex string.
+                                    For zdogec prevScript is replaced with serialHash hex string.
                  startTime:         (int) epoch time to be used as blocktime (iterated in solve_stake)
                  privKeyWIF:        (string) private key to be used for staking/signing
                                     If empty string, it will be used the pk from the stake input
@@ -681,7 +681,7 @@ class BitcoinTestFramework():
         # Don't add tx doublespending the coinstake input, unless fDoubleSpend=True
         for tx in vtx:
             if not fDoubleSpend:
-                # assume txes don't double spend zPIV inputs when fDoubleSpend is false. It needs to
+                # assume txes don't double spend zdogec inputs when fDoubleSpend is false. It needs to
                 # be checked outside until a convenient tx.spends(zerocoin) is added to the framework.
                 if not isZPoS and tx.spends(prevout):
                     continue

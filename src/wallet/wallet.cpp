@@ -2572,7 +2572,7 @@ bool CWallet::AvailableCoins(std::vector<COutput>* pCoins,      // --> populates
                 continue;
 
             // Check min depth requirement for stake inputs
-            if (nCoinType == STAKABLE_COINS && nDepth < Params().COINSTAKE_MIN_DEPTH()) continue;
+            if (nCoinType == STAKEABLE_COINS && nDepth < Params().COINSTAKE_MIN_DEPTH()) continue;
 
             for (unsigned int i = 0; i < pcoin->vout.size(); i++) {
                 bool found = false;
@@ -2591,7 +2591,7 @@ bool CWallet::AvailableCoins(std::vector<COutput>* pCoins,      // --> populates
                 }
                 if (!found) continue;
 
-                if (nCoinType == STAKABLE_COINS) {
+                if (nCoinType == STAKEABLE_COINS) {
                     if (pcoin->vout[i].IsZerocoinMint())
                         continue;
                 }
@@ -2735,7 +2735,7 @@ bool CWallet::SelectStakeCoins(std::list<std::unique_ptr<CStakeInput> >& listInp
             nullptr,            // coin control
             false,              // fIncludeDelegated
             fIncludeCold,       // fIncludeColdStaking
-            STAKABLE_COINS);  // coin type
+            STAKEABLE_COINS);  // coin type
     CAmount nAmountSelected = 0;
     if (GetBoolArg("-DOGECstake", true) && !fPrecompute) {
         for (const COutput &out : vCoins) {
@@ -2834,7 +2834,7 @@ bool CWallet::MintableCoins()
             nullptr,            // coin control
             false,              // include zerovalue
             false,              // use IX
-            STAKABLE_COINS,     // coin type
+            STAKEABLE_COINS,     // coin type
             1,                  // watchonly config
             fIncludeCold,       // fIncludeColdStaking
             true);              // delegated
@@ -2848,6 +2848,14 @@ bool CWallet::MintableCoins()
                 return true;
         }
     return false;
+}
+
+bool CWallet::StakeableCoins(std::vector<COutput>* pCoins)
+{
+    const bool fIncludeCold = (sporkManager.IsSporkActive(SPORK_17_COLDSTAKING_ENFORCEMENT) &&
+                               GetBoolArg("-coldstaking", true));
+
+    return AvailableCoins(pCoins, nullptr, true, false, STAKEABLE_COINS,  false, 1, fIncludeCold, false);
 }
 
 bool CWallet::SelectCoinsMinConf(const CAmount& nTargetValue, int nConfMine, int nConfTheirs, vector<COutput> vCoins, set<pair<const CWalletTx*, unsigned int> >& setCoinsRet, CAmount& nValueRet) const
@@ -3226,7 +3234,7 @@ int CWallet::CountInputsWithAmount(CAmount nInputAmount)
 bool CWallet::HasCollateralInputs(bool fOnlyConfirmed) const
 {
     vector<COutput> vCoins;
-    AvailableCoins(&vCoins, nullptr, false, false, STAKABLE_COINS, fOnlyConfirmed);
+    AvailableCoins(&vCoins, nullptr, false, false, STAKEABLE_COINS, fOnlyConfirmed);
 
     int nFound = 0;
     BOOST_FOREACH (const COutput& out, vCoins)
