@@ -72,6 +72,10 @@ bool WalletModel::isColdStakingNetworkelyEnabled() const {
     return sporkManager.IsSporkActive(SPORK_17_COLDSTAKING_ENFORCEMENT);
 }
 
+bool WalletModel::isStakingStatusActive() const {
+    return wallet->pStakerStatus->IsActive();
+}
+
 CAmount WalletModel::getBalance(const CCoinControl* coinControl, bool fIncludeDelegated) const
 {
     if (coinControl) {
@@ -169,10 +173,13 @@ void WalletModel::updateStatus()
         emit encryptionStatusChanged(newEncryptionStatus);
 }
 
-bool WalletModel::isWalletLocked(bool fFullUnlocked) const
-{
+bool WalletModel::isWalletUnlocked() const {
     EncryptionStatus status = getEncryptionStatus();
-    return (status == Locked || (!fFullUnlocked && status == UnlockedForStakingOnly));
+    return status == Unencrypted || status == Unlocked;
+}
+
+bool WalletModel::isWalletLocked() const {
+    return getEncryptionStatus() == Locked;
 }
 
 bool IsImportingOrReindexing() {

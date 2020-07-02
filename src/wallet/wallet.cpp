@@ -3537,7 +3537,6 @@ bool CWallet::CreateCoinStake(
         const CKeyStore& keystore,
         const CBlockIndex* pindexPrev,
         unsigned int nBits,
-        int64_t nSearchInterval,
         CMutableTransaction& txNew,
         int64_t& nTxNewTime
         )
@@ -3583,17 +3582,25 @@ bool CWallet::CreateCoinStake(
     bool fKernelFound = false;
     int nAttempts = 0;
 
-    for (std::unique_ptr<CStakeInput>& stakeInput : listInputs) {
-        nCredit = 0;
-        // Make sure the wallet is unlocked and shutdown hasn't been requested
-        if (IsLocked() || ShutdownRequested())
-            return false;
+    // update staker status (hash)
+    pStakerStatus->SetLastTip(pindexPrev);
 
+    for (std::unique_ptr<CStakeInput>& stakeInput : listInputs) {
+        //new block came in, move on
+        if (chainActive.Height() != pindexPrev->nHeight) return false;
+        // Make sure the wallet is unlocked and shutdown hasn't been requested
+        if (IsLocked() || ShutdownRequested()) return false;
+
+        nCredit = 0;
         uint256 hashProofOfStake = uint256();
         nAttempts++;
-        //iterates each utxo inside of CheckStakeKernelHash()
 
-        if (Stake(pindexPrev, stakeInput.get(), nBits, nTxNewTime, hashProofOfStake)) {
+        fKernelFound = Stake(pindexPrev, stakeInput.get(), nBits, nTxNewTime, hashProofOfStake);
+
+            // update staker status (time)
+            pStakerStatus->SetLastTime(nTxNewTime);
+
+            if (!fKernelFound) continue;
 
             // Found a kernel
             LogPrintf("CreateCoinStake : kernel found\n");
@@ -3601,69 +3608,61 @@ bool CWallet::CreateCoinStake(
 
             // Calculate reward
             CAmount nReward;
-            nReward = GetBlockValue(chainActive.Height());
+            nReward = GetBlockValue(chainActive.Height() + 1);
             nCredit += nReward;
 
             // Create the output transaction(s)
-            vector<CTxOut> vout;
+            std::vector<CTxOut> vout;
             if (!stakeInput->CreateTxOuts(this, vout, nCredit)) {
                 LogPrintf("%s : failed to create output\n", __func__);
                 continue;
-            }
-            txNew.vout.insert(txNew.vout.end(), vout.begin(), vout.end());
-
-            CAmount nMinFee = 0;
-            if (!stakeInput->Iszdogec()) {
-                // Set output amount
-                int outputs = txNew.vout.size() - 1;
-                CAmount nRemaining = nCredit - nMinFee;
-                if (outputs > 1) {
-                    // Split the stake across the outputs
-                    CAmount nShare = nRemaining / outputs;
-                    for (int i = 1; i < outputs; i++) {
-                        // loop through all but the last one.
-                        txNew.vout[i].nValue = nShare;
-                        nRemaining -= nShare;
-                    }
                 }
-                // put the remaining on the last output (which all into the first if only one output)
-                txNew.vout[outputs].nValue += nRemaining;
+        txNew.vout.insert(txNew.vout.end(), vout.begin(), vout.end());
+
+        CAmount nMinFee = 0;
+        if (!stakeInput->Iszdogec()) {
+            // Set output amount
+            int outputs = txNew.vout.size() - 1;
+            CAmount nRemaining = nCredit - nMinFee;
+            if (outputs > 1) {
+                // Split the stake across the outputs
+                CAmount nShare = nRemaining / outputs;
+                for (int i = 1; i < outputs; i++) {
+                    // loop through all but the last one.
+                    txNew.vout[i].nValue = nShare;
+                    nRemaining -= nShare;
+                }
             }
+            // put the remaining on the last output (which all into the first if only one output)
+            txNew.vout[outputs].nValue += nRemaining;
+        }
 
             // Limit size
             unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
-            if (nBytes >= DEFAULT_BLOCK_MAX_SIZE / 5)
-                return error("CreateCoinStake : exceeded coinstake size limit");
+        if (nBytes >= DEFAULT_BLOCK_MAX_SIZE / 5)
+            return error("CreateCoinStake : exceeded coinstake size limit");
 
-            //Masternode payment
-            FillBlockPayee(txNew, nMinFee, true, stakeInput->Iszdogec());
+        //Masternode payment
+        FillBlockPayee(txNew, nMinFee, true, stakeInput->Iszdogec());
 
-            {
-                TRY_LOCK(zdogecTracker->cs_spendcache, fLocked);
-                if (!fLocked)
-                    continue;
-
-                uint256 hashTxOut = txNew.GetHash();
-                CTxIn in;
-                if (!stakeInput->CreateTxIn(this, in, hashTxOut)) {
-                    LogPrintf("%s : failed to create TxIn\n", __func__);
-                    txNew.vin.clear();
-                    txNew.vout.clear();
-                    continue;
-                }
-                txNew.vin.emplace_back(in);
-            }
-
-            //Mark mints as spent
-            if (stakeInput->Iszdogec()) {
-                CzdogecStake* z = (CzdogecStake*)stakeInput.get();
-                if (!z->MarkSpent(this, txNew.GetHash()))
-                    return error("%s: failed to mark mint as used\n", __func__);
-            }
-
-            fKernelFound = true;
-            break;
+        uint256 hashTxOut = txNew.GetHash();
+        CTxIn in;
+        if (!stakeInput->CreateTxIn(this, in, hashTxOut)) {
+            LogPrintf("%s : failed to create TxIn\n", __func__);
+            txNew.vin.clear();
+            txNew.vout.clear();
+            continue;
         }
+        txNew.vin.emplace_back(in);
+
+
+        //Mark mints as spent
+        if (stakeInput->Iszdogec()) {
+            CzdogecStake* z = (CzdogecStake*)stakeInput.get();
+            if (!z->MarkSpent(this, txNew.GetHash()))
+                return error("%s: failed to mark mint as used\n", __func__);
+        }
+        break;
     }
     LogPrint("staking", "%s: attempted staking %d times\n", __func__, nAttempts);
 
@@ -6330,6 +6329,7 @@ CWallet::CWallet(std::string strWalletFileIn)
 CWallet::~CWallet()
 {
     delete pwalletdbEncryption;
+    delete pStakerStatus;
 }
 
 void CWallet::SetNull()
@@ -6347,6 +6347,11 @@ void CWallet::SetNull()
     fBackupMints = false;
 
     // Stake Settings
+    if (pStakerStatus) {
+        pStakerStatus->SetNull();
+    } else {
+        pStakerStatus = new CStakerStatus();
+    }
     nStakeSplitThreshold = STAKE_SPLIT_THRESHOLD;
     nStakeSetUpdateTime = 300; // 5 minutes
 

@@ -168,7 +168,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         bool fStakeFound = false;
         if (nSearchTime >= nLastCoinStakeSearchTime) {
             int64_t nTxNewTime = 0;
-            if (pwallet->CreateCoinStake(*pwallet, pindexPrev, pblock->nBits, nSearchTime - nLastCoinStakeSearchTime, txCoinStake, nTxNewTime)) {
+            if (pwallet->CreateCoinStake(*pwallet, pindexPrev, pblock->nBits, txCoinStake, nTxNewTime)) {
                 pblock->nTime = nTxNewTime;
                 pblock->vtx[0].vout[0].SetEmpty();
                 pblock->vtx.push_back(CTransaction(txCoinStake));
@@ -491,7 +491,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
                 uint256 nCheckpoint;
                 uint256 hashBlockLastAccumulated = chainActive[nHeight - (nHeight % 10) - 10]->GetBlockHash();
                 if (nHeight >= pCheckpointCache.first || pCheckpointCache.second.first != hashBlockLastAccumulated) {
-                    //For the period before v2 activation, zPIV will be disabled and previous block's checkpoint is all that will be needed
+                    //For the period before v2 activation, zdogec will be disabled and previous block's checkpoint is all that will be needed
                     pCheckpointCache.second.second = pindexPrev->nAccumulatorCheckpoint;
                     if (pindexPrev->nHeight + 1 >= Params().Zerocoin_Block_V2_Start()) {
                         AccumulatorMap mapAccumulators(Params().Zerocoin_Params(false));
@@ -654,8 +654,6 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
     LogPrintf("DogeCashMiner started\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
     util::ThreadRename("dogecash-miner");
-    const int64_t nSpacingMillis = Params().TargetSpacing() * 1000;
-    const int last_pow_block = Params().LAST_POW_BLOCK();
 
     // Each thread has its own key and counter
     CReserveKey reservekey(pwallet);

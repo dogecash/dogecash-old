@@ -2925,7 +2925,7 @@ bool RecalculateDOGECSupply(int nHeightStart, bool fSkipZdogec)
         pindex->nMoneySupply = nSupplyPrev + nValueOut - nValueIn;
         nSupplyPrev = pindex->nMoneySupply;
 
-        // Rewrite zpiv supply too
+        // Rewrite zdogec supply too
         if (!fSkipZdogec && pindex->nHeight >= Params().Zerocoin_StartHeight()) {
             UpdatezdogecSupply(block, pindex, true);
         }
@@ -3015,7 +3015,7 @@ bool UpdatezdogecSupply(const CBlock& block, CBlockIndex* pindex, bool fJustChec
     //Reset the supply to previous block
     pindex->mapZerocoinSupply = pindex->pprev->mapZerocoinSupply;
 
-    //Add mints to zPIV supply (mints are forever disabled after last checkpoint)
+    //Add mints to zdogec supply (mints are forever disabled after last checkpoint)
     if (pindex->nHeight < Params().Zerocoin_Block_LastGoodCheckpoint()) {
         std::list<CZerocoinMint> listMints;
         std::set<uint256> setAddedToWallet;

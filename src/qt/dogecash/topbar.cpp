@@ -203,7 +203,7 @@ void TopBar::unlockWallet()
     if(!walletModel)
         return;
     // Unlock wallet when requested by wallet model (if unlocked or unlocked for staking only)
-    if (walletModel->isWalletLocked(false))
+    if (walletModel->isWalletLocked())
         return openPassPhraseDialog(AskPassphraseDialog::Mode::Unlock, AskPassphraseDialog::Context::Unlock_Full);
 }
 
@@ -365,20 +365,21 @@ void TopBar::updateAutoMintStatus(){
     ui->pushButtonMint->setChecked(fEnableZeromint);
 }
 
-void TopBar::updateStakingStatus(){
-    if (getStakingStatus()) {
-        if (!ui->pushButtonStack->isChecked()) {
-            ui->pushButtonStack->setButtonText(tr("Staking active"));
-            ui->pushButtonStack->setChecked(true);
-            ui->pushButtonStack->setButtonClassStyle("cssClass", "btn-check-stack", true);
-        }
-    }else{
-        if (ui->pushButtonStack->isChecked()) {
-            ui->pushButtonStack->setButtonText(tr("Staking not active"));
-            ui->pushButtonStack->setChecked(false);
-            ui->pushButtonStack->setButtonClassStyle("cssClass", "btn-check-stack-inactive", true);
-        }
+void TopBar::setStakingStatusActive(bool fActive)
+{
+    if (ui->pushButtonStack->isChecked() != fActive) {
+        ui->pushButtonStack->setButtonText(fActive ? tr("Staking active") : tr("Staking not active"));
+        ui->pushButtonStack->setChecked(fActive);
+        ui->pushButtonStack->setButtonClassStyle("cssClass", (fActive ?
+                                                                "btn-check-stack" :
+                                                                "btn-check-stack-inactive"), true);
     }
+}
+
+void TopBar::updateStakingStatus(){
+    setStakingStatusActive(walletModel &&
+                           !walletModel->isWalletLocked() &&
+                           walletModel->isStakingStatusActive());
 }
 
 void TopBar::setNumConnections(int count) {
@@ -539,6 +540,9 @@ void TopBar::refreshStatus(){
         case WalletModel::EncryptionStatus::Unlocked:
             ui->pushButtonLock->setButtonText("Wallet Unlocked");
             ui->pushButtonLock->setButtonClassStyle("cssClass", "btn-check-status-unlock", true);
+            // Directly update the staking status icon when the wallet is manually locked here
+            // so the feedback is instant (no need to wait for the polling timeout)
+            setStakingStatusActive(false);
             break;
     }
     updateStyle(ui->pushButtonLock);
