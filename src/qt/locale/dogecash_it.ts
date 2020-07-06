@@ -1023,7 +1023,7 @@ Indirizzo: %4
     </message>
     <message>
         <source>Please switch to "List mode" to use this function.</source>
-        <translation>Selezionare la "Modalità lista" per utilizzare questa funzione</translation>
+        <translation>Selezionare la "Modalità lista" per utilizzare questa funzione.</translation>
     </message>
     <message>
         <source>highest</source>
