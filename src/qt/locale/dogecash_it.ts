@@ -841,7 +841,7 @@ Indirizzo: %4
     <name>BlockExplorer</name>
     <message>
         <source>Blockchain Explorer</source>
-        <translation>Esplora catena dei blocchi</translation>
+        <translation>Explorer della Blockchain</translation>
     </message>
     <message>
         <source>Back</source>
@@ -923,7 +923,7 @@ Indirizzo: %4
     </message>
     <message>
         <source>toggle lock state</source>
-        <translation>Attiva/disattiva stato bloccato</translation>
+        <translation>Attiva/disattiva stato di blocco</translation>
     </message>
     <message>
         <source>Tree mode</source>
@@ -1023,7 +1023,7 @@ Indirizzo: %4
     </message>
     <message>
         <source>Please switch to "List mode" to use this function.</source>
-        <translation>Prego selezionare "Modalità lista" per utilizzare questa funzione</translation>
+        <translation>Selezionare la "Modalità lista" per utilizzare questa funzione</translation>
     </message>
     <message>
         <source>highest</source>
@@ -1051,11 +1051,11 @@ Indirizzo: %4
     </message>
     <message>
         <source>low</source>
-        <translation>basso</translation>
+        <translation>bassa</translation>
     </message>
     <message>
         <source>lower</source>
-        <translation>bassa</translation>
+        <translation>molto bassa</translation>
     </message>
     <message>
         <source>lowest</source>
@@ -1071,7 +1071,7 @@ Indirizzo: %4
     </message>
     <message>
         <source>yes</source>
-        <translation>si</translation>
+        <translation>sì</translation>
     </message>
     <message>
         <source>no</source>
@@ -1079,7 +1079,7 @@ Indirizzo: %4
     </message>
     <message>
         <source>This label turns red, if the transaction size is greater than 1000 bytes.</source>
-        <translation>Questa etichetta diventerà rossa se la transazione supera i 1000 bytes</translation>
+        <translation>Questa etichetta diventerà rossa se la transazione supera i 1000 bytes.</translation>
     </message>
     <message>
         <source>This means a fee of at least %1 per kB is required.</source>
