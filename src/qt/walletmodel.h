@@ -162,8 +162,8 @@ public:
 
     bool isColdStaking() const;
     EncryptionStatus getEncryptionStatus() const;
-    bool isWalletUnlocked();
-    bool isWalletLocked(bool fFullUnlocked = true) const;
+    bool isWalletUnlocked() const;
+    bool isWalletLocked() const;
     CKey generateNewKey() const; //for temporary paper wallet key generation
     bool setAddressBook(const CTxDestination& address, const std::string& strName, const std::string& strPurpose);
     void encryptKey(const CKey key, const std::string& pwd, const std::string& slt, std::vector<unsigned char>& crypted);
