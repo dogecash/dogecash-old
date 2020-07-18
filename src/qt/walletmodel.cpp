@@ -169,11 +169,15 @@ void WalletModel::updateStatus()
         emit encryptionStatusChanged(newEncryptionStatus);
 }
 
-bool WalletModel::isWalletLocked(bool fFullUnlocked) const
-{
+bool WalletModel::isWalletUnlocked() const {
     EncryptionStatus status = getEncryptionStatus();
-    return (status == Locked || (!fFullUnlocked && status == UnlockedForStakingOnly));
+    return status == Unencrypted || status == Unlocked;
 }
+
+bool WalletModel::isWalletLocked() const {
+    return getEncryptionStatus() == Locked;
+}
+
 
 bool IsImportingOrReindexing() {
     return fImporting || fReindex;
