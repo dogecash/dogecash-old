@@ -1177,7 +1177,7 @@ Indirizzo: %4
     </message>
     <message>
         <source>Directory already exists. Add %1 if you intend to create a new directory here.</source>
-        <translation>Cartella esistente. Aggiunti %1 se intendi creare una nuova cartella qui.</translation>
+        <translation>Cartella esistente. Aggiungi %1 se intendi creare una nuova cartella qui.</translation>
     </message>
     <message>
         <source>Path already exists, and is not a directory.</source>
@@ -1185,7 +1185,7 @@ Indirizzo: %4
     </message>
     <message>
         <source>Cannot create data directory here.</source>
-        <translation>Impossibile creare la cartella dati qui.</translation>
+        <translation>Impossibile creare la cartella dati in questa posizione.</translation>
     </message>
 </context>
 <context>
@@ -1219,7 +1219,7 @@ Indirizzo: %4
     </message>
     <message>
         <source>Command-line options</source>
-        <translation>Opzioni linea di comando</translation>
+        <translation>Opzioni dell'interfaccia a riga di comando</translation>
     </message>
     <message>
         <source>Usage:</source>
@@ -1227,31 +1227,31 @@ Indirizzo: %4
     </message>
     <message>
         <source>command-line options</source>
-        <translation>opzioni linea di comando</translation>
+        <translation>opzioni dell'interfaccia a riga di comando</translation>
     </message>
     <message>
         <source>UI Options:</source>
-        <translation>Opzioni interfaccia:</translation>
+        <translation>Opzioni dell'interfaccia:</translation>
     </message>
     <message>
         <source>Choose data directory on startup (default: %u)</source>
-        <translation>Seleziona cartella dati all'avvio (predefinita: %u)</translation>
+        <translation>Seleziona la cartella dati all'avvio (predefinita: %u)</translation>
     </message>
     <message>
         <source>Show splash screen on startup (default: %u)</source>
-        <translation>Mostra schermata di benvenuto all'avvio (predefinita: %u)</translation>
+        <translation>Mostra la schermata di benvenuto all'avvio (predefinita: %u)</translation>
     </message>
     <message>
         <source>Set language, for example "de_DE" (default: system locale)</source>
-        <translation>Imposta lingua, per esempio "it_IT" (predefinito: lingua di sistema)</translation>
+        <translation>Imposta la lingua, per esempio "it_IT" (predefinito: lingua di sistema)</translation>
     </message>
     <message>
         <source>Start minimized</source>
-        <translation>Avvio ridotto a icona</translation>
+        <translation>Avvia riducendo a icona</translation>
     </message>
     <message>
         <source>Set SSL root certificates for payment request (default: -system-)</source>
-        <translation>Imposta certificati SSL root per richiesta di pagamento (predefinito: -system-)</translation>
+        <translation>Imposta certificati SSL di root per richiesta di pagamento (predefinito: -system-)</translation>
     </message>
 </context>
 <context>
