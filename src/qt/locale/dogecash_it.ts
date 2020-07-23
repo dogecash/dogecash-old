@@ -1162,7 +1162,7 @@ Indirizzo: %4
     </message>
     <message>
         <source>New key generation failed.</source>
-        <translation>Generazione nuovo codice fallita.</translation>
+        <translation>Generazione della nuova chiave fallita.</translation>
     </message>
 </context>
 <context>
