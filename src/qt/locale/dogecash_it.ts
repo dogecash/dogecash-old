@@ -1251,7 +1251,7 @@ Indirizzo: %4
     </message>
     <message>
         <source>Set SSL root certificates for payment request (default: -system-)</source>
-        <translation>Imposta certificati SSL di root per richiesta di pagamento (predefinito: -system-)</translation>
+        <translation>Imposta i certificati SSL di root per la richiesta di pagamento (predefinito: -system-)</translation>
     </message>
 </context>
 <context>
@@ -1262,7 +1262,7 @@ Indirizzo: %4
     </message>
     <message>
         <source>Welcome to DogeCash Core.</source>
-        <translation>Benvenuto in DOGECIX Core.</translation>
+        <translation>Benvenuto in DogeCash Core.</translation>
     </message>
     <message>
         <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
