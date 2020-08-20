@@ -11,6 +11,7 @@
 #include "memusage.h"
 #include "script/script.h"
 #include "serialize.h"
+#include "optional.h"
 #include "uint256.h"
 
 #include "sapling/sapling_transaction.h"
@@ -256,7 +257,7 @@ public:
     std::vector<CTxIn> vin;
     std::vector<CTxOut> vout;
     const uint32_t nLockTime;
-    SaplingTxData sapData;
+    Optional<SaplingTxData> sapData{SaplingTxData()}; // Future: Don't initialize it by default
 
     /** Construct a CTransaction that qualifies as IsNull() */
     CTransaction();
@@ -276,7 +277,7 @@ public:
         READWRITE(*const_cast<uint32_t*>(&nLockTime));
 
         if (nVersion == CTransaction::SAPLING_VERSION) {
-            READWRITE(*const_cast<SaplingTxData*>(&sapData));
+            READWRITE(*const_cast<Optional<SaplingTxData>*>(&sapData));
         }
 
         if (ser_action.ForRead())
@@ -289,6 +290,18 @@ public:
 
     const uint256& GetHash() const {
         return hash;
+    }
+
+    bool hasSaplingData() const
+    {
+        return sapData != nullopt;
+    };
+
+    // Cleanup the following method when the proper Sapling parsing gets implemented.
+    bool isSapling() const
+    {
+        return hasSaplingData() &&
+                (!sapData.get().vShieldedOutput.empty() || !sapData.get().vShieldedSpend.empty());
     }
 
     /*
@@ -357,7 +370,7 @@ struct CMutableTransaction
     std::vector<CTxIn> vin;
     std::vector<CTxOut> vout;
     uint32_t nLockTime;
-    SaplingTxData sapData;
+    Optional<SaplingTxData> sapData{SaplingTxData()}; // Future: Don't initialize it by default
 
     CMutableTransaction();
     CMutableTransaction(const CTransaction& tx);
@@ -372,7 +385,7 @@ struct CMutableTransaction
         READWRITE(nLockTime);
 
         if (nVersion >= CTransaction::SAPLING_VERSION) {
-            READWRITE(*const_cast<SaplingTxData*>(&sapData));
+            READWRITE(*const_cast<Optional<SaplingTxData>*>(&sapData));
         }
     }
 
