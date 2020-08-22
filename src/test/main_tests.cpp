@@ -62,8 +62,8 @@ CBlock CreateDummyBlockWithSignature(CKey stakingKey, BlockSignatureType type, b
 
     // Now the block.
     CBlock block;
-    block.vtx.emplace_back(); // dummy first tx
-    block.vtx.emplace_back(txCoinStake);
+    block.vtx.emplace_back(std::make_shared<const CTransaction>(CTransaction())); // dummy first tx
+    block.vtx.emplace_back(std::make_shared<const CTransaction>(txCoinStake));
     SignBlockWithKey(block, stakingKey);
 
     return block;

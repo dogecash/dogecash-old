@@ -1196,9 +1196,9 @@ bool GetTransaction(const uint256& hash, CTransaction& txOut, uint256& hashBlock
     if (pindexSlow) {
         CBlock block;
         if (ReadBlockFromDisk(block, pindexSlow)) {
-            for (const CTransaction& tx : block.vtx) {
-                if (tx.GetHash() == hash) {
-                    txOut = tx;
+            for (const auto& tx : block.vtx) {
+                if (tx->GetHash() == hash) {
+                    txOut = *tx;
                     hashBlock = pindexSlow->GetBlockHash();
                     return true;
                 }
@@ -1557,7 +1557,8 @@ std::map<CBigNum, CAmount> mapInvalidSerials;
 void AddInvalidSpendsToMap(const CBlock& block)
 {
     libzerocoin::ZerocoinParams* params = Params().GetConsensus().Zerocoin_Params(false);
-    for (const CTransaction& tx : block.vtx) {
+    for (const auto& txIn : block.vtx) {
+        const CTransaction tx = *txIn;
         if (!tx.ContainsZerocoins())
             continue;
 
@@ -1888,7 +1889,7 @@ DisconnectResult DisconnectBlock(CBlock& block, CBlockIndex* pindex, CCoinsViewC
 
     // undo transactions in reverse order
     for (int i = block.vtx.size() - 1; i >= 0; i--) {
-        const CTransaction& tx = block.vtx[i];
+        const CTransaction& tx = *block.vtx[i];
 
         if (!DisconnectZerocoinTx(tx, nValueIn, zerocoinDB))
             return DISCONNECT_FAILED;
@@ -2057,7 +2058,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     std::vector<PrecomputedTransactionData> precomTxData;
     precomTxData.reserve(block.vtx.size()); // Required so that pointers to individual precomTxData don't get invalidated
     for (unsigned int i = 0; i < block.vtx.size(); i++) {
-        const CTransaction& tx = block.vtx[i];
+        const CTransaction& tx = *block.vtx[i];
 
         nInputs += tx.vin.size();
         nSigOps += GetLegacySigOpCount(tx);
@@ -2245,7 +2246,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                 //Search block for matching tx, turn into wtx, set merkle branch, add to wallet
                 int posInBlock = 0;
                 for (posInBlock = 0; posInBlock < (int)block.vtx.size(); posInBlock++) {
-                    auto& tx = block.vtx[posInBlock];
+                    auto& tx = *block.vtx[posInBlock];
                     if (tx.GetHash() == pSpend.second) {
                         CWalletTx wtx(pwalletMain, tx);
                         wtx.nTimeReceived = pindex->GetBlockTime();
@@ -2303,7 +2304,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     // Watch for changes to the previous coinbase transaction.
     static uint256 hashPrevBestCoinBase;
     GetMainSignals().UpdatedTransaction(hashPrevBestCoinBase);
-    hashPrevBestCoinBase = block.vtx[0].GetHash();
+    hashPrevBestCoinBase = block.vtx[0]->GetHash();
 
     int64_t nTime4 = GetTimeMicros();
     nTimeCallbacks += nTime4 - nTime3;
@@ -2506,7 +2507,8 @@ bool static DisconnectTip(CValidationState& state)
         return false;
     // Resurrect mempool transactions from the disconnected block.
     std::vector<uint256> vHashUpdate;
-    for (const CTransaction& tx : block.vtx) {
+    for (const auto& txIn : block.vtx) {
+        const CTransaction& tx = *txIn;
         // ignore validation errors in resurrected transactions
         std::list<CTransaction> removed;
         CValidationState stateDummy;
@@ -2526,8 +2528,8 @@ bool static DisconnectTip(CValidationState& state)
     UpdateTip(pindexDelete->pprev);
     // Let wallets know transactions went from 1-confirmed to
     // 0-confirmed or conflicted:
-    for (const CTransaction& tx : block.vtx) {
-        GetMainSignals().SyncTransaction(tx, pindexDelete->pprev, CMainSignals::SYNC_TRANSACTION_NOT_IN_BLOCK);
+    for (const auto& tx : block.vtx) {
+        GetMainSignals().SyncTransaction(*tx, pindexDelete->pprev, CMainSignals::SYNC_TRANSACTION_NOT_IN_BLOCK);
     }
     return true;
 }
@@ -2597,7 +2599,7 @@ bool static ConnectTip(CValidationState& state, CBlockIndex* pindexNew, const CB
     UpdateTip(pindexNew);
 
     for(unsigned int i=0; i < pblock->vtx.size(); i++) {
-        txChanged.emplace_back(pblock->vtx[i], pindexNew, i);
+        txChanged.emplace_back(*pblock->vtx[i], pindexNew, i);
     }
 
     int64_t nTime6 = GetTimeMicros();
@@ -3014,7 +3016,7 @@ CBlockIndex* AddToBlockIndex(const CBlock& block)
 
         } else {
             // compute and set new V2 stake modifier (hash of prevout and prevModifier)
-            pindexNew->SetNewStakeModifier(block.vtx[1].vin[0].prevout.hash);
+            pindexNew->SetNewStakeModifier(block.vtx[1]->vin[0].prevout.hash);
         }
     }
     pindexNew->nChainWork = (pindexNew->pprev ? pindexNew->pprev->nChainWork : 0) + GetBlockProof(*pindexNew);
@@ -3255,28 +3257,29 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         return state.DoS(100, false, REJECT_INVALID, "bad-blk-length", false, "size limits failed");
 
     // First transaction must be coinbase, the rest must not be
-    if (block.vtx.empty() || !block.vtx[0].IsCoinBase())
+    if (block.vtx.empty() || !block.vtx[0]->IsCoinBase())
         return state.DoS(100, false, REJECT_INVALID, "bad-cb-missing", false, "first tx is not coinbase");
     for (unsigned int i = 1; i < block.vtx.size(); i++)
-        if (block.vtx[i].IsCoinBase())
+        if (block.vtx[i]->IsCoinBase())
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-multiple", false, "more than one coinbase");
 
     if (IsPoS) {
         // Coinbase output should be empty if proof-of-stake block
-        if (block.vtx[0].vout.size() != 1 || !block.vtx[0].vout[0].IsEmpty())
+        if (block.vtx[0]->vout.size() != 1 || !block.vtx[0]->vout[0].IsEmpty())
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-pos", false, "coinbase output not empty for proof-of-stake block");
 
         // Second transaction must be coinstake, the rest must not be
-        if (block.vtx.empty() || !block.vtx[1].IsCoinStake())
+        if (block.vtx.empty() || !block.vtx[1]->IsCoinStake())
             return state.DoS(100, false, REJECT_INVALID, "bad-cs-missing", false, "second tx is not coinstake");
         for (unsigned int i = 2; i < block.vtx.size(); i++)
-            if (block.vtx[i].IsCoinStake())
+            if (block.vtx[i]->IsCoinStake())
                 return state.DoS(100, false, REJECT_INVALID, "bad-cs-multiple", false, "more than one coinstake");
     }
 
     // ----------- swiftTX transaction scanning -----------
     if (sporkManager.IsSporkActive(SPORK_3_SWIFTTX_BLOCK_FILTERING)) {
-        for (const CTransaction& tx : block.vtx) {
+        for (const auto& txIn : block.vtx) {
+            const CTransaction& tx = *txIn;
             if (!tx.IsCoinBase()) {
                 //only reject blocks when it's based on complete consensus
                 for (const CTxIn& in : tx.vin) {
@@ -3319,7 +3322,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         // that this block is invalid, so don't issue an outright ban.
         if (nHeight != 0 && !IsInitialBlockDownload()) {
             // Last output of Cold-Stake is not abused
-            if (IsPoS && !CheckColdStakeFreeOutput(block.vtx[1], nHeight)) {
+            if (IsPoS && !CheckColdStakeFreeOutput(*(block.vtx[1]), nHeight)) {
                 mapRejectedBlocks.emplace(block.GetHash(), GetTime());
                 return state.DoS(0, false, REJECT_INVALID, "bad-p2cs-outs", false, "invalid cold-stake output");
             }
@@ -3341,7 +3344,8 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
     std::vector<CBigNum> vBlockSerials;
     // TODO: Check if this is ok... blockHeight is always the tip or should we look for the prevHash and get the height?
     int blockHeight = chainActive.Height() + 1;
-    for (const CTransaction& tx : block.vtx) {
+    for (const auto& txIn : block.vtx) {
+        const CTransaction& tx = *txIn;
         if (!CheckTransaction(
                 tx,
                 fZerocoinActive,
@@ -3384,8 +3388,8 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
     }
 
     unsigned int nSigOps = 0;
-    for (const CTransaction& tx : block.vtx) {
-        nSigOps += GetLegacySigOpCount(tx);
+    for (const auto& tx : block.vtx) {
+        nSigOps += GetLegacySigOpCount(*tx);
     }
     unsigned int nMaxBlockSigOps = fZerocoinActive ? MAX_BLOCK_SIGOPS_CURRENT : MAX_BLOCK_SIGOPS_LEGACY;
     if (nSigOps > nMaxBlockSigOps)
@@ -3532,16 +3536,16 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
     const int nHeight = pindexPrev == nullptr ? 0 : pindexPrev->nHeight + 1;
 
     // Check that all transactions are finalized
-    for (const CTransaction& tx : block.vtx)
-        if (!IsFinalTx(tx, nHeight, block.GetBlockTime())) {
+    for (const auto& tx : block.vtx)
+        if (!IsFinalTx(*tx, nHeight, block.GetBlockTime())) {
             return state.DoS(10, false, REJECT_INVALID, "bad-txns-nonfinal", false, "non-final transaction");
         }
 
     // Enforce block.nVersion=2 rule that the coinbase starts with serialized block height
     if (pindexPrev) { // pindexPrev is only null on the first block which is a version 1 block.
         CScript expect = CScript() << nHeight;
-        if (block.vtx[0].vin[0].scriptSig.size() < expect.size() ||
-            !std::equal(expect.begin(), expect.end(), block.vtx[0].vin[0].scriptSig.begin())) {
+        if (block.vtx[0]->vin[0].scriptSig.size() < expect.size() ||
+            !std::equal(expect.begin(), expect.end(), block.vtx[0]->vin[0].scriptSig.begin())) {
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-height", false, "block height mismatch in coinbase");
         }
     }
@@ -3679,7 +3683,7 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
         bool isBlockFromFork = pindexPrev != nullptr && chainActive.Tip() != pindexPrev;
 
         // Coin stake
-        const CTransaction &stakeTxIn = block.vtx[1];
+        const CTransaction &stakeTxIn = *block.vtx[1];
 
         // Inputs
         std::vector<CTxIn> pivInputs;
@@ -3699,7 +3703,8 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
         // Check for serial double spent on the same block, TODO: Move this to the proper method..
 
         std::vector<CBigNum> inBlockSerials;
-        for (const CTransaction& tx : block.vtx) {
+        for (const auto& txIn : block.vtx) {
+            const CTransaction& tx = *txIn;
             for (const CTxIn& in: tx.vin) {
                 if(consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_ZC)) {
                     bool isPublicSpend = in.IsZerocoinPublicSpend();
@@ -3768,7 +3773,8 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
                 }
 
                 // Loop through every tx of this block
-                for (const CTransaction& t : bl.vtx) {
+                for (const auto& txIn : bl.vtx) {
+                    const CTransaction& t = *txIn;
                     // Loop through every input of this tx
                     for (const CTxIn& in: t.vin) {
                         // If this input is a zerocoin spend, and the coinstake has zerocoin inputs
@@ -4850,7 +4856,7 @@ void static ProcessGetData(CNode* pfrom, CConnman& connman, std::atomic<bool>& i
                             // however we MUST always provide at least what the remote peer needs
                             typedef std::pair<unsigned int, uint256> PairType;
                             for (PairType& pair : merkleBlock.vMatchedTxn)
-                                connman.PushMessage(pfrom, msgMaker.Make(NetMsgType::TX, block.vtx[pair.first]));
+                                connman.PushMessage(pfrom, msgMaker.Make(NetMsgType::TX, *block.vtx[pair.first]));
                         }
                         // else
                         // no response

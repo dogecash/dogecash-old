@@ -106,7 +106,7 @@ bool LoadStakeInput(const CBlock& block, const CBlockIndex* pindexPrev, std::uni
         return error("called on non PoS block");
 
     // Construct the stakeinput object
-    const CTxIn& txin = block.vtx[1].vin[0];
+    const CTxIn& txin = block.vtx[1]->vin[0];
     stake = txin.IsZerocoinSpend() ?
             std::unique_ptr<CStakeInput>(new CLegacyZPivStake()) :
             std::unique_ptr<CStakeInput>(new CPivStake());
@@ -181,11 +181,11 @@ bool CheckProofOfStake(const CBlock& block, std::string& strError, const CBlockI
         strError = "unable to get stake prevout for coinstake";
         return false;
     }
-    const CTransaction& tx = block.vtx[1];
-    const CTxIn& txin = tx.vin[0];
+    const auto& tx = block.vtx[1];
+    const CTxIn& txin = tx->vin[0];
     ScriptError serror;
     if (!VerifyScript(txin.scriptSig, stakePrevout.scriptPubKey, STANDARD_SCRIPT_VERIFY_FLAGS,
-             TransactionSignatureChecker(&tx, 0, stakePrevout.nValue), &serror)) {
+             TransactionSignatureChecker(tx.get(), 0, stakePrevout.nValue), &serror)) {
         strError = strprintf("signature fails: %s", serror ? ScriptErrorString(serror) : "");
         return false;
     }

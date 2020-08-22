@@ -222,7 +222,8 @@ bool RecalculatePIVSupply(int nHeightStart, bool fSkipZpiv)
 
         CAmount nValueIn = 0;
         CAmount nValueOut = 0;
-        for (const CTransaction& tx : block.vtx) {
+        for (const auto& txIn : block.vtx) {
+            const CTransaction& tx = *txIn;
             for (unsigned int i = 0; i < tx.vin.size(); i++) {
                 if (tx.IsCoinBase())
                     break;

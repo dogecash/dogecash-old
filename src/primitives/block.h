@@ -82,7 +82,7 @@ class CBlock : public CBlockHeader
 {
 public:
     // network and disk
-    std::vector<CTransaction> vtx;
+    std::vector<std::shared_ptr<const CTransaction>> vtx;
 
     // ppcoin: block signature - signed by one of the coin base txout[N]'s owner
     std::vector<unsigned char> vchBlockSig;
@@ -107,8 +107,8 @@ public:
     inline void SerializationOp(Stream& s, Operation ser_action) {
         READWRITE(*(CBlockHeader*)this);
         READWRITE(vtx);
-	if(vtx.size() > 1 && vtx[1].IsCoinStake())
-		READWRITE(vchBlockSig);
+        if(vtx.size() > 1 && vtx[1]->IsCoinStake())
+            READWRITE(vchBlockSig);
     }
 
     void SetNull()
@@ -135,7 +135,7 @@ public:
 
     bool IsProofOfStake() const
     {
-        return (vtx.size() > 1 && vtx[1].IsCoinStake());
+        return (vtx.size() > 1 && vtx[1]->IsCoinStake());
     }
 
     bool IsProofOfWork() const

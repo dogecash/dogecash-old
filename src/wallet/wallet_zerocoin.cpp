@@ -111,7 +111,7 @@ void CWallet::doZPivRescan(const CBlockIndex* pindex, const CBlock& block,
                 // Add the transaction to the wallet
                 posInBlock = 0;
                 for (posInBlock = 0; posInBlock < (int)block.vtx.size(); posInBlock++) {
-                    auto& tx = block.vtx[posInBlock];
+                    const auto& tx = *(block.vtx[posInBlock]);
                     uint256 txid = tx.GetHash();
                     if (setAddedToWallet.count(txid) || mapWallet.count(txid))
                         continue;
@@ -139,7 +139,7 @@ void CWallet::doZPivRescan(const CBlockIndex* pindex, const CBlock& block,
                         posInBlock = 0;
                         for (posInBlock = 0; posInBlock < (int)blockSpend.vtx.size(); posInBlock++) {
                             auto &tx = blockSpend.vtx[posInBlock];
-                            if (tx.GetHash() == txidSpend)
+                            if (tx->GetHash() == txidSpend)
                                 wtx.SetMerkleBranch(pindexSpend, posInBlock);
                         }
                     }

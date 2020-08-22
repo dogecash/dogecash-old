@@ -19,7 +19,7 @@ bool SignBlock(CBlock& block, const CKeyStore& keystore)
     CKeyID keyID;
     if (block.IsProofOfWork()) {
         bool fFoundID = false;
-        for (const CTxOut& txout :block.vtx[0].vout) {
+        for (const CTxOut& txout : block.vtx[0]->vout) {
             if (!txout.GetKeyIDFromUTXO(keyID))
                 continue;
             fFoundID = true;
@@ -28,7 +28,7 @@ bool SignBlock(CBlock& block, const CKeyStore& keystore)
         if (!fFoundID)
             return error("%s: failed to find key for PoW", __func__);
     } else {
-        if (!block.vtx[1].vout[1].GetKeyIDFromUTXO(keyID))
+        if (!block.vtx[1]->vout[1].GetKeyIDFromUTXO(keyID))
             return error("%s: failed to find key for PoS", __func__);
     }
 
@@ -52,14 +52,14 @@ bool CheckBlockSignature(const CBlock& block, const bool enableP2PKH)
      *  UTXO: The public key that signs must match the public key associated with the first utxo of the coinstake tx.
      */
     CPubKey pubkey;
-    bool fzPIVStake = block.vtx[1].vin[0].IsZerocoinSpend();
+    bool fzPIVStake = block.vtx[1]->vin[0].IsZerocoinSpend();
     if (fzPIVStake) {
-        libzerocoin::CoinSpend spend = TxInToZerocoinSpend(block.vtx[1].vin[0]);
+        libzerocoin::CoinSpend spend = TxInToZerocoinSpend(block.vtx[1]->vin[0]);
         pubkey = spend.getPubKey();
     } else {
         txnouttype whichType;
         std::vector<valtype> vSolutions;
-        const CTxOut& txout = block.vtx[1].vout[1];
+        const CTxOut& txout = block.vtx[1]->vout[1];
         if (!Solver(txout.scriptPubKey, whichType, vSolutions))
             return false;
 
@@ -74,7 +74,7 @@ bool CheckBlockSignature(const CBlock& block, const bool enableP2PKH)
             valtype& vchPubKey = vSolutions[0];
             pubkey = CPubKey(vchPubKey);
         } else if (whichType == TX_PUBKEYHASH) {
-            const CTxIn& txin = block.vtx[1].vin[0];
+            const CTxIn& txin = block.vtx[1]->vin[0];
             // Check if the scriptSig is for a p2pk or a p2pkh
             if (txin.scriptSig.size() == 73) { // Sig size + DER signature size.
                 // If the input is for a p2pk and the output is a p2pkh.
@@ -87,7 +87,7 @@ bool CheckBlockSignature(const CBlock& block, const bool enableP2PKH)
             }
         } else if (whichType == TX_COLDSTAKE) {
             // pick the public key from the P2CS input
-            const CTxIn& txin = block.vtx[1].vin[0];
+            const CTxIn& txin = block.vtx[1]->vin[0];
             int start = 1 + (int) *txin.scriptSig.begin(); // skip sig
             start += 1 + (int) *(txin.scriptSig.begin()+start); // skip flag
             pubkey = CPubKey(txin.scriptSig.begin()+start+1, txin.scriptSig.end());

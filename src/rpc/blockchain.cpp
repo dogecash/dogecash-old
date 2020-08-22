@@ -119,7 +119,8 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
     result.push_back(Pair("merkleroot", block.hashMerkleRoot.GetHex()));
     result.push_back(Pair("acc_checkpoint", block.nAccumulatorCheckpoint.GetHex()));
     UniValue txs(UniValue::VARR);
-    for (const CTransaction& tx : block.vtx) {
+    for (const auto& txIn : block.vtx) {
+        const CTransaction& tx = *txIn;
         if (txDetails) {
             UniValue objTx(UniValue::VOBJ);
             TxToJSON(tx, UINT256_ZERO, objTx);
@@ -1306,7 +1307,8 @@ UniValue getserials(const JSONRPCRequest& request) {
                 throw JSONRPCError(RPC_INTERNAL_ERROR, "Can't read block from disk");
 
         // loop through each tx in the block
-        for (const CTransaction& tx : block.vtx) {
+        for (const auto& txIn : block.vtx) {
+            const CTransaction& tx = *txIn;
             std::string txid = tx.GetHash().GetHex();
             // collect the destination (first output) if fVerbose
             std::string spentTo = "";
@@ -1466,7 +1468,8 @@ UniValue getblockindexstats(const JSONRPCRequest& request) {
         nTxCount = block.IsProofOfStake() ? nTxCount + ntx - 2 : nTxCount + ntx - 1;
 
         // loop through each tx in block and save size and fee
-        for (const CTransaction& tx : block.vtx) {
+        for (const auto& txIn : block.vtx) {
+            const CTransaction& tx = *txIn;
             if (tx.IsCoinBase() || (tx.IsCoinStake() && !tx.HasZerocoinSpendInputs()))
                 continue;
 

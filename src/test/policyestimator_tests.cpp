@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(BlockPolicyEstimates)
     CFeeRate baseRate(basefee, ::GetSerializeSize(tx, SER_NETWORK, PROTOCOL_VERSION));
 
     // Create a fake block
-    std::vector<CTransaction> block;
+    std::vector<std::shared_ptr<const CTransaction>> block;
     int blocknum = 0;
 
     // Loop through 200 blocks
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(BlockPolicyEstimates)
             while (txHashes[9-h].size()) {
                 CTransaction btx;
                 if (mpool.lookup(txHashes[9-h].back(), btx))
-                    block.push_back(btx);
+                    block.push_back(std::make_shared<const CTransaction>(btx));
                 txHashes[9-h].pop_back();
             }
         }
@@ -145,7 +145,7 @@ BOOST_AUTO_TEST_CASE(BlockPolicyEstimates)
         while(txHashes[j].size()) {
             CTransaction btx;
             if (mpool.lookup(txHashes[j].back(), btx))
-                block.push_back(btx);
+                block.push_back(std::make_shared<const CTransaction>(btx));
             txHashes[j].pop_back();
         }
     }
@@ -165,7 +165,7 @@ BOOST_AUTO_TEST_CASE(BlockPolicyEstimates)
                 mpool.addUnchecked(hash, entry.Fee(feeV[j]).Time(GetTime()).Priority(0).Height(blocknum).FromTx(tx, &mpool));
                 CTransaction btx;
                 if (mpool.lookup(hash, btx))
-                    block.push_back(btx);
+                    block.push_back(std::make_shared<const CTransaction>(btx));
             }
         }
         mpool.removeForBlock(block, ++blocknum, dummyConflicted);
