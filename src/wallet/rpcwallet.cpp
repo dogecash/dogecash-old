@@ -2056,24 +2056,21 @@ UniValue ListReceived(const UniValue& params, bool by_label)
         }
     }
 
+    // Create mapAddressBook iterator
+    // If we aren't filtering, go from begin() to end()
+    auto itAddrBook = pwalletMain->NewAddressBookIterator();
+    // If we are filtering, find() the applicable entry
+    if (has_filtered_address) {
+        itAddrBook.SetFilter(filtered_address);
+    }
+
     // Reply
     UniValue ret(UniValue::VARR);
     std::map<std::string, tallyitem> label_tally;
-    // Create mapAddressBook iterator
-    // If we aren't filtering, go from begin() to end()
-    auto start = pwalletMain->mapAddressBook.begin();
-    auto end = pwalletMain->mapAddressBook.end();
-    // If we are filtering, find() the applicable entry
-    if (has_filtered_address) {
-        start = pwalletMain->mapAddressBook.find(filtered_address);
-        if (start != end) {
-            end = std::next(start);
-        }
-    }
 
-    for (auto item_it = start; item_it != end; ++item_it) {
-        const CTxDestination& address = item_it->first;
-        const std::string& label = item_it->second.name;
+    do {
+        const auto& address = itAddrBook.GetKey();
+        const std::string& label = itAddrBook.GetValue().name;
         auto it = mapTally.find(address);
         if (it == mapTally.end() && !fIncludeEmpty)
             continue;
@@ -2114,7 +2111,7 @@ UniValue ListReceived(const UniValue& params, bool by_label)
             obj.push_back(Pair("txids", transactions));
             ret.push_back(obj);
         }
-    }
+    } while (itAddrBook.Next());
 
     if (by_label) {
         for (const auto& entry : label_tally) {

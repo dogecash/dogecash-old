@@ -923,10 +923,13 @@ void WalletModel::listLockedCoins(std::vector<COutPoint>& vOutpts)
 void WalletModel::loadReceiveRequests(std::vector<std::string>& vReceiveRequests)
 {
     LOCK(wallet->cs_wallet);
-    for (const auto& item : wallet->mapAddressBook)
-        for (const PAIRTYPE(std::string, std::string) & item2 : item.second.destdata)
+    auto it = wallet->NewAddressBookIterator();
+    while(it.HasNext()) {
+        for (const PAIRTYPE(std::string, std::string) &item2 : it.GetValue().destdata)
             if (item2.first.size() > 2 && item2.first.substr(0, 2) == "rr") // receive request
                 vReceiveRequests.push_back(item2.second);
+        it.Next();
+    }
 }
 
 bool WalletModel::saveReceiveRequest(const std::string& sAddress, const int64_t nId, const std::string& sRequest)

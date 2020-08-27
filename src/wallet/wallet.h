@@ -247,19 +247,28 @@ struct CRecipient
 class CAddressBookIterator
 {
 public:
-    explicit CAddressBookIterator(std::map<CTxDestination, AddressBook::CAddressBookData>& _map) : map(_map), it(_map.begin()) {}
+    explicit CAddressBookIterator(std::map<CTxDestination, AddressBook::CAddressBookData>& _map) : map(_map), it(_map.begin()), itEnd(_map.end()) {}
     CTxDestination GetKey() { return it->first; }
     AddressBook::CAddressBookData GetValue() { return it->second; }
-    bool HasNext() { return it != map.end(); }
+    bool HasNext() { return it != itEnd; }
     bool Next() {
-        if (it == map.end()) return false;
+        if (!HasNext()) return false;
         it++;
         return true;
+    }
+
+    void SetFilter(CTxDestination& filter)
+    {
+        it = map.find(filter);
+        if (it != itEnd) {
+            itEnd = std::next(it);
+        }
     }
 
 private:
     std::map<CTxDestination, AddressBook::CAddressBookData>& map;
     std::map<CTxDestination, AddressBook::CAddressBookData>::iterator it;
+    std::map<CTxDestination, AddressBook::CAddressBookData>::iterator itEnd;
 };
 
 /**
