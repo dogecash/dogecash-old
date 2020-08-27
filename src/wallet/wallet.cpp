@@ -2986,7 +2986,7 @@ bool CWallet::SetAddressBook(const CTxDestination& address, const std::string& s
 bool CWallet::DelAddressBook(const CTxDestination& address, const CChainParams::Base58Type addrType)
 {
     std::string strAddress =  EncodeDestination(address, addrType);
-    std::string purpose = purposeForAddress(address);
+    std::string purpose = GetPurposeForAddressBookEntry(address);
     {
         LOCK(cs_wallet); // mapAddressBook
 
@@ -3007,16 +3007,11 @@ bool CWallet::DelAddressBook(const CTxDestination& address, const CChainParams::
     return CWalletDB(strWalletFile).EraseName(strAddress);
 }
 
-std::string CWallet::purposeForAddress(const CTxDestination& address) const
+std::string CWallet::GetPurposeForAddressBookEntry(const CTxDestination& address) const
 {
-    {
-        LOCK(cs_wallet);
-        auto mi = mapAddressBook.find(address);
-        if (mi != mapAddressBook.end()) {
-            return mi->second.purpose;
-        }
-    }
-    return "";
+    LOCK(cs_wallet);
+    auto it = mapAddressBook.find(address);
+    return it != mapAddressBook.end() ? it->second.purpose : "";
 }
 
 std::string CWallet::GetNameForAddressBookEntry(const CTxDestination& address) const

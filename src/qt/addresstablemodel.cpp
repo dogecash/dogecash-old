@@ -555,7 +555,7 @@ QString AddressTableModel::labelForAddress(const QString& address) const
  */
 std::string AddressTableModel::purposeForAddress(const std::string& address) const
 {
-    return wallet->purposeForAddress(DecodeDestination(address));
+    return wallet->GetPurposeForAddressBookEntry(DecodeDestination(address));
 }
 
 int AddressTableModel::lookupAddress(const QString& address) const
