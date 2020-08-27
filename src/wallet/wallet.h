@@ -637,6 +637,7 @@ public:
 
     std::string GetPurposeForAddressBookEntry(const CTxDestination& address) const;
     std::string GetNameForAddressBookEntry(const CTxDestination& address) const;
+    Optional<AddressBook::CAddressBookData> GetAddressBookEntry(const CTxDestination& address) const;
 
     const std::string& GetAccountName(const CScript& scriptPubKey) const;
 

@@ -241,9 +241,9 @@ UniValue getaddressinfo(const JSONRPCRequest& request)
     // DEPRECATED: The previous behavior of returning an array containing a JSON
     // object of `name` and `purpose` key/value pairs has been deprecated.
     UniValue labels(UniValue::VARR);
-    std::map<CTxDestination, AddressBook::CAddressBookData>::iterator mi = pwallet->mapAddressBook.find(dest);
-    if (mi != pwallet->mapAddressBook.end()) {
-        labels.push_back(AddressBookDataToJSON(mi->second, true));
+    auto addrBookData = pwallet->GetAddressBookEntry(dest);
+    if (addrBookData) {
+        labels.push_back(AddressBookDataToJSON(*addrBookData, true));
     }
     ret.pushKV("labels", std::move(labels));
 

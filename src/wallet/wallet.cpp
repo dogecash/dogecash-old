@@ -3021,6 +3021,13 @@ std::string CWallet::GetNameForAddressBookEntry(const CTxDestination& address) c
     return it != mapAddressBook.end() ? it->second.name : "";
 }
 
+Optional<AddressBook::CAddressBookData> CWallet::GetAddressBookEntry(const CTxDestination& dest) const
+{
+    LOCK(cs_wallet);
+    auto it = mapAddressBook.find(dest);
+    return it != mapAddressBook.end() ? Optional<AddressBook::CAddressBookData>(it->second) : nullopt;
+}
+
 const std::string& CWallet::GetAccountName(const CScript& scriptPubKey) const
 {
     CTxDestination address;
