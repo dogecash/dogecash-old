@@ -569,28 +569,27 @@ bool AddressTableModel::isWhitelisted(const std::string& address) const
 }
 
 /**
- * Return last created unused address --> TODO: complete "unused" and "last".. basically everything..
+ * Return an unused address
  * @return
  */
 QString AddressTableModel::getAddressToShow() const
 {
-    QString addressStr;
     LOCK(wallet->cs_wallet);
-    if (!wallet->mapAddressBook.empty()) {
-        for (auto it = wallet->mapAddressBook.rbegin(); it != wallet->mapAddressBook.rend(); ++it ) {
-            if (it->second.purpose == AddressBook::AddressBookPurpose::RECEIVE) {
-                const auto &address = it->first;
-                if (IsValidDestination(address) && IsMine(*wallet, address)) {
-                    addressStr = QString::fromStdString(EncodeDestination(address));
-                }
+
+    for (auto it = wallet->NewAddressBookIterator(); it.IsValid(); it.Next()) {
+        if (it.GetValue().purpose == AddressBook::AddressBookPurpose::RECEIVE) {
+            const auto &address = it.GetKey();
+            if (IsValidDestination(address) && IsMine(*wallet, address) && !wallet->IsUsed(address)) {
+                return QString::fromStdString(EncodeDestination(address));
             }
         }
-    } else {
-        // For some reason we don't have any address in our address book, let's create one
-        Destination newAddress;
-        if (walletModel->getNewAddress(newAddress, "Default").result) {
-            addressStr = QString::fromStdString(newAddress.ToString());
-        }
+    }
+
+    // For some reason we don't have any address in our address book, let's create one
+    QString addressStr;
+    Destination newAddress;
+    if (walletModel->getNewAddress(newAddress, "Default").result) {
+        addressStr = QString::fromStdString(newAddress.ToString());
     }
     return addressStr;
 }
