@@ -392,7 +392,7 @@ public:
         UniValue detail = boost::apply_visitor(DescribeAddressVisitor(mine), dest);
         ret.pushKVs(detail);
         if (pwalletMain && pwalletMain->HasAddressBook(dest))
-            ret.push_back(Pair("account", pwalletMain->mapAddressBook[dest].name));
+            ret.push_back(Pair("account", pwalletMain->GetNameForAddressBookEntry(dest)));
 #endif
         return ret;
     }
