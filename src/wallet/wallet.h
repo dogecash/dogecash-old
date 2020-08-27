@@ -316,6 +316,9 @@ private:
     // Zerocoin wallet
     CzPIVWallet* zwallet{nullptr};
 
+    //! Destination --> label/purpose mapping.
+    std::map<CTxDestination, AddressBook::CAddressBookData> mapAddressBook;
+
 public:
 
     static const CAmount DEFAULT_STAKE_SPLIT_THRESHOLD = 500 * COIN;
@@ -395,8 +398,6 @@ public:
     TxItems wtxOrdered;
 
     int64_t nOrderPosNext;
-
-    std::map<CTxDestination, AddressBook::CAddressBookData> mapAddressBook;
 
     std::set<COutPoint> setLockedCoins;
 
@@ -661,6 +662,7 @@ public:
     bool DelAddressBook(const CTxDestination& address, const CChainParams::Base58Type addrType = CChainParams::PUBKEY_ADDRESS);
     bool HasAddressBook(const CTxDestination& address) const;
     bool HasDelegator(const CTxOut& out) const;
+    int GetAddressBookSize() const { return mapAddressBook.size(); };
 
     CAddressBookIterator NewAddressBookIterator() { return CAddressBookIterator(mapAddressBook); }
     std::string GetPurposeForAddressBookEntry(const CTxDestination& address) const;
