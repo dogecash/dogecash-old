@@ -89,6 +89,7 @@ static const bool DEFAULT_DISABLE_WALLET = false;
 
 extern const char * DEFAULT_WALLET_DAT;
 
+class CAddressBookIterator;
 class CAccountingEntry;
 class CCoinControl;
 class COutput;
@@ -243,6 +244,23 @@ struct CRecipient
     {}
 };
 
+class CAddressBookIterator
+{
+public:
+    explicit CAddressBookIterator(std::map<CTxDestination, AddressBook::CAddressBookData>& _map) : map(_map), it(_map.begin()) {}
+    CTxDestination GetKey() { return it->first; }
+    AddressBook::CAddressBookData GetValue() { return it->second; }
+    bool HasNext() { return it != map.end(); }
+    bool Next() {
+        if (it == map.end()) return false;
+        it++;
+        return true;
+    }
+
+private:
+    std::map<CTxDestination, AddressBook::CAddressBookData>& map;
+    std::map<CTxDestination, AddressBook::CAddressBookData>::iterator it;
+};
 
 /**
  * A CWallet is an extension of a keystore, which also maintains a set of transactions and balances,
@@ -635,6 +653,7 @@ public:
     bool HasAddressBook(const CTxDestination& address) const;
     bool HasDelegator(const CTxOut& out) const;
 
+    CAddressBookIterator NewAddressBookIterator() { return CAddressBookIterator(mapAddressBook); }
     std::string GetPurposeForAddressBookEntry(const CTxDestination& address) const;
     std::string GetNameForAddressBookEntry(const CTxDestination& address) const;
     Optional<AddressBook::CAddressBookData> GetAddressBookEntry(const CTxDestination& address) const;
@@ -1046,7 +1065,6 @@ public:
         READWRITE(LIMITED_STRING(strComment, 65536));
     }
 };
-
 
 /**
  * DEPRECATED Account information.

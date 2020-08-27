@@ -289,14 +289,11 @@ bool WalletModel::validateAddress(const QString& address, bool fStaking)
 
 bool WalletModel::updateAddressBookLabels(const CTxDestination& dest, const std::string& strName, const std::string& strPurpose)
 {
-    LOCK(wallet->cs_wallet);
-
-    std::map<CTxDestination, AddressBook::CAddressBookData>::iterator mi = wallet->mapAddressBook.find(dest);
-
+    auto optAdd = pwalletMain->GetAddressBookEntry(dest);
     // Check if we have a new address or an updated label
-    if (mi == wallet->mapAddressBook.end()) {
+    if (!optAdd) {
         return wallet->SetAddressBook(dest, strName, strPurpose);
-    } else if (mi->second.name != strName) {
+    } else if (optAdd->name != strName) {
         return wallet->SetAddressBook(dest, strName, ""); // "" means don't change purpose
     }
     return false;
@@ -823,13 +820,7 @@ bool WalletModel::getKeyId(const CTxDestination& address, CKeyID& keyID)
 std::string WalletModel::getLabelForAddress(const CTxDestination& address)
 {
     std::string label = "";
-    {
-        LOCK(wallet->cs_wallet);
-        std::map<CTxDestination, AddressBook::CAddressBookData>::iterator mi = wallet->mapAddressBook.find(address);
-        if (mi != wallet->mapAddressBook.end()) {
-            label = mi->second.name;
-        }
-    }
+    label = wallet->GetNameForAddressBookEntry(address);
     return label;
 }
 
@@ -932,7 +923,7 @@ void WalletModel::listLockedCoins(std::vector<COutPoint>& vOutpts)
 void WalletModel::loadReceiveRequests(std::vector<std::string>& vReceiveRequests)
 {
     LOCK(wallet->cs_wallet);
-    for (const PAIRTYPE(CTxDestination, AddressBook::CAddressBookData) & item : wallet->mapAddressBook)
+    for (const auto& item : wallet->mapAddressBook)
         for (const PAIRTYPE(std::string, std::string) & item2 : item.second.destdata)
             if (item2.first.size() > 2 && item2.first.substr(0, 2) == "rr") // receive request
                 vReceiveRequests.push_back(item2.second);
