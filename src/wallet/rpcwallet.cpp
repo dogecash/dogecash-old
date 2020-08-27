@@ -205,7 +205,7 @@ UniValue getaddressinfo(const JSONRPCRequest& request)
     // Return label field if existing. Currently only one label can be
     // associated with an address, so the label should be equivalent to the
     // value of the name key/value pair in the labels array below.
-    if (pwallet->mapAddressBook.count(dest)) {
+    if (pwallet->HasAddressBook(dest)) {
         ret.pushKV("label", pwallet->mapAddressBook[dest].name);
         if (IsDeprecatedRPCEnabled("accounts")) {
             ret.pushKV("account", pwallet->mapAddressBook[dest].name);
@@ -2266,7 +2266,7 @@ UniValue listcoldutxos(const JSONRPCRequest& request)
             int nRequired;
             if (!ExtractDestinations(out.scriptPubKey, type, addresses, nRequired))
                 continue;
-            const bool fWhitelisted = pwalletMain->mapAddressBook.count(addresses[1]) > 0;
+            const bool fWhitelisted = pwalletMain->HasAddressBook(addresses[1]) > 0;
             if (fExcludeWhitelisted && fWhitelisted)
                 continue;
             UniValue entry(UniValue::VOBJ);
@@ -2312,7 +2312,7 @@ void ListTransactions(const CWalletTx& wtx, const std::string& strAccount, int n
             MaybePushAddress(entry, s.destination);
             entry.push_back(Pair("category", "send"));
             entry.push_back(Pair("amount", ValueFromAmount(-s.amount)));
-            if (pwalletMain->mapAddressBook.count(s.destination)) {
+            if (pwalletMain->HasAddressBook(s.destination)) {
                 entry.push_back(Pair("label", pwalletMain->mapAddressBook[s.destination].name));
             }
             entry.push_back(Pair("vout", s.vout));
@@ -2328,7 +2328,7 @@ void ListTransactions(const CWalletTx& wtx, const std::string& strAccount, int n
     if (listReceived.size() > 0 && depth >= nMinDepth) {
         for (const COutputEntry& r : listReceived) {
             std::string account;
-            if (pwalletMain->mapAddressBook.count(r.destination))
+            if (pwalletMain->HasAddressBook(r.destination))
                 account = pwalletMain->mapAddressBook[r.destination].name;
             if (fAllAccounts || (account == strAccount)) {
                 UniValue entry(UniValue::VOBJ);
@@ -2347,7 +2347,7 @@ void ListTransactions(const CWalletTx& wtx, const std::string& strAccount, int n
                     entry.push_back(Pair("category", "receive"));
                 }
                 entry.push_back(Pair("amount", ValueFromAmount(r.amount)));
-                if (pwalletMain->mapAddressBook.count(r.destination)) {
+                if (pwalletMain->HasAddressBook(r.destination)) {
                     entry.push_back(Pair("label", account));
                 }
                 entry.push_back(Pair("vout", r.vout));
@@ -2629,7 +2629,7 @@ UniValue listaccounts(const JSONRPCRequest& request)
             mapAccountBalances[strSentAccount] -= s.amount;
         if (nDepth >= nMinDepth) {
             for (const COutputEntry& r : listReceived)
-                if (pwalletMain->mapAddressBook.count(r.destination))
+                if (pwalletMain->HasAddressBook(r.destination))
                     mapAccountBalances[pwalletMain->mapAddressBook[r.destination].name] += r.amount;
                 else
                     mapAccountBalances[""] += r.amount;
@@ -3228,7 +3228,7 @@ UniValue listunspent(const JSONRPCRequest& request)
         CTxDestination address;
         if (ExtractDestination(out.tx->vout[out.i].scriptPubKey, address)) {
             entry.push_back(Pair("address", EncodeDestination(address)));
-            if (pwalletMain->mapAddressBook.count(address)) {
+            if (pwalletMain->HasAddressBook(address)) {
                 entry.push_back(Pair("label", pwalletMain->mapAddressBook[address].name));
                 if (IsDeprecatedRPCEnabled("accounts")) {
                     entry.push_back(Pair("account", pwalletMain->mapAddressBook[address].name));

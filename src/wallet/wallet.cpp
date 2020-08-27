@@ -1188,7 +1188,7 @@ bool CWallet::IsChange(const CTxOut& txout) const
             return true;
 
         LOCK(cs_wallet);
-        if (!mapAddressBook.count(address))
+        if (!HasAddressBook(address))
             return true;
     }
     return false;
@@ -3036,9 +3036,7 @@ const std::string& CWallet::GetAccountName(const CScript& scriptPubKey) const
 
 bool CWallet::HasAddressBook(const CTxDestination& address) const
 {
-    LOCK(cs_wallet); // mapAddressBook
-    std::map<CTxDestination, AddressBook::CAddressBookData>::const_iterator mi = mapAddressBook.find(address);
-    return mi != mapAddressBook.end();
+    return WITH_LOCK(cs_wallet, return mapAddressBook.count(address));
 }
 
 bool CWallet::HasDelegator(const CTxOut& out) const

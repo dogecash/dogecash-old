@@ -510,7 +510,7 @@ UniValue dumpwallet(const JSONRPCRequest& request)
                                                           CChainParams::PUBKEY_ADDRESS));
 
             file << strprintf("%s %s ", KeyIO::EncodeSecret(key), strTime);
-            if (pwalletMain->mapAddressBook.count(keyid)) {
+            if (pwalletMain->HasAddressBook(keyid)) {
                 auto entry = pwalletMain->mapAddressBook[keyid];
                 file << strprintf("label=%s", EncodeDumpString(entry.name));
             } else if (keyid == seed_id) {
