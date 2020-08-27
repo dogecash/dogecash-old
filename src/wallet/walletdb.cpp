@@ -510,11 +510,15 @@ bool ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue, CW
         if (strType == "name") {
             std::string strAddress;
             ssKey >> strAddress;
-            ssValue >> pwallet->mapAddressBook[DecodeDestination(strAddress)].name;
+            std::string strName;
+            ssValue >> strName;
+            pwallet->LoadAddressBookName(DecodeDestination(strAddress), strName);
         } else if (strType == "purpose") {
             std::string strAddress;
             ssKey >> strAddress;
-            ssValue >> pwallet->mapAddressBook[DecodeDestination(strAddress)].purpose;
+            std::string strPurpose;
+            ssValue >> strPurpose;
+            pwallet->LoadAddressBookPurpose(DecodeDestination(strAddress), strPurpose);
         } else if (strType == "tx") {
             uint256 hash;
             ssKey >> hash;

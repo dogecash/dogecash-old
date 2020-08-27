@@ -667,6 +667,9 @@ public:
     std::string GetNameForAddressBookEntry(const CTxDestination& address) const;
     Optional<AddressBook::CAddressBookData> GetAddressBookEntry(const CTxDestination& address) const;
 
+    void LoadAddressBookName(const CTxDestination& dest, const std::string& strName);
+    void LoadAddressBookPurpose(const CTxDestination& dest, const std::string& strPurpose);
+
     const std::string& GetAccountName(const CScript& scriptPubKey) const;
 
     bool UpdatedTransaction(const uint256& hashTx);

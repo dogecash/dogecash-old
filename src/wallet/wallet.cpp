@@ -3028,6 +3028,16 @@ Optional<AddressBook::CAddressBookData> CWallet::GetAddressBookEntry(const CTxDe
     return it != mapAddressBook.end() ? Optional<AddressBook::CAddressBookData>(it->second) : nullopt;
 }
 
+void CWallet::LoadAddressBookName(const CTxDestination& dest, const std::string& strName)
+{
+    mapAddressBook[dest].name = strName;
+}
+
+void CWallet::LoadAddressBookPurpose(const CTxDestination& dest, const std::string& strPurpose)
+{
+    mapAddressBook[dest].purpose = strPurpose;
+}
+
 const std::string& CWallet::GetAccountName(const CScript& scriptPubKey) const
 {
     CTxDestination address;
