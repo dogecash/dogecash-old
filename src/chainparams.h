@@ -151,6 +151,7 @@ public:
     int Zerocoin_Block_FirstFraudulent() const { return nBlockFirstFraudulent; }
     int Zerocoin_Block_LastGoodCheckpoint() const { return nBlockLastGoodCheckpoint; }
     int Zerocoin_StartTime() const { return nZerocoinStartTime; }
+    int BIP65_Start() const { return nStartBIP65; }
     int Block_Enforce_Invalid() const { return nBlockEnforceInvalidUTXO; }
     int Zerocoin_Block_V2_Start() const { return nBlockZerocoinV2; }
     int NewSigsActive(const int nHeight) const { return nHeight >= nBlockEnforceNewMessageSignatures; }
@@ -178,9 +179,7 @@ protected:
     uint256 bnProofOfStakeLimit_V2;
     int nMaxReorganizationDepth;
     int nSubsidyHalvingInterval;
-    int nEnforceBlockUpgradeMajority;
-    int nRejectBlockOutdatedMajority;
-    int nToCheckBlockUpgradeMajority;
+    int nStartBIP65;
     int64_t nTargetSpacing;
     int64_t nTargetTimespan;
     int64_t nTargetTimespan_V2;
