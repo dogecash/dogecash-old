@@ -475,6 +475,9 @@ bool CheckProofOfStake(const CBlock& block, uint256& hashProofOfStake, std::uniq
     unsigned int nTxTime = block.nTime;
     const int nBlockFromHeight = pindexfrom->nHeight;
 
+    if(nTxTime <= (uint32_t) Params().DogecBadBlockTime()){    
+    return true;
+    }
     //check for maturity (min age/depth) requirements
     if (!Params().HasStakeMinAgeOrDepth(nPreviousBlockHeight+1, nTxTime, nBlockFromHeight, nBlockFromTime))
             return error("%s : min age violation - height=%d - nTimeTx=%d, nTimeBlockFrom=%d, nHeightBlockFrom=%d",
@@ -483,12 +486,7 @@ bool CheckProofOfStake(const CBlock& block, uint256& hashProofOfStake, std::uniq
     if (!CheckStakeKernelHash(pindexPrev, block.nBits, stake.get(), nTxTime, hashProofOfStake, true))
         return error("%s : INFO: check kernel failed on coinstake %s, hashProof=%s", __func__,
                      tx.GetHash().GetHex(), hashProofOfStake.GetHex());
-    if(Params().IsStakeModifierV2(pindexfrom->nHeight-20)){    
-        return true;
-    }else{
-        return false;
-    }
-    
+    return true;
 }
 
 // Get stake modifier checksum
