@@ -90,7 +90,7 @@ public:
         mapNodeRows.clear();
         int row = 0;
         Q_FOREACH (const CNodeCombinedStats& stats, cachedNodeStats)
-            mapNodeRows.insert(std::pair<NodeId, int>(stats.nodeStats.nodeid, row++));
+            mapNodeRows.emplace(stats.nodeStats.nodeid, row++);
     }
 
     int size()

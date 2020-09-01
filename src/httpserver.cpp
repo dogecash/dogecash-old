@@ -326,8 +326,8 @@ static bool HTTPBindAddresses(struct evhttp* http)
 
     // Determine what addresses to bind to
     if (!mapArgs.count("-rpcallowip")) { // Default to loopback if not allowing external IPs
-        endpoints.push_back(std::make_pair("::1", defaultPort));
-        endpoints.push_back(std::make_pair("127.0.0.1", defaultPort));
+        endpoints.emplace_back("::1", defaultPort);
+        endpoints.emplace_back("127.0.0.1", defaultPort);
         if (mapArgs.count("-rpcbind")) {
             LogPrintf("WARNING: option -rpcbind was ignored because -rpcallowip was not specified, refusing to allow everyone to connect\n");
         }
@@ -337,11 +337,11 @@ static bool HTTPBindAddresses(struct evhttp* http)
             int port = defaultPort;
             std::string host;
             SplitHostPort(*i, port, host);
-            endpoints.push_back(std::make_pair(host, port));
+            endpoints.emplace_back(host, port);
         }
     } else { // No specific bind address specified, bind to any
-        endpoints.push_back(std::make_pair("::", defaultPort));
-        endpoints.push_back(std::make_pair("0.0.0.0", defaultPort));
+        endpoints.emplace_back("::", defaultPort);
+        endpoints.emplace_back("0.0.0.0", defaultPort);
     }
 
     // Bind addresses

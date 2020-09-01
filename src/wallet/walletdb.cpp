@@ -427,12 +427,12 @@ DBErrors CWalletDB::ReorderTransactions(CWallet* pwallet)
 
     for (std::map<uint256, CWalletTx>::iterator it = pwallet->mapWallet.begin(); it != pwallet->mapWallet.end(); ++it) {
         CWalletTx* wtx = &((*it).second);
-        txByTime.insert(std::make_pair(wtx->nTimeReceived, TxPair(wtx, (CAccountingEntry*)0)));
+        txByTime.emplace(wtx->nTimeReceived, TxPair(wtx, (CAccountingEntry*)0));
     }
     std::list<CAccountingEntry> acentries;
     ListAccountCreditDebit("", acentries);
     for (CAccountingEntry& entry : acentries) {
-        txByTime.insert(std::make_pair(entry.nTime, TxPair((CWalletTx*)0, &entry)));
+        txByTime.emplace(entry.nTime, TxPair((CWalletTx*)0, &entry));
     }
 
     int64_t& nOrderPosNext = pwallet->nOrderPosNext;
@@ -898,7 +898,7 @@ DBErrors CWalletDB::LoadWallet(CWallet* pwallet)
     pwallet->laccentries.clear();
     ListAccountCreditDebit("*", pwallet->laccentries);
     for (CAccountingEntry& entry : pwallet->laccentries) {
-        pwallet->wtxOrdered.insert(std::make_pair(entry.nOrderPos, CWallet::TxPair((CWalletTx*)0, &entry)));
+        pwallet->wtxOrdered.emplace(entry.nOrderPos, CWallet::TxPair((CWalletTx*)0, &entry));
     }
 
     return result;
@@ -1504,7 +1504,7 @@ std::map<uint256, std::vector<std::pair<uint256, uint32_t> > > CWalletDB::MapMin
         } else {
             std::vector<std::pair<uint256, uint32_t> > vPairs;
             vPairs.emplace_back(pMint);
-            mapPool.insert(std::make_pair(hashMasterSeed, vPairs));
+            mapPool.emplace(hashMasterSeed, vPairs);
         }
     }
 

@@ -115,7 +115,7 @@ void CMasternodeSync::AddedMasternodeList(const uint256& hash)
         }
     } else {
         lastMasternodeList = GetTime();
-        mapSeenSyncMNB.insert(std::make_pair(hash, 1));
+        mapSeenSyncMNB.emplace(hash, 1);
     }
 }
 
@@ -128,7 +128,7 @@ void CMasternodeSync::AddedMasternodeWinner(const uint256& hash)
         }
     } else {
         lastMasternodeWinner = GetTime();
-        mapSeenSyncMNW.insert(std::make_pair(hash, 1));
+        mapSeenSyncMNW.emplace(hash, 1);
     }
 }
 
@@ -144,7 +144,7 @@ void CMasternodeSync::AddedBudgetItem(const uint256& hash)
         }
     } else {
         lastBudgetItem = GetTime();
-        mapSeenSyncBudget.insert(std::make_pair(hash, 1));
+        mapSeenSyncBudget.emplace(hash, 1);
     }
 }
 

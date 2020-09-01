@@ -3973,7 +3973,7 @@ UniValue listzerocoinamounts(const JSONRPCRequest& request)
 
     std::map<libzerocoin::CoinDenomination, CAmount> spread;
     for (const auto& denom : libzerocoin::zerocoinDenomList)
-        spread.insert(std::pair<libzerocoin::CoinDenomination, CAmount>(denom, 0));
+        spread.emplace(denom, 0);
     for (auto& meta : setMints) spread.at(meta.denom)++;
 
 

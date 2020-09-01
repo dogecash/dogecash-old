@@ -206,7 +206,7 @@ bool RecalculatePIVSupply(int nHeightStart, bool fSkipZpiv)
     if (!fSkipZpiv) {
         // initialize supply to 0
         mapZerocoinSupply.clear();
-        for (auto& denom : libzerocoin::zerocoinDenomList) mapZerocoinSupply.insert(std::make_pair(denom, 0));
+        for (auto& denom : libzerocoin::zerocoinDenomList) mapZerocoinSupply.emplace(denom, 0);
     }
 
     uiInterface.ShowProgress(_("Recalculating PIV supply..."), 0);

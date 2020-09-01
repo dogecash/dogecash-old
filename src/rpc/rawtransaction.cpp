@@ -858,7 +858,7 @@ UniValue sendrawtransaction(const JSONRPCRequest& request)
     if (!fHaveMempool && !fHaveChain) {
         // push to local node and sync with wallets
         if (fSwiftX) {
-            mapTxLockReq.insert(std::make_pair(tx.GetHash(), tx));
+            mapTxLockReq.emplace(tx.GetHash(), tx);
             CreateNewLock(tx);
             g_connman->RelayTransactionLockReq(tx, true);
         }

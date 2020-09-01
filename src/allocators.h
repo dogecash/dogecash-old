@@ -57,7 +57,7 @@ public:
             if (it == histogram.end()) // Newly locked page
             {
                 locker.Lock(reinterpret_cast<void*>(page), page_size);
-                histogram.insert(std::make_pair(page, 1));
+                histogram.emplace(page, 1);
             } else // Page was already locked; increase counter
             {
                 it->second += 1;
