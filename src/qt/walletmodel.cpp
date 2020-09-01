@@ -330,7 +330,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
                 subtotal += out.amount();
                 const unsigned char* scriptStr = (const unsigned char*)out.script().data();
                 CScript scriptPubKey(scriptStr, scriptStr + out.script().size());
-                vecSend.push_back(CRecipient{scriptPubKey, static_cast<CAmount>(out.amount()), false});
+                vecSend.emplace_back(scriptPubKey, static_cast<CAmount>(out.amount()), false);
             }
             if (subtotal <= 0) {
                 return InvalidAmount;
@@ -370,7 +370,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
                 // Regular P2PK or P2PKH
                 scriptPubKey = GetScriptForDestination(out);
             }
-            vecSend.push_back(CRecipient{scriptPubKey, rcp.amount, false});
+            vecSend.emplace_back(scriptPubKey, rcp.amount, false);
 
             total += rcp.amount;
         }

@@ -1896,7 +1896,7 @@ UniValue sendmany(const JSONRPCRequest& request)
         CAmount nAmount = AmountFromValue(sendTo[name_]);
         totalAmount += nAmount;
 
-        vecSend.push_back(CRecipient{scriptPubKey, nAmount, false});
+        vecSend.emplace_back(scriptPubKey, nAmount, false);
     }
 
     isminefilter filter = ISMINE_SPENDABLE;
@@ -4283,7 +4283,7 @@ extern UniValue DoZpivSpend(const CAmount nAmount, std::vector<CZerocoinMint>& v
         address = DecodeDestination(address_str, isStaking);
         if(!IsValidDestination(address) || isStaking)
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
-        outputs.push_back(std::pair<CTxDestination, CAmount>(address, nAmount));
+        outputs.emplace_back(address, nAmount);
     }
 
     EnsureWalletIsUnlocked();

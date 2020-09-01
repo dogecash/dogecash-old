@@ -248,8 +248,8 @@ bool ExtractDestinations(const CScript& scriptPubKey, txnouttype& typeRet, std::
         if (vSolutions.size() < 2)
             return false;
         nRequiredRet = 2;
-        addressRet.push_back(CKeyID(uint160(vSolutions[0])));
-        addressRet.push_back(CKeyID(uint160(vSolutions[1])));
+        addressRet.emplace_back(uint160(vSolutions[0]));
+        addressRet.emplace_back(uint160(vSolutions[1]));
         return true;
 
     } else

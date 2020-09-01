@@ -2322,7 +2322,7 @@ bool CWallet::CreateBudgetFeeTX(CWalletTx& tx, const uint256& hash, CReserveKey&
     std::vector<CRecipient> vecSend;
     vecSend.emplace_back(scriptChange, (fFinalization ? BUDGET_FEE_TX : BUDGET_FEE_TX_OLD), false);
 
-    CCoinControl* coinControl = NULL;
+    CCoinControl* coinControl = nullptr;
     int nChangePosInOut = -1;
     bool success = CreateTransaction(vecSend, tx, keyChange, nFeeRet, nChangePosInOut, strFail, coinControl, ALL_COINS, true, false /*useIX*/, (CAmount)0);
     if (!success) {
@@ -2457,9 +2457,9 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend,
                         for (int i = 0; i < nSplitBlock; i++) {
                             if (i == nSplitBlock - 1) {
                                 uint64_t nRemainder = rec.nAmount % nSplitBlock;
-                                txNew.vout.push_back(CTxOut((rec.nAmount / nSplitBlock) + nRemainder, rec.scriptPubKey));
+                                txNew.vout.emplace_back((rec.nAmount / nSplitBlock) + nRemainder, rec.scriptPubKey);
                             } else
-                                txNew.vout.push_back(CTxOut(rec.nAmount / nSplitBlock, rec.scriptPubKey));
+                                txNew.vout.emplace_back(rec.nAmount / nSplitBlock, rec.scriptPubKey);
                         }
                     }
                 }
@@ -2567,7 +2567,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend,
 
                 // Fill vin
                 for (const PAIRTYPE(const CWalletTx*, unsigned int) & coin : setCoins)
-                    txNew.vin.push_back(CTxIn(coin.first->GetHash(), coin.second));
+                    txNew.vin.emplace_back(coin.first->GetHash(), coin.second);
 
                 // Sign
                 int nIn = 0;
@@ -2681,7 +2681,7 @@ bool CWallet::CreateCoinStake(
     // Mark coin stake transaction
     txNew.vin.clear();
     txNew.vout.clear();
-    txNew.vout.emplace_back(CTxOut(0, CScript()));
+    txNew.vout.emplace_back(0, CScript());
 
     // update staker status (hash)
     pStakerStatus->SetLastTip(pindexPrev);

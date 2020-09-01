@@ -324,7 +324,7 @@ bool CWallet::CreateZerocoinMintTransaction(const CAmount nValue,
 
     // Fill vin
     for (const std::pair<const CWalletTx*, unsigned int>& coin : setCoins)
-        txNew.vin.push_back(CTxIn(coin.first->GetHash(), coin.second));
+        txNew.vin.emplace_back(coin.first->GetHash(), coin.second);
 
 
     //any change that is less than 0.0100000 will be ignored and given as an extra fee

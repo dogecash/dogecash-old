@@ -101,19 +101,19 @@ bool static LookupIntern(const char* pszName, std::vector<CNetAddr>& vIP, unsign
     struct in_addr ipv4_addr;
 #ifdef HAVE_INET_PTON
     if (inet_pton(AF_INET, pszName, &ipv4_addr) > 0) {
-        vIP.push_back(CNetAddr(ipv4_addr));
+        vIP.emplace_back(ipv4_addr);
         return true;
     }
 
     struct in6_addr ipv6_addr;
     if (inet_pton(AF_INET6, pszName, &ipv6_addr) > 0) {
-        vIP.push_back(CNetAddr(ipv6_addr));
+        vIP.emplace_back(ipv6_addr);
         return true;
     }
 #else
     ipv4_addr.s_addr = inet_addr(pszName);
     if (ipv4_addr.s_addr != INADDR_NONE) {
-        vIP.push_back(CNetAddr(ipv4_addr));
+        vIP.emplace_back(ipv4_addr);
         return true;
     }
 #endif
@@ -163,12 +163,12 @@ bool static LookupIntern(const char* pszName, std::vector<CNetAddr>& vIP, unsign
     while (aiTrav != NULL && (nMaxSolutions == 0 || vIP.size() < nMaxSolutions)) {
         if (aiTrav->ai_family == AF_INET) {
             assert(aiTrav->ai_addrlen >= sizeof(sockaddr_in));
-            vIP.push_back(CNetAddr(((struct sockaddr_in*)(aiTrav->ai_addr))->sin_addr));
+            vIP.emplace_back(((struct sockaddr_in*)(aiTrav->ai_addr))->sin_addr);
         }
 
         if (aiTrav->ai_family == AF_INET6) {
             assert(aiTrav->ai_addrlen >= sizeof(sockaddr_in6));
-            vIP.push_back(CNetAddr(((struct sockaddr_in6*)(aiTrav->ai_addr))->sin6_addr));
+            vIP.emplace_back(((struct sockaddr_in6*)(aiTrav->ai_addr))->sin6_addr);
         }
 
         aiTrav = aiTrav->ai_next;
