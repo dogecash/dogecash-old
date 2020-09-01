@@ -100,6 +100,13 @@ struct AddedNodeInfo
     CService resolvedAddress;
     bool fConnected;
     bool fInbound;
+
+    AddedNodeInfo(const std::string& _strAddedNode, const CService& _resolvedAddress, bool _fConnected, bool _fInbound):
+        strAddedNode(_strAddedNode),
+        resolvedAddress(_resolvedAddress),
+        fConnected(_fConnected),
+        fInbound(_fInbound)
+    {}
 };
 
 class CTransaction;
