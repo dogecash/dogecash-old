@@ -1898,7 +1898,7 @@ void CWallet::GetAvailableP2CSCoins(std::vector<COutput>& vCoins) const {
                         bool isMineSpendable = mine & ISMINE_SPENDABLE_DELEGATED;
                         if (mine & ISMINE_COLD || isMineSpendable)
                             // Depth and solvability members are not used, no need waste resources and set them for now.
-                            vCoins.emplace_back(COutput(pcoin, i, 0, isMineSpendable, true));
+                            vCoins.emplace_back(pcoin, i, 0, isMineSpendable, true);
                     }
                 }
             }
@@ -2076,7 +2076,7 @@ bool CWallet::AvailableCoins(std::vector<COutput>* pCoins,      // --> populates
 
                 // found valid coin
                 if (!pCoins) return true;
-                pCoins->emplace_back(COutput(pcoin, i, nDepth, spendable, solvable));
+                pCoins->emplace_back(pcoin, i, nDepth, spendable, solvable);
             }
         }
         return (pCoins && pCoins->size() > 0);

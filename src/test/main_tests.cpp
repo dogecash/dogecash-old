@@ -55,14 +55,14 @@ CBlock CreateDummyBlockWithSignature(CKey stakingKey, BlockSignatureType type, b
     // Add dummy input
     txCoinStake.vin.emplace_back(input);
     // Empty first output
-    txCoinStake.vout.emplace_back(CTxOut(0, CScript()));
+    txCoinStake.vout.emplace_back(0, CScript());
     // P2PK staking output
     CScript scriptPubKey = GetScriptForType(stakingKey.GetPubKey(), type);
-    txCoinStake.vout.emplace_back(CTxOut(0, scriptPubKey));
+    txCoinStake.vout.emplace_back(0, scriptPubKey);
 
     // Now the block.
     CBlock block;
-    block.vtx.emplace_back(CTransaction()); // dummy first tx
+    block.vtx.emplace_back(); // dummy first tx
     block.vtx.emplace_back(txCoinStake);
     SignBlockWithKey(block, stakingKey);
 

@@ -98,7 +98,7 @@ bool CPivStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmoun
         scriptPubKey = scriptPubKeyKernel;
     }
 
-    vout.emplace_back(CTxOut(0, scriptPubKey));
+    vout.emplace_back(0, scriptPubKey);
 
     // Calculate if we need to split the output
     if (pwallet->nStakeSplitThreshold > 0) {
@@ -110,7 +110,7 @@ bool CPivStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmoun
                 nSplit = txSizeMax;
             for (int i = nSplit; i > 1; i--) {
                 LogPrintf("%s: StakeSplit: nTotal = %d; adding output %d of %d\n", __func__, nTotal, (nSplit-i)+2, nSplit);
-                vout.emplace_back(CTxOut(0, scriptPubKey));
+                vout.emplace_back(0, scriptPubKey);
             }
         }
     }
