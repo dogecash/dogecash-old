@@ -222,10 +222,13 @@ private:
     std::map<uint256, CFinalizedBudgetVote> mapSeenFinalizedBudgetVotes;
     std::map<uint256, CFinalizedBudgetVote> mapOrphanFinalizedBudgetVotes;
 
-    void SetSynced(bool synced);
-
     // Memory Only. Updated in NewBlock (blocks arrive in order)
     std::atomic<int> nBestHeight;
+
+    // Get block payee and amount for the finalized budget with highest vote count
+    bool GetPayeeAndAmount(int chainHeight, CScript& payeeRet, CAmount& nAmountRet) const;
+    // Marks synced all votes in proposals and finalized budgets
+    void SetSynced(bool synced);
 
 public:
     // critical sections to protect the inner data structures (must be locked in this order)
@@ -293,7 +296,7 @@ public:
     bool UpdateFinalizedBudget(CFinalizedBudgetVote& vote, CNode* pfrom, std::string& strError);
     TrxValidationStatus IsTransactionValid(const CTransaction& txNew, int nBlockHeight);
     std::string GetRequiredPaymentsString(int nBlockHeight);
-    void FillBlockPayee(CMutableTransaction& txNew, bool fProofOfStake);
+    void FillBlockPayee(CMutableTransaction& txNew, bool fProofOfStake) const;
 
     void CheckOrphanVotes();
     void Clear()
