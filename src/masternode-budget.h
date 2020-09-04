@@ -215,7 +215,7 @@ private:
     std::map<uint256, uint256> mapCollateralTxids;
 
     // keep track of the scanning errors I've seen
-    std::map<uint256, CBudgetProposal> mapProposals;
+    std::map<uint256, CBudgetProposal> mapProposals;                                // guarded by cs_proposals
     std::map<uint256, CFinalizedBudget> mapFinalizedBudgets;
 
     std::map<uint256, CBudgetProposalBroadcast> mapSeenMasternodeBudgetProposals;
@@ -231,8 +231,9 @@ private:
     std::atomic<int> nBestHeight;
 
 public:
-    // critical section to protect the inner data structures
+    // critical sections to protect the inner data structures (must be locked in this order)
     mutable RecursiveMutex cs;
+    mutable RecursiveMutex cs_proposals;
 
     CBudgetManager()
     {
@@ -301,9 +302,8 @@ public:
     void Clear()
     {
         LOCK(cs);
-
         LogPrintf("Budget object cleared\n");
-        mapProposals.clear();
+        WITH_LOCK(cs_proposals, mapProposals.clear(); );
         mapFinalizedBudgets.clear();
         mapSeenMasternodeBudgetProposals.clear();
         mapSeenMasternodeBudgetVotes.clear();
@@ -319,13 +319,17 @@ public:
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action)
     {
+        LOCK(cs);
         READWRITE(mapSeenMasternodeBudgetProposals);
         READWRITE(mapSeenMasternodeBudgetVotes);
         READWRITE(mapSeenFinalizedBudgets);
         READWRITE(mapSeenFinalizedBudgetVotes);
         READWRITE(mapOrphanMasternodeBudgetVotes);
         READWRITE(mapOrphanFinalizedBudgetVotes);
-        READWRITE(mapProposals);
+        {
+            LOCK(cs_proposals);
+            READWRITE(mapProposals);
+        }
         READWRITE(mapFinalizedBudgets);
     }
 };
@@ -368,8 +372,6 @@ public:
 class CFinalizedBudget
 {
 private:
-    // critical section to protect the inner data structures
-    mutable RecursiveMutex cs;
     bool fAutoChecked; //If it matches what we see, we'll auto vote for it (masternode only)
     bool fValid;
     std::string strInvalid;
@@ -499,8 +501,6 @@ public:
 class CBudgetProposal
 {
 private:
-    // critical section to protect the inner data structures
-    mutable RecursiveMutex cs;
     CAmount nAlloted;
     bool fValid;
     std::string strInvalid;

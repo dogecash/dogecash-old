@@ -113,7 +113,6 @@ void CBudgetManager::CheckOrphanVotes()
 {
     LOCK(cs);
 
-
     std::string strError = "";
     auto it1 = mapOrphanMasternodeBudgetVotes.begin();
     while (it1 != mapOrphanMasternodeBudgetVotes.end()) {
@@ -414,17 +413,19 @@ bool CBudgetManager::AddFinalizedBudget(CFinalizedBudget& finalizedBudget)
 
 bool CBudgetManager::AddProposal(CBudgetProposal& budgetProposal)
 {
-    LOCK(cs);
+    LOCK(cs_proposals);
     if (!budgetProposal.UpdateValid(GetBestHeight())) {
         LogPrint(BCLog::MNBUDGET,"%s: invalid budget proposal - %s\n", __func__, budgetProposal.IsInvalidReason());
         return false;
     }
 
-    if (mapProposals.count(budgetProposal.GetHash())) {
+    const uint256& hash = budgetProposal.GetHash();
+
+    if (mapProposals.count(hash)) {
         return false;
     }
 
-    mapProposals.emplace(budgetProposal.GetHash(), budgetProposal);
+    mapProposals.emplace(hash, budgetProposal);
     LogPrint(BCLog::MNBUDGET,"%s: proposal %s added\n", __func__, budgetProposal.GetName());
     return true;
 }
@@ -448,24 +449,28 @@ void CBudgetManager::CheckAndRemove()
         }
     }
 
-    LogPrint(BCLog::MNBUDGET, "%s: mapProposals cleanup - size before: %d\n", __func__, mapProposals.size());
-    for (auto& it: mapProposals) {
-        CBudgetProposal* pbudgetProposal = &(it.second);
-        if (!pbudgetProposal->UpdateValid(nCurrentHeight)) {
-            LogPrint(BCLog::MNBUDGET,"%s: Invalid budget proposal - %s\n", __func__, pbudgetProposal->IsInvalidReason());
-        } else {
-             LogPrint(BCLog::MNBUDGET,"%s: Found valid budget proposal: %s %s\n", __func__,
-                      pbudgetProposal->GetName(), pbudgetProposal->GetFeeTXHash().ToString());
-             tmpMapProposals.emplace(pbudgetProposal->GetHash(), *pbudgetProposal);
+    {
+        LOCK(cs_proposals);
+        LogPrint(BCLog::MNBUDGET, "%s: mapProposals cleanup - size before: %d\n", __func__, mapProposals.size());
+        for (auto& it: mapProposals) {
+            CBudgetProposal* pbudgetProposal = &(it.second);
+            if (!pbudgetProposal->UpdateValid(nCurrentHeight)) {
+                LogPrint(BCLog::MNBUDGET,"%s: Invalid budget proposal - %s\n", __func__, pbudgetProposal->IsInvalidReason());
+            } else {
+                 LogPrint(BCLog::MNBUDGET,"%s: Found valid budget proposal: %s %s\n", __func__,
+                          pbudgetProposal->GetName(), pbudgetProposal->GetFeeTXHash().ToString());
+                 tmpMapProposals.emplace(pbudgetProposal->GetHash(), *pbudgetProposal);
+            }
         }
+        // Remove invalid entries by overwriting complete map
+        mapProposals.swap(tmpMapProposals);
+        LogPrint(BCLog::MNBUDGET, "%s: mapProposals cleanup - size after: %d\n", __func__, mapProposals.size());
     }
 
     // Remove invalid entries by overwriting complete map
     mapFinalizedBudgets.swap(tmpMapFinalizedBudgets);
-    mapProposals.swap(tmpMapProposals);
 
     LogPrint(BCLog::MNBUDGET, "%s: mapFinalizedBudgets cleanup - size after: %d\n", __func__, mapFinalizedBudgets.size());
-    LogPrint(BCLog::MNBUDGET, "%s: mapProposals cleanup - size after: %d\n", __func__, mapProposals.size());
     LogPrint(BCLog::MNBUDGET,"%s: PASSED\n", __func__);
 
 }
@@ -540,6 +545,8 @@ CFinalizedBudget* CBudgetManager::FindFinalizedBudget(const uint256& nHash)
 
 const CBudgetProposal* CBudgetManager::FindProposalByName(const std::string& strProposalName) const
 {
+    LOCK(cs_proposals);
+
     int64_t nYesCountMax = std::numeric_limits<int64_t>::min();
     const CBudgetProposal* pbudgetProposal = nullptr;
 
@@ -557,7 +564,7 @@ const CBudgetProposal* CBudgetManager::FindProposalByName(const std::string& str
 
 CBudgetProposal* CBudgetManager::FindProposal(const uint256& nHash)
 {
-    LOCK(cs);
+    AssertLockHeld(cs_proposals);
 
     if (mapProposals.count(nHash))
         return &mapProposals[nHash];
@@ -672,7 +679,7 @@ TrxValidationStatus CBudgetManager::IsTransactionValid(const CTransaction& txNew
 
 std::vector<CBudgetProposal*> CBudgetManager::GetAllProposals()
 {
-    LOCK(cs);
+    LOCK(cs_proposals);
 
     std::vector<CBudgetProposal*> vBudgetProposalRet;
 
@@ -690,7 +697,7 @@ std::vector<CBudgetProposal*> CBudgetManager::GetAllProposals()
 //Need to review this function
 std::vector<CBudgetProposal*> CBudgetManager::GetBudget()
 {
-    LOCK(cs);
+    LOCK(cs_proposals);
 
     int nHeight = GetBestHeight();
     if (nHeight <= 0)
@@ -941,12 +948,14 @@ void CBudgetManager::NewBlock(int height)
             askedForSourceProposalOrBudget.erase(it++);
         }
     }
-
-    LogPrint(BCLog::MNBUDGET,"%s:  mapProposals cleanup - size: %d\n", __func__, mapProposals.size());
-    std::map<uint256, CBudgetProposal>::iterator it2 = mapProposals.begin();
-    while (it2 != mapProposals.end()) {
-        (*it2).second.CleanAndRemove();
-        ++it2;
+    {
+        LOCK(cs_proposals);
+        LogPrint(BCLog::MNBUDGET,"%s:  mapProposals cleanup - size: %d\n", __func__, mapProposals.size());
+        std::map<uint256, CBudgetProposal>::iterator it2 = mapProposals.begin();
+        while (it2 != mapProposals.end()) {
+            (*it2).second.CleanAndRemove();
+            ++it2;
+        }
     }
 
     LogPrint(BCLog::MNBUDGET,"%s:  mapFinalizedBudgets cleanup - size: %d\n", __func__, mapFinalizedBudgets.size());
@@ -1203,7 +1212,7 @@ void CBudgetManager::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
 
 void CBudgetManager::SetSynced(bool synced)
 {
-    LOCK(cs);
+    LOCK2(cs, cs_proposals);
 
     for (const auto& it: mapSeenMasternodeBudgetProposals) {
         CBudgetProposal* pbudgetProposal = FindProposal(it.first);
@@ -1224,7 +1233,7 @@ void CBudgetManager::SetSynced(bool synced)
 
 void CBudgetManager::Sync(CNode* pfrom, const uint256& nProp, bool fPartial)
 {
-    LOCK(cs);
+    LOCK2(cs, cs_proposals);
 
     /*
         Sync with a client on the network
@@ -1266,7 +1275,7 @@ void CBudgetManager::Sync(CNode* pfrom, const uint256& nProp, bool fPartial)
 
 bool CBudgetManager::UpdateProposal(const CBudgetVote& vote, CNode* pfrom, std::string& strError)
 {
-    LOCK(cs);
+    LOCK(cs_proposals);
 
     const uint256& nProposalHash = vote.GetProposalHash();
     if (!mapProposals.count(nProposalHash)) {
@@ -1360,7 +1369,6 @@ CBudgetProposal::CBudgetProposal(const CBudgetProposal& other)
 
 void CBudgetProposal::SyncVotes(CNode* pfrom, bool fPartial, int& nInvCount) const
 {
-    LOCK(cs);
     for (const auto& it: mapVotes) {
         const CBudgetVote& vote = it.second;
         if (vote.IsValid() && (!fPartial || !vote.IsSynced())) {
@@ -1477,8 +1485,6 @@ bool CBudgetProposal::IsPassing(int nBlockStartBudget, int nBlockEndBudget, int 
 bool CBudgetProposal::AddOrUpdateVote(const CBudgetVote& vote, std::string& strError)
 {
     std::string strAction = "New vote inserted:";
-    LOCK(cs);
-
     const uint256& hash = vote.GetVin().prevout.GetHash();
     const int64_t voteTime = vote.GetTime();
 
@@ -1512,7 +1518,6 @@ bool CBudgetProposal::AddOrUpdateVote(const CBudgetVote& vote, std::string& strE
 
 UniValue CBudgetProposal::GetVotesArray() const
 {
-    LOCK(cs);
     UniValue ret(UniValue::VARR);
     for (const auto& it: mapVotes) {
         ret.push_back(it.second.ToJSON());
@@ -1522,7 +1527,6 @@ UniValue CBudgetProposal::GetVotesArray() const
 
 void CBudgetProposal::SetSynced(bool synced)
 {
-    LOCK(cs);
     for (auto& it: mapVotes) {
         CBudgetVote& vote = it.second;
         if (synced) {
@@ -1557,7 +1561,6 @@ double CBudgetProposal::GetRatio() const
 
 int CBudgetProposal::GetVoteCount(CBudgetVote::VoteDirection vd) const
 {
-    LOCK(cs);
     int ret = 0;
     for (const auto& it : mapVotes) {
         const CBudgetVote& vote = it.second;
@@ -1723,8 +1726,6 @@ CFinalizedBudget::CFinalizedBudget(const CFinalizedBudget& other) :
 
 bool CFinalizedBudget::AddOrUpdateVote(const CFinalizedBudgetVote& vote, std::string& strError)
 {
-    LOCK(cs);
-
     const uint256& hash = vote.GetVin().prevout.GetHash();
     const int64_t voteTime = vote.GetTime();
     std::string strAction = "New vote inserted:";
@@ -1759,7 +1760,6 @@ bool CFinalizedBudget::AddOrUpdateVote(const CFinalizedBudgetVote& vote, std::st
 
 UniValue CFinalizedBudget::GetVotesObject() const
 {
-    LOCK(cs);
     UniValue ret(UniValue::VOBJ);
     for (const auto& it: mapVotes) {
         const CFinalizedBudgetVote& vote = it.second;
@@ -1770,7 +1770,6 @@ UniValue CFinalizedBudget::GetVotesObject() const
 
 void CFinalizedBudget::SetSynced(bool synced)
 {
-    LOCK(cs);
     for (auto& it: mapVotes) {
         CFinalizedBudgetVote& vote = it.second;
         if (synced) {
@@ -1813,7 +1812,6 @@ void CFinalizedBudget::CheckAndVote()
 
     if (strBudgetMode == "auto") //only vote for exact matches
     {
-        LOCK(cs);
         std::vector<CBudgetProposal*> vBudgetProposals = budget.GetBudget();
 
         // We have to resort the proposals by hash (they are sorted by votes here) and sort the payments
@@ -1908,9 +1906,9 @@ CAmount CFinalizedBudget::GetTotalPayout() const
 
 std::string CFinalizedBudget::GetProposals()
 {
-    LOCK(cs);
-    std::string ret = "";
+    LOCK(budget.cs_proposals);
 
+    std::string ret = "";
     for (CTxBudgetPayment& budgetPayment : vecBudgetPayments) {
         CBudgetProposal* pbudgetProposal = budget.FindProposal(budgetPayment.nProposalHash);
 
@@ -1928,6 +1926,8 @@ std::string CFinalizedBudget::GetProposals()
 
 std::string CFinalizedBudget::GetStatus() const
 {
+    LOCK(budget.cs_proposals);
+
     std::string retBadHashes = "";
     std::string retBadPayeeOrAmount = "";
 
@@ -1963,7 +1963,6 @@ std::string CFinalizedBudget::GetStatus() const
 
 void CFinalizedBudget::SyncVotes(CNode* pfrom, bool fPartial, int& nInvCount) const
 {
-    LOCK(cs);
     for (const auto& it: mapVotes) {
         const CFinalizedBudgetVote& vote = it.second;
         if (vote.IsValid() && (!fPartial || !vote.IsSynced())) {
@@ -2127,8 +2126,6 @@ TrxValidationStatus CFinalizedBudget::IsTransactionValid(const CTransaction& txN
 
 bool CFinalizedBudget::GetBudgetPaymentByBlock(int64_t nBlockHeight, CTxBudgetPayment& payment) const
 {
-    LOCK(cs);
-
     int i = nBlockHeight - GetBlockStart();
     if (i < 0) return false;
     if (i > (int)vecBudgetPayments.size() - 1) return false;
@@ -2138,8 +2135,6 @@ bool CFinalizedBudget::GetBudgetPaymentByBlock(int64_t nBlockHeight, CTxBudgetPa
 
 bool CFinalizedBudget::GetPayeeAndAmount(int64_t nBlockHeight, CScript& payee, CAmount& nAmount) const
 {
-    LOCK(cs);
-
     int i = nBlockHeight - GetBlockStart();
     if (i < 0) return false;
     if (i > (int)vecBudgetPayments.size() - 1) return false;
