@@ -599,7 +599,6 @@ bool CBudgetManager::IsBudgetPaymentBlock(int nBlockHeight) const
 
 TrxValidationStatus CBudgetManager::IsTransactionValid(const CTransaction& txNew, int nBlockHeight) const
 {
-    TrxValidationStatus transactionStatus = TrxValidationStatus::InValid;
     int nHighestCount = 0, nFivePercent = 0;
     if (!IsBudgetPaymentBlock(nBlockHeight, nHighestCount, nFivePercent)) {
         // If budget doesn't have 5% of the network votes, then we should pay a masternode instead
@@ -608,35 +607,27 @@ TrxValidationStatus CBudgetManager::IsTransactionValid(const CTransaction& txNew
 
     // check the highest finalized budgets (+/- 10% to assist in consensus)
     bool fThreshold = false;
+    int nCountThreshold = nHighestCount - 2 * nFivePercent;
     {
         LOCK(cs_budgets);
-        int nCountThreshold = nHighestCount - 2 * nFivePercent;
-
         for (const auto& it: mapFinalizedBudgets) {
-            const CFinalizedBudget* pfinalizedBudget = &(it.second);
-            LogPrint(BCLog::MNBUDGET,"%s: checking budget (%s) with blockstart %lli, blockend %lli, nBlockHeight %lli, votes %lli, nCountThreshold %lli\n",
-                    __func__, pfinalizedBudget->GetProposals(), pfinalizedBudget->GetBlockStart(), pfinalizedBudget->GetBlockEnd(),
-                    nBlockHeight, pfinalizedBudget->GetVoteCount(), nCountThreshold);
-            if (pfinalizedBudget->GetVoteCount() > nCountThreshold) {
+            const CFinalizedBudget* pfb = &(it.second);
+            const int nVoteCount = pfb->GetVoteCount();
+            LogPrint(BCLog::MNBUDGET,"%s: checking (%s): votes %d (threshold %d)\n", __func__, pfb->GetProposals(), nVoteCount, nCountThreshold);
+            if (nVoteCount > nCountThreshold) {
                 fThreshold = true;
-                if (nBlockHeight >= pfinalizedBudget->GetBlockStart() &&
-                        nBlockHeight <= pfinalizedBudget->GetBlockEnd() &&
-                        pfinalizedBudget->IsTransactionValid(txNew, nBlockHeight) == TrxValidationStatus::Valid) {
+                if (pfb->IsTransactionValid(txNew, nBlockHeight) == TrxValidationStatus::Valid) {
                     return TrxValidationStatus::Valid;
-                } else {
-                    LogPrint(BCLog::MNBUDGET, "%s: ignoring budget. Out of range or tx not valid.\n", __func__);
                 }
+                // tx not valid. keep looking.
+                LogPrint(BCLog::MNBUDGET, "%s: ignoring budget. Out of range or tx not valid.\n", __func__);
             }
         }
     }
 
-    // If not enough masternodes autovoted for any of the finalized budgets pay a masternode instead
-    if(!fThreshold) {
-        transactionStatus = TrxValidationStatus::VoteThreshold;
-    }
-
-    // We looked through all of the known budgets
-    return transactionStatus;
+    // If not enough masternodes autovoted for any of the finalized budgets or if none of the txs
+    // are valid, we should pay a masternode instead
+    return fThreshold ? TrxValidationStatus::InValid : TrxValidationStatus::VoteThreshold;
 }
 
 std::vector<CBudgetProposal*> CBudgetManager::GetAllProposals()
@@ -2045,54 +2036,53 @@ bool CFinalizedBudget::IsPaidAlready(uint256 nProposalHash, int nBlockHeight) co
 
 TrxValidationStatus CFinalizedBudget::IsTransactionValid(const CTransaction& txNew, int nBlockHeight) const
 {
-    TrxValidationStatus transactionStatus = TrxValidationStatus::InValid;
-    int nCurrentBudgetPayment = nBlockHeight - GetBlockStart();
-    if (nCurrentBudgetPayment < 0) {
-        LogPrint(BCLog::MNBUDGET,"%s: Invalid block - height: %d start: %d\n", __func__, nBlockHeight, GetBlockStart());
+    const int nBlockEnd = GetBlockEnd();
+    if (nBlockHeight > nBlockEnd) {
+        LogPrint(BCLog::MNBUDGET,"%s: Invalid block - height: %d end: %d\n", __func__, nBlockHeight, nBlockEnd);
+        return TrxValidationStatus::InValid;
+    }
+    if (nBlockHeight < nBlockStart) {
+        LogPrint(BCLog::MNBUDGET,"%s: Invalid block - height: %d start: %d\n", __func__, nBlockHeight, nBlockStart);
         return TrxValidationStatus::InValid;
     }
 
+    const int nCurrentBudgetPayment = nBlockHeight - nBlockStart;
     if (nCurrentBudgetPayment > (int)vecBudgetPayments.size() - 1) {
         LogPrint(BCLog::MNBUDGET,"%s: Invalid last block - current budget payment: %d of %d\n",
                 __func__, nCurrentBudgetPayment + 1, (int)vecBudgetPayments.size());
         return TrxValidationStatus::InValid;
     }
 
-    bool paid = false;
+    // Check if this proposal was paid already. If so, pay a masternode instead
+    if(IsPaidAlready(vecBudgetPayments[nCurrentBudgetPayment].nProposalHash, nBlockHeight)) {
+        LogPrint(BCLog::MNBUDGET,"%s: Double Budget Payment of %d for proposal %d detected. Paying a masternode instead.\n",
+                __func__, vecBudgetPayments[nCurrentBudgetPayment].nAmount, vecBudgetPayments[nCurrentBudgetPayment].nProposalHash.GetHex());
+        // No matter what we've found before, stop all checks here. In future releases there might be more than one budget payment
+        // per block, so even if the first one was not paid yet this one disables all budget payments for this block.
+        return TrxValidationStatus::DoublePayment;
+    }
 
-    for (const CTxOut& out : txNew.vout) {
+    // Search the payment
+    const CScript& scriptExpected = vecBudgetPayments[nCurrentBudgetPayment].payee;
+    const CAmount& amountExpected = vecBudgetPayments[nCurrentBudgetPayment].nAmount;
+    // Budget payment is usually the last output of coinstake txes, iterate backwords
+    for (auto out = txNew.vout.rbegin(); out != txNew.vout.rend(); ++out) {
         LogPrint(BCLog::MNBUDGET,"%s: nCurrentBudgetPayment=%d, payee=%s == out.scriptPubKey=%s, amount=%ld == out.nValue=%ld\n",
-                __func__, nCurrentBudgetPayment, HexStr(vecBudgetPayments[nCurrentBudgetPayment].payee), HexStr(out.scriptPubKey),
-                vecBudgetPayments[nCurrentBudgetPayment].nAmount, out.nValue);
-
-        if (vecBudgetPayments[nCurrentBudgetPayment].payee == out.scriptPubKey && vecBudgetPayments[nCurrentBudgetPayment].nAmount == out.nValue) {
-            // Check if this proposal was paid already. If so, pay a masternode instead
-            paid = IsPaidAlready(vecBudgetPayments[nCurrentBudgetPayment].nProposalHash, nBlockHeight);
-            if(paid) {
-                LogPrint(BCLog::MNBUDGET,"%s: Double Budget Payment of %d for proposal %d detected. Paying a masternode instead.\n",
-                        __func__, vecBudgetPayments[nCurrentBudgetPayment].nAmount, vecBudgetPayments[nCurrentBudgetPayment].nProposalHash.GetHex());
-                // No matter what we've found before, stop all checks here. In future releases there might be more than one budget payment
-                // per block, so even if the first one was not paid yet this one disables all budget payments for this block.
-                transactionStatus = TrxValidationStatus::DoublePayment;
-                break;
-            }
-            else {
-                transactionStatus = TrxValidationStatus::Valid;
-                LogPrint(BCLog::MNBUDGET,"%s: Found valid Budget Payment of %d for proposal %d\n", __func__,
-                          vecBudgetPayments[nCurrentBudgetPayment].nAmount, vecBudgetPayments[nCurrentBudgetPayment].nProposalHash.GetHex());
-            }
+                __func__, nCurrentBudgetPayment, HexStr(scriptExpected), HexStr(out->scriptPubKey), amountExpected, out->nValue);
+        if (scriptExpected == out->scriptPubKey && amountExpected == out->nValue) {
+            // payment found
+            LogPrint(BCLog::MNBUDGET,"%s: Found valid Budget Payment of %d for proposal %d\n",
+                    __func__, amountExpected, vecBudgetPayments[nCurrentBudgetPayment].nProposalHash.GetHex());
+            return TrxValidationStatus::Valid;
         }
     }
 
-    if (transactionStatus == TrxValidationStatus::InValid) {
-        CTxDestination address1;
-        ExtractDestination(vecBudgetPayments[nCurrentBudgetPayment].payee, address1);
-
-        LogPrint(BCLog::MNBUDGET,"%s: Missing required payment - %s: %d c: %d\n", __func__,
-                  EncodeDestination(address1), vecBudgetPayments[nCurrentBudgetPayment].nAmount, nCurrentBudgetPayment);
-    }
-
-    return transactionStatus;
+    // payment not found
+    CTxDestination address1;
+    ExtractDestination(scriptExpected, address1);
+    LogPrint(BCLog::MNBUDGET,"%s: Missing required payment - %s: %d c: %d\n",
+            __func__, EncodeDestination(address1), amountExpected, nCurrentBudgetPayment);
+    return TrxValidationStatus::InValid;
 }
 
 bool CFinalizedBudget::GetBudgetPaymentByBlock(int64_t nBlockHeight, CTxBudgetPayment& payment) const
