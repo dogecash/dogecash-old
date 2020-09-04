@@ -18,9 +18,6 @@
 #include <atomic>
 #include <univalue.h>
 
-
-extern RecursiveMutex cs_budget;
-
 class CBudgetManager;
 class CFinalizedBudgetBroadcast;
 class CFinalizedBudget;

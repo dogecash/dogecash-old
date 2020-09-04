@@ -18,7 +18,6 @@
 
 
 CBudgetManager budget;
-RecursiveMutex cs_budget;
 
 std::map<uint256, int64_t> askedForSourceProposalOrBudget;
 std::vector<CBudgetProposalBroadcast> vecImmatureBudgetProposals;
@@ -1027,8 +1026,6 @@ void CBudgetManager::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
     if (!masternodeSync.IsBlockchainSynced()) return;
 
     int nCurrentHeight = GetBestHeight();
-
-    LOCK(cs_budget);
 
     if (strCommand == NetMsgType::BUDGETVOTESYNC) { //Masternode vote sync
         uint256 nProp;
