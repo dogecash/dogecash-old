@@ -225,7 +225,9 @@ private:
     // Memory Only. Updated in NewBlock (blocks arrive in order)
     std::atomic<int> nBestHeight;
 
-    // Get block payee and amount for the finalized budget with highest vote count
+    // Returns a const pointer to the budget with highest vote count
+    const CFinalizedBudget* GetBudgetWithHighestVoteCount(int chainHeight) const;
+    // Get the payee and amount for the budget with the highest vote count
     bool GetPayeeAndAmount(int chainHeight, CScript& payeeRet, CAmount& nAmountRet) const;
     // Marks synced all votes in proposals and finalized budgets
     void SetSynced(bool synced);
