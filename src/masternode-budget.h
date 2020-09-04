@@ -213,7 +213,7 @@ private:
 
     // keep track of the scanning errors I've seen
     std::map<uint256, CBudgetProposal> mapProposals;                                // guarded by cs_proposals
-    std::map<uint256, CFinalizedBudget> mapFinalizedBudgets;
+    std::map<uint256, CFinalizedBudget> mapFinalizedBudgets;                        // guarded by cs_budgets
 
     std::map<uint256, CBudgetProposalBroadcast> mapSeenMasternodeBudgetProposals;
     std::map<uint256, CBudgetVote> mapSeenMasternodeBudgetVotes;
@@ -234,9 +234,11 @@ public:
     // critical sections to protect the inner data structures (must be locked in this order)
     mutable RecursiveMutex cs;
     mutable RecursiveMutex cs_proposals;
+    mutable RecursiveMutex cs_budgets;
 
     CBudgetManager()
     {
+        LOCK2(cs_proposals, cs_budgets);
         mapProposals.clear();
         mapFinalizedBudgets.clear();
     }
@@ -304,7 +306,7 @@ public:
         LOCK(cs);
         LogPrintf("Budget object cleared\n");
         WITH_LOCK(cs_proposals, mapProposals.clear(); );
-        mapFinalizedBudgets.clear();
+        WITH_LOCK(cs_budgets, mapFinalizedBudgets.clear(); );
         mapSeenMasternodeBudgetProposals.clear();
         mapSeenMasternodeBudgetVotes.clear();
         mapSeenFinalizedBudgets.clear();
@@ -326,11 +328,8 @@ public:
         READWRITE(mapSeenFinalizedBudgetVotes);
         READWRITE(mapOrphanMasternodeBudgetVotes);
         READWRITE(mapOrphanFinalizedBudgetVotes);
-        {
-            LOCK(cs_proposals);
-            READWRITE(mapProposals);
-        }
-        READWRITE(mapFinalizedBudgets);
+        WITH_LOCK(cs_proposals, READWRITE(mapProposals); );
+        WITH_LOCK(cs_budgets, READWRITE(mapFinalizedBudgets); );
     }
 };
 

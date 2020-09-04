@@ -877,6 +877,7 @@ UniValue mnfinalbudget(const JSONRPCRequest& request)
         if (request.params.size() != 2)
             throw std::runtime_error("Correct usage is 'mnbudget getvotes budget-hash'");
 
+        LOCK(budget.cs_budgets);
         std::string strHash = request.params[1].get_str();
         uint256 hash(uint256S(strHash));
         CFinalizedBudget* pfinalBudget = budget.FindFinalizedBudget(hash);
