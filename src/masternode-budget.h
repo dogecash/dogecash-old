@@ -227,6 +227,7 @@ private:
 
     // Returns a const pointer to the budget with highest vote count
     const CFinalizedBudget* GetBudgetWithHighestVoteCount(int chainHeight) const;
+    int GetHighestVoteCount(int chainHeight) const;
     // Get the payee and amount for the budget with the highest vote count
     bool GetPayeeAndAmount(int chainHeight, CScript& payeeRet, CAmount& nAmountRet) const;
     // Marks synced all votes in proposals and finalized budgets
@@ -288,14 +289,15 @@ public:
     std::vector<CBudgetProposal*> GetBudget();
     std::vector<CBudgetProposal*> GetAllProposals();
     std::vector<CFinalizedBudget*> GetFinalizedBudgets();
-    bool IsBudgetPaymentBlock(int nBlockHeight);
+    bool IsBudgetPaymentBlock(int nBlockHeight) const;
+    bool IsBudgetPaymentBlock(int nBlockHeight, int& nHighestCount, int& nFivePercent) const;
     bool AddProposal(CBudgetProposal& budgetProposal);
     bool AddFinalizedBudget(CFinalizedBudget& finalizedBudget);
     void SubmitFinalBudget();
 
     bool UpdateProposal(const CBudgetVote& vote, CNode* pfrom, std::string& strError);
     bool UpdateFinalizedBudget(CFinalizedBudgetVote& vote, CNode* pfrom, std::string& strError);
-    TrxValidationStatus IsTransactionValid(const CTransaction& txNew, int nBlockHeight);
+    TrxValidationStatus IsTransactionValid(const CTransaction& txNew, int nBlockHeight) const;
     std::string GetRequiredPaymentsString(int nBlockHeight);
     void FillBlockPayee(CMutableTransaction& txNew, bool fProofOfStake) const;
 
@@ -401,7 +403,7 @@ public:
     std::string IsInvalidReason() const { return strInvalid; }
 
     std::string GetName() const { return strBudgetName; }
-    std::string GetProposals();
+    std::string GetProposals() const;
     int GetBlockStart() const { return nBlockStart; }
     int GetBlockEnd() const { return nBlockStart + (int)(vecBudgetPayments.size() - 1); }
     const uint256& GetFeeTXHash() const { return nFeeTXHash;  }
