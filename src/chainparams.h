@@ -54,9 +54,6 @@ public:
     const uint256& ProofOfStakeLimit(const bool fV2) const { return fV2 ? bnProofOfStakeLimit_V2 : bnProofOfStakeLimit; }
     int SubsidyHalvingInterval() const { return nSubsidyHalvingInterval; }
     /** Used to check majorities for block version upgrade */
-    int EnforceBlockUpgradeMajority() const { return nEnforceBlockUpgradeMajority; }
-    int RejectBlockOutdatedMajority() const { return nRejectBlockOutdatedMajority; }
-    int ToCheckBlockUpgradeMajority() const { return nToCheckBlockUpgradeMajority; }
     int MaxReorganizationDepth() const { return nMaxReorganizationDepth; }
 
     /** Used if GenerateBitcoins is called with a negative number of threads */
@@ -269,9 +266,6 @@ class CModifiableParams
 public:
     //! Published setters to allow changing values in unit test cases
     virtual void setSubsidyHalvingInterval(int anSubsidyHalvingInterval) = 0;
-    virtual void setEnforceBlockUpgradeMajority(int anEnforceBlockUpgradeMajority) = 0;
-    virtual void setRejectBlockOutdatedMajority(int anRejectBlockOutdatedMajority) = 0;
-    virtual void setToCheckBlockUpgradeMajority(int anToCheckBlockUpgradeMajority) = 0;
     virtual void setDefaultConsistencyChecks(bool aDefaultConsistencyChecks) = 0;
     virtual void setAllowMinDifficultyBlocks(bool aAllowMinDifficultyBlocks) = 0;
     virtual void setSkipProofOfWorkCheck(bool aSkipProofOfWorkCheck) = 0;

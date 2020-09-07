@@ -823,7 +823,7 @@ UniValue verifychain(const UniValue& params, bool fHelp)
 }
 
 /** Implementation of IsSuperMajority with better feedback */
-static UniValue SoftForkMajorityDesc(int version, CBlockIndex* pindex, const Consensus::Params& consensusParams)
+static UniValue SoftForkMajorityDesc(int version, CBlockIndex* pindex, const int consensusParams)
 {
     UniValue rv(UniValue::VOBJ);
     bool activated = false;
@@ -840,10 +840,10 @@ static UniValue SoftForkMajorityDesc(int version, CBlockIndex* pindex, const Con
         activated = pindex->nHeight >= Params().BIP65_Start();
         break;
     case 6:
-        activated = pindex->nHeight >= Params().IsStakeModifierV2();
+        activated = pindex->nHeight >= Params().IsStakeModifierV2(pindex->nHeight);
         break;
     case 7:
-        activated = pindex->nHeight >= Params().IsTimeProtocolV2();
+        activated = pindex->nHeight >= Params().IsTimeProtocolV2(pindex->nHeight);
         break;
     }
     rv.push_back(Pair("status", activated));
@@ -854,8 +854,8 @@ static UniValue SoftForkDesc(const std::string &name, int version, CBlockIndex* 
     UniValue rv(UniValue::VOBJ);
     rv.push_back(Pair("id", name));
     rv.push_back(Pair("version", version));
-    rv.push_back(Pair("enforce", SoftForkMajorityDesc(version, pindex, Params().EnforceBlockUpgradeMajority())));
-    rv.push_back(Pair("reject", SoftForkMajorityDesc(version, pindex, Params().RejectBlockOutdatedMajority())));
+    rv.push_back(Pair("enforce", SoftForkMajorityDesc(version, pindex, Params().BIP65_Start())));
+    rv.push_back(Pair("reject", SoftForkMajorityDesc(version, pindex, Params().BIP65_Start())));
     return rv;
 }
 

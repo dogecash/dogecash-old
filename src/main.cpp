@@ -1526,8 +1526,8 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
                          hash.ToString(),
                          nFees, ::minRelayTxFee.GetFee(nSize) * 10000);
         }
-
-        bool fCLTVIsActive = chainHeight >= Params.BIP65_Start();
+        const int chainHeight = chainActive.Height();
+        bool fCLTVIsActive = (chainHeight >= Params().BIP65_Start()) ? true : false;
 
         // Check against previous transactions
         // This is done last to help prevent CPU exhaustion denial-of-service attacks.
@@ -1738,7 +1738,8 @@ bool AcceptableInputs(CTxMemPool& pool, CValidationState& state, const CTransact
                 hash.ToString(),
                 nFees, ::minRelayTxFee.GetFee(nSize) * 10000);
 
-        bool fCLTVIsActive = chainHeight >= Params.BIP65_Start();
+        const int chainHeight = chainActive.Height();
+        bool fCLTVIsActive = (chainHeight >= Params().BIP65_Start()) ? true : false;
 
         // Check against previous transactions
         // This is done last to help prevent CPU exhaustion denial-of-service attacks.
@@ -3107,8 +3108,9 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
     // If scripts won't be checked anyways, don't bother seeing if CLTV is activated
     bool fCLTVIsActive = false;
+    const int chainHeight = chainActive.Height();
     if (fScriptChecks && pindex->pprev) {
-        fCLTVIsActive = chainHeight >= Params.BIP65_Start();
+        fCLTVIsActive = (chainHeight >= Params().BIP65_Start()) ? true : false;
     }
 
     // Do not allow blocks that contain transactions which 'overwrite' older transactions,
@@ -4582,8 +4584,8 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
     if((block.nVersion < 3 && nHeight >= 1) ||
         (block.nVersion < 4 && nHeight >= Params().Zerocoin_StartTime()) ||
         (block.nVersion < 5 && nHeight >= Params().BIP65_Start()) ||
-        (block.nVersion < 6 && nHeight >= Params().IsStakeModifierV2()) ||
-        (block.nVersion < 7 && nHeight >= Params().IsTimeProtocolV2()))
+        (block.nVersion < 6 && nHeight >= Params().IsStakeModifierV2(nHeight)) ||
+        (block.nVersion < 7 && nHeight >= Params().IsTimeProtocolV2(nHeight)))
     {
         std::string stringErr = strprintf("rejected block version %d at height %d", block.nVersion, nHeight);
         return state.Invalid(error("%s : %s", __func__, stringErr), REJECT_OBSOLETE, stringErr);
