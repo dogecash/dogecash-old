@@ -355,12 +355,11 @@ CBudgetDB::ReadResult CBudgetDB::Read(CBudgetManager& objToLoad, bool fDryRun)
     }
 
     LogPrint(BCLog::MNBUDGET,"Loaded info from budget.dat  %dms\n", GetTimeMillis() - nStart);
-    LogPrint(BCLog::MNBUDGET,"  %s\n", objToLoad.ToString());
+    LogPrint(BCLog::MNBUDGET,"%s\n", objToLoad.ToString());
     if (!fDryRun) {
         LogPrint(BCLog::MNBUDGET,"Budget manager - cleaning....\n");
         objToLoad.CheckAndRemove();
-        LogPrint(BCLog::MNBUDGET,"Budget manager - result:\n");
-        LogPrint(BCLog::MNBUDGET,"  %s\n", objToLoad.ToString());
+        LogPrint(BCLog::MNBUDGET,"Budget manager - result: %s\n", objToLoad.ToString());
     }
 
     return Ok;
@@ -2216,9 +2215,38 @@ std::string CFinalizedBudgetVote::GetStrMessage() const
 
 std::string CBudgetManager::ToString() const
 {
-    std::ostringstream info;
+    unsigned int nProposals = 0, nSeenProposals = 0;
+    {
+        LOCK(cs_proposals);
+        nProposals = mapProposals.size();
+        nSeenProposals = mapSeenProposals.size();
+    }
 
-    info << "Proposals: " << (int)mapProposals.size() << ", Budgets: " << (int)mapFinalizedBudgets.size() << ", Seen Budgets: " << (int)mapSeenProposals.size() << ", Seen Budget Votes: " << (int)mapSeenProposalVotes.size() << ", Seen Final Budgets: " << (int)mapSeenFinalizedBudgets.size() << ", Seen Final Budget Votes: " << (int)mapSeenFinalizedBudgetVotes.size();
+    unsigned int nBudgets = 0, nSeenBudgets = 0;
+    {
+        LOCK(cs_budgets);
+        nBudgets = mapFinalizedBudgets.size();
+        nSeenBudgets = mapSeenFinalizedBudgets.size();
+    }
 
-    return info.str();
+    unsigned int nSeenVotes = 0, nOrphanVotes = 0;
+    {
+        LOCK(cs_votes);
+        nSeenVotes = mapSeenProposalVotes.size();
+        nOrphanVotes = mapOrphanProposalVotes.size();
+    }
+
+    unsigned int nSeenFinalizedVotes = 0, nOrphanFinalizedVotes = 0;
+    {
+        LOCK(cs_finalizedvotes);
+        nSeenFinalizedVotes = mapSeenFinalizedBudgetVotes.size();
+        nOrphanFinalizedVotes = mapOrphanFinalizedBudgetVotes.size();
+    }
+
+    return strprintf("Proposals: %d (seen: %d) - "
+            "Finalized Budgets: %d (seen: %d) - "
+            "Proposal Votes: %d (orphan: %d) - "
+            "Finalized Budget Votes: %d (orphan: %d)",
+            nProposals, nSeenProposals, nBudgets, nSeenBudgets,
+            nSeenVotes, nOrphanVotes, nSeenFinalizedVotes, nOrphanFinalizedVotes);
 }
