@@ -235,14 +235,14 @@ private:
 
 public:
     // critical sections to protect the inner data structures (must be locked in this order)
-    mutable RecursiveMutex cs_proposals;
     mutable RecursiveMutex cs_budgets;
-    mutable RecursiveMutex cs_votes;
+    mutable RecursiveMutex cs_proposals;
     mutable RecursiveMutex cs_finalizedvotes;
+    mutable RecursiveMutex cs_votes;
 
     CBudgetManager()
     {
-        LOCK2(cs_proposals, cs_budgets);
+        LOCK2(cs_budgets, cs_proposals);
         mapProposals.clear();
         mapFinalizedBudgets.clear();
     }
