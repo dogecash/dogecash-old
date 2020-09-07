@@ -38,9 +38,6 @@ static const CAmount BUDGET_FEE_TX = (5 * COIN);
 static const int64_t BUDGET_VOTE_UPDATE_MIN = 60 * 60;
 static std::map<uint256, int> mapPayment_History;
 
-extern std::vector<CBudgetProposalBroadcast> vecImmatureBudgetProposals;
-extern std::vector<CFinalizedBudgetBroadcast> vecImmatureFinalizedBudgets;
-
 extern CBudgetManager budget;
 void DumpBudgets();
 
@@ -220,6 +217,10 @@ private:
     std::map<uint256, CBudgetVote> mapOrphanMasternodeBudgetVotes;                  // guarded by cs_votes
     std::map<uint256, CFinalizedBudgetVote> mapSeenFinalizedBudgetVotes;            // guarded by cs_finalizedvotes
     std::map<uint256, CFinalizedBudgetVote> mapOrphanFinalizedBudgetVotes;          // guarded by cs_finalizedvotes
+
+    // Memory only
+    std::vector<CBudgetProposalBroadcast> vecImmatureBudgetProposals;               // guarded by cs_proposals
+    std::vector<CFinalizedBudgetBroadcast> vecImmatureFinalizedBudgets;             // guarded by cs_budgets
 
     // Memory Only. Updated in NewBlock (blocks arrive in order)
     std::atomic<int> nBestHeight;

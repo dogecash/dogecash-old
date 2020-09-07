@@ -20,8 +20,6 @@
 CBudgetManager budget;
 
 std::map<uint256, int64_t> askedForSourceProposalOrBudget;
-std::vector<CBudgetProposalBroadcast> vecImmatureBudgetProposals;
-std::vector<CFinalizedBudgetBroadcast> vecImmatureFinalizedBudgets;
 
 int nSubmittedFinalBudget;
 
@@ -901,84 +899,70 @@ void CBudgetManager::NewBlock(int height)
     //remove invalid votes once in a while (we have to check the signatures and validity of every vote, somewhat CPU intensive)
 
     LogPrint(BCLog::MNBUDGET,"%s:  askedForSourceProposalOrBudget cleanup - size: %d\n", __func__, askedForSourceProposalOrBudget.size());
-    std::map<uint256, int64_t>::iterator it = askedForSourceProposalOrBudget.begin();
-    while (it != askedForSourceProposalOrBudget.end()) {
-        if ((*it).second > GetTime() - (60 * 60 * 24)) {
-            ++it;
+    for (auto it = askedForSourceProposalOrBudget.begin(); it !=  askedForSourceProposalOrBudget.end(); ) {
+        if (it->second <= GetTime() - (60 * 60 * 24)) {
+            it = askedForSourceProposalOrBudget.erase(it);
         } else {
-            askedForSourceProposalOrBudget.erase(it++);
+            it++;
         }
     }
     {
         LOCK(cs_proposals);
         LogPrint(BCLog::MNBUDGET,"%s:  mapProposals cleanup - size: %d\n", __func__, mapProposals.size());
-        std::map<uint256, CBudgetProposal>::iterator it2 = mapProposals.begin();
-        while (it2 != mapProposals.end()) {
-            (*it2).second.CleanAndRemove();
-            ++it2;
+        for (auto& it: mapProposals) {
+            it.second.CleanAndRemove();
+        }
+        LogPrint(BCLog::MNBUDGET,"%s:  vecImmatureBudgetProposals cleanup - size: %d\n", __func__, vecImmatureBudgetProposals.size());
+        std::vector<CBudgetProposalBroadcast>::iterator it = vecImmatureBudgetProposals.begin();
+        while (it != vecImmatureBudgetProposals.end()) {
+            std::string strError = "";
+            int nConf = 0;
+            const uint256& nHash = it->GetHash();
+            if (!IsBudgetCollateralValid(it->GetFeeTXHash(), nHash, strError, it->nTime, nConf)) {
+                ++it;
+                continue;
+            }
+            if (!it->UpdateValid(nCurrentHeight)) {
+                LogPrint(BCLog::MNBUDGET,"mprop (immature) - invalid budget proposal - %s\n", it->IsInvalidReason());
+                it = vecImmatureBudgetProposals.erase(it);
+                continue;
+            }
+            LogPrint(BCLog::MNBUDGET,"mprop (immature) - new budget - %s\n", nHash.ToString());
+            CBudgetProposal budgetProposal(*it);
+            if (AddProposal(budgetProposal)) {
+                it->Relay();
+            }
+            it = vecImmatureBudgetProposals.erase(it);
         }
     }
     {
         LOCK(cs_budgets);
         LogPrint(BCLog::MNBUDGET,"%s:  mapFinalizedBudgets cleanup - size: %d\n", __func__, mapFinalizedBudgets.size());
-        std::map<uint256, CFinalizedBudget>::iterator it3 = mapFinalizedBudgets.begin();
-        while (it3 != mapFinalizedBudgets.end()) {
-            (*it3).second.CleanAndRemove();
-            ++it3;
+        for (auto& it: mapFinalizedBudgets) {
+            it.second.CleanAndRemove();
         }
-    }
-
-    LogPrint(BCLog::MNBUDGET,"%s:  vecImmatureBudgetProposals cleanup - size: %d\n", __func__, vecImmatureBudgetProposals.size());
-    std::vector<CBudgetProposalBroadcast>::iterator it4 = vecImmatureBudgetProposals.begin();
-    while (it4 != vecImmatureBudgetProposals.end()) {
-        std::string strError = "";
-        int nConf = 0;
-        const uint256& nHash = it4->GetHash();
-        if (!IsBudgetCollateralValid(it4->GetFeeTXHash(), nHash, strError, (*it4).nTime, nConf)) {
-            ++it4;
-            continue;
+        LogPrint(BCLog::MNBUDGET,"%s:  vecImmatureFinalizedBudgets cleanup - size: %d\n", __func__, vecImmatureFinalizedBudgets.size());
+        std::vector<CFinalizedBudgetBroadcast>::iterator it = vecImmatureFinalizedBudgets.begin();
+        while (it != vecImmatureFinalizedBudgets.end()) {
+            std::string strError = "";
+            int nConf = 0;
+            const uint256& nHash = it->GetHash();
+            if (!IsBudgetCollateralValid(it->GetFeeTXHash(), nHash, strError, it->nTime, nConf, true)) {
+                ++it;
+                continue;
+            }
+            if (!it->UpdateValid(nCurrentHeight)) {
+                LogPrint(BCLog::MNBUDGET,"fbs (immature) - invalid finalized budget - %s\n", it->IsInvalidReason());
+                it = vecImmatureFinalizedBudgets.erase(it);
+                continue;
+            }
+            LogPrint(BCLog::MNBUDGET,"fbs (immature) - new finalized budget - %s\n", nHash.ToString());
+            CFinalizedBudget finalizedBudget(*it);
+            if (AddFinalizedBudget(finalizedBudget)) {
+                it->Relay();
+            }
+            it = vecImmatureFinalizedBudgets.erase(it);
         }
-
-        if (!(*it4).UpdateValid(nCurrentHeight)) {
-            LogPrint(BCLog::MNBUDGET,"mprop (immature) - invalid budget proposal - %s\n", it4->IsInvalidReason());
-            it4 = vecImmatureBudgetProposals.erase(it4);
-            continue;
-        }
-
-        CBudgetProposal budgetProposal((*it4));
-        if (AddProposal(budgetProposal)) {
-            (*it4).Relay();
-        }
-
-        LogPrint(BCLog::MNBUDGET,"mprop (immature) - new budget - %s\n", nHash.ToString());
-        it4 = vecImmatureBudgetProposals.erase(it4);
-    }
-
-    LogPrint(BCLog::MNBUDGET,"%s:  vecImmatureFinalizedBudgets cleanup - size: %d\n", __func__, vecImmatureFinalizedBudgets.size());
-    std::vector<CFinalizedBudgetBroadcast>::iterator it5 = vecImmatureFinalizedBudgets.begin();
-    while (it5 != vecImmatureFinalizedBudgets.end()) {
-        std::string strError = "";
-        int nConf = 0;
-        const uint256& nHash = it5->GetHash();
-        if (!IsBudgetCollateralValid(it5->GetFeeTXHash(), nHash, strError, (*it5).nTime, nConf, true)) {
-            ++it5;
-            continue;
-        }
-
-        if (!(*it5).UpdateValid(nCurrentHeight)) {
-            LogPrint(BCLog::MNBUDGET,"fbs (immature) - invalid finalized budget - %s\n", it5->IsInvalidReason());
-            it5 = vecImmatureFinalizedBudgets.erase(it5);
-            continue;
-        }
-
-        LogPrint(BCLog::MNBUDGET,"fbs (immature) - new finalized budget - %s\n", nHash.ToString());
-
-        CFinalizedBudget finalizedBudget((*it5));
-        if (AddFinalizedBudget(finalizedBudget)) {
-            (*it5).Relay();
-        }
-
-        it5 = vecImmatureFinalizedBudgets.erase(it5);
     }
     LogPrint(BCLog::MNBUDGET,"%s:  PASSED\n", __func__);
 }
@@ -1026,7 +1010,10 @@ void CBudgetManager::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         const uint256& nFeeTXHash = budgetProposalBroadcast.GetFeeTXHash();
         if (!IsBudgetCollateralValid(nFeeTXHash, nHash, strError, budgetProposalBroadcast.nTime, nConf)) {
             LogPrint(BCLog::MNBUDGET,"Proposal FeeTX is not valid - %s - %s\n", nFeeTXHash.ToString(), strError);
-            if (nConf >= 1) vecImmatureBudgetProposals.push_back(budgetProposalBroadcast);
+            if (nConf >= 1) {
+                LOCK(cs_proposals);
+                vecImmatureBudgetProposals.push_back(budgetProposalBroadcast);
+            }
             return;
         }
 
@@ -1104,8 +1091,10 @@ void CBudgetManager::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         const uint256& nFeeTXHash = finalizedBudgetBroadcast.GetFeeTXHash();
         if (!IsBudgetCollateralValid(nFeeTXHash, nHash, strError, finalizedBudgetBroadcast.nTime, nConf, true)) {
             LogPrint(BCLog::MNBUDGET,"fbs - Finalized Budget FeeTX is not valid - %s - %s\n", nFeeTXHash.ToString(), strError);
-
-            if (nConf >= 1) vecImmatureFinalizedBudgets.push_back(finalizedBudgetBroadcast);
+            if (nConf >= 1) {
+                LOCK(cs_budgets);
+                vecImmatureFinalizedBudgets.push_back(finalizedBudgetBroadcast);
+            }
             return;
         }
 
