@@ -211,16 +211,15 @@ private:
     //hold txes until they mature enough to use
     std::map<uint256, uint256> mapCollateralTxids;
 
-    // keep track of the scanning errors I've seen
     std::map<uint256, CBudgetProposal> mapProposals;                                // guarded by cs_proposals
     std::map<uint256, CFinalizedBudget> mapFinalizedBudgets;                        // guarded by cs_budgets
 
     std::map<uint256, CBudgetProposalBroadcast> mapSeenMasternodeBudgetProposals;   // guarded by cs_proposals
     std::map<uint256, CFinalizedBudgetBroadcast> mapSeenFinalizedBudgets;           // guarded by cs_budgets
-    std::map<uint256, CBudgetVote> mapSeenMasternodeBudgetVotes;
-    std::map<uint256, CBudgetVote> mapOrphanMasternodeBudgetVotes;
-    std::map<uint256, CFinalizedBudgetVote> mapSeenFinalizedBudgetVotes;
-    std::map<uint256, CFinalizedBudgetVote> mapOrphanFinalizedBudgetVotes;
+    std::map<uint256, CBudgetVote> mapSeenMasternodeBudgetVotes;                    // guarded by cs_votes
+    std::map<uint256, CBudgetVote> mapOrphanMasternodeBudgetVotes;                  // guarded by cs_votes
+    std::map<uint256, CFinalizedBudgetVote> mapSeenFinalizedBudgetVotes;            // guarded by cs_finalizedvotes
+    std::map<uint256, CFinalizedBudgetVote> mapOrphanFinalizedBudgetVotes;          // guarded by cs_finalizedvotes
 
     // Memory Only. Updated in NewBlock (blocks arrive in order)
     std::atomic<int> nBestHeight;
@@ -238,6 +237,8 @@ public:
     mutable RecursiveMutex cs;
     mutable RecursiveMutex cs_proposals;
     mutable RecursiveMutex cs_budgets;
+    mutable RecursiveMutex cs_votes;
+    mutable RecursiveMutex cs_finalizedvotes;
 
     CBudgetManager()
     {
@@ -248,16 +249,16 @@ public:
 
     void ClearSeen()
     {
-        mapSeenMasternodeBudgetProposals.clear();
-        mapSeenMasternodeBudgetVotes.clear();
-        mapSeenFinalizedBudgets.clear();
-        mapSeenFinalizedBudgetVotes.clear();
+        WITH_LOCK(cs_proposals, mapSeenMasternodeBudgetProposals.clear(); );
+        WITH_LOCK(cs_votes, mapSeenMasternodeBudgetVotes.clear(); );
+        WITH_LOCK(cs_budgets, mapSeenFinalizedBudgets.clear(); );
+        WITH_LOCK(cs_finalizedvotes, mapSeenFinalizedBudgetVotes.clear(); );
     }
 
-    bool HaveSeenProposal(const uint256& propHash) const { return mapSeenMasternodeBudgetProposals.count(propHash); }
-    bool HaveSeenProposalVote(const uint256& voteHash) const { return mapSeenMasternodeBudgetVotes.count(voteHash); }
-    bool HaveSeenFinalizedBudget(const uint256& budgetHash) const { return mapSeenFinalizedBudgets.count(budgetHash); }
-    bool HaveSeenFinalizedBudgetVote(const uint256& voteHash) const { return mapSeenFinalizedBudgetVotes.count(voteHash); }
+    bool HaveSeenProposal(const uint256& propHash) const { LOCK(cs_proposals); return mapSeenMasternodeBudgetProposals.count(propHash); }
+    bool HaveSeenProposalVote(const uint256& voteHash) const { LOCK(cs_votes); return mapSeenMasternodeBudgetVotes.count(voteHash); }
+    bool HaveSeenFinalizedBudget(const uint256& budgetHash) const { LOCK(cs_budgets); return mapSeenFinalizedBudgets.count(budgetHash); }
+    bool HaveSeenFinalizedBudgetVote(const uint256& voteHash) const { LOCK(cs_finalizedvotes); return mapSeenFinalizedBudgetVotes.count(voteHash); }
 
     void AddSeenProposal(const CBudgetProposalBroadcast& prop);
     void AddSeenProposalVote(const CBudgetVote& vote);
@@ -304,16 +305,27 @@ public:
     void CheckOrphanVotes();
     void Clear()
     {
-        LOCK(cs);
+        {
+            LOCK(cs_proposals);
+            mapProposals.clear();
+            mapSeenMasternodeBudgetProposals.clear();
+        }
+        {
+            LOCK(cs_budgets);
+            mapFinalizedBudgets.clear();
+            mapSeenFinalizedBudgets.clear();
+        }
+        {
+            LOCK(cs_votes);
+            mapSeenMasternodeBudgetVotes.clear();
+            mapOrphanMasternodeBudgetVotes.clear();
+        }
+        {
+            LOCK(cs_finalizedvotes);
+            mapSeenFinalizedBudgetVotes.clear();
+            mapOrphanFinalizedBudgetVotes.clear();
+        }
         LogPrintf("Budget object cleared\n");
-        WITH_LOCK(cs_proposals, mapProposals.clear(); );
-        WITH_LOCK(cs_budgets, mapFinalizedBudgets.clear(); );
-        mapSeenMasternodeBudgetProposals.clear();
-        mapSeenMasternodeBudgetVotes.clear();
-        mapSeenFinalizedBudgets.clear();
-        mapSeenFinalizedBudgetVotes.clear();
-        mapOrphanMasternodeBudgetVotes.clear();
-        mapOrphanFinalizedBudgetVotes.clear();
     }
     void CheckAndRemove();
     std::string ToString() const;
@@ -322,15 +334,26 @@ public:
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action)
     {
-        LOCK(cs);
-        READWRITE(mapSeenMasternodeBudgetProposals);
-        READWRITE(mapSeenMasternodeBudgetVotes);
-        READWRITE(mapSeenFinalizedBudgets);
-        READWRITE(mapSeenFinalizedBudgetVotes);
-        READWRITE(mapOrphanMasternodeBudgetVotes);
-        READWRITE(mapOrphanFinalizedBudgetVotes);
-        WITH_LOCK(cs_proposals, READWRITE(mapProposals); );
-        WITH_LOCK(cs_budgets, READWRITE(mapFinalizedBudgets); );
+        {
+            LOCK(cs_proposals);
+            READWRITE(mapProposals);
+            READWRITE(mapSeenMasternodeBudgetProposals);
+        }
+        {
+            LOCK(cs_votes);
+            READWRITE(mapSeenMasternodeBudgetVotes);
+            READWRITE(mapOrphanMasternodeBudgetVotes);
+        }
+        {
+            LOCK(cs_budgets);
+            READWRITE(mapFinalizedBudgets);
+            READWRITE(mapSeenFinalizedBudgets);
+        }
+        {
+            LOCK(cs_finalizedvotes);
+            READWRITE(mapSeenFinalizedBudgetVotes);
+            READWRITE(mapOrphanFinalizedBudgetVotes);
+        }
     }
 };
 
