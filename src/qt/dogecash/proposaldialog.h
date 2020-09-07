@@ -36,8 +36,7 @@ class ProposalDialog : public QDialog
 public:
     enum Mode {
         PrepareProposal,
-        SubmitProposal,
-        FinalizeProposal
+        SubmitProposal
     };
 
     explicit ProposalDialog(Mode mode, QWidget* parent);
