@@ -128,7 +128,7 @@ public:
         cachedAddressTable.clear();
         {
             LOCK(wallet->cs_wallet);
-            for (auto it = wallet->NewAddressBookIterator(); it.HasNext(); it.Next()) {
+            for (auto it = wallet->NewAddressBookIterator(); it.IsValid(); it.Next()) {
                 auto addrBookData = it.GetValue();
                 const CChainParams::Base58Type addrType =
                         AddressBook::IsColdStakingPurpose(addrBookData.purpose) ?

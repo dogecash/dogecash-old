@@ -283,7 +283,7 @@ UniValue getaddressesbylabel(const JSONRPCRequest& request)
 
     // Find all addresses that have the given label
     UniValue ret(UniValue::VOBJ);
-    for (auto it = pwalletMain->NewAddressBookIterator(); it.HasNext(); it.Next()) {
+    for (auto it = pwalletMain->NewAddressBookIterator(); it.IsValid(); it.Next()) {
         auto addrBook = it.GetValue();
         if (addrBook.name == label) {
             ret.pushKV(EncodeDestination(it.GetKey(), AddressBook::IsColdStakingPurpose(addrBook.purpose)), AddressBookDataToJSON(addrBook, false));
@@ -338,7 +338,7 @@ UniValue listlabels(const JSONRPCRequest& request)
 
     // Add to a set to sort by label name, then insert into Univalue array
     std::set<std::string> label_set;
-    for (auto it = pwalletMain->NewAddressBookIterator(); it.HasNext(); it.Next()) {
+    for (auto it = pwalletMain->NewAddressBookIterator(); it.IsValid(); it.Next()) {
         auto addrBook = it.GetValue();
         if (purpose.empty() || addrBook.purpose == purpose) {
             label_set.insert(addrBook.name);
@@ -591,12 +591,9 @@ UniValue delegatorremove(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Unable to get PIVX address from addressBook");
 
     std::string label = "";
-    {
-        LOCK(pwalletMain->cs_wallet);
-        auto optAdd = pwalletMain->GetAddressBookEntry(dest);
-        if (optAdd) {
-            label = optAdd->name;
-        }
+    auto optAdd = pwalletMain->GetAddressBookEntry(dest);
+    if (optAdd) {
+        label = optAdd->name;
     }
 
     return pwalletMain->SetAddressBook(keyID, label, AddressBook::AddressBookPurpose::DELEGABLE);
@@ -611,7 +608,7 @@ UniValue ListaddressesForPurpose(const std::string strPurpose)
     UniValue ret(UniValue::VARR);
     {
         LOCK(pwalletMain->cs_wallet);
-        for (auto it = pwalletMain->NewAddressBookIterator(); it.HasNext(); it.Next()) {
+        for (auto it = pwalletMain->NewAddressBookIterator(); it.IsValid(); it.Next()) {
             auto addrBook = it.GetValue();
             if (addrBook.purpose != strPurpose) continue;
             UniValue entry(UniValue::VOBJ);
@@ -842,7 +839,7 @@ UniValue setlabel(const JSONRPCRequest& request)
     // If so, delete the account record for it. Labels, unlike addresses, can be deleted,
     // and if we wouldn't do this, the record would stick around forever.
     bool found_address = false;
-    for (auto it = pwalletMain->NewAddressBookIterator(); it.HasNext(); it.Next()) {
+    for (auto it = pwalletMain->NewAddressBookIterator(); it.IsValid(); it.Next()) {
         if (it.GetValue().name == label) {
             found_address = true;
             break;
@@ -926,7 +923,7 @@ UniValue getaddressesbyaccount(const JSONRPCRequest& request)
 
     // Find all addresses that have the given account
     UniValue ret(UniValue::VARR);
-    for (auto it = pwalletMain->NewAddressBookIterator(); it.HasNext(); it.Next()) {
+    for (auto it = pwalletMain->NewAddressBookIterator(); it.IsValid(); it.Next()) {
         const auto& address = it.GetKey();
         const std::string& strName = it.GetValue().name;
         if (strName == strAccount)
@@ -2058,22 +2055,24 @@ UniValue ListReceived(const UniValue& params, bool by_label)
 
     // Create mapAddressBook iterator
     // If we aren't filtering, go from begin() to end()
-    auto itAddrBook = pwalletMain->NewAddressBookIterator();
+    auto itAddr = pwalletMain->NewAddressBookIterator();
     // If we are filtering, find() the applicable entry
     if (has_filtered_address) {
-        itAddrBook.SetFilter(filtered_address);
+        itAddr.SetFilter(filtered_address);
     }
 
     // Reply
     UniValue ret(UniValue::VARR);
     std::map<std::string, tallyitem> label_tally;
 
-    do {
-        const auto& address = itAddrBook.GetKey();
-        const std::string& label = itAddrBook.GetValue().name;
+    for (auto& itAddrBook = itAddr; itAddrBook.IsValid(); itAddrBook.Next()) {
+
+        const auto &address = itAddrBook.GetKey();
+        const std::string &label = itAddrBook.GetValue().name;
         auto it = mapTally.find(address);
-        if (it == mapTally.end() && !fIncludeEmpty)
+        if (it == mapTally.end() && !fIncludeEmpty) {
             continue;
+        }
 
         CAmount nAmount = 0;
         int nConf = std::numeric_limits<int>::max();
@@ -2104,14 +2103,14 @@ UniValue ListReceived(const UniValue& params, bool by_label)
             obj.push_back(Pair("label", label));
             UniValue transactions(UniValue::VARR);
             if (it != mapTally.end()) {
-                for (const uint256& item : (*it).second.txids) {
+                for (const uint256 &item : (*it).second.txids) {
                     transactions.push_back(item.GetHex());
                 }
             }
             obj.push_back(Pair("txids", transactions));
             ret.push_back(obj);
         }
-    } while (itAddrBook.Next());
+    }
 
     if (by_label) {
         for (const auto& entry : label_tally) {
@@ -2608,8 +2607,7 @@ UniValue listaccounts(const JSONRPCRequest& request)
             includeWatchonly = includeWatchonly | ISMINE_WATCH_ONLY;
 
     std::map<std::string, CAmount> mapAccountBalances;
-
-    for (auto it = pwalletMain->NewAddressBookIterator(); it.HasNext(); it.Next()) {
+    for (auto it = pwalletMain->NewAddressBookIterator(); it.IsValid(); it.Next()) {
         if (IsMine(*pwalletMain, it.GetKey()) & includeWatchonly) // This address belongs to me
             mapAccountBalances[it.GetValue().name] = 0;
     }

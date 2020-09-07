@@ -250,11 +250,13 @@ public:
     explicit CAddressBookIterator(std::map<CTxDestination, AddressBook::CAddressBookData>& _map) : map(_map), it(_map.begin()), itEnd(_map.end()) {}
     CTxDestination GetKey() { return it->first; }
     AddressBook::CAddressBookData GetValue() { return it->second; }
-    bool HasNext() { return it != itEnd; }
+
+    bool IsValid() { return it != itEnd; }
+
     bool Next() {
-        if (!HasNext()) return false;
+        if (!IsValid()) return false;
         it++;
-        return true;
+        return IsValid();
     }
 
     void SetFilter(CTxDestination& filter)
