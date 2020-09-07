@@ -294,7 +294,6 @@ void ProposalDialog::checkProposalTX()
         ui->acceptButton->setDisabled(false);
         ui->acceptButton->setText("Finish Proposal");
         ui->confirmLabel->setText(tr("Click on Finish Proposal to complete the proposal and start voting."));
-        this->mode = FinalizeProposal;
 
         timer->stop();
     }
