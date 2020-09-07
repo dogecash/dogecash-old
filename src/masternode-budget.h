@@ -215,10 +215,10 @@ private:
     std::map<uint256, CBudgetProposal> mapProposals;                                // guarded by cs_proposals
     std::map<uint256, CFinalizedBudget> mapFinalizedBudgets;                        // guarded by cs_budgets
 
-    std::map<uint256, CBudgetProposalBroadcast> mapSeenMasternodeBudgetProposals;
+    std::map<uint256, CBudgetProposalBroadcast> mapSeenMasternodeBudgetProposals;   // guarded by cs_proposals
+    std::map<uint256, CFinalizedBudgetBroadcast> mapSeenFinalizedBudgets;           // guarded by cs_budgets
     std::map<uint256, CBudgetVote> mapSeenMasternodeBudgetVotes;
     std::map<uint256, CBudgetVote> mapOrphanMasternodeBudgetVotes;
-    std::map<uint256, CFinalizedBudgetBroadcast> mapSeenFinalizedBudgets;
     std::map<uint256, CFinalizedBudgetVote> mapSeenFinalizedBudgetVotes;
     std::map<uint256, CFinalizedBudgetVote> mapOrphanFinalizedBudgetVotes;
 

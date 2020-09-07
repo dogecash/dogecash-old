@@ -795,6 +795,7 @@ CAmount CBudgetManager::GetTotalBudget(int nHeight)
 
 void CBudgetManager::AddSeenProposal(const CBudgetProposalBroadcast& prop)
 {
+    LOCK(cs_proposals);
     mapSeenMasternodeBudgetProposals.emplace(prop.GetHash(), prop);
 }
 
@@ -805,6 +806,7 @@ void CBudgetManager::AddSeenProposalVote(const CBudgetVote& vote)
 
 void CBudgetManager::AddSeenFinalizedBudget(const CFinalizedBudgetBroadcast& bud)
 {
+    LOCK(cs_budgets);
     mapSeenFinalizedBudgets.emplace(bud.GetHash(), bud);
 }
 
@@ -824,6 +826,7 @@ CDataStream CBudgetManager::GetProposalVoteSerialized(const uint256& voteHash) c
 
 CDataStream CBudgetManager::GetProposalSerialized(const uint256& propHash) const
 {
+    LOCK(cs_proposals);
     CDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
     ss.reserve(1000);
     ss << mapSeenMasternodeBudgetProposals.at(propHash);
@@ -840,6 +843,7 @@ CDataStream CBudgetManager::GetFinalizedBudgetVoteSerialized(const uint256& vote
 
 CDataStream CBudgetManager::GetFinalizedBudgetSerialized(const uint256& budgetHash) const
 {
+    LOCK(cs_budgets);
     CDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
     ss.reserve(1000);
     ss << mapSeenFinalizedBudgets.at(budgetHash);
