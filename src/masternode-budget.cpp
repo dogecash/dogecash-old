@@ -230,10 +230,9 @@ void CBudgetManager::SubmitFinalBudget()
         return;
     }
 
-    LOCK(cs);
     AddSeenFinalizedBudget(finalizedBudgetBroadcast);
     finalizedBudgetBroadcast.Relay();
-    budget.AddFinalizedBudget(finalizedBudgetBroadcast);
+    AddFinalizedBudget(finalizedBudgetBroadcast);
     nSubmittedHeight = nCurrentHeight;
     LogPrint(BCLog::MNBUDGET,"%s: Done! %s\n", __func__, finalizedBudgetBroadcast.GetHash().ToString());
 }
@@ -250,8 +249,6 @@ CBudgetDB::CBudgetDB()
 
 bool CBudgetDB::Write(const CBudgetManager& objToSave)
 {
-    LOCK(objToSave.cs);
-
     int64_t nStart = GetTimeMillis();
 
     // serialize, checksum data up to that point, then append checksum
@@ -283,8 +280,6 @@ bool CBudgetDB::Write(const CBudgetManager& objToSave)
 
 CBudgetDB::ReadResult CBudgetDB::Read(CBudgetManager& objToLoad, bool fDryRun)
 {
-    LOCK(objToLoad.cs);
-
     int64_t nStart = GetTimeMillis();
     // open input file, and associate with CAutoFile
     FILE* file = fsbridge::fopen(pathDB, "rb");
@@ -504,8 +499,6 @@ bool CBudgetManager::GetPayeeAndAmount(int chainHeight, CScript& payeeRet, CAmou
 
 void CBudgetManager::FillBlockPayee(CMutableTransaction& txNew, bool fProofOfStake) const
 {
-    LOCK(cs);
-
     int chainHeight = GetBestHeight();
     if (chainHeight <= 0) return;
 
@@ -891,8 +884,6 @@ void CBudgetManager::NewBlock(int height)
         MarkSynced();
     }
 
-    TRY_LOCK(cs, fBudgetNewBlock);
-    if (!fBudgetNewBlock) return;
     CheckAndRemove();
 
     //remove invalid votes once in a while (we have to check the signatures and validity of every vote, somewhat CPU intensive)
@@ -906,7 +897,8 @@ void CBudgetManager::NewBlock(int height)
         }
     }
     {
-        LOCK(cs_proposals);
+        TRY_LOCK(cs_proposals, fBudgetNewBlock);
+        if (!fBudgetNewBlock) return;
         LogPrint(BCLog::MNBUDGET,"%s:  mapProposals cleanup - size: %d\n", __func__, mapProposals.size());
         for (auto& it: mapProposals) {
             it.second.CleanAndRemove();
@@ -935,7 +927,8 @@ void CBudgetManager::NewBlock(int height)
         }
     }
     {
-        LOCK(cs_budgets);
+        TRY_LOCK(cs_budgets, fBudgetNewBlock);
+        if (!fBudgetNewBlock) return;
         LogPrint(BCLog::MNBUDGET,"%s:  mapFinalizedBudgets cleanup - size: %d\n", __func__, mapFinalizedBudgets.size());
         for (auto& it: mapFinalizedBudgets) {
             it.second.CleanAndRemove();
@@ -1185,21 +1178,8 @@ void CBudgetManager::SetSynced(bool synced)
 
 void CBudgetManager::Sync(CNode* pfrom, const uint256& nProp, bool fPartial)
 {
-    LOCK2(cs, cs_proposals);
-
-    /*
-        Sync with a client on the network
-
-        --
-
-        This code checks each of the hash maps for all known budget proposals and finalized budget proposals, then checks them against the
-        budget object to see if they're OK. If all checks pass, we'll send it to the peer.
-
-    */
-
     CNetMsgMaker msgMaker(pfrom->GetSendVersion());
     int nInvCount = 0;
-
     {
         LOCK(cs_proposals);
         for (auto& it: mapSeenProposals) {
@@ -1215,7 +1195,6 @@ void CBudgetManager::Sync(CNode* pfrom, const uint256& nProp, bool fPartial)
     LogPrint(BCLog::MNBUDGET, "%s: sent %d items\n", __func__, nInvCount);
 
     nInvCount = 0;
-
     {
         LOCK(cs_budgets);
         for (auto& it: mapSeenFinalizedBudgets) {

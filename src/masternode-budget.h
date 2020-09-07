@@ -235,7 +235,6 @@ private:
 
 public:
     // critical sections to protect the inner data structures (must be locked in this order)
-    mutable RecursiveMutex cs;
     mutable RecursiveMutex cs_proposals;
     mutable RecursiveMutex cs_budgets;
     mutable RecursiveMutex cs_votes;
