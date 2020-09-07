@@ -35,12 +35,16 @@ ProposalDialog::ProposalDialog(Mode mode, QWidget* parent) : QDialog(parent), ui
     switch (mode) {
         case PrepareProposal:
             setWindowTitle(tr("Prepare Proposal"));
+            LogPrintf("Mode Prepare Proposal : %s\n", mode);
+            ui->acceptButton->setText("Prepare Budget");
             ui->confirmLabel->setVisible(false);
             ui->hashEdit->setVisible(false);
             ui->hashLabel->setVisible(false); 
             break;
         case SubmitProposal:
             setWindowTitle(tr("Submit Proposal"));
+            LogPrintf("Mode Submit Proposal : %s\n", mode);
+            ui->acceptButton->setText("Submit Budget");
             ui->confirmLabel->setVisible(true);
             ui->hashEdit->setVisible(true);
             ui->hashLabel->setVisible(true);
@@ -114,6 +118,7 @@ ProposalDialog::ProposalDialog(Mode mode, QWidget* parent) : QDialog(parent), ui
     // Start periodic updates to handle submit block depth validation.
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(checkProposalTX()));
+    connect(ui->acceptButton, SIGNAL(clicked()), this, SLOT(on_acceptButton_clicked()));
 }
 
 ProposalDialog::~ProposalDialog()
@@ -178,6 +183,8 @@ void ProposalDialog::prepareProposal()
     ui->amountEdit->setDisabled(true);
     ui->hashEdit->setDisabled(true);
 
+    this->mode = SubmitProposal;
+    checkProposalTX();
     ui->acceptButton->setDisabled(true);
     ui->acceptButton->setText(tr("Waiting..."));
 
@@ -188,7 +195,6 @@ void ProposalDialog::prepareProposal()
     ui->hashEdit->setVisible(true);
     ui->hashLabel->setVisible(true);
 
-    mode = SubmitProposal;
     setWindowTitle(tr("Submit Proposal"));
     
     timer->start(1000);
@@ -256,7 +262,7 @@ bool ProposalDialog::validateProposal()
 
     int nBlockStart = ui->blockEdit->text().toInt();
     if (nBlockStart < nBlockMin) strError = "Invalid block start, must be more than current height.";
-    if (nBlockStart % (Params().GetBudgetCycleBlocks() + 1) != 0)
+    if (nBlockStart % (Params().GetBudgetCycleBlocks()) != 0)
     {
         int nNext = pindexPrev->nHeight - pindexPrev->nHeight % Params().GetBudgetCycleBlocks() + Params().GetBudgetCycleBlocks();
         strError = strprintf("Invalid block start - must be a budget cycle block. Next valid block: %d", nNext);
@@ -279,7 +285,7 @@ bool ProposalDialog::validateProposal()
 
 void ProposalDialog::checkProposalTX()
 {
-    if (mode != SubmitProposal) return;
+    if (mode != 1) return;
 
     int nConf = Params().Budget_Fee_Confirmations();
     int nDepth = (chainActive.Tip()->nHeight + 1) - counter;
@@ -288,6 +294,7 @@ void ProposalDialog::checkProposalTX()
         ui->acceptButton->setDisabled(false);
         ui->acceptButton->setText("Finish Proposal");
         ui->confirmLabel->setText(tr("Click on Finish Proposal to complete the proposal and start voting."));
+        this->mode = FinalizeProposal;
 
         timer->stop();
     }
@@ -303,16 +310,25 @@ void ProposalDialog::checkProposalTX()
 
 void ProposalDialog::on_acceptButton_clicked()
 {
-    if (!validateProposal()) return;
+    if(this->mode < 0){
+        this->mode = PrepareProposal;
+        LogPrintf("Mode before Loop : %s\n", this->mode);
+    }
 
-    if (mode == PrepareProposal) 
-    {
-        prepareProposal();
-    }
-	else if (mode == SubmitProposal) 
-    {
+    if(validateProposal()){
+        if (this->mode == 0)
+        {   
+            LogPrintf("Mode before Validate : %s\n", mode);
+            prepareProposal();
+        } else if (this->mode == 1)
+        {
+        LogPrintf("Mode before Submit : %s\n", mode);
         submitProposal();
+        } else {
+            return;
+        }
     }
+    
 }
 
 void ProposalDialog::on_cancelButton_clicked()
