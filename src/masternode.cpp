@@ -205,21 +205,9 @@ void CMasternode::Check(bool forceCheck)
     }
 
     if (!unitTest) {
-        CValidationState state;
-        CMutableTransaction tx = CMutableTransaction();
-        CScript dummyScript;
-        dummyScript << ToByteVector(pubKeyCollateralAddress) << OP_CHECKSIG;
-        CTxOut vout = CTxOut(9999.99 * COIN, dummyScript);
-        tx.vin.push_back(vin);
-        tx.vout.push_back(vout);
-        {
-            TRY_LOCK(cs_main, lockMain);
-            if (!lockMain) return;
-
-            if (!AcceptableInputs(mempool, state, CTransaction(tx), false, NULL)) {
-                activeState = MASTERNODE_VIN_SPENT;
-                return;
-            }
+        if (pcoinsTip->AccessCoin(vin.prevout).IsSpent()) {
+            activeState = MASTERNODE_VIN_SPENT;
+            return;
         }
     }
 
@@ -580,13 +568,10 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
             mnodeman.Remove(pmn->vin);
     }
 
-    CValidationState state;
-    CMutableTransaction tx = CMutableTransaction();
-    CScript dummyScript;
-    dummyScript << ToByteVector(pubKeyCollateralAddress) << OP_CHECKSIG;
-    CTxOut vout = CTxOut(9999.99 * COIN, dummyScript);
-    tx.vin.push_back(vin);
-    tx.vout.push_back(vout);
+    if (pcoinsTip->AccessCoin(vin.prevout).IsSpent()) {
+        LogPrint(BCLog::MASTERNODE,"mnb - vin %s spent\n", vin.prevout.ToString());
+        return false;
+    }
 
     int nChainHeight = 0;
     {
@@ -597,13 +582,6 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
             masternodeSync.mapSeenSyncMNB.erase(GetHash());
             return false;
         }
-
-        if (!AcceptableInputs(mempool, state, CTransaction(tx), false, NULL)) {
-            //set nDos
-            state.IsInvalid(nDoS);
-            return false;
-        }
-
         nChainHeight = chainActive.Height();
     }
 
