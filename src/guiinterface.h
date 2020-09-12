@@ -9,6 +9,7 @@
 
 #include <stdint.h>
 #include <string>
+#include "optional.h"
 
 #include <boost/signals2/last_value.hpp>
 #include <boost/signals2/signal.hpp>
@@ -117,7 +118,7 @@ extern CClientUIInterface uiInterface;
  */
 inline std::string _(const char* psz)
 {
-    boost::optional<std::string> rv = uiInterface.Translate(psz);
+    Optional<std::string> rv = uiInterface.Translate(psz);
     return rv ? (*rv) : psz;
 }
 
