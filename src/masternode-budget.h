@@ -273,6 +273,9 @@ public:
 
     bool AddAndRelayProposalVote(const CBudgetVote& vote, std::string& strError);
 
+    // sets strProposal of a CFinalizedBudget reference
+    void SetBudgetProposalsStr(CFinalizedBudget& finalizedBudget) const;
+
     void ResetSync() { SetSynced(false); }
     void MarkSynced() { SetSynced(true); }
     void Sync(CNode* node, const uint256& nProp, bool fPartial = false);
@@ -405,6 +408,7 @@ protected:
     int nBlockStart;
     std::vector<CTxBudgetPayment> vecBudgetPayments;
     uint256 nFeeTXHash;
+    std::string strProposals;
 
 public:
     int64_t nTime;
@@ -425,8 +429,11 @@ public:
     bool IsValid() const  { return fValid; }
     std::string IsInvalidReason() const { return strInvalid; }
 
+    void SetProposalsStr(const std::string _strProposals) { strProposals = _strProposals; }
+
     std::string GetName() const { return strBudgetName; }
-    std::string GetProposals() const;
+    std::string GetProposalsStr() const { return strProposals; }
+    std::vector<uint256> GetProposalsHashes() const;
     int GetBlockStart() const { return nBlockStart; }
     int GetBlockEnd() const { return nBlockStart + (int)(vecBudgetPayments.size() - 1); }
     const uint256& GetFeeTXHash() const { return nFeeTXHash;  }

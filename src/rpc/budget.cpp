@@ -858,7 +858,7 @@ UniValue mnfinalbudget(const JSONRPCRequest& request)
             bObj.pushKV("Hash", finalizedBudget->GetHash().ToString());
             bObj.pushKV("BlockStart", (int64_t)finalizedBudget->GetBlockStart());
             bObj.pushKV("BlockEnd", (int64_t)finalizedBudget->GetBlockEnd());
-            bObj.pushKV("Proposals", finalizedBudget->GetProposals());
+            bObj.pushKV("Proposals", finalizedBudget->GetProposalsStr());
             bObj.pushKV("VoteCount", (int64_t)finalizedBudget->GetVoteCount());
             bObj.pushKV("Status", finalizedBudget->GetStatus());
 

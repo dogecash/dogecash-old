@@ -387,20 +387,35 @@ void DumpBudgets()
     LogPrint(BCLog::MNBUDGET,"Budget dump finished  %dms\n", GetTimeMillis() - nStart);
 }
 
+void CBudgetManager::SetBudgetProposalsStr(CFinalizedBudget& finalizedBudget) const
+{
+    const std::vector<uint256>& vHashes = finalizedBudget.GetProposalsHashes();
+    std::string strProposals = "";
+    {
+        LOCK(cs_proposals);
+        for (const uint256& hash: vHashes) {
+            const std::string token = (mapProposals.count(hash) ? mapProposals.at(hash).GetName() : hash.ToString());
+            strProposals += (strProposals == "" ? "" : ", ") + token;
+        }
+    }
+    finalizedBudget.SetProposalsStr(strProposals);
+}
+
 bool CBudgetManager::AddFinalizedBudget(CFinalizedBudget& finalizedBudget)
 {
-    LOCK(cs_budgets);
+    const uint256& nHash = finalizedBudget.GetHash();
+    if (WITH_LOCK(cs_budgets, return mapFinalizedBudgets.count(nHash))) {
+        LogPrint(BCLog::MNBUDGET,"%s: finalized budget %s already added\n", __func__, nHash.ToString());
+        return false;
+    }
 
     if (!finalizedBudget.UpdateValid(GetBestHeight())) {
         LogPrint(BCLog::MNBUDGET,"%s: invalid finalized budget - %s\n", __func__, finalizedBudget.IsInvalidReason());
         return false;
     }
 
-    if (mapFinalizedBudgets.count(finalizedBudget.GetHash())) {
-        return false;
-    }
-
-    mapFinalizedBudgets.emplace(finalizedBudget.GetHash(), finalizedBudget);
+    SetBudgetProposalsStr(finalizedBudget);
+    WITH_LOCK(cs_budgets, mapFinalizedBudgets.emplace(nHash, finalizedBudget); );
     return true;
 }
 
@@ -603,7 +618,7 @@ TrxValidationStatus CBudgetManager::IsTransactionValid(const CTransaction& txNew
         for (const auto& it: mapFinalizedBudgets) {
             const CFinalizedBudget* pfb = &(it.second);
             const int nVoteCount = pfb->GetVoteCount();
-            LogPrint(BCLog::MNBUDGET,"%s: checking (%s): votes %d (threshold %d)\n", __func__, pfb->GetProposals(), nVoteCount, nCountThreshold);
+            LogPrint(BCLog::MNBUDGET,"%s: checking (%s): votes %d (threshold %d)\n", __func__, pfb->GetProposalsStr(), nVoteCount, nCountThreshold);
             if (nVoteCount > nCountThreshold) {
                 fThreshold = true;
                 if (pfb->IsTransactionValid(txNew, nBlockHeight) == TrxValidationStatus::Valid) {
@@ -1646,6 +1661,7 @@ CFinalizedBudget::CFinalizedBudget() :
         nBlockStart(0),
         vecBudgetPayments(),
         nFeeTXHash(),
+        strProposals(""),
         nTime(0)
 { }
 
@@ -1658,6 +1674,7 @@ CFinalizedBudget::CFinalizedBudget(const CFinalizedBudget& other) :
         nBlockStart(other.nBlockStart),
         vecBudgetPayments(other.vecBudgetPayments),
         nFeeTXHash(other.nFeeTXHash),
+        strProposals(other.strProposals),
         nTime(other.nTime)
 { }
 
@@ -1841,24 +1858,13 @@ CAmount CFinalizedBudget::GetTotalPayout() const
     return ret;
 }
 
-std::string CFinalizedBudget::GetProposals() const
+std::vector<uint256> CFinalizedBudget::GetProposalsHashes() const
 {
-    LOCK(budget.cs_proposals);
-
-    std::string ret = "";
+    std::vector<uint256> vHashes;
     for (const CTxBudgetPayment& budgetPayment : vecBudgetPayments) {
-        const CBudgetProposal* pbudgetProposal = budget.FindProposal(budgetPayment.nProposalHash);
-
-        std::string token = budgetPayment.nProposalHash.ToString();
-
-        if (pbudgetProposal) token = pbudgetProposal->GetName();
-        if (ret == "") {
-            ret = token;
-        } else {
-            ret += "," + token;
-        }
+        vHashes.push_back(budgetPayment.nProposalHash);
     }
-    return ret;
+    return vHashes;
 }
 
 std::string CFinalizedBudget::GetStatus() const
@@ -1913,7 +1919,7 @@ bool CFinalizedBudget::UpdateValid(int nCurrentHeight, bool fCheckCollateral)
 {
     fValid = false;
     // All(!) finalized budgets have the name "main", so get some additional information about them
-    std::string strProposals = GetProposals();
+    std::string strProposals = GetProposalsStr();
 
     const int nBlocksPerCycle = Params().GetConsensus().nBudgetCycleBlocks;
     // Must be the correct block for payment to happen (once a month)
