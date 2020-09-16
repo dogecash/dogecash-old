@@ -584,6 +584,26 @@ CBudgetProposal* CBudgetManager::FindProposal(const uint256& nHash)
     return NULL;
 }
 
+bool CBudgetManager::GetProposal(const uint256& nHash, CBudgetProposal& bp) const
+{
+    LOCK(cs_proposals);
+    if (mapProposals.count(nHash)) {
+        bp = mapProposals.at(nHash);
+        return true;
+    }
+    return false;
+}
+
+bool CBudgetManager::GetFinalizedBudget(const uint256& nHash, CFinalizedBudget& fb) const
+{
+    LOCK(cs_budgets);
+    if (mapFinalizedBudgets.count(nHash)) {
+        fb = mapFinalizedBudgets.at(nHash);
+        return true;
+    }
+    return false;
+}
+
 bool CBudgetManager::IsBudgetPaymentBlock(int nBlockHeight, int& nHighestCount, int& nFivePercent) const
 {
     nHighestCount = GetHighestVoteCount(nBlockHeight);
