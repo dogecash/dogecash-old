@@ -276,6 +276,10 @@ public:
     // sets strProposal of a CFinalizedBudget reference
     void SetBudgetProposalsStr(CFinalizedBudget& finalizedBudget) const;
 
+    // checks finalized budget proposals (existence, payee, amount) for the finalized budget
+    // in the map, with given nHash. Returns error string if any, or "OK" otherwise
+    std::string GetFinalizedBudgetStatus(const uint256& nHash) const;
+
     void ResetSync() { SetSynced(false); }
     void MarkSynced() { SetSynced(true); }
     void Sync(CNode* node, const uint256& nProp, bool fPartial = false);
@@ -454,9 +458,6 @@ public:
     CAmount GetTotalPayout() const;
     //vote on this finalized budget as a masternode
     void SubmitVote();
-
-    //checks the hashes to make sure we know about them
-    std::string GetStatus() const;
 
     uint256 GetHash() const
     {

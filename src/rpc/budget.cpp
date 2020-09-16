@@ -853,14 +853,15 @@ UniValue mnfinalbudget(const JSONRPCRequest& request)
 
         std::vector<CFinalizedBudget*> winningFbs = budget.GetFinalizedBudgets();
         for (CFinalizedBudget* finalizedBudget : winningFbs) {
+            const uint256& nHash = finalizedBudget->GetHash();
             UniValue bObj(UniValue::VOBJ);
             bObj.pushKV("FeeTX", finalizedBudget->GetFeeTXHash().ToString());
-            bObj.pushKV("Hash", finalizedBudget->GetHash().ToString());
+            bObj.pushKV("Hash", nHash.ToString());
             bObj.pushKV("BlockStart", (int64_t)finalizedBudget->GetBlockStart());
             bObj.pushKV("BlockEnd", (int64_t)finalizedBudget->GetBlockEnd());
             bObj.pushKV("Proposals", finalizedBudget->GetProposalsStr());
             bObj.pushKV("VoteCount", (int64_t)finalizedBudget->GetVoteCount());
-            bObj.pushKV("Status", finalizedBudget->GetStatus());
+            bObj.pushKV("Status", budget.GetFinalizedBudgetStatus(nHash));
 
             bool fValid = finalizedBudget->IsValid();
             bObj.pushKV("IsValid", fValid);
