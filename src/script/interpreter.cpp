@@ -1166,7 +1166,8 @@ uint256 SignatureHash(const CScript& scriptCode, const CTransaction& txTo, unsig
         return UINT256_ONE;
     }
 
-    if (sigversion == SIGVERSION_WITNESS_V0) {
+    // currently: sigversion_sapling is disabled everywhere.
+    if (sigversion == SIGVERSION_SAPLING) {
 
         uint256 hashPrevouts;
         uint256 hashSequence;
