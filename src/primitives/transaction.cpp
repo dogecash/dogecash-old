@@ -17,6 +17,9 @@
 
 extern bool GetTransaction(const uint256 &hash, CTransaction &txOut, uint256 &hashBlock, bool fAllowSlow);
 
+// contextual flag to guard the serialization for v5 upgrade.
+// can be removed once v5 enforcement is activated.
+std::atomic<bool> g_IsSaplingActive{false};
 
 std::string BaseOutPoint::ToStringShort() const
 {

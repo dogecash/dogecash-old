@@ -16,9 +16,14 @@
 
 #include "sapling/sapling_transaction.h"
 
+#include <atomic>
 #include <list>
 
 class CTransaction;
+
+// contextual flag to guard the serialization for v5 upgrade.
+// can be removed once v5 enforcement is activated.
+extern std::atomic<bool> g_IsSaplingActive;
 
 /** An outpoint - a combination of a transaction hash and an index n into its vout */
 class BaseOutPoint
@@ -276,7 +281,7 @@ public:
         READWRITE(*const_cast<std::vector<CTxOut>*>(&vout));
         READWRITE(*const_cast<uint32_t*>(&nLockTime));
 
-        if (nVersion == CTransaction::SAPLING_VERSION) {
+        if (g_IsSaplingActive && nVersion == CTransaction::SAPLING_VERSION) {
             READWRITE(*const_cast<Optional<SaplingTxData>*>(&sapData));
         }
 
