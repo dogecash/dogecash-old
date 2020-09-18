@@ -2,20 +2,14 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2015-2020 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+// file COPYING or https://www.opensource.org/licenses/mit-license.php.
 
-#include "primitives/block.h"
 #include "primitives/transaction.h"
 
-#include "chain.h"
 #include "hash.h"
 #include "main.h"
 #include "tinyformat.h"
 #include "utilstrencodings.h"
-#include "transaction.h"
-
-
-extern bool GetTransaction(const uint256 &hash, CTransaction &txOut, uint256 &hashBlock, bool fAllowSlow);
 
 // contextual flag to guard the serialization for v5 upgrade.
 // can be removed once v5 enforcement is activated.
