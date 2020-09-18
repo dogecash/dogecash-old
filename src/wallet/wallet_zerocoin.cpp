@@ -324,7 +324,7 @@ bool CWallet::CreateZerocoinMintTransaction(const CAmount nValue,
 
     // Fill vin
     for (const std::pair<const CWalletTx*, unsigned int>& coin : setCoins)
-        txNew.vin.push_back(CTxIn(coin.first->GetHash(), coin.second));
+        txNew.vin.emplace_back(coin.first->GetHash(), coin.second);
 
 
     //any change that is less than 0.0100000 will be ignored and given as an extra fee
@@ -684,7 +684,7 @@ bool CWallet::CreateZCPublicSpendTransaction(
                 CPubKey pubkey;
                 assert(reserveKey.GetReservedKey(pubkey)); // should never fail
                 destinationAddr = pubkey.GetID();
-                addressesTo.push_back(std::make_pair(destinationAddr, nValue));
+                addressesTo.emplace_back(destinationAddr, nValue);
             }
 
             for (std::pair<CTxDestination,CAmount> pair : addressesTo){
@@ -719,7 +719,7 @@ bool CWallet::CreateZCPublicSpendTransaction(
             CBlockIndex* pindexCheckpoint = nullptr;
             std::map<CBigNum, CZerocoinMint> mapSelectedMints;
             for (const CZerocoinMint& mint : vSelectedMints)
-                mapSelectedMints.insert(std::make_pair(mint.GetValue(), mint));
+                mapSelectedMints.emplace(mint.GetValue(), mint);
 
             //add all of the mints to the transaction as inputs
             std::vector<CTxIn> vin;
@@ -798,7 +798,7 @@ std::map<libzerocoin::CoinDenomination, CAmount> CWallet::GetMyZerocoinDistribut
 {
     std::map<libzerocoin::CoinDenomination, CAmount> spread;
     for (const auto& denom : libzerocoin::zerocoinDenomList)
-        spread.insert(std::pair<libzerocoin::CoinDenomination, CAmount>(denom, 0));
+        spread.emplace(denom, 0);
     {
         LOCK(cs_wallet);
         std::set<CMintMeta> setMints = zpivTracker->ListMints(true, true, true);

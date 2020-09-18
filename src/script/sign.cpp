@@ -101,7 +101,7 @@ static bool SignStep(const BaseSignatureCreator& creator, const CScript& scriptP
         return true;
     case TX_SCRIPTHASH:
         if (creator.KeyStore().GetCScript(uint160(vSolutions[0]), scriptRet)) {
-            ret.push_back(std::vector<unsigned char>(scriptRet.begin(), scriptRet.end()));
+            ret.emplace_back(scriptRet.begin(), scriptRet.end());
             return true;
         }
         return false;
@@ -167,7 +167,7 @@ bool ProduceSignature(const BaseSignatureCreator& creator, const CScript& fromPu
         // and then the serialized subscript:
         script = subscript = CScript(result[0].begin(), result[0].end());
         solved = solved && SignStep(creator, script, result, whichType, SIGVERSION_BASE, fColdStake) && whichType != TX_SCRIPTHASH;
-        result.push_back(std::vector<unsigned char>(subscript.begin(), subscript.end()));
+        result.emplace_back(subscript.begin(), subscript.end());
     }
 
     sigdata.scriptSig = PushAll(result);
@@ -252,7 +252,7 @@ static std::vector<valtype> CombineMultisig(const CScript& scriptPubKey, const B
     }
     // Now build a merged CScript:
     unsigned int nSigsHave = 0;
-    std::vector<valtype> result; result.push_back(valtype()); // pop-one-too-many workaround
+    std::vector<valtype> result; result.emplace_back(); // pop-one-too-many workaround
     for (unsigned int i = 0; i < nPubKeys && nSigsHave < nSigsRequired; i++)
     {
         if (sigs.count(vSolutions[i+1]))

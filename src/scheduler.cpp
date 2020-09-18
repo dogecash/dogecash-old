@@ -89,7 +89,7 @@ void CScheduler::schedule(CScheduler::Function f, boost::chrono::system_clock::t
 {
     {
         boost::unique_lock<boost::mutex> lock(newTaskMutex);
-        taskQueue.insert(std::make_pair(t, f));
+        taskQueue.emplace(t, f);
     }
     newTaskScheduled.notify_one();
 }

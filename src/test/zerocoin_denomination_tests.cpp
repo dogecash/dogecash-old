@@ -100,7 +100,7 @@ BOOST_AUTO_TEST_CASE(zerocoin_spend_test241)
             meta.nVersion = 1;
             listMints.push_back(meta);
         }
-        mapDenom.insert(std::pair<libzerocoin::CoinDenomination, CAmount>(denom, DenomAmounts[j]));
+        mapDenom.emplace(denom, DenomAmounts[j]);
         j++;
     }
     CoinsHeld = nTotalAmount / COIN;
@@ -182,7 +182,7 @@ BOOST_AUTO_TEST_CASE(zerocoin_spend_test115)
             meta.nVersion = 1;
             listMints.push_back(meta);
         }
-        mapDenom.insert(std::pair<libzerocoin::CoinDenomination, CAmount>(denom, DenomAmounts[j]));
+        mapDenom.emplace(denom, DenomAmounts[j]);
         j++;
     }
     CoinsHeld = nTotalAmount / COIN;
@@ -265,7 +265,7 @@ BOOST_AUTO_TEST_CASE(zerocoin_spend_test_from_245)
             meta.nVersion = 1;
             listMints.push_back(meta);
         }
-        mapOfDenomsHeld.insert(std::pair<libzerocoin::CoinDenomination, CAmount>(denom, DenomAmounts[j]));
+        mapOfDenomsHeld.emplace(denom, DenomAmounts[j]);
         j++;
     }
     CoinsHeld = nTotalAmount / COIN;
@@ -365,7 +365,7 @@ BOOST_AUTO_TEST_CASE(zerocoin_spend_test_from_145)
             meta.nVersion = 1;
             listMints.push_back(meta);
         }
-        mapOfDenomsHeld.insert(std::pair<libzerocoin::CoinDenomination, CAmount>(denom, DenomAmounts[j]));
+        mapOfDenomsHeld.emplace(denom, DenomAmounts[j]);
         j++;
     }
     CoinsHeld = nTotalAmount / COIN;
@@ -468,7 +468,7 @@ BOOST_AUTO_TEST_CASE(zerocoin_spend_test99)
             meta.nVersion = 1;
             listMints.push_back(meta);
         }
-        mapOfDenomsHeld.insert(std::pair<libzerocoin::CoinDenomination, CAmount>(denom, DenomAmounts[j]));
+        mapOfDenomsHeld.emplace(denom, DenomAmounts[j]);
         j++;
     }
     CoinsHeld = nTotalAmount / COIN;

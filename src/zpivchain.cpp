@@ -259,7 +259,7 @@ std::string ReindexZerocoinDB()
 
     // initialize supply to 0
     mapZerocoinSupply.clear();
-    for (auto& denom : libzerocoin::zerocoinDenomList) mapZerocoinSupply.insert(std::make_pair(denom, 0));
+    for (auto& denom : libzerocoin::zerocoinDenomList) mapZerocoinSupply.emplace(denom, 0);
 
     const Consensus::Params& consensus = Params().GetConsensus();
     const int zc_start_height = consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight;
@@ -299,10 +299,10 @@ std::string ReindexZerocoinDB()
                                 if (!ZPIVModule::ParseZerocoinPublicSpend(in, tx, state, publicSpend)){
                                     return _("Failed to parse public spend");
                                 }
-                                vSpendInfo.push_back(std::make_pair(publicSpend, txid));
+                                vSpendInfo.emplace_back(publicSpend, txid);
                             } else {
                                 libzerocoin::CoinSpend spend = TxInToZerocoinSpend(in);
-                                vSpendInfo.push_back(std::make_pair(spend, txid));
+                                vSpendInfo.emplace_back(spend, txid);
                             }
                         }
                     }
@@ -317,7 +317,7 @@ std::string ReindexZerocoinDB()
                             const bool v1params = !consensus.NetworkUpgradeActive(pindex->nHeight, Consensus::UPGRADE_ZC_V2);
                             libzerocoin::PublicCoin coin(consensus.Zerocoin_Params(v1params));
                             TxOutToPublicCoin(out, coin, state);
-                            vMintInfo.push_back(std::make_pair(coin, txid));
+                            vMintInfo.emplace_back(coin, txid);
                         }
                     }
                 }

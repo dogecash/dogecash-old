@@ -638,7 +638,7 @@ bool CWallet::IsSpent(const uint256& hash, unsigned int n) const
 
 void CWallet::AddToSpends(const COutPoint& outpoint, const uint256& wtxid)
 {
-    mapTxSpends.insert(std::make_pair(outpoint, wtxid));
+    mapTxSpends.emplace(outpoint, wtxid);
     setLockedCoins.erase(outpoint);
 
     std::pair<TxSpends::iterator, TxSpends::iterator> range;
@@ -849,14 +849,14 @@ bool CWallet::AddToWallet(const CWalletTx& wtxIn, bool fFlushOnClose)
     uint256 hash = wtxIn.GetHash();
 
     // Inserts only if not already there, returns tx inserted or tx found
-    std::pair<std::map<uint256, CWalletTx>::iterator, bool> ret = mapWallet.insert(std::make_pair(hash, wtxIn));
+    std::pair<std::map<uint256, CWalletTx>::iterator, bool> ret = mapWallet.emplace(hash, wtxIn);
     CWalletTx& wtx = (*ret.first).second;
     wtx.BindWallet(this);
     bool fInsertedNew = ret.second;
     if (fInsertedNew) {
         wtx.nTimeReceived = GetAdjustedTime();
         wtx.nOrderPos = IncOrderPosNext(&walletdb);
-        wtxOrdered.insert(std::make_pair(wtx.nOrderPos, TxPair(&wtx, (CAccountingEntry*)0)));
+        wtxOrdered.emplace(wtx.nOrderPos, TxPair(&wtx, (CAccountingEntry*)0));
         wtx.UpdateTimeSmart();
         AddToSpends(hash);
     }
@@ -916,7 +916,7 @@ bool CWallet::LoadToWallet(const CWalletTx& wtxIn)
     mapWallet[hash] = wtxIn;
     CWalletTx& wtx = mapWallet[hash];
     wtx.BindWallet(this);
-    wtxOrdered.insert(std::make_pair(wtx.nOrderPos, TxPair(&wtx, (CAccountingEntry*)0)));
+    wtxOrdered.emplace(wtx.nOrderPos, TxPair(&wtx, (CAccountingEntry*)0));
     AddToSpends(hash);
     for (const CTxIn& txin : wtx.vin) {
         if (mapWallet.count(txin.prevout.hash)) {
@@ -1544,7 +1544,7 @@ void CWallet::ReacceptWalletTransactions(bool fFirstLoad)
 
         int nDepth = wtx.GetDepthInMainChain();
         if (!wtx.IsCoinBase() && !wtx.IsCoinStake() && nDepth == 0  && !wtx.isAbandoned()) {
-            mapSorted.insert(std::make_pair(wtx.nOrderPos, &wtx));
+            mapSorted.emplace(wtx.nOrderPos, &wtx);
         }
     }
 
@@ -1582,7 +1582,7 @@ void CWalletTx::RelayWalletTransaction(CConnman* connman, std::string strCommand
 
             int invType = MSG_TX;
             if (strCommand == NetMsgType::IX) {
-                mapTxLockReq.insert(std::make_pair(hash, (CTransaction) * this));
+                mapTxLockReq.emplace(hash, (CTransaction) * this);
                 CreateNewLock(((CTransaction) * this));
                 invType = MSG_TXLOCK_REQUEST;
             }
@@ -1690,7 +1690,7 @@ void CWallet::ResendWalletTransactions(CConnman* connman)
             // Don't rebroadcast until it's had plenty of time that
             // it should have gotten in already by now.
             if (nTimeBestReceived - (int64_t)wtx.nTimeReceived > 5 * 60)
-                mapSorted.insert(std::make_pair(wtx.nTimeReceived, &wtx));
+                mapSorted.emplace(wtx.nTimeReceived, &wtx);
         }
         for (PAIRTYPE(const unsigned int, CWalletTx*) & item : mapSorted) {
             CWalletTx& wtx = *item.second;
@@ -1898,7 +1898,7 @@ void CWallet::GetAvailableP2CSCoins(std::vector<COutput>& vCoins) const {
                         bool isMineSpendable = mine & ISMINE_SPENDABLE_DELEGATED;
                         if (mine & ISMINE_COLD || isMineSpendable)
                             // Depth and solvability members are not used, no need waste resources and set them for now.
-                            vCoins.emplace_back(COutput(pcoin, i, 0, isMineSpendable, true));
+                            vCoins.emplace_back(pcoin, i, 0, isMineSpendable, true);
                     }
                 }
             }
@@ -2076,7 +2076,7 @@ bool CWallet::AvailableCoins(std::vector<COutput>* pCoins,      // --> populates
 
                 // found valid coin
                 if (!pCoins) return true;
-                pCoins->emplace_back(COutput(pcoin, i, nDepth, spendable, solvable));
+                pCoins->emplace_back(pcoin, i, nDepth, spendable, solvable);
             }
         }
         return (pCoins && pCoins->size() > 0);
@@ -2265,7 +2265,7 @@ bool CWallet::SelectCoinsToSpend(const std::vector<COutput>& vAvailableCoins, co
                 continue;
 
             nValueRet += out.tx->vout[out.i].nValue;
-            setCoinsRet.insert(std::make_pair(out.tx, out.i));
+            setCoinsRet.emplace(out.tx, out.i);
         }
         return (nValueRet >= nTargetValue);
     }
@@ -2285,7 +2285,7 @@ bool CWallet::SelectCoinsToSpend(const std::vector<COutput>& vAvailableCoins, co
             if (pcoin->vout.size() <= outpoint.n)
                 return false;
             nValueFromPresetInputs += pcoin->vout[outpoint.n].nValue;
-            setPresetCoins.insert(std::make_pair(pcoin, outpoint.n));
+            setPresetCoins.emplace(pcoin, outpoint.n);
         } else
             return false; // TODO: Allow non-wallet inputs
     }
@@ -2322,7 +2322,7 @@ bool CWallet::CreateBudgetFeeTX(CWalletTx& tx, const uint256& hash, CReserveKey&
     std::vector<CRecipient> vecSend;
     vecSend.emplace_back(scriptChange, (fFinalization ? BUDGET_FEE_TX : BUDGET_FEE_TX_OLD), false);
 
-    CCoinControl* coinControl = NULL;
+    CCoinControl* coinControl = nullptr;
     int nChangePosInOut = -1;
     bool success = CreateTransaction(vecSend, tx, keyChange, nFeeRet, nChangePosInOut, strFail, coinControl, ALL_COINS, true, false /*useIX*/, (CAmount)0);
     if (!success) {
@@ -2457,9 +2457,9 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend,
                         for (int i = 0; i < nSplitBlock; i++) {
                             if (i == nSplitBlock - 1) {
                                 uint64_t nRemainder = rec.nAmount % nSplitBlock;
-                                txNew.vout.push_back(CTxOut((rec.nAmount / nSplitBlock) + nRemainder, rec.scriptPubKey));
+                                txNew.vout.emplace_back((rec.nAmount / nSplitBlock) + nRemainder, rec.scriptPubKey);
                             } else
-                                txNew.vout.push_back(CTxOut(rec.nAmount / nSplitBlock, rec.scriptPubKey));
+                                txNew.vout.emplace_back(rec.nAmount / nSplitBlock, rec.scriptPubKey);
                         }
                     }
                 }
@@ -2567,7 +2567,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend,
 
                 // Fill vin
                 for (const PAIRTYPE(const CWalletTx*, unsigned int) & coin : setCoins)
-                    txNew.vin.push_back(CTxIn(coin.first->GetHash(), coin.second));
+                    txNew.vin.emplace_back(coin.first->GetHash(), coin.second);
 
                 // Sign
                 int nIn = 0;
@@ -2681,7 +2681,7 @@ bool CWallet::CreateCoinStake(
     // Mark coin stake transaction
     txNew.vin.clear();
     txNew.vout.clear();
-    txNew.vout.emplace_back(CTxOut(0, CScript()));
+    txNew.vout.emplace_back(0, CScript());
 
     // update staker status (hash)
     pStakerStatus->SetLastTip(pindexPrev);
@@ -2874,7 +2874,7 @@ bool CWallet::AddAccountingEntry(const CAccountingEntry& acentry, CWalletDB & pw
 
     laccentries.push_back(acentry);
     CAccountingEntry & entry = laccentries.back();
-    wtxOrdered.insert(std::make_pair(entry.nOrderPos, TxPair((CWalletTx*)0, &entry)));
+    wtxOrdered.emplace(entry.nOrderPos, TxPair((CWalletTx*)0, &entry));
 
     return true;
 }
@@ -3437,7 +3437,7 @@ bool CWallet::AddDestData(const CTxDestination& dest, const std::string& key, co
     if (!IsValidDestination(dest))
         return false;
 
-    mapAddressBook[dest].destdata.insert(std::make_pair(key, value));
+    mapAddressBook[dest].destdata.emplace(key, value);
     if (!fFileBacked)
         return true;
     return CWalletDB(strWalletFile).WriteDestData(EncodeDestination(dest), key, value);
@@ -3454,7 +3454,7 @@ bool CWallet::EraseDestData(const CTxDestination& dest, const std::string& key)
 
 bool CWallet::LoadDestData(const CTxDestination& dest, const std::string& key, const std::string& value)
 {
-    mapAddressBook[dest].destdata.insert(std::make_pair(key, value));
+    mapAddressBook[dest].destdata.emplace(key, value);
     return true;
 }
 

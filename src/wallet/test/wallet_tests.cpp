@@ -325,7 +325,7 @@ CBlockIndex* SimpleFakeMine(CWalletTx& wtx, CBlockIndex* pprev = nullptr)
     if (pprev) block.hashPrevBlock = pprev->GetBlockHash();
     CBlockIndex* fakeIndex = new CBlockIndex(block);
     fakeIndex->pprev = pprev;
-    mapBlockIndex.insert(std::make_pair(block.GetHash(), fakeIndex));
+    mapBlockIndex.emplace(block.GetHash(), fakeIndex);
     fakeIndex->phashBlock = &mapBlockIndex.find(block.GetHash())->first;
     chainActive.SetTip(fakeIndex);
     BOOST_CHECK(chainActive.Contains(fakeIndex));

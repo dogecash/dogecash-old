@@ -324,7 +324,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
                 porphan->dPriority = dPriority;
                 porphan->feeRate = feeRate;
             } else
-                vecPriority.push_back(TxPriority(dPriority, feeRate, &mi->GetTx()));
+                vecPriority.emplace_back(dPriority, feeRate, &mi->GetTx());
         }
 
         // Collect transactions into block
@@ -419,7 +419,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
                     if (!porphan->setDependsOn.empty()) {
                         porphan->setDependsOn.erase(hash);
                         if (porphan->setDependsOn.empty()) {
-                            vecPriority.push_back(TxPriority(porphan->dPriority, porphan->feeRate, porphan->ptx));
+                            vecPriority.emplace_back(porphan->dPriority, porphan->feeRate, porphan->ptx);
                             std::push_heap(vecPriority.begin(), vecPriority.end(), comparer);
                         }
                     }

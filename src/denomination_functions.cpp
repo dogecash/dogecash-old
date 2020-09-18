@@ -44,7 +44,7 @@ std::map<libzerocoin::CoinDenomination, CAmount> getSpendCoins(const CAmount nVa
     CAmount nRemainingValue = nValueTarget;
     // Initialize
     for (const auto& denom : libzerocoin::zerocoinDenomList)
-        mapUsed.insert(std::pair<libzerocoin::CoinDenomination, CAmount>(denom, 0));
+        mapUsed.emplace(denom, 0);
 
     // Start with the Highest Denomination coin and grab coins as long as the remaining amount is greater than the
     // current denomination value and we have the denom
@@ -69,7 +69,7 @@ std::map<libzerocoin::CoinDenomination, CAmount> getChange(const CAmount nValueT
     CAmount nRemainingValue = nValueTarget;
     // Initialize
     for (const auto& denom : libzerocoin::zerocoinDenomList)
-        mapChange.insert(std::pair<libzerocoin::CoinDenomination, CAmount>(denom, 0));
+        mapChange.emplace(denom, 0);
 
     // Start with the Highest Denomination coin and grab coins as long as the remaining amount is greater than the
     // current denomination value
@@ -98,7 +98,7 @@ bool getIdealSpends(
     CAmount nRemainingValue = nValueTarget;
     // Initialize
     for (const auto& denom : libzerocoin::zerocoinDenomList)
-        mapOfDenomsUsed.insert(std::pair<libzerocoin::CoinDenomination, CAmount>(denom, 0));
+        mapOfDenomsUsed.emplace(denom, 0);
 
     // Start with the Highest Denomination coin and grab coins as long as the remaining amount is greater than the
     // current denomination value
@@ -146,7 +146,7 @@ void listSpends(const std::vector<CZerocoinMint>& vSelectedMints)
 {
     std::map<libzerocoin::CoinDenomination, int64_t> mapZerocoinSupply;
     for (auto& denom : libzerocoin::zerocoinDenomList)
-        mapZerocoinSupply.insert(std::make_pair(denom, 0));
+        mapZerocoinSupply.emplace(denom, 0);
 
     for (const CZerocoinMint& mint : vSelectedMints) {
         libzerocoin::CoinDenomination denom = mint.GetDenomination();
@@ -316,7 +316,7 @@ int calculateChange(
     // Initialize
     mapOfDenomsUsed.clear();
     for (const auto& denom : libzerocoin::zerocoinDenomList)
-        mapOfDenomsUsed.insert(std::pair<libzerocoin::CoinDenomination, CAmount>(denom, 0));
+        mapOfDenomsUsed.emplace(denom, 0);
 
     for (const auto& denom : libzerocoin::zerocoinDenomList) {
         if (nValueTarget < ZerocoinDenominationToAmount(denom) && mapOfDenomsHeld.at(denom)) {

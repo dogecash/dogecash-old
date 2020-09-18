@@ -17,7 +17,7 @@ benchmark::BenchRunner::BenchmarkMap &benchmark::BenchRunner::benchmarks() {
 
 benchmark::BenchRunner::BenchRunner(std::string name, benchmark::BenchFunction func)
 {
-    benchmarks().insert(std::make_pair(name, func));
+    benchmarks().emplace(name, func);
 }
 
 void

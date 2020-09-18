@@ -1440,8 +1440,8 @@ UniValue getblockindexstats(const JSONRPCRequest& request) {
     std::map<libzerocoin::CoinDenomination, int64_t> mapSpendCount;
     std::map<libzerocoin::CoinDenomination, int64_t> mapPublicSpendCount;
     for (auto& denom : libzerocoin::zerocoinDenomList) {
-        mapSpendCount.insert(std::make_pair(denom, 0));
-        mapPublicSpendCount.insert(std::make_pair(denom, 0));
+        mapSpendCount.emplace(denom, 0);
+        mapPublicSpendCount.emplace(denom, 0);
     }
 
     CBlockIndex* pindex = nullptr;

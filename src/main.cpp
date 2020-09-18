@@ -1706,7 +1706,7 @@ bool CheckInputs(const CTransaction& tx, CValidationState &state, const CCoinsVi
                 // Verify signature
                 CScriptCheck check(scriptPubKey, amount, tx, i, flags, cacheStore, &precomTxData);
                 if (pvChecks) {
-                    pvChecks->push_back(CScriptCheck());
+                    pvChecks->emplace_back();
                     check.swap(pvChecks->back());
                 } else if (!check()) {
                     if (flags & STANDARD_NOT_MANDATORY_VERIFY_FLAGS) {
@@ -2078,7 +2078,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                 libzerocoin::PublicCoin coin(consensus.Zerocoin_Params(false));
                 if (!TxOutToPublicCoin(out, coin, state))
                     return state.DoS(100, error("%s: failed final check of zerocoinmint for tx %s", __func__, tx.GetHash().GetHex()));
-                vMints.emplace_back(std::make_pair(coin, tx.GetHash()));
+                vMints.emplace_back(coin, tx.GetHash());
             }
         }
 
@@ -2115,14 +2115,14 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                     }
                     nValueIn += publicSpend.getDenomination() * COIN;
                     //queue for db write after the 'justcheck' section has concluded
-                    vSpends.emplace_back(std::make_pair(publicSpend, tx.GetHash()));
+                    vSpends.emplace_back(publicSpend, tx.GetHash());
                     if (!ContextualCheckZerocoinSpend(tx, &publicSpend, pindex->nHeight, hashBlock))
                         return state.DoS(100, error("%s: failed to add block %s with invalid public zc spend", __func__, tx.GetHash().GetHex()), REJECT_INVALID);
                 } else {
                     libzerocoin::CoinSpend spend = TxInToZerocoinSpend(txIn);
                     nValueIn += spend.getDenomination() * COIN;
                     //queue for db write after the 'justcheck' section has concluded
-                    vSpends.emplace_back(std::make_pair(spend, tx.GetHash()));
+                    vSpends.emplace_back(spend, tx.GetHash());
                     if (!ContextualCheckZerocoinSpend(tx, &spend, pindex->nHeight, hashBlock))
                         return state.DoS(100, error("%s: failed to add block %s with invalid zerocoinspend", __func__, tx.GetHash().GetHex()), REJECT_INVALID);
                 }
@@ -2384,7 +2384,7 @@ bool static FlushStateToDisk(CValidationState& state, FlushStateMode mode)
                 std::vector<std::pair<int, const CBlockFileInfo*> > vFiles;
                 vFiles.reserve(setDirtyFileInfo.size());
                 for (std::set<int>::iterator it = setDirtyFileInfo.begin(); it != setDirtyFileInfo.end(); ) {
-                    vFiles.push_back(std::make_pair(*it, &vinfoBlockFile[*it]));
+                    vFiles.emplace_back(*it, &vinfoBlockFile[*it]);
                     setDirtyFileInfo.erase(it++);
                 }
                 std::vector<const CBlockIndex*> vBlocks;
@@ -2695,7 +2695,7 @@ static CBlockIndex* FindMostWorkChain()
                         // If we're missing data, then add back to mapBlocksUnlinked,
                         // so that if the block arrives in the future we can try adding
                         // to setBlockIndexCandidates again.
-                        mapBlocksUnlinked.insert(std::make_pair(pindexFailed->pprev, pindexFailed));
+                        mapBlocksUnlinked.emplace(pindexFailed->pprev, pindexFailed);
                     }
                     setBlockIndexCandidates.erase(pindexFailed);
                     pindexFailed = pindexFailed->pprev;
@@ -2998,7 +2998,7 @@ CBlockIndex* AddToBlockIndex(const CBlock& block)
     // to avoid miners withholding blocks but broadcasting headers, to get a
     // competitive advantage.
     pindexNew->nSequenceId = 0;
-    BlockMap::iterator mi = mapBlockIndex.insert(std::make_pair(hash, pindexNew)).first;
+    BlockMap::iterator mi = mapBlockIndex.emplace(hash, pindexNew).first;
 
     pindexNew->phashBlock = &((*mi).first);
     BlockMap::iterator miPrev = mapBlockIndex.find(block.hashPrevBlock);
@@ -3068,7 +3068,7 @@ bool ReceivedBlockTransactions(const CBlock& block, CValidationState& state, CBl
         }
     } else {
         if (pindexNew->pprev && pindexNew->pprev->IsValid(BLOCK_VALID_TREE)) {
-            mapBlocksUnlinked.insert(std::make_pair(pindexNew->pprev, pindexNew));
+            mapBlocksUnlinked.emplace(pindexNew->pprev, pindexNew);
         }
     }
 
@@ -3282,7 +3282,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 for (const CTxIn& in : tx.vin) {
                     if (mapLockedInputs.count(in.prevout)) {
                         if (mapLockedInputs[in.prevout] != tx.GetHash()) {
-                            mapRejectedBlocks.insert(std::make_pair(block.GetHash(), GetTime()));
+                            mapRejectedBlocks.emplace(block.GetHash(), GetTime());
                             return state.DoS(100, false, REJECT_INVALID, "conflicting-tx-ix", false, "conflicting tx with instantsend lock");
                         }
                     }
@@ -3320,7 +3320,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         if (nHeight != 0 && !IsInitialBlockDownload()) {
             // Last output of Cold-Stake is not abused
             if (IsPoS && !CheckColdStakeFreeOutput(block.vtx[1], nHeight)) {
-                mapRejectedBlocks.insert(std::make_pair(block.GetHash(), GetTime()));
+                mapRejectedBlocks.emplace(block.GetHash(), GetTime());
                 return state.DoS(0, false, REJECT_INVALID, "bad-p2cs-outs", false, "invalid cold-stake output");
             }
 
@@ -3329,7 +3329,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
 
             // check masternode/budget payment
             if (!IsBlockPayeeValid(block, nHeight)) {
-                mapRejectedBlocks.insert(std::make_pair(block.GetHash(), GetTime()));
+                mapRejectedBlocks.emplace(block.GetHash(), GetTime());
                 return state.DoS(0, false, REJECT_INVALID, "bad-cb-payee", false, "Couldn't find masternode/budget payment");
             }
         } else {
@@ -4104,7 +4104,7 @@ CBlockIndex* InsertBlockIndex(uint256 hash)
     CBlockIndex* pindexNew = new CBlockIndex();
     if (!pindexNew)
         throw std::runtime_error("LoadBlockIndex() : new CBlockIndex failed");
-    mi = mapBlockIndex.insert(std::make_pair(hash, pindexNew)).first;
+    mi = mapBlockIndex.emplace(hash, pindexNew).first;
 
     pindexNew->phashBlock = &((*mi).first);
 
@@ -4123,7 +4123,7 @@ bool static LoadBlockIndexDB(std::string& strError)
     vSortedByHeight.reserve(mapBlockIndex.size());
     for (const std::pair<const uint256, CBlockIndex*>& item : mapBlockIndex) {
         CBlockIndex* pindex = item.second;
-        vSortedByHeight.push_back(std::make_pair(pindex->nHeight, pindex));
+        vSortedByHeight.emplace_back(pindex->nHeight, pindex);
     }
     std::sort(vSortedByHeight.begin(), vSortedByHeight.end());
     for (const PAIRTYPE(int, CBlockIndex*) & item : vSortedByHeight) {
@@ -4138,7 +4138,7 @@ bool static LoadBlockIndexDB(std::string& strError)
                     pindex->nChainTx = pindex->pprev->nChainTx + pindex->nTx;
                 } else {
                     pindex->nChainTx = 0;
-                    mapBlocksUnlinked.insert(std::make_pair(pindex->pprev, pindex));
+                    mapBlocksUnlinked.emplace(pindex->pprev, pindex);
                 }
             } else {
                 pindex->nChainTx = pindex->nTx;
@@ -4444,7 +4444,7 @@ bool LoadExternalBlockFile(FILE* fileIn, CDiskBlockPos* dbp)
                     LogPrint(BCLog::REINDEX, "%s: Out of order block %s, parent %s not known\n", __func__,
                             hash.GetHex(), block.hashPrevBlock.GetHex());
                     if (dbp)
-                        mapBlocksUnknownParent.insert(std::make_pair(block.hashPrevBlock, *dbp));
+                        mapBlocksUnknownParent.emplace(block.hashPrevBlock, *dbp);
                     continue;
                 }
 
@@ -4512,7 +4512,7 @@ void static CheckBlockIndex()
     // Build forward-pointing map of the entire block tree.
     std::multimap<CBlockIndex*, CBlockIndex*> forward;
     for (BlockMap::iterator it = mapBlockIndex.begin(); it != mapBlockIndex.end(); it++) {
-        forward.insert(std::make_pair(it->second->pprev, it->second));
+        forward.emplace(it->second->pprev, it->second);
     }
 
     assert(forward.size() == mapBlockIndex.size());
@@ -4862,7 +4862,7 @@ void static ProcessGetData(CNode* pfrom, CConnman& connman, std::atomic<bool>& i
                         // and we want it right after the last block so they don't
                         // wait for other stuff first.
                         std::vector<CInv> vInv;
-                        vInv.push_back(CInv(MSG_BLOCK, chainActive.Tip()->GetBlockHash()));
+                        vInv.emplace_back(MSG_BLOCK, chainActive.Tip()->GetBlockHash());
                         connman.PushMessage(pfrom, msgMaker.Make(NetMsgType::INV, vInv));
                         pfrom->hashContinue.SetNull();
                     }
@@ -6143,7 +6143,7 @@ bool SendMessages(CNode* pto, CConnman& connman, std::atomic<bool>& interruptMsg
             NodeId staller = -1;
             FindNextBlocksToDownload(pto->GetId(), MAX_BLOCKS_IN_TRANSIT_PER_PEER - state.nBlocksInFlight, vToDownload, staller);
             for (CBlockIndex* pindex : vToDownload) {
-                vGetData.push_back(CInv(MSG_BLOCK, pindex->GetBlockHash()));
+                vGetData.emplace_back(MSG_BLOCK, pindex->GetBlockHash());
                 MarkBlockAsInFlight(pto->GetId(), pindex->GetBlockHash(), pindex);
                 LogPrintf("Requesting block %s (%d) peer=%d\n", pindex->GetBlockHash().ToString(),
                     pindex->nHeight, pto->id);

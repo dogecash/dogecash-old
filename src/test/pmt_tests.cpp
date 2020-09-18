@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(pmt_test1)
         for (unsigned int j=0; j<nTx; j++) {
             CMutableTransaction tx;
             tx.nLockTime = rand(); // actual transaction data doesn't matter; just make the nLockTime's unique
-            block.vtx.push_back(CTransaction(tx));
+            block.vtx.emplace_back(tx);
         }
 
         // calculate actual merkle root and height

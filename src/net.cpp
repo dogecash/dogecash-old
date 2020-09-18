@@ -739,7 +739,7 @@ bool CNode::ReceiveMsgBytes(const char* pch, unsigned int nBytes, bool& complete
         // get current incomplete message, or create a new one
         if (vRecvMsg.empty() ||
             vRecvMsg.back().complete())
-            vRecvMsg.push_back(CNetMessage(Params().MessageStart(), SER_NETWORK, INIT_PROTO_VERSION));
+            vRecvMsg.emplace_back(Params().MessageStart(), SER_NETWORK, INIT_PROTO_VERSION);
 
         CNetMessage& msg = vRecvMsg.back();
 
@@ -1790,17 +1790,17 @@ std::vector<AddedNodeInfo> CConnman::GetAddedNodeInfo()
             // strAddNode is an IP:port
             auto it = mapConnected.find(service);
             if (it != mapConnected.end()) {
-                ret.push_back(AddedNodeInfo{strAddNode, service, true, it->second});
+                ret.emplace_back(strAddNode, service, true, it->second);
             } else {
-                ret.push_back(AddedNodeInfo{strAddNode, CService(), false, false});
+                ret.emplace_back(strAddNode, CService(), false, false);
             }
         } else {
             // strAddNode is a name
             auto it = mapConnectedByName.find(strAddNode);
             if (it != mapConnectedByName.end()) {
-                ret.push_back(AddedNodeInfo{strAddNode, it->second.second, true, it->second.first});
+                ret.emplace_back(strAddNode, it->second.second, true, it->second.first);
             } else {
-                ret.push_back(AddedNodeInfo{strAddNode, CService(), false, false});
+                ret.emplace_back(strAddNode, CService(), false, false);
             }
         }
     }
@@ -1999,7 +1999,7 @@ bool CConnman::BindListenPort(const CService& addrBind, std::string& strError, b
         return false;
     }
 
-    vhListenSocket.push_back(ListenSocket(hListenSocket, fWhitelisted));
+    vhListenSocket.emplace_back(hListenSocket, fWhitelisted);
 
     if (addrBind.IsRoutable() && fDiscover && !fWhitelisted)
         AddLocal(addrBind, LOCAL_BIND);

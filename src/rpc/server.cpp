@@ -201,7 +201,7 @@ std::string CRPCTable::help(std::string strCommand) const
     std::vector<std::pair<std::string, const CRPCCommand*> > vCommands;
 
     for (const auto& entry : mapCommands)
-        vCommands.push_back(std::make_pair(entry.second->category + entry.first, entry.second));
+        vCommands.emplace_back(entry.second->category + entry.first, entry.second);
     std::sort(vCommands.begin(), vCommands.end());
 
     for (const std::pair<std::string, const CRPCCommand*>& command : vCommands) {
@@ -630,7 +630,7 @@ void RPCRunLater(const std::string& name, std::function<void(void)> func, int64_
         throw JSONRPCError(RPC_INTERNAL_ERROR, "No timer handler registered for RPC");
     deadlineTimers.erase(name);
     LogPrint(BCLog::RPC, "queue run of timer %s in %i seconds (using %s)\n", name, nSeconds, timerInterface->Name());
-    deadlineTimers.insert(std::make_pair(name, boost::shared_ptr<RPCTimerBase>(timerInterface->NewTimer(func, nSeconds*1000))));
+    deadlineTimers.emplace(name, boost::shared_ptr<RPCTimerBase>(timerInterface->NewTimer(func, nSeconds*1000)));
 }
 
 CRPCTable tableRPC;

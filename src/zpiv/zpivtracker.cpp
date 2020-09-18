@@ -129,7 +129,7 @@ CAmount CzPIVTracker::GetBalance(bool fConfirmedOnly, bool fUnconfirmedOnly) con
     //! zerocoin specific fields
     std::map<libzerocoin::CoinDenomination, unsigned int> myZerocoinSupply;
     for (auto& denom : libzerocoin::zerocoinDenomList) {
-        myZerocoinSupply.insert(std::make_pair(denom, 0));
+        myZerocoinSupply.emplace(denom, 0);
     }
 
     {
@@ -328,7 +328,7 @@ void CzPIVTracker::SetPubcoinUsed(const uint256& hashPubcoin, const uint256& txi
         return;
     CMintMeta meta = GetMetaFromPubcoin(hashPubcoin);
     meta.isUsed = true;
-    mapPendingSpends.insert(std::make_pair(meta.hashSerial, txid));
+    mapPendingSpends.emplace(meta.hashSerial, txid);
     UpdateState(meta);
 }
 
