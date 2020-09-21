@@ -1125,6 +1125,7 @@ uint256 GetOutputsHash(const CTransaction& txTo) {
 }
 
 uint256 GetShieldedSpendsHash(const CTransaction& txTo) {
+    assert(txTo.sapData);
     CBLAKE2bWriter ss(SER_GETHASH, 0, PIVX_SHIELDED_SPENDS_HASH_PERSONALIZATION);
     auto sapData = txTo.sapData;
     for (const auto& n : sapData->vShieldedSpend) {
@@ -1138,6 +1139,7 @@ uint256 GetShieldedSpendsHash(const CTransaction& txTo) {
 }
 
 uint256 GetShieldedOutputsHash(const CTransaction& txTo) {
+    assert(txTo.sapData);
     CBLAKE2bWriter ss(SER_GETHASH, 0, PIVX_SHIELDED_OUTPUTS_HASH_PERSONALIZATION);
     auto sapData = txTo.sapData;
     for (const auto& n : sapData->vShieldedOutput) {
