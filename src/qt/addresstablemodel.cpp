@@ -128,23 +128,23 @@ public:
         cachedAddressTable.clear();
         {
             LOCK(wallet->cs_wallet);
-            for (const PAIRTYPE(CTxDestination, AddressBook::CAddressBookData) & item : wallet->mapAddressBook) {
-
+            for (auto it = wallet->NewAddressBookIterator(); it.IsValid(); it.Next()) {
+                auto addrBookData = it.GetValue();
                 const CChainParams::Base58Type addrType =
-                        AddressBook::IsColdStakingPurpose(item.second.purpose) ?
+                        AddressBook::IsColdStakingPurpose(addrBookData.purpose) ?
                         CChainParams::STAKING_ADDRESS : CChainParams::PUBKEY_ADDRESS;
-                const CTxDestination& address = item.first;
+                const CTxDestination& address = it.GetKey();
 
                 bool fMine = IsMine(*wallet, address);
                 AddressTableEntry::Type addressType = translateTransactionType(
-                    QString::fromStdString(item.second.purpose), fMine);
-                const std::string& strName = item.second.name;
+                    QString::fromStdString(addrBookData.purpose), fMine);
+                const std::string& strName = addrBookData.name;
 
                 uint creationTime = 0;
-                if (item.second.isReceivePurpose())
+                if (addrBookData.isReceivePurpose())
                     creationTime = static_cast<uint>(wallet->GetKeyCreationTime(address));
 
-                updatePurposeCachedCounted(item.second.purpose, true);
+                updatePurposeCachedCounted(addrBookData.purpose, true);
                 cachedAddressTable.append(
                         AddressTableEntry(addressType,
                                           QString::fromStdString(strName),
@@ -395,7 +395,7 @@ bool AddressTableModel::setData(const QModelIndex& index, const QVariant& value,
             }
             // Check for duplicate addresses to prevent accidental deletion of addresses, if you try
             // to paste an existing address over another address (with a different label)
-            else if (wallet->mapAddressBook.count(newAddress)) {
+            else if (wallet->HasAddressBook(newAddress)) {
                 editStatus = DUPLICATE_ADDRESS;
                 return false;
             }
@@ -483,7 +483,7 @@ QString AddressTableModel::addRow(const QString& type, const QString& label, con
         // Check for duplicate addresses
         {
             LOCK(wallet->cs_wallet);
-            if (wallet->mapAddressBook.count(DecodeDestination(strAddress))) {
+            if (wallet->HasAddressBook(DecodeDestination(strAddress))) {
                 editStatus = DUPLICATE_ADDRESS;
                 return QString();
             }
@@ -539,14 +539,8 @@ QString AddressTableModel::labelForAddress(const QString& address) const
 {
     // TODO: Check why do we have empty addresses..
     if (!address.isEmpty()) {
-        {
-            LOCK(wallet->cs_wallet);
-            CTxDestination destination = DecodeDestination(address.toStdString());
-            std::map<CTxDestination, AddressBook::CAddressBookData>::iterator mi = wallet->mapAddressBook.find(destination);
-            if (mi != wallet->mapAddressBook.end()) {
-                return QString::fromStdString(mi->second.name);
-            }
-        }
+        CTxDestination dest = DecodeDestination(address.toStdString());
+        return QString::fromStdString(wallet->GetNameForAddressBookEntry(dest));
     }
     return QString();
 }
@@ -555,7 +549,7 @@ QString AddressTableModel::labelForAddress(const QString& address) const
  */
 std::string AddressTableModel::purposeForAddress(const std::string& address) const
 {
-    return wallet->purposeForAddress(DecodeDestination(address));
+    return wallet->GetPurposeForAddressBookEntry(DecodeDestination(address));
 }
 
 int AddressTableModel::lookupAddress(const QString& address) const
@@ -575,28 +569,27 @@ bool AddressTableModel::isWhitelisted(const std::string& address) const
 }
 
 /**
- * Return last created unused address --> TODO: complete "unused" and "last".. basically everything..
+ * Return an unused address
  * @return
  */
 QString AddressTableModel::getAddressToShow() const
 {
-    QString addressStr;
     LOCK(wallet->cs_wallet);
-    if (!wallet->mapAddressBook.empty()) {
-        for (auto it = wallet->mapAddressBook.rbegin(); it != wallet->mapAddressBook.rend(); ++it ) {
-            if (it->second.purpose == AddressBook::AddressBookPurpose::RECEIVE) {
-                const CTxDestination &address = it->first;
-                if (IsValidDestination(address) && IsMine(*wallet, address)) {
-                    addressStr = QString::fromStdString(EncodeDestination(address));
-                }
+
+    for (auto it = wallet->NewAddressBookIterator(); it.IsValid(); it.Next()) {
+        if (it.GetValue().purpose == AddressBook::AddressBookPurpose::RECEIVE) {
+            const auto &address = it.GetKey();
+            if (IsValidDestination(address) && IsMine(*wallet, address) && !wallet->IsUsed(address)) {
+                return QString::fromStdString(EncodeDestination(address));
             }
         }
-    } else {
-        // For some reason we don't have any address in our address book, let's create one
-        Destination newAddress;
-        if (walletModel->getNewAddress(newAddress, "Default").result) {
-            addressStr = QString::fromStdString(newAddress.ToString());
-        }
+    }
+
+    // For some reason we don't have any address in our address book, let's create one
+    QString addressStr;
+    Destination newAddress;
+    if (walletModel->getNewAddress(newAddress, "Default").result) {
+        addressStr = QString::fromStdString(newAddress.ToString());
     }
     return addressStr;
 }

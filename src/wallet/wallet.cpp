@@ -1188,7 +1188,7 @@ bool CWallet::IsChange(const CTxOut& txout) const
             return true;
 
         LOCK(cs_wallet);
-        if (!mapAddressBook.count(address))
+        if (!HasAddressBook(address))
             return true;
     }
     return false;
@@ -2986,7 +2986,7 @@ bool CWallet::SetAddressBook(const CTxDestination& address, const std::string& s
 bool CWallet::DelAddressBook(const CTxDestination& address, const CChainParams::Base58Type addrType)
 {
     std::string strAddress =  EncodeDestination(address, addrType);
-    std::string purpose = purposeForAddress(address);
+    std::string purpose = GetPurposeForAddressBookEntry(address);
     {
         LOCK(cs_wallet); // mapAddressBook
 
@@ -3007,16 +3007,35 @@ bool CWallet::DelAddressBook(const CTxDestination& address, const CChainParams::
     return CWalletDB(strWalletFile).EraseName(strAddress);
 }
 
-std::string CWallet::purposeForAddress(const CTxDestination& address) const
+std::string CWallet::GetPurposeForAddressBookEntry(const CTxDestination& address) const
 {
-    {
-        LOCK(cs_wallet);
-        auto mi = mapAddressBook.find(address);
-        if (mi != mapAddressBook.end()) {
-            return mi->second.purpose;
-        }
-    }
-    return "";
+    LOCK(cs_wallet);
+    auto it = mapAddressBook.find(address);
+    return it != mapAddressBook.end() ? it->second.purpose : "";
+}
+
+std::string CWallet::GetNameForAddressBookEntry(const CTxDestination& address) const
+{
+    LOCK(cs_wallet);
+    auto it = mapAddressBook.find(address);
+    return it != mapAddressBook.end() ? it->second.name : "";
+}
+
+Optional<AddressBook::CAddressBookData> CWallet::GetAddressBookEntry(const CTxDestination& dest) const
+{
+    LOCK(cs_wallet);
+    auto it = mapAddressBook.find(dest);
+    return it != mapAddressBook.end() ? Optional<AddressBook::CAddressBookData>(it->second) : nullopt;
+}
+
+void CWallet::LoadAddressBookName(const CTxDestination& dest, const std::string& strName)
+{
+    mapAddressBook[dest].name = strName;
+}
+
+void CWallet::LoadAddressBookPurpose(const CTxDestination& dest, const std::string& strPurpose)
+{
+    mapAddressBook[dest].purpose = strPurpose;
 }
 
 const std::string& CWallet::GetAccountName(const CScript& scriptPubKey) const
@@ -3036,9 +3055,7 @@ const std::string& CWallet::GetAccountName(const CScript& scriptPubKey) const
 
 bool CWallet::HasAddressBook(const CTxDestination& address) const
 {
-    LOCK(cs_wallet); // mapAddressBook
-    std::map<CTxDestination, AddressBook::CAddressBookData>::const_iterator mi = mapAddressBook.find(address);
-    return mi != mapAddressBook.end();
+    return WITH_LOCK(cs_wallet, return mapAddressBook.count(address));
 }
 
 bool CWallet::HasDelegator(const CTxOut& out) const

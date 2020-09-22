@@ -89,6 +89,7 @@ static const bool DEFAULT_DISABLE_WALLET = false;
 
 extern const char * DEFAULT_WALLET_DAT;
 
+class CAddressBookIterator;
 class CAccountingEntry;
 class CCoinControl;
 class COutput;
@@ -243,6 +244,34 @@ struct CRecipient
     {}
 };
 
+class CAddressBookIterator
+{
+public:
+    explicit CAddressBookIterator(std::map<CTxDestination, AddressBook::CAddressBookData>& _map) : map(_map), it(_map.begin()), itEnd(_map.end()) {}
+    CTxDestination GetKey() { return it->first; }
+    AddressBook::CAddressBookData GetValue() { return it->second; }
+
+    bool IsValid() { return it != itEnd; }
+
+    bool Next() {
+        if (!IsValid()) return false;
+        it++;
+        return IsValid();
+    }
+
+    void SetFilter(CTxDestination& filter)
+    {
+        it = map.find(filter);
+        if (it != itEnd) {
+            itEnd = std::next(it);
+        }
+    }
+
+private:
+    std::map<CTxDestination, AddressBook::CAddressBookData>& map;
+    std::map<CTxDestination, AddressBook::CAddressBookData>::iterator it;
+    std::map<CTxDestination, AddressBook::CAddressBookData>::iterator itEnd;
+};
 
 /**
  * A CWallet is an extension of a keystore, which also maintains a set of transactions and balances,
@@ -288,6 +317,9 @@ private:
 
     // Zerocoin wallet
     CzPIVWallet* zwallet{nullptr};
+
+    //! Destination --> label/purpose mapping.
+    std::map<CTxDestination, AddressBook::CAddressBookData> mapAddressBook;
 
 public:
 
@@ -368,8 +400,6 @@ public:
     TxItems wtxOrdered;
 
     int64_t nOrderPosNext;
-
-    std::map<CTxDestination, AddressBook::CAddressBookData> mapAddressBook;
 
     std::set<COutPoint> setLockedCoins;
 
@@ -634,8 +664,16 @@ public:
     bool DelAddressBook(const CTxDestination& address, const CChainParams::Base58Type addrType = CChainParams::PUBKEY_ADDRESS);
     bool HasAddressBook(const CTxDestination& address) const;
     bool HasDelegator(const CTxOut& out) const;
+    int GetAddressBookSize() const { return mapAddressBook.size(); };
 
-    std::string purposeForAddress(const CTxDestination& address) const;
+    CAddressBookIterator NewAddressBookIterator() { return CAddressBookIterator(mapAddressBook); }
+    std::string GetPurposeForAddressBookEntry(const CTxDestination& address) const;
+    std::string GetNameForAddressBookEntry(const CTxDestination& address) const;
+    Optional<AddressBook::CAddressBookData> GetAddressBookEntry(const CTxDestination& address) const;
+
+    void LoadAddressBookName(const CTxDestination& dest, const std::string& strName);
+    void LoadAddressBookPurpose(const CTxDestination& dest, const std::string& strPurpose);
+
     const std::string& GetAccountName(const CScript& scriptPubKey) const;
 
     bool UpdatedTransaction(const uint256& hashTx);
@@ -1043,7 +1081,6 @@ public:
         READWRITE(LIMITED_STRING(strComment, 65536));
     }
 };
-
 
 /**
  * DEPRECATED Account information.
