@@ -19,6 +19,9 @@ class CScript;
 class CTransaction;
 class uint256;
 
+/** Special case nIn for signing Sapling txs. */
+const unsigned int NOT_AN_INPUT = UINT_MAX;
+
 /** Signature hash types/flags */
 enum
 {
@@ -88,7 +91,7 @@ bool CheckSignatureEncoding(const std::vector<unsigned char> &vchSig, unsigned i
 
 struct PrecomputedTransactionData
 {
-    uint256 hashPrevouts, hashSequence, hashOutputs;
+    uint256 hashPrevouts, hashSequence, hashOutputs, hashShieldedSpends, hashShieldedOutputs;
 
     PrecomputedTransactionData(const CTransaction& tx);
 };
@@ -96,7 +99,7 @@ struct PrecomputedTransactionData
 enum SigVersion
 {
     SIGVERSION_BASE = 0,
-    SIGVERSION_WITNESS_V0 = 1,
+    SIGVERSION_SAPLING = 1,
 };
 
 uint256 SignatureHash(const CScript &scriptCode, const CTransaction& txTo, unsigned int nIn, int nHashType, const CAmount& amount, SigVersion sigversion, const PrecomputedTransactionData* cache = nullptr);

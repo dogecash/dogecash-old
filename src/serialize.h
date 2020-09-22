@@ -12,6 +12,7 @@
 #include <assert.h>
 #include <ios>
 #include <limits>
+#include <list>
 #include <map>
 #include <set>
 #include <stdint.h>
@@ -23,9 +24,11 @@
 #include "compat/endian.h"
 #include "libzerocoin/Denominations.h"
 #include "libzerocoin/SpendType.h"
+#include "optional.h"
 #include "prevector.h"
 #include "sporkid.h"
 
+class CScript;
 
 static const unsigned int MAX_SIZE = 0x02000000;
 
@@ -560,6 +563,13 @@ template<typename Stream, typename T, std::size_t N> void Serialize(Stream& os, 
 template<typename Stream, typename T, std::size_t N> void Unserialize(Stream& is, std::array<T, N>& item);
 
 /**
+ * optional
+ */
+template<typename T> unsigned int GetSerializeSize(const Optional<T> &item);
+template<typename Stream, typename T> void Serialize(Stream& os, const Optional<T>& item);
+template<typename Stream, typename T> void Unserialize(Stream& is, Optional<T>& item);
+
+/**
  * array
  */
 template<typename T, std::size_t N>
@@ -571,6 +581,50 @@ unsigned int GetSerializeSize(const std::array<T, N> &item)
     }
     return size;
 }
+
+/**
+  * optional
+  */
+template<typename T>
+unsigned int GetSerializeSize(const Optional<T> &item)
+{
+    if (item) {
+        return 1 + GetSerializeSize(*item);
+    } else {
+        return 1;
+    }
+}
+
+template<typename Stream, typename T>
+void Serialize(Stream& os, const Optional<T>& item)
+{
+    // If the value is there, put 0x01 and then serialize the value.
+    // If it's not, put 0x00.
+    if (item) {
+        unsigned char discriminant = 0x01;
+        Serialize(os, discriminant);
+        Serialize(os, *item);
+    } else {
+        unsigned char discriminant = 0x00;
+        Serialize(os, discriminant);
+    }
+}
+
+template<typename Stream, typename T>
+void Unserialize(Stream& is, Optional<T>& item)
+{
+    unsigned char discriminant = 0x00;
+    Unserialize(is, discriminant);
+
+    if (discriminant == 0x00) {
+        item = boost::none;
+    } else {
+        T object;
+        Unserialize(is, object);
+        item = object;
+    }
+}
+
 
 template<typename Stream, typename T, std::size_t N>
 void Serialize(Stream& os, const std::array<T, N>& item)
@@ -644,6 +698,43 @@ void Unserialize(Stream& is, std::basic_string<C>& str)
         is.read((char*)&str[0], nSize * sizeof(str[0]));
 }
 
+/**
+  * list
+  */
+template<typename T, typename A> unsigned int GetSerializeSize(const std::list<T, A>& m, int nType, int nVersion);
+template<typename Stream, typename T, typename A> void Serialize(Stream& os, const std::list<T, A>& m, int nType, int nVersion);
+template<typename Stream, typename T, typename A> void Unserialize(Stream& is, std::list<T, A>& m, int nType, int nVersion);
+
+template<typename T, typename A>
+unsigned int GetSerializeSize(const std::list<T, A>& l, int nType, int nVersion)
+{
+    unsigned int nSize = GetSizeOfCompactSize(l.size());
+    for (typename std::list<T, A>::const_iterator it = l.begin(); it != l.end(); ++it)
+        nSize += GetSerializeSize((*it), nType, nVersion);
+    return nSize;
+}
+
+template<typename Stream, typename T, typename A>
+void Serialize(Stream& os, const std::list<T, A>& l, int nType, int nVersion)
+{
+    WriteCompactSize(os, l.size());
+    for (typename std::list<T, A>::const_iterator it = l.begin(); it != l.end(); ++it)
+        Serialize(os, (*it), nType, nVersion);
+}
+
+template<typename Stream, typename T, typename A>
+void Unserialize(Stream& is, std::list<T, A>& l, int nType, int nVersion)
+{
+    l.clear();
+    unsigned int nSize = ReadCompactSize(is);
+    typename std::list<T, A>::iterator it = l.begin();
+    for (unsigned int i = 0; i < nSize; i++)
+    {
+        T item;
+        Unserialize(is, item, nType, nVersion);
+        l.push_back(item);
+    }
+}
 
 
 /**

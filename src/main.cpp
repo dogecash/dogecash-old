@@ -2444,6 +2444,7 @@ void FlushStateToDisk()
 void static UpdateTip(CBlockIndex* pindexNew)
 {
     chainActive.SetTip(pindexNew);
+    g_IsSaplingActive = Params().GetConsensus().NetworkUpgradeActive(pindexNew->nHeight, Consensus::UPGRADE_V5_DUMMY);
 
     // New best block
     nTimeBestReceived = GetTime();
