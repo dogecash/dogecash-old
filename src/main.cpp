@@ -2864,11 +2864,6 @@ bool ActivateBestChain(CValidationState& state, const CBlock* pblock, bool fAlre
             break;
         }
 
-        // When we reach this point, we switched to a new tip (stored in pindexNewTip).
-        // Notifications/callbacks that can run without cs_main
-        if(connman)
-            connman->SetBestHeight(pindexNewTip->nHeight);
-
         // Always notify the UI if a new block tip was connected
         if (pindexFork != pindexNewTip) {
 
@@ -4667,9 +4662,13 @@ std::string GetWarnings(std::string strFor)
 
 void PeerLogicValidation::UpdatedBlockTip(const CBlockIndex* pindexNew, const CBlockIndex* pindexFork, bool fInitialDownload)
 {
+    const int nNewHeight = pindexNew->nHeight;
+
+    if(connman)
+        connman->SetBestHeight(nNewHeight);
+
     if (!fInitialDownload) {
         const uint256& hashNewTip = pindexNew->GetBlockHash();
-        const int nNewHeight = pindexNew->nHeight;
         // Relay inventory, but don't relay old inventory during initial block download.
         if (connman) {
             connman->ForEachNode([nNewHeight, hashNewTip](CNode* pnode) {
