@@ -34,6 +34,7 @@
 #include "txmempool.h"
 #include "uint256.h"
 #include "undo.h"
+#include "validationinterface.h"
 
 #include <algorithm>
 #include <atomic>
@@ -432,6 +433,16 @@ static const unsigned int REJECT_CONFLICT = 0x102;
 void RegisterNodeSignals(CNodeSignals& nodeSignals);
 /** Unregister a network node */
 void UnregisterNodeSignals(CNodeSignals& nodeSignals);
+
+class PeerLogicValidation : public CValidationInterface {
+private:
+    CConnman* connman;
+
+public:
+    PeerLogicValidation(CConnman* connmanIn) : connman(connmanIn) {}
+
+    virtual void UpdatedBlockTip(const CBlockIndex *pindexNew, const CBlockIndex *pindexFork, bool fInitialDownload);
+};
 
 struct CNodeStateStats {
     int nMisbehavior;

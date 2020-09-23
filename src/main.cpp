@@ -2875,26 +2875,12 @@ bool ActivateBestChain(CValidationState& state, const CBlock* pblock, bool fAlre
             // Notify the UI
             uiInterface.NotifyBlockTip(fInitialDownload, pindexNewTip);
 
-            // Notifications/callbacks that can run without cs_main
-            if (!fInitialDownload) {
-                const uint256& hashNewTip = pindexNewTip->GetBlockHash();
-                const int nNewHeight = pindexNewTip->nHeight;
-                // Relay inventory, but don't relay old inventory during initial block download.
-                if (connman) {
-                    connman->ForEachNode([nNewHeight, hashNewTip](CNode* pnode) {
-                        if (nNewHeight > (pnode->nStartingHeight != -1 ? pnode->nStartingHeight - 2000 : 0)) {
-                            pnode->PushInventory(CInv(MSG_BLOCK, hashNewTip));
-                        }
-                    });
-                }
-
-                unsigned size = 0;
-                if (pblock)
-                    size = GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION);
-                // If the size is over 1 MB notify external listeners, and it is within the last 5 minutes
-                if (size > MAX_BLOCK_SIZE_LEGACY && pblock->GetBlockTime() > GetAdjustedTime() - 300) {
-                    uiInterface.NotifyBlockSize(static_cast<int>(size), hashNewTip);
-                }
+            unsigned size = 0;
+            if (pblock)
+                size = GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION);
+            // If the size is over 1 MB notify external listeners, and it is within the last 5 minutes
+            if (size > MAX_BLOCK_SIZE_LEGACY && pblock->GetBlockTime() > GetAdjustedTime() - 300) {
+                uiInterface.NotifyBlockSize(static_cast<int>(size), pindexNewTip->GetBlockHash());
             }
 
             // Notify external listeners about the new tip.
@@ -4671,6 +4657,28 @@ std::string GetWarnings(std::string strFor)
         return strRPC;
     assert(!"GetWarnings() : invalid parameter");
     return "error";
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// blockchain -> download logic notification
+//
+
+void PeerLogicValidation::UpdatedBlockTip(const CBlockIndex* pindexNew, const CBlockIndex* pindexFork, bool fInitialDownload)
+{
+    if (!fInitialDownload) {
+        const uint256& hashNewTip = pindexNew->GetBlockHash();
+        const int nNewHeight = pindexNew->nHeight;
+        // Relay inventory, but don't relay old inventory during initial block download.
+        if (connman) {
+            connman->ForEachNode([nNewHeight, hashNewTip](CNode* pnode) {
+                if (nNewHeight > (pnode->nStartingHeight != -1 ? pnode->nStartingHeight - 2000 : 0)) {
+                    pnode->PushInventory(CInv(MSG_BLOCK, hashNewTip));
+                }
+            });
+        }
+    }
 }
 
 
