@@ -1763,7 +1763,7 @@ UniValue CFinalizedBudget::GetVotesObject() const
     UniValue ret(UniValue::VOBJ);
     for (const auto& it: mapVotes) {
         const CFinalizedBudgetVote& vote = it.second;
-        ret.push_back(std::make_pair(vote.GetVin().prevout.ToStringShort(), vote.ToJSON()));
+        ret.pushKV(vote.GetVin().prevout.ToStringShort(), vote.ToJSON());
     }
     return ret;
 }

@@ -878,9 +878,7 @@ void NetworkUpgradeDescPushBack(
     if (consensusParams.vUpgrades[idx].nActivationHeight != Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT) {
         std::string name = NetworkUpgradeInfo[idx].strName;
         std::replace(name.begin(), name.end(), '_', ' '); // Beautify the name
-        networkUpgrades.push_back(Pair(
-                name,
-                NetworkUpgradeDesc(consensusParams, idx, height)));
+        networkUpgrades.pushKV(name, NetworkUpgradeDesc(consensusParams, idx, height));
     }
 }
 
