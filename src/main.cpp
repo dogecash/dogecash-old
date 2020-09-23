@@ -3931,7 +3931,6 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, const CBlock* pblock
     {
         LOCK(cs_main);
 
-        MarkBlockAsReceived(pblock->GetHash());
         if (!checked) {
             return error ("%s : CheckBlock FAILED for block %s, %s", __func__, pblock->GetHash().GetHex(), FormatStateMessage(state));
         }
@@ -5595,7 +5594,7 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
     {
         CBlock block;
         vRecv >> block;
-        uint256 hashBlock = block.GetHash();
+        const uint256& hashBlock = block.GetHash();
         CInv inv(MSG_BLOCK, hashBlock);
         LogPrint(BCLog::NET, "received block %s peer=%d\n", inv.hash.ToString(), pfrom->id);
 
@@ -5612,9 +5611,9 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             }
         } else {
             pfrom->AddInventoryKnown(inv);
-
             CValidationState state;
-            if (!mapBlockIndex.count(block.GetHash())) {
+            if (!mapBlockIndex.count(hashBlock)) {
+                WITH_LOCK(cs_main, MarkBlockAsReceived(hashBlock); );
                 ProcessNewBlock(state, pfrom, &block, nullptr);
                 int nDoS;
                 if(state.IsInvalid(nDoS)) {
