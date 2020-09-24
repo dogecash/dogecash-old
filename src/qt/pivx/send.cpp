@@ -644,11 +644,15 @@ void SendWidget::onContactMultiClicked()
             inform(tr("Address field is empty"));
             return;
         }
-        if (!walletModel->validateAddress(address)) {
+
+        bool isStakingAddr = false;
+        auto pivAdd = DecodeDestination(address.toStdString(), isStakingAddr);
+
+        if (!IsValidDestination(pivAdd) || isStakingAddr) {
             inform(tr("Invalid address"));
             return;
         }
-        CTxDestination pivAdd = DecodeDestination(address.toStdString());
+
         if (walletModel->isMine(pivAdd)) {
             inform(tr("Cannot store your own address as contact"));
             return;
