@@ -164,7 +164,8 @@ bool CreateCoinbaseTx(CBlock* pblock, const CScript& scriptPubKeyIn, CBlockIndex
         txNew.vout[0].nValue = GetBlockValue(pindexPrev->nHeight);
     }
 
-    pblock->vtx.emplace_back(txNew);
+    pblock->vtx.emplace_back(
+            std::make_shared<const CTransaction>(CTransaction(txNew)));
     return true;
 }
 
@@ -180,13 +181,17 @@ bool SolveProofOfStake(CBlock* pblock, CBlockIndex* pindexPrev, CWallet* pwallet
     }
     // Stake found
     pblock->nTime = nTxNewTime;
+
     CMutableTransaction emptyTx;
-    emptyTx.vin.resize(1);
-    emptyTx.vin[0].scriptSig = CScript() << pindexPrev->nHeight + 1 << OP_0;
-    emptyTx.vout.resize(1);
+    emptyTx.vout.emplace_back();
     emptyTx.vout[0].SetEmpty();
-    pblock->vtx.emplace_back(emptyTx);
-    pblock->vtx.emplace_back(txCoinStake);
+    emptyTx.vin.emplace_back();
+    emptyTx.vin[0].scriptSig = CScript() << pindexPrev->nHeight + 1 << OP_0;
+    pblock->vtx.emplace_back(
+            std::make_shared<const CTransaction>(emptyTx));
+    // stake
+    pblock->vtx.emplace_back(
+            std::make_shared<const CTransaction>(txCoinStake));
     return true;
 }
 
@@ -400,7 +405,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             UpdateCoins(tx, view, nHeight);
 
             // Added
-            pblock->vtx.push_back(tx);
+            pblock->vtx.push_back(std::make_shared<const CTransaction>(tx));
             pblocktemplate->vTxFees.push_back(nTxFees);
             pblocktemplate->vTxSigOps.push_back(nTxSigOps);
             nBlockSize += nTxSize;
@@ -429,7 +434,9 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
         if (!fProofOfStake) {
             // Coinbase can get the fees.
-            pblock->vtx[0].vout[0].nValue += nFees;
+            CMutableTransaction txCoinbase(*pblock->vtx[0]);
+            txCoinbase.vout[0].nValue += nFees;
+            pblock->vtx[0] = std::make_shared<const CTransaction>(txCoinbase);
             pblocktemplate->vTxFees[0] = -nFees;
         }
 
@@ -444,7 +451,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         pblock->nBits = GetNextWorkRequired(pindexPrev, pblock);
         pblock->nNonce = 0;
 
-        pblocktemplate->vTxSigOps[0] = GetLegacySigOpCount(pblock->vtx[0]);
+        pblocktemplate->vTxSigOps[0] = GetLegacySigOpCount(*(pblock->vtx[0]));
 
         if (fProofOfStake) {
             pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
@@ -476,11 +483,11 @@ void IncrementExtraNonce(CBlock* pblock, CBlockIndex* pindexPrev, unsigned int& 
     }
     ++nExtraNonce;
     unsigned int nHeight = pindexPrev->nHeight + 1; // Height first in coinbase required for block.version=2
-    CMutableTransaction txCoinbase(pblock->vtx[0]);
+    CMutableTransaction txCoinbase(*pblock->vtx[0]);
     txCoinbase.vin[0].scriptSig = (CScript() << nHeight << CScriptNum(nExtraNonce)) + COINBASE_FLAGS;
     assert(txCoinbase.vin[0].scriptSig.size() <= 100);
 
-    pblock->vtx[0] = txCoinbase;
+    pblock->vtx[0] = std::make_shared<const CTransaction>(txCoinbase);
     pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
 }
 
@@ -516,7 +523,7 @@ CBlockTemplate* CreateNewBlockWithKey(CReserveKey& reservekey, CWallet* pwallet)
 bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, Optional<CReserveKey>& reservekey)
 {
     LogPrintf("%s\n", pblock->ToString());
-    LogPrintf("generated %s\n", FormatMoney(pblock->vtx[0].vout[0].nValue));
+    LogPrintf("generated %s\n", FormatMoney(pblock->vtx[0]->vout[0].nValue));
 
     // Found a solution
     {

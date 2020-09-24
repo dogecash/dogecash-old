@@ -20,7 +20,8 @@ std::map<libzerocoin::CoinDenomination, int64_t> mapZerocoinSupply;
 
 bool BlockToMintValueVector(const CBlock& block, const libzerocoin::CoinDenomination denom, std::vector<CBigNum>& vValues)
 {
-    for (const CTransaction& tx : block.vtx) {
+    for (const auto& txIn : block.vtx) {
+        const CTransaction& tx = *txIn;
         if(!tx.HasZerocoinMintOutputs())
             continue;
 
@@ -45,7 +46,8 @@ bool BlockToMintValueVector(const CBlock& block, const libzerocoin::CoinDenomina
 
 bool BlockToPubcoinList(const CBlock& block, std::list<libzerocoin::PublicCoin>& listPubcoins, bool fFilterInvalid)
 {
-    for (const CTransaction& tx : block.vtx) {
+    for (const auto& txIn : block.vtx) {
+        const CTransaction& tx = *txIn;
         if(!tx.HasZerocoinMintOutputs())
             continue;
 
@@ -87,7 +89,8 @@ bool BlockToPubcoinList(const CBlock& block, std::list<libzerocoin::PublicCoin>&
 //return a list of zerocoin mints contained in a specific block
 bool BlockToZerocoinMintList(const CBlock& block, std::list<CZerocoinMint>& vMints, bool fFilterInvalid)
 {
-    for (const CTransaction& tx : block.vtx) {
+    for (const auto& txIn : block.vtx) {
+        const CTransaction& tx = *txIn;
         if(!tx.HasZerocoinMintOutputs())
             continue;
 
@@ -279,7 +282,8 @@ std::string ReindexZerocoinDB()
         // update supply
         UpdateZPIVSupplyConnect(block, pindex, true);
 
-        for (const CTransaction& tx : block.vtx) {
+        for (const auto& txIn : block.vtx) {
+            const CTransaction& tx = *txIn;
             for (unsigned int i = 0; i < tx.vin.size(); i++) {
                 if (tx.IsCoinBase())
                     break;
@@ -379,7 +383,8 @@ bool TxOutToPublicCoin(const CTxOut& txout, libzerocoin::PublicCoin& pubCoin, CV
 std::list<libzerocoin::CoinDenomination> ZerocoinSpendListFromBlock(const CBlock& block, bool fFilterInvalid)
 {
     std::list<libzerocoin::CoinDenomination> vSpends;
-    for (const CTransaction& tx : block.vtx) {
+    for (const auto& txIn : block.vtx) {
+        const CTransaction& tx = *txIn;
         if (!tx.HasZerocoinSpendInputs())
             continue;
 
@@ -437,8 +442,8 @@ bool UpdateZPIVSupplyConnect(const CBlock& block, CBlockIndex* pindex, bool fJus
                     // Add the transaction to the wallet
                     int posInBlock = 0;
                     for (posInBlock = 0; posInBlock < (int)block.vtx.size(); posInBlock++) {
-                        auto& tx = block.vtx[posInBlock];
-                        uint256 txid = tx.GetHash();
+                        auto& tx = *block.vtx[posInBlock];
+                        const uint256& txid = tx.GetHash();
                         if (setAddedToWallet.count(txid))
                             continue;
                         if (txid == m.GetTxHash()) {
