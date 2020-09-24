@@ -527,7 +527,7 @@ UniValue dumpwallet(const JSONRPCRequest& request)
     file.close();
 
     UniValue reply(UniValue::VOBJ);
-    reply.push_back(Pair("filename", filepath.string()));
+    reply.pushKV("filename", filepath.string());
 
     return reply;
 }
@@ -572,8 +572,8 @@ UniValue bip38encrypt(const JSONRPCRequest& request)
     std::string encryptedOut = BIP38_Encrypt(strAddress, strPassphrase, privKey, vchSecret.IsCompressed());
 
     UniValue result(UniValue::VOBJ);
-    result.push_back(Pair("Addess", strAddress));
-    result.push_back(Pair("Encrypted Key", encryptedOut));
+    result.pushKV("Addess", strAddress);
+    result.pushKV("Encrypted Key", encryptedOut);
 
     return result;
 }
@@ -611,7 +611,7 @@ UniValue bip38decrypt(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_WALLET_ERROR, "Failed To Decrypt");
 
     UniValue result(UniValue::VOBJ);
-    result.push_back(Pair("privatekey", HexStr(privKey)));
+    result.pushKV("privatekey", HexStr(privKey));
 
     CKey key;
     key.Set(privKey.begin(), privKey.end(), fCompressed);
@@ -622,7 +622,7 @@ UniValue bip38decrypt(const JSONRPCRequest& request)
     CPubKey pubkey = key.GetPubKey();
     pubkey.IsCompressed();
     assert(key.VerifyPubKey(pubkey));
-    result.push_back(Pair("Address", EncodeDestination(pubkey.GetID())));
+    result.pushKV("Address", EncodeDestination(pubkey.GetID()));
     CKeyID vchAddress = pubkey.GetID();
     {
         pwalletMain->MarkDirty();

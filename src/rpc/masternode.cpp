@@ -79,17 +79,17 @@ UniValue listmasternodes(const JSONRPCRequest& request)
             LookupHost(strHost.c_str(), node, false);
             std::string strNetwork = GetNetworkName(node.GetNetwork());
 
-            obj.push_back(Pair("rank", (strStatus == "ENABLED" ? s.first : 0)));
-            obj.push_back(Pair("network", strNetwork));
-            obj.push_back(Pair("txhash", strTxHash));
-            obj.push_back(Pair("outidx", (uint64_t)oIdx));
-            obj.push_back(Pair("pubkey", HexStr(mn->pubKeyMasternode)));
-            obj.push_back(Pair("status", strStatus));
-            obj.push_back(Pair("addr", EncodeDestination(mn->pubKeyCollateralAddress.GetID())));
-            obj.push_back(Pair("version", mn->protocolVersion));
-            obj.push_back(Pair("lastseen", (int64_t)mn->lastPing.sigTime));
-            obj.push_back(Pair("activetime", (int64_t)(mn->lastPing.sigTime - mn->sigTime)));
-            obj.push_back(Pair("lastpaid", (int64_t)mn->GetLastPaid()));
+            obj.pushKV("rank", (strStatus == "ENABLED" ? s.first : 0));
+            obj.pushKV("network", strNetwork);
+            obj.pushKV("txhash", strTxHash);
+            obj.pushKV("outidx", (uint64_t)oIdx);
+            obj.pushKV("pubkey", HexStr(mn->pubKeyMasternode));
+            obj.pushKV("status", strStatus);
+            obj.pushKV("addr", EncodeDestination(mn->pubKeyCollateralAddress.GetID()));
+            obj.pushKV("version", mn->protocolVersion);
+            obj.pushKV("lastseen", (int64_t)mn->lastPing.sigTime);
+            obj.pushKV("activetime", (int64_t)(mn->lastPing.sigTime - mn->sigTime));
+            obj.pushKV("lastpaid", (int64_t)mn->GetLastPaid());
 
             ret.push_back(obj);
         }
@@ -126,13 +126,13 @@ UniValue getmasternodecount (const JSONRPCRequest& request)
     mnodeman.GetNextMasternodeInQueueForPayment(nChainHeight, true, nCount);
     mnodeman.CountNetworks(ActiveProtocol(), ipv4, ipv6, onion);
 
-    obj.push_back(Pair("total", mnodeman.size()));
-    obj.push_back(Pair("stable", mnodeman.stable_size()));
-    obj.push_back(Pair("enabled", mnodeman.CountEnabled()));
-    obj.push_back(Pair("inqueue", nCount));
-    obj.push_back(Pair("ipv4", ipv4));
-    obj.push_back(Pair("ipv6", ipv6));
-    obj.push_back(Pair("onion", onion));
+    obj.pushKV("total", mnodeman.size());
+    obj.pushKV("stable", mnodeman.stable_size());
+    obj.pushKV("enabled", mnodeman.CountEnabled());
+    obj.pushKV("inqueue", nCount);
+    obj.pushKV("ipv4", ipv4);
+    obj.pushKV("ipv6", ipv6);
+    obj.pushKV("onion", onion);
 
     return obj;
 }
@@ -161,11 +161,11 @@ UniValue masternodecurrent (const JSONRPCRequest& request)
     CMasternode* winner = mnodeman.GetNextMasternodeInQueueForPayment(nHeight, true, nCount);
     if (winner) {
         UniValue obj(UniValue::VOBJ);
-        obj.push_back(Pair("protocol", (int64_t)winner->protocolVersion));
-        obj.push_back(Pair("txhash", winner->vin.prevout.hash.ToString()));
-        obj.push_back(Pair("pubkey", EncodeDestination(winner->pubKeyCollateralAddress.GetID())));
-        obj.push_back(Pair("lastseen", winner->lastPing.IsNull() ? winner->sigTime : (int64_t)winner->lastPing.sigTime));
-        obj.push_back(Pair("activeseconds", winner->lastPing.IsNull() ? 0 : (int64_t)(winner->lastPing.sigTime - winner->sigTime)));
+        obj.pushKV("protocol", (int64_t)winner->protocolVersion);
+        obj.pushKV("txhash", winner->vin.prevout.hash.ToString());
+        obj.pushKV("pubkey", EncodeDestination(winner->pubKeyCollateralAddress.GetID()));
+        obj.pushKV("lastseen", winner->lastPing.IsNull() ? winner->sigTime : (int64_t)winner->lastPing.sigTime);
+        obj.pushKV("activeseconds", winner->lastPing.IsNull() ? 0 : (int64_t)(winner->lastPing.sigTime - winner->sigTime));
         return obj;
     }
 
@@ -188,9 +188,9 @@ bool StartMasternodeEntry(UniValue& statusObjRet, CMasternodeBroadcast& mnbRet, 
 
     fSuccessRet = CMasternodeBroadcast::Create(mne.getIp(), mne.getPrivKey(), mne.getTxHash(), mne.getOutputIndex(), errorMessage, mnbRet);
 
-    statusObjRet.push_back(Pair("alias", mne.getAlias()));
-    statusObjRet.push_back(Pair("result", fSuccessRet ? "success" : "failed"));
-    statusObjRet.push_back(Pair("error", fSuccessRet ? "" : errorMessage));
+    statusObjRet.pushKV("alias", mne.getAlias());
+    statusObjRet.pushKV("result", fSuccessRet ? "success" : "failed");
+    statusObjRet.pushKV("error", fSuccessRet ? "" : errorMessage);
 
     return true;
 }
@@ -218,7 +218,7 @@ void SerializeMNB(UniValue& statusObjRet, const CMasternodeBroadcast& mnb, const
         successful++;
         CDataStream ssMnb(SER_NETWORK, PROTOCOL_VERSION);
         ssMnb << mnb;
-        statusObjRet.push_back(Pair("hex", HexStr(ssMnb.begin(), ssMnb.end())));
+        statusObjRet.pushKV("hex", HexStr(ssMnb.begin(), ssMnb.end()));
     } else {
         failed++;
     }
@@ -321,8 +321,8 @@ UniValue startmasternode (const JSONRPCRequest& request)
             pwalletMain->Lock();
 
         UniValue returnObj(UniValue::VOBJ);
-        returnObj.push_back(Pair("overall", strprintf("Successfully started %d masternodes, failed to start %d, total %d", successful, failed, successful + failed)));
-        returnObj.push_back(Pair("detail", resultsObj));
+        returnObj.pushKV("overall", strprintf("Successfully started %d masternodes, failed to start %d, total %d", successful, failed, successful + failed));
+        returnObj.pushKV("detail", resultsObj);
 
         return returnObj;
     }
@@ -352,8 +352,8 @@ UniValue startmasternode (const JSONRPCRequest& request)
             pwalletMain->Lock();
 
         if(!found) {
-            statusObj.push_back(Pair("success", false));
-            statusObj.push_back(Pair("error_message", "Could not find alias in config. Verify with listmasternodeconf."));
+            statusObj.pushKV("success", false);
+            statusObj.pushKV("error_message", "Could not find alias in config. Verify with listmasternodeconf.");
         }
 
         return statusObj;
@@ -406,8 +406,8 @@ UniValue getmasternodeoutputs (const JSONRPCRequest& request)
     UniValue ret(UniValue::VARR);
     for (COutput& out : possibleCoins) {
         UniValue obj(UniValue::VOBJ);
-        obj.push_back(Pair("txhash", out.tx->GetHash().ToString()));
-        obj.push_back(Pair("outputidx", out.i));
+        obj.pushKV("txhash", out.tx->GetHash().ToString());
+        obj.pushKV("outputidx", out.i);
         ret.push_back(obj);
     }
 
@@ -464,12 +464,12 @@ UniValue listmasternodeconf (const JSONRPCRequest& request)
             strStatus.find(strFilter) == std::string::npos) continue;
 
         UniValue mnObj(UniValue::VOBJ);
-        mnObj.push_back(Pair("alias", mne.getAlias()));
-        mnObj.push_back(Pair("address", mne.getIp()));
-        mnObj.push_back(Pair("privateKey", mne.getPrivKey()));
-        mnObj.push_back(Pair("txHash", mne.getTxHash()));
-        mnObj.push_back(Pair("outputIndex", mne.getOutputIndex()));
-        mnObj.push_back(Pair("status", strStatus));
+        mnObj.pushKV("alias", mne.getAlias());
+        mnObj.pushKV("address", mne.getIp());
+        mnObj.pushKV("privateKey", mne.getPrivKey());
+        mnObj.pushKV("txHash", mne.getTxHash());
+        mnObj.pushKV("outputIndex", mne.getOutputIndex());
+        mnObj.pushKV("status", strStatus);
         ret.push_back(mnObj);
     }
 
@@ -506,12 +506,12 @@ UniValue getmasternodestatus (const JSONRPCRequest& request)
 
     if (pmn) {
         UniValue mnObj(UniValue::VOBJ);
-        mnObj.push_back(Pair("txhash", activeMasternode.vin->prevout.hash.ToString()));
-        mnObj.push_back(Pair("outputidx", (uint64_t)activeMasternode.vin->prevout.n));
-        mnObj.push_back(Pair("netaddr", activeMasternode.service.ToString()));
-        mnObj.push_back(Pair("addr", EncodeDestination(pmn->pubKeyCollateralAddress.GetID())));
-        mnObj.push_back(Pair("status", activeMasternode.GetStatus()));
-        mnObj.push_back(Pair("message", activeMasternode.GetStatusMessage()));
+        mnObj.pushKV("txhash", activeMasternode.vin->prevout.hash.ToString());
+        mnObj.pushKV("outputidx", (uint64_t)activeMasternode.vin->prevout.n);
+        mnObj.pushKV("netaddr", activeMasternode.service.ToString());
+        mnObj.pushKV("addr", EncodeDestination(pmn->pubKeyCollateralAddress.GetID()));
+        mnObj.pushKV("status", activeMasternode.GetStatus());
+        mnObj.pushKV("message", activeMasternode.GetStatusMessage());
         return mnObj;
     }
     throw std::runtime_error("Masternode not found in the list of available masternodes. Current status: "
@@ -575,7 +575,7 @@ UniValue getmasternodewinners (const JSONRPCRequest& request)
 
     for (int i = nHeight - nLast; i < nHeight + 20; i++) {
         UniValue obj(UniValue::VOBJ);
-        obj.push_back(Pair("nHeight", i));
+        obj.pushKV("nHeight", i);
 
         std::string strPayment = GetRequiredPaymentsString(i);
         if (strFilter != "" && strPayment.find(strFilter) == std::string::npos) continue;
@@ -589,24 +589,24 @@ UniValue getmasternodewinners (const JSONRPCRequest& request)
                 std::size_t pos = t.find(":");
                 std::string strAddress = t.substr(0,pos);
                 uint64_t nVotes = atoi(t.substr(pos+1));
-                addr.push_back(Pair("address", strAddress));
-                addr.push_back(Pair("nVotes", nVotes));
+                addr.pushKV("address", strAddress);
+                addr.pushKV("nVotes", nVotes);
                 winner.push_back(addr);
             }
-            obj.push_back(Pair("winner", winner));
+            obj.pushKV("winner", winner);
         } else if (strPayment.find("Unknown") == std::string::npos) {
             UniValue winner(UniValue::VOBJ);
             std::size_t pos = strPayment.find(":");
             std::string strAddress = strPayment.substr(0,pos);
             uint64_t nVotes = atoi(strPayment.substr(pos+1));
-            winner.push_back(Pair("address", strAddress));
-            winner.push_back(Pair("nVotes", nVotes));
-            obj.push_back(Pair("winner", winner));
+            winner.pushKV("address", strAddress);
+            winner.pushKV("nVotes", nVotes);
+            obj.pushKV("winner", winner);
         } else {
             UniValue winner(UniValue::VOBJ);
-            winner.push_back(Pair("address", strPayment));
-            winner.push_back(Pair("nVotes", 0));
-            obj.push_back(Pair("winner", winner));
+            winner.pushKV("address", strPayment);
+            winner.pushKV("nVotes", 0);
+            obj.pushKV("winner", winner);
         }
 
             ret.push_back(obj);
@@ -658,7 +658,7 @@ UniValue getmasternodescores (const JSONRPCRequest& request)
             }
         }
         if (pBestMasternode)
-            obj.push_back(Pair(strprintf("%d", nHeight), pBestMasternode->vin.prevout.hash.ToString().c_str()));
+            obj.pushKV(strprintf("%d", nHeight), pBestMasternode->vin.prevout.hash.ToString().c_str());
     }
 
     return obj;
@@ -732,7 +732,7 @@ UniValue createmasternodebroadcast(const JSONRPCRequest& request)
         bool found = false;
 
         UniValue statusObj(UniValue::VOBJ);
-        statusObj.push_back(Pair("alias", alias));
+        statusObj.pushKV("alias", alias);
 
         for (CMasternodeConfig::CMasternodeEntry mne : masternodeConfig.getEntries()) {
             if(mne.getAlias() == alias) {
@@ -748,8 +748,8 @@ UniValue createmasternodebroadcast(const JSONRPCRequest& request)
         }
 
         if(!found) {
-            statusObj.push_back(Pair("success", false));
-            statusObj.push_back(Pair("error_message", "Could not find alias in config. Verify with listmasternodeconf."));
+            statusObj.pushKV("success", false);
+            statusObj.pushKV("error_message", "Could not find alias in config. Verify with listmasternodeconf.");
         }
 
         return statusObj;
@@ -781,8 +781,8 @@ UniValue createmasternodebroadcast(const JSONRPCRequest& request)
         }
 
         UniValue returnObj(UniValue::VOBJ);
-        returnObj.push_back(Pair("overall", strprintf("Successfully created broadcast messages for %d masternodes, failed to create %d, total %d", successful, failed, successful + failed)));
-        returnObj.push_back(Pair("detail", resultsObj));
+        returnObj.pushKV("overall", strprintf("Successfully created broadcast messages for %d masternodes, failed to create %d, total %d", successful, failed, successful + failed));
+        returnObj.pushKV("detail", resultsObj);
 
         return returnObj;
     }
@@ -831,26 +831,26 @@ UniValue decodemasternodebroadcast(const JSONRPCRequest& request)
 
     UniValue resultObj(UniValue::VOBJ);
 
-    resultObj.push_back(Pair("vin", mnb.vin.prevout.ToString()));
-    resultObj.push_back(Pair("addr", mnb.addr.ToString()));
-    resultObj.push_back(Pair("pubkeycollateral", EncodeDestination(mnb.pubKeyCollateralAddress.GetID())));
-    resultObj.push_back(Pair("pubkeymasternode", EncodeDestination(mnb.pubKeyMasternode.GetID())));
-    resultObj.push_back(Pair("vchsig", mnb.GetSignatureBase64()));
-    resultObj.push_back(Pair("sigtime", mnb.sigTime));
-    resultObj.push_back(Pair("sigvalid", mnb.CheckSignature() ? "true" : "false"));
-    resultObj.push_back(Pair("protocolversion", mnb.protocolVersion));
-    resultObj.push_back(Pair("nlastdsq", mnb.nLastDsq));
-    resultObj.push_back(Pair("nMessVersion", mnb.nMessVersion));
+    resultObj.pushKV("vin", mnb.vin.prevout.ToString());
+    resultObj.pushKV("addr", mnb.addr.ToString());
+    resultObj.pushKV("pubkeycollateral", EncodeDestination(mnb.pubKeyCollateralAddress.GetID()));
+    resultObj.pushKV("pubkeymasternode", EncodeDestination(mnb.pubKeyMasternode.GetID()));
+    resultObj.pushKV("vchsig", mnb.GetSignatureBase64());
+    resultObj.pushKV("sigtime", mnb.sigTime);
+    resultObj.pushKV("sigvalid", mnb.CheckSignature() ? "true" : "false");
+    resultObj.pushKV("protocolversion", mnb.protocolVersion);
+    resultObj.pushKV("nlastdsq", mnb.nLastDsq);
+    resultObj.pushKV("nMessVersion", mnb.nMessVersion);
 
     UniValue lastPingObj(UniValue::VOBJ);
-    lastPingObj.push_back(Pair("vin", mnb.lastPing.vin.prevout.ToString()));
-    lastPingObj.push_back(Pair("blockhash", mnb.lastPing.blockHash.ToString()));
-    lastPingObj.push_back(Pair("sigtime", mnb.lastPing.sigTime));
-    lastPingObj.push_back(Pair("sigvalid", mnb.lastPing.CheckSignature(mnb.pubKeyMasternode) ? "true" : "false"));
-    lastPingObj.push_back(Pair("vchsig", mnb.lastPing.GetSignatureBase64()));
-    lastPingObj.push_back(Pair("nMessVersion", mnb.lastPing.nMessVersion));
+    lastPingObj.pushKV("vin", mnb.lastPing.vin.prevout.ToString());
+    lastPingObj.pushKV("blockhash", mnb.lastPing.blockHash.ToString());
+    lastPingObj.pushKV("sigtime", mnb.lastPing.sigTime);
+    lastPingObj.pushKV("sigvalid", mnb.lastPing.CheckSignature(mnb.pubKeyMasternode) ? "true" : "false");
+    lastPingObj.pushKV("vchsig", mnb.lastPing.GetSignatureBase64());
+    lastPingObj.pushKV("nMessVersion", mnb.lastPing.nMessVersion);
 
-    resultObj.push_back(Pair("lastping", lastPingObj));
+    resultObj.pushKV("lastping", lastPingObj);
 
     return resultObj;
 }

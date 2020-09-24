@@ -79,45 +79,45 @@ double GetDifficulty(const CBlockIndex* blockindex)
 UniValue blockheaderToJSON(const CBlockIndex* blockindex)
 {
     UniValue result(UniValue::VOBJ);
-    result.push_back(Pair("hash", blockindex->GetBlockHash().GetHex()));
+    result.pushKV("hash", blockindex->GetBlockHash().GetHex());
     int confirmations = -1;
     // Only report confirmations if the block is on the main chain
     if (chainActive.Contains(blockindex))
         confirmations = chainActive.Height() - blockindex->nHeight + 1;
-    result.push_back(Pair("confirmations", confirmations));
-    result.push_back(Pair("height", blockindex->nHeight));
-    result.push_back(Pair("version", blockindex->nVersion));
-    result.push_back(Pair("merkleroot", blockindex->hashMerkleRoot.GetHex()));
-    result.push_back(Pair("time", (int64_t)blockindex->nTime));
-    result.push_back(Pair("mediantime", (int64_t)blockindex->GetMedianTimePast()));
-    result.push_back(Pair("nonce", (uint64_t)blockindex->nNonce));
-    result.push_back(Pair("bits", strprintf("%08x", blockindex->nBits)));
-    result.push_back(Pair("difficulty", GetDifficulty(blockindex)));
-    result.push_back(Pair("chainwork", blockindex->nChainWork.GetHex()));
-    result.push_back(Pair("acc_checkpoint", blockindex->nAccumulatorCheckpoint.GetHex()));
+    result.pushKV("confirmations", confirmations);
+    result.pushKV("height", blockindex->nHeight);
+    result.pushKV("version", blockindex->nVersion);
+    result.pushKV("merkleroot", blockindex->hashMerkleRoot.GetHex());
+    result.pushKV("time", (int64_t)blockindex->nTime);
+    result.pushKV("mediantime", (int64_t)blockindex->GetMedianTimePast());
+    result.pushKV("nonce", (uint64_t)blockindex->nNonce);
+    result.pushKV("bits", strprintf("%08x", blockindex->nBits));
+    result.pushKV("difficulty", GetDifficulty(blockindex));
+    result.pushKV("chainwork", blockindex->nChainWork.GetHex());
+    result.pushKV("acc_checkpoint", blockindex->nAccumulatorCheckpoint.GetHex());
 
     if (blockindex->pprev)
-        result.push_back(Pair("previousblockhash", blockindex->pprev->GetBlockHash().GetHex()));
+        result.pushKV("previousblockhash", blockindex->pprev->GetBlockHash().GetHex());
     CBlockIndex *pnext = chainActive.Next(blockindex);
     if (pnext)
-        result.push_back(Pair("nextblockhash", pnext->GetBlockHash().GetHex()));
+        result.pushKV("nextblockhash", pnext->GetBlockHash().GetHex());
     return result;
 }
 
 UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool txDetails = false)
 {
     UniValue result(UniValue::VOBJ);
-    result.push_back(Pair("hash", block.GetHash().GetHex()));
+    result.pushKV("hash", block.GetHash().GetHex());
     int confirmations = -1;
     // Only report confirmations if the block is on the main chain
     if (chainActive.Contains(blockindex))
         confirmations = chainActive.Height() - blockindex->nHeight + 1;
-    result.push_back(Pair("confirmations", confirmations));
-    result.push_back(Pair("size", (int)::GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION)));
-    result.push_back(Pair("height", blockindex->nHeight));
-    result.push_back(Pair("version", block.nVersion));
-    result.push_back(Pair("merkleroot", block.hashMerkleRoot.GetHex()));
-    result.push_back(Pair("acc_checkpoint", block.nAccumulatorCheckpoint.GetHex()));
+    result.pushKV("confirmations", confirmations);
+    result.pushKV("size", (int)::GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION));
+    result.pushKV("height", blockindex->nHeight);
+    result.pushKV("version", block.nVersion);
+    result.pushKV("merkleroot", block.hashMerkleRoot.GetHex());
+    result.pushKV("acc_checkpoint", block.nAccumulatorCheckpoint.GetHex());
     UniValue txs(UniValue::VARR);
     for (const auto& txIn : block.vtx) {
         const CTransaction& tx = *txIn;
@@ -128,19 +128,19 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
         } else
             txs.push_back(tx.GetHash().GetHex());
     }
-    result.push_back(Pair("tx", txs));
-    result.push_back(Pair("time", block.GetBlockTime()));
-    result.push_back(Pair("mediantime", (int64_t)blockindex->GetMedianTimePast()));
-    result.push_back(Pair("nonce", (uint64_t)block.nNonce));
-    result.push_back(Pair("bits", strprintf("%08x", block.nBits)));
-    result.push_back(Pair("difficulty", GetDifficulty(blockindex)));
-    result.push_back(Pair("chainwork", blockindex->nChainWork.GetHex()));
+    result.pushKV("tx", txs);
+    result.pushKV("time", block.GetBlockTime());
+    result.pushKV("mediantime", (int64_t)blockindex->GetMedianTimePast());
+    result.pushKV("nonce", (uint64_t)block.nNonce);
+    result.pushKV("bits", strprintf("%08x", block.nBits));
+    result.pushKV("difficulty", GetDifficulty(blockindex));
+    result.pushKV("chainwork", blockindex->nChainWork.GetHex());
 
     if (blockindex->pprev)
-        result.push_back(Pair("previousblockhash", blockindex->pprev->GetBlockHash().GetHex()));
+        result.pushKV("previousblockhash", blockindex->pprev->GetBlockHash().GetHex());
     CBlockIndex* pnext = chainActive.Next(blockindex);
     if (pnext)
-        result.push_back(Pair("nextblockhash", pnext->GetBlockHash().GetHex()));
+        result.pushKV("nextblockhash", pnext->GetBlockHash().GetHex());
 
     //////////
     ////////// Coin stake data ////////////////
@@ -153,8 +153,8 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
         std::string stakeModifier = (Params().GetConsensus().NetworkUpgradeActive(blockindex->nHeight, Consensus::UPGRADE_V3_4) ?
                                      blockindex->GetStakeModifierV2().GetHex() :
                                      strprintf("%016x", blockindex->GetStakeModifierV1()));
-        result.push_back(Pair("stakeModifier", stakeModifier));
-        result.push_back(Pair("hashProofOfStake", hashProofOfStakeRet.GetHex()));
+        result.pushKV("stakeModifier", stakeModifier);
+        result.pushKV("hashProofOfStake", hashProofOfStakeRet.GetHex());
     }
 
     return result;
@@ -240,8 +240,8 @@ UniValue waitfornewblock(const JSONRPCRequest& request)
         block = latestblock;
     }
     UniValue ret(UniValue::VOBJ);
-    ret.push_back(Pair("hash", block.hash.GetHex()));
-    ret.push_back(Pair("height", block.height));
+    ret.pushKV("hash", block.hash.GetHex());
+    ret.pushKV("height", block.height);
     return ret;
 }
 
@@ -285,8 +285,8 @@ UniValue waitforblock(const JSONRPCRequest& request)
     }
 
     UniValue ret(UniValue::VOBJ);
-    ret.push_back(Pair("hash", block.hash.GetHex()));
-    ret.push_back(Pair("height", block.height));
+    ret.pushKV("hash", block.hash.GetHex());
+    ret.pushKV("height", block.height);
     return ret;
 }
 
@@ -330,8 +330,8 @@ UniValue waitforblockheight(const JSONRPCRequest& request)
         block = latestblock;
     }
     UniValue ret(UniValue::VOBJ);
-    ret.push_back(Pair("hash", block.hash.GetHex()));
-    ret.push_back(Pair("height", block.height));
+    ret.pushKV("hash", block.hash.GetHex());
+    ret.pushKV("height", block.height);
     return ret;
 }
 
@@ -361,16 +361,16 @@ UniValue mempoolToJSON(bool fVerbose = false)
         for (const CTxMemPoolEntry& e : mempool.mapTx) {
             const uint256& hash = e.GetTx().GetHash();
             UniValue info(UniValue::VOBJ);
-            info.push_back(Pair("size", (int)e.GetTxSize()));
-            info.push_back(Pair("fee", ValueFromAmount(e.GetFee())));
-            info.push_back(Pair("modifiedfee", ValueFromAmount(e.GetModifiedFee())));
-            info.push_back(Pair("time", e.GetTime()));
-            info.push_back(Pair("height", (int)e.GetHeight()));
-            info.push_back(Pair("startingpriority", e.GetPriority(e.GetHeight())));
-            info.push_back(Pair("currentpriority", e.GetPriority(chainActive.Height())));
-            info.push_back(Pair("descendantcount", e.GetCountWithDescendants()));
-            info.push_back(Pair("descendantsize", e.GetSizeWithDescendants()));
-            info.push_back(Pair("descendantfees", e.GetFeesWithDescendants()));
+            info.pushKV("size", (int)e.GetTxSize());
+            info.pushKV("fee", ValueFromAmount(e.GetFee()));
+            info.pushKV("modifiedfee", ValueFromAmount(e.GetModifiedFee()));
+            info.pushKV("time", e.GetTime());
+            info.pushKV("height", (int)e.GetHeight());
+            info.pushKV("startingpriority", e.GetPriority(e.GetHeight()));
+            info.pushKV("currentpriority", e.GetPriority(chainActive.Height()));
+            info.pushKV("descendantcount", e.GetCountWithDescendants());
+            info.pushKV("descendantsize", e.GetSizeWithDescendants());
+            info.pushKV("descendantfees", e.GetFeesWithDescendants());
             const CTransaction& tx = e.GetTx();
             std::set<std::string> setDepends;
             for (const CTxIn& txin : tx.vin) {
@@ -383,8 +383,8 @@ UniValue mempoolToJSON(bool fVerbose = false)
                 depends.push_back(dep);
             }
 
-            info.push_back(Pair("depends", depends));
-            o.push_back(Pair(hash.ToString(), info));
+            info.pushKV("depends", depends);
+            o.pushKV(hash.ToString(), info);
         }
         return o;
     } else {
@@ -690,13 +690,13 @@ UniValue gettxoutsetinfo(const JSONRPCRequest& request)
     CCoinsStats stats;
     FlushStateToDisk();
     if (GetUTXOStats(pcoinsTip, stats)) {
-        ret.push_back(Pair("height", (int64_t)stats.nHeight));
-        ret.push_back(Pair("bestblock", stats.hashBlock.GetHex()));
-        ret.push_back(Pair("transactions", (int64_t)stats.nTransactions));
-        ret.push_back(Pair("txouts", (int64_t)stats.nTransactionOutputs));
-        ret.push_back(Pair("hash_serialized_2", stats.hashSerialized.GetHex()));
-        ret.push_back(Pair("total_amount", ValueFromAmount(stats.nTotalAmount)));
-        ret.push_back(Pair("disk_size", stats.nDiskSize));
+        ret.pushKV("height", (int64_t)stats.nHeight);
+        ret.pushKV("bestblock", stats.hashBlock.GetHex());
+        ret.pushKV("transactions", (int64_t)stats.nTransactions);
+        ret.pushKV("txouts", (int64_t)stats.nTransactionOutputs);
+        ret.pushKV("hash_serialized_2", stats.hashSerialized.GetHex());
+        ret.pushKV("total_amount", ValueFromAmount(stats.nTotalAmount));
+        ret.pushKV("disk_size", stats.nDiskSize);
     }
     return ret;
 }
@@ -766,17 +766,17 @@ UniValue gettxout(const JSONRPCRequest& request)
 
     BlockMap::iterator it = mapBlockIndex.find(pcoinsTip->GetBestBlock());
     CBlockIndex* pindex = it->second;
-    ret.push_back(Pair("bestblock", pindex->GetBlockHash().GetHex()));
+    ret.pushKV("bestblock", pindex->GetBlockHash().GetHex());
     if (coin.nHeight == MEMPOOL_HEIGHT) {
-        ret.push_back(Pair("confirmations", 0));
+        ret.pushKV("confirmations", 0);
     } else {
-        ret.push_back(Pair("confirmations", (int64_t)(pindex->nHeight - coin.nHeight + 1)));
+        ret.pushKV("confirmations", (int64_t)(pindex->nHeight - coin.nHeight + 1));
     }
-    ret.push_back(Pair("value", ValueFromAmount(coin.out.nValue)));
+    ret.pushKV("value", ValueFromAmount(coin.out.nValue));
     UniValue o(UniValue::VOBJ);
     ScriptPubKeyToJSON(coin.out.scriptPubKey, o, true);
-    ret.push_back(Pair("scriptPubKey", o));
-    ret.push_back(Pair("coinbase", (bool)coin.fCoinBase));
+    ret.pushKV("scriptPubKey", o);
+    ret.pushKV("coinbase", (bool)coin.fCoinBase);
 
     return ret;
 }
@@ -835,10 +835,10 @@ static UniValue SoftForkMajorityDesc(int version, const CBlockIndex* pindex, con
         idx = Consensus::UPGRADE_V4_0;
         break;
     default:
-        rv.push_back(Pair("status", false));
+        rv.pushKV("status", false);
         return rv;
     }
-    rv.push_back(Pair("status", consensusParams.NetworkUpgradeActive(pindex->nHeight, idx)));
+    rv.pushKV("status", consensusParams.NetworkUpgradeActive(pindex->nHeight, idx));
     return rv;
 }
 
@@ -846,9 +846,9 @@ static UniValue SoftForkDesc(const std::string &name, int version, const CBlockI
 {
     const Consensus::Params& consensus = Params().GetConsensus();
     UniValue rv(UniValue::VOBJ);
-    rv.push_back(Pair("id", name));
-    rv.push_back(Pair("version", version));
-    rv.push_back(Pair("reject", SoftForkMajorityDesc(version, pindex, consensus)));
+    rv.pushKV("id", name);
+    rv.pushKV("version", version);
+    rv.pushKV("reject", SoftForkMajorityDesc(version, pindex, consensus));
     return rv;
 }
 
@@ -856,13 +856,13 @@ static UniValue NetworkUpgradeDesc(const Consensus::Params& consensusParams, Con
 {
     UniValue rv(UniValue::VOBJ);
     auto upgrade = NetworkUpgradeInfo[idx];
-    rv.push_back(Pair("activationheight", consensusParams.vUpgrades[idx].nActivationHeight));
+    rv.pushKV("activationheight", consensusParams.vUpgrades[idx].nActivationHeight);
     switch (NetworkUpgradeState(height, consensusParams, idx)) {
-        case UPGRADE_DISABLED: rv.push_back(Pair("status", "disabled")); break;
-        case UPGRADE_PENDING: rv.push_back(Pair("status", "pending")); break;
-        case UPGRADE_ACTIVE: rv.push_back(Pair("status", "active")); break;
+        case UPGRADE_DISABLED: rv.pushKV("status", "disabled"); break;
+        case UPGRADE_PENDING: rv.pushKV("status", "pending"); break;
+        case UPGRADE_ACTIVE: rv.pushKV("status", "active"); break;
     }
-    rv.push_back(Pair("info", upgrade.strInfo));
+    rv.pushKV("info", upgrade.strInfo);
     return rv;
 }
 
@@ -927,21 +927,21 @@ UniValue getblockchaininfo(const JSONRPCRequest& request)
     int nTipHeight = pChainTip ? pChainTip->nHeight : -1;
 
     UniValue obj(UniValue::VOBJ);
-    obj.push_back(Pair("chain", Params().NetworkIDString()));
-    obj.push_back(Pair("blocks", nTipHeight));
-    obj.push_back(Pair("headers", pindexBestHeader ? pindexBestHeader->nHeight : -1));
-    obj.push_back(Pair("bestblockhash", pChainTip ? pChainTip->GetBlockHash().GetHex() : ""));
-    obj.push_back(Pair("difficulty", (double)GetDifficulty()));
-    obj.push_back(Pair("verificationprogress", Checkpoints::GuessVerificationProgress(pChainTip)));
-    obj.push_back(Pair("chainwork", pChainTip ? pChainTip->nChainWork.GetHex() : ""));
+    obj.pushKV("chain", Params().NetworkIDString());
+    obj.pushKV("blocks", nTipHeight);
+    obj.pushKV("headers", pindexBestHeader ? pindexBestHeader->nHeight : -1);
+    obj.pushKV("bestblockhash", pChainTip ? pChainTip->GetBlockHash().GetHex() : "");
+    obj.pushKV("difficulty", (double)GetDifficulty());
+    obj.pushKV("verificationprogress", Checkpoints::GuessVerificationProgress(pChainTip));
+    obj.pushKV("chainwork", pChainTip ? pChainTip->nChainWork.GetHex() : "");
     UniValue softforks(UniValue::VARR);
     softforks.push_back(SoftForkDesc("bip65", 5, pChainTip));
-    obj.push_back(Pair("softforks",             softforks));
+    obj.pushKV("softforks",             softforks);
     UniValue upgrades(UniValue::VOBJ);
     for (int i = Consensus::BASE_NETWORK + 1; i < (int) Consensus::MAX_NETWORK_UPGRADES; i++) {
         NetworkUpgradeDescPushBack(upgrades, consensusParams, Consensus::UpgradeIndex(i), nTipHeight);
     }
-    obj.push_back(Pair("upgrades", upgrades));
+    obj.pushKV("upgrades", upgrades);
 
     return obj;
 }
@@ -1015,11 +1015,11 @@ UniValue getchaintips(const JSONRPCRequest& request)
     UniValue res(UniValue::VARR);
     for (const CBlockIndex* block : setTips) {
         UniValue obj(UniValue::VOBJ);
-        obj.push_back(Pair("height", block->nHeight));
-        obj.push_back(Pair("hash", block->phashBlock->GetHex()));
+        obj.pushKV("height", block->nHeight);
+        obj.pushKV("hash", block->phashBlock->GetHex());
 
         const int branchLen = block->nHeight - chainActive.FindFork(block)->nHeight;
-        obj.push_back(Pair("branchlen", branchLen));
+        obj.pushKV("branchlen", branchLen);
 
         std::string status;
         if (chainActive.Contains(block)) {
@@ -1041,7 +1041,7 @@ UniValue getchaintips(const JSONRPCRequest& request)
             // No clue.
             status = "unknown";
         }
-        obj.push_back(Pair("status", status));
+        obj.pushKV("status", status);
 
         res.push_back(obj);
     }
@@ -1094,9 +1094,9 @@ UniValue getfeeinfo(const JSONRPCRequest& request)
 UniValue mempoolInfoToJSON()
 {
     UniValue ret(UniValue::VOBJ);
-    ret.push_back(Pair("size", (int64_t) mempool.size()));
-    ret.push_back(Pair("bytes", (int64_t) mempool.GetTotalTxSize()));
-    ret.push_back(Pair("usage", (int64_t) mempool.DynamicMemoryUsage()));
+    ret.pushKV("size", (int64_t) mempool.size());
+    ret.pushKV("bytes", (int64_t) mempool.GetTotalTxSize());
+    ret.pushKV("usage", (int64_t) mempool.DynamicMemoryUsage());
 
     return ret;
 }
@@ -1227,8 +1227,8 @@ UniValue findserial(const JSONRPCRequest& request)
     bool fSuccess = zerocoinDB->ReadCoinSpend(bnSerial, txid);
 
     UniValue ret(UniValue::VOBJ);
-    ret.push_back(Pair("success", fSuccess));
-    ret.push_back(Pair("txid", txid.GetHex()));
+    ret.pushKV("success", fSuccess);
+    ret.pushKV("txid", txid.GetHex());
     return ret;
 }
 
@@ -1356,13 +1356,13 @@ UniValue getserials(const JSONRPCRequest& request) {
                         serialsArr.push_back(serial_str);
                     } else {
                         UniValue s(UniValue::VOBJ);
-                        s.push_back(Pair("serial", serial_str));
-                        s.push_back(Pair("denom", denom));
-                        s.push_back(Pair("bitsize", (int)serial_str.size()*4));
-                        s.push_back(Pair("spentTo", spentTo));
-                        s.push_back(Pair("txid", txid));
-                        s.push_back(Pair("blocknum", pblockindex->nHeight));
-                        s.push_back(Pair("blocktime", block.GetBlockTime()));
+                        s.pushKV("serial", serial_str);
+                        s.pushKV("denom", denom);
+                        s.pushKV("bitsize", (int)serial_str.size()*4);
+                        s.pushKV("spentTo", spentTo);
+                        s.pushKV("txid", txid);
+                        s.pushKV("blocknum", pblockindex->nHeight);
+                        s.pushKV("blocktime", block.GetBlockTime());
                         serialsArr.push_back(s);
                     }
                 }
@@ -1425,8 +1425,8 @@ UniValue getblockindexstats(const JSONRPCRequest& request) {
     validaterange(request.params, heightStart, heightEnd);
     // return object
     UniValue ret(UniValue::VOBJ);
-    ret.push_back(Pair("Starting block", heightStart));
-    ret.push_back(Pair("Ending block", heightEnd));
+    ret.pushKV("Starting block", heightStart);
+    ret.pushKV("Ending block", heightEnd);
 
     bool fFeeOnly = false;
     if (request.params.size() > 2) {
@@ -1523,24 +1523,24 @@ UniValue getblockindexstats(const JSONRPCRequest& request) {
     CFeeRate nFeeRate = CFeeRate(nFees, nBytes);
 
     // return UniValue object
-    ret.push_back(Pair("txcount", (int64_t)nTxCount));
-    ret.push_back(Pair("txcount_all", (int64_t)nTxCount_all));
+    ret.pushKV("txcount", (int64_t)nTxCount);
+    ret.pushKV("txcount_all", (int64_t)nTxCount_all);
     if (!fFeeOnly) {
         UniValue mint_obj(UniValue::VOBJ);
         UniValue spend_obj(UniValue::VOBJ);
         UniValue pubspend_obj(UniValue::VOBJ);
         for (auto& denom : libzerocoin::zerocoinDenomList) {
-            spend_obj.push_back(Pair(strprintf("denom_%d", ZerocoinDenominationToInt(denom)), mapSpendCount[denom]));
-            pubspend_obj.push_back(Pair(strprintf("denom_%d", ZerocoinDenominationToInt(denom)), mapPublicSpendCount[denom]));
+            spend_obj.pushKV(strprintf("denom_%d", ZerocoinDenominationToInt(denom)), mapSpendCount[denom]);
+            pubspend_obj.pushKV(strprintf("denom_%d", ZerocoinDenominationToInt(denom)), mapPublicSpendCount[denom]);
         }
-        ret.push_back(Pair("spendcount", spend_obj));
-        ret.push_back(Pair("publicspendcount", pubspend_obj));
+        ret.pushKV("spendcount", spend_obj);
+        ret.pushKV("publicspendcount", pubspend_obj);
 
     }
-    ret.push_back(Pair("txbytes", (int64_t)nBytes));
-    ret.push_back(Pair("ttlfee", FormatMoney(nFees)));
-    ret.push_back(Pair("ttlfee_all", FormatMoney(nFees_all)));
-    ret.push_back(Pair("feeperkb", FormatMoney(nFeeRate.GetFeePerK())));
+    ret.pushKV("txbytes", (int64_t)nBytes);
+    ret.pushKV("ttlfee", FormatMoney(nFees));
+    ret.pushKV("ttlfee_all", FormatMoney(nFees_all));
+    ret.pushKV("feeperkb", FormatMoney(nFeeRate.GetFeePerK()));
 
     return ret;
 
