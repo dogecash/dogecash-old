@@ -3586,6 +3586,8 @@ bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex
     if (ppindex)
         *ppindex = pindex;
 
+    CheckBlockIndex();
+
     return true;
 }
 
@@ -5587,8 +5589,6 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             LogPrintf("more getheaders (%d) to end to peer=%d (startheight:%d)\n", pindexLast->nHeight, pfrom->id, pfrom->nStartingHeight);
             connman.PushMessage(pfrom, msgMaker.Make(NetMsgType::GETHEADERS, chainActive.GetLocator(pindexLast), UINT256_ZERO));
         }
-
-        CheckBlockIndex();
     }
 
     else if (strCommand == NetMsgType::BLOCK && !fImporting && !fReindex) // Ignore blocks received while importing
