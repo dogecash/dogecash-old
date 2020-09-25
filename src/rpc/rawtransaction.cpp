@@ -40,22 +40,22 @@ void ScriptPubKeyToJSON(const CScript& scriptPubKey, UniValue& out, bool fInclud
     std::vector<CTxDestination> addresses;
     int nRequired;
 
-    out.push_back(Pair("asm", ScriptToAsmStr(scriptPubKey)));
+    out.pushKV("asm", ScriptToAsmStr(scriptPubKey));
     if (fIncludeHex)
-        out.push_back(Pair("hex", HexStr(scriptPubKey.begin(), scriptPubKey.end())));
+        out.pushKV("hex", HexStr(scriptPubKey.begin(), scriptPubKey.end()));
 
     if (!ExtractDestinations(scriptPubKey, type, addresses, nRequired)) {
-        out.push_back(Pair("type", GetTxnOutputType(type)));
+        out.pushKV("type", GetTxnOutputType(type));
         return;
     }
 
-    out.push_back(Pair("reqSigs", nRequired));
-    out.push_back(Pair("type", GetTxnOutputType(type)));
+    out.pushKV("reqSigs", nRequired);
+    out.pushKV("type", GetTxnOutputType(type));
 
     UniValue a(UniValue::VARR);
     for (const CTxDestination& addr : addresses)
         a.push_back(EncodeDestination(addr));
-    out.push_back(Pair("addresses", a));
+    out.pushKV("addresses", a);
 }
 
 void TxToJSON(const CTransaction& tx, const uint256 hashBlock, UniValue& entry)
@@ -68,17 +68,17 @@ void TxToJSON(const CTransaction& tx, const uint256 hashBlock, UniValue& entry)
     TxToUniv(tx, uint256(), entry);
 
     if (!hashBlock.IsNull()) {
-        entry.push_back(Pair("blockhash", hashBlock.GetHex()));
+        entry.pushKV("blockhash", hashBlock.GetHex());
         BlockMap::iterator mi = mapBlockIndex.find(hashBlock);
         if (mi != mapBlockIndex.end() && (*mi).second) {
             CBlockIndex* pindex = (*mi).second;
             if (chainActive.Contains(pindex)) {
-                entry.push_back(Pair("confirmations", 1 + chainActive.Height() - pindex->nHeight));
-                entry.push_back(Pair("time", pindex->GetBlockTime()));
-                entry.push_back(Pair("blocktime", pindex->GetBlockTime()));
+                entry.pushKV("confirmations", 1 + chainActive.Height() - pindex->nHeight);
+                entry.pushKV("time", pindex->GetBlockTime());
+                entry.pushKV("blocktime", pindex->GetBlockTime());
             }
             else
-                entry.push_back(Pair("confirmations", 0));
+                entry.pushKV("confirmations", 0);
         }
     }
 }
@@ -199,7 +199,7 @@ UniValue getrawtransaction(const JSONRPCRequest& request)
     }
 
     UniValue result(UniValue::VOBJ);
-    if (blockindex) result.push_back(Pair("in_active_chain", in_active_chain));
+    if (blockindex) result.pushKV("in_active_chain", in_active_chain);
     TxToJSON(tx, hash_block, result);
     return result;
 }
@@ -408,7 +408,7 @@ UniValue decodescript(const JSONRPCRequest& request)
     }
     ScriptPubKeyToJSON(script, r, false);
 
-    r.push_back(Pair("p2sh", EncodeDestination(CScriptID(script))));
+    r.pushKV("p2sh", EncodeDestination(CScriptID(script)));
     return r;
 }
 
@@ -416,11 +416,11 @@ UniValue decodescript(const JSONRPCRequest& request)
 static void TxInErrorToJSON(const CTxIn& txin, UniValue& vErrorsRet, const std::string& strMessage)
 {
     UniValue entry(UniValue::VOBJ);
-    entry.push_back(Pair("txid", txin.prevout.hash.ToString()));
-    entry.push_back(Pair("vout", (uint64_t)txin.prevout.n));
-    entry.push_back(Pair("scriptSig", HexStr(txin.scriptSig.begin(), txin.scriptSig.end())));
-    entry.push_back(Pair("sequence", (uint64_t)txin.nSequence));
-    entry.push_back(Pair("error", strMessage));
+    entry.pushKV("txid", txin.prevout.hash.ToString());
+    entry.pushKV("vout", (uint64_t)txin.prevout.n);
+    entry.pushKV("scriptSig", HexStr(txin.scriptSig.begin(), txin.scriptSig.end()));
+    entry.pushKV("sequence", (uint64_t)txin.nSequence);
+    entry.pushKV("error", strMessage);
     vErrorsRet.push_back(entry);
 }
 
@@ -524,9 +524,9 @@ UniValue fundrawtransaction(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_INTERNAL_ERROR, strFailReason);
 
     UniValue result(UniValue::VOBJ);
-    result.push_back(Pair("hex", EncodeHexTx(tx)));
-    result.push_back(Pair("changepos", changePosition));
-    result.push_back(Pair("fee", ValueFromAmount(nFeeOut)));
+    result.pushKV("hex", EncodeHexTx(tx));
+    result.pushKV("changepos", changePosition);
+    result.pushKV("fee", ValueFromAmount(nFeeOut));
 
     return result;
 }
@@ -799,10 +799,10 @@ UniValue signrawtransaction(const JSONRPCRequest& request)
     bool fComplete = vErrors.empty();
 
     UniValue result(UniValue::VOBJ);
-    result.push_back(Pair("hex", EncodeHexTx(mergedTx)));
-    result.push_back(Pair("complete", fComplete));
+    result.pushKV("hex", EncodeHexTx(mergedTx));
+    result.pushKV("complete", fComplete);
     if (!vErrors.empty()) {
-        result.push_back(Pair("errors", vErrors));
+        result.pushKV("errors", vErrors);
     }
 
     return result;

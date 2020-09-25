@@ -16,5 +16,6 @@ contrib/devtools/logprint-scanner.py
 
 if [ "$TRAVIS_EVENT_TYPE" = "pull_request" ]; then
   contrib/devtools/lint-whitespace.sh
+  contrib/devtools/commit-script-check.sh $TRAVIS_COMMIT_RANGE
   test/lint/lint-qt.sh
 fi

@@ -1689,11 +1689,11 @@ std::string CBudgetVote::GetStrMessage() const
 UniValue CBudgetVote::ToJSON() const
 {
     UniValue bObj(UniValue::VOBJ);
-    bObj.push_back(Pair("mnId", vin.prevout.hash.ToString()));
-    bObj.push_back(Pair("nHash", vin.prevout.GetHash().ToString()));
-    bObj.push_back(Pair("Vote", GetVoteString()));
-    bObj.push_back(Pair("nTime", nTime));
-    bObj.push_back(Pair("fValid", fValid));
+    bObj.pushKV("mnId", vin.prevout.hash.ToString());
+    bObj.pushKV("nHash", vin.prevout.GetHash().ToString());
+    bObj.pushKV("Vote", GetVoteString());
+    bObj.pushKV("nTime", nTime);
+    bObj.pushKV("fValid", fValid);
     return bObj;
 }
 
@@ -1763,7 +1763,7 @@ UniValue CFinalizedBudget::GetVotesObject() const
     UniValue ret(UniValue::VOBJ);
     for (const auto& it: mapVotes) {
         const CFinalizedBudgetVote& vote = it.second;
-        ret.push_back(std::make_pair(vote.GetVin().prevout.ToStringShort(), vote.ToJSON()));
+        ret.pushKV(vote.GetVin().prevout.ToStringShort(), vote.ToJSON());
     }
     return ret;
 }
@@ -2251,9 +2251,9 @@ uint256 CFinalizedBudgetVote::GetHash() const
 UniValue CFinalizedBudgetVote::ToJSON() const
 {
     UniValue bObj(UniValue::VOBJ);
-    bObj.push_back(Pair("nHash", vin.prevout.GetHash().ToString()));
-    bObj.push_back(Pair("nTime", (int64_t) nTime));
-    bObj.push_back(Pair("fValid", fValid));
+    bObj.pushKV("nHash", vin.prevout.GetHash().ToString());
+    bObj.pushKV("nTime", (int64_t) nTime);
+    bObj.pushKV("fValid", fValid);
     return bObj;
 }
 
