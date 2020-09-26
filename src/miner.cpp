@@ -541,7 +541,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, Optional<CReserveKey>& r
 
     // Process this block the same as if we had received it from another node
     CValidationState state;
-    if (!ProcessNewBlock(state, nullptr, pblock, nullptr, g_connman.get())) {
+    if (!ProcessNewBlock(state, nullptr, pblock, nullptr)) {
         return error("PIVXMiner : ProcessNewBlock, block not accepted");
     }
 

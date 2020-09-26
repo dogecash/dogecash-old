@@ -83,7 +83,7 @@ RecursiveMutex cs_main;
 BlockMap mapBlockIndex;
 CChain chainActive;
 CBlockIndex* pindexBestHeader = NULL;
-int64_t nTimeBestReceived = 0;
+int64_t nTimeBestReceived = 0;  // Used only to inform the wallet of when we last received a block
 int64_t nMoneySupply;
 
 // Best block section
@@ -677,6 +677,16 @@ CBlockTreeDB* pblocktree = NULL;
 CZerocoinDB* zerocoinDB = NULL;
 CSporkDB* pSporkDB = NULL;
 
+enum FlushStateMode {
+    FLUSH_STATE_NONE,
+    FLUSH_STATE_IF_NEEDED,
+    FLUSH_STATE_PERIODIC,
+    FLUSH_STATE_ALWAYS
+};
+
+// See definition for documentation
+bool static FlushStateToDisk(CValidationState &state, FlushStateMode mode);
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // mapOrphanTransactions
@@ -1134,6 +1144,9 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState &state, const CTransa
         for (const COutPoint& outpoint: coins_to_uncache)
             pcoinsTip->Uncache(outpoint);
     }
+    // After we've (potentially) uncached entries, ensure our coins cache is still within its size limits
+    CValidationState stateDummy;
+    FlushStateToDisk(stateDummy, FLUSH_STATE_PERIODIC);
     return res;
 }
 
@@ -1505,19 +1518,6 @@ void static InvalidChainFound(CBlockIndex* pindexNew)
 
 void static InvalidBlockFound(CBlockIndex* pindex, const CValidationState& state)
 {
-    int nDoS = 0;
-    if (state.IsInvalid(nDoS)) {
-        std::map<uint256, NodeId>::iterator it = mapBlockSource.find(pindex->GetBlockHash());
-        if (it != mapBlockSource.end() && State(it->second)) {
-            assert (state.GetRejectCode() < REJECT_INTERNAL); // Blocks are never rejected with internal reject codes
-            CBlockReject reject = {(unsigned char) state.GetRejectCode(), state.GetRejectReason().substr(0, MAX_REJECT_MESSAGE_LENGTH), pindex->GetBlockHash()};
-            State(it->second)->rejects.push_back(reject);
-            if (nDoS > 0) {
-                LOCK(cs_main);
-                Misbehaving(it->second, nDoS);
-            }
-        }
-    }
     if (!state.CorruptionPossible()) {
         pindex->nStatus |= BLOCK_FAILED_VALID;
         setDirtyBlockIndex.insert(pindex);
@@ -2327,12 +2327,6 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     return true;
 }
 
-enum FlushStateMode {
-    FLUSH_STATE_IF_NEEDED,
-    FLUSH_STATE_PERIODIC,
-    FLUSH_STATE_ALWAYS
-};
-
 /**
  * Update the on-disk chain state.
  * The caches and indexes are flushed if either they're too large, forceWrite is set, or
@@ -2448,7 +2442,6 @@ void static UpdateTip(CBlockIndex* pindexNew)
     g_IsSaplingActive = Params().GetConsensus().NetworkUpgradeActive(pindexNew->nHeight, Consensus::UPGRADE_V5_DUMMY);
 
     // New best block
-    nTimeBestReceived = GetTime();
     mempool.AddTransactionsUpdated(1);
 
     {
@@ -2574,7 +2567,6 @@ bool static ConnectTip(CValidationState& state, CBlockIndex* pindexNew, const CB
                 InvalidBlockFound(pindexNew, state);
             return error("ConnectTip() : ConnectBlock %s failed", pindexNew->GetBlockHash().ToString());
         }
-        mapBlockSource.erase(pindexNew->GetBlockHash());
         nTime3 = GetTimeMicros();
         nTimeConnectTotal += nTime3 - nTime2;
         LogPrint(BCLog::BENCH, "  - Connect total: %.2fms [%.2fs]\n", (nTime3 - nTime2) * 0.001, nTimeConnectTotal * 0.000001);
@@ -2811,7 +2803,8 @@ static bool ActivateBestChainStep(CValidationState& state, CBlockIndex* pindexMo
  * or an activated best chain. pblock is either NULL or a pointer to a block
  * that is already loaded (to avoid loading it again from disk).
  */
-bool ActivateBestChain(CValidationState& state, const CBlock* pblock, bool fAlreadyChecked, CConnman* connman)
+
+bool ActivateBestChain(CValidationState& state, const CBlock* pblock, bool fAlreadyChecked)
 {
     // Note that while we're often called here from ProcessNewBlock, this is
     // far from a guarantee. Things in the P2P/RPC will often end up calling
@@ -2864,10 +2857,8 @@ bool ActivateBestChain(CValidationState& state, const CBlock* pblock, bool fAlre
             break;
         }
 
-        // When we reach this point, we switched to a new tip (stored in pindexNewTip).
-        // Notifications/callbacks that can run without cs_main
-        if(connman)
-            connman->SetBestHeight(pindexNewTip->nHeight);
+        // Notify external listeners about the new tip.
+        GetMainSignals().UpdatedBlockTip(pindexNewTip, pindexFork, fInitialDownload);
 
         // Always notify the UI if a new block tip was connected
         if (pindexFork != pindexNewTip) {
@@ -2875,34 +2866,17 @@ bool ActivateBestChain(CValidationState& state, const CBlock* pblock, bool fAlre
             // Notify the UI
             uiInterface.NotifyBlockTip(fInitialDownload, pindexNewTip);
 
-            // Notifications/callbacks that can run without cs_main
-            if (!fInitialDownload) {
-                uint256 hashNewTip = pindexNewTip->GetBlockHash();
-                // Relay inventory, but don't relay old inventory during initial block download.
-                int nBlockEstimate = Checkpoints::GetTotalBlocksEstimate();
-                {
-                    if (connman) {
-                        connman->ForEachNode([pindexNewTip, nBlockEstimate, hashNewTip](CNode* pnode) {
-                            if (pindexNewTip->nHeight > (pnode->nStartingHeight != -1 ? pnode->nStartingHeight - 2000 : nBlockEstimate)) {
-                                pnode->PushInventory(CInv(MSG_BLOCK, hashNewTip));
-                            }
-                        });
-                    }
-                }
-                // Notify external listeners about the new tip.
-                GetMainSignals().UpdatedBlockTip(pindexNewTip);
-
-                unsigned size = 0;
-                if (pblock)
-                    size = GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION);
-                // If the size is over 1 MB notify external listeners, and it is within the last 5 minutes
-                if (size > MAX_BLOCK_SIZE_LEGACY && pblock->GetBlockTime() > GetAdjustedTime() - 300) {
-                    uiInterface.NotifyBlockSize(static_cast<int>(size), hashNewTip);
-                }
+            unsigned size = 0;
+            if (pblock)
+                size = GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION);
+            // If the size is over 1 MB notify external listeners, and it is within the last 5 minutes
+            if (size > MAX_BLOCK_SIZE_LEGACY && pblock->GetBlockTime() > GetAdjustedTime() - 300) {
+                uiInterface.NotifyBlockSize(static_cast<int>(size), pindexNewTip->GetBlockHash());
             }
-
         }
+
     } while (pindexMostWork != chainActive.Tip());
+
     CheckBlockIndex();
 
     // Write changes periodically to disk, after relay.
@@ -3611,6 +3585,8 @@ bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex
     if (ppindex)
         *ppindex = pindex;
 
+    CheckBlockIndex();
+
     return true;
 }
 
@@ -3886,7 +3862,6 @@ int static inline GetSkipHeight(int height)
 {
     if (height < 2)
         return 0;
-
     // Determine which height to jump back to. Any number strictly lower than height is acceptable,
     // but the following expression seems to perform well in simulations (max 110 steps to go back
     // up to 2**18 blocks).
@@ -3927,7 +3902,7 @@ void CBlockIndex::BuildSkip()
         pskip = pprev->GetAncestor(GetSkipHeight(nHeight));
 }
 
-bool ProcessNewBlock(CValidationState& state, CNode* pfrom, const CBlock* pblock, CDiskBlockPos* dbp, CConnman* connman)
+bool ProcessNewBlock(CValidationState& state, CNode* pfrom, const CBlock* pblock, CDiskBlockPos* dbp)
 {
     AssertLockNotHeld(cs_main);
 
@@ -3957,7 +3932,6 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, const CBlock* pblock
     {
         LOCK(cs_main);
 
-        MarkBlockAsReceived(pblock->GetHash());
         if (!checked) {
             return error ("%s : CheckBlock FAILED for block %s, %s", __func__, pblock->GetHash().GetHex(), FormatStateMessage(state));
         }
@@ -3992,7 +3966,7 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, const CBlock* pblock
         }
     }
 
-    if (!ActivateBestChain(state, pblock, checked, connman))
+    if (!ActivateBestChain(state, pblock, checked))
         return error("%s : ActivateBestChain failed", __func__);
 
     if (!fLiteMode) {
@@ -4011,7 +3985,7 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, const CBlock* pblock
 
         // If turned on Auto Combine will scan wallet for dust to combine
         if (pwalletMain->fCombineDust)
-            pwalletMain->AutoCombineDust(connman);
+            pwalletMain->AutoCombineDust(g_connman.get());
     }
 
     LogPrintf("%s : ACCEPTED Block %ld in %ld milliseconds with size=%d\n", __func__, newHeight, GetTimeMillis() - nStartTime,
@@ -4319,6 +4293,9 @@ bool CVerifyDB::VerifyDB(CCoinsView* coinsview, int nCheckLevel, int nCheckDepth
     return true;
 }
 
+// May NOT be used after any connections are up as much
+// of the peer-processing logic assumes a consistent
+// block index state
 void UnloadBlockIndex()
 {
     LOCK(cs_main);
@@ -4329,19 +4306,13 @@ void UnloadBlockIndex()
     mempool.clear();
     mapOrphanTransactions.clear();
     mapOrphanTransactionsByPrev.clear();
-    nSyncStarted = 0;
     mapBlocksUnlinked.clear();
     vinfoBlockFile.clear();
     nLastBlockFile = 0;
     nBlockSequenceId = 1;
-    mapBlockSource.clear();
-    mapBlocksInFlight.clear();
     nQueuedValidatedHeaders = 0;
-    nPreferredDownload = 0;
     setDirtyBlockIndex.clear();
     setDirtyFileInfo.clear();
-    mapNodeState.clear();
-    recentRejects.reset(nullptr);
 
     for (BlockMap::value_type& entry : mapBlockIndex) {
         delete entry.second;
@@ -4361,9 +4332,6 @@ bool LoadBlockIndex(std::string& strError)
 bool InitBlockIndex()
 {
     LOCK(cs_main);
-
-    // Initialize global variables that cannot be constructed at startup.
-    recentRejects.reset(new CRollingBloomFilter(120000, 0.000001));
 
     // Check whether we're already initialized
     if (chainActive.Genesis() != NULL)
@@ -4458,7 +4426,7 @@ bool LoadExternalBlockFile(FILE* fileIn, CDiskBlockPos* dbp)
                 // process in case the block isn't known yet
                 if (mapBlockIndex.count(hash) == 0 || (mapBlockIndex[hash]->nStatus & BLOCK_HAVE_DATA) == 0) {
                     CValidationState state;
-                    if (ProcessNewBlock(state, nullptr, &block, dbp, nullptr))
+                    if (ProcessNewBlock(state, nullptr, &block, dbp))
                         nLoaded++;
                     if (state.IsError())
                         break;
@@ -4479,7 +4447,7 @@ bool LoadExternalBlockFile(FILE* fileIn, CDiskBlockPos* dbp)
                             LogPrintf("%s: Processing out of order child %s of %s\n", __func__, block.GetHash().ToString(),
                                 head.ToString());
                             CValidationState dummy;
-                            if (ProcessNewBlock(dummy, nullptr, &block, &it->second, nullptr)) {
+                            if (ProcessNewBlock(dummy, nullptr, &block, &it->second)) {
                                 nLoaded++;
                                 queue.push_back(block.GetHash());
                             }
@@ -4674,6 +4642,59 @@ std::string GetWarnings(std::string strFor)
     return "error";
 }
 
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// blockchain -> download logic notification
+//
+
+PeerLogicValidation::PeerLogicValidation(CConnman* connmanIn) :
+        connman(connmanIn)
+{
+    // Initialize global variables that cannot be constructed at startup.
+    recentRejects.reset(new CRollingBloomFilter(120000, 0.000001));
+}
+
+void PeerLogicValidation::UpdatedBlockTip(const CBlockIndex* pindexNew, const CBlockIndex* pindexFork, bool fInitialDownload)
+{
+    const int nNewHeight = pindexNew->nHeight;
+    connman->SetBestHeight(nNewHeight);
+
+    if (!fInitialDownload) {
+        const uint256& hashNewTip = pindexNew->GetBlockHash();
+        // Relay inventory, but don't relay old inventory during initial block download.
+        connman->ForEachNode([nNewHeight, hashNewTip](CNode* pnode) {
+            if (nNewHeight > (pnode->nStartingHeight != -1 ? pnode->nStartingHeight - 2000 : 0)) {
+                pnode->PushInventory(CInv(MSG_BLOCK, hashNewTip));
+            }
+        });
+    }
+
+    nTimeBestReceived = GetTime();
+}
+
+void PeerLogicValidation::BlockChecked(const CBlock& block, const CValidationState& state)
+{
+    LOCK(cs_main);
+
+    const uint256& hash = block.GetHash();
+    std::map<uint256, NodeId>::iterator it = mapBlockSource.find(hash);
+
+    int nDoS = 0;
+    if (state.IsInvalid(nDoS)) {
+        if (it != mapBlockSource.end() && State(it->second)) {
+            assert (state.GetRejectCode() < REJECT_INTERNAL); // Blocks are never rejected with internal reject codes
+            CBlockReject reject = {(unsigned char) state.GetRejectCode(), state.GetRejectReason().substr(0, MAX_REJECT_MESSAGE_LENGTH), hash};
+            State(it->second)->rejects.push_back(reject);
+            if (nDoS > 0) {
+                Misbehaving(it->second, nDoS);
+            }
+        }
+    }
+
+    if (it != mapBlockSource.end())
+        mapBlockSource.erase(it);
+}
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -5512,9 +5533,7 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             if (nDoS > 0)
                 Misbehaving(pfrom->GetId(), nDoS);
         }
-        FlushStateToDisk(state, FLUSH_STATE_PERIODIC);
     }
-
 
     else if (strCommand == NetMsgType::HEADERS && Params().HeadersFirstSyncingActive() && !fImporting && !fReindex) // Ignore headers received while importing
     {
@@ -5571,15 +5590,13 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             LogPrintf("more getheaders (%d) to end to peer=%d (startheight:%d)\n", pindexLast->nHeight, pfrom->id, pfrom->nStartingHeight);
             connman.PushMessage(pfrom, msgMaker.Make(NetMsgType::GETHEADERS, chainActive.GetLocator(pindexLast), UINT256_ZERO));
         }
-
-        CheckBlockIndex();
     }
 
     else if (strCommand == NetMsgType::BLOCK && !fImporting && !fReindex) // Ignore blocks received while importing
     {
         CBlock block;
         vRecv >> block;
-        uint256 hashBlock = block.GetHash();
+        const uint256& hashBlock = block.GetHash();
         CInv inv(MSG_BLOCK, hashBlock);
         LogPrint(BCLog::NET, "received block %s peer=%d\n", inv.hash.ToString(), pfrom->id);
 
@@ -5596,10 +5613,10 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             }
         } else {
             pfrom->AddInventoryKnown(inv);
-
             CValidationState state;
-            if (!mapBlockIndex.count(block.GetHash())) {
-                ProcessNewBlock(state, pfrom, &block, nullptr, &connman);
+            if (!mapBlockIndex.count(hashBlock)) {
+                WITH_LOCK(cs_main, MarkBlockAsReceived(hashBlock); );
+                ProcessNewBlock(state, pfrom, &block, nullptr);
                 int nDoS;
                 if(state.IsInvalid(nDoS)) {
                     assert (state.GetRejectCode() < REJECT_INTERNAL); // Blocks are never rejected with internal reject codes

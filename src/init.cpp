@@ -99,6 +99,7 @@ static const bool DEFAULT_MASTERNODE  = false;
 static const bool DEFAULT_MNCONFLOCK = true;
 
 std::unique_ptr<CConnman> g_connman;
+std::unique_ptr<PeerLogicValidation> peerLogic;
 
 #if ENABLE_ZMQ
 static CZMQNotificationInterface* pzmqNotificationInterface = NULL;
@@ -226,6 +227,9 @@ void PrepareShutdown()
     GenerateBitcoins(false, NULL, 0);
 #endif
     MapPort(false);
+
+    UnregisterValidationInterface(peerLogic.get());
+    peerLogic.reset();
     g_connman.reset();
 
     DumpMasternodes();
@@ -1298,11 +1302,17 @@ bool AppInit2()
 #endif // ENABLE_WALLET
 
     // ********************************************************* Step 6: network initialization
+    // Note that we absolutely cannot open any actual connections
+    // until the very end ("start node") as the UTXO/block state
+    // is not yet setup and may end up being set up twice if we
+    // need to reindex later.
 
     assert(!g_connman);
     g_connman = MakeUnique<CConnman>(GetRand(std::numeric_limits<uint64_t>::max()), GetRand(std::numeric_limits<uint64_t>::max()));
     CConnman& connman = *g_connman;
 
+    peerLogic.reset(new PeerLogicValidation(&connman));
+    RegisterValidationInterface(peerLogic.get());
     RegisterNodeSignals(GetNodeSignals());
 
     // sanitize comments per BIP-0014, format user agent and check total size
