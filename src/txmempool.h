@@ -478,7 +478,7 @@ public:
     void remove(const CTransaction& tx, std::list<CTransaction>& removed, bool fRecursive = false);
     void removeForReorg(const CCoinsViewCache* pcoins, unsigned int nMemPoolHeight, int flags);
     void removeConflicts(const CTransaction& tx, std::list<CTransaction>& removed);
-    void removeForBlock(const std::vector<std::shared_ptr<const CTransaction>>& vtx, unsigned int nBlockHeight, std::list<CTransaction>& conflicts, bool fCurrentEstimate = true);
+    void removeForBlock(const std::vector<CTransactionRef>& vtx, unsigned int nBlockHeight, std::list<CTransaction>& conflicts, bool fCurrentEstimate = true);
     void clear();
     void _clear();  // lock-free
     void queryHashes(std::vector<uint256>& vtxid);
