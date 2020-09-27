@@ -439,6 +439,7 @@ private:
 
 public:
     PeerLogicValidation(CConnman* connmanIn);
+    ~PeerLogicValidation() = default;
 
     virtual void UpdatedBlockTip(const CBlockIndex *pindexNew, const CBlockIndex *pindexFork, bool fInitialDownload);
     virtual void BlockChecked(const CBlock& block, const CValidationState& state);

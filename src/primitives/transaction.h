@@ -393,7 +393,7 @@ struct CMutableTransaction
         READWRITE(vout);
         READWRITE(nLockTime);
 
-        if (nVersion == CTransaction::SAPLING_VERSION) {
+        if (g_IsSaplingActive && nVersion == CTransaction::SAPLING_VERSION) {
             READWRITE(*const_cast<Optional<SaplingTxData>*>(&sapData));
         }
     }
@@ -410,5 +410,11 @@ struct CMutableTransaction
 
     std::string ToString() const;
 };
+
+typedef std::shared_ptr<const CTransaction> CTransactionRef;
+static inline CTransactionRef MakeTransactionRef() { return std::make_shared<const CTransaction>(); }
+template <typename Tx> static inline CTransactionRef MakeTransactionRef(Tx&& txIn) { return std::make_shared<const CTransaction>(std::forward<Tx>(txIn)); }
+static inline CTransactionRef MakeTransactionRef(const CTransactionRef& txIn) { return txIn; }
+static inline CTransactionRef MakeTransactionRef(CTransactionRef&& txIn) { return std::move(txIn); }
 
 #endif // BITCOIN_PRIMITIVES_TRANSACTION_H
