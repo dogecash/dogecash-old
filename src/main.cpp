@@ -5411,12 +5411,6 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
         std::vector<uint256> vWorkQueue;
         std::vector<uint256> vEraseQueue;
         CTransaction tx;
-
-        //masternode signed transaction
-        bool ignoreFees = false;
-        CTxIn vin;
-        std::vector<unsigned char> vchSig;
-
         vRecv >> tx;
 
         CInv inv(MSG_TX, tx.GetHash());
@@ -5424,6 +5418,7 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
 
         LOCK(cs_main);
 
+        bool ignoreFees = false;
         bool fMissingInputs = false;
         bool fMissingZerocoinInputs = false;
         CValidationState state;
@@ -5484,7 +5479,7 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
                 }
             }
 
-            for (uint256 hash : vEraseQueue) EraseOrphanTx(hash);
+            for (uint256& hash : vEraseQueue) EraseOrphanTx(hash);
 
         } else if (tx.HasZerocoinSpendInputs() && AcceptToMemoryPool(mempool, state, tx, true, &fMissingZerocoinInputs, false, false, ignoreFees)) {
             //Presstab: ZCoin has a bunch of code commented out here. Is this something that should have more going on?
