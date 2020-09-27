@@ -393,7 +393,7 @@ struct CMutableTransaction
         READWRITE(vout);
         READWRITE(nLockTime);
 
-        if (nVersion == CTransaction::SAPLING_VERSION) {
+        if (g_IsSaplingActive && nVersion == CTransaction::SAPLING_VERSION) {
             READWRITE(*const_cast<Optional<SaplingTxData>*>(&sapData));
         }
     }
