@@ -18,9 +18,6 @@
 #include <atomic>
 #include <univalue.h>
 
-
-extern RecursiveMutex cs_budget;
-
 class CBudgetManager;
 class CFinalizedBudgetBroadcast;
 class CFinalizedBudget;
@@ -40,9 +37,6 @@ static const CAmount BUDGET_FEE_TX_OLD = (50 * COIN);
 static const CAmount BUDGET_FEE_TX = (5 * COIN);
 static const int64_t BUDGET_VOTE_UPDATE_MIN = 60 * 60;
 static std::map<uint256, int> mapPayment_History;
-
-extern std::vector<CBudgetProposalBroadcast> vecImmatureBudgetProposals;
-extern std::vector<CFinalizedBudgetBroadcast> vecImmatureFinalizedBudgets;
 
 extern CBudgetManager budget;
 void DumpBudgets();
@@ -214,47 +208,57 @@ private:
     //hold txes until they mature enough to use
     std::map<uint256, uint256> mapCollateralTxids;
 
-    // keep track of the scanning errors I've seen
-    std::map<uint256, CBudgetProposal> mapProposals;
-    std::map<uint256, CFinalizedBudget> mapFinalizedBudgets;
+    std::map<uint256, CBudgetProposal> mapProposals;                        // guarded by cs_proposals
+    std::map<uint256, CFinalizedBudget> mapFinalizedBudgets;                // guarded by cs_budgets
 
-    std::map<uint256, CBudgetProposalBroadcast> mapSeenMasternodeBudgetProposals;
-    std::map<uint256, CBudgetVote> mapSeenMasternodeBudgetVotes;
-    std::map<uint256, CBudgetVote> mapOrphanMasternodeBudgetVotes;
-    std::map<uint256, CFinalizedBudgetBroadcast> mapSeenFinalizedBudgets;
-    std::map<uint256, CFinalizedBudgetVote> mapSeenFinalizedBudgetVotes;
-    std::map<uint256, CFinalizedBudgetVote> mapOrphanFinalizedBudgetVotes;
+    std::map<uint256, CBudgetProposalBroadcast> mapSeenProposals;           // guarded by cs_proposals
+    std::map<uint256, CFinalizedBudgetBroadcast> mapSeenFinalizedBudgets;   // guarded by cs_budgets
+    std::map<uint256, CBudgetVote> mapSeenProposalVotes;                    // guarded by cs_votes
+    std::map<uint256, CBudgetVote> mapOrphanProposalVotes;                  // guarded by cs_votes
+    std::map<uint256, CFinalizedBudgetVote> mapSeenFinalizedBudgetVotes;    // guarded by cs_finalizedvotes
+    std::map<uint256, CFinalizedBudgetVote> mapOrphanFinalizedBudgetVotes;  // guarded by cs_finalizedvotes
 
-    void SetSynced(bool synced);
+    // Memory only
+    std::vector<CBudgetProposalBroadcast> vecImmatureProposals;             // guarded by cs_proposals
+    std::vector<CFinalizedBudgetBroadcast> vecImmatureFinalizedBudgets;     // guarded by cs_budgets
 
     // Memory Only. Updated in NewBlock (blocks arrive in order)
     std::atomic<int> nBestHeight;
 
+    // Returns a const pointer to the budget with highest vote count
+    const CFinalizedBudget* GetBudgetWithHighestVoteCount(int chainHeight) const;
+    int GetHighestVoteCount(int chainHeight) const;
+    // Get the payee and amount for the budget with the highest vote count
+    bool GetPayeeAndAmount(int chainHeight, CScript& payeeRet, CAmount& nAmountRet) const;
+    // Marks synced all votes in proposals and finalized budgets
+    void SetSynced(bool synced);
+
 public:
-    // critical section to protect the inner data structures
-    mutable RecursiveMutex cs;
+    // critical sections to protect the inner data structures (must be locked in this order)
+    mutable RecursiveMutex cs_budgets;
+    mutable RecursiveMutex cs_proposals;
+    mutable RecursiveMutex cs_finalizedvotes;
+    mutable RecursiveMutex cs_votes;
 
     CBudgetManager()
     {
+        LOCK2(cs_budgets, cs_proposals);
         mapProposals.clear();
         mapFinalizedBudgets.clear();
     }
 
     void ClearSeen()
     {
-        mapSeenMasternodeBudgetProposals.clear();
-        mapSeenMasternodeBudgetVotes.clear();
-        mapSeenFinalizedBudgets.clear();
-        mapSeenFinalizedBudgetVotes.clear();
+        WITH_LOCK(cs_proposals, mapSeenProposals.clear(); );
+        WITH_LOCK(cs_votes, mapSeenProposalVotes.clear(); );
+        WITH_LOCK(cs_budgets, mapSeenFinalizedBudgets.clear(); );
+        WITH_LOCK(cs_finalizedvotes, mapSeenFinalizedBudgetVotes.clear(); );
     }
 
-    int sizeFinalized() { return (int)mapFinalizedBudgets.size(); }
-    int sizeProposals() { return (int)mapProposals.size(); }
-
-    bool HaveSeenProposal(const uint256& propHash) const { return mapSeenMasternodeBudgetProposals.count(propHash); }
-    bool HaveSeenProposalVote(const uint256& voteHash) const { return mapSeenMasternodeBudgetVotes.count(voteHash); }
-    bool HaveSeenFinalizedBudget(const uint256& budgetHash) const { return mapSeenFinalizedBudgets.count(budgetHash); }
-    bool HaveSeenFinalizedBudgetVote(const uint256& voteHash) const { return mapSeenFinalizedBudgetVotes.count(voteHash); }
+    bool HaveSeenProposal(const uint256& propHash) const { LOCK(cs_proposals); return mapSeenProposals.count(propHash); }
+    bool HaveSeenProposalVote(const uint256& voteHash) const { LOCK(cs_votes); return mapSeenProposalVotes.count(voteHash); }
+    bool HaveSeenFinalizedBudget(const uint256& budgetHash) const { LOCK(cs_budgets); return mapSeenFinalizedBudgets.count(budgetHash); }
+    bool HaveSeenFinalizedBudgetVote(const uint256& voteHash) const { LOCK(cs_finalizedvotes); return mapSeenFinalizedBudgetVotes.count(voteHash); }
 
     void AddSeenProposal(const CBudgetProposalBroadcast& prop);
     void AddSeenProposalVote(const CBudgetVote& vote);
@@ -269,6 +273,13 @@ public:
 
     bool AddAndRelayProposalVote(const CBudgetVote& vote, std::string& strError);
 
+    // sets strProposal of a CFinalizedBudget reference
+    void SetBudgetProposalsStr(CFinalizedBudget& finalizedBudget) const;
+
+    // checks finalized budget proposals (existence, payee, amount) for the finalized budget
+    // in the map, with given nHash. Returns error string if any, or "OK" otherwise
+    std::string GetFinalizedBudgetStatus(const uint256& nHash) const;
+
     void ResetSync() { SetSynced(false); }
     void MarkSynced() { SetSynced(true); }
     void Sync(CNode* node, const uint256& nProp, bool fPartial = false);
@@ -277,40 +288,56 @@ public:
 
     void ProcessMessage(CNode* pfrom, std::string& strCommand, CDataStream& vRecv);
     void NewBlock(int height);
+
+    // functions returning a pointer in the map. Need cs_proposals/cs_budgets locked from the caller
     CBudgetProposal* FindProposal(const uint256& nHash);
+    CFinalizedBudget* FindFinalizedBudget(const uint256& nHash);
+    // const functions, copying the budget object to a reference and returning true if found
+    bool GetProposal(const uint256& nHash, CBudgetProposal& bp) const;
+    bool GetFinalizedBudget(const uint256& nHash, CFinalizedBudget& fb) const;
     // finds the proposal with the given name, with highest net yes count.
     const CBudgetProposal* FindProposalByName(const std::string& strProposalName) const;
-    CFinalizedBudget* FindFinalizedBudget(const uint256& nHash);
 
     static CAmount GetTotalBudget(int nHeight);
     std::vector<CBudgetProposal*> GetBudget();
     std::vector<CBudgetProposal*> GetAllProposals();
     std::vector<CFinalizedBudget*> GetFinalizedBudgets();
-    bool IsBudgetPaymentBlock(int nBlockHeight);
+    bool IsBudgetPaymentBlock(int nBlockHeight) const;
+    bool IsBudgetPaymentBlock(int nBlockHeight, int& nHighestCount, int& nFivePercent) const;
     bool AddProposal(CBudgetProposal& budgetProposal);
     bool AddFinalizedBudget(CFinalizedBudget& finalizedBudget);
     void SubmitFinalBudget();
 
     bool UpdateProposal(const CBudgetVote& vote, CNode* pfrom, std::string& strError);
     bool UpdateFinalizedBudget(CFinalizedBudgetVote& vote, CNode* pfrom, std::string& strError);
-    TrxValidationStatus IsTransactionValid(const CTransaction& txNew, int nBlockHeight);
+    TrxValidationStatus IsTransactionValid(const CTransaction& txNew, int nBlockHeight) const;
     std::string GetRequiredPaymentsString(int nBlockHeight);
-    void FillBlockPayee(CMutableTransaction& txNew, bool fProofOfStake);
+    void FillBlockPayee(CMutableTransaction& txNew, bool fProofOfStake) const;
 
     void CheckOrphanVotes();
     void Clear()
     {
-        LOCK(cs);
-
+        {
+            LOCK(cs_proposals);
+            mapProposals.clear();
+            mapSeenProposals.clear();
+        }
+        {
+            LOCK(cs_budgets);
+            mapFinalizedBudgets.clear();
+            mapSeenFinalizedBudgets.clear();
+        }
+        {
+            LOCK(cs_votes);
+            mapSeenProposalVotes.clear();
+            mapOrphanProposalVotes.clear();
+        }
+        {
+            LOCK(cs_finalizedvotes);
+            mapSeenFinalizedBudgetVotes.clear();
+            mapOrphanFinalizedBudgetVotes.clear();
+        }
         LogPrintf("Budget object cleared\n");
-        mapProposals.clear();
-        mapFinalizedBudgets.clear();
-        mapSeenMasternodeBudgetProposals.clear();
-        mapSeenMasternodeBudgetVotes.clear();
-        mapSeenFinalizedBudgets.clear();
-        mapSeenFinalizedBudgetVotes.clear();
-        mapOrphanMasternodeBudgetVotes.clear();
-        mapOrphanFinalizedBudgetVotes.clear();
     }
     void CheckAndRemove();
     std::string ToString() const;
@@ -319,14 +346,26 @@ public:
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action)
     {
-        READWRITE(mapSeenMasternodeBudgetProposals);
-        READWRITE(mapSeenMasternodeBudgetVotes);
-        READWRITE(mapSeenFinalizedBudgets);
-        READWRITE(mapSeenFinalizedBudgetVotes);
-        READWRITE(mapOrphanMasternodeBudgetVotes);
-        READWRITE(mapOrphanFinalizedBudgetVotes);
-        READWRITE(mapProposals);
-        READWRITE(mapFinalizedBudgets);
+        {
+            LOCK(cs_proposals);
+            READWRITE(mapProposals);
+            READWRITE(mapSeenProposals);
+        }
+        {
+            LOCK(cs_votes);
+            READWRITE(mapSeenProposalVotes);
+            READWRITE(mapOrphanProposalVotes);
+        }
+        {
+            LOCK(cs_budgets);
+            READWRITE(mapFinalizedBudgets);
+            READWRITE(mapSeenFinalizedBudgets);
+        }
+        {
+            LOCK(cs_finalizedvotes);
+            READWRITE(mapSeenFinalizedBudgetVotes);
+            READWRITE(mapOrphanFinalizedBudgetVotes);
+        }
     }
 };
 
@@ -368,8 +407,6 @@ public:
 class CFinalizedBudget
 {
 private:
-    // critical section to protect the inner data structures
-    mutable RecursiveMutex cs;
     bool fAutoChecked; //If it matches what we see, we'll auto vote for it (masternode only)
     bool fValid;
     std::string strInvalid;
@@ -380,6 +417,7 @@ protected:
     int nBlockStart;
     std::vector<CTxBudgetPayment> vecBudgetPayments;
     uint256 nFeeTXHash;
+    std::string strProposals;
 
 public:
     int64_t nTime;
@@ -400,8 +438,11 @@ public:
     bool IsValid() const  { return fValid; }
     std::string IsInvalidReason() const { return strInvalid; }
 
+    void SetProposalsStr(const std::string _strProposals) { strProposals = _strProposals; }
+
     std::string GetName() const { return strBudgetName; }
-    std::string GetProposals();
+    std::string GetProposalsStr() const { return strProposals; }
+    std::vector<uint256> GetProposalsHashes() const;
     int GetBlockStart() const { return nBlockStart; }
     int GetBlockEnd() const { return nBlockStart + (int)(vecBudgetPayments.size() - 1); }
     const uint256& GetFeeTXHash() const { return nFeeTXHash;  }
@@ -417,9 +458,6 @@ public:
     CAmount GetTotalPayout() const;
     //vote on this finalized budget as a masternode
     void SubmitVote();
-
-    //checks the hashes to make sure we know about them
-    std::string GetStatus() const;
 
     uint256 GetHash() const
     {
@@ -499,8 +537,6 @@ public:
 class CBudgetProposal
 {
 private:
-    // critical section to protect the inner data structures
-    mutable RecursiveMutex cs;
     CAmount nAlloted;
     bool fValid;
     std::string strInvalid;
