@@ -1886,9 +1886,9 @@ STAKING</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/dogecash-project/dogecash-project-translations</source>
+https://www.transifex.com/dogecash/dogecash-translations</source>
         <translation>Sprache fehlt oder ist unvollständig? Helfe mit und trage zur Übersetzung bei unter:
-https://www.transifex.com/dogecash-project/dogecash-project-translations</translation>
+https://www.transifex.com/dogecash/dogecash-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -3837,8 +3837,8 @@ Es gab ein Problem bei dem Versuch die Adressen unter %1 zu speichern. Bitte ver
         <translation>2) Wieso kann ich meine DOGEC nicht ausgeben?</translation>
     </message>
     <message>
-        <source>https://DogeCash.org/</source>
-        <translation>https://DogeCash.org/</translation>
+        <source>https://dogec.io/</source>
+        <translation>https://dogec.io/</translation>
     </message>
     <message>
         <source>1</source>
@@ -3919,7 +3919,7 @@ DogeCash nutzt einen PoS Konsensalgorithmus, der es den Besitzern von DogeCash e
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='https://discord.DogeCash.org'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.dogec.io'&gt;
                            #support in our Discord&lt;/a&gt;.
                            If you prefer to submit a ticket, You can do so at
                            &lt;a style='color: #b088ff' href='https://DogeCash.freshdesk.com'&gt;
@@ -3929,7 +3929,7 @@ DogeCash nutzt einen PoS Konsensalgorithmus, der es den Besitzern von DogeCash e
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
 Wir haben Support-Kanäle in den meisten unserer offiziellen Chatgruppen, z.B.
-&lt;a style='color: #b088ff' href='https://discord.DogeCash.org'&gt;
+&lt;a style='color: #b088ff' href='https://discord.dogec.io'&gt;
 #support in Discord&lt;/a&gt;
 Wenn Sie bevorzugen, uns ein Ticket zu schicken, besuchen Sie
 &lt;a style='color: #b088ff' href='https://DogeCash.freshdesk.com'&gt;

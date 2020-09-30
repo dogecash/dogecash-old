@@ -1,16 +1,16 @@
 DogeCash Core integration/staging repository
 =====================================
 
-[![Build Status](https://travis-ci.org/DogeCash-Project/DogeCash.svg?branch=master)](https://travis-ci.org/DogeCash-Project/DogeCash) [![GitHub version](https://badge.fury.io/gh/DogeCash-Project%2FDogeCash.svg)](https://badge.fury.io/gh/DogeCash-Project%2FDogeCash)
+[![Build Status](https://travis-ci.org/dogecash/DogeCash.svg?branch=master)](https://travis-ci.org/dogecash/DogeCash) [![GitHub version](https://badge.fury.io/gh/dogecash%2FDogeCash.svg)](https://badge.fury.io/gh/dogecash%2FDogeCash)
 
 DogeCash is an open source cryptocurrency focused on fast, private transactions using the Zerocoin protocol, with low transaction fees & environmental footprint.  It utilizes the first ever anonymous proof of stake protocol, called zPoS, combined with regular PoS and masternodes for securing its network. zPoS incentivizes using the privacy features available in DogeCash by granting a higher block reward for zPoS over regular PoS and masternodes. In practice, DogeCash has between 4 to 10 times higher use of its privacy features in comparison to other coins that combine public and private transactions. This is thanks to innovations like zPoS and integrating the Zerocoin protocol into light/mobile wallets, allowing for a complete and lightweight privacy protocol that can be used on the go. This also includes security improvements like [deterministic generation of zDOGEC for easy backups.](https://www.reddit.com/r/dogecash/comments/8gbjf7/how_to_use_deterministic_zerocoin_generation/)
 The goal of DogeCash is to achieve a decentralized, sustainable cryptocurrency with near instant full-time private transactions, fair governance and community intelligence.
-- Anonymized transactions & consensus using the [_Zerocoin Protocol_](http://www.dogecash.org/zdogec) and [zPoS](https://dogecash.org/zpos/).
-- light/mobile wallet privacy using the [Zerocoin Light Node Protocol](https://dogecash.org/wp-content/uploads/2018/11/Zerocoin_Light_Node_Protocol.pdf)
+- Anonymized transactions & consensus using the [_Zerocoin Protocol_](http://www.dogec.io/zdogec) and [zPoS](https://dogec.io/zpos/).
+- light/mobile wallet privacy using the [Zerocoin Light Node Protocol](https://dogec.io/wp-content/uploads/2018/11/Zerocoin_Light_Node_Protocol.pdf)
 - Fast transactions featuring guaranteed zero confirmation transactions, we call it _SwiftX_.
 - Decentralized blockchain voting utilizing Masternode technology to form a DAO. The blockchain will distribute monthly treasury funds based on successful proposals submitted by the community and voted on by the DAO.
 
-More information at [dogecash.org](http://www.dogecash.org) Visit our ANN thread at [BitcoinTalk](http://www.bitcointalk.org/index.php?topic=1262920). Join the community at [DogeCash Discord](https://discordapp.com/invite/jzqVsJd).
+More information at [dogec.io](http://www.dogec.io) Visit our ANN thread at [BitcoinTalk](http://www.bitcointalk.org/index.php?topic=1262920). Join the community at [DogeCash Discord](https://discordapp.com/invite/jzqVsJd).
 
 ### Coin Specs
 <table>

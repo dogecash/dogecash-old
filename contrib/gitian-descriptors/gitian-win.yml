@@ -24,7 +24,7 @@ packages:
 - "python3"
 - "rename"
 remotes:
-- "url": "https://github.com/dogecash-project/dogecash.git"
+- "url": "https://github.com/dogecash/dogecash.git"
   "dir": "dogecash"
 files: []
 script: |

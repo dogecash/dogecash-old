@@ -1827,9 +1827,9 @@ STAKING</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/dogecash-project/dogecash-project-translations</source>
+https://www.transifex.com/dogecash/dogecash-translations</source>
         <translation>Jezik nedostaje ili prijevod nije potpun? Pomozite s prijevodom ovdje:
-https://www.transifex.com/dogecash-project/dogecash-project-translations</translation>
+https://www.transifex.com/dogecash/dogecash-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -3707,8 +3707,8 @@ Došlo je do greške prilikom spremanja popisa adresa u %1. Molimo pokušajte po
         <translation>2) Zašto se moji DOGEC ne mogu potrošiti?</translation>
     </message>
     <message>
-        <source>https://DogeCash.org/</source>
-        <translation>https://DogeCash.org/</translation>
+        <source>https://dogec.io/</source>
+        <translation>https://dogec.io/</translation>
     </message>
     <message>
         <source>1</source>

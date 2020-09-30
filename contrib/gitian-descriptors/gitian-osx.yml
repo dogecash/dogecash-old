@@ -29,7 +29,7 @@ packages:
 - "python3-setuptools"
 - "fonts-tuffy"
 remotes:
-- "url": "https://github.com/dogecash-project/dogecash.git"
+- "url": "https://github.com/dogecash/dogecash.git"
   "dir": "dogecash"
 files:
 - "MacOSX10.11.sdk.tar.gz"

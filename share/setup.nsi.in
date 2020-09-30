@@ -6,7 +6,7 @@ SetCompressor /SOLID lzma
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
 !define COMPANY "@PACKAGE_NAME@ project"
-!define URL https://www.dogecash.org
+!define URL https://www.dogec.io
 
 # MUI Symbol Definitions
 !define MUI_ICON "@abs_top_srcdir@/share/pixmaps/dogecash.ico"

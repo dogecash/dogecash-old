@@ -2307,7 +2307,7 @@ STAKING</source>
     <message>
         <location line="+21"/>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/dogecash-project/dogecash-project-translations</source>
+https://www.transifex.com/dogecash/dogecash-translations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4791,7 +4791,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
     </message>
     <message>
         <location line="+148"/>
-        <source>https://DogeCash.org/</source>
+        <source>https://dogec.io/</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4885,7 +4885,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style=&apos;color: #b088ff&apos; href=&apos;https://discord.DogeCash.org&apos;&gt;
+                           &lt;a style=&apos;color: #b088ff&apos; href=&apos;https://discord.dogec.io&apos;&gt;
                            #support in our Discord&lt;/a&gt;.
                            If you prefer to submit a ticket, You can do so at
                            &lt;a style=&apos;color: #b088ff&apos; href=&apos;https://DogeCash.freshdesk.com&apos;&gt;

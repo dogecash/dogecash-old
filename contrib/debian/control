@@ -28,9 +28,9 @@ Build-Depends: debhelper,
  libzmq3-dev,
  dh-systemd
 Standards-Version: 3.9.2
-Homepage: http://www.dogecash.org
-Vcs-Git: git://github.com/DogeCash-Project/DogeCash.git
-Vcs-Browser: http://github.com/DogeCash-Project/DogeCash
+Homepage: http://www.dogec.io
+Vcs-Git: git://github.com/dogecash/DogeCash.git
+Vcs-Browser: http://github.com/dogecash/DogeCash
 
 Package: dogecashd
 Architecture: any

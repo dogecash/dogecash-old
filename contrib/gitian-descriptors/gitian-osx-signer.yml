@@ -8,7 +8,7 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/dogecash-project/dogecash-detached-sigs.git"
+- "url": "https://github.com/dogecash/dogecash-detached-sigs.git"
   "dir": "signature"
 files:
 - "dogecash-osx-unsigned.tar.gz"

@@ -1,8 +1,8 @@
-DogeCash Core version *3.2.0* is now available from:  <https://github.com/dogecash-project/dogecash/releases>
+DogeCash Core version *3.2.0* is now available from:  <https://github.com/dogecash/dogecash/releases>
 
 This is a new major version release, including various bug fixes and performance improvements, as well as updated translations.
 
-Please report bugs using the issue tracker at github: <https://github.com/dogecash-project/dogecash/issues>
+Please report bugs using the issue tracker at github: <https://github.com/dogecash/dogecash/issues>
 
 
 Mandatory Update
@@ -339,4 +339,4 @@ Thanks to everyone who directly contributed to this release:
 - veilgets
 - warrows
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/dogecash-project-translations/), the QA team during Testing and the Node hosts supporting our Testnet.
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/dogecash-translations/), the QA team during Testing and the Node hosts supporting our Testnet.

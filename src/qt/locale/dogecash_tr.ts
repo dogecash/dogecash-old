@@ -1854,9 +1854,9 @@ Unutmayın, cüzdan, yeni adresi içeren işlemleri bulmak için blok zinciri ye
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/dogecash-project/dogecash-project-translations</source>
+https://www.transifex.com/dogecash/dogecash-translations</source>
         <translation>Dil eksik veya çeviri tamamlanmamış mı? Katkıda bulunan çevirilere yardımcı olun:
-https://www.transifex.com/dogecash-project/dogecash-project-translations</translation>
+https://www.transifex.com/dogecash/dogecash-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>

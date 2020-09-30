@@ -1891,9 +1891,9 @@ STAKING</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/dogecash-project/dogecash-project-translations</source>
+https://www.transifex.com/dogecash/dogecash-translations</source>
         <translation>Lingua mancante o traduzione incompleta? Aiutaci a contribuire alle traduzioni qui:
-https://www.transifex.com/dogecash-project/dogecash-project-translations</translation>
+https://www.transifex.com/dogecash/dogecash-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -3845,8 +3845,8 @@ Si è verificato un errore nel tentativo di salvare l'elenco degli indirizzi in 
         <translation>2) Perché i miei DOGEC non sono spendibili?</translation>
     </message>
     <message>
-        <source>https://DogeCash.org/</source>
-        <translation>https://DogeCash.org/</translation>
+        <source>https://dogec.io/</source>
+        <translation>https://dogec.io/</translation>
     </message>
     <message>
         <source>1</source>
@@ -3946,7 +3946,7 @@ per vedere e spendere i saldi sulla rete.
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='https://discord.DogeCash.org'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.dogec.io'&gt;
                            #support in our Discord&lt;/a&gt;.
                            If you prefer to submit a ticket, You can do so at
                            &lt;a style='color: #b088ff' href='https://DogeCash.freshdesk.com'&gt;

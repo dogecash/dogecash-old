@@ -3,7 +3,7 @@ DogeCash Core
 
 Setup
 ---------------------
-[DogeCash Core](http://dogecash.org/wallet) is the original DogeCash client and it builds the backbone of the network. However, it downloads and stores the entire history of DogeCash transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[DogeCash Core](http://dogec.io/wallet) is the original DogeCash client and it builds the backbone of the network. However, it downloads and stores the entire history of DogeCash transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
@@ -26,10 +26,10 @@ Drag DogeCash-Qt to your applications folder, and then run DogeCash-Qt.
 
 ### Need Help?
 
-* See the documentation at the [DogeCash Wiki](https://github.com/DogeCash-Project/DogeCash/wiki)
+* See the documentation at the [DogeCash Wiki](https://github.com/dogecash/DogeCash/wiki)
 for help and more information.
-* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or on the [DogeCash Forum](http://forum.dogecash.org/).
-* Join our Discord server [Discord Server](https://discord.dogecash.org)
+* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or on the [DogeCash Forum](http://forum.dogec.io/).
+* Join our Discord server [Discord Server](https://discord.dogec.io)
 
 Building
 ---------------------
@@ -56,8 +56,8 @@ The DogeCash repo's [root README](/README.md) contains relevant information on t
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or the [DogeCash](http://forum.dogecash.org/) forum.
-* Join the [DogeCash Discord](https://discord.dogecash.org).
+* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or the [DogeCash](http://forum.dogec.io/) forum.
+* Join the [DogeCash Discord](https://discord.dogec.io).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

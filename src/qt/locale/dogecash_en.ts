@@ -2463,7 +2463,7 @@ Are you sure?</source>
     <message>
         <location line="+21"/>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/dogecash-project/dogecash-project-translations</source>
+https://www.transifex.com/dogecash/dogecash-translations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
