@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2013 The Bitcoin developers
-// Copyright (c) 2016-2020 The PIVX developers
+// Copyright (c) 2016-2020 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,10 +13,10 @@
 #include "key.h"
 #include "keystore.h"
 #include "script/keyorigin.h"
-#include "zpiv/zerocoin.h"
+#include "zdogec/zerocoin.h"
 #include "libzerocoin/Accumulator.h"
 #include "libzerocoin/Denominations.h"
-#include "zpiv/zpivtracker.h"
+#include "zdogec/zdogectracker.h"
 
 #include <list>
 #include <stdint.h>
@@ -211,14 +211,14 @@ public:
     bool ReadZerocoinSpendSerialEntry(const CBigNum& bnSerial);
     bool WriteCurrentSeedHash(const uint256& hashSeed);
     bool ReadCurrentSeedHash(uint256& hashSeed);
-    bool WriteZPIVSeed(const uint256& hashSeed, const std::vector<unsigned char>& seed);
-    bool ReadZPIVSeed(const uint256& hashSeed, std::vector<unsigned char>& seed);
-    bool ReadZPIVSeed_deprecated(uint256& seed);
-    bool EraseZPIVSeed();
-    bool EraseZPIVSeed_deprecated();
+    bool WriteZDOGECSeed(const uint256& hashSeed, const std::vector<unsigned char>& seed);
+    bool ReadZDOGECSeed(const uint256& hashSeed, std::vector<unsigned char>& seed);
+    bool ReadZDOGECSeed_deprecated(uint256& seed);
+    bool EraseZDOGECSeed();
+    bool EraseZDOGECSeed_deprecated();
 
-    bool WriteZPIVCount(const uint32_t& nCount);
-    bool ReadZPIVCount(uint32_t& nCount);
+    bool WriteZDOGECCount(const uint32_t& nCount);
+    bool ReadZDOGECCount(uint32_t& nCount);
     std::map<uint256, std::vector<std::pair<uint256, uint32_t> > > MapMintPool();
     bool WriteMintPoolPair(const uint256& hashMasterSeed, const uint256& hashPubcoin, const uint32_t& nCount);
 

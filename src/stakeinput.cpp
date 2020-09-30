@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2020 The PIVX developers
+// Copyright (c) 2017-2020 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,13 +7,13 @@
 #include "chain.h"
 #include "main.h"
 #include "txdb.h"
-#include "zpiv/deterministicmint.h"
+#include "zdogec/deterministicmint.h"
 #include "wallet/wallet.h"
 
-bool CPivStake::InitFromTxIn(const CTxIn& txin)
+bool CDogecStake::InitFromTxIn(const CTxIn& txin)
 {
     if (txin.IsZerocoinSpend())
-        return error("%s: unable to initialize CPivStake from zerocoin spend", __func__);
+        return error("%s: unable to initialize CDogecStake from zerocoin spend", __func__);
 
     // Find the previous transaction in database
     uint256 hashBlock;
@@ -35,14 +35,14 @@ bool CPivStake::InitFromTxIn(const CTxIn& txin)
     return true;
 }
 
-bool CPivStake::SetPrevout(CTransaction txPrev, unsigned int n)
+bool CDogecStake::SetPrevout(CTransaction txPrev, unsigned int n)
 {
     this->txFrom = txPrev;
     this->nPosition = n;
     return true;
 }
 
-bool CPivStake::GetTxFrom(CTransaction& tx) const
+bool CDogecStake::GetTxFrom(CTransaction& tx) const
 {
     if (txFrom.IsNull())
         return false;
@@ -50,7 +50,7 @@ bool CPivStake::GetTxFrom(CTransaction& tx) const
     return true;
 }
 
-bool CPivStake::GetTxOutFrom(CTxOut& out) const
+bool CDogecStake::GetTxOutFrom(CTxOut& out) const
 {
     if (txFrom.IsNull() || nPosition >= txFrom.vout.size())
         return false;
@@ -58,18 +58,18 @@ bool CPivStake::GetTxOutFrom(CTxOut& out) const
     return true;
 }
 
-bool CPivStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
+bool CDogecStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
 {
     txIn = CTxIn(txFrom.GetHash(), nPosition);
     return true;
 }
 
-CAmount CPivStake::GetValue() const
+CAmount CDogecStake::GetValue() const
 {
     return txFrom.vout[nPosition].nValue;
 }
 
-bool CPivStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal, const bool onlyP2PK)
+bool CDogecStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal, const bool onlyP2PK)
 {
     std::vector<valtype> vSolutions;
     txnouttype whichType;
@@ -118,16 +118,16 @@ bool CPivStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmoun
     return true;
 }
 
-CDataStream CPivStake::GetUniqueness() const
+CDataStream CDogecStake::GetUniqueness() const
 {
-    //The unique identifier for a PIV stake is the outpoint
+    //The unique identifier for a DOGEC stake is the outpoint
     CDataStream ss(SER_NETWORK, 0);
     ss << nPosition << txFrom.GetHash();
     return ss;
 }
 
 //The block that the UTXO was added to the chain
-CBlockIndex* CPivStake::GetIndexFrom()
+CBlockIndex* CDogecStake::GetIndexFrom()
 {
     if (pindexFrom)
         return pindexFrom;
@@ -148,7 +148,7 @@ CBlockIndex* CPivStake::GetIndexFrom()
 }
 
 // Verify stake contextual checks
-bool CPivStake::ContextCheck(int nHeight, uint32_t nTime)
+bool CDogecStake::ContextCheck(int nHeight, uint32_t nTime)
 {
     const Consensus::Params& consensus = Params().GetConsensus();
     // Get Stake input block time/height

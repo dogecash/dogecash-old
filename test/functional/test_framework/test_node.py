@@ -2,7 +2,7 @@
 # Copyright (c) 2017 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Class for pivxd node under test"""
+"""Class for dogecashd node under test"""
 
 import decimal
 import errno
@@ -30,7 +30,7 @@ JSONDecodeError = getattr(json, "JSONDecodeError", ValueError)
 BITCOIND_PROC_WAIT_TIMEOUT = 600
 
 class TestNode():
-    """A class for representing a pivxd node under test.
+    """A class for representing a dogecashd node under test.
 
     This class contains:
 
@@ -53,7 +53,7 @@ class TestNode():
             # Wait for up to 60 seconds for the RPC server to respond
             self.rpc_timeout = 600
         if binary is None:
-            self.binary = os.getenv("BITCOIND", "pivxd")
+            self.binary = os.getenv("BITCOIND", "dogecashd")
         else:
             self.binary = binary
         self.stderr = stderr
@@ -71,7 +71,7 @@ class TestNode():
             "-uacomment=testnode%d" % i
         ]
 
-        self.cli = TestNodeCLI(os.getenv("BITCOINCLI", "pivx-cli"), self.datadir)
+        self.cli = TestNodeCLI(os.getenv("BITCOINCLI", "dogecash-cli"), self.datadir)
         self.use_cli = use_cli
 
         self.running = False
@@ -114,15 +114,15 @@ class TestNode():
         delete_cookie_file(self.datadir)
         self.process = subprocess.Popen(self.args + extra_args, stderr=stderr, *args, **kwargs)
         self.running = True
-        self.log.debug("pivxd started, waiting for RPC to come up")
+        self.log.debug("dogecashd started, waiting for RPC to come up")
 
     def wait_for_rpc_connection(self):
-        """Sets up an RPC connection to the pivxd process. Returns False if unable to connect."""
+        """Sets up an RPC connection to the dogecashd process. Returns False if unable to connect."""
         # Poll at a rate of four times per second
         poll_per_s = 4
         time.sleep(5)
         for _ in range(poll_per_s * self.rpc_timeout):
-            assert self.process.poll() is None, "pivxd exited with status %i during initialization" % self.process.returncode
+            assert self.process.poll() is None, "dogecashd exited with status %i during initialization" % self.process.returncode
             try:
                 self.rpc = get_rpc_proxy(rpc_url(self.datadir, self.index, self.rpchost), self.index, timeout=self.rpc_timeout, coveragedir=self.coverage_dir)
                 while self.rpc.getblockcount() < 0:
@@ -142,7 +142,7 @@ class TestNode():
                 if "No RPC credentials" not in str(e):
                     raise
             time.sleep(1.0 / poll_per_s)
-        raise AssertionError("Unable to connect to pivxd")
+        raise AssertionError("Unable to connect to dogecashd")
 
     def get_wallet_rpc(self, wallet_name):
         if self.use_cli:
@@ -191,7 +191,7 @@ class TestNode():
     def node_encrypt_wallet(self, passphrase):
         """"Encrypts the wallet.
 
-        This causes pivxd to shutdown, so this method takes
+        This causes dogecashd to shutdown, so this method takes
         care of cleaning up resources."""
         self.encryptwallet(passphrase)
         self.wait_until_stopped()
@@ -238,7 +238,7 @@ class TestNodeCLIAttr:
         return lambda: self(*args, **kwargs)
 
 class TestNodeCLI():
-    """Interface to pivx-cli for an individual node"""
+    """Interface to dogecash-cli for an individual node"""
 
     def __init__(self, binary, datadir):
         self.options = []
@@ -248,7 +248,7 @@ class TestNodeCLI():
         self.log = logging.getLogger('TestFramework.bitcoincli')
 
     def __call__(self, *options, input=None):
-        # TestNodeCLI is callable with pivx-cli command-line options
+        # TestNodeCLI is callable with dogecash-cli command-line options
         cli = TestNodeCLI(self.binary, self.datadir)
         cli.options = [str(o) for o in options]
         cli.input = input
@@ -267,11 +267,11 @@ class TestNodeCLI():
         return results
 
     def send_cli(self, command=None, *args, **kwargs):
-        """Run pivx-cli command. Deserializes returned string as python object."""
+        """Run dogecash-cli command. Deserializes returned string as python object."""
 
         pos_args = [str(arg) for arg in args]
         named_args = [str(key) + "=" + str(value) for (key, value) in kwargs.items()]
-        assert not (pos_args and named_args), "Cannot use positional arguments and named arguments in the same pivx-cli call"
+        assert not (pos_args and named_args), "Cannot use positional arguments and named arguments in the same dogecash-cli call"
         p_args = [self.binary, "-datadir=" + self.datadir] + self.options
         if named_args:
             p_args += ["-named"]

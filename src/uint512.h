@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2020 The PIVX developers
+// Copyright (c) 2017-2020 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_UINT512_H
-#define PIVX_UINT512_H
+#ifndef DogeCash_UINT512_H
+#define DogeCash_UINT512_H
 
 #include "arith_uint256.h"
 #include "blob_uint256.h"
@@ -39,4 +39,4 @@ inline blob_uint512 blob_uint512S(const char* str)
     return rv;
 }
 
-#endif // PIVX_UINT512_H
+#endif // DogeCash_UINT512_H

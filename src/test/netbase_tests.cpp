@@ -1,12 +1,12 @@
 // Copyright (c) 2012-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2015 The Dash Core developers
-// Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2015-2020 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "net.h"    // validateMasternodeIP
 #include "netbase.h"
-#include "test/test_pivx.h"
+#include "test/test_dogecash.h"
 
 #include <string>
 

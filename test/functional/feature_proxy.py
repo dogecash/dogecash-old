@@ -5,10 +5,10 @@
 """Test bitcoind with different proxy configuration.
 
 Test plan:
-- Start pivxd's with different proxy configurations
+- Start dogecashd's with different proxy configurations
 - Use addnode to initiate connections
 - Verify that proxies are connected to, and the right connection command is given
-- Proxy configurations to test on pivxd side:
+- Proxy configurations to test on dogecashd side:
     - `-proxy` (proxy everything)
     - `-onion` (proxy just onions)
     - `-proxyrandomize` Circuit randomization
@@ -18,8 +18,8 @@ Test plan:
     - proxy on IPv6
 
 - Create various proxies (as threads)
-- Create pivxds that connect to them
-- Manipulate the pivxds using addnode (onetry) an observe effects
+- Create dogecashds that connect to them
+- Manipulate the dogecashds using addnode (onetry) an observe effects
 
 addnode connect to IPv4
 addnode connect to IPv6
@@ -31,7 +31,7 @@ import socket
 import os
 
 from test_framework.socks5 import Socks5Configuration, Socks5Command, Socks5Server, AddressType
-from test_framework.test_framework import PivxTestFramework
+from test_framework.test_framework import DogeCashTestFramework
 from test_framework.util import (
     PORT_MIN,
     PORT_RANGE,
@@ -41,7 +41,7 @@ from test_framework.netutil import test_ipv6_local
 
 RANGE_BEGIN = PORT_MIN + 2 * PORT_RANGE  # Start after p2p and rpc ports
 
-class ProxyTest(PivxTestFramework):
+class ProxyTest(DogeCashTestFramework):
     def set_test_params(self):
         self.num_nodes = 4
 

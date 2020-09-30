@@ -3,7 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "main.h"
-#include "test_pivx.h"
+#include "test_dogecash.h"
 #include "txmempool.h"
 #include "util.h"
 

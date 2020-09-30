@@ -1,0 +1,140 @@
+<div align="center">
+<b>DogeCash Cold Staking</b>
+</div>
+
+=== Abstract ===
+This document describes an implementation of "Cold Staking" for the DogeCash network.<br>
+With the proposed system, the private keys of the coins being staked are no longer required to be held in a online (hot) node. 
+The owner of the coins can safely store the keys offline (for example with a hardware or paper wallet), hence the term "cold".
+
+=== Background and Motivation ===
+Traditionally, in a Proof-of-Stake consensus algorithm, block producers are required to keep the private keys to the staked coins in online nodes.<br>
+The reason is twofold. First, whenever a valid kernel input is found, the corresponding UTXO is used as input for the coinstake transaction and therefore its private key is needed to produce the transaction signature.<br>
+Second, after the block is assembled, it must be signed with the same private key.
+
+Even if the wallet software has a password protection which enables the use of private keys "only for staking", the wallet still needs to be unencrypted, which leaves it prone to multiple kinds of attacks on compromised systems.<br>
+Large token holders might find the reward for staking not worth the risk described above, resulting in less participation in the block-creation process, which lowers the overall security of the network (as it is proportional to the number of coins being staked). 
+
+With "Cold Staking", block producers are still required to keep a node online, but the private keys for the staked coins can be safely stored offline.
+This is achieved by signing a special "contract" transaction which transfers the coin's staking rights, without transferring the coin's ownership.
+
+=== Definitions ===
+The following naming convention is used to define the two actors in the system:
+* The '''coin-owner''' (or '''delegator''') is the user/wallet having the private keys required to spend the coins (e.g. a hardware wallet).
+* The '''cold-staker''' (or '''delegate''') is the block producer, who has a node always online, with the private keys required exclusively to stake the coins. "Cold" here alludes to the fact that he does not own the staked coins, but he's only staking on someone else's behalf.
+* The '''stake delegation''' is the submission by the ''coin-owner'' of the special contract transaction, which transfers the staking rights to the ''cold-staker''.
+* The '''delegated balance''' is displayed in the coin-owner's wallet and represents the total amount of wallet's funds that have been delegated to cold-stakers. It is a part of the total balance of the coin-owner, since it's spendable at any time.
+* The '''cold balance''' is displayed in the cold-staker's wallet and represents the sum of the coins received with ''stake delegation''. It is NOT part of the total balance of the wallet since it's not spendable.
+
+=== Specification ===
+The cold staking features are obtained with the introduction in the scripting language of a new opcode, <code>OP_CHECKCOLDSTAKEVERIFY</code>, and the definition of a new standard transaction type using it, named '''P2CS''' (Pay-To-Cold-Staking).
+
+A P2CS script is defined as follows:
+ OP_DUP  OP_HASH160  OP_ROT
+ OP_IF
+     OP_CHECKCOLDSTAKEVERIFY  <HASH160(stakerPubKey)>
+ OP_ELSE 
+     <HASH160(ownerPubKey)>
+ OP_ENDIF
+ OP_EQUALVERIFY  OP_CHECKSIG
+
+And the corresponding scriptSig is defined as
+* <code><signature> OP_TRUE <stakerPubKey></code> if used (by the cold-staker) in a coinstake transaction.
+* <code><signature> OP_FALSE <ownerPubKey></code> if used (by the coin-owner) to spend the coins in a regular transaction (voiding the stake delegation contract).
+
+When the coin-owner spends a P2CS output, the <code>OP_ELSE</code> branch is selected (due to the inclusion of <code>OP_FALSE</code> on the stack), and the script behaves like a normal P2PKH transaction.<br>
+When, instead, the P2CS output is used as coinstake input by a cold-staker, then the <code>OP_IF</code> branch is selected and the transaction must pass the checks defined by <code>OP_CHECKCOLDSTAKEVERIFY</code>:<br>
+* The transaction must be a coinstake transaction
+* All inputs must have the same scriptSig
+* All outputs, except the first one (coinstake marker) and the last one (masternode payout), must have the same scriptPubKey and it must correspond to the prevtx scriptPubKey spent by the input scriptSigs.
+
+In other words, the only way for the cold-staker to spend a P2CS UTXO, is to send it to an identical P2CS contract in a coinstake transaction.
+
+A new address type, "staking address", is defined providing a different Base58Check encoding version.
+Staking addresses begin with the letter <code>S</code> on main net and <code>W</code> on test net.<br>
+They are generated inside the cold-staker wallet and communicated to the coin-owner.<br> 
+The coin-owner, then, creates a P2CS output embedding one of his addresses (as <code>HASH160(ownerPubKey)</code>) and the received staking address (as <code>HASH160(stakerPubKey)</code>), and sends the stake delegation transaction.<br>
+The cold-staker wallet recognizes the P2CS output script in the the stake delegation transaction, and starts to stake the coins.<br>
+The coin-owner sees the change reflected in his "delegated balance", while the coin-staker sees the amount in his "cold balance".
+
+=== Validation Changes ===
+The signature of Proof-of-Stake blocks is traditionally checked against the public key obtained by the second coinstake output.
+For this purpose P2PKH UTXOs are converted to P2PK when staking.<br>
+This is not possible in this system because the coin-owner does not know the cold-staker public key when sending the stake delegation. He only knows the staking address, from which he can derive only the <code>HASH160</code> of the cold-staker's public key.<br>
+Furthermore, the (cold) staker cannot change this script as before, as the rules defined above force it to be equal to the input script.<br>
+However, the cold-staker signs the same P2CS script and publishes his key in the input scriptSig. 
+Therefore block validators can easily check the block signature, obtaining the staker public key from the coinstake input, rather than the output.
+
+=== Wallet Changes ===
+One major weakness of this kind of design is that it does not give any control to the cold-staker.<br>
+He cannot "refuse" to receive stake delegations.
+
+This could lead to two kinds of abuse.
+
+Firstly, it could be used as a vector for DDoS, once the staking address is leaked, forcing the staker's wallet to manage an unreasonable amount of UTXOs, to the point of making it so slow to impact the staking performance (orphan rate).<br>
+Such attack would also have negligible costs (only the fees required in the stake delegations) as the coins always remain in possession of the attacker.
+
+Secondly, users wouldn't need to set up a online staker node at all, as they would be able to simply pick a staker address from the blockchain, and send stake delegations to it.<br>
+
+The proposed solution consists in letting the cold-staker wallet recognize the P2CS UTXOs as own, only if the owner address has been previously whitelisted inserting it in an address book of delegators.<br>
+
+Furthermore, a <code>-coldstaking</code> starting flag has been added to the wallet. Setting it to false disables the collection of P2CS inputs during the stake. 
+
+=== UI Flow ===
+Given the specification above, the basic interaction with the system can be summarized as follows:
+#) '''cold-staker''' creates a staking address (special address starting with 'S') <code>stakerAddr</code>.
+#) '''coin-owner''' creates a normal receiving address <code>ownerAddr</code>.
+#) '''coin-owner''' selects a number of coins (or choses a DOGEC amount letting the wallet pick the coins) and creates the special "stake delegation" transaction, using <code>ownerAddr</code> and <code>stakerAddr</code>, and broadcasts it to the network.
+#) '''cold-staker''' adds <code>ownerAddr</code> to the whitelist of delegators in his wallet (or simply "accepts" the delegation tx in the GUI). 
+
+From now on '''cold-staker''' stakes the coins sent in the stake delegation on behalf of '''coin-owner''', until the latter voids the contract, spending the coins.
+
+Notes:
+* At any point in time, as long as the UTXO is mature, '''coin-owner''' can spend DOGEC in <code>ownerAddr</code> (provided he has the corresponding private key).
+* <code>ownerAddr</code> doesn't necessarily need to be in the same wallet from which the stake delegation transaction was sent. It can be any address (e.g. a paper wallet).
+* '''coin-owner''' can re-use <code>ownerAddr</code> for multiple delegation transactions, even to different cold stakers (with different <code>stakerAddr</code> addresses).
+* Also <code>stakerAddr</code> can be used for multiple delegation transactions from different coin-owners (with different <code>ownerAddr</code> addresses).
+
+=== UI Requirements ===
+The command line interface has been enriched with the functions required to access the feature.
+{|class="wikitable"
+! method !! description !! used by
+|-
+| <code>getnewstakingaddress</code> || create staking addresses || cold-staker
+|-
+| <code>delegatestake</code> || create stake delegation transactions || coin-owner
+|-
+| <code>getcoldbalance / getdelegatedbalance</code> || retrieve balances (cold and delegated) || both
+|-
+| <code>delegatoradd</code> || whitelist a delegator (owner) address || cold-staker
+|-
+| <code>delegatorremove</code> || undo the whitelisting of a delegator address || cold-staker
+|}
+
+The GUI will have to provide the same functionality in an easy-to-use ergonomic way.<br>
+Particular attention must be applied in highlighting the visual difference of cold-staking transactions in order to prevent users from mistaking a particular stake delegation transaction for a "regular" transaction, and accepting it as a payment (as already mentioned, for example, the "cold balance" must be kept separate from the "total balance" and it should be clear that it's not part of it).<br>
+
+Another safe-check is applied in the CLI when sending a stake delegation using an "owner address" which is not present in the wallet, since the lack of the corresponding private keys would result in loss of funds.
+To send a stake delegation using an "external" address as owner (which would be the use-case, for example, with paper wallets), the user has to force a particular argument to <code>true</code>. This can be streamlined in the graphical interface with a warning pop-up.
+
+Lastly, the wallet adds a flag to the transaction when a P2CS script is being spent by the coin-owner. This is intended to be connected in the GUI with a warning message which alerts the user that the stake delegation is being voided and asks confirmation before proceeding.
+
+=== Inherent Risks ===
+The major risk with this system is the element of centralisation it indubitably brings.<br>
+Although cold stakers have no intrinsic incentive to provide their work (coin-owners receive the whole stake value), there could still exist a viable business model for "staking service providers" if users accept to pay a fee in advance. Even more so, considering the low computing costs of staking.<br> This would concentrate the staking power in fewer hands (those of the service providers) exposing the network to 51% attack threats.<br>
+While we consider this a valid concern, in our opinion the likelihood of such scenario isn't high enough to renounce to the tangible benefits that cold staking would bring to user security and experience.
+
+This risk should still be monitored and mitigated if possible.
+Although changing the fee structure or the reward distribution might be considered, a more effective solution could be to promote the use of self managed cold-staking nodes, providing easier ways to set them up (for example with one-click installers and/or accessible and detailed documentation).
+
+=== Rollout ===
+The design, originally proposed as soft-fork (redefining the behaviour of the OP_NOP10 script instruction), has been successively turned into hard fork, since the implementation aims for inclusion in the upcoming wallet v4.0.0, which already requires a protocol upgrade. The enforcement is set at a fixed block height. The new opcode has been defined as <code>0xd1</code>
+
+=== Implementation ===
+https://github.com/dogecash/dogecash
+
+=== Additional References ===
+* PeerCoin: https://talk.peercoin.net/t/cold-storage-minting-proposal/2336
+* Stratis: https://academy.stratisplatform.com/FullNode/ColdStaking/ColdStaking.html
+* NavCoin: https://github.com/NAVCoin/npips/blob/master/npip-0002.mediawiki
+* NXT: https://nxtwiki.org/wiki/Account_Leasing

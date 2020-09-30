@@ -12,7 +12,7 @@
 #include "fs.h"
 #include "main.h"
 #include "utiltime.h"
-#include "test/test_pivx.h"
+#include "test/test_dogecash.h"
 
 #include <cstdio>
 

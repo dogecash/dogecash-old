@@ -9,10 +9,10 @@ filters are not enabled.
 """
 
 from test_framework.mininode import *
-from test_framework.test_framework import PivxTestFramework
+from test_framework.test_framework import DogeCashTestFramework
 from test_framework.util import *
 
-class P2PMempoolTests(PivxTestFramework):
+class P2PMempoolTests(DogeCashTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1

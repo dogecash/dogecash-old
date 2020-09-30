@@ -1,0 +1,157 @@
+
+## <summary>policy for dogecash</summary>
+
+
+########################################
+## <summary>
+##	Transition to dogecash.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`dogecash_domtrans',`
+	gen_require(`
+		type dogecash_t, dogecash_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	domtrans_pattern($1, dogecash_exec_t, dogecash_t)
+')
+
+
+########################################
+## <summary>
+##	Execute dogecash server in the dogecash domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`dogecash_initrc_domtrans',`
+	gen_require(`
+		type dogecash_initrc_exec_t;
+	')
+
+	init_labeled_script_domtrans($1, dogecash_initrc_exec_t)
+')
+
+
+########################################
+## <summary>
+##	Search dogecash lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`dogecash_search_lib',`
+	gen_require(`
+		type dogecash_var_lib_t;
+	')
+
+	allow $1 dogecash_var_lib_t:dir search_dir_perms;
+	files_search_var_lib($1)
+')
+
+########################################
+## <summary>
+##	Read dogecash lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`dogecash_read_lib_files',`
+	gen_require(`
+		type dogecash_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	read_files_pattern($1, dogecash_var_lib_t, dogecash_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage dogecash lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`dogecash_manage_lib_files',`
+	gen_require(`
+		type dogecash_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	manage_files_pattern($1, dogecash_var_lib_t, dogecash_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage dogecash lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`dogecash_manage_lib_dirs',`
+	gen_require(`
+		type dogecash_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	manage_dirs_pattern($1, dogecash_var_lib_t, dogecash_var_lib_t)
+')
+
+
+########################################
+## <summary>
+##	All of the rules required to administrate
+##	a dogecash environment
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	Role allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`dogecash_admin',`
+	gen_require(`
+		type dogecash_t;
+		type dogecash_initrc_exec_t;
+		type dogecash_var_lib_t;
+	')
+
+	allow $1 dogecash_t:process { ptrace signal_perms };
+	ps_process_pattern($1, dogecash_t)
+
+	dogecash_initrc_domtrans($1)
+	domain_system_change_exemption($1)
+	role_transition $2 dogecash_initrc_exec_t system_r;
+	allow $2 system_r;
+
+	files_search_var_lib($1)
+	admin_pattern($1, dogecash_var_lib_t)
+
+')
+

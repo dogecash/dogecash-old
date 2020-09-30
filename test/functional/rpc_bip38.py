@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-# Copyright (c) 2018-2020 The PIVX developers
+# Copyright (c) 2018-2020 The DogeCash developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test RPC commands for BIP38 encrypting and decrypting addresses."""
 
-from test_framework.test_framework import PivxTestFramework
+from test_framework.test_framework import DogeCashTestFramework
 from test_framework.util import assert_equal
 
-class Bip38Test(PivxTestFramework):
+class Bip38Test(DogeCashTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2

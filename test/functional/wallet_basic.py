@@ -3,7 +3,7 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the wallet."""
-from test_framework.test_framework import PivxTestFramework
+from test_framework.test_framework import DogeCashTestFramework
 from test_framework.util import (
     assert_array_result,
     assert_equal,
@@ -14,7 +14,7 @@ from test_framework.util import (
     wait_until,
 )
 
-class WalletTest(PivxTestFramework):
+class WalletTest(DogeCashTestFramework):
     def set_test_params(self):
         self.num_nodes = 4
         self.setup_clean_chain = True
@@ -72,7 +72,7 @@ class WalletTest(PivxTestFramework):
         self.nodes[1].lockunspent(True, [unspent_0])
         assert_equal(len(self.nodes[1].listlockunspent()), 0)
 
-        # Send 21 PIV from 1 to 0 using sendtoaddress call.
+        # Send 21 DOGEC from 1 to 0 using sendtoaddress call.
         self.nodes[1].sendtoaddress(self.nodes[0].getnewaddress(), 21)
         self.nodes[1].generate(1)
         self.sync_all([self.nodes[0:3]])
@@ -107,7 +107,7 @@ class WalletTest(PivxTestFramework):
         node_2_bal = self.nodes[2].getbalance()
         assert_equal(node_2_bal, node_2_expected_bal)
 
-        # Send 10 PIV normal
+        # Send 10 DOGEC normal
         address = self.nodes[0].getnewaddress("test")
         self.nodes[2].settxfee(float(fee_per_kbyte))
         txid = self.nodes[2].sendtoaddress(address, 10, "", "")
@@ -119,7 +119,7 @@ class WalletTest(PivxTestFramework):
         node_0_bal = self.nodes[0].getbalance()
         assert_equal(node_0_bal, Decimal('10'))
 
-        # Sendmany 10 PIV
+        # Sendmany 10 DOGEC
         txid = self.nodes[2].sendmany('', {address: 10}, 0, "")
         fee = self.nodes[2].gettransaction(txid)["fee"]
         self.nodes[2].generate(1)

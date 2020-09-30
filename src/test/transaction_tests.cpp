@@ -1,11 +1,11 @@
 // Copyright (c) 2011-2014 The Bitcoin Core developers
-// Copyright (c) 2017-2019 The PIVX developers
+// Copyright (c) 2017-2019 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "data/tx_invalid.json.h"
 #include "data/tx_valid.json.h"
-#include "test/test_pivx.h"
+#include "test/test_dogecash.h"
 
 #include "consensus/tx_verify.h"
 #include "clientversion.h"
@@ -18,7 +18,7 @@
 #include "script/script_error.h"
 #include "script/sign.h"
 #include "core_io.h"
-#include "test_pivx.h"
+#include "test_dogecash.h"
 
 #include <map>
 #include <string>

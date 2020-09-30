@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2015-2020 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +8,7 @@
 #define BITCOIN_RPCSERVER_H
 
 #include "amount.h"
-#include "zpiv/zerocoin.h"
+#include "zdogec/zerocoin.h"
 #include "rpc/protocol.h"
 #include "uint256.h"
 
@@ -128,7 +128,7 @@ public:
 };
 
 /**
- * PIVX RPC command dispatcher.
+ * DogeCash RPC command dispatcher.
  */
 class CRPCTable
 {
@@ -188,7 +188,7 @@ extern std::string HelpExampleRpc(std::string methodname, std::string args);
 extern void EnsureWalletIsUnlocked(bool fAllowAnonOnly = false);
 // Ensure the wallet's existence.
 extern void EnsureWallet();
-extern UniValue DoZpivSpend(const CAmount nAmount, std::vector<CZerocoinMint>& vMintsSelected, std::string address_str);
+extern UniValue DoZdogecSpend(const CAmount nAmount, std::vector<CZerocoinMint>& vMintsSelected, std::string address_str);
 
 extern UniValue getconnectioncount(const JSONRPCRequest& request); // in rpc/net.cpp
 extern UniValue getpeerinfo(const JSONRPCRequest& request);
@@ -234,11 +234,11 @@ extern UniValue importzerocoins(const JSONRPCRequest& request);
 extern UniValue exportzerocoins(const JSONRPCRequest& request);
 extern UniValue reconsiderzerocoins(const JSONRPCRequest& request);
 extern UniValue getspentzerocoinamount(const JSONRPCRequest& request);
-extern UniValue setzpivseed(const JSONRPCRequest& request);
-extern UniValue getzpivseed(const JSONRPCRequest& request);
+extern UniValue setzdogecseed(const JSONRPCRequest& request);
+extern UniValue getzdogecseed(const JSONRPCRequest& request);
 extern UniValue generatemintlist(const JSONRPCRequest& request);
-extern UniValue searchdzpiv(const JSONRPCRequest& request);
-extern UniValue dzpivstate(const JSONRPCRequest& request);
+extern UniValue searchdzdogec(const JSONRPCRequest& request);
+extern UniValue dzdogecstate(const JSONRPCRequest& request);
 
 extern UniValue getrawtransaction(const JSONRPCRequest& request); // in rpc/rawtransaction.cpp
 extern UniValue createrawtransaction(const JSONRPCRequest& request);

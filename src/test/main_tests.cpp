@@ -1,6 +1,6 @@
 // Copyright (c) 2014 The Bitcoin Core developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2015-2020 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +8,7 @@
 #include "main.h"
 #include "primitives/transaction.h"
 #include "script/sign.h"
-#include "test_pivx.h"
+#include "test_dogecash.h"
 #include <boost/test/unit_test.hpp>
 
 BOOST_FIXTURE_TEST_SUITE(main_tests, TestingSetup)
@@ -117,7 +117,7 @@ BOOST_AUTO_TEST_CASE(subsidy_limit_test)
 {
     CAmount nSum = 0;
     for (int nHeight = 0; nHeight < 1; nHeight += 1) {
-        /* premine in block 1 (60,001 PIV) */
+        /* premine in block 1 (60,001 DOGEC) */
         CAmount nSubsidy = GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy <= 60001 * COIN);
         nSum += nSubsidy;

@@ -1,0 +1,8 @@
+/usr/bin/dogecash-cli		--	gen_context(system_u:object_r:dogecash_exec_t,s0)
+/usr/sbin/dogecashd		--	gen_context(system_u:object_r:dogecash_exec_t,s0)
+/usr/lib(64)?/dogecash/dogecashd		--	gen_context(system_u:object_r:dogecash_exec_t,s0)
+
+/etc/dogecash(/.*)?		gen_context(system_u:object_r:dogecash_conf_t,s0)
+/var/lib/dogecash(/.*)?		gen_context(system_u:object_r:dogecash_var_lib_t,s0)
+
+(/var)?/run/dogecashd(/.*)?   gen_context(system_u:object_r:dogecash_var_run_t,s0)

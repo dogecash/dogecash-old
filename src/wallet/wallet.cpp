@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2015-2020 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,7 +18,7 @@
 #include "swifttx.h"    // mapTxLockReq
 #include "util.h"
 #include "utilmoneystr.h"
-#include "zpivchain.h"
+#include "zdogecchain.h"
 
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/thread.hpp>
@@ -38,7 +38,7 @@ bool bSpendZeroConfChange = DEFAULT_SPEND_ZEROCONF_CHANGE;
 const char * DEFAULT_WALLET_DAT = "wallet.dat";
 
 /**
- * Fees smaller than this (in upiv) are considered zero fee (for transaction creation)
+ * Fees smaller than this (in udogec) are considered zero fee (for transaction creation)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minTxFee 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  * Override with -mintxfee
@@ -377,7 +377,7 @@ bool CWallet::Unlock(const CKeyingMaterial& vMasterKeyIn)
             if (CWalletDB(strWalletFile).ReadCurrentSeedHash(hashSeed)) {
                 uint256 nSeed;
                 if (!GetDeterministicSeed(hashSeed, nSeed)) {
-                    return error("Failed to read zPIV seed from DB. Wallet is probably corrupt.");
+                    return error("Failed to read zDOGEC seed from DB. Wallet is probably corrupt.");
                 }
                 zwallet->SetMasterSeed(nSeed, false);
             }
@@ -1360,7 +1360,7 @@ CAmount CWalletTx::GetLockedCredit() const
         }
 
         // Add masternode collaterals which are handled like locked coins
-        else if (fMasterNode && vout[i].nValue == 10000 * COIN) {
+        else if (fMasterNode && vout[i].nValue == 5000 * COIN) {
             nCredit += pwallet->GetCredit(txout, ISMINE_SPENDABLE);
         }
 
@@ -1481,9 +1481,9 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate, b
 {
     int ret = 0;
     int64_t nNow = GetTime();
-    bool fCheckZPIV = GetBoolArg("-zapwallettxes", false);
-    if (fCheckZPIV)
-        zpivTracker->Init();
+    bool fCheckZDOGEC = GetBoolArg("-zapwallettxes", false);
+    if (fCheckZDOGEC)
+        zdogecTracker->Init();
 
     const Consensus::Params& consensus = Params().GetConsensus();
 
@@ -1517,8 +1517,8 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate, b
                     ret++;
             }
 
-            // Will try to rescan it if zPIV upgrade is active.
-            doZPivRescan(pindex, block, setAddedToWallet, consensus, fCheckZPIV);
+            // Will try to rescan it if zDOGEC upgrade is active.
+            doZDogeCRescan(pindex, block, setAddedToWallet, consensus, fCheckZDOGEC);
 
             pindex = chainActive.Next(pindex);
             if (GetTime() >= nNow + 60) {
@@ -1964,8 +1964,8 @@ bool CWallet::GetMasternodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet, CKey& 
     CTxOut txOut = wtx.vout[nOutputIndex];
 
     // Masternode collateral value
-    if (txOut.nValue != 10000 * COIN) {
-        strError = "Invalid collateral tx value, must be 10,000 PIV";
+    if (txOut.nValue != 5000 * COIN) {
+        strError = "Invalid collateral tx value, must be 5,000 DOGEC";
         return error("%s: tx %s, index %d not a masternode collateral", __func__, strTxHash, nOutputIndex);
     }
 
@@ -2036,7 +2036,7 @@ bool CWallet::AvailableCoins(std::vector<COutput>* pCoins,      // --> populates
             for (unsigned int i = 0; i < pcoin->vout.size(); i++) {
 
                 // Check for only 10k utxo
-                if (nCoinType == ONLY_10000 && pcoin->vout[i].nValue != 10000 * COIN) continue;
+                if (nCoinType == ONLY_10000 && pcoin->vout[i].nValue != 5000 * COIN) continue;
 
                 // Check for stakeable utxo
                 if (nCoinType == STAKEABLE_COINS && pcoin->vout[i].IsZerocoinMint()) continue;
@@ -2501,7 +2501,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend,
                 if (nChange > 0) {
                     // Fill a vout to ourself
                     // TODO: pass in scriptChange instead of reservekey so
-                    // change transaction isn't always pay-to-pivx-address
+                    // change transaction isn't always pay-to-dogecash-address
                     bool combineChange = false;
 
                     // coin control: send change to custom address
@@ -2696,7 +2696,7 @@ bool CWallet::CreateCoinStake(
     bool fKernelFound = false;
     int nAttempts = 0;
     for (const COutput &out : *availableCoins) {
-        CPivStake stakeInput;
+        CDogecStake stakeInput;
         stakeInput.SetPrevout((CTransaction) *out.tx, out.i);
 
         //new block came in, move on
@@ -2706,7 +2706,7 @@ bool CWallet::CreateCoinStake(
         if (IsLocked() || ShutdownRequested()) return false;
 
         // This should never happen
-        if (stakeInput.IsZPIV()) {
+        if (stakeInput.IsZDOGEC()) {
             LogPrintf("%s: ERROR - zPOS is disabled\n", __func__);
             continue;
         }
@@ -3726,7 +3726,7 @@ std::string CWallet::GetWalletHelpString(bool showDebug)
     strUsage += HelpMessageOpt("-coldstaking=<n>", strprintf(_("Enable cold staking functionality (0-1, default: %u). Disabled if staking=0"), DEFAULT_COLDSTAKING));
     strUsage += HelpMessageOpt("-gen", strprintf(_("Generate coins (default: %u)"), DEFAULT_GENERATE));
     strUsage += HelpMessageOpt("-genproclimit=<n>", strprintf(_("Set the number of threads for coin generation if enabled (-1 = all cores, default: %d)"), DEFAULT_GENERATE_PROCLIMIT));
-    strUsage += HelpMessageOpt("-minstakesplit=<amt>", strprintf(_("Minimum positive amount (in PIV) allowed by GUI and RPC for the stake split threshold (default: %s)"), FormatMoney(DEFAULT_MIN_STAKE_SPLIT_THRESHOLD)));
+    strUsage += HelpMessageOpt("-minstakesplit=<amt>", strprintf(_("Minimum positive amount (in DOGEC) allowed by GUI and RPC for the stake split threshold (default: %s)"), FormatMoney(DEFAULT_MIN_STAKE_SPLIT_THRESHOLD)));
     strUsage += HelpMessageOpt("-staking=<n>", strprintf(_("Enable staking functionality (0-1, default: %u)"), DEFAULT_STAKING));
     if (showDebug) {
         strUsage += HelpMessageGroup(_("Wallet debugging/testing options:"));
@@ -3773,11 +3773,11 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
         } else if (nLoadWalletRet == DB_NONCRITICAL_ERROR) {
             UIWarning(strprintf(_("Warning: error reading %s! All keys read correctly, but transaction data"
                          " or address book entries might be missing or incorrect."), walletFile));
-        } else if (nLoadWalletRet == DB_TOO_NEW) {
-            UIError(strprintf(_("Error loading %s: Wallet requires newer version of PIVX Core"), walletFile));
-            return nullptr;
+        //} else if (nLoadWalletRet == DB_TOO_NEW) {
+          //  UIError(strprintf(_("Error loading %s: Wallet requires newer version of DogeCash Core"), walletFile));
+            //return nullptr;
         } else if (nLoadWalletRet == DB_NEED_REWRITE) {
-            UIError(_("Wallet needed to be rewritten: restart PIVX Core to complete"));
+            UIError(_("Wallet needed to be rewritten: restart DogeCash Core to complete"));
             return nullptr;
         } else {
             UIError(strprintf(_("Error loading %s\n"), walletFile));
@@ -3797,7 +3797,7 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
     // Forced upgrade
     const bool fLegacyWallet = GetBoolArg("-legacywallet", false);
     if (GetBoolArg("-upgradewallet", fFirstRun && !fLegacyWallet)) {
-        if (prev_version <= FEATURE_PRE_PIVX && walletInstance->IsLocked()) {
+        if (prev_version <= FEATURE_PRE_DogeCash && walletInstance->IsLocked()) {
             // Cannot upgrade a locked wallet
             UIError("Cannot upgrade a locked wallet.");
             return nullptr;
@@ -3841,7 +3841,7 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
             }
             // Create legacy wallet
             LogPrintf("Creating Pre-HD Wallet\n");
-            walletInstance->SetMaxVersion(FEATURE_PRE_PIVX);
+            walletInstance->SetMaxVersion(FEATURE_PRE_DogeCash);
         }
 
         // Top up the keypool
@@ -3856,7 +3856,7 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
 
     LogPrintf("Wallet completed loading in %15dms\n", GetTimeMillis() - nStart);
 
-    CzPIVWallet* zwalletInstance = new CzPIVWallet(walletInstance);
+    CzDOGECWallet* zwalletInstance = new CzDOGECWallet(walletInstance);
     walletInstance->setZWallet(zwalletInstance);
 
     RegisterValidationInterface(walletInstance);
@@ -3908,11 +3908,11 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
     fVerifyingBlocks = false;
 
     if (!zwalletInstance->GetMasterSeed().IsNull()) {
-        //Inititalize zPIVWallet
-        uiInterface.InitMessage(_("Syncing zPIV wallet..."));
+        //Inititalize zDOGECWallet
+        uiInterface.InitMessage(_("Syncing zDOGEC wallet..."));
 
         //Load zerocoin mint hashes to memory
-        walletInstance->zpivTracker->Init();
+        walletInstance->zdogecTracker->Init();
         zwalletInstance->LoadMintPoolFromDB();
         zwalletInstance->SyncWithChain();
     }
@@ -4126,7 +4126,7 @@ void CWallet::SetNull()
     // Stake split threshold
     nStakeSplitThreshold = DEFAULT_STAKE_SPLIT_THRESHOLD;
 
-    // User-defined fee PIV/kb
+    // User-defined fee DOGEC/kb
     fUseCustomFee = false;
     nCustomFee = CWallet::minTxFee.GetFeePerK();
 

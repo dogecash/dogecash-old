@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_ZIP32_H
-#define PIVX_ZIP32_H
+#ifndef DogeCash_ZIP32_H
+#define DogeCash_ZIP32_H
 
 #include "serialize.h"
 #include "allocators.h"
@@ -138,4 +138,4 @@ typedef boost::variant<InvalidEncoding, SproutSpendingKey, SaplingExtendedSpendi
 /** Check whether a SpendingKey is not an InvalidEncoding. */
 bool IsValidSpendingKey(const libzcash::SpendingKey& zkey);
 
-#endif // PIVX_ZIP32_H
+#endif // DogeCash_ZIP32_H
