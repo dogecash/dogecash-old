@@ -114,12 +114,12 @@
         <translation>받을 주소</translation>
     </message>
     <message>
-        <source>These are your PIVX addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>이 주소들은 송금할 PIVX 주소입니다. 송금하기 전 항상 금액과 주소를 확인해주세요.</translation>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>이 주소들은 송금할 DogeCash 주소입니다. 송금하기 전 항상 금액과 주소를 확인해주세요.</translation>
     </message>
     <message>
-        <source>These are your PIVX addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>이 주소들은 입금 받을 PIVX 주소입니다. 매 거래마다 새로운 입금 주소를 사용하는 것이 좋습니다.</translation>
+        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>이 주소들은 입금 받을 DogeCash 주소입니다. 매 거래마다 새로운 입금 주소를 사용하는 것이 좋습니다.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -345,8 +345,8 @@ for staking</source>
         <translation>취소</translation>
     </message>
     <message>
-        <source>PIVX will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
-        <translation>PIVX는 이제 암호화 프로세스를 마치기 위해 닫힐것입니다. 지갑을 암호화하더라도 맬웨어로 인한 PIVs 의 도난당하는 것을 완벽하게 보호 할 수는 없습니다.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash는 이제 암호화 프로세스를 마치기 위해 닫힐것입니다. 지갑을 암호화하더라도 맬웨어로 인한 DOGECs 의 도난당하는 것을 완벽하게 보호 할 수는 없습니다.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -415,8 +415,8 @@ for staking</source>
         <translation>계좌</translation>
     </message>
     <message>
-        <source>0,00 PIV</source>
-        <translation>0,00 PIV</translation>
+        <source>0,00 DOGEC</source>
+        <translation>0,00 DOGEC</translation>
     </message>
     <message>
         <source>address</source>
@@ -457,8 +457,8 @@ for staking</source>
         <translation>코인 선택</translation>
     </message>
     <message>
-        <source>Select PIV Outputs to Spend</source>
-        <translation>사용할 PIV 아웃풋 선택</translation>
+        <source>Select DOGEC Outputs to Spend</source>
+        <translation>사용할 DOGEC 아웃풋 선택</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -485,8 +485,8 @@ for staking</source>
         <translation>금액</translation>
     </message>
     <message>
-        <source>0.00 PIV</source>
-        <translation>0.00 PIV</translation>
+        <source>0.00 DOGEC</source>
+        <translation>0.00 DOGEC</translation>
     </message>
     <message>
         <source>0</source>
@@ -736,17 +736,17 @@ for staking</source>
         <translation>위임 데이터 로딩 에러: %1</translation>
     </message>
     <message>
-        <source>You can delegate your PIVs, letting a hot node (24/7 online node)
+        <source>You can delegate your DOGECs, letting a hot node (24/7 online node)
 stake on your behalf, while you keep the keys securely offline.</source>
-        <translation>안전히 개인 프라이빗 키를 오프라인으로 보관한 상태로, 가지고 계신 PIV 를 매일 24시간 온라인으로 돌아가는 핫 노드로 위임하여, 대신 스테이킹을 하게 할수 있습니다. </translation>
+        <translation>안전히 개인 프라이빗 키를 오프라인으로 보관한 상태로, 가지고 계신 DOGEC 를 매일 24시간 온라인으로 돌아가는 핫 노드로 위임하여, 대신 스테이킹을 하게 할수 있습니다. </translation>
     </message>
     <message>
         <source>Enter owner address</source>
         <translation>Owner 주소 입력</translation>
     </message>
     <message>
-        <source>Accept PIV delegation / Delegate PIV</source>
-        <translation>PIV 위임권 수락하기 / PIV 위임 하기</translation>
+        <source>Accept DOGEC delegation / Delegate DOGEC</source>
+        <translation>DOGEC 위임권 수락하기 / DOGEC 위임 하기</translation>
     </message>
     <message>
         <source>Cold Staking address</source>
@@ -940,8 +940,8 @@ address</source>
         <translation>Filter by</translation>
     </message>
     <message>
-        <source>Amount of PIV and zPIV staked.</source>
-        <translation>스테이킹 된 PIV와 zPIV 양</translation>
+        <source>Amount of DOGEC and zDOGEC staked.</source>
+        <translation>스테이킹 된 DOGEC와 zDOGEC 양</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1035,8 +1035,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>보내는 주소 수정</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid PIVX address.</source>
-        <translation>입력된 주소 "%1"는 올바른 PIVX 주소가 아닙니다.</translation>
+        <source>The entered address "%1" is not a valid DogeCash address.</source>
+        <translation>입력된 주소 "%1"는 올바른 DogeCash 주소가 아닙니다.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1088,16 +1088,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>버전</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About PIVX Core</source>
-        <translation>PIVX Core 정보</translation>
+        <source>About DogeCash Core</source>
+        <translation>DogeCash Core 정보</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1151,16 +1151,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>환영합니다</translation>
     </message>
     <message>
-        <source>Welcome to PIVX Core.</source>
-        <translation>PIVX Core에 오신 것을 환영합니다.</translation>
+        <source>Welcome to DogeCash Core.</source>
+        <translation>DogeCash Core에 오신 것을 환영합니다.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where PIVX Core will store its data.</source>
-        <translation>이 프로그램이 처음 실행되었으므로 PIVX Core가 데이터를 저장할 위치를 선택할 수 있습니다.</translation>
+        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
+        <translation>이 프로그램이 처음 실행되었으므로 DogeCash Core가 데이터를 저장할 위치를 선택할 수 있습니다.</translation>
     </message>
     <message>
-        <source>PIVX Core will download and store a copy of the PIVX block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>PIVX Core는 PIVX 블록체인을 다운로드하여 저장합니다. 최소 %1GB의 데이터가 디렉토리에 저장되며 시간이 지날수록 증가합니다. 또한 지갑도 해당 디렉토리에 저장됩니다.</translation>
+        <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DogeCash Core는 DogeCash 블록체인을 다운로드하여 저장합니다. 최소 %1GB의 데이터가 디렉토리에 저장되며 시간이 지날수록 증가합니다. 또한 지갑도 해당 디렉토리에 저장됩니다.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1179,8 +1179,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>선택</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1279,8 +1279,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>새로운 마스터노드 컨트롤러 만들기</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 10,000 PIV (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PIVX 마스터노드를 생성하기 위해서는 10,000 PIV (PIVX 단위)를 네트워크에 예치해야 합니다. (예치한 코인은 계속 본인의 소유입니다.) &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;언제든지 노드를 비활성화 시키고 코인을 잠금해제할 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a DogeCash Masternode you must dedicate 5,000 DOGEC (the unit of DogeCash) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;DogeCash 마스터노드를 생성하기 위해서는 5,000 DOGEC (DogeCash 단위)를 네트워크에 예치해야 합니다. (예치한 코인은 계속 본인의 소유입니다.) &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;언제든지 노드를 비활성화 시키고 코인을 잠금해제할 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Set Masternode Name</source>
@@ -1299,8 +1299,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>이만큼의 코인을 보유하고 있는지 확인하십시오.</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 PIV will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;10,000 PIV의 트랜잭션은&lt;/p&gt;&lt;p&gt;지갑의 새로운 빈 주소로 만들어질 것입니다.&lt;/p&gt;&lt;p&gt;그 주소는 마스터노드 이름에 따라 레이블링됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 5,000 DOGEC will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;5,000 DOGEC의 트랜잭션은&lt;/p&gt;&lt;p&gt;지갑의 새로운 빈 주소로 만들어질 것입니다.&lt;/p&gt;&lt;p&gt;그 주소는 마스터노드 이름에 따라 레이블링됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Address of the node that must always be online running the actual master node.</source>
@@ -1481,7 +1481,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the pivx.conf file
+You will only have to paste the data in the dogecash.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1489,7 +1489,7 @@ this controller wallet (select the Masternode in the list and press "start").
 클립보드로 내보내려고 합니다.
 
 
-그 데이터를 리모트 서버의 pivx.conf 파일에
+그 데이터를 리모트 서버의 dogecash.conf 파일에
 붙여넣고 시작합니다. 그리고 컨트롤러 지갑에서 마스터노드를
 시작합니다. (리스트에서 마스터노드를 선택하고 "시작"을 누르십시오.)
 </translation>
@@ -1628,8 +1628,8 @@ Are you sure?</source>
         <translation>구문 분석된 데이터가 너무 큽니다.</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "pivx" prefix</source>
-        <translation>"pivx"로 시작하지 않아 유효하지 않은 URI</translation>
+        <source>Invalid URI, not starting with "dogecash" prefix</source>
+        <translation>"dogecash"로 시작하지 않아 유효하지 않은 URI</translation>
     </message>
 </context>
 <context>
@@ -1674,8 +1674,8 @@ Are you sure?</source>
         <translation>확인되지 않은 잔엑을 사용하지 않도록 설정하면 해당 트랜잭션에 하나 이상의 컨펌이 진행되야&lt;br/&gt;트랜잭션의 잔액을 전송할 수 있습니다.&lt;br/&gt;또한 이것은 잔액 계산 방식에도 영향을 줍니다.</translation>
     </message>
     <message>
-        <source>Automatically open the PIVX client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>라우터에서 PIVX 클라이언트 포트를 자동으로 엽니다. 이 기능은 라우터가 UPnP를 지원하고 활성화 된 경우에만 사용할 수 있습니다.</translation>
+        <source>Automatically open the DogeCash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>라우터에서 DogeCash 클라이언트 포트를 자동으로 엽니다. 이 기능은 라우터가 UPnP를 지원하고 활성화 된 경우에만 사용할 수 있습니다.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1694,12 +1694,12 @@ Are you sure?</source>
         <translation>전문적</translation>
     </message>
     <message>
-        <source>Automatically start PIVX after logging in to the system.</source>
-        <translation>시스템 로그인 후 PIVX을 자동으로 시작합니다.</translation>
+        <source>Automatically start DogeCash after logging in to the system.</source>
+        <translation>시스템 로그인 후 DogeCash을 자동으로 시작합니다.</translation>
     </message>
     <message>
-        <source>&amp;Start PIVX on system login</source>
-        <translation>&amp;시스템 로그인시 PIVX 시작</translation>
+        <source>&amp;Start DogeCash on system login</source>
+        <translation>&amp;시스템 로그인시 DogeCash 시작</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1726,58 +1726,58 @@ Are you sure?</source>
         <translation>&amp;네트워크</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting PIVX.</source>
-        <translation>사용자 인터페이스 언어를 설정할 수 있습니다. 이 설정은 PIVX을 다시 시작한 후에 적용됩니다.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting DogeCash.</source>
+        <translation>사용자 인터페이스 언어를 설정할 수 있습니다. 이 설정은 DogeCash을 다시 시작한 후에 적용됩니다.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+https://www.transifex.com/dogecash-project/dogecash-project-translations</source>
         <translation>지원 언어가 없거나 번역이 불완전한가요? 번역을 도와주세요 :
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+https://www.transifex.com/dogecash-project/dogecash-project-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>&amp;UPnp를 사용하여 포트 매핑</translation>
     </message>
     <message>
-        <source>Enable automatic minting of PIV units to zPIV</source>
-        <translation>보상받은 PIV를 zPIV로 자동변환 활성화</translation>
+        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
+        <translation>보상받은 DOGEC를 zDOGEC로 자동변환 활성화</translation>
     </message>
     <message>
-        <source>Enable zPIV Automint</source>
-        <translation>zPIV 자동생성 활성화</translation>
+        <source>Enable zDOGEC Automint</source>
+        <translation>zDOGEC 자동생성 활성화</translation>
     </message>
     <message>
-        <source>Enable automatic zPIV minting from specific addresses</source>
-        <translation>특정 주소들로부터 자동으로 zPIV 민트되는 것을 허용</translation>
+        <source>Enable automatic zDOGEC minting from specific addresses</source>
+        <translation>특정 주소들로부터 자동으로 zDOGEC 민트되는 것을 허용</translation>
     </message>
     <message>
         <source>Enable Automint Addresses</source>
         <translation>Automint 주소 사용</translation>
     </message>
     <message>
-        <source>Percentage of incoming PIV which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
-        <translation>PIV수신시 자동변환 zPIV 비율 (최소값:10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
+        <translation>DOGEC수신시 자동변환 zDOGEC 비율 (최소값:10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zPIV</source>
-        <translation>자동 변환되는 zPIV 비율</translation>
+        <source>Percentage of autominted zDOGEC</source>
+        <translation>자동 변환되는 zDOGEC 비율</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</source>
-        <translation>이 디노미네이션의 PIV가 충분해질 때까지 Zerocoin으로 자동전환은 보류됩니다.</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</source>
+        <translation>이 디노미네이션의 DOGEC가 충분해질 때까지 Zerocoin으로 자동전환은 보류됩니다.</translation>
     </message>
     <message>
-        <source>Preferred Automint zPIV Denomination</source>
-        <translation>선호하는 자동생성 zPIV 디노미네이션 </translation>
+        <source>Preferred Automint zDOGEC Denomination</source>
+        <translation>선호하는 자동생성 zDOGEC 디노미네이션 </translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>Stake split threshold:</translation>
     </message>
     <message>
-        <source>Connect to the PIVX network through a SOCKS5 proxy.</source>
-        <translation>SOCKS5 프록시를 통해 PIVX 네트워크에 연결해주세요.</translation>
+        <source>Connect to the DogeCash network through a SOCKS5 proxy.</source>
+        <translation>SOCKS5 프록시를 통해 DogeCash 네트워크에 연결해주세요.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1921,10 +1921,10 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
     </message>
 </context>
 <context>
-    <name>PIVXGUI</name>
+    <name>DogeCashGUI</name>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1951,8 +1951,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>어플리케이션 종료</translation>
     </message>
     <message>
-        <source>PIVX Core client</source>
-        <translation>PIVX Core 클라이언트</translation>
+        <source>DogeCash Core client</source>
+        <translation>DogeCash Core 클라이언트</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2018,12 +2018,12 @@ Address: %4
         <translation>잘못된 결제 주소 %1</translation>
     </message>
     <message>
-        <source>Cannot start pivx: click-to-pay handler</source>
-        <translation>PIVX을 시작할 수 없습니다: 결제하기 위한 클릭 처리</translation>
+        <source>Cannot start dogecash: click-to-pay handler</source>
+        <translation>DogeCash을 시작할 수 없습니다: 결제하기 위한 클릭 처리</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid PIVX address or malformed URI parameters.</source>
-        <translation>URI를 분석할 수 없습니다! 이는 잘못된 PIVX 주소 또는 URI 매개변수 손상으로 인해 발생할 수 있습니다.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid DogeCash address or malformed URI parameters.</source>
+        <translation>URI를 분석할 수 없습니다! 이는 잘못된 DogeCash 주소 또는 URI 매개변수 손상으로 인해 발생할 수 있습니다.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2108,8 +2108,8 @@ Address: %4
         <translation>금액</translation>
     </message>
     <message>
-        <source>Enter PIVX address (e.g. %1)</source>
-        <translation>PIVX 주소 입력(예 : %1)</translation>
+        <source>Enter DogeCash address (e.g. %1)</source>
+        <translation>DogeCash 주소 입력(예 : %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2152,20 +2152,20 @@ Address: %4
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>A fatal error occurred. PIVX can no longer continue safely and will quit.</source>
-        <translation>치명적인 오류가 발생하였습니다. PIVX는 더 이상 안전하게 계속될 수 없으며, 곧 종료됩니다.</translation>
+        <source>A fatal error occurred. DogeCash can no longer continue safely and will quit.</source>
+        <translation>치명적인 오류가 발생하였습니다. DogeCash는 더 이상 안전하게 계속될 수 없으며, 곧 종료됩니다.</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
         <translation>Error: Specified data directory "%1" does not exist.</translation>
     </message>
     <message>
-        <source>PIVX Core didn't yet exit safely...</source>
-        <translation>PIVX Core가 아직 안전하게 종료되지 않았습니다....</translation>
+        <source>DogeCash Core didn't yet exit safely...</source>
+        <translation>DogeCash Core가 아직 안전하게 종료되지 않았습니다....</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -2319,8 +2319,8 @@ Address: %4
         <translation>블록체인</translation>
     </message>
     <message>
-        <source>Open the PIVX debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>현재 데이터 디렉토리에서 PIVX 디버그 로그 파일을 엽니다. 로그 파일이 클 경우, 약간의 시간이 걸릴 수 있습니다.</translation>
+        <source>Open the DogeCash debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>현재 데이터 디렉토리에서 DogeCash 디버그 로그 파일을 엽니다. 로그 파일이 클 경우, 약간의 시간이 걸릴 수 있습니다.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -2463,8 +2463,8 @@ Address: %4
         <translation>맞춤 백업 경로 :</translation>
     </message>
     <message>
-        <source>Custom zPIV Backup Path:</source>
-        <translation>맞춤 zPIV 백업 경로 :</translation>
+        <source>Custom zDOGEC Backup Path:</source>
+        <translation>맞춤 zDOGEC 백업 경로 :</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2544,8 +2544,8 @@ Address: %4
         <translation>출력:</translation>
     </message>
     <message>
-        <source>Welcome to the PIVX RPC console.</source>
-        <translation>PIVX RPC 콘솔에 오신 것을 환영합니다.</translation>
+        <source>Welcome to the DogeCash RPC console.</source>
+        <translation>DogeCash RPC 콘솔에 오신 것을 환영합니다.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -2792,8 +2792,8 @@ Address: %4
         <translation>금액</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>DOGEC</source>
+        <translation>DOGEC</translation>
     </message>
     <message>
         <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
@@ -2882,8 +2882,8 @@ Address: %4
         <translation>권장</translation>
     </message>
     <message>
-        <source>PIV/kilobyte</source>
-        <translation>PIV/Kilobyte</translation>
+        <source>DOGEC/kilobyte</source>
+        <translation>DOGEC/Kilobyte</translation>
     </message>
     <message>
         <source>0.00 KB</source>
@@ -3126,8 +3126,8 @@ Cold-staking 중인 코인을 사용하여 전송하며, 무효화됩니다.
         <translation>키 암호 해재</translation>
     </message>
     <message>
-        <source>PIVX address</source>
-        <translation>PIVX 주소</translation>
+        <source>DogeCash address</source>
+        <translation>DogeCash 주소</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -3243,8 +3243,8 @@ Verify that you have installed a predetermined text editor.</source>
 미리 결정된 텍스트 에디터를 인스톨했는지 확인하세요.</translation>
     </message>
     <message>
-        <source>Welcome to the PIVX RPC console.</source>
-        <translation>PIVX RPC 콘솔에 오신 것을 환영합니다.</translation>
+        <source>Welcome to the DogeCash RPC console.</source>
+        <translation>DogeCash RPC 콘솔에 오신 것을 환영합니다.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
@@ -3507,8 +3507,8 @@ Verify that you have installed a predetermined text editor.</source>
         <translation>백업 폴더를 열 수 없습니다.</translation>
     </message>
     <message>
-        <source>Unable to open pivx.conf with default application</source>
-        <translation>pivx.conf 파일을 기본 앱으로 열 수 없습니다.</translation>
+        <source>Unable to open dogecash.conf with default application</source>
+        <translation>dogecash.conf 파일을 기본 앱으로 열 수 없습니다.</translation>
     </message>
     <message>
         <source>In:</source>
@@ -3558,8 +3558,8 @@ Verify that you have installed a predetermined text editor.</source>
         <translation>스크립트 검증 스레드 개수</translation>
     </message>
     <message>
-        <source>Start PIVX on system login</source>
-        <translation>시스템 로그인시 PIVX 지갑 시작</translation>
+        <source>Start DogeCash on system login</source>
+        <translation>시스템 로그인시 DogeCash 지갑 시작</translation>
     </message>
     <message>
         <source>Minimize to the tray instead of the taskbar</source>
@@ -3646,7 +3646,7 @@ Are you sure?
         <translation>체크박스</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other PIVX addresses after it matures.</source>
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other DogeCash addresses after it matures.</source>
         <translation>멀티 전송 기능은 확인된 새로 받은 스테이킹 혹은 마스터노드 보상을 100% 전부 까지 지정된 다른 주소로 자동 전송할수 있는 기능입니다.</translation>
     </message>
     <message>
@@ -3739,8 +3739,8 @@ Please check the address and try again.</source>
         <translation>메세지</translation>
     </message>
     <message>
-        <source>PIVX address or contact label</source>
-        <translation>PIVX 주소 / 연락처 라벨</translation>
+        <source>DogeCash address or contact label</source>
+        <translation>DogeCash 주소 / 연락처 라벨</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -4008,8 +4008,8 @@ Please check the address and try again.</source>
         <translation>FAQ</translation>
     </message>
     <message>
-        <source>About PIVX</source>
-        <translation>PIVX 정보</translation>
+        <source>About DogeCash</source>
+        <translation>DogeCash 정보</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -4075,8 +4075,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>PIVX Core is shutting down...</source>
-        <translation>PIVX Core가 종료됩니다...</translation>
+        <source>DogeCash Core is shutting down...</source>
+        <translation>DogeCash Core가 종료됩니다...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4105,8 +4105,8 @@ Are you sure?
         <translation>로딩중...</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
 </context>
 <context>
@@ -4715,21 +4715,21 @@ NOTE: 업그레이드 이후에는
     </message>
     <message>
         <source>Welcome to
-PIVX Core Wallet</source>
+DogeCash Core Wallet</source>
         <translation>환영합니다.
-PIVX Core Wallet</translation>
+DogeCash Core Wallet</translation>
     </message>
     <message>
-        <source>PIVX is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
-        <translation>PIVX 는 많은 경험과 뛰어난 실력을 겸비한 개발자와 암호학자로 구성된 팀이 개발하는 연신적인 Proof of Stake 블록체인 기술을 자랑하는 오픈소스 프로젝트 입니다. </translation>
+        <source>DogeCash is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>DogeCash 는 많은 경험과 뛰어난 실력을 겸비한 개발자와 암호학자로 구성된 팀이 개발하는 연신적인 Proof of Stake 블록체인 기술을 자랑하는 오픈소스 프로젝트 입니다. </translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - PIVX believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PIVX 는 Manifesto 선언서에 적힌대로: 프라이버시는 협상이 불가능한 인간의 기본적인 인권중 하나이다. 이로 인해 그 언제나 그 누구에게나 데이터를 공유할수 있는 자유를 얻게 될것이다. PIVX 프로젝트는 개인 독립을 추구한다. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - DogeCash believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;DogeCash 는 Manifesto 선언서에 적힌대로: 프라이버시는 협상이 불가능한 인간의 기본적인 인권중 하나이다. 이로 인해 그 언제나 그 누구에게나 데이터를 공유할수 있는 자유를 얻게 될것이다. DogeCash 프로젝트는 개인 독립을 추구한다. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>How PIVX respects your privacy?</source>
-        <translation>PIVX 가 당신의 프라이버시를 존중하는 방법은?</translation>
+        <source>How DogeCash respects your privacy?</source>
+        <translation>DogeCash 가 당신의 프라이버시를 존중하는 방법은?</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -4741,7 +4741,7 @@ PIVX Core Wallet</translation>
     </message>
 </context>
 <context>
-    <name>pivx-core</name>
+    <name>dogecash-core</name>
     <message>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation>(1 = tx 메타 데이터 유지 예 : 계정 소유자 및 지불 요청 정보, 2 = tx 메타 데이터 삭제)</translation>
@@ -4763,8 +4763,8 @@ PIVX Core Wallet</translation>
         <translation>JSON-RPC연결 수신을 위해 주어진 주소를 지정합니다. [host]: IPv6 포트 표기법 사용. 이 옵션은 여러번 지정할 수 있습니다. (기본값 : 모든 인터페이스에 지정)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. PIVX Core is probably already running.</source>
-        <translation>        &lt;translation&gt;잠겨진 데이터 디렉토리 %s 를 가져올 수 없습니다. PIVX Core는 이미 실행 중입니다.</translation>
+        <source>Cannot obtain a lock on data directory %s. DogeCash Core is probably already running.</source>
+        <translation>        &lt;translation&gt;잠겨진 데이터 디렉토리 %s 를 가져올 수 없습니다. DogeCash Core는 이미 실행 중입니다.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4903,8 +4903,8 @@ PIVX Core Wallet</translation>
         <translation>이 제품은 OpenSSL이 개발한 Open SSL 툴킷 &lt;https://www.openssl.org/&gt; 에서 사용하기 위한 프로젝트 소프트웨어, Eric Young이 개발한 암호화 소프트웨어, Thomas Bernard가 개발한 UPnP 소프트웨어가 포함되어 있습니다.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. PIVX Core is probably already running.</source>
-        <translation>이 컴퓨터를 %s 로 지정하는것은 불가능합니다. PIVX Core는 이미 실행 중입니다.</translation>
+        <source>Unable to bind to %s on this computer. DogeCash Core is probably already running.</source>
+        <translation>이 컴퓨터를 %s 로 지정하는것은 불가능합니다. DogeCash Core는 이미 실행 중입니다.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4919,8 +4919,8 @@ PIVX Core Wallet</translation>
         <translation>경고 : -paytxfee가 매우 높게 설정되었습니다! 이것은 전송할 경우 지불 할 트랜잭션 수수료입니다.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong PIVX Core will not work properly.</source>
-        <translation>경고: 컴퓨터의 날짜와 시간이 올바르게 설정되어 있는지 확인해 주세요! 만일 시계가 잘못되어 있다면 PIVX 코어는 정상적으로 작동하지 않을 수 있습니다.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
+        <translation>경고: 컴퓨터의 날짜와 시간이 올바르게 설정되어 있는지 확인해 주세요! 만일 시계가 잘못되어 있다면 DogeCash 코어는 정상적으로 작동하지 않을 수 있습니다.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5015,8 +5015,8 @@ PIVX Core Wallet</translation>
         <translation>Copyright (C) 2014-%i The Dash Core 개발자들</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
-        <translation>Copyright (C) 2015-%i The PIVX Core 개발자</translation>
+        <source>Copyright (C) 2015-%i The DogeCash Core Developers</source>
+        <translation>Copyright (C) 2015-%i The DogeCash Core 개발자</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -5091,8 +5091,8 @@ PIVX Core Wallet</translation>
         <translation>wallet.dat을 불러오는 중 오류가 발생했습니다: 지갑 손상됨</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of PIVX Core</source>
-        <translation>wallet.dat를 로드하는 중 오류가 발생했습니다. 지갑에 최신 버전의 PIVX 코어가 필요합니다.</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
+        <translation>wallet.dat를 로드하는 중 오류가 발생했습니다. 지갑에 최신 버전의 DogeCash 코어가 필요합니다.</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -5175,8 +5175,8 @@ PIVX Core Wallet</translation>
         <translation>정보</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. PIVX Core is shutting down.</source>
-        <translation>초기화 정확성 검사에 실패 했습니다. PIVX Core가 종료됩니다.</translation>
+        <source>Initialization sanity check failed. DogeCash Core is shutting down.</source>
+        <translation>초기화 정확성 검사에 실패 했습니다. DogeCash Core가 종료됩니다.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5207,8 +5207,8 @@ PIVX Core Wallet</translation>
         <translation>-whitelist: '%s' 에 지정된 넷마스크가 유효하지 않습니다.</translation>
     </message>
     <message>
-        <source>Recalculating PIV supply...</source>
-        <translation>PIV 공급 재계산중...</translation>
+        <source>Recalculating DOGEC supply...</source>
+        <translation>DOGEC 공급 재계산중...</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5247,8 +5247,8 @@ PIVX Core Wallet</translation>
 </translation>
     </message>
     <message>
-        <source>Disable all PIVX specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>PIVX의 모든 특정 기능들을 비활성화합니다(마스터노드, 난독화, SwiftTX, Budgeting) (0-1, 기본값: %u)</translation>
+        <source>Disable all DogeCash specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
+        <translation>DogeCash의 모든 특정 기능들을 비활성화합니다(마스터노드, 난독화, SwiftTX, Budgeting) (0-1, 기본값: %u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
@@ -5479,8 +5479,8 @@ PIVX Core Wallet</translation>
         <translation>재동기화 준비중...</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong PIVX Core will not work properly.</source>
-        <translation>컴퓨터의 날짜와 시간이 올바르게 설정되어 있는지 확인해 주세요! 만일 시계가 잘못되어 있다면 PIVX 코어는 정상적으로 작동하지 않을 수 있습니다.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
+        <translation>컴퓨터의 날짜와 시간이 올바르게 설정되어 있는지 확인해 주세요! 만일 시계가 잘못되어 있다면 DogeCash 코어는 정상적으로 작동하지 않을 수 있습니다.</translation>
     </message>
     <message>
         <source>Cannot resolve -%s address: '%s'</source>
@@ -5667,8 +5667,8 @@ PIVX Core Wallet</translation>
         <translation>sporks와 동기화 중입니다...</translation>
     </message>
     <message>
-        <source>Syncing zPIV wallet...</source>
-        <translation>zPIV 지갑 동기화중...</translation>
+        <source>Syncing zDOGEC wallet...</source>
+        <translation>zDOGEC 지갑 동기화중...</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -5775,8 +5775,8 @@ PIVX Core Wallet</translation>
         <translation>JSON-RPC 연결 사용자 이름</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zPIV</source>
-        <translation>Value is below the smallest available denomination (= 1) of zPIV</translation>
+        <source>Value is below the smallest available denomination (= 1) of zDOGEC</source>
+        <translation>Value is below the smallest available denomination (= 1) of zDOGEC</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -5791,8 +5791,8 @@ PIVX Core Wallet</translation>
         <translation>지갑 %s 가 데이터 디렉토리 외부에 존재합니다 %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart PIVX Core to complete</source>
-        <translation>지갑을 다시 작성해야 합니다: 완료하려면 PIVX 코어를 재시작해야 합니다</translation>
+        <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
+        <translation>지갑을 다시 작성해야 합니다: 완료하려면 DogeCash 코어를 재시작해야 합니다</translation>
     </message>
     <message>
         <source>Wallet options:</source>
@@ -5820,7 +5820,7 @@ PIVX Core Wallet</translation>
     </message>
     <message>
         <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>지갑에 zPIV 가 부족합니다.</translation>
+        <translation>지갑에 zDOGEC 가 부족합니다.</translation>
     </message>
     <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
@@ -5858,8 +5858,8 @@ PIVX Core Wallet</translation>
         <translation>보내기</translation>
     </message>
     <message>
-        <source>PIVX address or contact label</source>
-        <translation>PIVX 주소 / 연락처 라벨</translation>
+        <source>DogeCash address or contact label</source>
+        <translation>DogeCash 주소 / 연락처 라벨</translation>
     </message>
     <message>
         <source>Amount</source>

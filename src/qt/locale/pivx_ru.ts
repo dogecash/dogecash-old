@@ -122,12 +122,12 @@
         <translation>Адреса получения</translation>
     </message>
     <message>
-        <source>These are your PIVX addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Это ваши PIVX-адреса для отправки платежей. Перед отправкой монет всегда проверяйте сумму и адрес получателя.</translation>
+        <source>These are your DogeCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Это ваши DogeCash-адреса для отправки платежей. Перед отправкой монет всегда проверяйте сумму и адрес получателя.</translation>
     </message>
     <message>
-        <source>These are your PIVX addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Это ваши PIVX-адреса для получения платежей. Для каждой транзакции рекомендуется использовать новый адрес получения.</translation>
+        <source>These are your DogeCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Это ваши DogeCash-адреса для получения платежей. Для каждой транзакции рекомендуется использовать новый адрес получения.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -363,8 +363,8 @@ for staking</source>
         <translation>ОТМЕНА</translation>
     </message>
     <message>
-        <source>PIVX will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
-        <translation>PIVX сейчас закроется, чтобы завершить процесс шифрования. Помните, что шифрование вашего кошелька не может полностью защитить ваши PIVX от кражи с использованием вредоносного ПО.</translation>
+        <source>DogeCash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your DOGECs from being stolen by malware infecting your computer.</source>
+        <translation>DogeCash сейчас закроется, чтобы завершить процесс шифрования. Помните, что шифрование вашего кошелька не может полностью защитить ваши DogeCash от кражи с использованием вредоносного ПО.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -449,8 +449,8 @@ for staking</source>
         <translation>Сбережения</translation>
     </message>
     <message>
-        <source>0,00 PIV</source>
-        <translation>0.00 PIV</translation>
+        <source>0,00 DOGEC</source>
+        <translation>0.00 DOGEC</translation>
     </message>
     <message>
         <source>address</source>
@@ -491,8 +491,8 @@ for staking</source>
         <translation>Выбор монеты</translation>
     </message>
     <message>
-        <source>Select PIV Outputs to Spend</source>
-        <translation>Выберите PIV выходы для расходов</translation>
+        <source>Select DOGEC Outputs to Spend</source>
+        <translation>Выберите DOGEC выходы для расходов</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -519,8 +519,8 @@ for staking</source>
         <translation>Сумма</translation>
     </message>
     <message>
-        <source>0.00 PIV</source>
-        <translation>0.00 PIV </translation>
+        <source>0.00 DOGEC</source>
+        <translation>0.00 DOGEC </translation>
     </message>
     <message>
         <source>0</source>
@@ -774,17 +774,17 @@ for staking</source>
         <translation>Ошибка при загрузке делегаций: %1</translation>
     </message>
     <message>
-        <source>You can delegate your PIVs, letting a hot node (24/7 online node)
+        <source>You can delegate your DOGECs, letting a hot node (24/7 online node)
 stake on your behalf, while you keep the keys securely offline.</source>
-        <translation>Вы можете делегировать свои PIV, позволяя горячему узлу (онлайн-узлу, работаещему 24/7) делать стекинг от вашего имени, в то время как ключи надежно хранятся в автономном режиме.</translation>
+        <translation>Вы можете делегировать свои DOGEC, позволяя горячему узлу (онлайн-узлу, работаещему 24/7) делать стекинг от вашего имени, в то время как ключи надежно хранятся в автономном режиме.</translation>
     </message>
     <message>
         <source>Enter owner address</source>
         <translation>Введите адрес владельца</translation>
     </message>
     <message>
-        <source>Accept PIV delegation / Delegate PIV</source>
-        <translation>Принять делегацию PIV / Делегировать PIV</translation>
+        <source>Accept DOGEC delegation / Delegate DOGEC</source>
+        <translation>Принять делегацию DOGEC / Делегировать DOGEC</translation>
     </message>
     <message>
         <source>Cold Staking address</source>
@@ -988,8 +988,8 @@ address</source>
         <translation>Обзор истории вашего аккаунта</translation>
     </message>
     <message>
-        <source>How to get PIV</source>
-        <translation>Как получить PIV</translation>
+        <source>How to get DOGEC</source>
+        <translation>Как получить DOGEC</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -1012,8 +1012,8 @@ address</source>
         <translation>Сортировать по</translation>
     </message>
     <message>
-        <source>Amount of PIV and zPIV staked.</source>
-        <translation>Сумма добытых PIV и zPIV</translation>
+        <source>Amount of DOGEC and zDOGEC staked.</source>
+        <translation>Сумма добытых DOGEC и zDOGEC</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1108,8 +1108,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Изменить адрес отправки</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid PIVX address.</source>
-        <translation>Введенный адрес "%1" не является PIVX адресом.</translation>
+        <source>The entered address "%1" is not a valid DogeCash address.</source>
+        <translation>Введенный адрес "%1" не является DogeCash адресом.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1161,16 +1161,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>версия</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-бит)</translation>
     </message>
     <message>
-        <source>About PIVX Core</source>
-        <translation>О PIVX Core</translation>
+        <source>About DogeCash Core</source>
+        <translation>О DogeCash Core</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1224,16 +1224,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Добро пожаловать</translation>
     </message>
     <message>
-        <source>Welcome to PIVX Core.</source>
-        <translation>Добро пожаловать в PIVX Core.</translation>
+        <source>Welcome to DogeCash Core.</source>
+        <translation>Добро пожаловать в DogeCash Core.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where PIVX Core will store its data.</source>
-        <translation>Поскольку это первый запуск программы, вы можете выбрать, где будут храниться данные PIVX Core.</translation>
+        <source>As this is the first time the program is launched, you can choose where DogeCash Core will store its data.</source>
+        <translation>Поскольку это первый запуск программы, вы можете выбрать, где будут храниться данные DogeCash Core.</translation>
     </message>
     <message>
-        <source>PIVX Core will download and store a copy of the PIVX block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>PIVX Core загрузит и сохранит копию цепочки блоков PIVX. Каталог будет занимать около %1GB и со временем размер будет увеличиваться. Кроме того, в этом каталоге будет храниться кошелек.</translation>
+        <source>DogeCash Core will download and store a copy of the DogeCash block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DogeCash Core загрузит и сохранит копию цепочки блоков DogeCash. Каталог будет занимать около %1GB и со временем размер будет увеличиваться. Кроме того, в этом каталоге будет храниться кошелек.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1252,8 +1252,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>ХОРОШО</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1376,8 +1376,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Убедитесь, что у вас есть такое количество монет.</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 PIV will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;На новый пустой адрес в вашем кошельке&lt;/p&gt;&lt;p&gt; будет сделана транзакция в 10 000 PIV. &lt;/p&gt;&lt;p&gt;Адрес отмечен под именем мастерноды.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 5,000 DOGEC will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;На новый пустой адрес в вашем кошельке&lt;/p&gt;&lt;p&gt; будет сделана транзакция в 10 000 DOGEC. &lt;/p&gt;&lt;p&gt;Адрес отмечен под именем мастерноды.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Address of the node that must always be online running the actual master node.</source>
@@ -1554,7 +1554,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
         <translation>Данные Мастерноды скопированы в буфер обмена.</translation>
     </message>
     <message>
-        <source>Not enough balance to create a masternode, 10,000 %1 required.</source>
+        <source>Not enough balance to create a masternode, 5,000 %1 required.</source>
         <translation>Недостаточно баланса для создания мастерноды, требуется 10000 %1.</translation>
     </message>
     <message>
@@ -1582,7 +1582,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the pivx.conf file
+You will only have to paste the data in the dogecash.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1590,7 +1590,7 @@ this controller wallet (select the Masternode in the list and press "start").
 на удаленном сервере в буфер обмена.
 
 
-Вам необходимо только вставить данные в файл pivx.conf
+Вам необходимо только вставить данные в файл dogecash.conf
 вашего удаленного сервера и запустить его, а затем запустить мастерноду,
 используя этот кошелек контроллера (выберите мастерноду из списка и нажмите «Старт»).
 </translation>
@@ -1780,8 +1780,8 @@ STAKING</source>
         <translation>Проанализированные данные слишком большие</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "pivx" prefix</source>
-        <translation>Неверный URI, не начинается с префикса "pivx"</translation>
+        <source>Invalid URI, not starting with "dogecash" prefix</source>
+        <translation>Неверный URI, не начинается с префикса "dogecash"</translation>
     </message>
 </context>
 <context>
@@ -1826,8 +1826,8 @@ STAKING</source>
         <translation>Отключив проведение неподтвержденных изменений все изменения о транзакции &lt;br/&gt;не будут использованы пока транзакция не получит хотя бы одно подтверждение.&lt;br/&gt;Также это влияет на расчет вашего баланса.</translation>
     </message>
     <message>
-        <source>Automatically open the PIVX client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Автоматически открыть клиентский порт PIVX через роутер. Ваш роутер должен поддерживать UPnP, а сам сервис должен быть включен.</translation>
+        <source>Automatically open the DogeCash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Автоматически открыть клиентский порт DogeCash через роутер. Ваш роутер должен поддерживать UPnP, а сам сервис должен быть включен.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1846,12 +1846,12 @@ STAKING</source>
         <translation>Эксперт</translation>
     </message>
     <message>
-        <source>Automatically start PIVX after logging in to the system.</source>
-        <translation>Автоматически запускать PIVX после входа в систему.</translation>
+        <source>Automatically start DogeCash after logging in to the system.</source>
+        <translation>Автоматически запускать DogeCash после входа в систему.</translation>
     </message>
     <message>
-        <source>&amp;Start PIVX on system login</source>
-        <translation>&amp;Запускать PIVX при входе в систему</translation>
+        <source>&amp;Start DogeCash on system login</source>
+        <translation>&amp;Запускать DogeCash при входе в систему</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1878,58 +1878,58 @@ STAKING</source>
         <translation>&amp;Сеть</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting PIVX.</source>
-        <translation>Здесь можно выставить язык интерфейса. Изменения вступят в силу после перезапуска PIVX.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting DogeCash.</source>
+        <translation>Здесь можно выставить язык интерфейса. Изменения вступят в силу после перезапуска DogeCash.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+https://www.transifex.com/dogecash-project/dogecash-project-translations</source>
         <translation>Отсутствует ваш язык или заметили незавершенный перевод? Вы можете помочь нам стать лучше:
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+https://www.transifex.com/dogecash-project/dogecash-project-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Карта порта, использующего &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of PIV units to zPIV</source>
-        <translation>Невозможно автоматически отчеканить единицы PIV для zPIV</translation>
+        <source>Enable automatic minting of DOGEC units to zDOGEC</source>
+        <translation>Невозможно автоматически отчеканить единицы DOGEC для zDOGEC</translation>
     </message>
     <message>
-        <source>Enable zPIV Automint</source>
-        <translation>Невозможно авточеканка  zPIV</translation>
+        <source>Enable zDOGEC Automint</source>
+        <translation>Невозможно авточеканка  zDOGEC</translation>
     </message>
     <message>
-        <source>Enable automatic zPIV minting from specific addresses</source>
-        <translation>Включить автоматическое чеканку zPIV с определенных адресов</translation>
+        <source>Enable automatic zDOGEC minting from specific addresses</source>
+        <translation>Включить автоматическое чеканку zDOGEC с определенных адресов</translation>
     </message>
     <message>
         <source>Enable Automint Addresses</source>
         <translation>Включить адреса с автоматической чеканкой</translation>
     </message>
     <message>
-        <source>Percentage of incoming PIV which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
-        <translation>Процент приходящих PIV, которые автоматически конвертируются в zPIV благодаря Zerocoin протоколу (min: 10%)</translation>
+        <source>Percentage of incoming DOGEC which get automatically converted to zDOGEC via Zerocoin Protocol (min: 10%)</source>
+        <translation>Процент приходящих DOGEC, которые автоматически конвертируются в zDOGEC благодаря Zerocoin протоколу (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zPIV</source>
-        <translation>Процент  авточеканненых zPIV</translation>
+        <source>Percentage of autominted zDOGEC</source>
+        <translation>Процент  авточеканненых zDOGEC</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</source>
-        <translation>Подождите с автоматическим преобразованием в Zerocoin, пока не будет достаточно PIV для этой номинации.</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough DOGEC for this denomination is available</source>
+        <translation>Подождите с автоматическим преобразованием в Zerocoin, пока не будет достаточно DOGEC для этой номинации.</translation>
     </message>
     <message>
-        <source>Preferred Automint zPIV Denomination</source>
-        <translation>Предпочитаемый номинал авточеканной  монеты  zPIV</translation>
+        <source>Preferred Automint zDOGEC Denomination</source>
+        <translation>Предпочитаемый номинал авточеканной  монеты  zDOGEC</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>Порог разделения доли:</translation>
     </message>
     <message>
-        <source>Connect to the PIVX network through a SOCKS5 proxy.</source>
-        <translation>Подключиться к сети PIVX через SOCKS5 прокси.</translation>
+        <source>Connect to the DogeCash network through a SOCKS5 proxy.</source>
+        <translation>Подключиться к сети DogeCash через SOCKS5 прокси.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2073,10 +2073,10 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
     </message>
 </context>
 <context>
-    <name>PIVXGUI</name>
+    <name>DogeCashGUI</name>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -2103,8 +2103,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Завершить работу</translation>
     </message>
     <message>
-        <source>PIVX Core client</source>
-        <translation>Клиент PIVX Core</translation>
+        <source>DogeCash Core client</source>
+        <translation>Клиент DogeCash Core</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2170,12 +2170,12 @@ Address: %4
         <translation>Неверный адрес оплаты %1</translation>
     </message>
     <message>
-        <source>Cannot start pivx: click-to-pay handler</source>
-        <translation>Не удалось запустить pivx: обработчик click-to-pay </translation>
+        <source>Cannot start dogecash: click-to-pay handler</source>
+        <translation>Не удалось запустить dogecash: обработчик click-to-pay </translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid PIVX address or malformed URI parameters.</source>
-        <translation>URI не интерпретируется! Причиной этому может быть неверный PIVX адрес или неверные параметеры URI.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid DogeCash address or malformed URI parameters.</source>
+        <translation>URI не интерпретируется! Причиной этому может быть неверный DogeCash адрес или неверные параметеры URI.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2260,8 +2260,8 @@ Address: %4
         <translation>Сумма</translation>
     </message>
     <message>
-        <source>Enter PIVX address (e.g. %1)</source>
-        <translation>Введите адрес PIVX (например, %1)</translation>
+        <source>Enter DogeCash address (e.g. %1)</source>
+        <translation>Введите адрес DogeCash (например, %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2304,12 +2304,12 @@ Address: %4
         <translation>%1 мс</translation>
     </message>
     <message>
-        <source>A fatal error occurred. PIVX can no longer continue safely and will quit.</source>
-        <translation>Произошла фатальная ошибка. PIVX больше не может безопасно продолжать работу и завершит работу.</translation>
+        <source>A fatal error occurred. DogeCash can no longer continue safely and will quit.</source>
+        <translation>Произошла фатальная ошибка. DogeCash больше не может безопасно продолжать работу и завершит работу.</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2328,8 +2328,8 @@ Address: %4
         <translation>Ошибка чтения файла конфигурации мастерноды: %1</translation>
     </message>
     <message>
-        <source>PIVX Core didn't yet exit safely...</source>
-        <translation>PIVX Core еще не вышел безопасно...</translation>
+        <source>DogeCash Core didn't yet exit safely...</source>
+        <translation>DogeCash Core еще не вышел безопасно...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -2567,8 +2567,8 @@ Address: %4
         <translation>Блокчейн</translation>
     </message>
     <message>
-        <source>Open the PIVX debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Открыть протокол отладки PIVX. Это может занять некоторе время, если файл протокола очень большой.</translation>
+        <source>Open the DogeCash debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Открыть протокол отладки DogeCash. Это может занять некоторе время, если файл протокола очень большой.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -2711,8 +2711,8 @@ Address: %4
         <translation>Пользовательский путь резервного копирования:</translation>
     </message>
     <message>
-        <source>Custom zPIV Backup Path:</source>
-        <translation>Пользовательский путь резервного копирования zPIV:</translation>
+        <source>Custom zDOGEC Backup Path:</source>
+        <translation>Пользовательский путь резервного копирования zDOGEC:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2792,8 +2792,8 @@ Address: %4
         <translation>Вывод:</translation>
     </message>
     <message>
-        <source>Welcome to the PIVX RPC console.</source>
-        <translation>Добро пожаловать в окружение PIVX RPC.</translation>
+        <source>Welcome to the DogeCash RPC console.</source>
+        <translation>Добро пожаловать в окружение DogeCash RPC.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -2934,8 +2934,8 @@ Address: %4
         <translation>Нет адресов</translation>
     </message>
     <message>
-        <source>Scan the QR code or copy the address to receive PIV</source>
-        <translation>Сканируйте QR-код или скопируйте адрес для получения PIV</translation>
+        <source>Scan the QR code or copy the address to receive DOGEC</source>
+        <translation>Сканируйте QR-код или скопируйте адрес для получения DOGEC</translation>
     </message>
     <message>
         <source>Add Label</source>
@@ -3064,12 +3064,12 @@ Address: %4
         <translation>Сумма</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>DOGEC</source>
+        <translation>DOGEC</translation>
     </message>
     <message>
-        <source>Instead of sharing only a PIVX address, you can create a payment request, bundling up more information</source>
-        <translation>Вместо того, чтобы делиться только адресом PIVX, вы можете создать запрос на оплату, связывая больше информации</translation>
+        <source>Instead of sharing only a DogeCash address, you can create a payment request, bundling up more information</source>
+        <translation>Вместо того, чтобы делиться только адресом DogeCash, вы можете создать запрос на оплату, связывая больше информации</translation>
     </message>
     <message>
         <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
@@ -3159,8 +3159,8 @@ Address: %4
         <translation>Смена адреса</translation>
     </message>
     <message>
-        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" PIVX address</source>
-        <translation>Остаточная часть значения, полученного от значения входов минус выходов, идет на «изменение» адреса PIVX</translation>
+        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" DogeCash address</source>
+        <translation>Остаточная часть значения, полученного от значения входов минус выходов, идет на «изменение» адреса DogeCash</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -3190,8 +3190,8 @@ Address: %4
         <translation>рекомендуемые</translation>
     </message>
     <message>
-        <source>PIV/kilobyte</source>
-        <translation>PIV/килобайт</translation>
+        <source>DOGEC/kilobyte</source>
+        <translation>DOGEC/килобайт</translation>
     </message>
     <message>
         <source>0.00 KB</source>
@@ -3474,9 +3474,9 @@ Remember to write it down and store it safely, otherwise you might lose access t
         <translation>Инструмент BIP38</translation>
     </message>
     <message>
-        <source>Encrypt your PIVX addresses (key pair actually) using BIP38 encryption.
+        <source>Encrypt your DogeCash addresses (key pair actually) using BIP38 encryption.
 Using this mechanism you can share your keys without middle-man risk, only need to store your passphrase safely</source>
-        <translation>Зашифруйте свои адреса PIVX (фактически, пару ключей), используя шифрование BIP38.
+        <translation>Зашифруйте свои адреса DogeCash (фактически, пару ключей), используя шифрование BIP38.
 С помощью этого механизма вы можете делиться своими ключами без риска посредника, вам нужно только безопасно хранить вашу парольную фразу</translation>
     </message>
     <message>
@@ -3512,8 +3512,8 @@ Using this mechanism you can share your keys without middle-man risk, only need 
         <translation>Расшифровать ключ</translation>
     </message>
     <message>
-        <source>PIVX address</source>
-        <translation>Адрес PIVX</translation>
+        <source>DogeCash address</source>
+        <translation>Адрес DogeCash</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -3645,8 +3645,8 @@ Verify that you have installed a predetermined text editor.</source>
 Убедитесь, что вы установили заранее установленный текстовый редактор.</translation>
     </message>
     <message>
-        <source>Welcome to the PIVX RPC console.</source>
-        <translation>Добро пожаловать в окружение PIVX RPC.</translation>
+        <source>Welcome to the DogeCash RPC console.</source>
+        <translation>Добро пожаловать в окружение DogeCash RPC.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
@@ -3755,12 +3755,12 @@ Verify that you have installed a predetermined text editor.</source>
         <translation>Экспорт списка адресов</translation>
     </message>
     <message>
-        <source>PIVX_tx_csv_export(*.csv)</source>
-        <translation>PIVX_tx_csv_export(*.csv)</translation>
+        <source>DogeCash_tx_csv_export(*.csv)</source>
+        <translation>DogeCash_tx_csv_export(*.csv)</translation>
     </message>
     <message>
-        <source>PIVX_addresses_csv_export(*.csv)</source>
-        <translation>PIVX_addresses_csv_export(*.csv)</translation>
+        <source>DogeCash_addresses_csv_export(*.csv)</source>
+        <translation>DogeCash_addresses_csv_export(*.csv)</translation>
     </message>
     <message>
         <source>Please select a folder to export the csv file first.</source>
@@ -3829,49 +3829,49 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <translation>Вид</translation>
     </message>
     <message>
-        <source>1) What is PIVX?</source>
-        <translation>1) Что такое PIVX?</translation>
+        <source>1) What is DogeCash?</source>
+        <translation>1) Что такое DogeCash?</translation>
     </message>
     <message>
-        <source>2) Why are my PIV unspendable?</source>
-        <translation>2) Почему мои PIV невозможно потратить?</translation>
+        <source>2) Why are my DOGEC unspendable?</source>
+        <translation>2) Почему мои DOGEC невозможно потратить?</translation>
     </message>
     <message>
-        <source>https://PIVX.org/</source>
-        <translation>https://PIVX.org/</translation>
+        <source>https://DogeCash.org/</source>
+        <translation>https://DogeCash.org/</translation>
     </message>
     <message>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <source>What is PIVX?</source>
-        <translation>Что такое PIVX?</translation>
+        <source>What is DogeCash?</source>
+        <translation>Что такое DogeCash?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           PIVX is a form of digital online money using blockchain technology
+                           DogeCash is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
-                           zero fees.  PIVX incorporates market leading security &amp;
+                           zero fees.  DogeCash incorporates market leading security &amp;
                            privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(zPIV) and Zerocoin staking.
+                           to implement ZeroCoin(zDOGEC) and Zerocoin staking.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           PIVX utilizes a Proof of Stake (PoS) consensus system algorithm,
-                           allowing all owners of PIVX to participate in earning block rewards
+                           DogeCash utilizes a Proof of Stake (PoS) consensus system algorithm,
+                           allowing all owners of DogeCash to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
                            run Masternodes to create and vote on proposals.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-PIVX - это форма цифровых онлайн-денег, использующая технологию блокчейн,
+DogeCash - это форма цифровых онлайн-денег, использующая технологию блокчейн,
 которая может быть легко переведена по всему миру, мгновенно и с практически
-нулевой комиссией. PIVX включает в себя лидирующую на рынке защиту и
+нулевой комиссией. DogeCash включает в себя лидирующую на рынке защиту и
 «конфиденциальность», а также является первой PoS криптовалютой (Proof of Stake),
-в которой реализована система стекинга ZeroCoin (zPIV) и Zerocoin.
+в которой реализована система стекинга ZeroCoin (zDOGEC) и Zerocoin.
 &lt;/p&gt;&lt;p align="justify"&gt;
-PIVX использует консенсус PoS (Proof of Stake), позволяя всем владельцам PIVX участвовать в заработке вознаграждений
+DogeCash использует консенсус PoS (Proof of Stake), позволяя всем владельцам DogeCash участвовать в заработке вознаграждений
 при этом обеспечивая безопасность сети с помощью кошельков с полными узлами, а также позволяет
 запускать мастерноды для создания предложений и голосования по ним.
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -3881,25 +3881,25 @@ PIVX использует консенсус PoS (Proof of Stake), позвол�
         <translation>2</translation>
     </message>
     <message>
-        <source>Why are my PIV unspendable?</source>
-        <translation>Почему мои PIV невозможно потратить?</translation>
+        <source>Why are my DOGEC unspendable?</source>
+        <translation>Почему мои DOGEC невозможно потратить?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Newly received PIVX requires 6 confirmations on the network
+                           Newly received DogeCash requires 6 confirmations on the network
                            to become eligible for spending which can take ~6 minutes.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           Your PIVX wallet also needs to be completely synchronized
+                           Your DogeCash wallet also needs to be completely synchronized
                            to see and spend balances on the network.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-Недавно полученным PIVX требуется 6 подтверждений в сети,
+Недавно полученным DogeCash требуется 6 подтверждений в сети,
 чтобы получить право быть расходуемыми. Это может занять примерно 6 минут.
 &lt;/p&gt;&lt;p align="justify"&gt;
-Ваш кошелек PIVX также должен быть полностью синхронизирован,
+Ваш кошелек DogeCash также должен быть полностью синхронизирован,
 чтобы видеть баланс и расходовать его в сети.
  &lt;/p&gt;&lt;/body&gt;&lt;/html&gt; </translation>
     </message>
@@ -3908,8 +3908,8 @@ PIVX использует консенсус PoS (Proof of Stake), позвол�
         <translation>3</translation>
     </message>
     <message>
-        <source>How do I stake PIV?</source>
-        <translation>Как мне запустить стекинг PIV?</translation>
+        <source>How do I stake DOGEC?</source>
+        <translation>Как мне запустить стекинг DOGEC?</translation>
     </message>
     <message>
         <source>4</source>
@@ -3940,8 +3940,8 @@ PIVX использует консенсус PoS (Proof of Stake), позвол�
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           A masternode is a computer running a full node PIVX core wallet with a
-                           requirement of 10,000 PIV secured collateral to provide extra services
+                           A masternode is a computer running a full node DogeCash core wallet with a
+                           requirement of 5,000 DOGEC secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
                            &lt;/p&gt;&lt;p align="justify"&gt;
@@ -3963,17 +3963,17 @@ PIVX использует консенсус PoS (Proof of Stake), позвол�
                            Masternode Perks:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;Participate in PIVX Governance&lt;/li&gt;
+                           &lt;li&gt;Participate in DogeCash Governance&lt;/li&gt;
                            &lt;li&gt;Earn Masternode Rewards&lt;/li&gt;
                            &lt;li&gt;Commodity option for future sale&lt;/li&gt;
-                           &lt;li&gt;Help secure the PIVX network&lt;/li&gt;
+                           &lt;li&gt;Help secure the DogeCash network&lt;/li&gt;
                            &lt;/ul&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            Requirements:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;10,000 PIV per single Masternode instance&lt;/li&gt;
+                           &lt;li&gt;5,000 DOGEC per single Masternode instance&lt;/li&gt;
                            &lt;li&gt;Must be stored in a core wallet&lt;/li&gt;
                            &lt;li&gt;Need dedicated IP address&lt;/li&gt;
                            &lt;li&gt;Masternode wallet to remain online&lt;/li&gt;
@@ -3981,7 +3981,7 @@ PIVX использует консенсус PoS (Proof of Stake), позвол�
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
-Мастернода - это компьютер, на котором запущен базовый кошелек PIVX с полным узлом и для которого требуется обеспечение в 10000 PIV для обеспечения дополнительных услуг сети и, в свою очередь, регулярного получения части вознаграждения за блок. Эти услуги в себя включают:
+Мастернода - это компьютер, на котором запущен базовый кошелек DogeCash с полным узлом и для которого требуется обеспечение в 5000 DOGEC для обеспечения дополнительных услуг сети и, в свою очередь, регулярного получения части вознаграждения за блок. Эти услуги в себя включают:
 
 Мгновенные транзакции (SwiftX)
 Децентрализованное управление (Голосование по предложениям)
@@ -3993,14 +3993,14 @@ PIVX использует консенсус PoS (Proof of Stake), позвол�
 
 Привилегии мастерноды:
 
-Участие в управлении PIVX
+Участие в управлении DogeCash
 Получение вознаграждений за мастерноду
 Товарные опционы для будущей продажи
-Помощь в защите сети PIVX
+Помощь в защите сети DogeCash
 
 Требования:
 
-10 000 PIV для каждой мастерноды
+10 000 DOGEC для каждой мастерноды
 Должен храниться в основном кошельке
 Требуется выделенный IP-адрес
 Кошелек мастерноды должен оставаться в сети</translation>
@@ -4010,8 +4010,8 @@ PIVX использует консенсус PoS (Proof of Stake), позвол�
         <translation>Часто задаваемые вопросы</translation>
     </message>
     <message>
-        <source>3) How do I stake PIV?</source>
-        <translation>3) Как мне запустить стекинг PIV?</translation>
+        <source>3) How do I stake DOGEC?</source>
+        <translation>3) Как мне запустить стекинг DOGEC?</translation>
     </message>
     <message>
         <source>4) Where I should go if I need support?</source>
@@ -4133,8 +4133,8 @@ PIVX использует консенсус PoS (Proof of Stake), позвол�
         <translation>Невозможно открыть папку резервных копий</translation>
     </message>
     <message>
-        <source>Unable to open pivx.conf with default application</source>
-        <translation>Невозможно открыть pivx.conf с приложением по умолчанию</translation>
+        <source>Unable to open dogecash.conf with default application</source>
+        <translation>Невозможно открыть dogecash.conf с приложением по умолчанию</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4188,8 +4188,8 @@ PIVX использует консенсус PoS (Proof of Stake), позвол�
         <translation>Количество потоков проверки скрипта</translation>
     </message>
     <message>
-        <source>Start PIVX on system login</source>
-        <translation>Запускать PIVX при входе в систему</translation>
+        <source>Start DogeCash on system login</source>
+        <translation>Запускать DogeCash при входе в систему</translation>
     </message>
     <message>
         <source>Minimize to the tray instead of the taskbar</source>
@@ -4276,8 +4276,8 @@ Are you sure?
         <translation>Флажок</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other PIVX addresses after it matures.</source>
-        <translation>MultiSend позволяет автоматически отправлять до 100% ваших вознаграждений от стекинга или мастернод в список других адресов PIVX после его созревания.</translation>
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other DogeCash addresses after it matures.</source>
+        <translation>MultiSend позволяет автоматически отправлять до 100% ваших вознаграждений от стекинга или мастернод в список других адресов DogeCash после его созревания.</translation>
     </message>
     <message>
         <source>Active</source>
@@ -4403,8 +4403,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>Сообщение</translation>
     </message>
     <message>
-        <source>PIVX address or contact label</source>
-        <translation>PIVX адрес или лейбл контакта</translation>
+        <source>DogeCash address or contact label</source>
+        <translation>DogeCash адрес или лейбл контакта</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -4724,8 +4724,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>ЧаВо</translation>
     </message>
     <message>
-        <source>About PIVX</source>
-        <translation>О PIVX</translation>
+        <source>About DogeCash</source>
+        <translation>О DogeCash</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -4795,8 +4795,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>PIVX Core is shutting down...</source>
-        <translation>PIVX Core выключается...</translation>
+        <source>DogeCash Core is shutting down...</source>
+        <translation>DogeCash Core выключается...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4825,8 +4825,8 @@ Are you sure?
         <translation>Загрузка...</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>DogeCash Core</source>
+        <translation>DogeCash Core</translation>
     </message>
 </context>
 <context>
@@ -5547,25 +5547,25 @@ Select fewer inputs with coin control.</source>
     </message>
     <message>
         <source>Welcome to
-PIVX Core Wallet</source>
+DogeCash Core Wallet</source>
         <translation>Добро пожаловать
-в основной кошелек PIVX</translation>
+в основной кошелек DogeCash</translation>
     </message>
     <message>
-        <source>PIVX is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
-        <translation>PIVX - самая инновационная в мире технология на основе блокчейна Proof of Stake. Разработана командой опытных разработчиков и криптографов.</translation>
+        <source>DogeCash is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>DogeCash - самая инновационная в мире технология на основе блокчейна Proof of Stake. Разработана командой опытных разработчиков и криптографов.</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - PIVX believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Как говорится в нашем манифесте: конфиденциальность является не подлежащим обсуждению основным правом человека; это дает пользователям свободу делиться своими данными в любое время и с кем угодно, ведь PIVX верит в собственный суверенитет.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - DogeCash believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Как говорится в нашем манифесте: конфиденциальность является не подлежащим обсуждению основным правом человека; это дает пользователям свободу делиться своими данными в любое время и с кем угодно, ведь DogeCash верит в собственный суверенитет.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>The masternode network is PIVX's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
-        <translation>Сеть мастернод - это сеть второго уровня PIVX поверх блокчейна, которая позволяет нашему ДАО обеспечивать децентрализованное управление и казначейство.</translation>
+        <source>The masternode network is DogeCash's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
+        <translation>Сеть мастернод - это сеть второго уровня DogeCash поверх блокчейна, которая позволяет нашему ДАО обеспечивать децентрализованное управление и казначейство.</translation>
     </message>
     <message>
-        <source>How PIVX respects your privacy?</source>
-        <translation>Как PIVX уважает вашу конфиденциальность?</translation>
+        <source>How DogeCash respects your privacy?</source>
+        <translation>Как DogeCash уважает вашу конфиденциальность?</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -5577,7 +5577,7 @@ PIVX Core Wallet</source>
     </message>
 </context>
 <context>
-    <name>pivx-core</name>
+    <name>dogecash-core</name>
     <message>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation>(1 = сохранить tx метаданные, например, владельца учетной записи и информацию о запросе платежа, 2 = удалить tx метаданные)</translation>
@@ -5599,8 +5599,8 @@ PIVX Core Wallet</source>
         <translation>Привяжите к указанному адресу для прослушивания соединений JSON-RPC. Используйте [host]: обозначение порта для IPv6. Эта опция может быть указана несколько раз (по умолчанию: привязка ко всем интерфейсам)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. PIVX Core is probably already running.</source>
-        <translation>Не удается получить блокировку в каталоге данных %s. PIVX Core, вероятно, уже запущен.</translation>
+        <source>Cannot obtain a lock on data directory %s. DogeCash Core is probably already running.</source>
+        <translation>Не удается получить блокировку в каталоге данных %s. DogeCash Core, вероятно, уже запущен.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5763,8 +5763,8 @@ PIVX Core Wallet</source>
         <translation>Общая длина строки версии сети (%i) превышает максимальную длину (%i). Уменьшите количество или размер uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. PIVX Core is probably already running.</source>
-        <translation>Не удалось привязать к %s на этом компьютере. PIVX Core, вероятно, уже запущен.</translation>
+        <source>Unable to bind to %s on this computer. DogeCash Core is probably already running.</source>
+        <translation>Не удалось привязать к %s на этом компьютере. DogeCash Core, вероятно, уже запущен.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5779,8 +5779,8 @@ PIVX Core Wallet</source>
         <translation>Предупреждение: -paytxfee установлен очень высоко! Это комиссия за транзакцию, которую вы заплатите, если вы отправляете транзакцию.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong PIVX Core will not work properly.</source>
-        <translation>Внимание: проверьте правильность даты и времени вашего компьютера! Если ваши часы ошибочны, PIVX Core не будет работать должным образом.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
+        <translation>Внимание: проверьте правильность даты и времени вашего компьютера! Если ваши часы ошибочны, DogeCash Core не будет работать должным образом.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5879,8 +5879,8 @@ PIVX Core Wallet</source>
         <translation>Copyright (C) 2014-%i Разработчики Dash Core</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
-        <translation>Copyright (C) 2015-%i Разработчики PIVX Core</translation>
+        <source>Copyright (C) 2015-%i The DogeCash Core Developers</source>
+        <translation>Copyright (C) 2015-%i Разработчики DogeCash Core</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -5955,8 +5955,8 @@ PIVX Core Wallet</source>
         <translation>Ошибка при загрузке wallet.dat: Кошелек поврежден</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of PIVX Core</source>
-        <translation>Ошибка загрузки wallet.dat: Кошелек требует более новой версии PIVX Core</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of DogeCash Core</source>
+        <translation>Ошибка загрузки wallet.dat: Кошелек требует более новой версии DogeCash Core</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -6039,8 +6039,8 @@ PIVX Core Wallet</source>
         <translation>Информация</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. PIVX Core is shutting down.</source>
-        <translation>Инициализация проверки работоспособности не удалась. PIVX Core отключается.</translation>
+        <source>Initialization sanity check failed. DogeCash Core is shutting down.</source>
+        <translation>Инициализация проверки работоспособности не удалась. DogeCash Core отключается.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -6071,8 +6071,8 @@ PIVX Core Wallet</source>
         <translation>Недопустимая сетевая маска, указанная в -whitelist: '%s'</translation>
     </message>
     <message>
-        <source>Recalculating PIV supply...</source>
-        <translation>Перерасчет предложения PIV...</translation>
+        <source>Recalculating DOGEC supply...</source>
+        <translation>Перерасчет предложения DOGEC...</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -6111,8 +6111,8 @@ PIVX Core Wallet</source>
 </translation>
     </message>
     <message>
-        <source>Disable all PIVX specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Отключите все специфические функции PIVX (Masternodes, Zerocoin, SwiftX, Бюджетирование) (0-1, по умолчанию: %u)</translation>
+        <source>Disable all DogeCash specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
+        <translation>Отключите все специфические функции DogeCash (Masternodes, Zerocoin, SwiftX, Бюджетирование) (0-1, по умолчанию: %u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
@@ -6399,12 +6399,12 @@ PIVX Core Wallet</source>
         <translation>Комиссия (в %s/Кбайт) меньше этого значения считается с нулевой комиссией за создание транзакции (по умолчанию: %s)</translation>
     </message>
     <message>
-        <source>Minimum positive amount (in PIV) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
-        <translation>Минимальная положительная сумма (в PIV), разрешенная GUI и RPC для порога разделения стекинга (по умолчанию: %s)</translation>
+        <source>Minimum positive amount (in DOGEC) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
+        <translation>Минимальная положительная сумма (в DOGEC), разрешенная GUI и RPC для порога разделения стекинга (по умолчанию: %s)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong PIVX Core will not work properly.</source>
-        <translation>Пожалуйста, проверьте правильность даты и времени на вашем компьютере! Если ваши часы не точны, PIVX Core не будет работать должным образом.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.</source>
+        <translation>Пожалуйста, проверьте правильность даты и времени на вашем компьютере! Если ваши часы не точны, DogeCash Core не будет работать должным образом.</translation>
     </message>
     <message>
         <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
@@ -6689,8 +6689,8 @@ PIVX Core Wallet</source>
         <translation>Синхронизация спорков ...</translation>
     </message>
     <message>
-        <source>Syncing zPIV wallet...</source>
-        <translation>Синхронизация zPIV кошелька ...</translation>
+        <source>Syncing zDOGEC wallet...</source>
+        <translation>Синхронизация zDOGEC кошелька ...</translation>
     </message>
     <message>
         <source>The threshold value cannot be less than %s</source>
@@ -6821,8 +6821,8 @@ PIVX Core Wallet</source>
         <translation>Имя пользователя для соединений JSON-RPC</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zPIV</source>
-        <translation>Значение ниже наименьшего доступного номинала (= 1) zPiv</translation>
+        <source>Value is below the smallest available denomination (= 1) of zDOGEC</source>
+        <translation>Значение ниже наименьшего доступного номинала (= 1) zDogeC</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -6837,8 +6837,8 @@ PIVX Core Wallet</source>
         <translation>Кошелек %s находится за пределами каталога данных %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart PIVX Core to complete</source>
-        <translation>Кошелек необходимо переписать: перезапустите PIVX Core, чтобы завершить</translation>
+        <source>Wallet needed to be rewritten: restart DogeCash Core to complete</source>
+        <translation>Кошелек необходимо переписать: перезапустите DogeCash Core, чтобы завершить</translation>
     </message>
     <message>
         <source>Wallet options:</source>
@@ -6908,12 +6908,12 @@ PIVX Core Wallet</source>
         <translation>Отправить</translation>
     </message>
     <message>
-        <source>Send public coins (PIV)</source>
-        <translation>Отправить монеты (PIV)</translation>
+        <source>Send public coins (DOGEC)</source>
+        <translation>Отправить монеты (DOGEC)</translation>
     </message>
     <message>
-        <source>PIVX address or contact label</source>
-        <translation>PIVX адрес или лейбл контакта</translation>
+        <source>DogeCash address or contact label</source>
+        <translation>DogeCash адрес или лейбл контакта</translation>
     </message>
     <message>
         <source>Amount</source>

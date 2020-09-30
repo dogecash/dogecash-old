@@ -340,7 +340,7 @@ void CBlockPolicyEstimator::processTransaction(const CTxMemPoolEntry& entry, boo
         return;
     }
 
-    // Feerates are stored and reported as PIV-per-kb:
+    // Feerates are stored and reported as DOGEC-per-kb:
     CFeeRate feeRate(entry.GetFee(), entry.GetTxSize());
 
     mapMemPoolTxs[hash].blockHeight = txHeight;
@@ -372,7 +372,7 @@ void CBlockPolicyEstimator::processBlockTx(unsigned int nBlockHeight, const CTxM
         return;
     }
 
-    // Feerates are stored and reported as PIV-per-kb:
+    // Feerates are stored and reported as DOGEC-per-kb:
     CFeeRate feeRate(entry.GetFee(), entry.GetTxSize());
 
     feeStats.Record(blocksToConfirm, (double)feeRate.GetFeePerK());

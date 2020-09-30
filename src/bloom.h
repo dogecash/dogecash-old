@@ -1,5 +1,5 @@
 // Copyright (c) 2012-2014 The Bitcoin developers
-// Copyright (c) 2017-2019 The PIVX developers
+// Copyright (c) 2017-2019 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,7 +15,7 @@ class COutPoint;
 class CTransaction;
 class uint256;
 
-//! 20,000 items with fp rate < 0.1% or 10,000 items and <0.0001%
+//! 20,000 items with fp rate < 0.1% or 5,000 items and <0.0001%
 static const unsigned int MAX_BLOOM_FILTER_SIZE = 36000; // bytes
 static const unsigned int MAX_HASH_FUNCS = 50;
 

@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>org.pivx.pivxd</string>
+	<string>org.dogecash.dogecashd</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/usr/local/bin/pivxd</string>
+		<string>/usr/local/bin/dogecashd</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>

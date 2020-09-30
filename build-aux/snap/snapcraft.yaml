@@ -1,74 +1,74 @@
 # Copyright (c) 2018-2019 The Ion developers
-# Copyright (c) 2019 The PIVX developers
-name: pivx-core
+# Copyright (c) 2019 The DOGECASH developers
+name: dogecash-core
 base: core18
 version: 4.2.99
-summary:   PIVX (Private – Instant – Verified – Transaction)
+summary:   DOGECASH (Private – Instant – Verified – Transaction)
 description: |
-  PIVX is an MIT licensed,
+  DOGECASH is an MIT licensed,
   open source, blockchain-based cryptocurrency with
   ultra fast transactions, low fees, high network decentralization, and
   Zero Knowledge cryptography proofs for industry-leading
   transaction anonymity.
 
-  - [Download](https://pivx.org/wp-content/uploads/2018/10/PIVX-White.pdf) PIVX White Paper PDF
+  - [Download](https://dogecash.org/wp-content/uploads/2018/10/DOGECASH-White.pdf) DOGECASH White Paper PDF
 grade: devel
 confinement: strict
 apps:
   daemon:
-    command: pivxd
+    command: dogecashd
     plugs: [network, network-bind, home, removable-media]
-    desktop: pivxd.desktop
+    desktop: dogecashd.desktop
     environment:
       XDG_DATA_DIRS: $SNAP_USER_DATA:$SNAP/usr/share:$XDG_DATA_DIRS
       HOME: $SNAP_USER_COMMON
   daemon-testnet:
-    command: pivxd --testnet
+    command: dogecashd --testnet
     plugs: [network, network-bind, home, removable-media]
-    desktop: pivxd_testnet.desktop
+    desktop: dogecashd_testnet.desktop
     environment:
       XDG_DATA_DIRS: $SNAP_USER_DATA:$SNAP/usr/share:$XDG_DATA_DIRS
       HOME: $SNAP_USER_COMMON
   qt:
-    command: pivx-qt
+    command: dogecash-qt
     plugs: [network, network-bind, network-status, unity7, desktop, desktop-legacy, wayland, x11, mir, opengl, home, gsettings, removable-media, screen-inhibit-control, pulseaudio, media-hub]
-    desktop: pivx-qt.desktop
+    desktop: dogecash-qt.desktop
     environment:
       QT_XKB_CONFIG_ROOT: $SNAP_USER_DATA:$SNAP/usr/share:$QT_XKB_CONFIG_ROOT
       XDG_DATA_DIRS: $SNAP_USER_DATA:$SNAP/usr/share:$XDG_DATA_DIRS
       HOME: $SNAP_USER_COMMON
   qt-testnet:
-    command: pivx-qt --testnet
+    command: dogecash-qt --testnet
     plugs: [network, network-bind, network-status, unity7, desktop, desktop-legacy, wayland, x11, mir, opengl, home, gsettings, removable-media, screen-inhibit-control, pulseaudio, media-hub]
-    desktop: pivx-qt_testnet.desktop
+    desktop: dogecash-qt_testnet.desktop
     environment:
       QT_XKB_CONFIG_ROOT: $SNAP_USER_DATA:$SNAP/usr/share:$QT_XKB_CONFIG_ROOT
       XDG_DATA_DIRS: $SNAP_USER_DATA:$SNAP/usr/share:$XDG_DATA_DIRS
       HOME: $SNAP_USER_COMMON
   cli:
-    command: pivx-cli
+    command: dogecash-cli
     plugs: [network, network-bind, home, removable-media]
     environment:
       XDG_DATA_DIRS: $SNAP_USER_DATA:$SNAP/usr/share:$XDG_DATA_DIRS
       HOME: $SNAP_USER_COMMON
   cli-testnet:
-    command: pivx-cli --testnet
+    command: dogecash-cli --testnet
     plugs: [network, network-bind, home, removable-media]
     environment:
       XDG_DATA_DIRS: $SNAP_USER_DATA:$SNAP/usr/share:$XDG_DATA_DIRS
       HOME: $SNAP_USER_COMMON
   tx:
-    command: pivx-tx
+    command: dogecash-tx
     plugs: [home]
   test:
-    command: test_pivx
+    command: test_dogecash
     plugs: [home]
   testqt:
-    command: test_pivx-qt
+    command: test_dogecash-qt
     plugs: [home]
 parts:
-  pivx-core:
-    source: https://github.com/PIVX-Project/PIVX
+  dogecash-core:
+    source: https://github.com/DOGECASH-Project/DOGECASH
     source-type: git
     source-tag: master
     plugin: nil
@@ -80,9 +80,9 @@ parts:
       #    project is called ioncore because ion exists already as package. For anybody
       #    offering non official release and using own SNAP, this variable should be used
       #    default value is "false", to enable it, use your projects binary prefix
-      OVERRIDEBINPREFIX="pivx"
+      OVERRIDEBINPREFIX="dogecash"
       OVERRIDEDATADIR="false"
-      PARAMSDIR=".pivx-params"
+      PARAMSDIR=".dogecash-params"
       OVERRIDECONF="${OVERRIDEDATADIR}"
       COPYCONF=0    # copy example config into users data folder, 1 = enabled
       JOBS=4        # 0 means off and make will run without -j
@@ -193,8 +193,8 @@ parts:
       echo "INSTALLATION OF ${BINPREF}-${SNAPCRAFT_PROJECT_VERSION}" # run make install with a prefix where to install
       echo "+++++++++++++++++++++++++++++++++++++++++++++++"
       make install prefix=${SNAPCRAFT_PART_INSTALL}
-      install -m 0644 -D -T $SNAPCRAFT_PART_BUILD/src/qt/res/icons/bitcoin.png $SNAPCRAFT_PART_INSTALL/share/pixmaps/pivx.png
-      install -m 0644 -D -T $SNAPCRAFT_PART_BUILD/src/qt/res/icons/bitcoin_testnet.png $SNAPCRAFT_PART_INSTALL/share/pixmaps/pivx_testnet.png
+      install -m 0644 -D -T $SNAPCRAFT_PART_BUILD/src/qt/res/icons/bitcoin.png $SNAPCRAFT_PART_INSTALL/share/pixmaps/dogecash.png
+      install -m 0644 -D -T $SNAPCRAFT_PART_BUILD/src/qt/res/icons/bitcoin_testnet.png $SNAPCRAFT_PART_INSTALL/share/pixmaps/dogecash_testnet.png
       echo "-----------------------------------------------"
       echo "+++++++++++++++++++++++++++++++++++++++++++++++"
       echo "POST INSTALL SCRIPTS OF ${BINPREF}-${SNAPCRAFT_PROJECT_VERSION}" # run make install with a prefix where to install
@@ -228,7 +228,7 @@ parts:
       fi
       echo "-----------------------------------------------"
       echo "+++++++++++++++++++++++++++++++++++++++++++++++"
-      echo "CONFIG FILE" # create .pivx folder and copy example config - !!!warning!!!: do not copy as pivx.conf
+      echo "CONFIG FILE" # create .dogecash folder and copy example config - !!!warning!!!: do not copy as dogecash.conf
       echo "+++++++++++++++++++++++++++++++++++++++++++++++"
       mkdir -p ${SNAP_USER_COMMON}/.${DATADIR}
       if [ $COPYCONF = 1 ]; then

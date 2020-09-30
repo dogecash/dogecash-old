@@ -1,6 +1,6 @@
 package=rust
 $(package)_version=1.42.0
-$(package)_download_path=https://depends.pivx.org
+$(package)_download_path=https://depends.dogecash.org
 $(package)_file_name_linux=rust-$($(package)_version)-x86_64-unknown-linux-gnu.tar.gz
 $(package)_sha256_hash_linux=5fed7d705e215fc129c4ace8060b5dc1a47e88228ce0249d48f30d769fcb6fe3
 $(package)_file_name_darwin=rust-$($(package)_version)-x86_64-apple-darwin.tar.gz

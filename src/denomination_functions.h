@@ -1,11 +1,11 @@
-// Copyright (c) 2017-2020 The PIVX developers
+// Copyright (c) 2017-2020 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "reverse_iterate.h"
 #include "util.h"
 #include "libzerocoin/Denominations.h"
-#include "zpiv/zerocoin.h"
+#include "zdogec/zerocoin.h"
 #include <list>
 #include <map>
 std::vector<CMintMeta> SelectMintsFromList(const CAmount nValueTarget, CAmount& nSelectedValue,

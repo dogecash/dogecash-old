@@ -2,14 +2,14 @@
 
 [Desktop Entry]
 Encoding=UTF-8
-Name=PIVX Core Daemon SNAP
+Name=DOGECASH Core Daemon SNAP
 Comment=main
-GenericName=PIVX Digital Currency Daemon Client main network
-Exec=pivx-core.daemon %u
+GenericName=DOGECASH Digital Currency Daemon Client main network
+Exec=dogecash-core.daemon %u
 Terminal=true
 Type=Application
-Icon=${SNAP}/share/pixmaps/pivx.png
-MimeType=x-scheme-handler/piv;
+Icon=${SNAP}/share/pixmaps/dogecash.png
+MimeType=x-scheme-handler/dogec;
 Categories=X-Office;X-Finance;
-Keywords=internet;pivx;zpiv;core;wallet;daemon;main;snap;launchpad;crypto;digital;currency;coin;token;zerocoin;
+Keywords=internet;dogecash;zdogec;core;wallet;daemon;main;snap;launchpad;crypto;digital;currency;coin;token;zerocoin;
 Version=1.0

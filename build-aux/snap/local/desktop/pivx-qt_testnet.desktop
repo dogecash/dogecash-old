@@ -2,14 +2,14 @@
 
 [Desktop Entry]
 Encoding=UTF-8
-Name=PIVX Core
-Comment=PIVX Core QT test network
-GenericName=PIVX Digital Currency QT client testnet network
-Exec=pivx-core.qt-testnet %u
+Name=DOGECASH Core
+Comment=DOGECASH Core QT test network
+GenericName=DOGECASH Digital Currency QT client testnet network
+Exec=dogecash-core.qt-testnet %u
 Terminal=false
 Type=Application
-Icon=${SNAP}/share/pixmaps/pivx_testnet.png
-MimeType=x-scheme-handler/piv;
+Icon=${SNAP}/share/pixmaps/dogecash_testnet.png
+MimeType=x-scheme-handler/dogec;
 Categories=X-Office;X-Finance;
-Keywords=internet;pivx;zpiv;tpiv;core;wallet;qt;testnet;snap;launchpad;crypto;digital;currency;coin;token;zerocoin;
+Keywords=internet;dogecash;zdogec;tdogec;core;wallet;qt;testnet;snap;launchpad;crypto;digital;currency;coin;token;zerocoin;
 Version=1.0

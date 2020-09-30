@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The PIVX developers
+// Copyright (c) 2020 The DogeCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php.
 #include "legacy/validation_zerocoin_legacy.h"
@@ -6,7 +6,7 @@
 #include "consensus/zerocoin_verify.h"
 #include "libzerocoin/CoinSpend.h"
 #include "wallet/wallet.h"
-#include "zpivchain.h"
+#include "zdogecchain.h"
 
 bool AcceptToMemoryPoolZerocoin(const CTransaction& tx, CAmount& nValueIn, int chainHeight, CValidationState& state, const Consensus::Params& consensus)
 {
@@ -15,7 +15,7 @@ bool AcceptToMemoryPoolZerocoin(const CTransaction& tx, CAmount& nValueIn, int c
     //Check that txid is not already in the chain
     int nHeightTx = 0;
     if (IsTransactionInChain(tx.GetHash(), nHeightTx))
-        return state.Invalid(error("%s : zPIV spend tx %s already in block %d", __func__, tx.GetHash().GetHex(), nHeightTx),
+        return state.Invalid(error("%s : zDOGEC spend tx %s already in block %d", __func__, tx.GetHash().GetHex(), nHeightTx),
                              REJECT_DUPLICATE, "bad-txns-inputs-spent");
 
     //Check for double spending of serial #'s
@@ -26,7 +26,7 @@ bool AcceptToMemoryPoolZerocoin(const CTransaction& tx, CAmount& nValueIn, int c
 
         libzerocoin::ZerocoinParams* params = consensus.Zerocoin_Params(false);
         PublicCoinSpend publicSpend(params);
-        if (!ZPIVModule::ParseZerocoinPublicSpend(txIn, tx, state, publicSpend)){
+        if (!ZDOGECModule::ParseZerocoinPublicSpend(txIn, tx, state, publicSpend)){
             return false;
         }
         if (!ContextualCheckZerocoinSpend(tx, &publicSpend, chainHeight, UINT256_ZERO))
@@ -44,7 +44,7 @@ bool AcceptToMemoryPoolZerocoin(const CTransaction& tx, CAmount& nValueIn, int c
 bool DisconnectZerocoinTx(const CTransaction& tx, CAmount& nValueIn, CZerocoinDB* zerocoinDB)
 {
     /** UNDO ZEROCOIN DATABASING
-         * note we only undo zerocoin databasing in the following statement, value to and from PIVX
+         * note we only undo zerocoin databasing in the following statement, value to and from DogeCash
          * addresses should still be handled by the typical bitcoin based undo code
          * */
     if (tx.ContainsZerocoins()) {
@@ -58,7 +58,7 @@ bool DisconnectZerocoinTx(const CTransaction& tx, CAmount& nValueIn, CZerocoinDB
                     if (isPublicSpend) {
                         PublicCoinSpend publicSpend(params);
                         CValidationState state;
-                        if (!ZPIVModule::ParseZerocoinPublicSpend(txin, tx, state, publicSpend)) {
+                        if (!ZDOGECModule::ParseZerocoinPublicSpend(txin, tx, state, publicSpend)) {
                             return error("Failed to parse public spend");
                         }
                         serial = publicSpend.getCoinSerialNumber();

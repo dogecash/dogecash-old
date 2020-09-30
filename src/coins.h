@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2016-2020 The PIVX developers
+// Copyright (c) 2016-2020 The DogeCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -266,7 +266,7 @@ public:
     size_t DynamicMemoryUsage() const;
 
     /** 
-     * Amount of pivx coming in to a transaction
+     * Amount of dogecash coming in to a transaction
      * Note that lightweight clients may not know anything besides the hash of previous transactions,
      * so may not be able to calculate this.
      *
@@ -301,7 +301,7 @@ private:
 };
 
 //! Utility function to add all of a transaction's outputs to a cache.
-// PIVX: It assumes that overwrites are never possible due to BIP34 always in effect
+// DogeCash: It assumes that overwrites are never possible due to BIP34 always in effect
 void AddCoins(CCoinsViewCache& cache, const CTransaction& tx, int nHeight);
 
 //! Utility function to find any unspent output with a given txid.

@@ -2,10 +2,10 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-bin_PROGRAMS += qt/pivx-qt
+bin_PROGRAMS += qt/dogecash-qt
 EXTRA_LIBRARIES += qt/libbitcoinqt.a
 
-# pivx qt core #
+# dogecash qt core #
 include Makefile.qt_locale.include
 
 QT_FORMS_UI = \
@@ -18,54 +18,54 @@ QT_FORMS_UI = \
   qt/forms/openuridialog.ui \
   qt/forms/optionsdialog.ui \
   qt/forms/rpcconsole.ui \
-  qt/pivx/forms/loadingdialog.ui \
-  qt/pivx/forms/snackbar.ui \
-  qt/pivx/forms/navmenuwidget.ui \
-  qt/pivx/forms/lockunlock.ui \
-  qt/pivx/forms/expandablebutton.ui \
-  qt/pivx/forms/receivedialog.ui \
-  qt/pivx/forms/topbar.ui \
-  qt/pivx/forms/txrow.ui \
-  qt/pivx/forms/dashboardwidget.ui \
-  qt/pivx/forms/addresslabelrow.ui \
-  qt/pivx/forms/contactdropdownrow.ui \
-  qt/pivx/forms/mninfodialog.ui \
-  qt/pivx/forms/optionbutton.ui \
-  qt/pivx/forms/masternodewizarddialog.ui \
-  qt/pivx/forms/mnrow.ui \
-  qt/pivx/forms/masternodeswidget.ui \
-  qt/pivx/forms/myaddressrow.ui \
-  qt/pivx/forms/csrow.ui \
-  qt/pivx/forms/sendchangeaddressdialog.ui \
-  qt/pivx/forms/sendconfirmdialog.ui \
-  qt/pivx/forms/sendcustomfeedialog.ui \
-  qt/pivx/forms/sendchangeaddressdialog.ui \
-  qt/pivx/forms/sendmultirow.ui \
-  qt/pivx/forms/send.ui \
-  qt/pivx/forms/addnewaddressdialog.ui \
-  qt/pivx/forms/addnewcontactdialog.ui \
-  qt/pivx/forms/requestdialog.ui \
-  qt/pivx/forms/receivewidget.ui \
-  qt/pivx/forms/tooltipmenu.ui \
-  qt/pivx/forms/addresseswidget.ui \
-  qt/pivx/forms/defaultdialog.ui \
-  qt/pivx/forms/coldstakingwidget.ui \
-  qt/pivx/settings/forms/settingsbackupwallet.ui \
-  qt/pivx/settings/forms/settingsexportcsv.ui \
-  qt/pivx/settings/forms/settingsbittoolwidget.ui \
-  qt/pivx/settings/forms/settingsconsolewidget.ui \
-  qt/pivx/settings/forms/settingsdisplayoptionswidget.ui \
-  qt/pivx/settings/forms/settingsfaqwidget.ui \
-  qt/pivx/settings/forms/settingsinformationwidget.ui \
-  qt/pivx/settings/forms/settingsmainoptionswidget.ui \
-  qt/pivx/settings/forms/settingsmultisenddialog.ui \
-  qt/pivx/settings/forms/settingsmultisendwidget.ui \
-  qt/pivx/settings/forms/settingssignmessagewidgets.ui \
-  qt/pivx/settings/forms/settingswalletoptionswidget.ui \
-  qt/pivx/settings/forms/settingswalletrepairwidget.ui \
-  qt/pivx/settings/forms/settingswidget.ui \
-  qt/pivx/forms/welcomecontentwidget.ui \
-  qt/pivx/forms/splash.ui
+  qt/dogecash/forms/loadingdialog.ui \
+  qt/dogecash/forms/snackbar.ui \
+  qt/dogecash/forms/navmenuwidget.ui \
+  qt/dogecash/forms/lockunlock.ui \
+  qt/dogecash/forms/expandablebutton.ui \
+  qt/dogecash/forms/receivedialog.ui \
+  qt/dogecash/forms/topbar.ui \
+  qt/dogecash/forms/txrow.ui \
+  qt/dogecash/forms/dashboardwidget.ui \
+  qt/dogecash/forms/addresslabelrow.ui \
+  qt/dogecash/forms/contactdropdownrow.ui \
+  qt/dogecash/forms/mninfodialog.ui \
+  qt/dogecash/forms/optionbutton.ui \
+  qt/dogecash/forms/masternodewizarddialog.ui \
+  qt/dogecash/forms/mnrow.ui \
+  qt/dogecash/forms/masternodeswidget.ui \
+  qt/dogecash/forms/myaddressrow.ui \
+  qt/dogecash/forms/csrow.ui \
+  qt/dogecash/forms/sendchangeaddressdialog.ui \
+  qt/dogecash/forms/sendconfirmdialog.ui \
+  qt/dogecash/forms/sendcustomfeedialog.ui \
+  qt/dogecash/forms/sendchangeaddressdialog.ui \
+  qt/dogecash/forms/sendmultirow.ui \
+  qt/dogecash/forms/send.ui \
+  qt/dogecash/forms/addnewaddressdialog.ui \
+  qt/dogecash/forms/addnewcontactdialog.ui \
+  qt/dogecash/forms/requestdialog.ui \
+  qt/dogecash/forms/receivewidget.ui \
+  qt/dogecash/forms/tooltipmenu.ui \
+  qt/dogecash/forms/addresseswidget.ui \
+  qt/dogecash/forms/defaultdialog.ui \
+  qt/dogecash/forms/coldstakingwidget.ui \
+  qt/dogecash/settings/forms/settingsbackupwallet.ui \
+  qt/dogecash/settings/forms/settingsexportcsv.ui \
+  qt/dogecash/settings/forms/settingsbittoolwidget.ui \
+  qt/dogecash/settings/forms/settingsconsolewidget.ui \
+  qt/dogecash/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/dogecash/settings/forms/settingsfaqwidget.ui \
+  qt/dogecash/settings/forms/settingsinformationwidget.ui \
+  qt/dogecash/settings/forms/settingsmainoptionswidget.ui \
+  qt/dogecash/settings/forms/settingsmultisenddialog.ui \
+  qt/dogecash/settings/forms/settingsmultisendwidget.ui \
+  qt/dogecash/settings/forms/settingssignmessagewidgets.ui \
+  qt/dogecash/settings/forms/settingswalletoptionswidget.ui \
+  qt/dogecash/settings/forms/settingswalletrepairwidget.ui \
+  qt/dogecash/settings/forms/settingswidget.ui \
+  qt/dogecash/forms/welcomecontentwidget.ui \
+  qt/dogecash/forms/splash.ui
 
 QT_MOC_CPP = \
   qt/moc_addressbookpage.cpp \
@@ -73,7 +73,7 @@ QT_MOC_CPP = \
   qt/moc_askpassphrasedialog.cpp \
   qt/moc_bantablemodel.cpp \
   qt/moc_bitcoinaddressvalidator.cpp \
-  qt/pivx/moc_pivxgui.cpp \
+  qt/dogecash/moc_dogecashgui.cpp \
   qt/moc_bitcoinunits.cpp \
   qt/moc_clientmodel.cpp \
   qt/moc_coincontroldialog.cpp \
@@ -99,76 +99,76 @@ QT_MOC_CPP = \
   qt/moc_transactiontablemodel.cpp \
   qt/moc_utilitydialog.cpp \
   qt/moc_walletmodel.cpp \
-  qt/pivx/moc_loadingdialog.cpp \
-  qt/pivx/moc_pwidget.cpp \
-  qt/pivx/moc_focuseddialog.cpp \
-  qt/pivx/moc_snackbar.cpp \
-  qt/pivx/moc_navmenuwidget.cpp \
-  qt/pivx/moc_lockunlock.cpp \
-  qt/pivx/moc_expandablebutton.cpp \
-  qt/pivx/moc_furabstractlistitemdelegate.cpp \
-  qt/pivx/moc_receivedialog.cpp \
-  qt/pivx/moc_pfborderimage.cpp \
-  qt/pivx/moc_topbar.cpp \
-  qt/pivx/moc_txrow.cpp \
-  qt/pivx/moc_dashboardwidget.cpp \
-  qt/pivx/moc_addresslabelrow.cpp \
-  qt/pivx/moc_contactdropdownrow.cpp \
-  qt/pivx/moc_mninfodialog.cpp \
-  qt/pivx/moc_optionbutton.cpp \
-  qt/pivx/moc_coldstakingmodel.cpp \
-  qt/pivx/moc_mnmodel.cpp \
-  qt/pivx/moc_masternodewizarddialog.cpp \
-  qt/pivx/moc_mnrow.cpp \
-  qt/pivx/moc_masternodeswidget.cpp \
-  qt/pivx/moc_myaddressrow.cpp \
-  qt/pivx/moc_csrow.cpp \
-  qt/pivx/moc_contactsdropdown.cpp \
-  qt/pivx/moc_sendchangeaddressdialog.cpp \
-  qt/pivx/moc_sendconfirmdialog.cpp \
-  qt/pivx/moc_sendcustomfeedialog.cpp \
-  qt/pivx/moc_sendchangeaddressdialog.cpp \
-  qt/pivx/moc_sendmultirow.cpp \
-  qt/pivx/moc_send.cpp \
-  qt/pivx/moc_addnewaddressdialog.cpp \
-  qt/pivx/moc_addnewcontactdialog.cpp \
-  qt/pivx/moc_requestdialog.cpp \
-  qt/pivx/moc_receivewidget.cpp \
-  qt/pivx/moc_tooltipmenu.cpp \
-  qt/pivx/moc_addresseswidget.cpp \
-  qt/pivx/moc_defaultdialog.cpp \
-  qt/pivx/moc_coldstakingwidget.cpp \
-  qt/pivx/settings/moc_settingsbackupwallet.cpp \
-  qt/pivx/settings/moc_settingsexportcsv.cpp \
-  qt/pivx/settings/moc_settingsbittoolwidget.cpp \
-  qt/pivx/settings/moc_settingsconsolewidget.cpp \
-  qt/pivx/settings/moc_settingsdisplayoptionswidget.cpp \
-  qt/pivx/settings/moc_settingsfaqwidget.cpp \
-  qt/pivx/settings/moc_settingsinformationwidget.cpp \
-  qt/pivx/settings/moc_settingsmainoptionswidget.cpp \
-  qt/pivx/settings/moc_settingsmultisenddialog.cpp \
-  qt/pivx/settings/moc_settingsmultisendwidget.cpp \
-  qt/pivx/settings/moc_settingssignmessagewidgets.cpp \
-  qt/pivx/settings/moc_settingswalletoptionswidget.cpp \
-  qt/pivx/settings/moc_settingswalletrepairwidget.cpp \
-  qt/pivx/settings/moc_settingswidget.cpp \
-  qt/pivx/moc_welcomecontentwidget.cpp \
-  qt/pivx/moc_splash.cpp
+  qt/dogecash/moc_loadingdialog.cpp \
+  qt/dogecash/moc_pwidget.cpp \
+  qt/dogecash/moc_focuseddialog.cpp \
+  qt/dogecash/moc_snackbar.cpp \
+  qt/dogecash/moc_navmenuwidget.cpp \
+  qt/dogecash/moc_lockunlock.cpp \
+  qt/dogecash/moc_expandablebutton.cpp \
+  qt/dogecash/moc_furabstractlistitemdelegate.cpp \
+  qt/dogecash/moc_receivedialog.cpp \
+  qt/dogecash/moc_pfborderimage.cpp \
+  qt/dogecash/moc_topbar.cpp \
+  qt/dogecash/moc_txrow.cpp \
+  qt/dogecash/moc_dashboardwidget.cpp \
+  qt/dogecash/moc_addresslabelrow.cpp \
+  qt/dogecash/moc_contactdropdownrow.cpp \
+  qt/dogecash/moc_mninfodialog.cpp \
+  qt/dogecash/moc_optionbutton.cpp \
+  qt/dogecash/moc_coldstakingmodel.cpp \
+  qt/dogecash/moc_mnmodel.cpp \
+  qt/dogecash/moc_masternodewizarddialog.cpp \
+  qt/dogecash/moc_mnrow.cpp \
+  qt/dogecash/moc_masternodeswidget.cpp \
+  qt/dogecash/moc_myaddressrow.cpp \
+  qt/dogecash/moc_csrow.cpp \
+  qt/dogecash/moc_contactsdropdown.cpp \
+  qt/dogecash/moc_sendchangeaddressdialog.cpp \
+  qt/dogecash/moc_sendconfirmdialog.cpp \
+  qt/dogecash/moc_sendcustomfeedialog.cpp \
+  qt/dogecash/moc_sendchangeaddressdialog.cpp \
+  qt/dogecash/moc_sendmultirow.cpp \
+  qt/dogecash/moc_send.cpp \
+  qt/dogecash/moc_addnewaddressdialog.cpp \
+  qt/dogecash/moc_addnewcontactdialog.cpp \
+  qt/dogecash/moc_requestdialog.cpp \
+  qt/dogecash/moc_receivewidget.cpp \
+  qt/dogecash/moc_tooltipmenu.cpp \
+  qt/dogecash/moc_addresseswidget.cpp \
+  qt/dogecash/moc_defaultdialog.cpp \
+  qt/dogecash/moc_coldstakingwidget.cpp \
+  qt/dogecash/settings/moc_settingsbackupwallet.cpp \
+  qt/dogecash/settings/moc_settingsexportcsv.cpp \
+  qt/dogecash/settings/moc_settingsbittoolwidget.cpp \
+  qt/dogecash/settings/moc_settingsconsolewidget.cpp \
+  qt/dogecash/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/dogecash/settings/moc_settingsfaqwidget.cpp \
+  qt/dogecash/settings/moc_settingsinformationwidget.cpp \
+  qt/dogecash/settings/moc_settingsmainoptionswidget.cpp \
+  qt/dogecash/settings/moc_settingsmultisenddialog.cpp \
+  qt/dogecash/settings/moc_settingsmultisendwidget.cpp \
+  qt/dogecash/settings/moc_settingssignmessagewidgets.cpp \
+  qt/dogecash/settings/moc_settingswalletoptionswidget.cpp \
+  qt/dogecash/settings/moc_settingswalletrepairwidget.cpp \
+  qt/dogecash/settings/moc_settingswidget.cpp \
+  qt/dogecash/moc_welcomecontentwidget.cpp \
+  qt/dogecash/moc_splash.cpp
 
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
   qt/macnotificationhandler.mm
 
 QT_MOC = \
-  qt/pivx.moc \
+  qt/dogecash.moc \
   qt/intro.moc \
   qt/rpcconsole.moc \
-  qt/pivx/settings/moc_settingsconsolewidget.cpp
+  qt/dogecash/settings/moc_settingsconsolewidget.cpp
 
-QT_QRC_CPP = qt/qrc_pivx.cpp
-QT_QRC = qt/pivx.qrc
-QT_QRC_LOCALE_CPP = qt/qrc_pivx_locale.cpp
-QT_QRC_LOCALE = qt/pivx_locale.qrc
+QT_QRC_CPP = qt/qrc_dogecash.cpp
+QT_QRC = qt/dogecash.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_dogecash_locale.cpp
+QT_QRC_LOCALE = qt/dogecash_locale.qrc
 
 PROTOBUF_CC = qt/paymentrequest.pb.cc
 PROTOBUF_H = qt/paymentrequest.pb.h
@@ -180,7 +180,7 @@ BITCOIN_QT_H = \
   qt/askpassphrasedialog.h \
   qt/bantablemodel.h \
   qt/bitcoinaddressvalidator.h \
-  qt/pivx/pivxgui.h \
+  qt/dogecash/dogecashgui.h \
   qt/bitcoinunits.h \
   qt/clientmodel.h \
   qt/coincontroldialog.h \
@@ -212,69 +212,69 @@ BITCOIN_QT_H = \
   qt/utilitydialog.h \
   qt/walletmodel.h \
   qt/walletmodeltransaction.h \
-  qt/pivx/prunnable.h \
-  qt/pivx/pfborderimage.h \
-  qt/pivx/loadingdialog.h \
+  qt/dogecash/prunnable.h \
+  qt/dogecash/pfborderimage.h \
+  qt/dogecash/loadingdialog.h \
   qt/winshutdownmonitor.h \
-  qt/pivx/pwidget.h \
-  qt/pivx/focuseddialog.h \
-  qt/pivx/guitransactionsutils.h \
-  qt/pivx/snackbar.h \
-  qt/pivx/navmenuwidget.h \
-  qt/pivx/lockunlock.h \
-  qt/pivx/receivedialog.h \
-  qt/pivx/furlistrow.h \
-  qt/pivx/furabstractlistitemdelegate.h \
-  qt/pivx/txviewholder.h \
-  qt/pivx/qtutils.h \
-  qt/pivx/expandablebutton.h \
-  qt/pivx/topbar.h \
-  qt/pivx/txrow.h \
-  qt/pivx/addressholder.h \
-  qt/pivx/addressfilterproxymodel.h \
-  qt/pivx/dashboardwidget.h \
-  qt/pivx/addresslabelrow.h \
-  qt/pivx/contactdropdownrow.h \
-  qt/pivx/mninfodialog.h \
-  qt/pivx/optionbutton.h \
-  qt/pivx/coldstakingmodel.h \
-  qt/pivx/mnmodel.h \
-  qt/pivx/masternodewizarddialog.h \
-  qt/pivx/mnrow.h \
-  qt/pivx/masternodeswidget.h \
-  qt/pivx/myaddressrow.h \
-  qt/pivx/csrow.h \
-  qt/pivx/contactsdropdown.h \
-  qt/pivx/sendchangeaddressdialog.h \
-  qt/pivx/sendconfirmdialog.h \
-  qt/pivx/sendcustomfeedialog.h \
-  qt/pivx/sendchangeaddressdialog.h \
-  qt/pivx/sendmultirow.h \
-  qt/pivx/send.h \
-  qt/pivx/addnewaddressdialog.h \
-  qt/pivx/addnewcontactdialog.h \
-  qt/pivx/requestdialog.h \
-  qt/pivx/receivewidget.h \
-  qt/pivx/tooltipmenu.h \
-  qt/pivx/addresseswidget.h \
-  qt/pivx/defaultdialog.h \
-  qt/pivx/coldstakingwidget.h \
-  qt/pivx/settings/settingsbackupwallet.h \
-  qt/pivx/settings/settingsexportcsv.h \
-  qt/pivx/settings/settingsbittoolwidget.h \
-  qt/pivx/settings/settingsconsolewidget.h \
-  qt/pivx/settings/settingsdisplayoptionswidget.h \
-  qt/pivx/settings/settingsfaqwidget.h \
-  qt/pivx/settings/settingsinformationwidget.h \
-  qt/pivx/settings/settingsmainoptionswidget.h \
-  qt/pivx/settings/settingsmultisenddialog.h \
-  qt/pivx/settings/settingsmultisendwidget.h \
-  qt/pivx/settings/settingssignmessagewidgets.h \
-  qt/pivx/settings/settingswalletoptionswidget.h \
-  qt/pivx/settings/settingswalletrepairwidget.h \
-  qt/pivx/settings/settingswidget.h \
-  qt/pivx/welcomecontentwidget.h \
-  qt/pivx/splash.h
+  qt/dogecash/pwidget.h \
+  qt/dogecash/focuseddialog.h \
+  qt/dogecash/guitransactionsutils.h \
+  qt/dogecash/snackbar.h \
+  qt/dogecash/navmenuwidget.h \
+  qt/dogecash/lockunlock.h \
+  qt/dogecash/receivedialog.h \
+  qt/dogecash/furlistrow.h \
+  qt/dogecash/furabstractlistitemdelegate.h \
+  qt/dogecash/txviewholder.h \
+  qt/dogecash/qtutils.h \
+  qt/dogecash/expandablebutton.h \
+  qt/dogecash/topbar.h \
+  qt/dogecash/txrow.h \
+  qt/dogecash/addressholder.h \
+  qt/dogecash/addressfilterproxymodel.h \
+  qt/dogecash/dashboardwidget.h \
+  qt/dogecash/addresslabelrow.h \
+  qt/dogecash/contactdropdownrow.h \
+  qt/dogecash/mninfodialog.h \
+  qt/dogecash/optionbutton.h \
+  qt/dogecash/coldstakingmodel.h \
+  qt/dogecash/mnmodel.h \
+  qt/dogecash/masternodewizarddialog.h \
+  qt/dogecash/mnrow.h \
+  qt/dogecash/masternodeswidget.h \
+  qt/dogecash/myaddressrow.h \
+  qt/dogecash/csrow.h \
+  qt/dogecash/contactsdropdown.h \
+  qt/dogecash/sendchangeaddressdialog.h \
+  qt/dogecash/sendconfirmdialog.h \
+  qt/dogecash/sendcustomfeedialog.h \
+  qt/dogecash/sendchangeaddressdialog.h \
+  qt/dogecash/sendmultirow.h \
+  qt/dogecash/send.h \
+  qt/dogecash/addnewaddressdialog.h \
+  qt/dogecash/addnewcontactdialog.h \
+  qt/dogecash/requestdialog.h \
+  qt/dogecash/receivewidget.h \
+  qt/dogecash/tooltipmenu.h \
+  qt/dogecash/addresseswidget.h \
+  qt/dogecash/defaultdialog.h \
+  qt/dogecash/coldstakingwidget.h \
+  qt/dogecash/settings/settingsbackupwallet.h \
+  qt/dogecash/settings/settingsexportcsv.h \
+  qt/dogecash/settings/settingsbittoolwidget.h \
+  qt/dogecash/settings/settingsconsolewidget.h \
+  qt/dogecash/settings/settingsdisplayoptionswidget.h \
+  qt/dogecash/settings/settingsfaqwidget.h \
+  qt/dogecash/settings/settingsinformationwidget.h \
+  qt/dogecash/settings/settingsmainoptionswidget.h \
+  qt/dogecash/settings/settingsmultisenddialog.h \
+  qt/dogecash/settings/settingsmultisendwidget.h \
+  qt/dogecash/settings/settingssignmessagewidgets.h \
+  qt/dogecash/settings/settingswalletoptionswidget.h \
+  qt/dogecash/settings/settingswalletrepairwidget.h \
+  qt/dogecash/settings/settingswidget.h \
+  qt/dogecash/welcomecontentwidget.h \
+  qt/dogecash/splash.h
 
 RES_ICONS = \
   qt/res/icons/bitcoin.ico \
@@ -289,218 +289,218 @@ RES_ICONS = \
   qt/res/icons/ic-transaction-mint.svg \
   qt/res/icons/ic-transaction-sent.svg \
   qt/res/icons/ic-transaction-staked.svg \
-  qt/pivx/res/img/bg-dashboard-banner.png \
-  qt/pivx/res/img/bg-multi-number-dark.svg \
-  qt/pivx/res/img/ic-check-locked.svg \
-  qt/pivx/res/img/ic-nav-address.svg \
-  qt/pivx/res/img/ic-update.svg \
-  qt/pivx/res/img/bg-multi-number.svg \
-  qt/pivx/res/img/ic-check-mint-off.svg \
-  qt/pivx/res/img/ic-nav-cold-staking.svg \
-  qt/pivx/res/img/ic-nav-cold-staking-active.svg \
-  qt/pivx/res/img/ic-nav-dashboard-active.svg \
-  qt/pivx/res/img/ic-wallet-status-locked.svg \
-  qt/pivx/res/img/bg-splash.svg \
-  qt/pivx/res/img/bg-splash.png \
-  qt/pivx/res/img/ic-check-mint.svg \
-  qt/pivx/res/img/ic-nav-dashboard-hover.svg \
-  qt/pivx/res/img/ic-wallet-status-staking.svg \
-  qt/pivx/res/img/ic-check-peers-off.svg \
-  qt/pivx/res/img/ic-nav-dashboard.svg \
-  qt/pivx/res/img/ic-wallet-status-unlocked.svg \
-  qt/pivx/res/img/ic-check-peers.svg \
-  qt/pivx/res/img/ic-nav-master-active.svg \
-  qt/pivx/res/img/ic-watch-password-white.svg \
-  qt/pivx/res/img/bg-welcome-container.jpg \
-  qt/pivx/res/img/bg-welcome-container.png \
-  qt/pivx/res/img/bg-welcome-container.svg \
-  qt/pivx/res/img/bg-welcome-container@2x.png \
-  qt/pivx/res/img/bg-welcome-container@3x.png \
-  qt/pivx/res/img/ic-check-staking-off.svg \
-  qt/pivx/res/img/ic-nav-master-hover.svg \
-  qt/pivx/res/img/ic-watch-password.svg \
-  qt/pivx/res/img/bg-welcome.jpg \
-  qt/pivx/res/img/bg-welcome.svg \
-  qt/pivx/res/img/bg-welcome@2x.jpg \
-  qt/pivx/res/img/bg-welcome@3x.jpg \
-  qt/pivx/res/img/bg-welcome.png \
-  qt/pivx/res/img/ic-check-staking.svg \
-  qt/pivx/res/img/ic-nav-master.svg \
-  qt/pivx/res/img/img-dashboard-banner.jpg \
-  qt/pivx/res/img/btn-radio-active.svg \
-  qt/pivx/res/img/ic-check-sync-off.svg \
-  qt/pivx/res/img/ic-nav-privacy-active.svg \
-  qt/pivx/res/img/img-empty-contacts.svg \
-  qt/pivx/res/img/btn-radio-off.svg \
-  qt/pivx/res/img/ic-check-sync.png \
-  qt/pivx/res/img/ic-nav-privacy-hover.svg \
-  qt/pivx/res/img/img-empty-dark-contacts.svg \
-  qt/pivx/res/img/ic-contact-arrow-down.svg \
-  qt/pivx/res/img/ic-contact-arrow-down-white.svg \
-  qt/pivx/res/img/ic-check-sync.svg \
-  qt/pivx/res/img/ic-check-faq.svg \
-  qt/pivx/res/img/ic-nav-privacy.svg \
-  qt/pivx/res/img/img-empty-dark-error.svg \
-  qt/pivx/res/img/ic-add-label.svg \
-  qt/pivx/res/img/ic-pending.svg \
-  qt/pivx/res/img/ic-check-theme-dark.svg \
-  qt/pivx/res/img/ic-nav-receive-active.svg \
-  qt/pivx/res/img/img-empty-dark-masternode.svg \
-  qt/pivx/res/img/ic-add-liliac.svg \
-  qt/pivx/res/img/ic-check-theme-light.svg \
-  qt/pivx/res/img/ic-nav-receive-hover.svg \
-  qt/pivx/res/img/img-empty-dark-multisend.svg \
-  qt/pivx/res/img/ic-add-purple.svg \
-  qt/pivx/res/img/ic-check-white.svg \
-  qt/pivx/res/img/ic-nav-receive.svg \
-  qt/pivx/res/img/img-empty-dark-peers.svg \
-  qt/pivx/res/img/ic-add.svg \
-  qt/pivx/res/img/ic-check.svg \
-  qt/pivx/res/img/ic-nav-send-active.svg \
-  qt/pivx/res/img/img-empty-dark-staking-off.svg \
-  qt/pivx/res/img/img-empty-dark-staking-on.svg \
-  qt/pivx/res/img/ic-address-book-grey.svg \
-  qt/pivx/res/img/ic-chevron-left.svg \
-  qt/pivx/res/img/ic-nav-send-hover.svg \
-  qt/pivx/res/img/img-empty-dark-transactions.svg \
-  qt/pivx/res/img/ic-address-book-white.svg \
-  qt/pivx/res/img/ic-chevron-right.svg \
-  qt/pivx/res/img/ic-nav-send.svg \
-  qt/pivx/res/img/img-empty-error.svg \
-  qt/pivx/res/img/ic-address-book.svg \
-  qt/pivx/res/img/ic-clear-liliac.svg \
-  qt/pivx/res/img/ic-nav-settings-active.svg \
-  qt/pivx/res/img/img-empty-masternode.svg \
-  qt/pivx/res/img/ic-address-send-white.svg \
-  qt/pivx/res/img/ic-clear-purple.svg \
-  qt/pivx/res/img/ic-nav-settings-hover.svg \
-  qt/pivx/res/img/img-empty-multisend.svg \
-  qt/pivx/res/img/ic-address-send.svg \
-  qt/pivx/res/img/ic-close-white.svg \
-  qt/pivx/res/img/ic-nav-settings.svg \
-  qt/pivx/res/img/img-empty-peers.svg \
-  qt/pivx/res/img/img-empty-privacy.svg \
-  qt/pivx/res/img/img-empty-privacy-dark.svg \
-  qt/pivx/res/img/ic-arrow-drop-down-white.svg \
-  qt/pivx/res/img/ic-close.svg \
-  qt/pivx/res/img/ic-radio-liliac-on.svg \
-  qt/pivx/res/img/img-empty-staking-off.svg \
-  qt/pivx/res/img/ic-arrow-drop-down.svg \
-  qt/pivx/res/img/ic-coin-piv.svg \
-  qt/pivx/res/img/ic-receive-off.svg \
-  qt/pivx/res/img/img-empty-staking-on.svg \
-  qt/pivx/res/img/ic-arrow-drop-up-white.svg \
-  qt/pivx/res/img/ic-coin-zpiv.png \
-  qt/pivx/res/img/ic-receive-on.svg \
-  qt/pivx/res/img/img-empty-transactions.svg \
-  qt/pivx/res/img/ic-arrow-drop-up.svg \
-  qt/pivx/res/img/ic-coin-zpiv.svg \
-  qt/pivx/res/img/ic-received.svg \
-  qt/pivx/res/img/img-logo-pivx.png \
-  qt/pivx/res/img/ic-arrow-drop-white-down.svg \
-  qt/pivx/res/img/ic-combo-box.svg \
-  qt/pivx/res/img/ic-send.svg \
-  qt/pivx/res/img/img-logo-pivx@2x.png \
-  qt/pivx/res/img/ic-arrow-purple-down.svg \
-  qt/pivx/res/img/ic-connect.svg \
-  qt/pivx/res/img/ic-submenu-lock.svg \
-  qt/pivx/res/img/img-logo-pivx@3x.png \
-  qt/pivx/res/img/img-logo-pivx.svg \
-  qt/pivx/res/img/ic-arrow-right-white.svg \
-  qt/pivx/res/img/ic-arrow-left-white.svg \
-  qt/pivx/res/img/ic-arrow-left.svg \
-  qt/pivx/res/img/ic-copy-liliac.svg \
-  qt/pivx/res/img/ic-submenu-staking.svg \
-  qt/pivx/res/img/img-nav-logo-pivx.png \
-  qt/pivx/res/img/ic-arrow-right.svg \
-  qt/pivx/res/img/ic-copy.svg \
-  qt/pivx/res/img/ic-copy-big.svg \
-  qt/pivx/res/img/ic-copy-big-white.svg \
-  qt/pivx/res/img/ic-submenu-unlock.svg \
-  qt/pivx/res/img/img-nav-logo.png \
-  qt/pivx/res/img/ic-arrow-white-left.svg \
-  qt/pivx/res/img/ic-exit.svg \
-  qt/pivx/res/img/ic-switch-liliac-on.svg \
-  qt/pivx/res/img/img-nav-logo.svg \
-  qt/pivx/res/img/ic-arrow-white-right.svg \
-  qt/pivx/res/img/ic-expand.svg \
-  qt/pivx/res/img/ic-switch-off.svg \
-  qt/pivx/res/img/img-qr-test-big.png \
-  qt/pivx/res/img/ic-check-active.svg \
-  qt/pivx/res/img/ic-folder.svg \
-  qt/pivx/res/img/ic-switch-on.svg \
-  qt/pivx/res/img/img-qr-test.png \
-  qt/pivx/res/img/ic-check-box.svg \
-  qt/pivx/res/img/ic-check-box-dark-active.svg \
-  qt/pivx/res/img/ic-check-box-indeterminate.svg \
-  qt/pivx/res/img/ic-check-box-liliac-indeterminate.svg \
-  qt/pivx/res/img/ic-label-liliac.svg \
-  qt/pivx/res/img/ic-transaction-warning.svg \
-  qt/pivx/res/img/ic-transaction-mint.svg \
-  qt/pivx/res/img/ic-transaction-mint-inactive.svg \
-  qt/pivx/res/img/ic-check-cold-staking.svg \
-  qt/pivx/res/img/ic-check-cold-staking-off.svg \
-  qt/pivx/res/img/ic-check-cold-staking-enabled.svg \
-  qt/pivx/res/img/dark/ic-transaction-cs-contract.svg \
-  qt/pivx/res/img/dark/ic-transaction-cs-contract-inactive.svg \
-  qt/pivx/res/img/img-qr.svg \
-  qt/pivx/res/img/ic-check-connect-off.svg \
-  qt/pivx/res/img/ic-check-tor-off.svg \
-  qt/pivx/res/img/ic-check-tor.svg \
-  qt/pivx/res/img/ic-label.svg \
-  qt/pivx/res/img/ic-transaction-received.svg \
-  qt/pivx/res/img/dark/ic-transaction-received.svg \
-  qt/pivx/res/img/dark/ic-transaction-warning.svg \
-  qt/pivx/res/img/dark/ic-transaction-mint.svg \
-  qt/pivx/res/img/dark/ic-transaction-mint-inactive.svg \
-  qt/pivx/res/img/ic-transaction-received-inactive.svg \
-  qt/pivx/res/img/dark/ic-transaction-received-inactive.svg \
-  qt/pivx/res/img/img-welcome-step1.png \
-  qt/pivx/res/img/ic-check-connect.svg \
-  qt/pivx/res/img/ic-menu-hover.svg \
-  qt/pivx/res/img/ic-transaction-sent.svg \
-  qt/pivx/res/img/ic-transaction-sent-inactive.svg \
-  qt/pivx/res/img/dark/ic-transaction-sent.svg \
-  qt/pivx/res/img/dark/ic-transaction-sent-inactive.svg \
-  qt/pivx/res/img/img-welcome-step2.png \
-  qt/pivx/res/img/ic-check-dark.svg \
-  qt/pivx/res/img/ic-mint.svg \
-  qt/pivx/res/img/ic-transaction-staked.svg \
-  qt/pivx/res/img/ic-transaction-staked-inactive.svg \
-  qt/pivx/res/img/dark/ic-transaction-staked.svg \
-  qt/pivx/res/img/dark/ic-transaction-staked-inactive.svg \
-  qt/pivx/res/img/img-welcome-step3.png \
-  qt/pivx/res/img/ic-check-liliac-on.svg \
-  qt/pivx/res/img/ic-nav-address-active.svg \
-  qt/pivx/res/img/ic-unlock-staking.svg \
-  qt/pivx/res/img/img-welcome-step4.png \
-  qt/pivx/res/img/ic-check-locked-off.svg \
-  qt/pivx/res/img/ic-nav-address-hover.svg \
-  qt/pivx/res/img/ic-update-liliac.svg \
-  qt/pivx/res/img/ic-arrow-drop-down-purple.svg \
-  qt/pivx/res/img/ic-arrow-drop-up-purple.svg \
-  qt/pivx/res/img/ic-check-liliac-indeterminate.svg \
-  qt/pivx/res/img/ic-check-box-liliac-indeterminate.svg \
-  qt/pivx/res/img/ic-transaction-stake-delegated.svg \
-  qt/pivx/res/img/ic-transaction-stake-delegated-inactive.svg \
-  qt/pivx/res/img/ic-transaction-stake-hot.svg \
-  qt/pivx/res/img/ic-transaction-stake-hot-inactive.svg \
-  qt/pivx/res/img/dark/ic-transaction-stake-hot.svg \
-  qt/pivx/res/img/dark/ic-transaction-stake-hot-inactive.svg \
-  qt/pivx/res/img/dark/ic-transaction-stake-delegated.svg \
-  qt/pivx/res/img/dark/ic-transaction-stake-delegated-inactive.svg \
-  qt/pivx/res/img/ic-transaction-cs-contract.svg \
-  qt/pivx/res/img/ic-transaction-cs-contract-inactive.svg \
-  qt/pivx/res/img/ic-check-box-indeterminate.svg \
-  qt/pivx/res/img/ani-loading-dark.gif \
-  qt/pivx/res/img/ani-loading.gif
+  qt/dogecash/res/img/bg-dashboard-banner.png \
+  qt/dogecash/res/img/bg-multi-number-dark.svg \
+  qt/dogecash/res/img/ic-check-locked.svg \
+  qt/dogecash/res/img/ic-nav-address.svg \
+  qt/dogecash/res/img/ic-update.svg \
+  qt/dogecash/res/img/bg-multi-number.svg \
+  qt/dogecash/res/img/ic-check-mint-off.svg \
+  qt/dogecash/res/img/ic-nav-cold-staking.svg \
+  qt/dogecash/res/img/ic-nav-cold-staking-active.svg \
+  qt/dogecash/res/img/ic-nav-dashboard-active.svg \
+  qt/dogecash/res/img/ic-wallet-status-locked.svg \
+  qt/dogecash/res/img/bg-splash.svg \
+  qt/dogecash/res/img/bg-splash.png \
+  qt/dogecash/res/img/ic-check-mint.svg \
+  qt/dogecash/res/img/ic-nav-dashboard-hover.svg \
+  qt/dogecash/res/img/ic-wallet-status-staking.svg \
+  qt/dogecash/res/img/ic-check-peers-off.svg \
+  qt/dogecash/res/img/ic-nav-dashboard.svg \
+  qt/dogecash/res/img/ic-wallet-status-unlocked.svg \
+  qt/dogecash/res/img/ic-check-peers.svg \
+  qt/dogecash/res/img/ic-nav-master-active.svg \
+  qt/dogecash/res/img/ic-watch-password-white.svg \
+  qt/dogecash/res/img/bg-welcome-container.jpg \
+  qt/dogecash/res/img/bg-welcome-container.png \
+  qt/dogecash/res/img/bg-welcome-container.svg \
+  qt/dogecash/res/img/bg-welcome-container@2x.png \
+  qt/dogecash/res/img/bg-welcome-container@3x.png \
+  qt/dogecash/res/img/ic-check-staking-off.svg \
+  qt/dogecash/res/img/ic-nav-master-hover.svg \
+  qt/dogecash/res/img/ic-watch-password.svg \
+  qt/dogecash/res/img/bg-welcome.jpg \
+  qt/dogecash/res/img/bg-welcome.svg \
+  qt/dogecash/res/img/bg-welcome@2x.jpg \
+  qt/dogecash/res/img/bg-welcome@3x.jpg \
+  qt/dogecash/res/img/bg-welcome.png \
+  qt/dogecash/res/img/ic-check-staking.svg \
+  qt/dogecash/res/img/ic-nav-master.svg \
+  qt/dogecash/res/img/img-dashboard-banner.jpg \
+  qt/dogecash/res/img/btn-radio-active.svg \
+  qt/dogecash/res/img/ic-check-sync-off.svg \
+  qt/dogecash/res/img/ic-nav-privacy-active.svg \
+  qt/dogecash/res/img/img-empty-contacts.svg \
+  qt/dogecash/res/img/btn-radio-off.svg \
+  qt/dogecash/res/img/ic-check-sync.png \
+  qt/dogecash/res/img/ic-nav-privacy-hover.svg \
+  qt/dogecash/res/img/img-empty-dark-contacts.svg \
+  qt/dogecash/res/img/ic-contact-arrow-down.svg \
+  qt/dogecash/res/img/ic-contact-arrow-down-white.svg \
+  qt/dogecash/res/img/ic-check-sync.svg \
+  qt/dogecash/res/img/ic-check-faq.svg \
+  qt/dogecash/res/img/ic-nav-privacy.svg \
+  qt/dogecash/res/img/img-empty-dark-error.svg \
+  qt/dogecash/res/img/ic-add-label.svg \
+  qt/dogecash/res/img/ic-pending.svg \
+  qt/dogecash/res/img/ic-check-theme-dark.svg \
+  qt/dogecash/res/img/ic-nav-receive-active.svg \
+  qt/dogecash/res/img/img-empty-dark-masternode.svg \
+  qt/dogecash/res/img/ic-add-liliac.svg \
+  qt/dogecash/res/img/ic-check-theme-light.svg \
+  qt/dogecash/res/img/ic-nav-receive-hover.svg \
+  qt/dogecash/res/img/img-empty-dark-multisend.svg \
+  qt/dogecash/res/img/ic-add-purple.svg \
+  qt/dogecash/res/img/ic-check-white.svg \
+  qt/dogecash/res/img/ic-nav-receive.svg \
+  qt/dogecash/res/img/img-empty-dark-peers.svg \
+  qt/dogecash/res/img/ic-add.svg \
+  qt/dogecash/res/img/ic-check.svg \
+  qt/dogecash/res/img/ic-nav-send-active.svg \
+  qt/dogecash/res/img/img-empty-dark-staking-off.svg \
+  qt/dogecash/res/img/img-empty-dark-staking-on.svg \
+  qt/dogecash/res/img/ic-address-book-grey.svg \
+  qt/dogecash/res/img/ic-chevron-left.svg \
+  qt/dogecash/res/img/ic-nav-send-hover.svg \
+  qt/dogecash/res/img/img-empty-dark-transactions.svg \
+  qt/dogecash/res/img/ic-address-book-white.svg \
+  qt/dogecash/res/img/ic-chevron-right.svg \
+  qt/dogecash/res/img/ic-nav-send.svg \
+  qt/dogecash/res/img/img-empty-error.svg \
+  qt/dogecash/res/img/ic-address-book.svg \
+  qt/dogecash/res/img/ic-clear-liliac.svg \
+  qt/dogecash/res/img/ic-nav-settings-active.svg \
+  qt/dogecash/res/img/img-empty-masternode.svg \
+  qt/dogecash/res/img/ic-address-send-white.svg \
+  qt/dogecash/res/img/ic-clear-purple.svg \
+  qt/dogecash/res/img/ic-nav-settings-hover.svg \
+  qt/dogecash/res/img/img-empty-multisend.svg \
+  qt/dogecash/res/img/ic-address-send.svg \
+  qt/dogecash/res/img/ic-close-white.svg \
+  qt/dogecash/res/img/ic-nav-settings.svg \
+  qt/dogecash/res/img/img-empty-peers.svg \
+  qt/dogecash/res/img/img-empty-privacy.svg \
+  qt/dogecash/res/img/img-empty-privacy-dark.svg \
+  qt/dogecash/res/img/ic-arrow-drop-down-white.svg \
+  qt/dogecash/res/img/ic-close.svg \
+  qt/dogecash/res/img/ic-radio-liliac-on.svg \
+  qt/dogecash/res/img/img-empty-staking-off.svg \
+  qt/dogecash/res/img/ic-arrow-drop-down.svg \
+  qt/dogecash/res/img/ic-coin-dogec.svg \
+  qt/dogecash/res/img/ic-receive-off.svg \
+  qt/dogecash/res/img/img-empty-staking-on.svg \
+  qt/dogecash/res/img/ic-arrow-drop-up-white.svg \
+  qt/dogecash/res/img/ic-coin-zdogec.png \
+  qt/dogecash/res/img/ic-receive-on.svg \
+  qt/dogecash/res/img/img-empty-transactions.svg \
+  qt/dogecash/res/img/ic-arrow-drop-up.svg \
+  qt/dogecash/res/img/ic-coin-zdogec.svg \
+  qt/dogecash/res/img/ic-received.svg \
+  qt/dogecash/res/img/img-logo-dogecash.png \
+  qt/dogecash/res/img/ic-arrow-drop-white-down.svg \
+  qt/dogecash/res/img/ic-combo-box.svg \
+  qt/dogecash/res/img/ic-send.svg \
+  qt/dogecash/res/img/img-logo-dogecash@2x.png \
+  qt/dogecash/res/img/ic-arrow-purple-down.svg \
+  qt/dogecash/res/img/ic-connect.svg \
+  qt/dogecash/res/img/ic-submenu-lock.svg \
+  qt/dogecash/res/img/img-logo-dogecash@3x.png \
+  qt/dogecash/res/img/img-logo-dogecash.svg \
+  qt/dogecash/res/img/ic-arrow-right-white.svg \
+  qt/dogecash/res/img/ic-arrow-left-white.svg \
+  qt/dogecash/res/img/ic-arrow-left.svg \
+  qt/dogecash/res/img/ic-copy-liliac.svg \
+  qt/dogecash/res/img/ic-submenu-staking.svg \
+  qt/dogecash/res/img/img-nav-logo-dogecash.png \
+  qt/dogecash/res/img/ic-arrow-right.svg \
+  qt/dogecash/res/img/ic-copy.svg \
+  qt/dogecash/res/img/ic-copy-big.svg \
+  qt/dogecash/res/img/ic-copy-big-white.svg \
+  qt/dogecash/res/img/ic-submenu-unlock.svg \
+  qt/dogecash/res/img/img-nav-logo.png \
+  qt/dogecash/res/img/ic-arrow-white-left.svg \
+  qt/dogecash/res/img/ic-exit.svg \
+  qt/dogecash/res/img/ic-switch-liliac-on.svg \
+  qt/dogecash/res/img/img-nav-logo.svg \
+  qt/dogecash/res/img/ic-arrow-white-right.svg \
+  qt/dogecash/res/img/ic-expand.svg \
+  qt/dogecash/res/img/ic-switch-off.svg \
+  qt/dogecash/res/img/img-qr-test-big.png \
+  qt/dogecash/res/img/ic-check-active.svg \
+  qt/dogecash/res/img/ic-folder.svg \
+  qt/dogecash/res/img/ic-switch-on.svg \
+  qt/dogecash/res/img/img-qr-test.png \
+  qt/dogecash/res/img/ic-check-box.svg \
+  qt/dogecash/res/img/ic-check-box-dark-active.svg \
+  qt/dogecash/res/img/ic-check-box-indeterminate.svg \
+  qt/dogecash/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/dogecash/res/img/ic-label-liliac.svg \
+  qt/dogecash/res/img/ic-transaction-warning.svg \
+  qt/dogecash/res/img/ic-transaction-mint.svg \
+  qt/dogecash/res/img/ic-transaction-mint-inactive.svg \
+  qt/dogecash/res/img/ic-check-cold-staking.svg \
+  qt/dogecash/res/img/ic-check-cold-staking-off.svg \
+  qt/dogecash/res/img/ic-check-cold-staking-enabled.svg \
+  qt/dogecash/res/img/dark/ic-transaction-cs-contract.svg \
+  qt/dogecash/res/img/dark/ic-transaction-cs-contract-inactive.svg \
+  qt/dogecash/res/img/img-qr.svg \
+  qt/dogecash/res/img/ic-check-connect-off.svg \
+  qt/dogecash/res/img/ic-check-tor-off.svg \
+  qt/dogecash/res/img/ic-check-tor.svg \
+  qt/dogecash/res/img/ic-label.svg \
+  qt/dogecash/res/img/ic-transaction-received.svg \
+  qt/dogecash/res/img/dark/ic-transaction-received.svg \
+  qt/dogecash/res/img/dark/ic-transaction-warning.svg \
+  qt/dogecash/res/img/dark/ic-transaction-mint.svg \
+  qt/dogecash/res/img/dark/ic-transaction-mint-inactive.svg \
+  qt/dogecash/res/img/ic-transaction-received-inactive.svg \
+  qt/dogecash/res/img/dark/ic-transaction-received-inactive.svg \
+  qt/dogecash/res/img/img-welcome-step1.png \
+  qt/dogecash/res/img/ic-check-connect.svg \
+  qt/dogecash/res/img/ic-menu-hover.svg \
+  qt/dogecash/res/img/ic-transaction-sent.svg \
+  qt/dogecash/res/img/ic-transaction-sent-inactive.svg \
+  qt/dogecash/res/img/dark/ic-transaction-sent.svg \
+  qt/dogecash/res/img/dark/ic-transaction-sent-inactive.svg \
+  qt/dogecash/res/img/img-welcome-step2.png \
+  qt/dogecash/res/img/ic-check-dark.svg \
+  qt/dogecash/res/img/ic-mint.svg \
+  qt/dogecash/res/img/ic-transaction-staked.svg \
+  qt/dogecash/res/img/ic-transaction-staked-inactive.svg \
+  qt/dogecash/res/img/dark/ic-transaction-staked.svg \
+  qt/dogecash/res/img/dark/ic-transaction-staked-inactive.svg \
+  qt/dogecash/res/img/img-welcome-step3.png \
+  qt/dogecash/res/img/ic-check-liliac-on.svg \
+  qt/dogecash/res/img/ic-nav-address-active.svg \
+  qt/dogecash/res/img/ic-unlock-staking.svg \
+  qt/dogecash/res/img/img-welcome-step4.png \
+  qt/dogecash/res/img/ic-check-locked-off.svg \
+  qt/dogecash/res/img/ic-nav-address-hover.svg \
+  qt/dogecash/res/img/ic-update-liliac.svg \
+  qt/dogecash/res/img/ic-arrow-drop-down-purple.svg \
+  qt/dogecash/res/img/ic-arrow-drop-up-purple.svg \
+  qt/dogecash/res/img/ic-check-liliac-indeterminate.svg \
+  qt/dogecash/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/dogecash/res/img/ic-transaction-stake-delegated.svg \
+  qt/dogecash/res/img/ic-transaction-stake-delegated-inactive.svg \
+  qt/dogecash/res/img/ic-transaction-stake-hot.svg \
+  qt/dogecash/res/img/ic-transaction-stake-hot-inactive.svg \
+  qt/dogecash/res/img/dark/ic-transaction-stake-hot.svg \
+  qt/dogecash/res/img/dark/ic-transaction-stake-hot-inactive.svg \
+  qt/dogecash/res/img/dark/ic-transaction-stake-delegated.svg \
+  qt/dogecash/res/img/dark/ic-transaction-stake-delegated-inactive.svg \
+  qt/dogecash/res/img/ic-transaction-cs-contract.svg \
+  qt/dogecash/res/img/ic-transaction-cs-contract-inactive.svg \
+  qt/dogecash/res/img/ic-check-box-indeterminate.svg \
+  qt/dogecash/res/img/ani-loading-dark.gif \
+  qt/dogecash/res/img/ani-loading.gif
 
 
 
 BITCOIN_QT_BASE_CPP = \
   qt/bantablemodel.cpp \
   qt/bitcoinaddressvalidator.cpp \
-  qt/pivx/pivxgui.cpp \
+  qt/dogecash/dogecashgui.cpp \
   qt/bitcoinunits.cpp \
   qt/clientmodel.cpp \
   qt/csvmodelwriter.cpp \
@@ -536,65 +536,65 @@ BITCOIN_QT_WALLET_CPP = \
   qt/transactiontablemodel.cpp \
   qt/walletmodel.cpp \
   qt/walletmodeltransaction.cpp \
-  qt/pivx/loadingdialog.cpp \
-  qt/pivx/pwidget.cpp \
-  qt/pivx/focuseddialog.cpp \
-  qt/pivx/guitransactionsutils.cpp \
-  qt/pivx/snackbar.cpp \
-  qt/pivx/navmenuwidget.cpp \
-  qt/pivx/lockunlock.cpp \
-  qt/pivx/receivedialog.cpp \
-  qt/pivx/furabstractlistitemdelegate.cpp \
-  qt/pivx/txviewholder.cpp \
-  qt/pivx/qtutils.cpp \
-  qt/pivx/expandablebutton.cpp \
-  qt/pivx/topbar.cpp \
-  qt/pivx/txrow.cpp \
-  qt/pivx/addressholder.cpp \
-  qt/pivx/addressfilterproxymodel.cpp \
-  qt/pivx/dashboardwidget.cpp \
-  qt/pivx/addresslabelrow.cpp \
-  qt/pivx/contactdropdownrow.cpp \
-  qt/pivx/contactsdropdown.cpp \
-  qt/pivx/optionbutton.cpp \
-  qt/pivx/mninfodialog.cpp \
-  qt/pivx/coldstakingmodel.cpp \
-  qt/pivx/mnmodel.cpp \
-  qt/pivx/masternodewizarddialog.cpp \
-  qt/pivx/mnrow.cpp \
-  qt/pivx/masternodeswidget.cpp \
-  qt/pivx/myaddressrow.cpp \
-  qt/pivx/csrow.cpp \
-  qt/pivx/sendchangeaddressdialog.cpp \
-  qt/pivx/sendconfirmdialog.cpp \
-  qt/pivx/sendcustomfeedialog.cpp \
-  qt/pivx/sendchangeaddressdialog.cpp \
-  qt/pivx/sendmultirow.cpp \
-  qt/pivx/send.cpp \
-  qt/pivx/addnewaddressdialog.cpp \
-  qt/pivx/addnewcontactdialog.cpp \
-  qt/pivx/requestdialog.cpp \
-  qt/pivx/receivewidget.cpp \
-  qt/pivx/tooltipmenu.cpp \
-  qt/pivx/addresseswidget.cpp \
-  qt/pivx/defaultdialog.cpp \
-  qt/pivx/coldstakingwidget.cpp \
-  qt/pivx/settings/settingsbackupwallet.cpp \
-  qt/pivx/settings/settingsexportcsv.cpp \
-  qt/pivx/settings/settingsbittoolwidget.cpp \
-  qt/pivx/settings/settingsconsolewidget.cpp \
-  qt/pivx/settings/settingsdisplayoptionswidget.cpp \
-  qt/pivx/settings/settingsfaqwidget.cpp \
-  qt/pivx/settings/settingsinformationwidget.cpp \
-  qt/pivx/settings/settingsmainoptionswidget.cpp \
-  qt/pivx/settings/settingsmultisenddialog.cpp \
-  qt/pivx/settings/settingsmultisendwidget.cpp \
-  qt/pivx/settings/settingssignmessagewidgets.cpp \
-  qt/pivx/settings/settingswalletoptionswidget.cpp \
-  qt/pivx/settings/settingswalletrepairwidget.cpp \
-  qt/pivx/settings/settingswidget.cpp \
-  qt/pivx/welcomecontentwidget.cpp \
-  qt/pivx/splash.cpp
+  qt/dogecash/loadingdialog.cpp \
+  qt/dogecash/pwidget.cpp \
+  qt/dogecash/focuseddialog.cpp \
+  qt/dogecash/guitransactionsutils.cpp \
+  qt/dogecash/snackbar.cpp \
+  qt/dogecash/navmenuwidget.cpp \
+  qt/dogecash/lockunlock.cpp \
+  qt/dogecash/receivedialog.cpp \
+  qt/dogecash/furabstractlistitemdelegate.cpp \
+  qt/dogecash/txviewholder.cpp \
+  qt/dogecash/qtutils.cpp \
+  qt/dogecash/expandablebutton.cpp \
+  qt/dogecash/topbar.cpp \
+  qt/dogecash/txrow.cpp \
+  qt/dogecash/addressholder.cpp \
+  qt/dogecash/addressfilterproxymodel.cpp \
+  qt/dogecash/dashboardwidget.cpp \
+  qt/dogecash/addresslabelrow.cpp \
+  qt/dogecash/contactdropdownrow.cpp \
+  qt/dogecash/contactsdropdown.cpp \
+  qt/dogecash/optionbutton.cpp \
+  qt/dogecash/mninfodialog.cpp \
+  qt/dogecash/coldstakingmodel.cpp \
+  qt/dogecash/mnmodel.cpp \
+  qt/dogecash/masternodewizarddialog.cpp \
+  qt/dogecash/mnrow.cpp \
+  qt/dogecash/masternodeswidget.cpp \
+  qt/dogecash/myaddressrow.cpp \
+  qt/dogecash/csrow.cpp \
+  qt/dogecash/sendchangeaddressdialog.cpp \
+  qt/dogecash/sendconfirmdialog.cpp \
+  qt/dogecash/sendcustomfeedialog.cpp \
+  qt/dogecash/sendchangeaddressdialog.cpp \
+  qt/dogecash/sendmultirow.cpp \
+  qt/dogecash/send.cpp \
+  qt/dogecash/addnewaddressdialog.cpp \
+  qt/dogecash/addnewcontactdialog.cpp \
+  qt/dogecash/requestdialog.cpp \
+  qt/dogecash/receivewidget.cpp \
+  qt/dogecash/tooltipmenu.cpp \
+  qt/dogecash/addresseswidget.cpp \
+  qt/dogecash/defaultdialog.cpp \
+  qt/dogecash/coldstakingwidget.cpp \
+  qt/dogecash/settings/settingsbackupwallet.cpp \
+  qt/dogecash/settings/settingsexportcsv.cpp \
+  qt/dogecash/settings/settingsbittoolwidget.cpp \
+  qt/dogecash/settings/settingsconsolewidget.cpp \
+  qt/dogecash/settings/settingsdisplayoptionswidget.cpp \
+  qt/dogecash/settings/settingsfaqwidget.cpp \
+  qt/dogecash/settings/settingsinformationwidget.cpp \
+  qt/dogecash/settings/settingsmainoptionswidget.cpp \
+  qt/dogecash/settings/settingsmultisenddialog.cpp \
+  qt/dogecash/settings/settingsmultisendwidget.cpp \
+  qt/dogecash/settings/settingssignmessagewidgets.cpp \
+  qt/dogecash/settings/settingswalletoptionswidget.cpp \
+  qt/dogecash/settings/settingswalletrepairwidget.cpp \
+  qt/dogecash/settings/settingswidget.cpp \
+  qt/dogecash/welcomecontentwidget.cpp \
+  qt/dogecash/splash.cpp
 
 
 BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
@@ -613,10 +613,10 @@ RES_IMAGES = \
 
 RES_CSS = \
   qt/res/css/default.css \
-  qt/pivx/res/css/style_dark.css \
-  qt/pivx/res/css/style_light.css
+  qt/dogecash/res/css/style_dark.css \
+  qt/dogecash/res/css/style_light.css
 
-BITCOIN_RC = qt/res/pivx-qt-res.rc
+BITCOIN_RC = qt/res/dogecash-qt-res.rc
 
 BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
   -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
@@ -638,71 +638,71 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libbitcoinqt_a_OBJECTS) $(qt_pivx_qt_OBJECTS) : | $(QT_MOC)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_dogecash_qt_OBJECTS) : | $(QT_MOC)
 
 #Generating these with a half-written protobuf header leads to wacky results.
 #This makes sure it's done.
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# pivx-qt binary #
-qt_pivx_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+# dogecash-qt binary #
+qt_dogecash_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
-qt_pivx_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_dogecash_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
 
-qt_pivx_qt_SOURCES = qt/pivx.cpp
+qt_dogecash_qt_SOURCES = qt/dogecash.cpp
 if TARGET_DARWIN
-  qt_pivx_qt_SOURCES += $(BITCOIN_MM)
+  qt_dogecash_qt_SOURCES += $(BITCOIN_MM)
 endif
 if TARGET_WINDOWS
-  qt_pivx_qt_SOURCES += $(BITCOIN_RC)
+  qt_dogecash_qt_SOURCES += $(BITCOIN_RC)
 endif
-qt_pivx_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+qt_dogecash_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
 if ENABLE_WALLET
-qt_pivx_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+qt_dogecash_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
 endif
 if ENABLE_ZMQ
-qt_pivx_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+qt_dogecash_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
-qt_pivx_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBSAPLING) $(LIBRUSTZCASH) $(LIBZCASH_LIBS) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+qt_dogecash_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBSAPLING) $(LIBRUSTZCASH) $(LIBZCASH_LIBS) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
   $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-qt_pivx_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_pivx_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+qt_dogecash_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_dogecash_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)
 
 SECONDARY: $(QT_QM)
 
-$(srcdir)/qt/pivxstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+$(srcdir)/qt/dogecashstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
 	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
 
-translate: $(srcdir)/qt/pivxstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/pivx.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+translate: $(srcdir)/qt/dogecashstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/dogecash.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/pivx_en.ts
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/dogecash_en.ts
 
 $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	@test -f $(RCC)
 	@cp -f $< $(@D)/temp_$(<F)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name pivx_locale $(@D)/temp_$(<F) | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name dogecash_locale $(@D)/temp_$(<F) | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 	@rm $(@D)/temp_$(<F)
 
 $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(PROTOBUF_H)
 	@test -f $(RCC)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name pivx $< | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name dogecash $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
-CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_pivx_locale.qrc
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_dogecash_locale.qrc
 
 CLEANFILES += $(CLEAN_QT)
 
-pivx_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_pivx_qt_OBJECTS) qt/pivx-qt$(EXEEXT) $(LIBBITCOINQT)
+dogecash_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_dogecash_qt_OBJECTS) qt/dogecash-qt$(EXEEXT) $(LIBBITCOINQT)
 
-pivx_qt : qt/pivx-qt$(EXEEXT)
+dogecash_qt : qt/dogecash-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)
