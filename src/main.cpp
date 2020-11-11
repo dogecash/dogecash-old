@@ -1939,7 +1939,7 @@ int64_t GetBlockValue(int nHeight)
 	} else if (nHeight <= 1289222 && nHeight >= 764222) {
         nSubsidy = 5 * COIN;
     } else {
-        nSubsidy = 6* COIN;
+        nSubsidy = 6 * COIN;
 	}
     }
 
@@ -3294,13 +3294,10 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     pindex->nMoneySupply = nMoneySupplyPrev + nValueOut - nValueIn;
    // Subtract from the money supply the unspendable UTXO
     pindex->nMoneySupply -= nValueOutUnspendable;
-    pindex->nMint = pindex->nMoneySupply - nMoneySupplyPrev + nFees;
-   // Unspendable Value (coins burn) can cause a negative nMint value
-    if (pindex->nMint < 0)
-        pindex->nMint = 0;
+    const int64_t nMint = pindex->nMoneySupply - nMoneySupplyPrev + nFees;
 //    LogPrintf("XX69----------> ConnectBlock(): nValueOut: %s, nValueIn: %s, nFees: %s, nMint: %s zdogecSpent: %s\n",
 //              FormatMoney(nValueOut), FormatMoney(nValueIn),
-//              FormatMoney(nFees), FormatMoney(pindex->nMint), FormatMoney(nAmountZerocoinSpent));
+//              FormatMoney(nFees), FormatMoney(nMint), FormatMoney(nAmountZerocoinSpent));
 
     int64_t nTime1 = GetTimeMicros();
     nTimeConnect += nTime1 - nTimeStart;
@@ -3308,13 +3305,14 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
     //PoW phase redistributed fees to miner. PoS stage destroys fees.
     CAmount nExpectedMint = GetBlockValue(pindex->nHeight);
+    
     if (block.IsProofOfWork())
         nExpectedMint += nFees;
 
     //Check that the block does not overmint
-    if (!IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
+    if (!IsBlockValueValid(block, nExpectedMint, nMint)) {
         return state.DoS(100, error("ConnectBlock() : reward pays too much (actual=%s vs limit=%s)",
-                                    FormatMoney(pindex->nMint), FormatMoney(nExpectedMint)),
+                                    FormatMoney(nMint), FormatMoney(nExpectedMint)),
                          REJECT_INVALID, "bad-cb-amount");
     }
 
