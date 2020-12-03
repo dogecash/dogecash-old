@@ -1970,9 +1970,9 @@ int64_t GetBlockValue(int nHeight)
         nSubsidy = 10.8 * COIN;
 	} else if (nHeight <= 238621 && nHeight > Params().LAST_POW_BLOCK()) { //Start PoS
         nSubsidy = 10.8 * COIN;
-	} else if (nHeight <= 788221 && nHeight >= 238622) {
+	} else if (nHeight <= 788621 && nHeight >= 238622) {
         nSubsidy = 9 * COIN;
-	} else if (nHeight <= 1289222 && nHeight >= 788222) {
+	} else if (nHeight <= 1289222 && nHeight >= 788622) {
         nSubsidy = 5.4 * COIN;
 	}    else {
         nSubsidy = 5.4 * COIN;
@@ -4582,8 +4582,8 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
     if((block.nVersion < 3 && nHeight >= 1) ||
         (block.nVersion < 4 && nHeight >= Params().Zerocoin_StartTime()) ||
         (block.nVersion < 5 && nHeight >= Params().BIP65_Start()) ||
-        (block.nVersion < 6 && nHeight >= Params().IsStakeModifierV2(nHeight)) ||
-        (block.nVersion < 7 && nHeight >= Params().IsTimeProtocolV2(nHeight)))
+        (block.nVersion < 6 && nHeight >= Params().Block_V6_StartHeight()) ||
+        (block.nVersion < 7 && nHeight >= Params().Block_V7_StartHeight()))
     {
         std::string stringErr = strprintf("rejected block version %d at height %d", block.nVersion, nHeight);
         return state.Invalid(error("%s : %s", __func__, stringErr), REJECT_OBSOLETE, stringErr);

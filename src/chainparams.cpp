@@ -247,7 +247,7 @@ public:
         nRejectOldSporkKey = 1569538800; //!> Fully reject old spork key after Thursday, September 26, 2019 11:00:00 PM GMT
         nBlockStakeModifierlV2 = 261028;
         nBlockTimeProtocolV2 = 575000;
-        nStartBIP65 = 200;
+        nStartBIP65 = 261027;
 
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = nBlockStakeModifierlV2 + 10;
