@@ -4,10 +4,13 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test fee estimation code."""
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import PivxTestFramework
 from test_framework.util import *
 from test_framework.script import CScript, OP_1, OP_DROP, OP_2, OP_HASH160, OP_EQUAL, hash160, OP_TRUE
 from test_framework.mininode import CTransaction, CTxIn, CTxOut, COutPoint, ToHex, COIN
+
+# Use as minTxFee
+MIN_FEE = Decimal("0.00001")
 
 # Construct 2 trivial P2SH's and the ScriptSigs that spend them
 # So we can create many transactions without needing to spend
@@ -32,6 +35,9 @@ def small_txpuzzle_randfee(from_node, conflist, unconflist, amount, min_fee, fee
     It adds the newly created outputs to the unconfirmed list.
     Returns (raw transaction, fee)
     """
+    # Don't send dust (3 * dustRelayFee.GetFee(182))
+    DUST_THRESHOLD = 55
+    assert int(amount*COIN) > DUST_THRESHOLD
     # It's best to exponentially distribute our random fees
     # because the buckets are exponentially spaced.
     # Exponentially distributed from 1-128 * fee_increment
@@ -51,15 +57,24 @@ def small_txpuzzle_randfee(from_node, conflist, unconflist, amount, min_fee, fee
             tx.vin.append(CTxIn(COutPoint(int(t["txid"], 16), t["vout"]), b""))
         if total_in <= amount + fee:
             raise RuntimeError("Insufficient funds: need %d, have %d"%(amount+fee, total_in))
-    tx.vout.append(CTxOut(int((total_in - amount - fee)*COIN), P2SH_1))
-    tx.vout.append(CTxOut(int(amount*COIN), P2SH_2))
+
+    tx.vout.append(CTxOut(int(amount * COIN), P2SH_1))
+    # Prevent the creation of dust change outputs (otherwise add the change value to the fee)
+    change = int((total_in - amount - fee)*COIN)
+    if change > DUST_THRESHOLD:
+        tx.vout.append(CTxOut(change, P2SH_2))
+    else:
+        fee += change
+
     # These transactions don't need to be signed, but we still have to insert
     # the ScriptSig that will satisfy the ScriptPubKey.
     for inp in tx.vin:
         inp.scriptSig = SCRIPT_SIG[inp.prevout.n]
     txid = from_node.sendrawtransaction(ToHex(tx), True)
-    unconflist.append({ "txid" : txid, "vout" : 0 , "amount" : total_in - amount - fee})
-    unconflist.append({ "txid" : txid, "vout" : 1 , "amount" : amount})
+
+    unconflist.append({"txid": txid, "vout": 0, "amount": amount})
+    if change > DUST_THRESHOLD:
+        unconflist.append({ "txid" : txid, "vout" : 1 , "amount" : total_in - amount - fee})
 
     return (ToHex(tx), fee)
 
@@ -76,7 +91,7 @@ def split_inputs(from_node, txins, txouts, initial_split = False):
     tx.vin.append(CTxIn(COutPoint(int(prevtxout["txid"], 16), prevtxout["vout"]), b""))
 
     half_change = satoshi_round(prevtxout["amount"]/2)
-    rem_change = prevtxout["amount"] - half_change  - Decimal("0.00001000")
+    rem_change = prevtxout["amount"] - half_change  - MIN_FEE
     tx.vout.append(CTxOut(int(half_change*COIN), P2SH_1))
     tx.vout.append(CTxOut(int(rem_change*COIN), P2SH_2))
 
@@ -96,24 +111,25 @@ def check_estimates(node, fees_seen, max_invalid, print_estimates = True):
     This function calls estimatefee and verifies that the estimates
     meet certain invariants.
     """
-    all_estimates = [ node.estimatefee(i) for i in range(1,26) ]
+    all_estimates = [node.estimatefee(i) for i in range(1, 26)]
     if print_estimates:
-        log.info([str(all_estimates[e-1]) for e in [1,2,3,6,15,25]])
-    delta = 1.0e-6 # account for rounding error
+        log.info([str(all_estimates[e-1]) for e in [1, 2, 3, 6, 15, 25]])
+    delta = 1.0e-6  # account for rounding error
     last_e = max(fees_seen)
     for e in [x for x in all_estimates if x >= 0]:
         # Estimates should be within the bounds of what transactions fees actually were:
         if float(e)+delta < min(fees_seen) or float(e)-delta > max(fees_seen):
             raise AssertionError("Estimated fee (%f) out of range (%f,%f)"
-                                 %(float(e), min(fees_seen), max(fees_seen)))
+                                 % (float(e), min(fees_seen), max(fees_seen)))
         # Estimates should be monotonically decreasing
         if float(e)-delta > last_e:
             raise AssertionError("Estimated fee (%f) larger than last fee (%f) for lower number of confirms"
-                                 %(float(e),float(last_e)))
+                                 % (float(e), float(last_e)))
         last_e = e
+
     valid_estimate = False
     invalid_estimates = 0
-    for i,e in enumerate(all_estimates): # estimate is for i+1
+    for i, e in enumerate(all_estimates): # estimate is for i+1
         if e >= 0:
             valid_estimate = True
             if i >= 13:  # for n>=14 estimatesmartfee(n/2) should be at least as high as estimatefee(n)
@@ -136,11 +152,12 @@ def check_estimates(node, fees_seen, max_invalid, print_estimates = True):
     # Check on the expected number of different confirmation counts
     # that we might not have valid estimates for
     if invalid_estimates > max_invalid:
-        raise AssertionError("More than (%d) invalid estimates"%(max_invalid))
+        raise AssertionError("More than (%d) invalid estimates" % max_invalid)
+
     return all_estimates
 
 
-class EstimateFeeTest(BitcoinTestFramework):
+class EstimateFeeTest(PivxTestFramework):
     def set_test_params(self):
         self.num_nodes = 3
 
@@ -150,9 +167,9 @@ class EstimateFeeTest(BitcoinTestFramework):
         But first we need to use one node to create a lot of outputs
         which we will use to generate our transactions.
         """
-        self.add_nodes(3, extra_args=[["-maxorphantx=1000", "-whitelist=127.0.0.1"],
-                                      ["-maxorphantx=1000", "-deprecatedrpc=estimatefee"],
-                                      ["-maxorphantx=1000"]])
+        self.add_nodes(3, extra_args=[["-minrelaytxfee=0.000001"],
+                                      ["-minrelaytxfee=0.000001", "-blockmaxsize=18000"],
+                                      ["-minrelaytxfee=0.000001", "-blockmaxsize=9000"]])
         # Use node0 to mine blocks for input splitting
         # Node1 mines small blocks but that are bigger than the expected transaction rate.
         # NOTE: the CreateNewBlock code starts counting block size at 1,000 bytes,
@@ -162,7 +179,6 @@ class EstimateFeeTest(BitcoinTestFramework):
 
 
     def transact_and_mine(self, numblocks, mining_node):
-        min_fee = Decimal("0.00001")
         # We will now mine numblocks blocks generating on average 100 transactions between each block
         # We shuffle our confirmed txout set before each set of transactions
         # small_txpuzzle_randfee will use the transactions that have inputs already in the chain when possible
@@ -172,7 +188,7 @@ class EstimateFeeTest(BitcoinTestFramework):
             for j in range(random.randrange(100-50,100+50)):
                 from_index = random.randint(1,2)
                 (txhex, fee) = small_txpuzzle_randfee(self.nodes[from_index], self.confutxo,
-                                                      self.memutxo, Decimal("0.005"), min_fee, min_fee)
+                                                      self.memutxo, Decimal("0.05"), MIN_FEE, MIN_FEE)
                 tx_kbytes = (len(txhex) // 2) / 1000.0
                 self.fees_per_kb.append(float(fee)/tx_kbytes)
             sync_mempools(self.nodes[0:3], wait=.1)

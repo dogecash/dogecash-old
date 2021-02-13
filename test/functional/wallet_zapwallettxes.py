@@ -4,7 +4,7 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the zapwallettxes functionality.
 
-- start two bitcoind nodes
+- start two pivxd nodes
 - create two transactions on node 0 - one is confirmed and one is unconfirmed.
 - restart node 0 and verify that both the confirmed and the unconfirmed
   transactions are still available.
@@ -14,14 +14,14 @@
   transactions are still available, but that the unconfirmed transaction has
   been zapped.
 """
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import PivxTestFramework
 from test_framework.util import (
     assert_equal,
     assert_raises_rpc_error,
-    wait_until,
+    sync_mempools,
 )
 
-class ZapWalletTXesTest (BitcoinTestFramework):
+class ZapWalletTXesTest (PivxTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2
@@ -40,31 +40,43 @@ class ZapWalletTXesTest (BitcoinTestFramework):
         self.sync_all()
         self.nodes[0].generate(1)
         self.sync_all()
+        balance_nodes = [self.nodes[i].getbalance() for i in range(self.num_nodes)]
 
         # This transaction will not be confirmed
         txid2 = self.nodes[0].sendtoaddress(self.nodes[1].getnewaddress(), 20)
+        sync_mempools(self.nodes, wait=.1)
 
         # Confirmed and unconfirmed transactions are now in the wallet.
         assert_equal(self.nodes[0].gettransaction(txid1)['txid'], txid1)
         assert_equal(self.nodes[0].gettransaction(txid2)['txid'], txid2)
 
+        # Exercise balance rpcs
+        assert_equal(self.nodes[1].getwalletinfo()["unconfirmed_balance"], 20)
+        assert_equal(self.nodes[1].getunconfirmedbalance(), 20)
+
         # Stop-start node0. Both confirmed and unconfirmed transactions remain in the wallet.
         self.stop_node(0)
         self.start_node(0)
-
         assert_equal(self.nodes[0].gettransaction(txid1)['txid'], txid1)
         assert_equal(self.nodes[0].gettransaction(txid2)['txid'], txid2)
 
-        # Stop node0 and restart with zapwallettxes and persistmempool. The unconfirmed
+        # Stop nodes and restart with zapwallettxes and persistmempool. The unconfirmed
         # transaction is zapped from the wallet, but is re-added when the mempool is reloaded.
-        self.stop_node(0)
-        self.start_node(0, ["-zapwallettxes=2"])
+        # original balances are restored
+        for i in range(1, 3):
+            self.log.info("Restarting with --zapwallettxes=%d" % i)
+            self.stop_nodes()
+            self.start_node(0, ["-zapwallettxes=%d" % i])
+            self.start_node(1, ["-zapwallettxes=%d" % i])
 
-        # tx1 is still be available because it was confirmed
-        assert_equal(self.nodes[0].gettransaction(txid1)['txid'], txid1)
+            # tx1 is still be available because it was confirmed
+            assert_equal(self.nodes[0].gettransaction(txid1)['txid'], txid1)
 
-        # This will raise an exception because the unconfirmed transaction has been zapped
-        assert_raises_rpc_error(-5, 'Invalid or non-wallet transaction id', self.nodes[0].gettransaction, txid2)
+            # This will raise an exception because the unconfirmed transaction has been zapped
+            assert_raises_rpc_error(-5, 'Invalid or non-wallet transaction id', self.nodes[0].gettransaction, txid2)
+
+            # Check (confirmed) balances
+            assert_equal(balance_nodes, [self.nodes[i].getbalance() for i in range(self.num_nodes)])
 
 if __name__ == '__main__':
     ZapWalletTXesTest().main()

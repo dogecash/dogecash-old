@@ -15,7 +15,7 @@ make assumptions about execution order.
 """
 
 from test_framework.blocktools import send_to_witness
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import PivxTestFramework
 from test_framework import blocktools
 from test_framework.mininode import CTransaction
 from test_framework.util import *
@@ -29,7 +29,7 @@ WALLET_PASSPHRASE = "test"
 WALLET_PASSPHRASE_TIMEOUT = 3600
 
 
-class BumpFeeTest(BitcoinTestFramework):
+class BumpFeeTest(PivxTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
         self.setup_clean_chain = True
@@ -42,7 +42,7 @@ class BumpFeeTest(BitcoinTestFramework):
         self.start_node(1)
         self.nodes[1].walletpassphrase(WALLET_PASSPHRASE, WALLET_PASSPHRASE_TIMEOUT)
 
-        connect_nodes_bi(self.nodes, 0, 1)
+        connect_nodes(self.nodes[0], 1)
         self.sync_all()
 
         peer_node, rbf_node = self.nodes

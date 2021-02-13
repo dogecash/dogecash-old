@@ -3,7 +3,7 @@
 <plist version="0.9">
 <dict>
   <key>LSMinimumSystemVersion</key>
-  <string>10.8.0</string>
+  <string>10.10.0</string>
 
   <key>LSArchitecturePriority</key>
   <array>
@@ -17,7 +17,8 @@
   <string>APPL</string>
 
   <key>CFBundleGetInfoString</key>
-  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@.@CLIENT_VERSION_BUILD@, Copyright © 2009-@COPYRIGHT_YEAR@ The Bitcoin Core developers, 2014-@COPYRIGHT_YEAR@ The Dash Core developers, 2015-@COPYRIGHT_YEAR@ The PIVX Core developers, 2018-@COPYRIGHT_YEAR@ The DogeCash Developers</string>
+  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@.@CLIENT_VERSION_BUILD@, Copyright © 2009-@COPYRIGHT_YEAR@ The Bitcoin Core developers, 2014-@COPYRIGHT_YEAR@ The Dash Core developers, 2015-@COPYRIGHT_YEAR@ The PIVX Core developers</string>
+
   <key>CFBundleShortVersionString</key>
   <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@</string>
 
@@ -28,16 +29,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>DogeCash-Qt</string>
-  
+  <string>PIVX-Qt</string>
+
   <key>CFBundleName</key>
-  <string>DogeCash-Qt</string>
+  <string>PIVX-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.dogecash.DogeCash-Qt</string>
+  <string>io.pivx.Pivx-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -45,10 +46,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>io.dogecash.DogeCashPayment</string>
+      <string>io.pivx.PivxPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>dogecash</string>
+        <string>pivx</string>
       </array>
     </dict>
   </array>
@@ -57,9 +58,9 @@
   <array>
     <dict>
       <key>UTTypeIdentifier</key>
-      <string>io.dogecash.paymentrequest</string>
+      <string>io.pivx.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>DogeCash payment request</string>
+      <string>Pivx payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
@@ -67,10 +68,10 @@
       <key>UTTypeTagSpecification</key>
       <dict>
         <key>public.mime-type</key>
-        <string>application/x-dogecash-payment-request</string>
+        <string>application/x-pivx-payment-request</string>
         <key>public.filename-extension</key>
         <array>
-          <string>dogecashpaymentrequest</string>
+          <string>pivxpaymentrequest</string>
         </array>
       </dict>
     </dict>
@@ -83,7 +84,7 @@
       <string>Editor</string>
       <key>LSItemContentTypes</key>
       <array>
-        <string>io.dogecash.paymentrequest</string>
+        <string>io.pivx.paymentrequest</string>
       </array>
       <key>LSHandlerRank</key>
       <string>Owner</string>
@@ -97,6 +98,9 @@
     <string>True</string>
 
   <key>LSAppNapIsDisabled</key>
+    <string>True</string>
+
+  <key>NSRequiresAquaSystemAppearance</key>
     <string>True</string>
 
   <key>LSApplicationCategoryType</key>

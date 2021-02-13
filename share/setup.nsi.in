@@ -6,10 +6,10 @@ SetCompressor /SOLID lzma
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
 !define COMPANY "@PACKAGE_NAME@ project"
-!define URL https://www.dogec.io
+!define URL https://www.pivx.org
 
 # MUI Symbol Definitions
-!define MUI_ICON "@abs_top_srcdir@/share/pixmaps/dogecash.ico"
+!define MUI_ICON "@abs_top_srcdir@/share/pixmaps/pivx.ico"
 !define MUI_WELCOMEFINISHPAGE_BITMAP "@abs_top_srcdir@/share/pixmaps/nsis-wizard.bmp"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
@@ -49,9 +49,9 @@ Var StartMenuGroup
 # Installer attributes
 OutFile @abs_top_srcdir@/@PACKAGE_TARNAME@-@PACKAGE_VERSION@-win@WINDOWS_BITS@-setup.exe
 !if "@WINDOWS_BITS@" == "64"
-InstallDir $PROGRAMFILES64\dogecash
+InstallDir $PROGRAMFILES64\Pivx
 !else
-InstallDir $PROGRAMFILES\dogecash
+InstallDir $PROGRAMFILES\Pivx
 !endif
 CRCCheck on
 XPStyle on
@@ -80,6 +80,9 @@ Section -Main SEC0000
     File @abs_top_srcdir@/release/@BITCOIN_CLI_NAME@@EXEEXT@
     SetOutPath $INSTDIR\doc
     File /r @abs_top_srcdir@/doc\*.*
+    SetOutPath $APPDATA\PIVXParams
+    File @abs_top_srcdir@/params/sapling-output.params
+    File @abs_top_srcdir@/params/sapling-spend.params
     SetOutPath $INSTDIR
     WriteRegStr HKCU "${REGKEY}\Components" Main 1
 SectionEnd
@@ -103,7 +106,7 @@ Section -post SEC0001
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoModify 1
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoRepair 1
     WriteRegStr HKCR "@PACKAGE_TARNAME@" "URL Protocol" ""
-    WriteRegStr HKCR "@PACKAGE_TARNAME@" "" "URL:dogecash"
+    WriteRegStr HKCR "@PACKAGE_TARNAME@" "" "URL:Pivx"
     WriteRegStr HKCR "@PACKAGE_TARNAME@\DefaultIcon" "" $INSTDIR\@BITCOIN_GUI_NAME@@EXEEXT@
     WriteRegStr HKCR "@PACKAGE_TARNAME@\shell\open\command" "" '"$INSTDIR\@BITCOIN_GUI_NAME@@EXEEXT@" "%1"'
 SectionEnd
@@ -136,7 +139,7 @@ Section -un.post UNSEC0001
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\@PACKAGE_NAME@ (testnet, @WINDOWS_BITS@-bit).lnk"
-    Delete /REBOOTOK "$SMSTARTUP\dogecash.lnk"
+    Delete /REBOOTOK "$SMSTARTUP\Pivx.lnk"
     Delete /REBOOTOK $INSTDIR\uninstall.exe
     Delete /REBOOTOK $INSTDIR\debug.log
     Delete /REBOOTOK $INSTDIR\db.log

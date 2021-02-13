@@ -12,20 +12,21 @@ Two nodes. Node1 is under test. Node0 is providing transactions and generating b
 - connect node1 to node0. Verify that they sync and node1 receives its funds."""
 import shutil
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import PivxTestFramework
 from test_framework.util import (
     assert_equal,
-    connect_nodes_bi,
+    connect_nodes,
     sync_blocks,
 )
 
-class KeypoolRestoreTest(BitcoinTestFramework):
+class KeypoolRestoreTest(PivxTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2
-        self.extra_args = [[], ['-keypool=100', '-keypoolmin=20']]
+        self.extra_args = [['-keypool=3'], ['-keypool=100']]
 
     def run_test(self):
+        isLegacyWallet = '-legacywallet' in self.nodes[0].extra_args
         self.tmpdir = self.options.tmpdir
         self.nodes[0].generate(101)
 
@@ -35,7 +36,7 @@ class KeypoolRestoreTest(BitcoinTestFramework):
 
         shutil.copyfile(self.tmpdir + "/node1/regtest/wallet.dat", self.tmpdir + "/wallet.bak")
         self.start_node(1, self.extra_args[1])
-        connect_nodes_bi(self.nodes, 0, 1)
+        connect_nodes(self.nodes[0], 1)
 
         self.log.info("Generate keys for wallet")
 
@@ -61,14 +62,18 @@ class KeypoolRestoreTest(BitcoinTestFramework):
         self.log.info("Verify keypool is restored and balance is correct")
 
         self.start_node(1, self.extra_args[1])
-        connect_nodes_bi(self.nodes, 0, 1)
+        connect_nodes(self.nodes[0], 1)
         self.sync_all()
 
-        assert_equal(self.nodes[1].getbalance(), 10)
+        # wallet was not backupped after emptying the key pool.
+        # Legacy wallet can't recover funds in addr_extpool
+        recoveredBalance = 10 if isLegacyWallet else 15
+        assert_equal(self.nodes[1].getbalance(), recoveredBalance)
         assert_equal(self.nodes[1].listtransactions()[0]['category'], "receive")
 
         # Check that we have marked all keys up to the used keypool key as used
-        #assert_equal(self.nodes[1].validateaddress(self.nodes[1].getnewaddress())['hdkeypath'], "m/0'/0'/110'")
+        if not isLegacyWallet:
+            assert_equal(self.nodes[1].getaddressinfo(self.nodes[1].getnewaddress())['hdkeypath'], "m/44'/119'/0'/0'/110'")
 
 if __name__ == '__main__':
     KeypoolRestoreTest().main()

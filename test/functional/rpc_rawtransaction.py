@@ -12,8 +12,13 @@ Test the following RPCs:
    - getrawtransaction
 """
 
-from test_framework.test_framework import BitcoinTestFramework
-from test_framework.util import *
+from test_framework.test_framework import PivxTestFramework
+from test_framework.util import (
+    assert_equal,
+    assert_raises_rpc_error,
+    connect_nodes,
+    Decimal,
+)
 
 
 class multidict(dict):
@@ -35,14 +40,14 @@ class multidict(dict):
 
 
 # Create one-input, one-output, no-fee transaction:
-class RawTransactionsTest(BitcoinTestFramework):
+class RawTransactionsTest(PivxTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 3
 
     def setup_network(self, split=False):
         super().setup_network()
-        connect_nodes_bi(self.nodes,0,2)
+        connect_nodes(self.nodes[0], 2)
 
     def run_test(self):
 
@@ -80,9 +85,9 @@ class RawTransactionsTest(BitcoinTestFramework):
         address = self.nodes[0].getnewaddress()
         assert_raises_rpc_error(-3, "Expected type object", self.nodes[0].createrawtransaction, [], 'foo')
         #assert_raises_rpc_error(-8, "Data must be hexadecimal string", self.nodes[0].createrawtransaction, [], {'data': 'foo'})
-        assert_raises_rpc_error(-5, "Invalid DogeCash address", self.nodes[0].createrawtransaction, [], {'foo': 0})
+        assert_raises_rpc_error(-5, "Invalid PIVX address", self.nodes[0].createrawtransaction, [], {'foo': 0})
         #assert_raises_rpc_error(-3, "﻿Amount is not a number", self.nodes[0].createrawtransaction, [], {address: 'foo'})
-        assert_raises_rpc_error(-3, "Invalid amount", self.nodes[0].createrawtransaction, [], {address: -1})
+        assert_raises_rpc_error(-3, "Amount out of range", self.nodes[0].createrawtransaction, [], {address: -1})
         assert_raises_rpc_error(-8, "Invalid parameter, duplicated address: %s" % address, self.nodes[0].createrawtransaction, [], multidict([(address, 1), (address, 1)]))
 
         # Test `createrawtransaction` invalid `locktime`
