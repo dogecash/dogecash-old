@@ -1,11 +1,13 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2009-2014 The Bitcoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_ARITH_UINT256_H
 #define BITCOIN_ARITH_UINT256_H
 
+#include "blob_uint256.h"
+#include "uint512.h"
 #include <assert.h>
 #include <cstring>
 #include <stdexcept>
@@ -13,51 +15,53 @@
 #include <string>
 #include <vector>
 
+class blob_uint512;
+class blob_uint256;
 class uint256;
+class uint512;
+
+class uint_error : public std::runtime_error {
+public:
+    explicit uint_error(const std::string& str) : std::runtime_error(str) {}
+};
 
 /** Template base class for unsigned big integers. */
 template<unsigned int BITS>
-class base_uint1
+class base_uint
 {
-protected:
-    static constexpr int WIDTH = BITS / 32;
-    uint32_t pn[WIDTH];
 public:
+    enum { WIDTH=BITS/32 };
+    uint32_t pn[WIDTH];
 
-    base_uint1()
+    base_uint()
     {
-        static_assert(BITS/32 > 0 && BITS%32 == 0, "Template parameter BITS must be a positive multiple of 32.");
-
         for (int i = 0; i < WIDTH; i++)
             pn[i] = 0;
     }
 
-    base_uint1(const base_uint1& b)
+    base_uint(const base_uint& b)
     {
-        static_assert(BITS/32 > 0 && BITS%32 == 0, "Template parameter BITS must be a positive multiple of 32.");
-
         for (int i = 0; i < WIDTH; i++)
             pn[i] = b.pn[i];
     }
 
-    base_uint1& operator=(const base_uint1& b)
+    base_uint& operator=(const base_uint& b)
     {
         for (int i = 0; i < WIDTH; i++)
             pn[i] = b.pn[i];
         return *this;
     }
 
-    base_uint1(uint64_t b)
+    base_uint(uint64_t b)
     {
-        static_assert(BITS/32 > 0 && BITS%32 == 0, "Template parameter BITS must be a positive multiple of 32.");
-
         pn[0] = (unsigned int)b;
         pn[1] = (unsigned int)(b >> 32);
         for (int i = 2; i < WIDTH; i++)
             pn[i] = 0;
     }
 
-    explicit base_uint1(const std::string& str);
+    explicit base_uint(const std::string& str);
+    explicit base_uint(const std::vector<unsigned char>& vch);
 
     bool operator!() const
     {
@@ -67,17 +71,17 @@ public:
         return true;
     }
 
-    const base_uint1 operator~() const
+    const base_uint operator~() const
     {
-        base_uint1 ret;
+        base_uint ret;
         for (int i = 0; i < WIDTH; i++)
             ret.pn[i] = ~pn[i];
         return ret;
     }
 
-    const base_uint1 operator-() const
+    const base_uint operator-() const
     {
-        base_uint1 ret;
+        base_uint ret;
         for (int i = 0; i < WIDTH; i++)
             ret.pn[i] = ~pn[i];
         ret++;
@@ -86,7 +90,7 @@ public:
 
     double getdouble() const;
 
-    base_uint1& operator=(uint64_t b)
+    base_uint& operator=(uint64_t b)
     {
         pn[0] = (unsigned int)b;
         pn[1] = (unsigned int)(b >> 32);
@@ -95,45 +99,45 @@ public:
         return *this;
     }
 
-    base_uint1& operator^=(const base_uint1& b)
+    base_uint& operator^=(const base_uint& b)
     {
         for (int i = 0; i < WIDTH; i++)
             pn[i] ^= b.pn[i];
         return *this;
     }
 
-    base_uint1& operator&=(const base_uint1& b)
+    base_uint& operator&=(const base_uint& b)
     {
         for (int i = 0; i < WIDTH; i++)
             pn[i] &= b.pn[i];
         return *this;
     }
 
-    base_uint1& operator|=(const base_uint1& b)
+    base_uint& operator|=(const base_uint& b)
     {
         for (int i = 0; i < WIDTH; i++)
             pn[i] |= b.pn[i];
         return *this;
     }
 
-    base_uint1& operator^=(uint64_t b)
+    base_uint& operator^=(uint64_t b)
     {
         pn[0] ^= (unsigned int)b;
         pn[1] ^= (unsigned int)(b >> 32);
         return *this;
     }
 
-    base_uint1& operator|=(uint64_t b)
+    base_uint& operator|=(uint64_t b)
     {
         pn[0] |= (unsigned int)b;
         pn[1] |= (unsigned int)(b >> 32);
         return *this;
     }
 
-    base_uint1& operator<<=(unsigned int shift);
-    base_uint1& operator>>=(unsigned int shift);
+    base_uint& operator<<=(unsigned int shift);
+    base_uint& operator>>=(unsigned int shift);
 
-    base_uint1& operator+=(const base_uint1& b)
+    base_uint& operator+=(const base_uint& b)
     {
         uint64_t carry = 0;
         for (int i = 0; i < WIDTH; i++)
@@ -145,98 +149,128 @@ public:
         return *this;
     }
 
-    base_uint1& operator-=(const base_uint1& b)
+    base_uint& operator-=(const base_uint& b)
     {
         *this += -b;
         return *this;
     }
 
-    base_uint1& operator+=(uint64_t b64)
+    base_uint& operator+=(uint64_t b64)
     {
-        base_uint1 b;
+        base_uint b;
         b = b64;
         *this += b;
         return *this;
     }
 
-    base_uint1& operator-=(uint64_t b64)
+    base_uint& operator-=(uint64_t b64)
     {
-        base_uint1 b;
+        base_uint b;
         b = b64;
         *this += -b;
         return *this;
     }
 
-    base_uint1& operator*=(uint32_t b32);
-    base_uint1& operator*=(const base_uint1& b);
-    base_uint1& operator/=(const base_uint1& b);
+    base_uint& operator*=(uint32_t b32);
+    base_uint& operator*=(const base_uint& b);
+    base_uint& operator/=(const base_uint& b);
 
-    base_uint1& operator++()
+    base_uint& operator++()
     {
         // prefix operator
         int i = 0;
-        while (i < WIDTH && ++pn[i] == 0)
+        while (++pn[i] == 0 && i < WIDTH-1)
             i++;
         return *this;
     }
 
-    const base_uint1 operator++(int)
+    const base_uint operator++(int)
     {
         // postfix operator
-        const base_uint1 ret = *this;
+        const base_uint ret = *this;
         ++(*this);
         return ret;
     }
 
-    base_uint1& operator--()
+    base_uint& operator--()
     {
         // prefix operator
         int i = 0;
-        while (i < WIDTH && --pn[i] == (uint32_t)-1)
+        while (--pn[i] == (uint32_t)-1 && i < WIDTH-1)
             i++;
         return *this;
     }
 
-    const base_uint1 operator--(int)
+    const base_uint operator--(int)
     {
         // postfix operator
-        const base_uint1 ret = *this;
+        const base_uint ret = *this;
         --(*this);
         return ret;
     }
 
-    int CompareTo(const base_uint1& b) const;
+    int CompareTo(const base_uint& b) const;
     bool EqualTo(uint64_t b) const;
 
-    friend inline const base_uint1 operator+(const base_uint1& a, const base_uint1& b) { return base_uint1(a) += b; }
-    friend inline const base_uint1 operator-(const base_uint1& a, const base_uint1& b) { return base_uint1(a) -= b; }
-    friend inline const base_uint1 operator*(const base_uint1& a, const base_uint1& b) { return base_uint1(a) *= b; }
-    friend inline const base_uint1 operator/(const base_uint1& a, const base_uint1& b) { return base_uint1(a) /= b; }
-    friend inline const base_uint1 operator|(const base_uint1& a, const base_uint1& b) { return base_uint1(a) |= b; }
-    friend inline const base_uint1 operator&(const base_uint1& a, const base_uint1& b) { return base_uint1(a) &= b; }
-    friend inline const base_uint1 operator^(const base_uint1& a, const base_uint1& b) { return base_uint1(a) ^= b; }
-    friend inline const base_uint1 operator>>(const base_uint1& a, int shift) { return base_uint1(a) >>= shift; }
-    friend inline const base_uint1 operator<<(const base_uint1& a, int shift) { return base_uint1(a) <<= shift; }
-    friend inline const base_uint1 operator*(const base_uint1& a, uint32_t b) { return base_uint1(a) *= b; }
-    friend inline bool operator==(const base_uint1& a, const base_uint1& b) { return memcmp(a.pn, b.pn, sizeof(a.pn)) == 0; }
-    friend inline bool operator!=(const base_uint1& a, const base_uint1& b) { return memcmp(a.pn, b.pn, sizeof(a.pn)) != 0; }
-    friend inline bool operator>(const base_uint1& a, const base_uint1& b) { return a.CompareTo(b) > 0; }
-    friend inline bool operator<(const base_uint1& a, const base_uint1& b) { return a.CompareTo(b) < 0; }
-    friend inline bool operator>=(const base_uint1& a, const base_uint1& b) { return a.CompareTo(b) >= 0; }
-    friend inline bool operator<=(const base_uint1& a, const base_uint1& b) { return a.CompareTo(b) <= 0; }
-    friend inline bool operator==(const base_uint1& a, uint64_t b) { return a.EqualTo(b); }
-    friend inline bool operator!=(const base_uint1& a, uint64_t b) { return !a.EqualTo(b); }
+    friend inline const base_uint operator+(const base_uint& a, const base_uint& b) { return base_uint(a) += b; }
+    friend inline const base_uint operator-(const base_uint& a, const base_uint& b) { return base_uint(a) -= b; }
+    friend inline const base_uint operator*(const base_uint& a, const base_uint& b) { return base_uint(a) *= b; }
+    friend inline const base_uint operator/(const base_uint& a, const base_uint& b) { return base_uint(a) /= b; }
+    friend inline const base_uint operator|(const base_uint& a, const base_uint& b) { return base_uint(a) |= b; }
+    friend inline const base_uint operator&(const base_uint& a, const base_uint& b) { return base_uint(a) &= b; }
+    friend inline const base_uint operator^(const base_uint& a, const base_uint& b) { return base_uint(a) ^= b; }
+    friend inline const base_uint operator>>(const base_uint& a, int shift) { return base_uint(a) >>= shift; }
+    friend inline const base_uint operator<<(const base_uint& a, int shift) { return base_uint(a) <<= shift; }
+    friend inline const base_uint operator*(const base_uint& a, uint32_t b) { return base_uint(a) *= b; }
+    friend inline bool operator==(const base_uint& a, const base_uint& b) { return memcmp(a.pn, b.pn, sizeof(a.pn)) == 0; }
+    friend inline bool operator!=(const base_uint& a, const base_uint& b) { return memcmp(a.pn, b.pn, sizeof(a.pn)) != 0; }
+    friend inline bool operator>(const base_uint& a, const base_uint& b) { return a.CompareTo(b) > 0; }
+    friend inline bool operator<(const base_uint& a, const base_uint& b) { return a.CompareTo(b) < 0; }
+    friend inline bool operator>=(const base_uint& a, const base_uint& b) { return a.CompareTo(b) >= 0; }
+    friend inline bool operator<=(const base_uint& a, const base_uint& b) { return a.CompareTo(b) <= 0; }
+    friend inline bool operator==(const base_uint& a, uint64_t b) { return a.EqualTo(b); }
+    friend inline bool operator!=(const base_uint& a, uint64_t b) { return !a.EqualTo(b); }
 
     std::string GetHex() const;
     void SetHex(const char* psz);
     void SetHex(const std::string& str);
     std::string ToString() const;
+    std::string ToStringReverseEndian() const;
+
+    unsigned char* begin()
+    {
+        return (unsigned char*)&pn[0];
+    }
+
+    unsigned char* end()
+    {
+        return (unsigned char*)&pn[WIDTH];
+    }
+
+    const unsigned char* begin() const
+    {
+        return (unsigned char*)&pn[0];
+    }
+
+    const unsigned char* end() const
+    {
+        return (unsigned char*)&pn[WIDTH];
+    }
 
     unsigned int size() const
     {
         return sizeof(pn);
     }
 
+    uint64_t Get64(int n = 0) const
+    {
+        return pn[2 * n] | (uint64_t)pn[2 * n + 1] << 32;
+    }
+
+    uint32_t Get32(int n = 0) const
+    {
+        return pn[2 * n];
+    }
     /**
      * Returns the position of the highest bit set plus one, or zero if the
      * value is zero.
@@ -245,18 +279,66 @@ public:
 
     uint64_t GetLow64() const
     {
-        static_assert(WIDTH >= 2, "Assertion WIDTH >= 2 failed (WIDTH = BITS / 32). BITS is a template parameter.");
+        assert(WIDTH >= 2);
         return pn[0] | (uint64_t)pn[1] << 32;
     }
+
+    template<typename Stream>
+    void Serialize(Stream& s) const
+    {
+        s.write((char*)pn, sizeof(pn));
+    }
+
+    template<typename Stream>
+    void Unserialize(Stream& s)
+    {
+        s.read((char*)pn, sizeof(pn));
+    }
+
+    // Temporary for migration to blob160/256
+    uint64_t GetCheapHash() const
+    {
+        return GetLow64();
+    }
+    void SetNull()
+    {
+        memset(pn, 0, sizeof(pn));
+    }
+    bool IsNull() const
+    {
+        for (int i = 0; i < WIDTH; i++)
+            if (pn[i] != 0)
+                return false;
+        return true;
+    }
+
+    friend class uint160;
+    friend class uint256;
+    friend class uint512;
+
+    friend class arith_uint160;
+    friend class arith_uint256;
+    friend class arith_uint512;
+};
+
+/** 160-bit unsigned big integer. */
+class arith_uint160 : public base_uint<160> {
+public:
+    arith_uint160() {}
+    arith_uint160(const base_uint<160>& b) : base_uint<160>(b) {}
+    arith_uint160(uint64_t b) : base_uint<160>(b) {}
+    explicit arith_uint160(const std::string& str) : base_uint<160>(str) {}
+    explicit arith_uint160(const std::vector<unsigned char>& vch) : base_uint<160>(vch) {}
 };
 
 /** 256-bit unsigned big integer. */
-class arith_uint256 : public base_uint1<256> {
+class arith_uint256 : public base_uint<256> {
 public:
     arith_uint256() {}
-    arith_uint256(const base_uint1<256>& b) : base_uint1<256>(b) {}
-    arith_uint256(uint64_t b) : base_uint1<256>(b) {}
-    explicit arith_uint256(const std::string& str) : base_uint1<256>(str) {}
+    arith_uint256(const base_uint<256>& b) : base_uint<256>(b) {}
+    arith_uint256(uint64_t b) : base_uint<256>(b) {}
+    explicit arith_uint256(const std::string& str) : base_uint<256>(str) {}
+    explicit arith_uint256(const std::vector<unsigned char>& vch) : base_uint<256>(vch) {}
 
     /**
      * The "compact" format is a representation of a whole
@@ -278,14 +360,29 @@ public:
      * complexities of the sign bit and using base 256 are probably an
      * implementation accident.
      */
-    arith_uint256& SetCompact(uint32_t nCompact, bool *pfNegative = nullptr, bool *pfOverflow = nullptr);
+    arith_uint256& SetCompact(uint32_t nCompact, bool *pfNegative = NULL, bool *pfOverflow = NULL);
     uint32_t GetCompact(bool fNegative = false) const;
-
-    friend uint256 ArithToUint256(const arith_uint256 &);
-    friend arith_uint256 UintToArith256(const uint256 &);
+    uint32_t Get32(int n = 0) const { return pn[2 * n]; }
 };
 
-uint256 ArithToUint256(const arith_uint256 &);
-arith_uint256 UintToArith256(const uint256 &);
+/** 512-bit unsigned big integer. */
+class arith_uint512 : public base_uint<512> {
+public:
+    arith_uint512() {}
+    arith_uint512(const base_uint<512>& b) : base_uint<512>(b) {}
+    arith_uint512(uint64_t b) : base_uint<512>(b) {}
+    explicit arith_uint512(const std::string& str) : base_uint<512>(str) {}
+    explicit arith_uint512(const std::vector<unsigned char>& vch) : base_uint<512>(vch) {}
 
-#endif // BITCOIN_ARITH_UINT256_H
+    //friend arith_uint512 UintToArith512(const blob_uint512 &a);
+    //friend blob_uint512 ArithToUint512(const arith_uint512 &a);
+
+};
+
+/** Old classes definitions */
+
+/** End classes definitions */
+
+const arith_uint256 ARITH_UINT256_ZERO = arith_uint256();
+
+#endif // BITCOIN_UINT256_H

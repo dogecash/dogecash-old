@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2014 The Bitcoin Core developers
-// Copyright (c) 2017 The PIVX developers
+// Copyright (c) 2017-2020 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,16 +10,14 @@
 #include "sync.h"
 #include "utilstrencodings.h"
 #include "utilmoneystr.h"
-#include "test/test_dogecash.h"
+#include "test/test_pivx.h"
 
 #include <stdint.h>
 #include <vector>
 
 #include <boost/test/unit_test.hpp>
 
-using namespace std;
-
-BOOST_AUTO_TEST_SUITE(util_tests)
+BOOST_FIXTURE_TEST_SUITE(util_tests, BasicTestingSetup)
 
 BOOST_AUTO_TEST_CASE(util_criticalsection)
 {
@@ -96,52 +94,109 @@ BOOST_AUTO_TEST_CASE(util_DateTimeStrFormat)
     BOOST_CHECK_EQUAL(DateTimeStrFormat("%a, %d %b %Y %H:%M:%S +0000", 1317425777), "Fri, 30 Sep 2011 23:36:17 +0000");
 }
 
+struct TestArgsManager : public ArgsManager
+{
+    std::map<std::string, std::string>& GetMapArgs() { return mapArgs; }
+    const std::map<std::string, std::vector<std::string> >& GetMapMultiArgs() { return mapMultiArgs; }
+    const std::unordered_set<std::string>& GetNegatedArgs() { return m_negated_args; }
+};
+
 BOOST_AUTO_TEST_CASE(util_ParseParameters)
 {
+    TestArgsManager testArgs;
     const char *argv_test[] = {"-ignored", "-a", "-b", "-ccc=argument", "-ccc=multiple", "f", "-d=e"};
 
-    ParseParameters(0, (char**)argv_test);
-    BOOST_CHECK(mapArgs.empty() && mapMultiArgs.empty());
+    testArgs.ParseParameters(0, (char**)argv_test);
+    BOOST_CHECK(testArgs.GetMapArgs().empty() && testArgs.GetMapMultiArgs().empty());
 
-    ParseParameters(1, (char**)argv_test);
-    BOOST_CHECK(mapArgs.empty() && mapMultiArgs.empty());
+    testArgs.ParseParameters(1, (char**)argv_test);
+    BOOST_CHECK(testArgs.GetMapArgs().empty() && testArgs.GetMapMultiArgs().empty());
 
-    ParseParameters(5, (char**)argv_test);
+    testArgs.ParseParameters(5, (char**)argv_test);
     // expectation: -ignored is ignored (program name argument),
     // -a, -b and -ccc end up in map, -d ignored because it is after
     // a non-option argument (non-GNU option parsing)
-    BOOST_CHECK(mapArgs.size() == 3 && mapMultiArgs.size() == 3);
-    BOOST_CHECK(mapArgs.count("-a") && mapArgs.count("-b") && mapArgs.count("-ccc")
-                && !mapArgs.count("f") && !mapArgs.count("-d"));
-    BOOST_CHECK(mapMultiArgs.count("-a") && mapMultiArgs.count("-b") && mapMultiArgs.count("-ccc")
-                && !mapMultiArgs.count("f") && !mapMultiArgs.count("-d"));
+    BOOST_CHECK(testArgs.GetMapArgs().size() == 3 && testArgs.GetMapMultiArgs().size() == 3);
+    BOOST_CHECK(testArgs.IsArgSet("-a") && testArgs.IsArgSet("-b") && testArgs.IsArgSet("-ccc")
+                && !testArgs.IsArgSet("f") && !testArgs.IsArgSet("-d"));
+    BOOST_CHECK(testArgs.GetMapMultiArgs().count("-a") && testArgs.GetMapMultiArgs().count("-b") && testArgs.GetMapMultiArgs().count("-ccc")
+                && !testArgs.GetMapMultiArgs().count("f") && !testArgs.GetMapMultiArgs().count("-d"));
 
-    BOOST_CHECK(mapArgs["-a"] == "" && mapArgs["-ccc"] == "multiple");
-    BOOST_CHECK(mapMultiArgs["-ccc"].size() == 2);
+    BOOST_CHECK(testArgs.GetMapArgs()["-a"] == "" && testArgs.GetMapArgs()["-ccc"] == "multiple");
+    BOOST_CHECK(testArgs.GetArgs("-ccc").size() == 2);
+}
+
+BOOST_AUTO_TEST_CASE(util_GetBoolArg)
+{
+    TestArgsManager testArgs;
+    const char *argv_test[] = {
+        "ignored", "-a", "-nob", "-c=0", "-d=1", "-e=false", "-f=true"};
+    testArgs.ParseParameters(7, (char**)argv_test);
+
+    // Each letter should be set.
+    for (char opt : "abcdef")
+        BOOST_CHECK(testArgs.IsArgSet({'-', opt}) || !opt);
+
+    // Nothing else should be in the map
+    BOOST_CHECK(testArgs.GetMapArgs().size() == 6 &&
+                testArgs.GetMapMultiArgs().size() == 6);
+
+    // The -no prefix should get stripped on the way in.
+    BOOST_CHECK(!testArgs.IsArgSet("-nob"));
+
+    // The -b option is flagged as negated, and nothing else is
+    BOOST_CHECK(testArgs.IsArgNegated("-b"));
+    BOOST_CHECK(testArgs.GetNegatedArgs().size() == 1);
+    BOOST_CHECK(!testArgs.IsArgNegated("-a"));
+
+    // Check expected values.
+    BOOST_CHECK(testArgs.GetBoolArg("-a", false) == true);
+    BOOST_CHECK(testArgs.GetBoolArg("-b", true) == false);
+    BOOST_CHECK(testArgs.GetBoolArg("-c", true) == false);
+    BOOST_CHECK(testArgs.GetBoolArg("-d", false) == true);
+    BOOST_CHECK(testArgs.GetBoolArg("-e", true) == false);
+    BOOST_CHECK(testArgs.GetBoolArg("-f", true) == false);
+}
+
+BOOST_AUTO_TEST_CASE(util_GetBoolArgEdgeCases)
+{
+    // Test some awful edge cases that hopefully no user will ever exercise.
+    TestArgsManager testArgs;
+    const char *argv_test[] = {"ignored", "-nofoo", "-foo", "-nobar=0"};
+    testArgs.ParseParameters(4, (char**)argv_test);
+
+    // This was passed twice, second one overrides the negative setting.
+    BOOST_CHECK(!testArgs.IsArgNegated("-foo"));
+    BOOST_CHECK(testArgs.GetBoolArg("-foo", false) == true);
+
+    // A double negative is a positive.
+    BOOST_CHECK(testArgs.IsArgNegated("-bar"));
+    BOOST_CHECK(testArgs.GetBoolArg("-bar", false) == true);
 }
 
 BOOST_AUTO_TEST_CASE(util_GetArg)
 {
-    mapArgs.clear();
-    mapArgs["strtest1"] = "string...";
+    TestArgsManager testArgs;
+    testArgs.GetMapArgs().clear();
+    testArgs.GetMapArgs()["strtest1"] = "string...";
     // strtest2 undefined on purpose
-    mapArgs["inttest1"] = "12345";
-    mapArgs["inttest2"] = "81985529216486895";
+    testArgs.GetMapArgs()["inttest1"] = "12345";
+    testArgs.GetMapArgs()["inttest2"] = "81985529216486895";
     // inttest3 undefined on purpose
-    mapArgs["booltest1"] = "";
+    testArgs.GetMapArgs()["booltest1"] = "";
     // booltest2 undefined on purpose
-    mapArgs["booltest3"] = "0";
-    mapArgs["booltest4"] = "1";
+    testArgs.GetMapArgs()["booltest3"] = "0";
+    testArgs.GetMapArgs()["booltest4"] = "1";
 
-    BOOST_CHECK_EQUAL(GetArg("strtest1", "default"), "string...");
-    BOOST_CHECK_EQUAL(GetArg("strtest2", "default"), "default");
-    BOOST_CHECK_EQUAL(GetArg("inttest1", -1), 12345);
-    BOOST_CHECK_EQUAL(GetArg("inttest2", -1), 81985529216486895LL);
-    BOOST_CHECK_EQUAL(GetArg("inttest3", -1), -1);
-    BOOST_CHECK_EQUAL(GetBoolArg("booltest1", false), true);
-    BOOST_CHECK_EQUAL(GetBoolArg("booltest2", false), false);
-    BOOST_CHECK_EQUAL(GetBoolArg("booltest3", false), false);
-    BOOST_CHECK_EQUAL(GetBoolArg("booltest4", false), true);
+    BOOST_CHECK_EQUAL(testArgs.GetArg("strtest1", "default"), "string...");
+    BOOST_CHECK_EQUAL(testArgs.GetArg("strtest2", "default"), "default");
+    BOOST_CHECK_EQUAL(testArgs.GetArg("inttest1", -1), 12345);
+    BOOST_CHECK_EQUAL(testArgs.GetArg("inttest2", -1), 81985529216486895LL);
+    BOOST_CHECK_EQUAL(testArgs.GetArg("inttest3", -1), -1);
+    BOOST_CHECK_EQUAL(testArgs.GetBoolArg("booltest1", false), true);
+    BOOST_CHECK_EQUAL(testArgs.GetBoolArg("booltest2", false), false);
+    BOOST_CHECK_EQUAL(testArgs.GetBoolArg("booltest3", false), false);
+    BOOST_CHECK_EQUAL(testArgs.GetBoolArg("booltest4", false), true);
 }
 
 BOOST_AUTO_TEST_CASE(util_FormatMoney)
@@ -315,6 +370,21 @@ BOOST_AUTO_TEST_CASE(gettime)
     BOOST_CHECK((GetTime() & ~0xFFFFFFFFLL) == 0);
 }
 
+BOOST_AUTO_TEST_CASE(test_IsDigit)
+{
+    BOOST_CHECK_EQUAL(IsDigit('0'), true);
+    BOOST_CHECK_EQUAL(IsDigit('1'), true);
+    BOOST_CHECK_EQUAL(IsDigit('8'), true);
+    BOOST_CHECK_EQUAL(IsDigit('9'), true);
+
+    BOOST_CHECK_EQUAL(IsDigit('0' - 1), false);
+    BOOST_CHECK_EQUAL(IsDigit('9' + 1), false);
+    BOOST_CHECK_EQUAL(IsDigit(0), false);
+    BOOST_CHECK_EQUAL(IsDigit(1), false);
+    BOOST_CHECK_EQUAL(IsDigit(8), false);
+    BOOST_CHECK_EQUAL(IsDigit(9), false);
+}
+
 BOOST_AUTO_TEST_CASE(test_ParseInt32)
 {
     int32_t n;
@@ -425,4 +495,109 @@ BOOST_AUTO_TEST_CASE(test_FormatSubVersion)
     BOOST_CHECK_EQUAL(FormatSubVersion("Test", 99900, comments),std::string("/Test:0.9.99(comment1)/"));
     BOOST_CHECK_EQUAL(FormatSubVersion("Test", 99900, comments2),std::string("/Test:0.9.99(comment1; comment2)/"));
 }
+
+BOOST_AUTO_TEST_CASE(test_ParseFixedPoint)
+{
+    int64_t amount = 0;
+    BOOST_CHECK(ParseFixedPoint("0", 8, &amount));
+    BOOST_CHECK_EQUAL(amount, 0LL);
+    BOOST_CHECK(ParseFixedPoint("1", 8, &amount));
+    BOOST_CHECK_EQUAL(amount, 100000000LL);
+    BOOST_CHECK(ParseFixedPoint("0.0", 8, &amount));
+    BOOST_CHECK_EQUAL(amount, 0LL);
+    BOOST_CHECK(ParseFixedPoint("-0.1", 8, &amount));
+    BOOST_CHECK_EQUAL(amount, -10000000LL);
+    BOOST_CHECK(ParseFixedPoint("1.1", 8, &amount));
+    BOOST_CHECK_EQUAL(amount, 110000000LL);
+    BOOST_CHECK(ParseFixedPoint("1.10000000000000000", 8, &amount));
+    BOOST_CHECK_EQUAL(amount, 110000000LL);
+    BOOST_CHECK(ParseFixedPoint("1.1e1", 8, &amount));
+    BOOST_CHECK_EQUAL(amount, 1100000000LL);
+    BOOST_CHECK(ParseFixedPoint("1.1e-1", 8, &amount));
+    BOOST_CHECK_EQUAL(amount, 11000000LL);
+    BOOST_CHECK(ParseFixedPoint("1000", 8, &amount));
+    BOOST_CHECK_EQUAL(amount, 100000000000LL);
+    BOOST_CHECK(ParseFixedPoint("-1000", 8, &amount));
+    BOOST_CHECK_EQUAL(amount, -100000000000LL);
+    BOOST_CHECK(ParseFixedPoint("0.00000001", 8, &amount));
+    BOOST_CHECK_EQUAL(amount, 1LL);
+    BOOST_CHECK(ParseFixedPoint("0.0000000100000000", 8, &amount));
+    BOOST_CHECK_EQUAL(amount, 1LL);
+    BOOST_CHECK(ParseFixedPoint("-0.00000001", 8, &amount));
+    BOOST_CHECK_EQUAL(amount, -1LL);
+    BOOST_CHECK(ParseFixedPoint("1000000000.00000001", 8, &amount));
+    BOOST_CHECK_EQUAL(amount, 100000000000000001LL);
+    BOOST_CHECK(ParseFixedPoint("9999999999.99999999", 8, &amount));
+    BOOST_CHECK_EQUAL(amount, 999999999999999999LL);
+    BOOST_CHECK(ParseFixedPoint("-9999999999.99999999", 8, &amount));
+    BOOST_CHECK_EQUAL(amount, -999999999999999999LL);
+
+    BOOST_CHECK(!ParseFixedPoint("", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("-", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("a-1000", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("-a1000", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("-1000a", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("-01000", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("00.1", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint(".1", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("--0.1", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("0.000000001", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("-0.000000001", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("0.00000001000000001", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("-10000000000.00000000", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("10000000000.00000000", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("-10000000000.00000001", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("10000000000.00000001", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("-10000000000.00000009", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("10000000000.00000009", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("-99999999999.99999999", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("99999909999.09999999", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("92233720368.54775807", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("92233720368.54775808", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("-92233720368.54775808", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("-92233720368.54775809", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("1.1e", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("1.1e-", 8, &amount));
+    BOOST_CHECK(!ParseFixedPoint("1.", 8, &amount));
+}
+
+BOOST_AUTO_TEST_CASE(test_ToLower)
+{
+    BOOST_CHECK_EQUAL(ToLower('@'), '@');
+    BOOST_CHECK_EQUAL(ToLower('A'), 'a');
+    BOOST_CHECK_EQUAL(ToLower('Z'), 'z');
+    BOOST_CHECK_EQUAL(ToLower('['), '[');
+    BOOST_CHECK_EQUAL(ToLower(0), 0);
+    BOOST_CHECK_EQUAL(ToLower(255), 255);
+
+    std::string testVector;
+    Downcase(testVector);
+    BOOST_CHECK_EQUAL(testVector, "");
+
+    testVector = "#HODL";
+    Downcase(testVector);
+    BOOST_CHECK_EQUAL(testVector, "#hodl");
+
+    testVector = "\x00\xfe\xff";
+    Downcase(testVector);
+    BOOST_CHECK_EQUAL(testVector, "\x00\xfe\xff");
+}
+
+BOOST_AUTO_TEST_CASE(test_ToUpper)
+{
+    BOOST_CHECK_EQUAL(ToUpper('`'), '`');
+    BOOST_CHECK_EQUAL(ToUpper('a'), 'A');
+    BOOST_CHECK_EQUAL(ToUpper('z'), 'Z');
+    BOOST_CHECK_EQUAL(ToUpper('{'), '{');
+    BOOST_CHECK_EQUAL(ToUpper(0), 0);
+    BOOST_CHECK_EQUAL(ToUpper(255), 255);
+}
+
+BOOST_AUTO_TEST_CASE(test_Capitalize)
+{
+    BOOST_CHECK_EQUAL(Capitalize(""), "");
+    BOOST_CHECK_EQUAL(Capitalize("pivx"), "Pivx");
+    BOOST_CHECK_EQUAL(Capitalize("\x00\xfe\xff"), "\x00\xfe\xff");
+}
+
 BOOST_AUTO_TEST_SUITE_END()

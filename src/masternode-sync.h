@@ -1,12 +1,17 @@
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
-// Distributed under the MIT/X11 software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+// Copyright (c) 2015-2020 The PIVX developers
+// Distributed under the MIT software license, see the accompanying
+// file COPYING or https://www.opensource.org/licenses/mit-license.php.
 
 #ifndef MASTERNODE_SYNC_H
 #define MASTERNODE_SYNC_H
 
+#include "net.h"    // for NodeId
+#include "uint256.h"
+
 #include <atomic>
+#include <string>
+#include <map>
 
 #define MASTERNODE_SYNC_INITIAL 0
 #define MASTERNODE_SYNC_SPORKS 1
@@ -23,6 +28,11 @@
 
 class CMasternodeSync;
 extern CMasternodeSync masternodeSync;
+
+struct TierTwoPeerData {
+    // map of message --> last request timestamp, bool hasResponseArrived.
+    std::map<const char*, std::pair<int64_t, bool>> mapMsgData;
+};
 
 //
 // CMasternodeSync : Sync masternode assets in stages
@@ -64,9 +74,9 @@ public:
 
     CMasternodeSync();
 
-    void AddedMasternodeList(uint256 hash);
-    void AddedMasternodeWinner(uint256 hash);
-    void AddedBudgetItem(uint256 hash);
+    void AddedMasternodeList(const uint256& hash);
+    void AddedMasternodeWinner(const uint256& hash);
+    void AddedBudgetItem(const uint256& hash);
     void GetNextAsset();
     std::string GetSyncStatus();
     void ProcessMessage(CNode* pfrom, std::string& strCommand, CDataStream& vRecv);
@@ -75,12 +85,41 @@ public:
 
     void Reset();
     void Process();
+    /*
+     * Process sync with a single node.
+     * If it returns false, the Process() step is complete.
+     * Otherwise Process() calls it again for a different node.
+     */
+    bool SyncWithNode(CNode* pnode);
     bool IsSynced();
     bool NotCompleted();
     bool IsSporkListSynced();
     bool IsMasternodeListSynced();
     bool IsBlockchainSynced();
     void ClearFulfilledRequest();
+
+    // Sync message dispatcher
+    bool MessageDispatcher(CNode* pfrom, std::string& strCommand, CDataStream& vRecv);
+
+private:
+
+    // Tier two sync node state
+    // map of nodeID --> TierTwoPeerData
+    std::map<NodeId, TierTwoPeerData> peersSyncState;
+
+    void SyncRegtest(CNode* pnode);
+
+    template <typename... Args>
+    void RequestDataTo(CNode* pnode, const char* msg, bool forceRequest, Args&&... args);
+
+    template <typename... Args>
+    void PushMessage(CNode* pnode, const char* msg, Args&&... args);
+
+    // update peer sync state data
+    bool UpdatePeerSyncState(const NodeId& id, const char* msg, const int nextSyncStatus);
+
+    // Check if an update is needed
+    void CheckAndUpdateSyncStatus();
 };
 
 #endif

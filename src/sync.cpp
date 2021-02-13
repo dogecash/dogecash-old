@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2020 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -124,7 +124,7 @@ static void push_lock(void* c, const CLockLocation& locklocation)
     LockData& lockdata = GetLockData();
     std::lock_guard<std::mutex> lock(lockdata.dd_mutex);
 
-    g_lockstack.push_back(std::make_pair(c, locklocation));
+    g_lockstack.emplace_back(c, locklocation);
 
     for (const std::pair<void*, CLockLocation>& i : g_lockstack) {
         if (i.first == c)

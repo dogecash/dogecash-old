@@ -1,13 +1,13 @@
 // Copyright (c) 2012 Pieter Wuille
-// Copyright (c) 2012-2014 The Bitcoin developers
-// Copyright (c) 2017 The PIVX developers
+// Copyright (c) 2012-2015 The Bitcoin developers
+// Copyright (c) 2017-2020 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_ADDRMAN_H
 #define BITCOIN_ADDRMAN_H
 
-#include "netbase.h"
+#include "netaddress.h"
 #include "protocol.h"
 #include "random.h"
 #include "sync.h"
@@ -19,14 +19,19 @@
 #include <stdint.h>
 #include <vector>
 
-/** 
- * Extended statistics about a CAddress 
+/**
+ * Extended statistics about a CAddress
  */
 class CAddrInfo : public CAddress
 {
+
+
 public:
     //! last try whatsoever by us (memory only)
     int64_t nLastTry;
+
+    //! last counted attempt (memory only)
+    int64_t nLastCountAttempt;
 
 private:
     //! where knowledge about this address first came from
@@ -53,9 +58,9 @@ public:
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion)
+    inline void SerializationOp(Stream& s, Operation ser_action)
     {
-        READWRITE(*(CAddress*)this);
+        READWRITE(*static_cast<CAddress*>(this));
         READWRITE(source);
         READWRITE(nLastSuccess);
         READWRITE(nAttempts);
@@ -65,6 +70,7 @@ public:
     {
         nLastSuccess = 0;
         nLastTry = 0;
+        nLastCountAttempt = 0;
         nAttempts = 0;
         nRefCount = 0;
         fInTried = false;
@@ -159,6 +165,9 @@ public:
 //! ... in at least this many days
 #define ADDRMAN_MIN_FAIL_DAYS 7
 
+//! how recent a successful connection should be before we allow an address to be evicted from tried
+#define ADDRMAN_REPLACEMENT_HOURS 4
+
 //! the maximum percentage of nodes to return in a getaddr call
 #define ADDRMAN_GETADDR_MAX_PCT 23
 
@@ -170,6 +179,9 @@ public:
 #define ADDRMAN_NEW_BUCKET_COUNT (1 << ADDRMAN_NEW_BUCKET_COUNT_LOG2)
 #define ADDRMAN_BUCKET_SIZE (1 << ADDRMAN_BUCKET_SIZE_LOG2)
 
+//! the maximum number of tried addr collisions to store
+#define ADDRMAN_SET_TRIED_COLLISION_SIZE 10
+
 /**
  * Stochastical (IP) address manager
  */
@@ -178,9 +190,6 @@ class CAddrMan
 private:
     //! critical section to protect the inner data structures
     mutable RecursiveMutex cs;
-
-    //! secret key to randomize bucket select with
-    uint256 nKey;
 
     //! last used nId
     int nIdCount;
@@ -206,9 +215,15 @@ private:
     //! list of "new" buckets
     int vvNew[ADDRMAN_NEW_BUCKET_COUNT][ADDRMAN_BUCKET_SIZE];
 
+    //! last time Good was called (memory only)
+    int64_t nLastGood;
+
+    //! Holds addrs inserted into tried table that collide with existing entries. Test-before-evict discpline used to resolve these collisions.
+    std::set<int> m_tried_collisions;
+
 protected:
     //! secret key to randomize bucket select with
-    //uint256 nKey;
+    uint256 nKey;
 
     //! Source of random numbers for randomization in inner loops
     FastRandomContext insecure_rand;
@@ -233,17 +248,25 @@ protected:
     void ClearNew(int nUBucket, int nUBucketPos);
 
     //! Mark an entry "good", possibly moving it from "new" to "tried".
-    void Good_(const CService& addr, int64_t nTime);
+    void Good_(const CService& addr, bool test_before_evict, int64_t time);
 
     //! Add an entry to the "new" table.
     bool Add_(const CAddress& addr, const CNetAddr& source, int64_t nTimePenalty);
 
     //! Mark an entry as attempted to connect.
-    void Attempt_(const CService& addr, int64_t nTime);
+    void Attempt_(const CService& addr, bool fCountFailure, int64_t nTime);
 
-    //! Select an address to connect to.
-    //! nUnkBias determines how much to favor new addresses over tried ones (min=0, max=100)
-    CAddrInfo Select_();
+    //! Select an address to connect to, if newOnly is set to true, only the new table is selected from.
+    CAddrInfo Select_(bool newOnly);
+
+    //! See if any to-be-evicted tried table entries have been tested and if so resolve the collisions.
+    void ResolveCollisions_();
+
+    //! Return a random to-be-evicted tried table address.
+    CAddrInfo SelectTriedCollision_();
+
+    //! Wraps GetRandInt to allow tests to override RandomInt and make it determinismistic.
+    virtual int RandomInt(int nMax);
 
 #ifdef DEBUG_ADDRMAN
     //! Perform consistency check. Returns an error code or zero.
@@ -255,6 +278,9 @@ protected:
 
     //! Mark an entry as currently-connected-to.
     void Connected_(const CService& addr, int64_t nTime);
+
+    //! Update an entry's service bits.
+    void SetServices_(const CService& addr, ServiceFlags nServices);
 
 public:
     /**
@@ -287,7 +313,7 @@ public:
      * very little in common.
      */
     template <typename Stream>
-    void Serialize(Stream& s, int nType, int nVersionDummy) const
+    void Serialize(Stream& s) const
     {
         LOCK(cs);
 
@@ -337,7 +363,7 @@ public:
     }
 
     template <typename Stream>
-    void Unserialize(Stream& s, int nType, int nVersionDummy)
+    void Unserialize(Stream& s)
     {
         LOCK(cs);
 
@@ -428,19 +454,16 @@ public:
             }
         }
         if (nLost + nLostUnk > 0) {
-            LogPrint("addrman", "addrman lost %i new and %i tried addresses due to collisions\n", nLostUnk, nLost);
+            LogPrint(BCLog::ADDRMAN, "addrman lost %i new and %i tried addresses due to collisions\n", nLostUnk, nLost);
         }
 
         Check();
     }
 
-    unsigned int GetSerializeSize(int nType, int nVersion) const
-    {
-        return (CSizeComputer(nType, nVersion) << *this).size();
-    }
 
     void Clear()
     {
+        LOCK(cs);
         std::vector<int>().swap(vRandom);
         nKey = GetRandHash();
         for (size_t bucket = 0; bucket < ADDRMAN_NEW_BUCKET_COUNT; bucket++) {
@@ -457,6 +480,9 @@ public:
         nIdCount = 0;
         nTried = 0;
         nNew = 0;
+        nLastGood = 1; //Initially at 1 so that "never" is strictly worse.
+        mapInfo.clear();
+        mapAddr.clear();
     }
 
     CAddrMan()
@@ -470,8 +496,9 @@ public:
     }
 
     //! Return the number of (unique) addresses in all tables.
-    int size()
+    size_t size() const
     {
+        LOCK(cs); // TODO: Cache this in an atomic to avoid this overhead
         return vRandom.size();
     }
 
@@ -491,67 +518,81 @@ public:
     //! Add a single address.
     bool Add(const CAddress& addr, const CNetAddr& source, int64_t nTimePenalty = 0)
     {
+        LOCK(cs);
         bool fRet = false;
-        {
-            LOCK(cs);
-            Check();
-            fRet |= Add_(addr, source, nTimePenalty);
-            Check();
-        }
+        Check();
+        fRet |= Add_(addr, source, nTimePenalty);
+        Check();
         if (fRet)
-            LogPrint("addrman", "Added %s from %s: %i tried, %i new\n", addr.ToStringIPPort(), source.ToString(), nTried, nNew);
+            LogPrint(BCLog::ADDRMAN, "Added %s from %s: %i tried, %i new\n", addr.ToStringIPPort(), source.ToString(), nTried, nNew);
         return fRet;
     }
 
     //! Add multiple addresses.
     bool Add(const std::vector<CAddress>& vAddr, const CNetAddr& source, int64_t nTimePenalty = 0)
     {
+        LOCK(cs);
         int nAdd = 0;
-        {
-            LOCK(cs);
-            Check();
-            for (std::vector<CAddress>::const_iterator it = vAddr.begin(); it != vAddr.end(); it++)
-                nAdd += Add_(*it, source, nTimePenalty) ? 1 : 0;
-            Check();
-        }
+        Check();
+        for (std::vector<CAddress>::const_iterator it = vAddr.begin(); it != vAddr.end(); it++)
+            nAdd += Add_(*it, source, nTimePenalty) ? 1 : 0;
+        Check();
         if (nAdd)
-            LogPrint("addrman", "Added %i addresses from %s: %i tried, %i new\n", nAdd, source.ToString(), nTried, nNew);
+            LogPrint(BCLog::ADDRMAN, "Added %i addresses from %s: %i tried, %i new\n", nAdd, source.ToString(), nTried, nNew);
         return nAdd > 0;
     }
 
     //! Mark an entry as accessible.
-    void Good(const CService& addr, int64_t nTime = GetAdjustedTime())
+    void Good(const CService& addr, bool test_before_evict = true, int64_t nTime = GetAdjustedTime())
     {
-        {
-            LOCK(cs);
-            Check();
-            Good_(addr, nTime);
-            Check();
-        }
+        LOCK(cs);
+        Check();
+        Good_(addr, test_before_evict, nTime);
+        Check();
     }
 
     //! Mark an entry as connection attempted to.
-    void Attempt(const CService& addr, int64_t nTime = GetAdjustedTime())
+    void Attempt(const CService& addr, bool fCountFailure, int64_t nTime = GetAdjustedTime())
     {
+        LOCK(cs);
+        Check();
+        Attempt_(addr, fCountFailure, nTime);
+        Check();
+    }
+
+    //! See if any to-be-evicted tried table entries have been tested and if so resolve the collisions.
+    void ResolveCollisions()
+    {
+        LOCK(cs);
+        Check();
+        ResolveCollisions_();
+        Check();
+    }
+
+    //! Randomly select an address in tried that another address is attempting to evict.
+    CAddrInfo SelectTriedCollision()
+    {
+        CAddrInfo ret;
         {
             LOCK(cs);
             Check();
-            Attempt_(addr, nTime);
+            ret = SelectTriedCollision_();
             Check();
         }
+        return ret;
     }
 
     /**
      * Choose an address to connect to.
      * nUnkBias determines how much "new" entries are favored over "tried" ones (0-100).
      */
-    CAddrInfo Select()
+    CAddrInfo Select(bool newOnly = false)
     {
         CAddrInfo addrRet;
         {
             LOCK(cs);
             Check();
-            addrRet = Select_();
+            addrRet = Select_(newOnly);
             Check();
         }
         return addrRet;
@@ -573,12 +614,18 @@ public:
     //! Mark an entry as currently-connected-to.
     void Connected(const CService& addr, int64_t nTime = GetAdjustedTime())
     {
-        {
-            LOCK(cs);
-            Check();
-            Connected_(addr, nTime);
-            Check();
-        }
+        LOCK(cs);
+        Check();
+        Connected_(addr, nTime);
+        Check();
+    }
+
+    void SetServices(const CService& addr, ServiceFlags nServices)
+    {
+        LOCK(cs);
+        Check();
+        SetServices_(addr, nServices);
+        Check();
     }
 };
 

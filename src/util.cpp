@@ -1,13 +1,12 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2018-2019 The DogeCash developers
-// Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2015-2020 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/dogecash-config.h"
+#include "config/pivx-config.h"
 #endif
 
 #include "util.h"
@@ -15,17 +14,13 @@
 #include "allocators.h"
 #include "chainparamsbase.h"
 #include "random.h"
-#include "sync.h"
 #include "utilstrencodings.h"
 #include "utiltime.h"
 
+#include <librustzcash.h>
+
 #include <stdarg.h>
-
-#include <boost/date_time/posix_time/posix_time.hpp>
-#include <openssl/bio.h>
-#include <openssl/buffer.h>
-#include <openssl/evp.h>
-
+#include <thread>
 
 #ifndef WIN32
 // for posix_fallocate
@@ -67,6 +62,7 @@
 #ifndef NOMINMAX
 #define NOMINMAX
 #endif
+#include <codecvt>
 
 #include <io.h> /* for _commit */
 #include <shlobj.h>
@@ -76,57 +72,33 @@
 #include <sys/prctl.h>
 #endif
 
-#include <boost/algorithm/string/case_conv.hpp> // for to_lower()
-#include <boost/algorithm/string/join.hpp>
-#include <boost/algorithm/string/predicate.hpp> // for startswith() and endswith()
-#include <boost/filesystem.hpp>
-#include <boost/filesystem/fstream.hpp>
-#include <boost/foreach.hpp>
+#ifdef MAC_OSX
+#include <CoreFoundation/CoreFoundation.h>
+#endif
+
 #include <boost/program_options/detail/config_file.hpp>
 #include <boost/program_options/parsers.hpp>
-#include <boost/thread.hpp>
 #include <openssl/conf.h>
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
 
-using namespace std;
+const char * const PIVX_CONF_FILENAME = "pivx.conf";
+const char * const PIVX_PID_FILENAME = "pivx.pid";
+const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
 
-// dogecash only features
+
+// PIVX only features
 // Masternode
-bool fMasterNode = false;
-string strMasterNodePrivKey = "";
-string strMasterNodeAddr = "";
+std::atomic<bool> fMasterNode{false};
+std::string strMasterNodeAddr = "";
 bool fLiteMode = false;
-// SwiftX
-bool fEnableSwiftTX = true;
-int nSwiftTXDepth = 5;
-// Automatic Zerocoin minting
-bool fEnableZeromint = false;
-bool fEnableAutoConvert = false;
-int nZeromintPercentage = 0;
-int nPreferredDenom = 0;
-const int64_t AUTOMINT_DELAY = (60 * 5); // Wait at least 5 minutes until Automint starts
+// budget finalization
+std::string strBudgetMode = "";
 
-int nAnonymizedogecashAmount = 1000;
-int nLiquidityProvider = 0;
-/** Spork enforcement enabled time */
-int64_t enforceMasternodePaymentsTime = 4085657524;
-bool fSucessfullyLoaded = false;
-/** All denominations used by obfuscation */
-std::vector<int64_t> obfuScationDenominations;
-string strBudgetMode = "";
+ArgsManager gArgs;
 
-map<string, string> mapArgs;
-map<string, vector<string> > mapMultiArgs;
-bool fDebug = false;
-bool fPrintToConsole = false;
-bool fPrintToDebugLog = true;
 bool fDaemon = false;
-bool fServer = false;
-string strMiscWarning;
-bool fLogTimestamps = false;
-bool fLogIPs = false;
-volatile bool fReopenDebugLog = false;
+CTranslationInterface translationInterface;
 
 /** Init OpenSSL library multithreading support */
 static RecursiveMutex** ppmutexOpenSSL;
@@ -178,113 +150,24 @@ public:
     }
 } instance_of_cinit;
 
+
 /**
- * LogPrintf() has been broken a couple of times now
- * by well-meaning people adding mutexes in the most straightforward way.
- * It breaks because it may be called by global destructors during shutdown.
- * Since the order of destruction of static/global objects is undefined,
- * defining a mutex as a global object doesn't work (the mutex gets
- * destroyed, and then some later destructor calls OutputDebugStringF,
- * maybe indirectly, and you get a core dump at shutdown trying to lock
- * the mutex).
+ * Interpret a string argument as a boolean.
+ *
+ * The definition of atoi() requires that non-numeric string values like "foo",
+ * return 0. This means that if a user unintentionally supplies a non-integer
+ * argument here, the return value is always false. This means that -foo=false
+ * does what the user probably expects, but -foo=true is well defined but does
+ * not do what they probably expected.
+ *
+ * The return value of atoi() is undefined when given input not representable as
+ * an int. On most systems this means string value between "-2147483648" and
+ * "2147483647" are well defined (this method will return true). Setting
+ * -txindex=2147483648 on most systems, however, is probably undefined.
+ *
+ * For a more extensive discussion of this topic (and a wide range of opinions
+ * on the Right Way to change this code), see upstream PR12713.
  */
-
-static boost::once_flag debugPrintInitFlag = BOOST_ONCE_INIT;
-/**
- * We use boost::call_once() to make sure these are initialized
- * in a thread-safe manner the first time called:
- */
-static FILE* fileout = NULL;
-static boost::mutex* mutexDebugLog = NULL;
-
-static void DebugPrintInit()
-{
-    assert(fileout == NULL);
-    assert(mutexDebugLog == NULL);
-
-    boost::filesystem::path pathDebug = GetDataDir() / "debug.log";
-    fileout = fopen(pathDebug.string().c_str(), "a");
-    if (fileout) setbuf(fileout, NULL); // unbuffered
-
-    mutexDebugLog = new boost::mutex();
-}
-
-bool LogAcceptCategory(const char* category)
-{
-    if (category != NULL) {
-        if (!fDebug)
-            return false;
-
-        // Give each thread quick access to -debug settings.
-        // This helps prevent issues debugging global destructors,
-        // where mapMultiArgs might be deleted before another
-        // global destructor calls LogPrint()
-        static boost::thread_specific_ptr<set<string> > ptrCategory;
-        if (ptrCategory.get() == NULL) {
-            const vector<string>& categories = mapMultiArgs["-debug"];
-            ptrCategory.reset(new set<string>(categories.begin(), categories.end()));
-            // thread_specific_ptr automatically deletes the set when the thread ends.
-            // "dogecash" is a composite category enabling all dogecash-related debug output
-            if (ptrCategory->count(string("dogecash"))) {
-                ptrCategory->insert(string("obfuscation"));
-                ptrCategory->insert(string("swiftx"));
-                ptrCategory->insert(string("masternode"));
-                ptrCategory->insert(string("mnpayments"));
-                ptrCategory->insert(string("zero"));
-                ptrCategory->insert(string("mnbudget"));
-                ptrCategory->insert(string("precompute"));
-                ptrCategory->insert(string("staking"));
-            }
-        }
-        const set<string>& setCategories = *ptrCategory.get();
-
-        // if not debugging everything and not debugging specific category, LogPrint does nothing.
-        if (setCategories.count(string("")) == 0 &&
-            setCategories.count(string(category)) == 0)
-            return false;
-    }
-    return true;
-}
-
-int LogPrintStr(const std::string& str)
-{
-    int ret = 0; // Returns total number of characters written
-    if (fPrintToConsole) {
-        // print to console
-        ret = fwrite(str.data(), 1, str.size(), stdout);
-        fflush(stdout);
-    } else if (fPrintToDebugLog && AreBaseParamsConfigured()) {
-        static bool fStartedNewLine = true;
-        boost::call_once(&DebugPrintInit, debugPrintInitFlag);
-
-        if (fileout == NULL)
-            return ret;
-
-        boost::mutex::scoped_lock scoped_lock(*mutexDebugLog);
-
-        // reopen the log file, if requested
-        if (fReopenDebugLog) {
-            fReopenDebugLog = false;
-            boost::filesystem::path pathDebug = GetDataDir() / "debug.log";
-            if (freopen(pathDebug.string().c_str(), "a", fileout) != NULL)
-                setbuf(fileout, NULL); // unbuffered
-        }
-
-        // Debug print useful for profiling
-        if (fLogTimestamps && fStartedNewLine)
-            ret += fprintf(fileout, "%s ", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", GetTime()).c_str());
-        if (!str.empty() && str[str.size() - 1] == '\n')
-            fStartedNewLine = true;
-        else
-            fStartedNewLine = false;
-
-        ret = fwrite(str.data(), 1, str.size(), fileout);
-    }
-
-    return ret;
-}
-
-/** Interpret string as boolean, for argument parsing */
 static bool InterpretBool(const std::string& strValue)
 {
     if (strValue.empty())
@@ -292,83 +175,134 @@ static bool InterpretBool(const std::string& strValue)
     return (atoi(strValue) != 0);
 }
 
-/** Turn -noX into -X=0 */
-static void InterpretNegativeSetting(std::string& strKey, std::string& strValue)
+/**
+ * Interpret -nofoo as if the user supplied -foo=0.
+ *
+ * This method also tracks when the -no form was supplied, and treats "-foo" as
+ * a negated option when this happens. This can be later checked using the
+ * IsArgNegated() method. One use case for this is to have a way to disable
+ * options that are not normally boolean (e.g. using -nodebuglogfile to request
+ * that debug log output is not sent to any file at all).
+ */
+void ArgsManager::InterpretNegatedOption(std::string& key, std::string& val)
 {
-    if (strKey.length()>3 && strKey[0]=='-' && strKey[1]=='n' && strKey[2]=='o') {
-        strKey = "-" + strKey.substr(3);
-        strValue = InterpretBool(strValue) ? "0" : "1";
+    if (key.substr(0, 3) == "-no") {
+        bool bool_val = InterpretBool(val);
+        if (!bool_val ) {
+            // Double negatives like -nofoo=0 are supported (but discouraged)
+            LogPrintf("Warning: parsed potentially confusing double-negative %s=%s\n", key, val);
+        }
+        key.erase(1, 2);
+        m_negated_args.insert(key);
+        val = bool_val ? "0" : "1";
+    } else {
+        // In an invocation like "bitcoind -nofoo -foo" we want to unmark -foo
+        // as negated when we see the second option.
+        m_negated_args.erase(key);
     }
 }
 
-void ParseParameters(int argc, const char* const argv[])
+void ArgsManager::ParseParameters(int argc, const char* const argv[])
 {
+    LOCK(cs_args);
     mapArgs.clear();
     mapMultiArgs.clear();
+    m_negated_args.clear();
 
     for (int i = 1; i < argc; i++) {
-        std::string str(argv[i]);
-        std::string strValue;
-        size_t is_index = str.find('=');
+        std::string key(argv[i]);
+        std::string val;
+        size_t is_index = key.find('=');
         if (is_index != std::string::npos) {
-            strValue = str.substr(is_index + 1);
-            str = str.substr(0, is_index);
+            val = key.substr(is_index + 1);
+            key.erase(is_index);
         }
 #ifdef WIN32
-        boost::to_lower(str);
-        if (boost::algorithm::starts_with(str, "/"))
-            str = "-" + str.substr(1);
+        std::transform(key.begin(), key.end(), key.begin(), ::tolower);
+        if (key[0] == '/')
+            key[0] = '-';
 #endif
 
-        if (str[0] != '-')
+        if (key[0] != '-')
             break;
 
-        // Interpret --foo as -foo.
-        // If both --foo and -foo are set, the last takes effect.
-        if (str.length() > 1 && str[1] == '-')
-            str = str.substr(1);
-        InterpretNegativeSetting(str, strValue);
+        // Transform --foo to -foo
+        if (key.length() > 1 && key[1] == '-')
+            key.erase(0, 1);
 
-        mapArgs[str] = strValue;
-        mapMultiArgs[str].push_back(strValue);
+        // Transform -nofoo to -foo=0
+        InterpretNegatedOption(key, val);
+
+        mapArgs[key] = val;
+        mapMultiArgs[key].push_back(val);
     }
 }
 
-std::string GetArg(const std::string& strArg, const std::string& strDefault)
+std::vector<std::string> ArgsManager::GetArgs(const std::string& strArg) const
 {
-    if (mapArgs.count(strArg))
-        return mapArgs[strArg];
+    LOCK(cs_args);
+    auto it = mapMultiArgs.find(strArg);
+    if (it != mapMultiArgs.end()) return it->second;
+    return {};
+}
+
+bool ArgsManager::IsArgSet(const std::string& strArg) const
+{
+    LOCK(cs_args);
+    return mapArgs.count(strArg);
+}
+
+bool ArgsManager::IsArgNegated(const std::string& strArg) const
+{
+    LOCK(cs_args);
+    return m_negated_args.find(strArg) != m_negated_args.end();
+}
+
+std::string ArgsManager::GetArg(const std::string& strArg, const std::string& strDefault) const
+{
+    LOCK(cs_args);
+    auto it = mapArgs.find(strArg);
+    if (it != mapArgs.end()) return it->second;
     return strDefault;
 }
 
-int64_t GetArg(const std::string& strArg, int64_t nDefault)
+int64_t ArgsManager::GetArg(const std::string& strArg, int64_t nDefault) const
 {
-    if (mapArgs.count(strArg))
-        return atoi64(mapArgs[strArg]);
+    LOCK(cs_args);
+    auto it = mapArgs.find(strArg);
+    if (it != mapArgs.end()) return atoi64(it->second);
     return nDefault;
 }
 
-bool GetBoolArg(const std::string& strArg, bool fDefault)
+bool ArgsManager::GetBoolArg(const std::string& strArg, bool fDefault) const
 {
-    if (mapArgs.count(strArg))
-        return InterpretBool(mapArgs[strArg]);
+    LOCK(cs_args);
+    auto it = mapArgs.find(strArg);
+    if (it != mapArgs.end()) return InterpretBool(it->second);
     return fDefault;
 }
 
-bool SoftSetArg(const std::string& strArg, const std::string& strValue)
+bool ArgsManager::SoftSetArg(const std::string& strArg, const std::string& strValue)
 {
-    if (mapArgs.count(strArg))
-        return false;
-    mapArgs[strArg] = strValue;
+    LOCK(cs_args);
+    if (IsArgSet(strArg)) return false;;
+    ForceSetArg(strArg, strValue);
     return true;
 }
 
-bool SoftSetBoolArg(const std::string& strArg, bool fValue)
+bool ArgsManager::SoftSetBoolArg(const std::string& strArg, bool fValue)
 {
     if (fValue)
         return SoftSetArg(strArg, std::string("1"));
     else
         return SoftSetArg(strArg, std::string("0"));
+}
+
+void ArgsManager::ForceSetArg(const std::string& strArg, const std::string& strValue)
+{
+    LOCK(cs_args);
+    mapArgs[strArg] = strValue;
+    mapMultiArgs[strArg] = {strValue};
 }
 
 static const int screenWidth = 79;
@@ -392,7 +326,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(NULL, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "dogecash";
+    const char* pszModule = "pivx";
 #endif
     if (pex)
         return strprintf(
@@ -407,19 +341,17 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
     std::string message = FormatException(pex, pszThread);
     LogPrintf("\n\n************************\n%s\n", message);
     fprintf(stderr, "\n\n************************\n%s\n", message.c_str());
-    strMiscWarning = message;
 }
 
-boost::filesystem::path GetDefaultDataDir()
+fs::path GetDefaultDataDir()
 {
-    namespace fs = boost::filesystem;
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\DogeCashCore
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\DogeCashCore
-// Mac: ~/Library/Application Support/dogecash
-// Unix: ~/.dogecash
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\PIVX
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\PIVX
+// Mac: ~/Library/Application Support/PIVX
+// Unix: ~/.pivx
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "DogeCashCore";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "PIVX";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -431,22 +363,150 @@ boost::filesystem::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "dogecash";
+    return pathRet / "PIVX";
 #else
     // Unix
-    return pathRet / ".dogecash";
+    return pathRet / ".pivx";
 #endif
 #endif
 }
 
-static boost::filesystem::path pathCached;
-static boost::filesystem::path pathCachedNetSpecific;
+static fs::path pathCached;
+static fs::path pathCachedNetSpecific;
+static fs::path zc_paramsPathCached;
 static RecursiveMutex csPathCached;
 
-const boost::filesystem::path& GetDataDir(bool fNetSpecific)
+static fs::path ZC_GetBaseParamsDir()
 {
-    namespace fs = boost::filesystem;
+    // Copied from GetDefaultDataDir and adapter for zcash params.
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\PIVXParams
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\PIVXParams
+    // Mac: ~/Library/Application Support/PIVXParams
+    // Unix: ~/.pivx-params
+#ifdef WIN32
+    // Windows
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "PIVXParams";
+#else
+    fs::path pathRet;
+    char* pszHome = getenv("HOME");
+    if (pszHome == NULL || strlen(pszHome) == 0)
+        pathRet = fs::path("/");
+    else
+        pathRet = fs::path(pszHome);
+#ifdef MAC_OSX
+    // Mac
+    pathRet /= "Library/Application Support";
+    TryCreateDirectory(pathRet);
+    return pathRet / "PIVXParams";
+#else
+    // Unix
+    return pathRet / ".pivx-params";
+#endif
+#endif
+}
 
+const fs::path &ZC_GetParamsDir()
+{
+    LOCK(csPathCached); // Reuse the same lock as upstream.
+
+    fs::path &path = zc_paramsPathCached;
+
+    // This can be called during exceptions by LogPrintf(), so we cache the
+    // value so we don't have to do memory allocations after that.
+    if (!path.empty())
+        return path;
+
+#ifdef USE_CUSTOM_PARAMS
+    path = fs::system_complete(PARAMS_DIR);
+#else
+    if (gArgs.IsArgSet("-paramsdir")) {
+        path = fs::system_complete(gArgs.GetArg("-paramsdir", ""));
+        if (!fs::is_directory(path)) {
+            path = "";
+            return path;
+        }
+    } else {
+        path = ZC_GetBaseParamsDir();
+    }
+#endif
+
+    return path;
+}
+
+void initZKSNARKS()
+{
+    const fs::path& path = ZC_GetParamsDir();
+    fs::path sapling_spend = path / "sapling-spend.params";
+    fs::path sapling_output = path / "sapling-output.params";
+
+    bool fParamsFound = false;
+    if (fs::exists(sapling_spend) && fs::exists(sapling_output)) {
+        fParamsFound = true;
+    } else {
+#ifdef MAC_OSX
+        // macOS fallback path for params located within the app bundle
+        // This is a somewhat convoluted series of CoreFoundation calls
+        // that will result in the full path to the app bundle's "Resources"
+        // directory, which will contain the sapling params.
+        LogPrintf("Attempting to find params in app bundle...\n");
+        CFBundleRef mainBundle = CFBundleGetMainBundle();
+        CFURLRef bundleURL = CFBundleCopyBundleURL(mainBundle);
+
+        CFStringRef strBundlePath = CFURLCopyFileSystemPath(bundleURL, kCFURLPOSIXPathStyle);
+        const char* pathBundle = CFStringGetCStringPtr(strBundlePath, CFStringGetSystemEncoding());
+
+        fs::path bundle_path = fs::path(pathBundle);
+        LogPrintf("App bundle Resources path: %s\n", bundle_path);
+        sapling_spend = bundle_path / "Contents/Resources/sapling-spend.params";
+        sapling_output = bundle_path / "Contents/Resources/sapling-output.params";
+
+        // Release the CF objects
+        CFRelease(strBundlePath);
+        CFRelease(bundleURL);
+        CFRelease(mainBundle);
+#else
+        // Linux fallback path for debuild/ppa based installs
+        sapling_spend = "/usr/share/pivx/sapling-spend.params";
+        sapling_output = "/usr/share/pivx/sapling-output.params";
+        if (fs::exists(sapling_spend) && fs::exists(sapling_output)) {
+            fParamsFound = true;
+        } else {
+            // Linux fallback for local installs
+            sapling_spend = "/usr/local/share/pivx/sapling-spend.params";
+            sapling_output = "/usr/local/share/pivx/sapling-output.params";
+        }
+#endif
+        if (fs::exists(sapling_spend) && fs::exists(sapling_output))
+            fParamsFound = true;
+    }
+    if (!fParamsFound)
+        throw std::runtime_error("Sapling params don't exist");
+
+    static_assert(
+        sizeof(fs::path::value_type) == sizeof(codeunit),
+        "librustzcash not configured correctly");
+    auto sapling_spend_str = sapling_spend.native();
+    auto sapling_output_str = sapling_output.native();
+
+    //LogPrintf("Loading Sapling (Spend) parameters from %s\n", sapling_spend.string().c_str());
+
+    librustzcash_init_zksnark_params(
+        reinterpret_cast<const codeunit*>(sapling_spend_str.c_str()),
+        sapling_spend_str.length(),
+        "8270785a1a0d0bc77196f000ee6d221c9c9894f55307bd9357c3f0105d31ca63991ab91324160d8f53e2bbd3c2633a6eb8bdf5205d822e7f3f73edac51b2b70c",
+        reinterpret_cast<const codeunit*>(sapling_output_str.c_str()),
+        sapling_output_str.length(),
+        "657e3d38dbb5cb5e7dd2970e8b03d69b4787dd907285b5a7f0790dcc8072f60bf593b32cc2d1c030e00ff5ae64bf84c5c3beb84ddc841d48264b4a171744d028",
+        nullptr,    // sprout_path
+        0,          // sprout_path_len
+        ""          // sprout_hash
+    );
+
+    //std::cout << "### Sapling params initialized ###" << std::endl;
+}
+
+const fs::path& GetDataDir(bool fNetSpecific)
+{
     LOCK(csPathCached);
 
     fs::path& path = fNetSpecific ? pathCachedNetSpecific : pathCached;
@@ -456,8 +516,8 @@ const boost::filesystem::path& GetDataDir(bool fNetSpecific)
     if (!path.empty())
         return path;
 
-    if (mapArgs.count("-datadir")) {
-        path = fs::system_complete(mapArgs["-datadir"]);
+    if (gArgs.IsArgSet("-datadir")) {
+        path = fs::system_complete(gArgs.GetArg("-datadir", ""));
         if (!fs::is_directory(path)) {
             path = "";
             return path;
@@ -475,65 +535,72 @@ const boost::filesystem::path& GetDataDir(bool fNetSpecific)
 
 void ClearDatadirCache()
 {
-    pathCached = boost::filesystem::path();
-    pathCachedNetSpecific = boost::filesystem::path();
+    LOCK(csPathCached);
+
+    pathCached = fs::path();
+    pathCachedNetSpecific = fs::path();
 }
 
-boost::filesystem::path GetConfigFile()
+fs::path GetConfigFile()
 {
-    boost::filesystem::path pathConfigFile(GetArg("-conf", "dogecash.conf"));
-    if (!pathConfigFile.is_complete())
-        pathConfigFile = GetDataDir(false) / pathConfigFile;
-
-    return pathConfigFile;
+    fs::path pathConfigFile(gArgs.GetArg("-conf", PIVX_CONF_FILENAME));
+    return AbsPathForConfigVal(pathConfigFile, false);
 }
 
-boost::filesystem::path GetMasternodeConfigFile()
+fs::path GetMasternodeConfigFile()
 {
-    boost::filesystem::path pathConfigFile(GetArg("-mnconf", "masternode.conf"));
-    if (!pathConfigFile.is_complete()) pathConfigFile = GetDataDir() / pathConfigFile;
-    return pathConfigFile;
+    fs::path pathConfigFile(gArgs.GetArg("-mnconf", PIVX_MASTERNODE_CONF_FILENAME));
+    return AbsPathForConfigVal(pathConfigFile);
 }
 
-void ReadConfigFile(map<string, string>& mapSettingsRet,
-    map<string, vector<string> >& mapMultiSettingsRet)
+void ArgsManager::ReadConfigFile()
 {
-    boost::filesystem::ifstream streamConfig(GetConfigFile());
+    fs::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good()) {
-        // Create empty dogecash.conf if it does not exist
-        FILE* configFile = fopen(GetConfigFile().string().c_str(), "a");
+        // Create empty pivx.conf if it does not exist
+        FILE* configFile = fsbridge::fopen(GetConfigFile(), "a");
         if (configFile != NULL)
             fclose(configFile);
         return; // Nothing to read, so just return
     }
 
-    set<string> setOptions;
-    setOptions.insert("*");
+    {
+        LOCK(cs_args);
+        std::set<std::string> setOptions;
+        setOptions.insert("*");
 
-    for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it) {
-        // Don't overwrite existing settings so command line settings override dogecash.conf
-        string strKey = string("-") + it->string_key;
-        string strValue = it->value[0];
-        InterpretNegativeSetting(strKey, strValue);
-        if (mapSettingsRet.count(strKey) == 0)
-            mapSettingsRet[strKey] = strValue;
-        mapMultiSettingsRet[strKey].push_back(strValue);
+        for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it) {
+            // Don't overwrite existing settings so command line settings override pivx.conf
+            std::string strKey = std::string("-") + it->string_key;
+            std::string strValue = it->value[0];
+            InterpretNegatedOption(strKey, strValue);
+            if (mapArgs.count(strKey) == 0)
+                mapArgs[strKey] = strValue;
+            mapMultiArgs[strKey].push_back(strValue);
+        }
     }
     // If datadir is changed in .conf file:
     ClearDatadirCache();
 }
 
-#ifndef WIN32
-boost::filesystem::path GetPidFile()
+fs::path AbsPathForConfigVal(const fs::path& path, bool net_specific)
 {
-    boost::filesystem::path pathPidFile(GetArg("-pid", "dogecashd.pid"));
-    if (!pathPidFile.is_complete()) pathPidFile = GetDataDir() / pathPidFile;
-    return pathPidFile;
+    if (path.is_absolute()) {
+        return path;
+    }
+    return fs::absolute(path, GetDataDir(net_specific));
 }
 
-void CreatePidFile(const boost::filesystem::path& path, pid_t pid)
+#ifndef WIN32
+fs::path GetPidFile()
 {
-    FILE* file = fopen(path.string().c_str(), "w");
+    fs::path pathPidFile(gArgs.GetArg("-pid", PIVX_PID_FILENAME));
+    return AbsPathForConfigVal(pathPidFile);
+}
+
+void CreatePidFile(const fs::path& path, pid_t pid)
+{
+    FILE* file = fsbridge::fopen(path, "w");
     if (file) {
         fprintf(file, "%d\n", pid);
         fclose(file);
@@ -541,7 +608,7 @@ void CreatePidFile(const boost::filesystem::path& path, pid_t pid)
 }
 #endif
 
-bool RenameOver(boost::filesystem::path src, boost::filesystem::path dest)
+bool RenameOver(fs::path src, fs::path dest)
 {
 #ifdef WIN32
     return MoveFileExA(src.string().c_str(), dest.string().c_str(),
@@ -557,12 +624,12 @@ bool RenameOver(boost::filesystem::path src, boost::filesystem::path dest)
  * Specifically handles case where path p exists, but it wasn't possible for the user to
  * write to the parent directory.
  */
-bool TryCreateDirectory(const boost::filesystem::path& p)
+bool TryCreateDirectory(const fs::path& p)
 {
     try {
-        return boost::filesystem::create_directory(p);
-    } catch (const boost::filesystem::filesystem_error&) {
-        if (!boost::filesystem::exists(p) || !boost::filesystem::is_directory(p))
+        return fs::create_directory(p);
+    } catch (const fs::filesystem_error&) {
+        if (!fs::exists(p) || !fs::is_directory(p))
             throw;
     }
 
@@ -667,64 +734,23 @@ void AllocateFileRange(FILE* file, unsigned int offset, unsigned int length)
 #endif
 }
 
-void ShrinkDebugFile()
-{
-    // Scroll debug.log if it's getting too big
-    boost::filesystem::path pathLog = GetDataDir() / "debug.log";
-    FILE* file = fopen(pathLog.string().c_str(), "r");
-    if (file && boost::filesystem::file_size(pathLog) > 10 * 1000000) {
-        // Restart the file with some of the end
-        std::vector<char> vch(200000, 0);
-        fseek(file, -((long)vch.size()), SEEK_END);
-        int nBytes = fread(vch.data(), 1, vch.size(), file);
-        fclose(file);
-
-        file = fopen(pathLog.string().c_str(), "w");
-        if (file) {
-            fwrite(vch.data(), 1, nBytes, file);
-            fclose(file);
-        }
-    } else if (file != NULL)
-        fclose(file);
-}
-
 #ifdef WIN32
-boost::filesystem::path GetSpecialFolderPath(int nFolder, bool fCreate)
+fs::path GetSpecialFolderPath(int nFolder, bool fCreate)
 {
-    namespace fs = boost::filesystem;
+    WCHAR pszPath[MAX_PATH] = L"";
 
-    char pszPath[MAX_PATH] = "";
-
-    if (SHGetSpecialFolderPathA(NULL, pszPath, nFolder, fCreate)) {
+    if (SHGetSpecialFolderPathW(nullptr, pszPath, nFolder, fCreate)) {
         return fs::path(pszPath);
     }
 
-    LogPrintf("SHGetSpecialFolderPathA() failed, could not obtain requested path.\n");
+    LogPrintf("SHGetSpecialFolderPathW() failed, could not obtain requested path.\n");
     return fs::path("");
 }
 #endif
 
-boost::filesystem::path GetTempPath()
+fs::path GetTempPath()
 {
-#if BOOST_FILESYSTEM_VERSION == 3
-    return boost::filesystem::temp_directory_path();
-#else
-    // TODO: remove when we don't support filesystem v2 anymore
-    boost::filesystem::path path;
-#ifdef WIN32
-    char pszPath[MAX_PATH] = "";
-
-    if (GetTempPathA(MAX_PATH, pszPath))
-        path = boost::filesystem::path(pszPath);
-#else
-    path = boost::filesystem::path("/tmp");
-#endif
-    if (path.empty() || !boost::filesystem::is_directory(path)) {
-        LogPrintf("GetTempPath(): failed to find temp path\n");
-        return boost::filesystem::path("");
-    }
-    return path;
-#endif
+    return fs::temp_directory_path();
 }
 
 double double_safe_addition(double fValue, double fIncrement)
@@ -749,7 +775,12 @@ double double_safe_multiplication(double fValue, double fmultiplicator)
 
 void runCommand(std::string strCommand)
 {
+    if (strCommand.empty()) return;
+#ifndef WIN32
     int nErr = ::system(strCommand.c_str());
+#else
+    int nErr = ::_wsystem(std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>,wchar_t>().from_bytes(strCommand).c_str());
+#endif
     if (nErr)
         LogPrintf("runCommand error: system(%s) returned %d\n", strCommand, nErr);
 }
@@ -768,9 +799,13 @@ void SetupEnvironment()
     // The path locale is lazy initialized and to avoid deinitialization errors
     // in multithreading environments, it is set explicitly by the main thread.
     // A dummy locale is used to extract the internal default locale, used by
-    // boost::filesystem::path, which is then used to explicitly imbue the path.
-    std::locale loc = boost::filesystem::path::imbue(std::locale::classic());
-    boost::filesystem::path::imbue(loc);
+    // fs::path, which is then used to explicitly imbue the path.
+    std::locale loc = fs::path::imbue(std::locale::classic());
+#ifndef WIN32
+    fs::path::imbue(loc);
+#else
+    fs::path::imbue(std::locale(loc, new std::codecvt_utf8_utf16<wchar_t>()));
+#endif
 }
 
 bool SetupNetworking()
@@ -797,3 +832,9 @@ void SetThreadPriority(int nPriority)
 #endif // PRIO_THREAD
 #endif // WIN32
 }
+
+int GetNumCores()
+{
+    return std::thread::hardware_concurrency();
+}
+

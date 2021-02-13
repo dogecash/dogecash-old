@@ -1,19 +1,38 @@
 // Copyright (c) 2011-2014 The Bitcoin Core developers
-// Copyright (c) 2016 The dogecash developers
+// Copyright (c) 2016-2021 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+// file COPYING or https://www.opensource.org/licenses/mit-license.php.
 
+#include "wallet/test/wallet_test_fixture.h"
+
+#include "blockassembler.h"
 #include "init.h"
 #include "consensus/merkle.h"
-#include "main.h"
 #include "miner.h"
 #include "pubkey.h"
 #include "uint256.h"
 #include "util.h"
+#include "validation.h"
+#include "wallet/wallet.h"
 
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_SUITE(miner_tests)
+BOOST_FIXTURE_TEST_SUITE(miner_tests, WalletTestingSetup)
+
+// BOOST_CHECK_EXCEPTION predicates to check the specific validation error
+class HasReason {
+public:
+    HasReason(const std::string& reason) : m_reason(reason) {}
+    bool operator() (const std::runtime_error& e) const {
+        bool ret = std::string(e.what()).find(m_reason) != std::string::npos;
+        if (!ret) {
+            std::cout << "error: " << e.what() << std::endl;
+        }
+        return ret;
+    };
+private:
+    const std::string m_reason;
+};
 
 static
 struct {
@@ -53,48 +72,50 @@ struct {
 // NOTE: These tests rely on CreateNewBlock doing its own self-validation!
 BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
 {
-    CScript scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
-    CBlockTemplate *pblocktemplate;
+    // Note that by default, these tests run with size accounting enabled.
+    SelectParams(CBaseChainParams::REGTEST); // future: this should be MAINNET.
+    const CChainParams& chainparams = Params();
+    CScript scriptPubKey = CScript() << OP_DUP << OP_HASH160 << ParseHex("8d5b4f83212214d6ef693e02e6d71969fddad976") << OP_EQUALVERIFY << OP_CHECKSIG;
+
+    std::unique_ptr<CBlockTemplate> pblocktemplate;
     CMutableTransaction tx,tx2;
     CScript script;
     uint256 hash;
+    TestMemPoolEntryHelper entry;
+    entry.nFee = 11;
+    entry.dPriority = 111.0;
+    entry.nHeight = 11;
 
-    LOCK(cs_main);
     Checkpoints::fEnabled = false;
 
     // Simple block creation, nothing special yet:
-    BOOST_CHECK(pblocktemplate = CreateNewBlock(scriptPubKey, pwalletMain, false));
+    BOOST_CHECK(pblocktemplate = BlockAssembler(Params(), DEFAULT_PRINTPRIORITY).CreateNewBlock(scriptPubKey, pwalletMain, false));
+    // Set genesis block
+    pblocktemplate->block.hashPrevBlock = chainparams.GetConsensus().hashGenesisBlock;
 
     // We can't make transactions until we have inputs
     // Therefore, load 100 blocks :)
-    std::vector<CTransaction*>txFirst;
-    for (unsigned int i = 0; i < sizeof(blockinfo)/sizeof(*blockinfo); ++i)
-    {
-        CBlock *pblock = &pblocktemplate->block; // pointer for convenience
-        pblock->nVersion = 1;
-        pblock->nTime = chainActive.Tip()->GetMedianTimePast()+1;
-        CMutableTransaction txCoinbase(pblock->vtx[0]);
-        txCoinbase.vin[0].scriptSig = CScript();
-        txCoinbase.vin[0].scriptSig.push_back(blockinfo[i].extranonce);
-        txCoinbase.vin[0].scriptSig.push_back(chainActive.Height());
-        txCoinbase.vout[0].scriptPubKey = CScript();
-        pblock->vtx[0] = CTransaction(txCoinbase);
+    std::vector<CTransactionRef>txFirst;
+    std::shared_ptr<CBlock> pblock = std::make_shared<CBlock>(pblocktemplate->block); // pointer for convenience
+    for (unsigned int i = 0; i < sizeof(blockinfo)/sizeof(*blockinfo); ++i) {
+        CBlockIndex* pindexPrev = WITH_LOCK(cs_main, return chainActive.Tip());
+        pblock->nTime = pindexPrev->GetMedianTimePast() + 60;
+        pblock->vtx.clear(); // Update coinbase input height manually
+        CreateCoinbaseTx(pblock.get(), CScript(), pindexPrev);
         if (txFirst.size() < 2)
-            txFirst.push_back(new CTransaction(pblock->vtx[0]));
+            txFirst.emplace_back(pblock->vtx[0]);
         pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
         pblock->nNonce = blockinfo[i].nonce;
         CValidationState state;
-        BOOST_CHECK(ProcessNewBlock(state, NULL, pblock));
+        BOOST_CHECK(ProcessNewBlock(state, nullptr, pblock, nullptr));
         BOOST_CHECK(state.IsValid());
         pblock->hashPrevBlock = pblock->GetHash();
     }
-    delete pblocktemplate;
 
     // Just to make sure we can still make simple blocks
-    BOOST_CHECK(pblocktemplate = CreateNewBlock(scriptPubKey, pwalletMain, false));
-    delete pblocktemplate;
+    BOOST_CHECK(pblocktemplate = BlockAssembler(Params(), DEFAULT_PRINTPRIORITY).CreateNewBlock(scriptPubKey, pwalletMain, false));
 
-    // block sigops > limit: 1000 CHECKMULTISIG + 1
+    // block sigops > limit: 2000 CHECKMULTISIG + 1
     tx.vin.resize(1);
     // NOTE: OP_NOP is used to force 20 SigOps for the CHECKMULTISIG
     tx.vin[0].scriptSig = CScript() << OP_0 << OP_0 << OP_0 << OP_NOP << OP_CHECKMULTISIG << OP_1;
@@ -102,15 +123,28 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     tx.vin[0].prevout.n = 0;
     tx.vout.resize(1);
     tx.vout[0].nValue = 5000000000LL;
-    for (unsigned int i = 0; i < 1001; ++i)
-    {
+    for (unsigned int i = 0; i < 2001; ++i) {
         tx.vout[0].nValue -= 1000000;
         hash = tx.GetHash();
-        mempool.addUnchecked(hash, CTxMemPoolEntry(tx, 11, GetTime(), 111.0, 11));
+        bool spendsCoinbase = (i == 0) ? true : false; // only first tx spends coinbase
+        // If we don't set the # of sig ops in the CTxMemPoolEntry, template creation fails
+        mempool.addUnchecked(hash, entry.Fee(1000000).Time(GetTime()).SpendsCoinbaseOrCoinstake(spendsCoinbase).FromTx(tx));
         tx.vin[0].prevout.hash = hash;
     }
-    BOOST_CHECK(pblocktemplate = CreateNewBlock(scriptPubKey, pwalletMain, false));
-    delete pblocktemplate;
+    BOOST_CHECK_EXCEPTION(pblocktemplate = BlockAssembler(Params(), DEFAULT_PRINTPRIORITY).CreateNewBlock(scriptPubKey, pwalletMain, false), std::runtime_error, HasReason("bad-blk-sigops"));
+    mempool.clear();
+
+    tx.vin[0].prevout.hash = txFirst[0]->GetHash();
+    tx.vout[0].nValue = 5000000000LL;
+    for (unsigned int i = 0; i < 1001; ++i) {
+        tx.vout[0].nValue -= 1000000;
+        hash = tx.GetHash();
+        bool spendsCoinbase = (i == 0) ? true : false; // only first tx spends coinbase
+        // If we do set the # of sig ops in the CTxMemPoolEntry, template creation passes
+        mempool.addUnchecked(hash, entry.Fee(1000000).Time(GetTime()).SpendsCoinbaseOrCoinstake(spendsCoinbase).SigOps(20).FromTx(tx));
+        tx.vin[0].prevout.hash = hash;
+    }
+    BOOST_CHECK(pblocktemplate = BlockAssembler(Params(), DEFAULT_PRINTPRIORITY).CreateNewBlock(scriptPubKey, pwalletMain, false));
     mempool.clear();
 
     // block size > limit
@@ -121,23 +155,22 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         tx.vin[0].scriptSig << vchData << OP_DROP;
     tx.vin[0].scriptSig << OP_1;
     tx.vin[0].prevout.hash = txFirst[0]->GetHash();
+    tx.vin[0].prevout.n = 0;
     tx.vout[0].nValue = 5000000000LL;
-    for (unsigned int i = 0; i < 128; ++i)
-    {
+    for (unsigned int i = 0; i < 215; ++i) {
         tx.vout[0].nValue -= 10000000;
         hash = tx.GetHash();
-        mempool.addUnchecked(hash, CTxMemPoolEntry(tx, 11, GetTime(), 111.0, 11));
+        bool spendsCoinbase = i == 0; // only first tx spends coinbase
+        mempool.addUnchecked(hash, entry.Fee(1000000).Time(GetTime()).SpendsCoinbaseOrCoinstake(spendsCoinbase).FromTx(tx));
         tx.vin[0].prevout.hash = hash;
     }
-    BOOST_CHECK(pblocktemplate = CreateNewBlock(scriptPubKey, pwalletMain, false));
-    delete pblocktemplate;
+    BOOST_CHECK(pblocktemplate = BlockAssembler(Params(), DEFAULT_PRINTPRIORITY).CreateNewBlock(scriptPubKey, pwalletMain, false));
     mempool.clear();
 
-    // orphan in mempool
+    // orphan in mempool, template creation fails
     hash = tx.GetHash();
-    mempool.addUnchecked(hash, CTxMemPoolEntry(tx, 11, GetTime(), 111.0, 11));
-    BOOST_CHECK(pblocktemplate = CreateNewBlock(scriptPubKey, pwalletMain, false));
-    delete pblocktemplate;
+    mempool.addUnchecked(hash, entry.Fee(1000000).Time(GetTime()).FromTx(tx));
+    BOOST_CHECK_EXCEPTION(pblocktemplate = BlockAssembler(Params(), DEFAULT_PRINTPRIORITY).CreateNewBlock(scriptPubKey, pwalletMain, false), std::runtime_error, HasReason("bad-txns-inputs-missingorspent"));
     mempool.clear();
 
     // child with higher priority than parent
@@ -145,7 +178,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     tx.vin[0].prevout.hash = txFirst[1]->GetHash();
     tx.vout[0].nValue = 4900000000LL;
     hash = tx.GetHash();
-    mempool.addUnchecked(hash, CTxMemPoolEntry(tx, 11, GetTime(), 111.0, 11));
+    mempool.addUnchecked(hash, entry.Fee(100000000LL).Time(GetTime()).SpendsCoinbaseOrCoinstake(true).FromTx(tx));
     tx.vin[0].prevout.hash = hash;
     tx.vin.resize(2);
     tx.vin[1].scriptSig = CScript() << OP_1;
@@ -153,23 +186,22 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     tx.vin[1].prevout.n = 0;
     tx.vout[0].nValue = 5900000000LL;
     hash = tx.GetHash();
-    mempool.addUnchecked(hash, CTxMemPoolEntry(tx, 11, GetTime(), 111.0, 11));
-    BOOST_CHECK(pblocktemplate = CreateNewBlock(scriptPubKey, pwalletMain, false));
-    delete pblocktemplate;
+    mempool.addUnchecked(hash, entry.Fee(400000000LL).Time(GetTime()).SpendsCoinbaseOrCoinstake(true).FromTx(tx));
+    BOOST_CHECK(pblocktemplate = BlockAssembler(Params(), DEFAULT_PRINTPRIORITY).CreateNewBlock(scriptPubKey, pwalletMain, false));
     mempool.clear();
 
-    // coinbase in mempool
+    // coinbase in mempool, template creation fails
     tx.vin.resize(1);
     tx.vin[0].prevout.SetNull();
     tx.vin[0].scriptSig = CScript() << OP_0 << OP_1;
     tx.vout[0].nValue = 0;
     hash = tx.GetHash();
-    mempool.addUnchecked(hash, CTxMemPoolEntry(tx, 11, GetTime(), 111.0, 11));
-    BOOST_CHECK(pblocktemplate = CreateNewBlock(scriptPubKey, pwalletMain, false));
-    delete pblocktemplate;
+    // give it a fee so it'll get mined
+    mempool.addUnchecked(hash, entry.Fee(100000).Time(GetTime()).SpendsCoinbaseOrCoinstake(false).FromTx(tx));
+    BOOST_CHECK_EXCEPTION(pblocktemplate = BlockAssembler(Params(), DEFAULT_PRINTPRIORITY).CreateNewBlock(scriptPubKey, pwalletMain, false), std::runtime_error, HasReason("bad-cb-multiple"));
     mempool.clear();
 
-    // invalid (pre-p2sh) txn in mempool
+    // invalid (pre-p2sh) txn in mempool, template creation fails
     tx.vin[0].prevout.hash = txFirst[0]->GetHash();
     tx.vin[0].prevout.n = 0;
     tx.vin[0].scriptSig = CScript() << OP_1;
@@ -177,42 +209,31 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     script = CScript() << OP_0;
     tx.vout[0].scriptPubKey = GetScriptForDestination(CScriptID(script));
     hash = tx.GetHash();
-    mempool.addUnchecked(hash, CTxMemPoolEntry(tx, 11, GetTime(), 111.0, 11));
+    mempool.addUnchecked(hash, entry.Fee(10000000L).Time(GetTime()).SpendsCoinbaseOrCoinstake(true).FromTx(tx));
     tx.vin[0].prevout.hash = hash;
-    tx.vin[0].scriptSig = CScript() << (std::vector<unsigned char>)script;
+    tx.vin[0].scriptSig = CScript() << std::vector<unsigned char>(script.begin(), script.end());
     tx.vout[0].nValue -= 1000000;
     hash = tx.GetHash();
-    mempool.addUnchecked(hash, CTxMemPoolEntry(tx, 11, GetTime(), 111.0, 11));
-    BOOST_CHECK(pblocktemplate = CreateNewBlock(scriptPubKey, pwalletMain, false));
-    delete pblocktemplate;
+    mempool.addUnchecked(hash, entry.Fee(1000000).Time(GetTime()).SpendsCoinbaseOrCoinstake(false).FromTx(tx));
+     // Should throw block-validation-failed
+    BOOST_CHECK_EXCEPTION(pblocktemplate = BlockAssembler(Params(), DEFAULT_PRINTPRIORITY).CreateNewBlock(scriptPubKey, pwalletMain, false), std::runtime_error, HasReason("block-validation-failed"));
     mempool.clear();
 
-    // double spend txn pair in mempool
+    // double spend txn pair in mempool, template creation fails
     tx.vin[0].prevout.hash = txFirst[0]->GetHash();
     tx.vin[0].scriptSig = CScript() << OP_1;
     tx.vout[0].nValue = 4900000000LL;
     tx.vout[0].scriptPubKey = CScript() << OP_1;
     hash = tx.GetHash();
-    mempool.addUnchecked(hash, CTxMemPoolEntry(tx, 11, GetTime(), 111.0, 11));
+    mempool.addUnchecked(hash, entry.Fee(100000000L).Time(GetTime()).SpendsCoinbaseOrCoinstake(true).FromTx(tx));
     tx.vout[0].scriptPubKey = CScript() << OP_2;
     hash = tx.GetHash();
-    mempool.addUnchecked(hash, CTxMemPoolEntry(tx, 11, GetTime(), 111.0, 11));
-    BOOST_CHECK(pblocktemplate = CreateNewBlock(scriptPubKey, pwalletMain, false));
-    delete pblocktemplate;
+    mempool.addUnchecked(hash, entry.Fee(100000000L).Time(GetTime()).SpendsCoinbaseOrCoinstake(true).FromTx(tx));
+    BOOST_CHECK_EXCEPTION(pblocktemplate = BlockAssembler(Params(), DEFAULT_PRINTPRIORITY).CreateNewBlock(scriptPubKey, pwalletMain, false), std::runtime_error, HasReason("bad-txns-inputs-missingorspent"));
     mempool.clear();
 
-    // subsidy changing
-    int nHeight = chainActive.Height();
-    chainActive.Tip()->nHeight = 209999;
-    BOOST_CHECK(pblocktemplate = CreateNewBlock(scriptPubKey, pwalletMain, false));
-    delete pblocktemplate;
-    chainActive.Tip()->nHeight = 210000;
-    BOOST_CHECK(pblocktemplate = CreateNewBlock(scriptPubKey, pwalletMain, false));
-    delete pblocktemplate;
-    chainActive.Tip()->nHeight = nHeight;
-
     // non-final txs in mempool
-    SetMockTime(chainActive.Tip()->GetMedianTimePast()+1);
+    SetMockTime(WITH_LOCK(cs_main, return chainActive.Tip()->GetMedianTimePast()+1));
 
     // height locked
     tx.vin[0].prevout.hash = txFirst[0]->GetHash();
@@ -220,10 +241,10 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     tx.vin[0].nSequence = 0;
     tx.vout[0].nValue = 4900000000LL;
     tx.vout[0].scriptPubKey = CScript() << OP_1;
-    tx.nLockTime = chainActive.Tip()->nHeight+1;
+    tx.nLockTime = WITH_LOCK(cs_main, return chainActive.Tip()->nHeight+1);
     hash = tx.GetHash();
-    mempool.addUnchecked(hash, CTxMemPoolEntry(tx, 11, GetTime(), 111.0, 11));
-    BOOST_CHECK(!IsFinalTx(tx, chainActive.Tip()->nHeight + 1));
+    mempool.addUnchecked(hash, entry.Fee(100000000L).Time(GetTime()).SpendsCoinbaseOrCoinstake(true).FromTx(tx));
+    { LOCK(cs_main); BOOST_CHECK(!CheckFinalTx(tx, LOCKTIME_MEDIAN_TIME_PAST)); }
 
     // time locked
     tx2.vin.resize(1);
@@ -234,34 +255,34 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     tx2.vout.resize(1);
     tx2.vout[0].nValue = 4900000000LL;
     tx2.vout[0].scriptPubKey = CScript() << OP_1;
-    tx2.nLockTime = chainActive.Tip()->GetMedianTimePast()+1;
+    tx2.nLockTime = WITH_LOCK(cs_main, return chainActive.Tip()->GetMedianTimePast()+1);
     hash = tx2.GetHash();
-    mempool.addUnchecked(hash, CTxMemPoolEntry(tx2, 11, GetTime(), 111.0, 11));
-    BOOST_CHECK(!IsFinalTx(tx2));
+    mempool.addUnchecked(hash, entry.Fee(100000000L).Time(GetTime()).SpendsCoinbaseOrCoinstake(true).FromTx(tx2));
+    { LOCK(cs_main); BOOST_CHECK(!CheckFinalTx(tx2, LOCKTIME_MEDIAN_TIME_PAST)); }
 
-    BOOST_CHECK(pblocktemplate = CreateNewBlock(scriptPubKey, pwalletMain, false));
+    BOOST_CHECK(pblocktemplate = BlockAssembler(Params(), DEFAULT_PRINTPRIORITY).CreateNewBlock(scriptPubKey, pwalletMain, false));
 
     // Neither tx should have make it into the template.
     BOOST_CHECK_EQUAL(pblocktemplate->block.vtx.size(), 1);
-    delete pblocktemplate;
 
-    // However if we advance height and time by one, both will.
-    chainActive.Tip()->nHeight++;
-    SetMockTime(chainActive.Tip()->GetMedianTimePast()+2);
+    {
+        LOCK(cs_main);
+        // However if we advance height and time by one, both will.
+        chainActive.Tip()->nHeight++;
+        SetMockTime(chainActive.Tip()->GetMedianTimePast() + 2);
+    }
 
-    BOOST_CHECK(IsFinalTx(tx, chainActive.Tip()->nHeight + 1));
-    BOOST_CHECK(IsFinalTx(tx2));
+    // FIXME: we should *actually* create a new block so the following test
+    //        works; CheckFinalTx() isn't fooled by monkey-patching nHeight.
+    //BOOST_CHECK(CheckFinalTx(tx));
+    //BOOST_CHECK(CheckFinalTx(tx2));
 
-    BOOST_CHECK(pblocktemplate = CreateNewBlock(scriptPubKey, pwalletMain, false));
+    BOOST_CHECK(pblocktemplate = BlockAssembler(Params(), DEFAULT_PRINTPRIORITY).CreateNewBlock(scriptPubKey, pwalletMain, false));
     BOOST_CHECK_EQUAL(pblocktemplate->block.vtx.size(), 3);
-    delete pblocktemplate;
 
-    chainActive.Tip()->nHeight--;
+    WITH_LOCK(cs_main, chainActive.Tip()->nHeight--);
     SetMockTime(0);
     mempool.clear();
-
-    BOOST_FOREACH(CTransaction *tx, txFirst)
-        delete tx;
 
     Checkpoints::fEnabled = true;
 }

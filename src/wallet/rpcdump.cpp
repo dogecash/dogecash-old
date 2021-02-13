@@ -1,21 +1,21 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2018-2019 The DogeCash developers
-// Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2015-2020 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "bip38.h"
 #include "init.h"
-#include "main.h"
+#include "key_io.h"
 #include "rpc/server.h"
+#include "sapling/key_io_sapling.h"
 #include "script/script.h"
 #include "script/standard.h"
 #include "sync.h"
 #include "util.h"
 #include "utilstrencodings.h"
 #include "utiltime.h"
-#include "wallet.h"
+#include "wallet/wallet.h"
 
 #include <fstream>
 #include <secp256k1.h>
@@ -23,8 +23,6 @@
 
 #include <boost/algorithm/string.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
-#include <openssl/aes.h>
-#include <openssl/sha.h>
 
 #include <univalue.h>
 
@@ -51,7 +49,7 @@ int64_t static DecodeDumpTime(const std::string& str)
 std::string static EncodeDumpString(const std::string& str)
 {
     std::stringstream ret;
-    BOOST_FOREACH (unsigned char c, str) {
+    for (unsigned char c : str) {
         if (c <= 32 || c >= 128 || c == '%') {
             ret << '%' << HexStr(&c, &c + 1);
         } else {
@@ -76,18 +74,24 @@ std::string DecodeDumpString(const std::string& str)
     return ret.str();
 }
 
-UniValue importprivkey(const UniValue& params, bool fHelp)
+bool IsStakingDerPath(KeyOriginInfo keyOrigin)
 {
-    if (fHelp || params.size() < 1 || params.size() > 3)
-        throw runtime_error(
-            "importprivkey \"dogecashprivkey\" ( \"label\" rescan )\n"
+    return keyOrigin.path.size() > 3 && keyOrigin.path[3] == (2 | BIP32_HARDENED_KEY_LIMIT);
+}
+
+UniValue importprivkey(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() < 1 || request.params.size() > 4)
+        throw std::runtime_error(
+            "importprivkey \"pivxprivkey\" ( \"label\" rescan fStakingAddress )\n"
             "\nAdds a private key (as returned by dumpprivkey) to your wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"dogecashprivkey\"   (string, required) The private key (see dumpprivkey)\n"
+            "1. \"pivxprivkey\"      (string, required) The private key (see dumpprivkey)\n"
             "2. \"label\"            (string, optional, default=\"\") An optional label\n"
             "3. rescan               (boolean, optional, default=true) Rescan the wallet for transactions\n"
+            "4. fStakingAddress      (boolean, optional, default=false) Whether this key refers to a (cold) staking address\n"
 
             "\nNote: This call can take minutes to complete if rescan is true.\n"
 
@@ -101,34 +105,26 @@ UniValue importprivkey(const UniValue& params, bool fHelp)
             "\nAs a JSON-RPC call\n" +
             HelpExampleRpc("importprivkey", "\"mykey\", \"testing\", false"));
 
-    LOCK2(cs_main, pwalletMain->cs_wallet);
+    const std::string strSecret = request.params[0].get_str();
+    const std::string strLabel = (request.params.size() > 1 ? request.params[1].get_str() : "");
+    const bool fRescan = (request.params.size() > 2 ? request.params[2].get_bool() : true);
+    const bool fStakingAddress = (request.params.size() > 3 ? request.params[3].get_bool() : false);
 
-    EnsureWalletIsUnlocked();
-
-    string strSecret = params[0].get_str();
-    string strLabel = "";
-    if (params.size() > 1)
-        strLabel = params[1].get_str();
-
-    // Whether to perform rescan after import
-    bool fRescan = true;
-    if (params.size() > 2)
-        fRescan = params[2].get_bool();
-
-    CBitcoinSecret vchSecret;
-    bool fGood = vchSecret.SetString(strSecret);
-
-    if (!fGood) throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid private key encoding");
-
-    CKey key = vchSecret.GetKey();
-    if (!key.IsValid()) throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Private key outside allowed range");
+    CKey key = DecodeSecret(strSecret);
+    if (!key.IsValid()) throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid private key encoding");
 
     CPubKey pubkey = key.GetPubKey();
     assert(key.VerifyPubKey(pubkey));
     CKeyID vchAddress = pubkey.GetID();
     {
+        LOCK2(cs_main, pwalletMain->cs_wallet);
+        EnsureWalletIsUnlocked();
+
         pwalletMain->MarkDirty();
-        pwalletMain->SetAddressBook(vchAddress, strLabel, "receive");
+        pwalletMain->SetAddressBook(vchAddress, strLabel, (
+                fStakingAddress ?
+                        AddressBook::AddressBookPurpose::COLD_STAKING :
+                        AddressBook::AddressBookPurpose::RECEIVE));
 
         // Don't throw error in case a key is already there
         if (pwalletMain->HaveKey(vchAddress))
@@ -143,88 +139,154 @@ UniValue importprivkey(const UniValue& params, bool fHelp)
         pwalletMain->nTimeFirstKey = 1; // 0 would be considered 'no value'
 
         if (fRescan) {
-            pwalletMain->ScanForWalletTransactions(chainActive.Genesis(), true);
+            CBlockIndex *pindex = chainActive.Genesis();
+            if (fStakingAddress && !Params().IsRegTestNet()) {
+                // cold staking was activated after nBlockTimeProtocolV2 (PIVX v4.0). No need to scan the whole chain
+                pindex = chainActive[Params().GetConsensus().vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight];
+            }
+            pwalletMain->ScanForWalletTransactions(pindex, true);
         }
     }
 
     return NullUniValue;
 }
 
-UniValue importaddress(const UniValue& params, bool fHelp)
+void ImportAddress(const CTxDestination& dest, const std::string& strLabel, const std::string& strPurpose);
+
+void ImportScript(const CScript& script, const std::string& strLabel, bool isRedeemScript)
 {
-    if (fHelp || params.size() < 1 || params.size() > 3)
-        throw runtime_error(
-            "importaddress \"address\" ( \"label\" rescan )\n"
-            "\nAdds an address or script (in hex) that can be watched as if it were in your wallet but cannot be used to spend.\n"
+    if (!isRedeemScript && ::IsMine(*pwalletMain, script) == ISMINE_SPENDABLE)
+        throw JSONRPCError(RPC_WALLET_ERROR, "The wallet already contains the private key for this address or script");
+
+    pwalletMain->MarkDirty();
+
+    if (!pwalletMain->HaveWatchOnly(script) && !pwalletMain->AddWatchOnly(script))
+        throw JSONRPCError(RPC_WALLET_ERROR, "Error adding address to wallet");
+
+    if (isRedeemScript) {
+        if (!pwalletMain->HaveCScript(script) && !pwalletMain->AddCScript(script))
+            throw JSONRPCError(RPC_WALLET_ERROR, "Error adding p2sh redeemScript to wallet");
+        ImportAddress(CScriptID(script), strLabel,  "receive");
+    }
+}
+
+void ImportAddress(const CTxDestination& dest, const std::string& strLabel, const std::string& strPurpose)
+{
+    CScript script = GetScriptForDestination(dest);
+    ImportScript(script, strLabel, false);
+    // add to address book or update label
+    if (IsValidDestination(dest)) {
+        pwalletMain->SetAddressBook(dest, strLabel, strPurpose);
+    }
+}
+
+UniValue importaddress(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() < 1 || request.params.size() > 4)
+        throw std::runtime_error(
+            "importaddress \"script\" ( \"label\" rescan )\n"
+            "\nAdds a script (in hex), or address, that can be watched as if it were in your wallet but cannot be used to spend.\n"
 
             "\nArguments:\n"
-            "1. \"address\"          (string, required) The address\n"
+            "1. \"script\"           (string, required) hex-encoded script (or address)\n"
             "2. \"label\"            (string, optional, default=\"\") An optional label\n"
             "3. rescan               (boolean, optional, default=true) Rescan the wallet for transactions\n"
+            "4. p2sh                 (boolean, optional, default=false) Add the P2SH version of the script as well\n"
 
             "\nNote: This call can take minutes to complete if rescan is true.\n"
+            "If you have the full public key, you should call importpublickey instead of this.\n"
 
             "\nExamples:\n"
-            "\nImport an address with rescan\n" +
-            HelpExampleCli("importaddress", "\"myaddress\"") +
+            "\nImport a script with rescan\n" +
+            HelpExampleCli("importaddress", "\"myscript\"") +
             "\nImport using a label without rescan\n" +
-            HelpExampleCli("importaddress", "\"myaddress\" \"testing\" false") +
+            HelpExampleCli("importaddress", "\"myscript\" \"testing\" false") +
             "\nAs a JSON-RPC call\n" +
-            HelpExampleRpc("importaddress", "\"myaddress\", \"testing\", false"));
+            HelpExampleRpc("importaddress", "\"myscript\", \"testing\", false"));
+
+    const std::string strLabel = (request.params.size() > 1 ? request.params[1].get_str() : "");
+    // Whether to perform rescan after import
+    const bool fRescan = (request.params.size() > 2 ? request.params[2].get_bool() : true);
+    // Whether to import a p2sh version, too
+    const bool fP2SH = (request.params.size() > 3 ? request.params[3].get_bool() : false);
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    CScript script;
+    bool isStakingAddress = false;
+    CTxDestination dest = DecodeDestination(request.params[0].get_str(), isStakingAddress);
 
-    CBitcoinAddress address(params[0].get_str());
-    if (address.IsValid()) {
-        script = GetScriptForDestination(address.Get());
-    } else if (IsHex(params[0].get_str())) {
-        std::vector<unsigned char> data(ParseHex(params[0].get_str()));
-        script = CScript(data.begin(), data.end());
+    if (IsValidDestination(dest)) {
+        if (fP2SH)
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Cannot use the p2sh flag with an address - use a script instead");
+        ImportAddress(dest, strLabel, isStakingAddress ?
+                                        AddressBook::AddressBookPurpose::COLD_STAKING :
+                                        AddressBook::AddressBookPurpose::RECEIVE);
+
+    } else if (IsHex(request.params[0].get_str())) {
+        std::vector<unsigned char> data(ParseHex(request.params[0].get_str()));
+        ImportScript(CScript(data.begin(), data.end()), strLabel, fP2SH);
+
     } else {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid dogecash address or script");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address or script");
     }
 
-    string strLabel = "";
-    if (params.size() > 1)
-        strLabel = params[1].get_str();
-
-    // Whether to perform rescan after import
-    bool fRescan = true;
-    if (params.size() > 2)
-        fRescan = params[2].get_bool();
-
-    {
-        if (::IsMine(*pwalletMain, script) & ISMINE_SPENDABLE_ALL)
-            throw JSONRPCError(RPC_WALLET_ERROR, "The wallet already contains the private key for this address or script");
-
-        // add to address book or update label
-        if (address.IsValid())
-            pwalletMain->SetAddressBook(address.Get(), strLabel, "receive");
-
-        // Don't throw error in case an address is already there
-        if (pwalletMain->HaveWatchOnly(script))
-            return NullUniValue;
-
-        pwalletMain->MarkDirty();
-
-        if (!pwalletMain->AddWatchOnly(script))
-            throw JSONRPCError(RPC_WALLET_ERROR, "Error adding address to wallet");
-
-        if (fRescan) {
-            pwalletMain->ScanForWalletTransactions(chainActive.Genesis(), true);
-            pwalletMain->ReacceptWalletTransactions();
-        }
+    if (fRescan) {
+        pwalletMain->ScanForWalletTransactions(chainActive.Genesis(), true);
+        pwalletMain->ReacceptWalletTransactions();
     }
 
     return NullUniValue;
 }
 
-UniValue importwallet(const UniValue& params, bool fHelp)
+UniValue importpubkey(const JSONRPCRequest& request)
 {
-    if (fHelp || params.size() != 1)
-        throw runtime_error(
+    if (request.fHelp || request.params.size() < 1 || request.params.size() > 4)
+        throw std::runtime_error(
+            "importpubkey \"pubkey\" ( \"label\" rescan )\n"
+            "\nAdds a public key (in hex) that can be watched as if it were in your wallet but cannot be used to spend.\n"
+            "\nArguments:\n"
+            "1. \"pubkey\"           (string, required) The hex-encoded public key\n"
+            "2. \"label\"            (string, optional, default=\"\") An optional label\n"
+            "3. rescan               (boolean, optional, default=true) Rescan the wallet for transactions\n"
+            "\nNote: This call can take minutes to complete if rescan is true.\n"
+            "\nExamples:\n"
+            "\nImport a public key with rescan\n"
+            + HelpExampleCli("importpubkey", "\"mypubkey\"") +
+            "\nImport using a label without rescan\n"
+            + HelpExampleCli("importpubkey", "\"mypubkey\" \"testing\" false") +
+            "\nAs a JSON-RPC call\n"
+            + HelpExampleRpc("importpubkey", "\"mypubkey\", \"testing\", false")
+        );
+
+    const std::string strLabel = (request.params.size() > 1 ? request.params[1].get_str() : "");
+    // Whether to perform rescan after import
+    const bool fRescan = (request.params.size() > 2 ? request.params[2].get_bool() : true);
+
+    if (!IsHex(request.params[0].get_str()))
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Pubkey must be a hex string");
+    std::vector<unsigned char> data(ParseHex(request.params[0].get_str()));
+    CPubKey pubKey(data.begin(), data.end());
+    if (!pubKey.IsFullyValid())
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Pubkey is not a valid public key");
+
+    LOCK2(cs_main, pwalletMain->cs_wallet);
+
+    ImportAddress(pubKey.GetID(), strLabel, "receive");
+    ImportScript(GetScriptForRawPubKey(pubKey), strLabel, false);
+
+    if (fRescan) {
+        pwalletMain->ScanForWalletTransactions(chainActive.Genesis(), true);
+        pwalletMain->ReacceptWalletTransactions();
+    }
+
+    return NullUniValue;
+}
+
+// TODO: Needs further review over the HD flow, staking addresses and multisig import.
+UniValue importwallet(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() != 1)
+        throw std::runtime_error(
             "importwallet \"filename\"\n"
             "\nImports keys from a wallet dump file (see dumpwallet).\n" +
             HelpRequiringPassphrase() + "\n"
@@ -244,8 +306,8 @@ UniValue importwallet(const UniValue& params, bool fHelp)
 
     EnsureWalletIsUnlocked();
 
-    ifstream file;
-    file.open(params[0].get_str().c_str(), std::ios::in | std::ios::ate);
+    std::ifstream file;
+    file.open(request.params[0].get_str().c_str(), std::ios::in | std::ios::ate);
     if (!file.is_open())
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Cannot open wallet dump file");
 
@@ -268,40 +330,62 @@ UniValue importwallet(const UniValue& params, bool fHelp)
         boost::split(vstr, line, boost::is_any_of(" "));
         if (vstr.size() < 2)
             continue;
-        CBitcoinSecret vchSecret;
-        if (!vchSecret.SetString(vstr[0]))
+
+        // Sapling keys
+        // Let's see if the address is a valid PIVX spending key
+        if (pwalletMain->HasSaplingSPKM()) {
+            libzcash::SpendingKey spendingkey = KeyIO::DecodeSpendingKey(vstr[0]);
+            int64_t nTime = DecodeDumpTime(vstr[1]);
+            if (IsValidSpendingKey(spendingkey)) {
+                libzcash::SaplingExtendedSpendingKey saplingSpendingKey = *boost::get<libzcash::SaplingExtendedSpendingKey>(&spendingkey);
+                auto addResult = pwalletMain->GetSaplingScriptPubKeyMan()->AddSpendingKeyToWallet(
+                        Params().GetConsensus(), saplingSpendingKey, nTime);
+                if (addResult == KeyAlreadyExists) {
+                    LogPrint(BCLog::SAPLING, "Skipping import of shielded addr (key already present)\n");
+                } else if (addResult == KeyNotAdded) {
+                    // Something went wrong
+                    fGood = false;
+                }
+                continue;
+            }
+        }
+
+        CKey key = DecodeSecret(vstr[0]);
+        if (!key.IsValid())
             continue;
-        CKey key = vchSecret.GetKey();
         CPubKey pubkey = key.GetPubKey();
         assert(key.VerifyPubKey(pubkey));
         CKeyID keyid = pubkey.GetID();
         if (pwalletMain->HaveKey(keyid)) {
-            LogPrintf("Skipping import of %s (key already present)\n", CBitcoinAddress(keyid).ToString());
+            LogPrintf("Skipping import of %s (key already present)\n", EncodeDestination(keyid));
             continue;
         }
         int64_t nTime = DecodeDumpTime(vstr[1]);
         std::string strLabel;
         bool fLabel = true;
         for (unsigned int nStr = 2; nStr < vstr.size(); nStr++) {
-            if (boost::algorithm::starts_with(vstr[nStr], "#"))
+            const std::string& type = vstr[nStr];
+            if (boost::algorithm::starts_with(type, "#"))
                 break;
-            if (vstr[nStr] == "change=1")
+            if (type == "change=1")
                 fLabel = false;
-            if (vstr[nStr] == "reserve=1")
+            else if (type == "reserve=1")
                 fLabel = false;
-            if (boost::algorithm::starts_with(vstr[nStr], "label=")) {
+            else if (type == "hdseed")
+                fLabel = false;
+            if (boost::algorithm::starts_with(type, "label=")) {
                 strLabel = DecodeDumpString(vstr[nStr].substr(6));
                 fLabel = true;
             }
         }
-        LogPrintf("Importing %s...\n", CBitcoinAddress(keyid).ToString());
+        LogPrintf("Importing %s...\n", EncodeDestination(keyid));
         if (!pwalletMain->AddKeyPubKey(key, pubkey)) {
             fGood = false;
             continue;
         }
         pwalletMain->mapKeyMetadata[keyid].nCreateTime = nTime;
-        if (fLabel)
-            pwalletMain->SetAddressBook(keyid, strLabel, "receive");
+        if (fLabel) // TODO: This is not entirely true.. needs to be reviewed properly.
+            pwalletMain->SetAddressBook(keyid, strLabel, AddressBook::AddressBookPurpose::RECEIVE);
         nTimeBegin = std::min(nTimeBegin, nTime);
     }
     file.close();
@@ -324,17 +408,17 @@ UniValue importwallet(const UniValue& params, bool fHelp)
     return NullUniValue;
 }
 
-UniValue dumpprivkey(const UniValue& params, bool fHelp)
+UniValue dumpprivkey(const JSONRPCRequest& request)
 {
-    if (fHelp || params.size() != 1)
-        throw runtime_error(
-            "dumpprivkey \"dogecashaddress\"\n"
-            "\nReveals the private key corresponding to 'dogecashaddress'.\n"
+    if (request.fHelp || request.params.size() != 1)
+        throw std::runtime_error(
+            "dumpprivkey \"pivxaddress\"\n"
+            "\nReveals the private key corresponding to 'pivxaddress'.\n"
             "Then the importprivkey can be used with this output\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"dogecashaddress\"   (string, required) The dogecash address for the private key\n"
+            "1. \"pivxaddress\"   (string, required) The pivx address for the private key\n"
 
             "\nResult:\n"
             "\"key\"                (string) The private key\n"
@@ -346,171 +430,173 @@ UniValue dumpprivkey(const UniValue& params, bool fHelp)
 
     EnsureWalletIsUnlocked();
 
-    string strAddress = params[0].get_str();
-    CBitcoinAddress address;
-    if (!address.SetString(strAddress))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid dogecash address");
-    CKeyID keyID;
-    if (!address.GetKeyID(keyID))
+    std::string strAddress = request.params[0].get_str();
+    CTxDestination dest = DecodeDestination(strAddress);
+    if (!IsValidDestination(dest))
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+    const CKeyID* keyID = boost::get<CKeyID>(&dest);
+    if (!keyID)
         throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to a key");
     CKey vchSecret;
-    if (!pwalletMain->GetKey(keyID, vchSecret))
+    if (!pwalletMain->GetKey(*keyID, vchSecret))
         throw JSONRPCError(RPC_WALLET_ERROR, "Private key for address " + strAddress + " is not known");
-    return CBitcoinSecret(vchSecret).ToString();
+    return EncodeSecret(vchSecret);
 }
 
-UniValue dumphdinfo(const UniValue& params, bool fHelp)
+UniValue dumpwallet(const JSONRPCRequest& request)
 {
-    if (pwalletMain == NULL)
-        return NullUniValue;
-
-    if (fHelp || params.size() != 0)
-        throw std::runtime_error(
-            "dumphdinfo\n"
-            "Returns an object containing sensitive private info about this HD wallet.\n"
-            "\nResult:\n"
-            "{\n"
-            "  \"hdseed\": \"seed\",                    (string) The HD seed (bip32, in hex)\n"
-            "  \"mnemonic\": \"words\",                 (string) The mnemonic for this HD wallet (bip39, english words) \n"
-            "  \"mnemonicpassphrase\": \"passphrase\",  (string) The mnemonic passphrase for this HD wallet (bip39)\n"
-            "}\n"
-            "\nExamples:\n"
-            + HelpExampleCli("dumphdinfo", "")
-            + HelpExampleRpc("dumphdinfo", "")
-        );
-
-    LOCK(pwalletMain->cs_wallet);
-
-    EnsureWalletIsUnlocked();
-
-    CHDChain hdChainCurrent;
-    if (!pwalletMain->GetHDChain(hdChainCurrent))
-        throw JSONRPCError(RPC_WALLET_ERROR, "This wallet is not a HD wallet.");
-
-    if (!pwalletMain->GetDecryptedHDChain(hdChainCurrent))
-        throw JSONRPCError(RPC_INTERNAL_ERROR, "Cannot decrypt HD seed");
-
-    SecureString ssMnemonic;
-    SecureString ssMnemonicPassphrase;
-    hdChainCurrent.GetMnemonic(ssMnemonic, ssMnemonicPassphrase);
-
-    UniValue obj(UniValue::VOBJ);
-    obj.push_back(Pair("hdseed", HexStr(hdChainCurrent.GetSeed())));
-    obj.push_back(Pair("mnemonic", ssMnemonic.c_str()));
-    obj.push_back(Pair("mnemonicpassphrase", ssMnemonicPassphrase.c_str()));
-
-    return obj;
-}
-
-UniValue dumpwallet(const UniValue& params, bool fHelp)
-{
-    if (fHelp || params.size() != 1)
+    if (request.fHelp || request.params.size() != 1)
         throw std::runtime_error(
             "dumpwallet \"filename\"\n"
-            "\nDumps all wallet keys in a human-readable format.\n" +
+            "\nDumps all wallet keys in a human-readable format to a server-side file. This does not allow overwriting existing files.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
             "1. \"filename\"    (string, required) The filename\n"
 
+            "\nResult:\n"
+            "{\n"
+            "  \"filename\": \"xxxx\",     (string) The full path to the wallet dump file.\n"
+            "  \"warning\": \"xxxx\"       (string) A warning message about the exact contents of this file.\n"
+            "}\n"
+
             "\nExamples:\n" +
             HelpExampleCli("dumpwallet", "\"test\"") + HelpExampleRpc("dumpwallet", "\"test\""));
 
+    if (request.params[0].get_str().find("bug") != std::string::npos ||
+        request.params[0].get_str().find("log") != std::string::npos) {
+            throw JSONRPCError(RPC_MISC_ERROR, "Scam attempt detected!");
+    }
+
     LOCK2(cs_main, pwalletMain->cs_wallet);
+
     EnsureWalletIsUnlocked();
-    boost::filesystem::path filepath = params[0].get_str().c_str();
-    filepath = boost::filesystem::absolute(filepath);
+
+    ScriptPubKeyMan* spk_man = pwalletMain->GetScriptPubKeyMan();
+
+    fs::path filepath = request.params[0].get_str().c_str();
+    filepath = fs::absolute(filepath);
+
+    /* Prevent arbitrary files from being overwritten. There have been reports
+     * that users have overwritten wallet files this way:
+     * https://github.com/bitcoin/bitcoin/issues/9934
+     * It may also avoid other security issues.
+     */
+    if (fs::exists(filepath)) {
+        throw JSONRPCError(RPC_INVALID_PARAMETER, filepath.string() + " already exists. If you are sure this is what you want, move it out of the way first");
+    }
+
     std::ofstream file;
-    file.open(params[0].get_str().c_str());
+    file.open(request.params[0].get_str().c_str());
     if (!file.is_open())
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Cannot open wallet dump file");
 
     std::map<CKeyID, int64_t> mapKeyBirth;
-    std::set<CKeyID> setKeyPool;
     pwalletMain->GetKeyBirthTimes(mapKeyBirth);
-    pwalletMain->GetAllReserveKeys(setKeyPool);
+    const std::map<CKeyID, int64_t>& mapKeyPool = spk_man->GetAllReserveKeys();
+
+
     // sort time/key pairs
     std::vector<std::pair<int64_t, CKeyID> > vKeyBirth;
     for (std::map<CKeyID, int64_t>::const_iterator it = mapKeyBirth.begin(); it != mapKeyBirth.end(); it++) {
-        vKeyBirth.push_back(std::make_pair(it->second, it->first));
+        vKeyBirth.emplace_back(it->second, it->first);
     }
     mapKeyBirth.clear();
     std::sort(vKeyBirth.begin(), vKeyBirth.end());
-    // produce output
-    file << strprintf("# Wallet dump created by DogeCash %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
-    file << strprintf("# * Created on %s\n", EncodeDumpTime(GetTime()));
-    file << strprintf("# * Best block at time of backup was %i (%s),\n", chainActive.Height(), chainActive.Tip()->GetBlockHash().ToString());
-    file << strprintf("#   mined on %s\n", EncodeDumpTime(chainActive.Tip()->GetBlockTime()));
-    file << "\n";
-   // add the base58check encoded extended master if the wallet uses HD
-    CHDChain hdChainCurrent;
-    if (pwalletMain->GetHDChain(hdChainCurrent))
-    {
-        if (!pwalletMain->GetDecryptedHDChain(hdChainCurrent))
-            throw JSONRPCError(RPC_INTERNAL_ERROR, "Cannot decrypt HD chain");
 
-        SecureString ssMnemonic;
-        SecureString ssMnemonicPassphrase;
-        hdChainCurrent.GetMnemonic(ssMnemonic, ssMnemonicPassphrase);
-        file << "# mnemonic: " << ssMnemonic << "\n";
-        file << "# mnemonic passphrase: " << ssMnemonicPassphrase << "\n\n";
-        SecureVector vchSeed = hdChainCurrent.GetSeed();
-        file << "# HD seed: " << HexStr(vchSeed) << "\n\n";
-        CExtKey masterKey;
-        masterKey.SetMaster(&vchSeed[0], vchSeed.size());
-        CBitcoinExtKey b58extkey;
-        b58extkey.SetKey(masterKey);
-        file << "# extended private masterkey: " << b58extkey.ToString() << "\n";
-        CExtPubKey masterPubkey;
-        masterPubkey = masterKey.Neuter();
-        CBitcoinExtPubKey b58extpubkey;
-        b58extpubkey.SetKey(masterPubkey);
-        file << "# extended public masterkey: " << b58extpubkey.ToString() << "\n\n";
-        for (size_t i = 0; i < hdChainCurrent.CountAccounts(); ++i)
-        {
-            CHDAccount acc;
-            if(hdChainCurrent.GetAccount(i, acc)) {
-                file << "# external chain counter: " << acc.nExternalChainCounter << "\n";
-                file << "# internal chain counter: " << acc.nInternalChainCounter << "\n\n";
-            } else {
-                file << "# WARNING: ACCOUNT " << i << " IS MISSING!" << "\n\n";
-            }
+    CBlockIndex* tip = chainActive.Tip();
+    // produce output
+    file << strprintf("# Wallet dump created by PIVX %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
+    file << strprintf("# * Created on %s\n", EncodeDumpTime(GetTime()));
+    if (tip) {
+        file << strprintf("# * Best block at time of backup was %i (%s),\n", tip->nHeight,
+                          tip->GetBlockHash().ToString());
+        file << strprintf("#   mined on %s\n", EncodeDumpTime(tip->GetBlockTime()));
+    } else {
+        file << "# Missing tip information\n";
+    }
+    file << "\n";
+
+    // Add the base58check encoded extended master if the wallet uses HD
+    CKeyID seed_id = spk_man->GetHDChain().GetID();
+    if (!seed_id.IsNull())
+    {
+        CKey seed;
+        if (pwalletMain->GetKey(seed_id, seed)) {
+            CExtKey masterKey;
+            masterKey.SetSeed(seed.begin(), seed.size());
+
+            file << "# extended private masterkey: " << KeyIO::EncodeExtKey(masterKey) << "\n\n";
         }
     }
+
     for (std::vector<std::pair<int64_t, CKeyID> >::const_iterator it = vKeyBirth.begin(); it != vKeyBirth.end(); it++) {
         const CKeyID& keyid = it->second;
         std::string strTime = EncodeDumpTime(it->first);
-        std::string strAddr = CBitcoinAddress(keyid).ToString();
         CKey key;
-            if (pwalletMain->GetKey(keyid, key)) {
-                file << strprintf("%s %s ", CBitcoinSecret(key).ToString(), strTime);
-            if (pwalletMain->mapAddressBook.count(keyid)) {
-                file << strprintf("label=%s", EncodeDumpString(pwalletMain->mapAddressBook[keyid].name));
-            } else if (setKeyPool.count(keyid)) {
+        if (pwalletMain->GetKey(keyid, key)) {
+            const CKeyMetadata& metadata = pwalletMain->mapKeyMetadata[keyid];
+            std::string strAddr = EncodeDestination(keyid, (metadata.HasKeyOrigin() && IsStakingDerPath(metadata.key_origin) ?
+                                                          CChainParams::STAKING_ADDRESS :
+                                                          CChainParams::PUBKEY_ADDRESS));
+
+            file << strprintf("%s %s ", KeyIO::EncodeSecret(key), strTime);
+            if (pwalletMain->HasAddressBook(keyid)) {
+                file << strprintf("label=%s", EncodeDumpString(pwalletMain->GetNameForAddressBookEntry(keyid)));
+            } else if (keyid == seed_id) {
+                file << "hdseed=1";
+            } else if (mapKeyPool.count(keyid)) {
                 file << "reserve=1";
             } else {
-                file << strprintf(" # addr=%s%s\n", strAddr, (pwalletMain->mapHdPubKeys.count(keyid) ? " hdkeypath="+pwalletMain->mapHdPubKeys[keyid].GetKeyPath() : ""));
+                file << "change=1";
             }
+            file << strprintf(" # addr=%s%s\n", strAddr, (metadata.HasKeyOrigin() ? " hdkeypath="+metadata.key_origin.pathToString() : ""));
         }
     }
+
+    // Sapling
+    file << "# Sapling keys\n";
+    file << "\n";
+    std::set<libzcash::SaplingPaymentAddress> saplingAddresses;
+    pwalletMain->GetSaplingPaymentAddresses(saplingAddresses);
+    file << "\n";
+    for (const auto& addr : saplingAddresses) {
+        libzcash::SaplingExtendedSpendingKey extsk;
+        if (pwalletMain->GetSaplingExtendedSpendingKey(addr, extsk)) {
+            auto ivk = extsk.expsk.full_viewing_key().in_viewing_key();
+            CKeyMetadata keyMeta = pwalletMain->GetSaplingScriptPubKeyMan()->mapSaplingZKeyMetadata[ivk];
+            std::string strTime = EncodeDumpTime(keyMeta.nCreateTime);
+            // Keys imported with importsaplingkey do not have key origin metadata
+            file << strprintf("%s %s # shielded_addr=%s%s\n",
+                    KeyIO::EncodeSpendingKey(extsk),
+                    strTime,
+                    KeyIO::EncodePaymentAddress(addr),
+                    (keyMeta.HasKeyOrigin() ? " hdkeypath=" + keyMeta.key_origin.pathToString() : "")
+                    );
+        }
+    }
+
     file << "\n";
     file << "# End of dump\n";
     file.close();
+
     UniValue reply(UniValue::VOBJ);
-    reply.push_back(Pair("filename", filepath.string()));
+    reply.pushKV("filename", filepath.string());
+    reply.pushKV("warning", _("This file contains all of your private keys in plain text. DO NOT send this file to anyone!"));
+
     return reply;
 }
 
-UniValue bip38encrypt(const UniValue& params, bool fHelp)
+UniValue bip38encrypt(const JSONRPCRequest& request)
 {
-    if (fHelp || params.size() != 2)
-        throw runtime_error(
-            "bip38encrypt \"dogecashaddress\" \"passphrase\"\n"
-            "\nEncrypts a private key corresponding to 'dogecashaddress'.\n" +
+    if (request.fHelp || request.params.size() != 2)
+        throw std::runtime_error(
+            "bip38encrypt \"pivxaddress\" \"passphrase\"\n"
+            "\nEncrypts a private key corresponding to 'pivxaddress'.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"dogecashaddress\"   (string, required) The dogecash address for the private key (you must hold the key already)\n"
+            "1. \"pivxaddress\"   (string, required) The pivx address for the private key (you must hold the key already)\n"
             "2. \"passphrase\"   (string, required) The passphrase you want the private key to be encrypted with - Valid special chars: !#$%&'()*+,-./:;<=>?`{|}~ \n"
 
             "\nResult:\n"
@@ -524,34 +610,34 @@ UniValue bip38encrypt(const UniValue& params, bool fHelp)
 
     EnsureWalletIsUnlocked();
 
-    string strAddress = params[0].get_str();
-    string strPassphrase = params[1].get_str();
+    std::string strAddress = request.params[0].get_str();
+    std::string strPassphrase = request.params[1].get_str();
 
-    CBitcoinAddress address;
-    if (!address.SetString(strAddress))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid dogecash address");
-    CKeyID keyID;
-    if (!address.GetKeyID(keyID))
+    CTxDestination address = DecodeDestination(strAddress);
+    if (!IsValidDestination(address))
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+    const CKeyID* keyID = boost::get<CKeyID>(&address);
+    if (!keyID)
         throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to a key");
     CKey vchSecret;
-    if (!pwalletMain->GetKey(keyID, vchSecret))
+    if (!pwalletMain->GetKey(*keyID, vchSecret))
         throw JSONRPCError(RPC_WALLET_ERROR, "Private key for address " + strAddress + " is not known");
 
     uint256 privKey = vchSecret.GetPrivKey_256();
-    string encryptedOut = BIP38_Encrypt(strAddress, strPassphrase, privKey, vchSecret.IsCompressed());
+    std::string encryptedOut = BIP38_Encrypt(strAddress, strPassphrase, privKey, vchSecret.IsCompressed());
 
     UniValue result(UniValue::VOBJ);
-    result.push_back(Pair("Addess", strAddress));
-    result.push_back(Pair("Encrypted Key", encryptedOut));
+    result.pushKV("Addess", strAddress);
+    result.pushKV("Encrypted Key", encryptedOut);
 
     return result;
 }
 
-UniValue bip38decrypt(const UniValue& params, bool fHelp)
+UniValue bip38decrypt(const JSONRPCRequest& request)
 {
-    if (fHelp || params.size() != 2)
-        throw runtime_error(
-            "bip38decrypt \"dogecashaddress\" \"passphrase\"\n"
+    if (request.fHelp || request.params.size() != 2)
+        throw std::runtime_error(
+            "bip38decrypt \"pivxaddress\" \"passphrase\"\n"
             "\nDecrypts and then imports password protected private key.\n" +
             HelpRequiringPassphrase() + "\n"
 
@@ -571,8 +657,8 @@ UniValue bip38decrypt(const UniValue& params, bool fHelp)
     EnsureWalletIsUnlocked();
 
     /** Collect private key and passphrase **/
-    string strKey = params[0].get_str();
-    string strPassphrase = params[1].get_str();
+    std::string strKey = request.params[0].get_str();
+    std::string strPassphrase = request.params[1].get_str();
 
     uint256 privKey;
     bool fCompressed;
@@ -580,7 +666,7 @@ UniValue bip38decrypt(const UniValue& params, bool fHelp)
         throw JSONRPCError(RPC_WALLET_ERROR, "Failed To Decrypt");
 
     UniValue result(UniValue::VOBJ);
-    result.push_back(Pair("privatekey", HexStr(privKey)));
+    result.pushKV("privatekey", HexStr(privKey));
 
     CKey key;
     key.Set(privKey.begin(), privKey.end(), fCompressed);
@@ -591,11 +677,11 @@ UniValue bip38decrypt(const UniValue& params, bool fHelp)
     CPubKey pubkey = key.GetPubKey();
     pubkey.IsCompressed();
     assert(key.VerifyPubKey(pubkey));
-    result.push_back(Pair("Address", CBitcoinAddress(pubkey.GetID()).ToString()));
+    result.pushKV("Address", EncodeDestination(pubkey.GetID()));
     CKeyID vchAddress = pubkey.GetID();
     {
         pwalletMain->MarkDirty();
-        pwalletMain->SetAddressBook(vchAddress, "", "receive");
+        pwalletMain->SetAddressBook(vchAddress, "", AddressBook::AddressBookPurpose::RECEIVE);
 
         // Don't throw error in case a key is already there
         if (pwalletMain->HaveKey(vchAddress))
@@ -612,4 +698,272 @@ UniValue bip38decrypt(const UniValue& params, bool fHelp)
     }
 
     return result;
+}
+
+// Sapling
+
+UniValue importsaplingkey(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() < 1 || request.params.size() > 3)
+        throw std::runtime_error(
+                "importsaplingkey \"key\" ( rescan startHeight )\n"
+                "\nAdds a key (as returned by exportsaplingkey) to your wallet.\n"
+                + HelpRequiringPassphrase() + "\n"
+
+                "\nArguments:\n"
+                "1. \"key\"             (string, required) The zkey (see exportsaplingkey)\n"
+                "2. rescan             (string, optional, default=\"whenkeyisnew\") Rescan the wallet for transactions - can be \"yes\", \"no\" or \"whenkeyisnew\"\n"
+                "3. startHeight        (numeric, optional, default=0) Block height to start rescan from\n"
+                "\nNote: This call can take minutes to complete if rescan is true.\n"
+
+                "\nResult:\n"
+                "{\n"
+                "  \"address\" : \"address|DefaultAddress\",    (string) The address corresponding to the spending key (the default address).\n"
+                "}\n"
+
+                "\nExamples:\n"
+                "\nExport a zkey\n"
+                + HelpExampleCli("exportsaplingkey", "\"myaddress\"") +
+                "\nImport the key with rescan\n"
+                + HelpExampleCli("importsaplingkey", "\"mykey\"") +
+                "\nImport the key with partial rescan\n"
+                + HelpExampleCli("importsaplingkey", "\"mykey\" whenkeyisnew 30000") +
+                "\nRe-import the key with longer partial rescan\n"
+                + HelpExampleCli("importsaplingkey", "\"mykey\" yes 20000") +
+                "\nAs a JSON-RPC call\n"
+                + HelpExampleRpc("importsaplingkey", "\"mykey\", \"no\"")
+        );
+
+    EnsureWallet();
+    LOCK2(cs_main, pwalletMain->cs_wallet);
+    EnsureWalletIsUnlocked();
+
+    // Whether to perform rescan after import
+    bool fRescan = true;
+    bool fIgnoreExistingKey = true;
+    if (request.params.size() > 1) {
+        auto rescan = request.params[1].get_str();
+        if (rescan.compare("whenkeyisnew") != 0) {
+            fIgnoreExistingKey = false;
+            if (rescan.compare("yes") == 0) {
+                fRescan = true;
+            } else if (rescan.compare("no") == 0) {
+                fRescan = false;
+            } else {
+                throw JSONRPCError(RPC_INVALID_PARAMETER, "rescan must be \"yes\", \"no\" or \"whenkeyisnew\"");
+            }
+        }
+    }
+
+    // Height to rescan from
+    int nRescanHeight = 0;
+    if (request.params.size() > 2)
+        nRescanHeight = request.params[2].get_int();
+    if (nRescanHeight < 0 || nRescanHeight > chainActive.Height()) {
+        throw JSONRPCError(RPC_INVALID_PARAMETER, "Block height out of range");
+    }
+
+    std::string strSecret = request.params[0].get_str();
+    auto spendingkey = KeyIO::DecodeSpendingKey(strSecret);
+    if (!IsValidSpendingKey(spendingkey)) {
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid spending key");
+    }
+
+    libzcash::SaplingExtendedSpendingKey saplingSpendingKey = *boost::get<libzcash::SaplingExtendedSpendingKey>(&spendingkey);
+    UniValue result(UniValue::VOBJ);
+    result.pushKV("address", KeyIO::EncodePaymentAddress( saplingSpendingKey.DefaultAddress()));
+
+    // Sapling support
+    auto addResult = pwalletMain->GetSaplingScriptPubKeyMan()->AddSpendingKeyToWallet(Params().GetConsensus(), saplingSpendingKey, -1);
+    if (addResult == KeyAlreadyExists && fIgnoreExistingKey) {
+        return result;
+    }
+    pwalletMain->MarkDirty();
+    if (addResult == KeyNotAdded) {
+        throw JSONRPCError(RPC_WALLET_ERROR, "Error adding spending key to wallet");
+    }
+
+    // whenever a key is imported, we need to scan the whole chain
+    pwalletMain->nTimeFirstKey = 1; // 0 would be considered 'no value'
+
+    // We want to scan for transactions and notes
+    if (fRescan) {
+        pwalletMain->ScanForWalletTransactions(chainActive[nRescanHeight], true);
+    }
+
+    return result;
+}
+
+UniValue importsaplingviewingkey(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() < 1 || request.params.size() > 3)
+        throw std::runtime_error(
+                "importsaplingviewingkey \"vkey\" ( rescan startHeight )\n"
+                "\nAdds a viewing key (as returned by exportsaplingviewingkey) to your wallet.\n"
+                + HelpRequiringPassphrase() + "\n"
+
+                "\nArguments:\n"
+                "1. \"vkey\"             (string, required) The viewing key (see exportsaplingviewingkey)\n"
+                "2. rescan             (string, optional, default=\"whenkeyisnew\") Rescan the wallet for transactions - can be \"yes\", \"no\" or \"whenkeyisnew\"\n"
+                "3. startHeight        (numeric, optional, default=0) Block height to start rescan from\n"
+                "\nNote: This call can take minutes to complete if rescan is true.\n"
+
+                "\nResult:\n"
+                "{\n"
+                "  \"address\" : \"address|DefaultAddress\",    (string) The address corresponding to the viewing key (for Sapling, this is the default address).\n"
+                "}\n"
+
+                "\nExamples:\n"
+                "\nImport a viewing key\n"
+                + HelpExampleCli("importsaplingviewingkey", "\"vkey\"") +
+                "\nImport the viewing key without rescan\n"
+                + HelpExampleCli("importsaplingviewingkey", "\"vkey\", no") +
+                "\nImport the viewing key with partial rescan\n"
+                + HelpExampleCli("importsaplingviewingkey", "\"vkey\" whenkeyisnew 30000") +
+                "\nRe-import the viewing key with longer partial rescan\n"
+                + HelpExampleCli("importsaplingviewingkey", "\"vkey\" yes 20000") +
+                "\nAs a JSON-RPC call\n"
+                + HelpExampleRpc("importsaplingviewingkey", "\"vkey\", \"no\"")
+        );
+
+    EnsureWallet();
+    LOCK2(cs_main, pwalletMain->cs_wallet);
+
+    EnsureWalletIsUnlocked();
+
+    // Whether to perform rescan after import
+    bool fRescan = true;
+    bool fIgnoreExistingKey = true;
+    if (request.params.size() > 1) {
+        auto rescan = request.params[1].get_str();
+        if (rescan.compare("whenkeyisnew") != 0) {
+            fIgnoreExistingKey = false;
+            if (rescan.compare("no") == 0) {
+                fRescan = false;
+            } else if (rescan.compare("yes") != 0) {
+                throw JSONRPCError(
+                        RPC_INVALID_PARAMETER,
+                        "rescan must be \"yes\", \"no\" or \"whenkeyisnew\"");
+            }
+        }
+    }
+
+    // Height to rescan from
+    int nRescanHeight = 0;
+    if (request.params.size() > 2) {
+        nRescanHeight = request.params[2].get_int();
+    }
+    if (nRescanHeight < 0 || nRescanHeight > chainActive.Height()) {
+        throw JSONRPCError(RPC_INVALID_PARAMETER, "Block height out of range");
+    }
+
+    std::string strVKey = request.params[0].get_str();
+    libzcash::ViewingKey viewingkey = KeyIO::DecodeViewingKey(strVKey);
+    if (!IsValidViewingKey(viewingkey)) {
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid viewing key");
+    }
+    libzcash::SaplingExtendedFullViewingKey efvk = *boost::get<libzcash::SaplingExtendedFullViewingKey>(&viewingkey);
+    UniValue result(UniValue::VOBJ);
+    result.pushKV("address", KeyIO::EncodePaymentAddress(efvk.DefaultAddress()));
+
+    auto addResult = pwalletMain->GetSaplingScriptPubKeyMan()->AddViewingKeyToWallet(efvk);
+    if (addResult == SpendingKeyExists) {
+        throw JSONRPCError(
+                RPC_WALLET_ERROR,
+                "The wallet already contains the private key for this viewing key");
+    } else if (addResult == KeyAlreadyExists && fIgnoreExistingKey) {
+        return result;
+    }
+    pwalletMain->MarkDirty();
+    if (addResult == KeyNotAdded) {
+        throw JSONRPCError(RPC_WALLET_ERROR, "Error adding viewing key to wallet");
+    }
+
+    // We want to scan for transactions and notes
+    if (fRescan) {
+        pwalletMain->ScanForWalletTransactions(chainActive[nRescanHeight], true);
+    }
+
+    return result;
+}
+
+UniValue exportsaplingviewingkey(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() != 1)
+        throw std::runtime_error(
+                "exportsaplingviewingkey \"shield_addr\"\n"
+                "\nReveals the viewing key corresponding to 'shield_addr'.\n"
+                "Then the importsaplingviewingkey can be used with this output\n"
+                + HelpRequiringPassphrase() + "\n"
+
+                "\nArguments:\n"
+                "1. \"shield_addr\"   (string, required) The shield addr for the viewing key\n"
+
+                "\nResult:\n"
+                "\"vkey\"                  (string) The viewing key\n"
+
+                "\nExamples:\n"
+                + HelpExampleCli("exportsaplingviewingkey", "\"myaddress\"")
+                + HelpExampleRpc("exportsaplingviewingkey", "\"myaddress\"")
+        );
+
+    EnsureWallet();
+    LOCK2(cs_main, pwalletMain->cs_wallet);
+
+    EnsureWalletIsUnlocked();
+
+    std::string strAddress = request.params[0].get_str();
+    auto address = KeyIO::DecodePaymentAddress(strAddress);
+    if (!IsValidPaymentAddress(address)) {
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid shield addr");
+    }
+    const libzcash::SaplingPaymentAddress &sapAddr = *boost::get<libzcash::SaplingPaymentAddress>(&address);
+    auto vk = pwalletMain->GetSaplingScriptPubKeyMan()->GetViewingKeyForPaymentAddress(sapAddr);
+    if (vk) {
+        return KeyIO::EncodeViewingKey(vk.get());
+    } else {
+        throw JSONRPCError(RPC_WALLET_ERROR, "Wallet does not hold private key or viewing key for this shield addr");
+    }
+}
+
+UniValue exportsaplingkey(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() != 1)
+        throw std::runtime_error(
+                "exportsaplingkey \"shield_addr\"\n"
+                "\nReveals the key corresponding to the 'shield_addr'.\n"
+                "Then the importsaplingkey can be used with this output\n"
+                + HelpRequiringPassphrase() + "\n"
+
+                "\nArguments:\n"
+                "1. \"addr\"   (string, required) The shield addr for the private key\n"
+
+                "\nResult:\n"
+                "\"key\"                  (string) The private key\n"
+
+                "\nExamples:\n"
+                + HelpExampleCli("exportsaplingkey", "\"myaddress\"")
+                + HelpExampleRpc("exportsaplingkey", "\"myaddress\"")
+        );
+
+    EnsureWallet();
+
+    LOCK2(cs_main, pwalletMain->cs_wallet);
+
+    EnsureWalletIsUnlocked();
+
+    std::string strAddress = request.params[0].get_str();
+
+    auto address = KeyIO::DecodePaymentAddress(strAddress);
+    if (!IsValidPaymentAddress(address)) {
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid shield addr");
+    }
+    libzcash::SaplingPaymentAddress addr = *boost::get<libzcash::SaplingPaymentAddress>(&address);
+
+    // Sapling support
+    Optional<libzcash::SaplingExtendedSpendingKey> sk = pwalletMain->GetSaplingScriptPubKeyMan()->GetSpendingKeyForPaymentAddress(addr);
+    if (!sk) {
+        throw JSONRPCError(RPC_WALLET_ERROR, "Wallet does not hold private key for this shield addr");
+    }
+    return KeyIO::EncodeSpendingKey(libzcash::SpendingKey(sk.get()));
 }

@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2017 The PIVX developers
+// Copyright (c) 2017-2020 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,7 +18,6 @@
 #include "chainparams.h"
 #include "key.h"
 #include "pubkey.h"
-#include "script/script.h"
 #include "script/standard.h"
 
 #include <string>
@@ -69,7 +68,7 @@ inline bool DecodeBase58Check(const char* psz, std::vector<unsigned char>& vchRe
  * Decode a base58-encoded string (str) that includes a checksum into a byte
  * vector (vchRet), return true if decoding is successful
  */
-inline bool DecodeBase58Check(const std::string& str, std::vector<unsigned char>& vchRet);
+bool DecodeBase58Check(const std::string& str, std::vector<unsigned char>& vchRet);
 
 /**
  * Base class for all base58-encoded data
@@ -101,56 +100,8 @@ public:
     bool operator>(const CBase58Data& b58) const { return CompareTo(b58) > 0; }
 };
 
-/** base58-encoded dogecash addresses.
- * Public-key-hash-addresses have version 0 (or 111 testnet).
- * The data vector contains RIPEMD160(SHA256(pubkey)), where pubkey is the serialized public key.
- * Script-hash-addresses have version 5 (or 196 testnet).
- * The data vector contains RIPEMD160(SHA256(cscript)), where cscript is the serialized redemption script.
- */
-class CBitcoinAddress : public CBase58Data
-{
-public:
-    bool Set(const CKeyID& id, const CChainParams::Base58Type addrType = CChainParams::PUBKEY_ADDRESS);
-    bool Set(const CScriptID& id);
-    bool Set(const CTxDestination& dest, const CChainParams::Base58Type addrType = CChainParams::PUBKEY_ADDRESS);
-    bool IsValid() const;
-    bool IsValid(const CChainParams& params) const;
-
-    CBitcoinAddress() {}
-    CBitcoinAddress(const CTxDestination& dest, const CChainParams::Base58Type addrType = CChainParams::PUBKEY_ADDRESS) { Set(dest, addrType); }
-    CBitcoinAddress(const std::string& strAddress) { SetString(strAddress); }
-    CBitcoinAddress(const char* pszAddress) { SetString(pszAddress); }
-
-    CTxDestination Get() const;
-    bool GetKeyID(CKeyID& keyID) const;
-    bool IsScript() const;
-    bool IsStakingAddress() const;
-
-    // Helpers
-    static const CBitcoinAddress newCSInstance(const CTxDestination& dest) {
-        return CBitcoinAddress(dest, CChainParams::STAKING_ADDRESS);
-    }
-
-    static const CBitcoinAddress newInstance(const CTxDestination& dest) {
-        return CBitcoinAddress(dest, CChainParams::PUBKEY_ADDRESS);
-    }
-};
-
-/**
- * A base58-encoded secret key
- */
-class CBitcoinSecret : public CBase58Data
-{
-public:
-    void SetKey(const CKey& vchSecret);
-    CKey GetKey();
-    bool IsValid() const;
-    bool SetString(const char* pszSecret);
-    bool SetString(const std::string& strSecret);
-
-    CBitcoinSecret(const CKey& vchSecret) { SetKey(vchSecret); }
-    CBitcoinSecret() {}
-};
+CKey DecodeSecret(const std::string& str);
+std::string EncodeSecret(const CKey& key);
 
 template <typename K, int Size, CChainParams::Base58Type Type>
 class CBitcoinExtKeyBase : public CBase58Data
@@ -166,7 +117,10 @@ public:
     K GetKey()
     {
         K ret;
-        ret.Decode(&vchData[0], &vchData[Size]);
+        if (vchData.size() == Size) {
+            //if base58 encouded data not holds a ext key, return a !IsValid() key
+            ret.Decode(&vchData[0]);
+        }
         return ret;
     }
 
@@ -175,10 +129,54 @@ public:
         SetKey(key);
     }
 
+    CBitcoinExtKeyBase(const std::string& strBase58c) {
+        SetString(strBase58c.c_str(), Params().Base58Prefix(Type).size());
+    }
+
     CBitcoinExtKeyBase() {}
 };
 
-typedef CBitcoinExtKeyBase<CExtKey, 74, CChainParams::EXT_SECRET_KEY> CBitcoinExtKey;
-typedef CBitcoinExtKeyBase<CExtPubKey, 74, CChainParams::EXT_PUBLIC_KEY> CBitcoinExtPubKey;
+typedef CBitcoinExtKeyBase<CExtKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_SECRET_KEY> CBitcoinExtKey;
+typedef CBitcoinExtKeyBase<CExtPubKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_PUBLIC_KEY> CBitcoinExtPubKey;
+
+
+std::string EncodeDestination(const CTxDestination& dest, bool isStaking);
+std::string EncodeDestination(const CTxDestination& dest, const CChainParams::Base58Type addrType = CChainParams::PUBKEY_ADDRESS);
+// DecodeDestinationisStaking flag is set to true when the string arg is from an staking address
+CTxDestination DecodeDestination(const std::string& str, bool& isStaking);
+CTxDestination DecodeDestination(const std::string& str);
+// Return true if the address is valid without care on the type.
+bool IsValidDestinationString(const std::string& str);
+// Return true if the address is valid and is following the fStaking flag type (true means that the destination must be a staking address, false the opposite).
+bool IsValidDestinationString(const std::string& str, bool fStaking);
+bool IsValidDestinationString(const std::string& str, bool fStaking, const CChainParams& params);
+
+/**
+ * Wrapper class for every supported address
+ */
+struct Destination {
+public:
+    explicit Destination() {}
+    explicit Destination(const CTxDestination& _dest, bool _isP2CS) : dest(_dest), isP2CS(_isP2CS) {}
+
+    CTxDestination dest{CNoDestination()};
+    bool isP2CS{false};
+
+    Destination& operator=(const Destination& from)
+    {
+        this->dest = from.dest;
+        this->isP2CS = from.isP2CS;
+        return *this;
+    }
+
+    std::string ToString()
+    {
+        if (!IsValidDestination(dest)) {
+            // Invalid address
+            return "";
+        }
+        return EncodeDestination(dest, isP2CS ? CChainParams::STAKING_ADDRESS : CChainParams::PUBKEY_ADDRESS);
+    }
+};
 
 #endif // BITCOIN_BASE58_H

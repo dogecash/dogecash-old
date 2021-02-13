@@ -6,24 +6,22 @@
 // Unit tests for block.CheckBlock()
 //
 
-
+#include "test/test_pivx.h"
 
 #include "clientversion.h"
-#include "main.h"
+#include "fs.h"
 #include "utiltime.h"
+#include "validation.h"
 
 #include <cstdio>
 
-#include <boost/filesystem/operations.hpp>
-#include <boost/filesystem/path.hpp>
 #include <boost/test/unit_test.hpp>
 
 
-BOOST_AUTO_TEST_SUITE(CheckBlock_tests)
+BOOST_FIXTURE_TEST_SUITE(CheckBlock_tests, BasicTestingSetup)
 
 bool read_block(const std::string& filename, CBlock& block)
 {
-    namespace fs = boost::filesystem;
     fs::path testFile = fs::current_path() / "data" / filename;
 #ifdef TEST_DATA_DIR
     if (!fs::exists(testFile))

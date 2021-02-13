@@ -1,19 +1,17 @@
 // Copyright (c) 2014-2017 The Bitcoin developers
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2020 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "timedata.h"
 
-#include "netbase.h"
-#include "sync.h"
+#include "chainparams.h"
 #include "guiinterface.h"
+#include "netaddress.h"
+#include "sync.h"
 #include "util.h"
-#include "utilstrencodings.h"
+#include "warnings.h"
 
-#include <boost/foreach.hpp>
-
-using namespace std;
 
 static RecursiveMutex cs_nTimeOffset;
 static int64_t nTimeOffset = 0;
@@ -36,21 +34,16 @@ int64_t GetAdjustedTime()
     return GetTime() + GetTimeOffset();
 }
 
-static int64_t abs64(int64_t n)
-{
-    return (n >= 0 ? n : -n);
-}
-
 #define BITCOIN_TIMEDATA_MAX_SAMPLES 200
 
-void AddTimeData(const CNetAddr& ip, int64_t nOffsetSample)
+void AddTimeData(const CNetAddr& ip, int64_t nOffsetSample, int nOffsetLimit)
 {
     LOCK(cs_nTimeOffset);
-    // Ignore duplicates
+    // Ignore duplicates (Except on regtest where all nodes have the same ip)
     static std::set<CNetAddr> setKnown;
     if (setKnown.size() == BITCOIN_TIMEDATA_MAX_SAMPLES)
         return;
-    if (!setKnown.insert(ip).second)
+    if (!Params().IsRegTestNet() && !setKnown.insert(ip).second)
         return;
 
     // Add data
@@ -79,33 +72,34 @@ void AddTimeData(const CNetAddr& ip, int64_t nOffsetSample)
         int64_t nMedian = vTimeOffsets.median();
         std::vector<int64_t> vSorted = vTimeOffsets.sorted();
         // Only let other nodes change our time by so much
-        if (abs64(nMedian) < 70 * 60) {
+        if (abs64(nMedian) < nOffsetLimit) {
             nTimeOffset = nMedian;
+            SetMiscWarning("");
         } else {
-            nTimeOffset = 0;
-
-            static bool fDone;
-            if (!fDone) {
-                // If nobody has a time different than ours but within 5 minutes of ours, give a warning
-                bool fMatch = false;
-                BOOST_FOREACH (int64_t nOffset, vSorted)
-                    if (nOffset != 0 && abs64(nOffset) < 5 * 60)
-                        fMatch = true;
-
-                if (!fMatch) {
-                    fDone = true;
-                    string strMessage = _("Warning: Please check that your computer's date and time are correct! If your clock is wrong DogeCash Core will not work properly.");
-                    strMiscWarning = strMessage;
-                    LogPrintf("*** %s\n", strMessage);
-                    uiInterface.ThreadSafeMessageBox(strMessage, "", CClientUIInterface::MSG_WARNING);
-                }
-            }
+            nTimeOffset = (nMedian > 0 ? 1 : -1) * nOffsetLimit;
+            std::string strMessage = _("Warning: Please check that your computer's date and time are correct! If your clock is wrong PIVX Core will not work properly.");
+            SetMiscWarning(strMessage);
+            LogPrintf("*** %s\n", strMessage);
+            uiInterface.ThreadSafeMessageBox(strMessage, "", CClientUIInterface::MSG_ERROR);
         }
-        if (fDebug) {
-            BOOST_FOREACH (int64_t n, vSorted)
+        if (!gArgs.GetBoolArg("-shrinkdebugfile", g_logger->DefaultShrinkDebugFile())) {
+            for (int64_t n : vSorted)
                 LogPrintf("%+d  ", n);
             LogPrintf("|  ");
         }
-        LogPrintf("nTimeOffset = %+d  (%+d minutes)\n", nTimeOffset, nTimeOffset / 60);
+        LogPrintf("nTimeOffset = %+d\n", nTimeOffset);
     }
+}
+
+// Time Protocol V2
+// Timestamp for time protocol V2: slot duration 15 seconds
+int64_t GetTimeSlot(const int64_t nTime)
+{
+    const int slotLen = Params().GetConsensus().nTimeSlotLength;
+    return (nTime / slotLen) * slotLen;
+}
+
+int64_t GetCurrentTimeSlot()
+{
+    return GetTimeSlot(GetAdjustedTime());
 }

@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2020 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef dogecash_STAKEINPUT_H
-#define dogecash_STAKEINPUT_H
+#ifndef PIVX_STAKEINPUT_H
+#define PIVX_STAKEINPUT_H
 
 #include "chain.h"
 #include "streams.h"
@@ -16,82 +16,45 @@ class CWalletTx;
 class CStakeInput
 {
 protected:
-    CBlockIndex* pindexFrom;
+    const CBlockIndex* pindexFrom = nullptr;
 
 public:
+    CStakeInput(const CBlockIndex* _pindexFrom) : pindexFrom(_pindexFrom) {}
     virtual ~CStakeInput(){};
-    virtual CBlockIndex* GetIndexFrom() = 0;
-    virtual bool CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut = 0) = 0;
-    virtual bool GetTxFrom(CTransaction& tx) = 0;
-    virtual CAmount GetValue() = 0;
-    virtual bool CreateTxOuts(CWallet* pwallet, vector<CTxOut>& vout, CAmount nTotal) = 0;
-    virtual bool GetModifier(uint64_t& nStakeModifier) = 0;
-    virtual bool Iszdogec() = 0;
-    virtual CDataStream GetUniqueness() = 0;
-    virtual uint256 GetSerialHash() const = 0;
+    virtual bool InitFromTxIn(const CTxIn& txin) = 0;
+    virtual const CBlockIndex* GetIndexFrom() const = 0;
+    virtual bool CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut = UINT256_ZERO) = 0;
+    virtual bool GetTxOutFrom(CTxOut& out) const = 0;
+    virtual CAmount GetValue() const = 0;
+    virtual bool CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal, const bool onlyP2PK) = 0;
+    virtual bool IsZPIV() const = 0;
+    virtual CDataStream GetUniqueness() const = 0;
+    virtual bool ContextCheck(int nHeight, uint32_t nTime) = 0;
 };
 
 
-// zdogecStake can take two forms
-// 1) the stake candidate, which is a zcmint that is attempted to be staked
-// 2) a staked zdogec, which is a zcspend that has successfully staked
-class CzdogecStake : public CStakeInput
+class CPivStake : public CStakeInput
 {
 private:
-    uint32_t nChecksum;
-    bool fMint;
-    libzerocoin::CoinDenomination denom;
-    uint256 hashSerial;
+    const CTxOut outputFrom;
+    const COutPoint outpointFrom;
 
 public:
-    explicit CzdogecStake(libzerocoin::CoinDenomination denom, const uint256& hashSerial)
-    {
-        this->denom = denom;
-        this->hashSerial = hashSerial;
-        this->pindexFrom = nullptr;
-        fMint = true;
-    }
+    CPivStake(const CTxOut& _from, const COutPoint& _outPointFrom, const CBlockIndex* _pindexFrom) :
+            CStakeInput(_pindexFrom), outputFrom(_from), outpointFrom(_outPointFrom) {}
 
-    explicit CzdogecStake(const libzerocoin::CoinSpend& spend);
+    static CPivStake* NewPivStake(const CTxIn& txin);
 
-    CBlockIndex* GetIndexFrom() override;
-    bool GetTxFrom(CTransaction& tx) override;
-    CAmount GetValue() override;
-    bool GetModifier(uint64_t& nStakeModifier) override;
-    CDataStream GetUniqueness() override;
-    bool CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut = 0) override;
-    bool CreateTxOuts(CWallet* pwallet, vector<CTxOut>& vout, CAmount nTotal) override;
-    bool MarkSpent(CWallet* pwallet, const uint256& txid);
-    bool Iszdogec() override { return true; }
-    uint256 GetSerialHash() const override { return hashSerial; }
-    int GetChecksumHeightFromMint();
-    int GetChecksumHeightFromSpend();
-    uint32_t GetChecksum();
-};
-
-class CDOGECStake : public CStakeInput
-{
-private:
-    CTransaction txFrom;
-    unsigned int nPosition;
-public:
-    CDOGECStake()
-    {
-        this->pindexFrom = nullptr;
-    }
-
-    bool SetInput(CTransaction txPrev, unsigned int n);
-
-    CBlockIndex* GetIndexFrom() override;
-    bool GetTxFrom(CTransaction& tx) override;
-    CAmount GetValue() override;
-    bool GetModifier(uint64_t& nStakeModifier) override;
-    CDataStream GetUniqueness() override;
-    bool CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut = 0) override;
-    bool CreateTxOuts(CWallet* pwallet, vector<CTxOut>& vout, CAmount nTotal) override;
-    bool Iszdogec() override { return false; }
-    uint256 GetSerialHash() const override { return uint256(0); }
+    bool InitFromTxIn(const CTxIn& txin) override { return pindexFrom; }
+    const CBlockIndex* GetIndexFrom() const override;
+    bool GetTxOutFrom(CTxOut& out) const override;
+    CAmount GetValue() const override;
+    CDataStream GetUniqueness() const override;
+    bool CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut = UINT256_ZERO) override;
+    bool CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal, const bool onlyP2PK) override;
+    bool IsZPIV() const override { return false; }
+    bool ContextCheck(int nHeight, uint32_t nTime) override;
 };
 
 
-#endif //dogecash_STAKEINPUT_H
+#endif //PIVX_STAKEINPUT_H

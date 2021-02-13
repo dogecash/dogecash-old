@@ -1,14 +1,15 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The dogecash developers
+// Copyright (c) 2015-2020 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "base58.h"
 #include "clientversion.h"
+#include "httpserver.h"
 #include "init.h"
-#include "main.h"
+#include "sapling/key_io_sapling.h"
 #include "masternode-sync.h"
 #include "net.h"
 #include "netbase.h"
@@ -20,15 +21,16 @@
 #include "wallet/wallet.h"
 #include "wallet/walletdb.h"
 #endif
-#include "misc.h"
-#include <stdint.h>
+#include "warnings.h"
 
-#include <boost/assign/list_of.hpp>
+#include <stdint.h>
 
 #include <univalue.h>
 
 extern std::vector<CSporkDef> sporkDefs;
 
+/** getinfo depends on getsupplyinfo defined in rpc/blockchain.cpp */
+UniValue getsupplyinfo(const JSONRPCRequest& request);
 
 /**
  * @note Do not add or change anything in the information returned by this
@@ -43,46 +45,38 @@ extern std::vector<CSporkDef> sporkDefs;
  *
  * Or alternatively, create a specific query method for the information.
  **/
-UniValue getinfo(const UniValue& params, bool fHelp)
+UniValue getinfo(const JSONRPCRequest& request)
 {
-    if (fHelp || params.size() != 0)
-        throw runtime_error(
+    if (request.fHelp || request.params.size() != 0)
+        throw std::runtime_error(
             "getinfo\n"
             "\nReturns an object containing various state info.\n"
 
             "\nResult:\n"
             "{\n"
-            "  \"version\": xxxxx,           (numeric) the server version\n"
-            "  \"protocolversion\": xxxxx,   (numeric) the protocol version\n"
-            "  \"walletversion\": xxxxx,     (numeric) the wallet version\n"
-            "  \"balance\": xxxxxxx,         (numeric) the total dogecash balance of the wallet (excluding zerocoins)\n"
-            "  \"zerocoinbalance\": xxxxxxx, (numeric) the total zerocoin balance of the wallet\n"
-            "  \"blocks\": xxxxxx,           (numeric) the current number of blocks processed in the server\n"
-            "  \"timeoffset\": xxxxx,        (numeric) the time offset\n"
-            "  \"connections\": xxxxx,       (numeric) the number of connections\n"
-            "  \"proxy\": \"host:port\",     (string, optional) the proxy used by the server\n"
-            "  \"difficulty\": xxxxxx,       (numeric) the current difficulty\n"
-            "  \"testnet\": true|false,      (boolean) if the server is using testnet or not\n"
-            "  \"moneysupply\" : \"supply\"       (numeric) The money supply when this block was added to the blockchain\n"
-            "  \"zdogecsupply\" :\n"
-            "  {\n"
-            "     \"1\" : n,            (numeric) supply of 1 zdogec denomination\n"
-            "     \"5\" : n,            (numeric) supply of 5 zdogec denomination\n"
-            "     \"10\" : n,           (numeric) supply of 10 zdogec denomination\n"
-            "     \"50\" : n,           (numeric) supply of 50 zdogec denomination\n"
-            "     \"100\" : n,          (numeric) supply of 100 zdogec denomination\n"
-            "     \"500\" : n,          (numeric) supply of 500 zdogec denomination\n"
-            "     \"1000\" : n,         (numeric) supply of 1000 zdogec denomination\n"
-            "     \"5000\" : n,         (numeric) supply of 5000 zdogec denomination\n"
-            "     \"total\" : n,        (numeric) The total supply of all zdogec denominations\n"
-            "  }\n"
-            "  \"keypoololdest\": xxxxxx,    (numeric) the timestamp (seconds since GMT epoch) of the oldest pre-generated key in the key pool\n"
-            "  \"keypoolsize\": xxxx,        (numeric) how many new keys are pre-generated\n"
-            "  \"unlocked_until\": ttt,      (numeric) the timestamp in seconds since epoch (midnight Jan 1 1970 GMT) that the wallet is unlocked for transfers, or 0 if the wallet is locked\n"
-            "  \"paytxfee\": x.xxxx,         (numeric) the transaction fee set in dogecash/kb\n"
-            "  \"relayfee\": x.xxxx,         (numeric) minimum relay fee for non-free transactions in dogecash/kb\n"
-            "  \"staking status\": true|false,  (boolean) if the wallet is staking or not\n"
-            "  \"errors\": \"...\"           (string) any error messages\n"
+            "  \"version\": xxxxx,             (numeric) the server version\n"
+            "  \"protocolversion\": xxxxx,     (numeric) the protocol version\n"
+            "  \"services\": \"xxxx\",         (string) The network services provided by this client\n"
+            "  \"walletversion\": xxxxx,       (numeric) the wallet version\n"
+            "  \"balance\": xxxxxxx,           (numeric) the total pivx balance of the wallet\n"
+            "  \"staking status\": true|false, (boolean) if the wallet is staking or not\n"
+            "  \"blocks\": xxxxxx,             (numeric) the current number of blocks processed in the server\n"
+            "  \"timeoffset\": xxxxx,          (numeric) the time offset\n"
+            "  \"connections\": xxxxx,         (numeric) the number of connections\n"
+            "  \"proxy\": \"host:port\",       (string, optional) the proxy used by the server\n"
+            "  \"difficulty\": xxxxxx,         (numeric) the current difficulty\n"
+            "  \"testnet\": true|false,        (boolean) if the server is using testnet or not\n"
+            "  \"moneysupply\": n              (numeric) The sum of transparentsupply and shieldedsupply\n"
+            "  \"transparentsupply\" : n       (numeric) The sum of the value of all unspent outputs when the chainstate was\n"
+            "                                            last flushed to disk (use getsupplyinfo to know the update-height, or\n"
+            "                                            to trigger the money supply update/recalculation)"
+            "  \"shieldsupply\": n             (numeric) Chain tip shield pool value\n"
+            "  \"keypoololdest\": xxxxxx,      (numeric) the timestamp (seconds since GMT epoch) of the oldest pre-generated key in the key pool\n"
+            "  \"keypoolsize\": xxxx,          (numeric) how many new keys are pre-generated\n"
+            "  \"unlocked_until\": ttt,        (numeric) the timestamp in seconds since epoch (midnight Jan 1 1970 GMT) that the wallet is unlocked for transfers, or 0 if the wallet is locked\n"
+            "  \"paytxfee\": x.xxxx,           (numeric) the transaction fee set in pivx/kb\n"
+            "  \"relayfee\": x.xxxx,           (numeric) minimum relay fee for non-free transactions in pivx/kb\n"
+            "  \"errors\": \"...\"             (string) any error messages\n"
             "}\n"
 
             "\nExamples:\n" +
@@ -97,7 +91,7 @@ UniValue getinfo(const UniValue& params, bool fHelp)
     std::string services;
     for (int i = 0; i < 8; i++) {
         uint64_t check = 1 << i;
-        if (nLocalServices & check) {
+        if (g_connman->GetLocalServices() & check) {
             switch (check) {
                 case NODE_NETWORK:
                     services+= "NETWORK/";
@@ -116,69 +110,54 @@ UniValue getinfo(const UniValue& params, bool fHelp)
     GetProxy(NET_IPV4, proxy);
 
     UniValue obj(UniValue::VOBJ);
-    obj.push_back(Pair("version", CLIENT_VERSION));
-    obj.push_back(Pair("protocolversion", PROTOCOL_VERSION));
-    obj.push_back(Pair("services", services));
+    obj.pushKV("version", CLIENT_VERSION);
+    obj.pushKV("protocolversion", PROTOCOL_VERSION);
+    obj.pushKV("services", services);
 #ifdef ENABLE_WALLET
     if (pwalletMain) {
-        obj.push_back(Pair("walletversion", pwalletMain->GetVersion()));
-        obj.push_back(Pair("balance", ValueFromAmount(pwalletMain->GetBalance())));
-        obj.push_back(Pair("zerocoinbalance", ValueFromAmount(pwalletMain->GetZerocoinBalance(true))));
+        obj.pushKV("walletversion", pwalletMain->GetVersion());
+        obj.pushKV("balance", ValueFromAmount(pwalletMain->GetAvailableBalance()));
+        obj.pushKV("staking status", (pwalletMain->pStakerStatus->IsActive() ? "Staking Active" : "Staking Not Active"));
     }
 #endif
-    obj.push_back(Pair("blocks", (int)chainActive.Height()));
-    obj.push_back(Pair("timeoffset", GetTimeOffset()));
-    obj.push_back(Pair("connections", (int)vNodes.size()));
-    obj.push_back(Pair("proxy", (proxy.IsValid() ? proxy.proxy.ToStringIPPort() : string())));
-    obj.push_back(Pair("difficulty", (double)GetDifficulty()));
-    obj.push_back(Pair("testnet", Params().TestnetToBeDeprecatedFieldRPC()));
+    obj.pushKV("blocks", (int)chainActive.Height());
+    obj.pushKV("timeoffset", GetTimeOffset());
+    if(g_connman)
+        obj.pushKV("connections", (int)g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL));
+    obj.pushKV("proxy", (proxy.IsValid() ? proxy.proxy.ToStringIPPort() : std::string()));
+    obj.pushKV("difficulty", (double)GetDifficulty());
+    obj.pushKV("testnet", Params().IsTestnet());
 
-    // During inital block verification chainActive.Tip() might be not yet initialized
-    if (chainActive.Tip() == NULL) {
-        obj.push_back(Pair("status", "Blockchain information not yet available"));
-        return obj;
-    }
-
-    obj.push_back(Pair("moneysupply",ValueFromAmount(chainActive.Tip()->nMoneySupply)));
-    UniValue zdogecObj(UniValue::VOBJ);
-    for (auto denom : libzerocoin::zerocoinDenomList) {
-        zdogecObj.push_back(Pair(to_string(denom), ValueFromAmount(chainActive.Tip()->mapZerocoinSupply.at(denom) * (denom*COIN))));
-    }
-    zdogecObj.push_back(Pair("total", ValueFromAmount(chainActive.Tip()->GetZerocoinSupply())));
-    obj.push_back(Pair("zdogecsupply", zdogecObj));
+    // Add (cached) money supply via getsupplyinfo RPC
+    UniValue supply_info = getsupplyinfo(JSONRPCRequest());
+    obj.pushKV("moneysupply", supply_info["totalsupply"]);
+    obj.pushKV("transparentsupply", supply_info["transparentsupply"]);
+    obj.pushKV("shieldsupply", supply_info["shieldsupply"]);
 
 #ifdef ENABLE_WALLET
     if (pwalletMain) {
-        obj.push_back(Pair("keypoololdest", pwalletMain->GetOldestKeyPoolTime()));
-        obj.push_back(Pair("keypoolsize", (int64_t)pwalletMain->KeypoolCountExternalKeys()));
+        obj.pushKV("keypoololdest", pwalletMain->GetOldestKeyPoolTime());
+        size_t kpExternalSize = pwalletMain->KeypoolCountExternalKeys();
+        obj.pushKV("keypoolsize", (int64_t)kpExternalSize);
     }
     if (pwalletMain && pwalletMain->IsCrypted())
-        obj.push_back(Pair("unlocked_until", nWalletUnlockTime));
-    obj.push_back(Pair("paytxfee", ValueFromAmount(payTxFee.GetFeePerK())));
+        obj.pushKV("unlocked_until", nWalletUnlockTime);
+    obj.pushKV("paytxfee", ValueFromAmount(payTxFee.GetFeePerK()));
 #endif
-    obj.push_back(Pair("relayfee", ValueFromAmount(::minRelayTxFee.GetFeePerK())));
-    obj.push_back(Pair("staking status", (getStakingStatus() ? "Staking Active" : "Staking Not Active")));
-    obj.push_back(Pair("errors", GetWarnings("statusbar")));
+    obj.pushKV("relayfee", ValueFromAmount(::minRelayTxFee.GetFeePerK()));
+    obj.pushKV("errors", GetWarnings("statusbar"));
     return obj;
 }
-bool getStakingStatus() {
-    bool nStaking = false;
-    if (mapHashedBlocks.count(chainActive.Tip()->nHeight))
-        nStaking = true;
-    else if (mapHashedBlocks.count(chainActive.Tip()->nHeight - 1) && nLastCoinStakeSearchInterval)
-        nStaking = true;
 
-    return nStaking;
-}
-UniValue mnsync(const UniValue& params, bool fHelp)
+UniValue mnsync(const JSONRPCRequest& request)
 {
     std::string strMode;
-    if (params.size() == 1)
-        strMode = params[0].get_str();
+    if (request.params.size() == 1)
+        strMode = request.params[0].get_str();
 
-    if (fHelp || params.size() != 1 || (strMode != "status" && strMode != "reset" && strMode != "next")) {
-        throw runtime_error(
-            "mnsync \"status|reset|next\"\n"
+    if (request.fHelp || request.params.size() != 1 || (strMode != "status" && strMode != "reset")) {
+        throw std::runtime_error(
+            "mnsync \"status|reset\"\n"
             "\nReturns the sync status or resets sync.\n"
 
             "\nArguments:\n"
@@ -214,22 +193,22 @@ UniValue mnsync(const UniValue& params, bool fHelp)
     if (strMode == "status") {
         UniValue obj(UniValue::VOBJ);
 
-        obj.push_back(Pair("IsBlockchainSynced", masternodeSync.IsBlockchainSynced()));
-        obj.push_back(Pair("lastMasternodeList", masternodeSync.lastMasternodeList));
-        obj.push_back(Pair("lastMasternodeWinner", masternodeSync.lastMasternodeWinner));
-        obj.push_back(Pair("lastBudgetItem", masternodeSync.lastBudgetItem));
-        obj.push_back(Pair("lastFailure", masternodeSync.lastFailure));
-        obj.push_back(Pair("nCountFailures", masternodeSync.nCountFailures));
-        obj.push_back(Pair("sumMasternodeList", masternodeSync.sumMasternodeList));
-        obj.push_back(Pair("sumMasternodeWinner", masternodeSync.sumMasternodeWinner));
-        obj.push_back(Pair("sumBudgetItemProp", masternodeSync.sumBudgetItemProp));
-        obj.push_back(Pair("sumBudgetItemFin", masternodeSync.sumBudgetItemFin));
-        obj.push_back(Pair("countMasternodeList", masternodeSync.countMasternodeList));
-        obj.push_back(Pair("countMasternodeWinner", masternodeSync.countMasternodeWinner));
-        obj.push_back(Pair("countBudgetItemProp", masternodeSync.countBudgetItemProp));
-        obj.push_back(Pair("countBudgetItemFin", masternodeSync.countBudgetItemFin));
-        obj.push_back(Pair("RequestedMasternodeAssets", masternodeSync.RequestedMasternodeAssets));
-        obj.push_back(Pair("RequestedMasternodeAttempt", masternodeSync.RequestedMasternodeAttempt));
+        obj.pushKV("IsBlockchainSynced", masternodeSync.IsBlockchainSynced());
+        obj.pushKV("lastMasternodeList", masternodeSync.lastMasternodeList);
+        obj.pushKV("lastMasternodeWinner", masternodeSync.lastMasternodeWinner);
+        obj.pushKV("lastBudgetItem", masternodeSync.lastBudgetItem);
+        obj.pushKV("lastFailure", masternodeSync.lastFailure);
+        obj.pushKV("nCountFailures", masternodeSync.nCountFailures);
+        obj.pushKV("sumMasternodeList", masternodeSync.sumMasternodeList);
+        obj.pushKV("sumMasternodeWinner", masternodeSync.sumMasternodeWinner);
+        obj.pushKV("sumBudgetItemProp", masternodeSync.sumBudgetItemProp);
+        obj.pushKV("sumBudgetItemFin", masternodeSync.sumBudgetItemFin);
+        obj.pushKV("countMasternodeList", masternodeSync.countMasternodeList);
+        obj.pushKV("countMasternodeWinner", masternodeSync.countMasternodeWinner);
+        obj.pushKV("countBudgetItemProp", masternodeSync.countBudgetItemProp);
+        obj.pushKV("countBudgetItemFin", masternodeSync.countBudgetItemFin);
+        obj.pushKV("RequestedMasternodeAssets", masternodeSync.RequestedMasternodeAssets);
+        obj.pushKV("RequestedMasternodeAttempt", masternodeSync.RequestedMasternodeAttempt);
 
         return obj;
     }
@@ -237,10 +216,6 @@ UniValue mnsync(const UniValue& params, bool fHelp)
     if (strMode == "reset") {
         masternodeSync.Reset();
         return "success";
-    }
-        if (strMode == "next") {
-        masternodeSync.GetNextAsset();
-        return masternodeSync.GetSyncStatus();
     }
     return "failure";
 }
@@ -252,7 +227,6 @@ private:
     isminetype mine;
 
 public:
-
     DescribeAddressVisitor(isminetype mineIn) : mine(mineIn) {}
 
     UniValue operator()(const CNoDestination &dest) const { return UniValue(UniValue::VOBJ); }
@@ -260,32 +234,32 @@ public:
     UniValue operator()(const CKeyID &keyID) const {
         UniValue obj(UniValue::VOBJ);
         CPubKey vchPubKey;
-        obj.push_back(Pair("isscript", false));
+        obj.pushKV("isscript", false);
         if (bool(mine & ISMINE_ALL)) {
             pwalletMain->GetPubKey(keyID, vchPubKey);
-            obj.push_back(Pair("pubkey", HexStr(vchPubKey)));
-            obj.push_back(Pair("iscompressed", vchPubKey.IsCompressed()));
+            obj.pushKV("pubkey", HexStr(vchPubKey));
+            obj.pushKV("iscompressed", vchPubKey.IsCompressed());
         }
         return obj;
     }
 
     UniValue operator()(const CScriptID &scriptID) const {
         UniValue obj(UniValue::VOBJ);
-        obj.push_back(Pair("isscript", true));
+        obj.pushKV("isscript", true);
         CScript subscript;
         pwalletMain->GetCScript(scriptID, subscript);
         std::vector<CTxDestination> addresses;
         txnouttype whichType;
         int nRequired;
         ExtractDestinations(subscript, whichType, addresses, nRequired);
-        obj.push_back(Pair("script", GetTxnOutputType(whichType)));
-        obj.push_back(Pair("hex", HexStr(subscript.begin(), subscript.end())));
+        obj.pushKV("script", GetTxnOutputType(whichType));
+        obj.pushKV("hex", HexStr(subscript.begin(), subscript.end()));
         UniValue a(UniValue::VARR);
-        BOOST_FOREACH (const CTxDestination& addr, addresses)
-            a.push_back(CBitcoinAddress(addr).ToString());
-        obj.push_back(Pair("addresses", a));
+        for (const CTxDestination& addr : addresses)
+            a.push_back(EncodeDestination(addr));
+        obj.pushKV("addresses", a);
         if (whichType == TX_MULTISIG)
-            obj.push_back(Pair("sigsrequired", nRequired));
+            obj.pushKV("sigsrequired", nRequired);
         return obj;
     }
 };
@@ -294,29 +268,29 @@ public:
 /*
     Used for updating/reading spork settings on the network
 */
-UniValue spork(const UniValue& params, bool fHelp)
+UniValue spork(const JSONRPCRequest& request)
 {
-    if (params.size() == 1 && params[0].get_str() == "show") {
+    if (request.params.size() == 1 && request.params[0].get_str() == "show") {
         UniValue ret(UniValue::VOBJ);
         for (const auto& sporkDef : sporkDefs) {
-            ret.push_back(Pair(sporkDef.name, sporkManager.GetSporkValue(sporkDef.sporkId)));
+            ret.pushKV(sporkDef.name, sporkManager.GetSporkValue(sporkDef.sporkId));
         }
         return ret;
-    } else if (params.size() == 1 && params[0].get_str() == "active") {
+    } else if (request.params.size() == 1 && request.params[0].get_str() == "active") {
         UniValue ret(UniValue::VOBJ);
         for (const auto& sporkDef : sporkDefs) {
-            ret.push_back(Pair(sporkDef.name, sporkManager.IsSporkActive(sporkDef.sporkId)));
+            ret.pushKV(sporkDef.name, sporkManager.IsSporkActive(sporkDef.sporkId));
         }
         return ret;
-    } else if (params.size() == 2) {
+    } else if (request.params.size() == 2) {
         // advanced mode, update spork values
-        SporkId nSporkID = sporkManager.GetSporkIDByName(params[0].get_str());
+        SporkId nSporkID = sporkManager.GetSporkIDByName(request.params[0].get_str());
         if (nSporkID == SPORK_INVALID) {
             throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid spork name");
         }
 
         // SPORK VALUE
-        int64_t nValue = params[1].get_int64();
+        int64_t nValue = request.params[1].get_int64();
 
         //broadcast new spork
         if (sporkManager.UpdateSpork(nSporkID, nValue)) {
@@ -326,7 +300,7 @@ UniValue spork(const UniValue& params, bool fHelp)
         }
     }
 
-    throw runtime_error(
+    throw std::runtime_error(
         "spork \"name\" ( value )\n"
         "\nReturn spork values or their active state.\n"
 
@@ -348,142 +322,117 @@ UniValue spork(const UniValue& params, bool fHelp)
         "}\n"
 
         "\nResult (name):\n"
-        " \"success|failure\"       (string) Wither or not the update succeeded.\n"
+        " \"success|failure\"       (string) Whether or not the update succeeded.\n"
 
         "\nExamples:\n" +
         HelpExampleCli("spork", "show") + HelpExampleRpc("spork", "show"));
 }
 
-UniValue validateaddress(const UniValue& params, bool fHelp)
+// Every possibly address
+typedef boost::variant<libzcash::InvalidEncoding, libzcash::SaplingPaymentAddress, CTxDestination> PPaymentAddress;
+
+class DescribePaymentAddressVisitor : public boost::static_visitor<UniValue>
 {
-    if (fHelp || params.size() != 1)
-        throw runtime_error(
-            "validateaddress \"dogecashaddress\"\n"
-            "\nReturn information about the given dogecash address.\n"
+public:
+    explicit DescribePaymentAddressVisitor(bool _isStaking) : isStaking(_isStaking) {}
+    UniValue operator()(const libzcash::InvalidEncoding &zaddr) const { return UniValue(UniValue::VOBJ); }
+
+    UniValue operator()(const libzcash::SaplingPaymentAddress &zaddr) const {
+        UniValue obj(UniValue::VOBJ);
+        obj.pushKV("diversifier", HexStr(zaddr.d));
+        obj.pushKV("diversifiedtransmissionkey", zaddr.pk_d.GetHex());
+#ifdef ENABLE_WALLET
+        if (pwalletMain) {
+            obj.pushKV("ismine", pwalletMain->HaveSpendingKeyForPaymentAddress(zaddr));
+        }
+#endif
+        return obj;
+    }
+
+    UniValue operator()(const CTxDestination &dest) const {
+        UniValue ret(UniValue::VOBJ);
+        CScript scriptPubKey = GetScriptForDestination(dest);
+        ret.pushKV("scriptPubKey", HexStr(scriptPubKey.begin(), scriptPubKey.end()));
+
+#ifdef ENABLE_WALLET
+        isminetype mine = pwalletMain ? IsMine(*pwalletMain, dest) : ISMINE_NO;
+        ret.pushKV("ismine", bool(mine & (ISMINE_SPENDABLE_ALL | ISMINE_COLD)));
+        ret.pushKV("isstaking", isStaking);
+        ret.pushKV("iswatchonly", bool(mine & ISMINE_WATCH_ONLY));
+        UniValue detail = boost::apply_visitor(DescribeAddressVisitor(mine), dest);
+        ret.pushKVs(detail);
+        if (pwalletMain && pwalletMain->HasAddressBook(dest))
+            ret.pushKV("label", pwalletMain->GetNameForAddressBookEntry(dest));
+#endif
+        return ret;
+    }
+
+private:
+    bool isStaking{false};
+};
+
+UniValue validateaddress(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() != 1)
+        throw std::runtime_error(
+            "validateaddress \"pivxaddress\"\n"
+            "\nReturn information about the given pivx address.\n"
 
             "\nArguments:\n"
-            "1. \"dogecashaddress\"     (string, required) The dogecash address to validate\n"
+            "1. \"pivxaddress\"     (string, required) The pivx address to validate\n"
 
             "\nResult:\n"
             "{\n"
             "  \"isvalid\" : true|false,         (boolean) If the address is valid or not. If not, this is the only property returned.\n"
-            "  \"address\" : \"dogecashaddress\", (string) The dogecash address validated\n"
-            "  \"scriptPubKey\" : \"hex\",       (string) The hex encoded scriptPubKey generated by the address\n"
+            "  \"address\" : \"pivxaddress\",    (string) The pivx address validated\n"
+            "  \"scriptPubKey\" : \"hex\",       (string) The hex encoded scriptPubKey generated by the address -only if is standard address-\n"
             "  \"ismine\" : true|false,          (boolean) If the address is yours or not\n"
-            "  \"isstaking\" : true|false,       (boolean) If the address is a staking address for DogeCash cold staking\n"
-            "  \"iswatchonly\" : true|false,     (boolean) If the address is watchonly\n"
-            "  \"isscript\" : true|false,        (boolean) If the key is a script\n"
-            "  \"hex\" : \"hex\",                (string, optional) The redeemscript for the P2SH address\n"
-            "  \"pubkey\" : \"publickeyhex\",    (string) The hex value of the raw public key\n"
-            "  \"iscompressed\" : true|false,    (boolean) If the address is compressed\n"
-            "  \"account\" : \"account\"         (string) The account associated with the address, \"\" is the default account\n"
-            "  \"hdkeypath\" : \"keypath\"       (string, optional) The HD keypath if the key is HD and available\n"
-            "  \"hdchainid\" : \"<hash>\"        (string, optional) The ID of the HD chain\n"
+            "  \"isstaking\" : true|false,       (boolean) If the address is a staking address for PIVX cold staking -only if is standard address-\n"
+            "  \"iswatchonly\" : true|false,     (boolean) If the address is watchonly -only if standard address-\n"
+            "  \"isscript\" : true|false,        (boolean) If the key is a script -only if standard address-\n"
+            "  \"hex\" : \"hex\",                (string, optional) The redeemscript for the P2SH address -only if standard address-\n"
+            "  \"pubkey\" : \"publickeyhex\",    (string) The hex value of the raw public key -only if standard address-\n"
+            "  \"iscompressed\" : true|false,    (boolean) If the address is compressed -only if standard address-\n"
+            "  \"label\" : \"label\"             (string) The label associated with the address, \"\" is the default label\n"
+            // Sapling
+            "  \"diversifier\" : \"hex\",       (string) [sapling] The hex value of the diversifier, d -only if is sapling address-\n"
+            "  \"diversifiedtransmissionkey\" : \"hex\", (string) [sapling] The hex value of pk_d -only if is sapling address-\n"
             "}\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("validateaddress", "\"1PSSGeFHDnKNxiEyFrD1wcEaHr9hrQDDWc\"") + HelpExampleRpc("validateaddress", "\"1PSSGeFHDnKNxiEyFrD1wcEaHr9hrQDDWc\""));
+            HelpExampleCli("validateaddress", "\"1PSSGeFHDnKNxiEyFrD1wcEaHr9hrQDDWc\"") +
+            HelpExampleCli("validateaddress", "\"sapling_address\"") +
+            HelpExampleRpc("validateaddress", "\"1PSSGeFHDnKNxiEyFrD1wcEaHr9hrQDDWc\""));
 
 #ifdef ENABLE_WALLET
-    LOCK2(cs_main, pwalletMain ? &pwalletMain->cs_wallet : NULL);
+    LOCK2(cs_main, pwalletMain ? &pwalletMain->cs_wallet : nullptr);
 #else
     LOCK(cs_main);
 #endif
 
-    CBitcoinAddress address(params[0].get_str());
-    bool isValid = address.IsValid();
+    std::string strAddress = request.params[0].get_str();
+
+    // First check if it's a regular address
+    bool isStakingAddress = false;
+    CTxDestination dest = DecodeDestination(strAddress, isStakingAddress);
+    bool isValid = IsValidDestination(dest);
+
+    PPaymentAddress finalAddress;
+    if (!isValid) {
+        isValid = KeyIO::IsValidPaymentAddressString(strAddress);
+        if (isValid) finalAddress = KeyIO::DecodePaymentAddress(strAddress);
+    } else {
+        finalAddress = dest;
+    }
 
     UniValue ret(UniValue::VOBJ);
-    ret.push_back(Pair("isvalid", isValid));
+    ret.pushKV("isvalid", isValid);
     if (isValid) {
-        CTxDestination dest = address.Get();
-        string currentAddress = address.ToString();
-        ret.push_back(Pair("address", currentAddress));
-        CScript scriptPubKey = GetScriptForDestination(dest);
-        ret.push_back(Pair("scriptPubKey", HexStr(scriptPubKey.begin(), scriptPubKey.end())));
-
-#ifdef ENABLE_WALLET
-        isminetype mine = pwalletMain ? IsMine(*pwalletMain, dest) : ISMINE_NO;
-        ret.push_back(Pair("ismine", bool(mine & (ISMINE_SPENDABLE_ALL | ISMINE_COLD))));
-        ret.push_back(Pair("isstaking", address.IsStakingAddress()));
-        ret.push_back(Pair("iswatchonly", bool(mine & ISMINE_WATCH_ONLY)));
-        UniValue detail = boost::apply_visitor(DescribeAddressVisitor(mine), dest);
+        ret.pushKV("address", strAddress);
+        UniValue detail = boost::apply_visitor(DescribePaymentAddressVisitor(isStakingAddress), finalAddress);
         ret.pushKVs(detail);
-        if (pwalletMain && pwalletMain->mapAddressBook.count(dest))
-            ret.push_back(Pair("account", pwalletMain->mapAddressBook[dest].name));
-        CKeyID keyID;
-        CHDChain hdChainCurrent;
-        if (pwalletMain && address.GetKeyID(keyID) && pwalletMain->mapHdPubKeys.count(keyID) && pwalletMain->GetHDChain(hdChainCurrent))
-        {
-            ret.push_back(Pair("hdkeypath", pwalletMain->mapHdPubKeys[keyID].GetKeyPath()));
-            ret.push_back(Pair("hdchainid", hdChainCurrent.GetID().GetHex()));
-        }
-#endif
     }
-    return ret;
-}
 
-UniValue createsporkkeypair(const UniValue& params, bool fHelp)
-{
-    if (fHelp)
-        throw runtime_error(
-            "createsporkkeypair\n"
-            "\nReturns a public and private key pair for use in chainparams and in conf for the spork controller\n"
-
-            "\nResult:\n"
-            "{\n"
-            "  \"dogecashaddr\" : \"dogecashaddress\", (string) The dogecash public address \n"
-            "  \"strsporkpubkey\" : \"pubsporkkey\", (string) The spork pubkey \n"
-            "  \"sporkkey\" : \"privsporkkey\", (string) The privatekey of the spork pubkey\n"
-            "}\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("createsporkkeypair", "") + HelpExampleRpc("createsporkkeypair", ""));
-
-#ifdef ENABLE_WALLET
-    LOCK2(cs_main, pwalletMain ? &pwalletMain->cs_wallet : NULL);
-#else
-    LOCK(cs_main);
-#endif
-
-    EnsureWalletIsUnlocked();
-    //check if wallet is locked
-    if (!pwalletMain->IsLocked()){
-      pwalletMain->TopUpKeyPool();
-    }
-    string strAccount = "";
-    // Generate a new key that is added to wallet
-    CPubKey newKey;
-    //check if keypool has ran out
-    if (!pwalletMain->GetKeyFromPool(newKey))
-        throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out, please call keypoolrefill first");
-    CKeyID keyID = newKey.GetID();
-    CKey vchSecret;
-    pwalletMain->SetAddressBook(keyID, strAccount, "receive");
-    //get address from KeyID
-    CBitcoinAddress address(keyID);
-    //get addr in str format
-    string currentAddress = address.ToString();
-    //check if private key is known
-    if (!pwalletMain->GetKey(keyID, vchSecret))
-        throw JSONRPCError(RPC_WALLET_ERROR, "Private key for address " + currentAddress + " is not known");
-    bool isValid = address.IsValid();
-    UniValue ret(UniValue::VOBJ);
-    //only return data if addr is valid
-    if (isValid) {
-        //akshaynexus: combine validateaddress and dumpprivkey to generate sporkkey pairs needed for testing/making new spork pairs
-        CTxDestination dest = address.Get();
-        //get public address
-        ret.push_back(Pair("dogecashaddr", currentAddress));
-        CScript scriptPubKey = GetScriptForDestination(dest);
-        //get scriptpubkey
-        ret.push_back(Pair("strsporkpubkey", HexStr(scriptPubKey.begin(), scriptPubKey.end())));
-        //get privkey
-        ret.push_back(Pair("sporkkey",CBitcoinSecret(vchSecret).ToString()));
-    }
-    else{
-        throw JSONRPCError(RPC_WALLET_ERROR, "Address returned is not valid");
-    }
     return ret;
 }
 
@@ -497,32 +446,33 @@ CScript _createmultisig_redeemScript(const UniValue& params)
 
     // Gather public keys
     if (nRequired < 1)
-        throw runtime_error("a multisignature address must require at least one key to redeem");
+        throw std::runtime_error("a multisignature address must require at least one key to redeem");
     if ((int)keys.size() < nRequired)
-        throw runtime_error(
+        throw std::runtime_error(
             strprintf("not enough keys supplied "
                       "(got %u keys, but need at least %d to redeem)",
                 keys.size(), nRequired));
     if (keys.size() > 16)
-        throw runtime_error("Number of addresses involved in the multisignature address creation > 16\nReduce the number");
+        throw std::runtime_error("Number of addresses involved in the multisignature address creation > 16\nReduce the number");
     std::vector<CPubKey> pubkeys;
     pubkeys.resize(keys.size());
     for (unsigned int i = 0; i < keys.size(); i++) {
         const std::string& ks = keys[i].get_str();
 #ifdef ENABLE_WALLET
-        // Case 1: dogecash address and we have full public key:
-        CBitcoinAddress address(ks);
-        if (pwalletMain && address.IsValid()) {
-            CKeyID keyID;
-            if (!address.GetKeyID(keyID))
-                throw runtime_error(
-                    strprintf("%s does not refer to a key", ks));
+        // Case 1: PIVX address and we have full public key:
+        CTxDestination dest = DecodeDestination(ks);
+        if (pwalletMain && IsValidDestination(dest)) {
+            const CKeyID* keyID = boost::get<CKeyID>(&dest);
+            if (!keyID) {
+                throw std::runtime_error(
+                        strprintf("%s does not refer to a key", ks));
+            }
             CPubKey vchPubKey;
-            if (!pwalletMain->GetPubKey(keyID, vchPubKey))
-                throw runtime_error(
+            if (!pwalletMain->GetPubKey(*keyID, vchPubKey))
+                throw std::runtime_error(
                     strprintf("no full public key for address %s", ks));
             if (!vchPubKey.IsFullyValid())
-                throw runtime_error(" Invalid public key: " + ks);
+                throw std::runtime_error(" Invalid public key: " + ks);
             pubkeys[i] = vchPubKey;
         }
 
@@ -532,34 +482,34 @@ CScript _createmultisig_redeemScript(const UniValue& params)
             if (IsHex(ks)) {
             CPubKey vchPubKey(ParseHex(ks));
             if (!vchPubKey.IsFullyValid())
-                throw runtime_error(" Invalid public key: " + ks);
+                throw std::runtime_error(" Invalid public key: " + ks);
             pubkeys[i] = vchPubKey;
         } else {
-            throw runtime_error(" Invalid public key: " + ks);
+            throw std::runtime_error(" Invalid public key: " + ks);
         }
     }
     CScript result = GetScriptForMultisig(nRequired, pubkeys);
 
     if (result.size() > MAX_SCRIPT_ELEMENT_SIZE)
-        throw runtime_error(
+        throw std::runtime_error(
             strprintf("redeemScript exceeds size limit: %d > %d", result.size(), MAX_SCRIPT_ELEMENT_SIZE));
 
     return result;
 }
 
-UniValue createmultisig(const UniValue& params, bool fHelp)
+UniValue createmultisig(const JSONRPCRequest& request)
 {
-    if (fHelp || params.size() < 2 || params.size() > 2)
-        throw runtime_error(
+    if (request.fHelp || request.params.size() < 2 || request.params.size() > 2)
+        throw std::runtime_error(
             "createmultisig nrequired [\"key\",...]\n"
             "\nCreates a multi-signature address with n signature of m keys required.\n"
             "It returns a json object with the address and redeemScript.\n"
 
             "\nArguments:\n"
             "1. nrequired      (numeric, required) The number of required signatures out of the n keys or addresses.\n"
-            "2. \"keys\"       (string, required) A json array of keys which are dogecash addresses or hex-encoded public keys\n"
+            "2. \"keys\"       (string, required) A json array of keys which are pivx addresses or hex-encoded public keys\n"
             "     [\n"
-            "       \"key\"    (string) dogecash address or hex-encoded public key\n"
+            "       \"key\"    (string) pivx address or hex-encoded public key\n"
             "       ,...\n"
             "     ]\n"
 
@@ -576,28 +526,27 @@ UniValue createmultisig(const UniValue& params, bool fHelp)
             HelpExampleRpc("createmultisig", "2, \"[\\\"16sSauSf5pF2UkUwvKGq4qjNRzBZYqgEL5\\\",\\\"171sgjn4YtPu27adkKGrdDwzRTxnRkBfKV\\\"]\""));
 
     // Construct using pay-to-script-hash:
-    CScript inner = _createmultisig_redeemScript(params);
+    CScript inner = _createmultisig_redeemScript(request.params);
     CScriptID innerID(inner);
-    CBitcoinAddress address(innerID);
 
     UniValue result(UniValue::VOBJ);
-    result.push_back(Pair("address", address.ToString()));
-    result.push_back(Pair("redeemScript", HexStr(inner.begin(), inner.end())));
+    result.pushKV("address", EncodeDestination(innerID));
+    result.pushKV("redeemScript", HexStr(inner.begin(), inner.end()));
 
     return result;
 }
 
-UniValue verifymessage(const UniValue& params, bool fHelp)
+UniValue verifymessage(const JSONRPCRequest& request)
 {
-    if (fHelp || params.size() != 3)
-        throw runtime_error(
-            "verifymessage \"dogecashaddress\" \"signature\" \"message\"\n"
+    if (request.fHelp || request.params.size() != 3)
+        throw std::runtime_error(
+            "verifymessage \"pivxaddress\" \"signature\" \"message\"\n"
             "\nVerify a signed message\n"
 
             "\nArguments:\n"
-            "1. \"dogecashaddress\"  (string, required) The dogecash address to use for the signature.\n"
-            "2. \"signature\"       (string, required) The signature provided by the signer in base 64 encoding (see signmessage).\n"
-            "3. \"message\"         (string, required) The message that was signed.\n"
+            "1. \"pivxaddress\"  (string, required) The pivx address to use for the signature.\n"
+            "2. \"signature\"    (string, required) The signature provided by the signer in base 64 encoding (see signmessage).\n"
+            "3. \"message\"      (string, required) The message that was signed.\n"
 
             "\nResult:\n"
             "true|false   (boolean) If the signature is verified or not.\n"
@@ -614,20 +563,21 @@ UniValue verifymessage(const UniValue& params, bool fHelp)
 
     LOCK(cs_main);
 
-    string strAddress = params[0].get_str();
-    string strSign = params[1].get_str();
-    string strMessage = params[2].get_str();
+    std::string strAddress = request.params[0].get_str();
+    std::string strSign = request.params[1].get_str();
+    std::string strMessage = request.params[2].get_str();
 
-    CBitcoinAddress addr(strAddress);
-    if (!addr.IsValid())
+    CTxDestination destination = DecodeDestination(strAddress);
+    if (!IsValidDestination(destination))
         throw JSONRPCError(RPC_TYPE_ERROR, "Invalid address");
 
-    CKeyID keyID;
-    if (!addr.GetKeyID(keyID))
+    const CKeyID* keyID = boost::get<CKeyID>(&destination);
+    if (!keyID) {
         throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to key");
+    }
 
     bool fInvalid = false;
-    vector<unsigned char> vchSig = DecodeBase64(strSign.c_str(), &fInvalid);
+    std::vector<unsigned char> vchSig = DecodeBase64(strSign.c_str(), &fInvalid);
 
     if (fInvalid)
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Malformed base64 encoding");
@@ -640,76 +590,133 @@ UniValue verifymessage(const UniValue& params, bool fHelp)
     if (!pubkey.RecoverCompact(ss.GetHash(), vchSig))
         return false;
 
-    return (pubkey.GetID() == keyID);
+    return (pubkey.GetID() == *keyID);
 }
 
-UniValue setmocktime(const UniValue& params, bool fHelp)
+UniValue setmocktime(const JSONRPCRequest& request)
 {
-    if (fHelp || params.size() != 1)
-        throw runtime_error(
+    if (request.fHelp || request.params.size() != 1)
+        throw std::runtime_error(
             "setmocktime timestamp\n"
             "\nSet the local time to given timestamp (-regtest only)\n"
 
             "\nArguments:\n"
-            "1. timestamp  (integer, required) Unix seconds-since-epoch timestamp\n"
+            "1. timestamp  (numeric, required) Unix seconds-since-epoch timestamp\n"
             "   Pass 0 to go back to using the system time.");
 
-    if (!Params().MineBlocksOnDemand())
-        throw runtime_error("setmocktime for regression testing (-regtest mode) only");
+    if (!Params().IsRegTestNet())
+        throw std::runtime_error("setmocktime for regression testing (-regtest mode) only");
 
     LOCK(cs_main);
 
-    RPCTypeCheck(params, boost::assign::list_of(UniValue::VNUM));
-    SetMockTime(params[0].get_int64());
+    RPCTypeCheck(request.params, {UniValue::VNUM});
+    SetMockTime(request.params[0].get_int64());
+
+    uint64_t t = GetTime();
+    if(g_connman) {
+        g_connman->ForEachNode([t](CNode* pnode) {
+            pnode->nLastSend = pnode->nLastRecv = t;
+        });
+    }
 
     return NullUniValue;
 }
 
-#ifdef ENABLE_WALLET
-UniValue getstakingstatus(const UniValue& params, bool fHelp)
+void EnableOrDisableLogCategories(UniValue cats, bool enable) {
+    cats = cats.get_array();
+    for (unsigned int i = 0; i < cats.size(); ++i) {
+        std::string cat = cats[i].get_str();
+
+        bool success;
+        if (enable) {
+            success = g_logger->EnableCategory(cat);
+        } else {
+            success = g_logger->DisableCategory(cat);
+        }
+
+        if (!success)
+            throw JSONRPCError(RPC_INVALID_PARAMETER, "unknown logging category " + cat);
+    }
+}
+
+UniValue logging(const JSONRPCRequest& request)
 {
-    if (fHelp || params.size() != 0)
-        throw runtime_error(
-            "getstakingstatus\n"
-            "\nReturns an object containing various staking information.\n"
+    if (request.fHelp || request.params.size() > 2) {
+        throw std::runtime_error(
+            "logging [include,...] ( [exclude,...] )\n"
+            "Gets and sets the logging configuration.\n"
+            "When called without an argument, returns the list of categories that are currently being debug logged.\n"
+            "When called with arguments, adds or removes categories from debug logging.\n"
+            "The valid logging categories are: " + ListLogCategories() + "\n"
+            "libevent logging is configured on startup and cannot be modified by this RPC during runtime."
+
+            "Arguments:\n"
+            "1. \"include\" (array of strings) add debug logging for these categories.\n"
+            "2. \"exclude\" (array of strings) remove debug logging for these categories.\n"
 
             "\nResult:\n"
-            "{\n"
-            "  \"validtime\": true|false,          (boolean) if the chain tip is within staking phases\n"
-            "  \"haveconnections\": true|false,    (boolean) if network connections are present\n"
-            "  \"walletunlocked\": true|false,     (boolean) if the wallet is unlocked\n"
-            "  \"mintablecoins\": true|false,      (boolean) if the wallet has mintable coins\n"
-            "  \"enoughcoins\": true|false,        (boolean) if available coins are greater than reserve balance\n"
-            "  \"mnsync\": true|false,             (boolean) if masternode data is synced\n"
-            "  \"staking status\": true|false,     (boolean) if the wallet is staking or not\n"
+            "{                            (object): a JSON object of the logging categories that are active.\n"
+            "  \"category\": fEnabled,    (key/value) Key is the category name, value is a boolean of it's active state.\n"
+            "  ...,\n"
             "}\n"
 
-            "\nExamples:\n" +
-            HelpExampleCli("getstakingstatus", "") + HelpExampleRpc("getstakingstatus", ""));
-
-#ifdef ENABLE_WALLET
-    LOCK2(cs_main, pwalletMain ? &pwalletMain->cs_wallet : NULL);
-#else
-    LOCK(cs_main);
-#endif
-
-    UniValue obj(UniValue::VOBJ);
-    obj.push_back(Pair("validtime", chainActive.Tip()->nTime > 1471482000));
-    obj.push_back(Pair("haveconnections", !vNodes.empty()));
-    if (pwalletMain) {
-        obj.push_back(Pair("walletunlocked", !pwalletMain->IsLocked()));
-        obj.push_back(Pair("mintablecoins", pwalletMain->MintableCoins()));
-        obj.push_back(Pair("enoughcoins", nReserveBalance <= pwalletMain->GetBalance()));
+            "\nExamples:\n"
+            + HelpExampleCli("logging", "\"[\\\"all\\\"]\" \"[\\\"http\\\"]\"")
+            + HelpExampleRpc("logging", "[\"all\"], \"[libevent]\"")
+        );
     }
-    obj.push_back(Pair("mnsync", masternodeSync.IsSynced()));
 
-    bool nStaking = false;
-    if (mapHashedBlocks.count(chainActive.Tip()->nHeight))
-        nStaking = true;
-    else if (mapHashedBlocks.count(chainActive.Tip()->nHeight - 1) && nLastCoinStakeSearchInterval)
-        nStaking = true;
-    obj.push_back(Pair("staking status", getStakingStatus()));
+    uint32_t original_log_categories = g_logger->GetCategoryMask();
+    if (request.params.size() > 0 && request.params[0].isArray()) {
+        EnableOrDisableLogCategories(request.params[0], true);
+    }
 
-    return obj;
+    if (request.params.size() > 1 && request.params[1].isArray()) {
+        EnableOrDisableLogCategories(request.params[1], false);
+    }
+    uint32_t updated_log_categories = g_logger->GetCategoryMask();
+    uint32_t changed_log_categories = original_log_categories ^ updated_log_categories;
+
+    // Update libevent logging if BCLog::LIBEVENT has changed.
+    // If the library version doesn't allow it, UpdateHTTPServerLogging() returns false,
+    // in which case we should clear the BCLog::LIBEVENT flag.
+    // Throw an error if the user has explicitly asked to change only the libevent
+    // flag and it failed.
+    if (changed_log_categories & BCLog::LIBEVENT) {
+        if (!UpdateHTTPServerLogging(g_logger->WillLogCategory(BCLog::LIBEVENT))) {
+            g_logger->DisableCategory(BCLog::LIBEVENT);
+            if (changed_log_categories == BCLog::LIBEVENT) {
+            throw JSONRPCError(RPC_INVALID_PARAMETER, "libevent logging cannot be updated when using libevent before v2.1.1.");
+            }
+        }
+    }
+
+    UniValue result(UniValue::VOBJ);
+    std::vector<CLogCategoryActive> vLogCatActive = ListActiveLogCategories();
+    for (const auto& logCatActive : vLogCatActive) {
+        result.pushKV(logCatActive.category, logCatActive.active);
+    }
+
+    return result;
 }
-#endif // ENABLE_WALLET
+
+static const CRPCCommand commands[] =
+{ //  category              name                      actor (function)         okSafeMode
+  //  --------------------- ------------------------  -----------------------  ----------
+    { "control",            "getinfo",                &getinfo,                true  }, /* uses wallet if enabled */
+    { "control",            "mnsync",                 &mnsync,                 true  },
+    { "control",            "spork",                  &spork,                  true  },
+    { "util",               "validateaddress",        &validateaddress,        true  }, /* uses wallet if enabled */
+    { "util",               "createmultisig",         &createmultisig,         true  },
+    { "util",               "logging",                &logging,                true  },
+    { "util",               "verifymessage",          &verifymessage,          true  },
+
+    /* Not shown in help */
+    { "hidden",             "setmocktime",            &setmocktime,            true  },
+};
+
+void RegisterMiscRPCCommands(CRPCTable &tableRPC)
+{
+    for (unsigned int vcidx = 0; vcidx < ARRAYLEN(commands); vcidx++)
+        tableRPC.appendCommand(commands[vcidx].name, &commands[vcidx]);
+}

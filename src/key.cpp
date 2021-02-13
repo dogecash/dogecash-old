@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2017 The Bitcoin developers
-// Copyright (c) 2017-2019 The dogecash developers
+// Copyright (c) 2017-2020 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -299,7 +299,7 @@ bool CExtKey::Derive(CExtKey& out, unsigned int nChild) const
     return key.Derive(out.key, out.chaincode, nChild, chaincode);
 }
 
-void CExtKey::SetMaster(const unsigned char* seed, unsigned int nSeedLen)
+void CExtKey::SetSeed(const unsigned char* seed, unsigned int nSeedLen)
 {
     static const unsigned char hashkey[] = {'B', 'i', 't', 'c', 'o', 'i', 'n', ' ', 's', 'e', 'e', 'd'};
     std::vector<unsigned char, secure_allocator<unsigned char>> vout(64);
@@ -323,7 +323,7 @@ CExtPubKey CExtKey::Neuter() const
     return ret;
 }
 
-void CExtKey::Encode(unsigned char code[74]) const
+void CExtKey::Encode(unsigned char code[BIP32_EXTKEY_SIZE]) const
 {
     code[0] = nDepth;
     memcpy(code + 1, vchFingerprint, 4);
@@ -337,13 +337,13 @@ void CExtKey::Encode(unsigned char code[74]) const
     memcpy(code + 42, key.begin(), 32);
 }
 
-void CExtKey::Decode(const unsigned char code[74])
+void CExtKey::Decode(const unsigned char code[BIP32_EXTKEY_SIZE])
 {
     nDepth = code[0];
     memcpy(vchFingerprint, code + 1, 4);
     nChild = (code[5] << 24) | (code[6] << 16) | (code[7] << 8) | code[8];
     memcpy(chaincode.begin(), code + 9, 32);
-    key.Set(code + 42, code + 74, true);
+    key.Set(code + 42, code + BIP32_EXTKEY_SIZE, true);
 }
 
 bool ECC_InitSanityCheck()

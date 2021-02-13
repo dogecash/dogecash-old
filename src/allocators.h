@@ -57,7 +57,7 @@ public:
             if (it == histogram.end()) // Newly locked page
             {
                 locker.Lock(reinterpret_cast<void*>(page), page_size);
-                histogram.insert(std::make_pair(page, 1));
+                histogram.emplace(page, 1);
             } else // Page was already locked; increase counter
             {
                 it->second += 1;
@@ -161,23 +161,6 @@ private:
 };
 
 //
-// Functions for directly locking/unlocking memory objects.
-// Intended for non-dynamically allocated structures.
-//
-template <typename T>
-void LockObject(const T& t)
-{
-    LockedPageManager::Instance().LockRange((void*)(&t), sizeof(T));
-}
-
-template <typename T>
-void UnlockObject(const T& t)
-{
-    memory_cleanse((void*)(&t), sizeof(T));
-    LockedPageManager::Instance().UnlockRange((void*)(&t), sizeof(T));
-}
-
-//
 // Allocator that locks its contents from being paged
 // out of memory and clears its contents before deletion.
 //
@@ -260,7 +243,7 @@ struct zero_after_free_allocator : public std::allocator<T> {
 
 // This is exactly like std::string, but with a custom allocator.
 typedef std::basic_string<char, std::char_traits<char>, secure_allocator<char> > SecureString;
-typedef std::vector<unsigned char, secure_allocator<unsigned char> > SecureVector;
+
 // Byte-vector that clears its contents before deletion.
 typedef std::vector<char, zero_after_free_allocator<char> > CSerializeData;
 
