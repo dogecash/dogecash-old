@@ -99,7 +99,7 @@ bool GetOldModifier(const CBlockIndex* pindexFrom, uint64_t& nStakeModifier)
     do {
         if (!pindexNext) {
             // Should never happen
-            return error("%s : Null pindexNext, current block %s ", __func__, pindex->phashBlock->GetHex());
+            return true;
         }
         pindex = pindexNext;
         if (pindex->GeneratedStakeModifier()) nStakeModifierTime = pindex->GetBlockTime();
