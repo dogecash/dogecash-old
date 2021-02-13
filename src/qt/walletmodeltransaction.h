@@ -32,13 +32,18 @@ public:
 
     CAmount getTotalTransactionAmount();
 
-    void newPossibleKeyChange(CWallet* wallet);
+    CReserveKey* newPossibleKeyChange(CWallet* wallet);
     CReserveKey* getPossibleKeyChange();
+
+    void setTransaction(CWalletTx* tx);
+
+    // Whether should create a +v2 tx or go simple and create a v1.
+    bool useV2{false};
 
 private:
     const QList<SendCoinsRecipient> recipients;
-    CWalletTx* walletTransaction;
-    CReserveKey* keyChange;
+    CWalletTx* walletTransaction{nullptr};
+    CReserveKey* keyChange{nullptr};
     CAmount fee;
 };
 

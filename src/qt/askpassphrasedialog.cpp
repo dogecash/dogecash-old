@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The PIVX developers
+// Copyright (c) 2015-2020 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,10 +11,10 @@
 #include "guiconstants.h"
 #include "guiutil.h"
 #include "walletmodel.h"
-#include "qt/dogecash/qtutils.h"
-#include "qt/dogecash/loadingdialog.h"
-#include "qt/dogecash/defaultdialog.h"
-#include "qt/dogecash/dogecashgui.h"
+#include "qt/pivx/qtutils.h"
+#include "qt/pivx/loadingdialog.h"
+#include "qt/pivx/defaultdialog.h"
+#include "qt/pivx/pivxgui.h"
 #include <QDebug>
 
 #include <QKeyEvent>
@@ -130,12 +130,12 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
     ui->labelTitle->setText(title);
 
     textChanged();
-    connect(btnWatch, SIGNAL(clicked()), this, SLOT(onWatchClicked()));
-    connect(ui->passEdit1, SIGNAL(textChanged(QString)), this, SLOT(textChanged()));
-    connect(ui->passEdit2, SIGNAL(textChanged(QString)), this, SLOT(textChanged()));
-    connect(ui->passEdit3, SIGNAL(textChanged(QString)), this, SLOT(textChanged()));
-    connect(ui->pushButtonOk, SIGNAL(clicked()), this, SLOT(accept()));
-    connect(ui->btnEsc, SIGNAL(clicked()), this, SLOT(close()));
+    connect(btnWatch, &QCheckBox::clicked, this, &AskPassphraseDialog::onWatchClicked);
+    connect(ui->passEdit1, &QLineEdit::textChanged, this, &AskPassphraseDialog::textChanged);
+    connect(ui->passEdit2, &QLineEdit::textChanged, this, &AskPassphraseDialog::textChanged);
+    connect(ui->passEdit3, &QLineEdit::textChanged, this, &AskPassphraseDialog::textChanged);
+    connect(ui->pushButtonOk, &QPushButton::clicked, this, &AskPassphraseDialog::accept);
+    connect(ui->btnEsc, &QPushButton::clicked, this, &AskPassphraseDialog::close);
 }
 
 void AskPassphraseDialog::onWatchClicked()
@@ -184,12 +184,13 @@ void AskPassphraseDialog::accept()
         hide();
         bool ret = openStandardDialog(
                 tr("Confirm wallet encryption"),
-                tr("Warning: If you encrypt your wallet and lose your passphrase, you will <b>LOSE ALL OF YOUR DOGEC</b>!") + "<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
+                "<b>" + tr("WARNING") + ":</b> " + tr("If you encrypt your wallet and lose your passphrase, you will") +
+                " <b>" + tr("LOSE ALL OF YOUR COINS") + "</b>!<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
                 tr("ENCRYPT"), tr("CANCEL")
         );
         if (ret) {
             newpassCache = newpass1;
-            DogeCashGUI* window = static_cast<DogeCashGUI*>(parentWidget());
+            PIVXGUI* window = static_cast<PIVXGUI*>(parentWidget());
             LoadingDialog *dialog = new LoadingDialog(window);
             dialog->execute(this, 1);
             openDialogWithOpaqueBackgroundFullScreen(dialog, window);
@@ -270,7 +271,9 @@ bool AskPassphraseDialog::event(QEvent* event)
         if (ke->key() == Qt::Key_CapsLock) {
             fCapsLock = !fCapsLock;
         }
+
         updateWarningsLabel();
+
         // Detect Enter key press
         if ((ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return) && ui->pushButtonOk->isEnabled()) {
             accept();
@@ -307,7 +310,7 @@ bool AskPassphraseDialog::eventFilter(QObject* object, QEvent* event)
 
 bool AskPassphraseDialog::openStandardDialog(QString title, QString body, QString okBtn, QString cancelBtn)
 {
-    DogeCashGUI* gui = static_cast<DogeCashGUI*>(parentWidget());
+    PIVXGUI* gui = static_cast<PIVXGUI*>(parentWidget());
     DefaultDialog *confirmDialog = new DefaultDialog(gui);
     confirmDialog->setText(title, body, okBtn, cancelBtn);
     confirmDialog->adjustSize();
@@ -340,13 +343,13 @@ void AskPassphraseDialog::updateWarningsLabel()
 void AskPassphraseDialog::warningMessage()
 {
     hide();
-    static_cast<DogeCashGUI*>(parentWidget())->showHide(true);
+    static_cast<PIVXGUI*>(parentWidget())->showHide(true);
     openStandardDialog(
             tr("Wallet encrypted"),
             "<qt>" +
-            tr("DogeCash will close now to finish the encryption process. "
+            tr("PIVX will close now to finish the encryption process. "
                "Remember that encrypting your wallet cannot fully protect "
-               "your DOGECs from being stolen by malware infecting your computer.") +
+               "your PIVs from being stolen by malware infecting your computer.") +
             "<br><br><b>" +
             tr("IMPORTANT: Any previous backups you have made of your wallet file "
                "should be replaced with the newly generated, encrypted wallet file. "
@@ -358,7 +361,7 @@ void AskPassphraseDialog::warningMessage()
     QApplication::quit();
 }
 
-void AskPassphraseDialog::errorEncryptingWallet() 
+void AskPassphraseDialog::errorEncryptingWallet()
 {
     QMessageBox::critical(this, tr("Wallet encryption failed"),
                           tr("Wallet encryption failed due to an internal error. Your wallet was not encrypted."));
@@ -386,7 +389,7 @@ void AskPassphraseDialog::onError(QString error, int type)
     QMetaObject::invokeMethod(this, "errorEncryptingWallet", Qt::QueuedConnection);
 }
 
-void AskPassphraseDialog::initWatch(QWidget *parent) 
+void AskPassphraseDialog::initWatch(QWidget *parent)
 {
     btnWatch = new QCheckBox(parent);
     setCssProperty(btnWatch, "btn-watch-password");

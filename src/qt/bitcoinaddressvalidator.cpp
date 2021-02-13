@@ -82,9 +82,9 @@ BitcoinAddressCheckValidator::BitcoinAddressCheckValidator(QObject* parent) : QV
 QValidator::State BitcoinAddressCheckValidator::validate(QString& input, int& pos) const
 {
     Q_UNUSED(pos);
-    // Validate the passed DogeCash address
-    CBitcoinAddress addr(input.toStdString());
-    if (addr.IsValid())
+    // Validate the passed PIVX address
+    CTxDestination addr = DecodeDestination(input.toStdString());
+    if (IsValidDestination(addr))
         return QValidator::Acceptable;
 
     return QValidator::Invalid;

@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
-// Copyright (c) 2017-2018 The PIVX developers
+// Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -41,7 +41,7 @@ class ShutdownWindow : public QWidget
     Q_OBJECT
 
 public:
-    ShutdownWindow(QWidget* parent = 0, Qt::WindowFlags f = 0);
+    ShutdownWindow(QWidget* parent = nullptr, Qt::WindowFlags f = Qt::Widget);
     static void showShutdownWindow(QMainWindow* window);
 
 protected:

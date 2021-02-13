@@ -7,7 +7,7 @@
 
 #include "guiutil.h"
 #include "walletmodel.h"
-#include "qt/dogecash/qtutils.h"
+#include "qt/pivx/qtutils.h"
 
 #include <QUrl>
 #include <QFile>
@@ -17,7 +17,7 @@ OpenURIDialog::OpenURIDialog(QWidget* parent) : QDialog(parent, Qt::WindowSystem
 {
     ui->setupUi(this);
     this->setStyleSheet(parent->styleSheet());
-    ui->uriEdit->setPlaceholderText("dogecash:");
+    ui->uriEdit->setPlaceholderText("pivx:");
 
     ui->labelSubtitle->setText("URI");
     setCssProperty(ui->labelSubtitle, "text-title2-dialog");
@@ -29,8 +29,8 @@ OpenURIDialog::OpenURIDialog(QWidget* parent) : QDialog(parent, Qt::WindowSystem
     setCssProperty(ui->pushButtonCancel, "btn-dialog-cancel");
 
     initCssEditLine(ui->uriEdit, true);
-    connect(ui->pushButtonOK, SIGNAL(clicked()), this, SLOT(accept()));
-    connect(ui->pushButtonCancel, SIGNAL(clicked()), this, SLOT(close()));
+    connect(ui->pushButtonOK, &QPushButton::clicked, this, &OpenURIDialog::accept);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, this, &OpenURIDialog::close);
 }
 
 void OpenURIDialog::showEvent(QShowEvent *event)
@@ -79,8 +79,8 @@ void OpenURIDialog::on_selectFileButton_clicked()
         }
 
         QString str = QString::fromStdString(std::string(r.constData(), r.length()));
-        if (!str.startsWith("dogecash")) {
-            inform(tr("Invalid URI, not starting with \"dogecash\" prefix"));
+        if (!str.startsWith("pivx")) {
+            inform(tr("Invalid URI, not starting with \"pivx\" prefix"));
         }
         ui->uriEdit->setText(str);
     }

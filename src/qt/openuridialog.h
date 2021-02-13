@@ -6,7 +6,7 @@
 #define BITCOIN_QT_OPENURIDIALOG_H
 
 #include <QDialog>
-#include "qt/dogecash/snackbar.h"
+#include "qt/pivx/snackbar.h"
 
 namespace Ui
 {
@@ -24,10 +24,10 @@ public:
     QString getURI();
     void showEvent(QShowEvent *event) override;
 
-protected slots:
+protected Q_SLOTS:
     void accept() override;
 
-private slots:
+private Q_SLOTS:
     void on_selectFileButton_clicked();
 
 private:
