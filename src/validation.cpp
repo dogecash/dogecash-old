@@ -802,27 +802,19 @@ CAmount GetBlockValue(int nHeight)
         return 250000 * COIN;
     }
     // Mainnet/Testnet block reward reduction schedule
-    const int nLast = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight;
-    if (nHeight > nLast)   return 5    * COIN;
-    if (nHeight > 648000)  return 4.5  * COIN;
-    if (nHeight > 604800)  return 9    * COIN;
-    if (nHeight > 561600)  return 13.5 * COIN;
-    if (nHeight > 518400)  return 18   * COIN;
-    if (nHeight > 475200)  return 22.5 * COIN;
-    if (nHeight > 432000)  return 27   * COIN;
-    if (nHeight > 388800)  return 31.5 * COIN;
-    if (nHeight > 345600)  return 36   * COIN;
-    if (nHeight > 302400)  return 40.5 * COIN;
-    if (nHeight > 151200)  return 45   * COIN;
-    if (nHeight > 86400)   return 225  * COIN;
-    if (nHeight !=1)       return 250  * COIN;
+    const int EndPOW = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_POS].nActivationHeight;
+    if (nHeight > 1289222)   return 5.4  * COIN;
+    if (nHeight > 788621)  return 5.4   * COIN;
+    if (nHeight > 238621)  return 9 * COIN;
+    if (nHeight > EndPOW)  return 10.8  * COIN;
+    if (nHeight !=1)       return 10.8  * COIN;
     // Premine for 6 masternodes at block 1
-    return 60001 * COIN;
+    return 7000000 * COIN;
 }
 
 int64_t GetMasternodePayment()
 {
-    return 3 * COIN;
+    return 4.32 * COIN;
 }
 
 bool IsInitialBlockDownload()
