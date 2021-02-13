@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: dogecashd.service
-Upstart: dogecashd.conf
-OpenRC:  dogecashd.openrc
-         dogecashd.openrcconf
-CentOS:  dogecashd.init
-macOS:    org.dogecash.dogecashd.plist
+SystemD: pivxd.service
+Upstart: pivxd.conf
+OpenRC:  pivxd.openrc
+         pivxd.openrcconf
+CentOS:  pivxd.init
+macOS:    org.pivx.pivxd.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

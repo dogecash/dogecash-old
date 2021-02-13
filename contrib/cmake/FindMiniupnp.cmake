@@ -30,4 +30,4 @@ endif()
 mark_as_advanced(
         MINIUPNP_LIBRARY
         MINIUPNP_INCLUDE_DIR
-) 
+)
