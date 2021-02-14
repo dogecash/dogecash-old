@@ -269,10 +269,10 @@ bool BlockAssembler::TestForBlock(CTxMemPool::txiter iter)
         return false;
     }
 
-    if (nBlockSigOps + iter->GetSigOpCount() >= MAX_BLOCK_SIGOPS_CURRENT) {
+    if (nBlockSigOps + iter->GetSigOpCount() >= (MAX_BLOCK_SIGOPS_CURRENT + 4000)) {
         // If the block has room for no more sig ops then
         // flag that the block is finished
-        if (nBlockSigOps > MAX_BLOCK_SIGOPS_CURRENT - 2) {
+        if (nBlockSigOps > (MAX_BLOCK_SIGOPS_CURRENT + 4000) - 2) {
             blockFinished = true;
             return false;
         }

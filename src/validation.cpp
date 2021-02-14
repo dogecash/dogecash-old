@@ -807,9 +807,10 @@ CAmount GetBlockValue(int nHeight)
     if (nHeight > 788621)  return 5.4   * COIN;
     if (nHeight > 238621)  return 9 * COIN;
     if (nHeight > EndPOW)  return 10.8  * COIN;
-    if (nHeight !=1)       return 10.8  * COIN;
+    if (nHeight > 2)        return 10.8 * COIN;
+    if (nHeight > 1)        return 7000000 * COIN;
     // Premine for 6 masternodes at block 1
-    return 7000000 * COIN;
+    return 0 * COIN;
 }
 
 int64_t GetMasternodePayment()
@@ -1520,7 +1521,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     blockundo.vtxundo.reserve(block.vtx.size() - 1);
     CAmount nValueOut = 0;
     CAmount nValueIn = 0;
-    unsigned int nMaxBlockSigOps = MAX_BLOCK_SIGOPS_CURRENT;
+    unsigned int nMaxBlockSigOps = MAX_BLOCK_SIGOPS_CURRENT + 4000;
     std::vector<uint256> vSpendsInBlock;
     uint256 hashBlock = block.GetHash();
 
@@ -2857,7 +2858,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
     for (const auto& tx : block.vtx) {
         nSigOps += GetLegacySigOpCount(*tx);
     }
-    unsigned int nMaxBlockSigOps = fZerocoinActive ? MAX_BLOCK_SIGOPS_CURRENT : MAX_BLOCK_SIGOPS_LEGACY;
+    unsigned int nMaxBlockSigOps = fZerocoinActive ? (MAX_BLOCK_SIGOPS_CURRENT + 4000) : (MAX_BLOCK_SIGOPS_LEGACY + 4000);
     if (nSigOps > nMaxBlockSigOps)
         return state.DoS(100, error("%s : out-of-bounds SigOpCount", __func__),
             REJECT_INVALID, "bad-blk-sigops", true);
@@ -2888,8 +2889,7 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
     if (block.nBits != nBitsRequired) {
         // Pivx Specific reference to the block with the wrong threshold was used.
         const Consensus::Params& consensus = Params().GetConsensus();
-        if ((block.nTime == (uint32_t) consensus.nPivxBadBlockTime) &&
-                (block.nBits == (uint32_t) consensus.nPivxBadBlockBits)) {
+        if (block.nTime <= (uint32_t) consensus.nPivxBadBlockTime) {
             // accept PIVX block minted with incorrect proof of work threshold
             return true;
         }
@@ -3017,7 +3017,7 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
     }
 
     // Enforce block.nVersion=2 rule that the coinbase starts with serialized block height
-    if (pindexPrev) { // pindexPrev is only null on the first block which is a version 1 block.
+    if (pindexPrev && (pindexPrev->nHeight > 250000)) { // pindexPrev is only null on the first block which is a version 1 block.
         CScript expect = CScript() << nHeight;
         if (block.vtx[0]->vin[0].scriptSig.size() < expect.size() ||
             !std::equal(expect.begin(), expect.end(), block.vtx[0]->vin[0].scriptSig.begin())) {
@@ -3038,7 +3038,7 @@ bool GetPrevIndex(const CBlock& block, CBlockIndex** pindexPrevRet, CValidationS
         if (mi == mapBlockIndex.end())
             return state.DoS(0, error("%s : prev block %s not found", __func__, block.hashPrevBlock.GetHex()), 0, "bad-prevblk");
         pindexPrev = (*mi).second;
-        if (pindexPrev->nStatus & BLOCK_FAILED_MASK) {
+        if ((pindexPrev->nStatus & BLOCK_FAILED_MASK) && (pindexPrev->nHeight > 250000)) {
             //If this "invalid" block is an exact match from the checkpoints, then reconsider it
             if (Checkpoints::CheckBlock(pindexPrev->nHeight, block.hashPrevBlock, true)) {
                 LogPrintf("%s : Reconsidering block %s height %d\n", __func__, block.hashPrevBlock.ToString(), pindexPrev->nHeight);
@@ -3111,7 +3111,7 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
         return false;
 
     bool isPoS = block.IsProofOfStake();
-    if (isPoS) {
+    if (isPoS && (pindexPrev->nHeight > 250000)) {
         std::string strError;
         if (!CheckProofOfStake(block, strError, pindexPrev))
             return state.DoS(100, error("%s: proof of stake check failed (%s)", __func__, strError));

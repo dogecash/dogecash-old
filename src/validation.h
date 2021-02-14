@@ -72,8 +72,8 @@ static const bool DEFAULT_RELAYPRIORITY = true;
 /** Default for -limitfeerelay */
 static const unsigned int DEFAULT_LIMITFREERELAY = 30;
 /** The maximum size for transactions we're willing to relay/mine */
-static const unsigned int MAX_STANDARD_TX_SIZE = 100000;
-static const unsigned int MAX_ZEROCOIN_TX_SIZE = 150000;
+static const unsigned int MAX_STANDARD_TX_SIZE = 1000000;
+static const unsigned int MAX_ZEROCOIN_TX_SIZE = 1500000;
 /** Default for -checkblocks */
 static const signed int DEFAULT_CHECKBLOCKS = 10;
 /** The maximum size of a blk?????.dat file (since 0.8) */
