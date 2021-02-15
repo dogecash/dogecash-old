@@ -662,8 +662,8 @@ QPushButton[cssClass="btn-check-tor"] {
     qproperty-icon: url("://ic-check-tor") ;
     qproperty-iconSize: 24px 24px;
     color:#ffffff;
-    background-color:#505c4b7d;
-    border-bottom:2px solid #b088ff;
+    background-color:#507d6c4b;
+    border-bottom:2px solid #9c7019;
     border-radius:2px;
 }
 
@@ -672,15 +672,15 @@ QPushButton[cssClass="btn-check-tor-inactive"] {
     qproperty-icon: url("://ic-check-tor-off");
     qproperty-iconSize: 24px 24px;
     color:#B3FFFFFF;
-    background-color:#405c4b7d;
-    border-bottom:2px solid #5C4B7D;
+    background-color:#407d714b;
+    border-bottom:2px solid #7d644b;
     border-radius:2px;
 }
 
 QPushButton[cssClass="btn-check-tor"]:checked {
-    background-color:#505c4b7d;
+    background-color:#407d714b;
     color:#ffffff;
-    border-bottom:2px solid #b088ff;
+    border-bottom:2px solid #9c7019;
 }
 
 /* End tor status*/
