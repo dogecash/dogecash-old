@@ -98,8 +98,6 @@ public:
     }
 };
 
-#include "qt/dogecash/settings/moc_settingsconsolewidget.cpp"
-
 /**
  * Split shell command line into a list of arguments. Aims to emulate \c bash and friends.
  *
