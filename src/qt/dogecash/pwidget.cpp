@@ -4,7 +4,6 @@
 
 #include "qt/dogecash/pwidget.h"
 #include "qt/dogecash/qtutils.h"
-#include "qt/dogecash/moc_pwidget.cpp"
 #include "qt/dogecash/loadingdialog.h"
 #include <QRunnable>
 #include <QThreadPool>

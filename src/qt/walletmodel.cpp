@@ -182,6 +182,7 @@ bool WalletModel::isWalletLocked() const {
     return getEncryptionStatus() == Locked;
 }
 
+
 bool IsImportingOrReindexing() {
     return fImporting || fReindex;
 }

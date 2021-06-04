@@ -1524,13 +1524,13 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
                          hash.ToString(),
                          nFees, ::minRelayTxFee.GetFee(nSize) * 10000);
         }
-
-        bool fCLTVHasMajority = CBlockIndex::IsSuperMajority(5, chainActive.Tip(), Params().EnforceBlockUpgradeMajority());
+        const int chainHeight = chainActive.Height();
+        bool fCLTVIsActive = (chainHeight >= Params().BIP65_Start()) ? true : false;
 
         // Check against previous transactions
         // This is done last to help prevent CPU exhaustion denial-of-service attacks.
         int flags = STANDARD_SCRIPT_VERIFY_FLAGS;
-        if (fCLTVHasMajority)
+        if (fCLTVIsActive)
             flags |= SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY;
         if (!CheckInputs(tx, state, view, true, flags, true)) {
             return error("%s : ConnectInputs failed %s", __func__, hash.ToString());
@@ -1546,7 +1546,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
         // invalid blocks, however allowing such transactions into the mempool
         // can be exploited as a DoS attack.
         flags = MANDATORY_SCRIPT_VERIFY_FLAGS;
-        if (fCLTVHasMajority)
+        if (fCLTVIsActive)
             flags |= SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY;
         if (!CheckInputs(tx, state, view, true, flags, true)) {
             return error("%s : BUG! PLEASE REPORT THIS! ConnectInputs failed against MANDATORY but not STANDARD flags %s",
@@ -1736,12 +1736,13 @@ bool AcceptableInputs(CTxMemPool& pool, CValidationState& state, const CTransact
                 hash.ToString(),
                 nFees, ::minRelayTxFee.GetFee(nSize) * 10000);
 
-        bool fCLTVHasMajority = CBlockIndex::IsSuperMajority(5, chainActive.Tip(), Params().EnforceBlockUpgradeMajority());
+        const int chainHeight = chainActive.Height();
+        bool fCLTVIsActive = (chainHeight >= Params().BIP65_Start()) ? true : false;
 
         // Check against previous transactions
         // This is done last to help prevent CPU exhaustion denial-of-service attacks.
         int flags = STANDARD_SCRIPT_VERIFY_FLAGS;
-        if (fCLTVHasMajority)
+        if (fCLTVIsActive)
             flags |= SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY;
         if (!CheckInputs(tx, state, view, false, flags, true)) {
             return error("AcceptableInputs: : ConnectInputs failed %s", hash.ToString());
@@ -1936,7 +1937,7 @@ int64_t GetBlockValue(int nHeight)
 	} else if (nHeight <= 1289222 && nHeight >= 764222) {
         nSubsidy = 5 * COIN;
     } else {
-        nSubsidy = 6* COIN;
+        nSubsidy = 6 * COIN;
 	}
     }
 
@@ -1967,9 +1968,9 @@ int64_t GetBlockValue(int nHeight)
         nSubsidy = 10.8 * COIN;
 	} else if (nHeight <= 238621 && nHeight > Params().LAST_POW_BLOCK()) { //Start PoS
         nSubsidy = 10.8 * COIN;
-	} else if (nHeight <= 764221 && nHeight >= 238622) {
+	} else if (nHeight <= 788621 && nHeight >= 238622) {
         nSubsidy = 9 * COIN;
-	} else if (nHeight <= 1289222 && nHeight >= 764222) {
+	} else if (nHeight <= 1289222 && nHeight >= 788622) {
         nSubsidy = 5.4 * COIN;
 	}    else {
         nSubsidy = 5.4 * COIN;
@@ -3104,9 +3105,10 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     bool fScriptChecks = pindex->nHeight >= Checkpoints::GetTotalBlocksEstimate();
 
     // If scripts won't be checked anyways, don't bother seeing if CLTV is activated
-    bool fCLTVHasMajority = false;
+    bool fCLTVIsActive = false;
+    const int chainHeight = chainActive.Height();
     if (fScriptChecks && pindex->pprev) {
-        fCLTVHasMajority = CBlockIndex::IsSuperMajority(5, pindex->pprev, Params().EnforceBlockUpgradeMajority());
+        fCLTVIsActive = (chainHeight >= Params().BIP65_Start()) ? true : false;
     }
 
     // Do not allow blocks that contain transactions which 'overwrite' older transactions,
@@ -3252,7 +3254,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
             std::vector<CScriptCheck> vChecks;
             unsigned int flags = SCRIPT_VERIFY_P2SH | SCRIPT_VERIFY_DERSIG;
-            if (fCLTVHasMajority)
+            if (fCLTVIsActive)
                 flags |= SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY;
 
             if (!CheckInputs(tx, state, view, fScriptChecks, flags, false, nScriptCheckThreads ? &vChecks : NULL))
@@ -3290,13 +3292,10 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     pindex->nMoneySupply = nMoneySupplyPrev + nValueOut - nValueIn;
    // Subtract from the money supply the unspendable UTXO
     pindex->nMoneySupply -= nValueOutUnspendable;
-    pindex->nMint = pindex->nMoneySupply - nMoneySupplyPrev + nFees;
-   // Unspendable Value (coins burn) can cause a negative nMint value
-    if (pindex->nMint < 0)
-        pindex->nMint = 0;
+    const int64_t nMint = pindex->nMoneySupply - nMoneySupplyPrev + nFees;
 //    LogPrintf("XX69----------> ConnectBlock(): nValueOut: %s, nValueIn: %s, nFees: %s, nMint: %s zdogecSpent: %s\n",
 //              FormatMoney(nValueOut), FormatMoney(nValueIn),
-//              FormatMoney(nFees), FormatMoney(pindex->nMint), FormatMoney(nAmountZerocoinSpent));
+//              FormatMoney(nFees), FormatMoney(nMint), FormatMoney(nAmountZerocoinSpent));
 
     int64_t nTime1 = GetTimeMicros();
     nTimeConnect += nTime1 - nTimeStart;
@@ -3304,13 +3303,14 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
     //PoW phase redistributed fees to miner. PoS stage destroys fees.
     CAmount nExpectedMint = GetBlockValue(pindex->nHeight);
+    
     if (block.IsProofOfWork())
         nExpectedMint += nFees;
 
     //Check that the block does not overmint
-    if (!IsBlockValueValid(block, nExpectedMint, pindex->pprev->nMint)) {
+    if (!IsBlockValueValid(block, nExpectedMint, nMint)) {
         return state.DoS(100, error("ConnectBlock() : reward pays too much (actual=%s vs limit=%s)",
-                                    FormatMoney(pindex->pprev->nMint), FormatMoney(nExpectedMint)),
+                                    FormatMoney(nMint), FormatMoney(nExpectedMint)),
                          REJECT_INVALID, "bad-cb-amount");
     }
 
@@ -4509,8 +4509,6 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
     if (block.nBits != nBitsRequired) {
         // DOGEC Specific reference to the block with the wrong threshold was used.
         if (block.nTime >= (uint32_t) Params().DogecBadBlockTime()) {
-        //if ( Params().IsStakeModifierV2(pindexPrev->nHeight+21) >= (pindexPrev->nHeight + 1) ) {    
-        
             // accept DOGEC block minted with incorrect proof of work threshold
             return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
         }
@@ -4574,13 +4572,16 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
     if (pcheckpoint && nHeight < pcheckpoint->nHeight)
         return state.DoS(0, error("%s : forked chain older than last checkpoint (height %d)", __func__, nHeight));
 
-    // Reject block.nVersion=1, ..., CURRENT_VERSION-1 blocks when 95% (75% on testnet) of the network has upgraded:
-    for (int version = 2; version <= CBlockHeader::CURRENT_VERSION; version++) {
-        if (block.nVersion < version && CBlockIndex::IsSuperMajority(version, pindexPrev, Params().RejectBlockOutdatedMajority())) {
-            return state.Invalid(error("%s : rejected nVersion=%d block", __func__, block.nVersion), REJECT_OBSOLETE, "bad-version");
-        }
+    // Reject outdated version blocks
+    if((block.nVersion < 3 && nHeight >= 1) ||
+        (block.nVersion < 4 && nHeight >= Params().Zerocoin_StartTime()) ||
+        (block.nVersion < 5 && nHeight >= Params().BIP65_Start()) ||
+        (block.nVersion < 6 && nHeight >= Params().Block_V6_StartHeight()) ||
+        (block.nVersion < 7 && nHeight >= Params().Block_V7_StartHeight()))
+    {
+        std::string stringErr = strprintf("rejected block version %d at height %d", block.nVersion, nHeight);
+        return state.Invalid(error("%s : %s", __func__, stringErr), REJECT_OBSOLETE, stringErr);
     }
-
     return true;
 }
 
@@ -4623,7 +4624,7 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
     // Enforce block.nVersion=2 rule that the coinbase starts with serialized block height
     // if 750 of the last 1,000 blocks are version 2 or greater (51/100 if testnet):
     if (block.nVersion >= 2 &&
-        CBlockIndex::IsSuperMajority(2, pindexPrev, Params().EnforceBlockUpgradeMajority())) {
+        nHeight >= Params().BIP65_Start()) {
         CScript expect = CScript() << nHeight;
         if (block.vtx[0].vin[0].scriptSig.size() < expect.size() ||
             !std::equal(expect.begin(), expect.end(), block.vtx[0].vin[0].scriptSig.begin())) {
@@ -4758,12 +4759,8 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
         isPoS = true;
         uint256 hashProofOfStake = 0;
         unique_ptr<CStakeInput> stake;
-        if (block.nTime >= (uint32_t)Params().DogecBadBlockTime()) {
-
             if (!CheckProofOfStake(block, hashProofOfStake, stake, pindexPrev->nHeight))
                 return state.DoS(100, error("%s: proof of stake check failed", __func__));
-
-        }
         uint256 hash = block.GetHash();
         if(!mapProofOfStake.count(hash)) // add to mapProofOfStake
             mapProofOfStake.insert(make_pair(hash, hashProofOfStake));
@@ -4996,18 +4993,6 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
     }
 
     return true;
-}
-
-bool CBlockIndex::IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned int nRequired)
-{
-    unsigned int nToCheck = Params().ToCheckBlockUpgradeMajority();
-    unsigned int nFound = 0;
-    for (unsigned int i = 0; i < nToCheck && nFound < nRequired && pstart != NULL; i++) {
-        if (pstart->nVersion >= minVersion)
-            ++nFound;
-        pstart = pstart->pprev;
-    }
-    return (nFound >= nRequired);
 }
 
 /** Turn the lowest '1' bit in the binary representation of a number into a '0'. */

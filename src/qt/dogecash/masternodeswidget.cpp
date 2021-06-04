@@ -68,8 +68,6 @@ public:
     MNRow* cachedRow = nullptr;
 };
 
-#include "qt/dogecash/moc_masternodeswidget.cpp"
-
 MasterNodesWidget::MasterNodesWidget(DogeCashGUI *parent) :
     PWidget(parent),
     ui(new Ui::MasterNodesWidget),

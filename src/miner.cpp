@@ -447,7 +447,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             if (txNew.vout.size() > 1) {
                 pblock->payee = txNew.vout[1].scriptPubKey;
             } else {
-                CAmount blockValue = nFees + GetBlockValue(pindexPrev->nHeight);
+                CAmount blockValue = nFees + GetBlockValue(pindexPrev->nHeight + 1);
                 txNew.vout[0].nValue = blockValue;
                 txNew.vin[0].scriptSig = CScript() << nHeight << OP_0;
             }
@@ -463,7 +463,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         if (!fProofOfStake) {
             pblock->vtx[0] = txNew;
             pblocktemplate->vTxFees[0] = -nFees;
-		pblock->vtx[0].vout[0].nValue = GetBlockValue(pindexPrev->nHeight);
+		pblock->vtx[0].vout[0].nValue = GetBlockValue(pindexPrev->nHeight + 1);
 		pblock->vtx[0].vin[0].scriptSig = CScript() << nHeight << OP_0;
         }
 
