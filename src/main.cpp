@@ -75,9 +75,7 @@ using namespace libzerocoin;
 RecursiveMutex cs_main;
 
 BlockMap mapBlockIndex;
-map<uint256, uint256> mapProofOfStake;
-set<pair<COutPoint, unsigned int> > setStakeSeen;
-map<unsigned int, unsigned int> mapHashedBlocks;
+std::map<uint256, uint256> mapProofOfStake;
 CChain chainActive;
 CBlockIndex* pindexBestHeader = nullptr;
 int64_t nTimeBestReceived = 0;
@@ -2926,7 +2924,7 @@ bool RecalculateDOGECSupply(int nHeightStart, bool fSkipZdogec)
         pindex->nMoneySupply = nSupplyPrev + nValueOut - nValueIn;
         nSupplyPrev = pindex->nMoneySupply;
 
-        // Rewrite zpiv supply too
+        // Rewrite zdogec supply too
         if (!fSkipZdogec && pindex->nHeight >= Params().Zerocoin_StartHeight()) {
             UpdatezdogecSupply(block, pindex, true);
         }
@@ -3016,7 +3014,7 @@ bool UpdatezdogecSupply(const CBlock& block, CBlockIndex* pindex, bool fJustChec
     //Reset the supply to previous block
     pindex->mapZerocoinSupply = pindex->pprev->mapZerocoinSupply;
 
-    //Add mints to zPIV supply (mints are forever disabled after last checkpoint)
+    //Add mints to zdogec supply (mints are forever disabled after last checkpoint)
     if (pindex->nHeight < Params().Zerocoin_Block_LastGoodCheckpoint()) {
         std::list<CZerocoinMint> listMints;
         std::set<uint256> setAddedToWallet;
@@ -4092,10 +4090,6 @@ CBlockIndex* AddToBlockIndex(const CBlock& block)
     // competitive advantage.
     pindexNew->nSequenceId = 0;
     BlockMap::iterator mi = mapBlockIndex.insert(make_pair(hash, pindexNew)).first;
-
-    //mark as PoS seen
-    if (pindexNew->IsProofOfStake())
-        setStakeSeen.insert(make_pair(pindexNew->prevoutStake, pindexNew->nStakeTime));
 
     pindexNew->phashBlock = &((*mi).first);
     BlockMap::iterator miPrev = mapBlockIndex.find(block.hashPrevBlock);
@@ -5243,10 +5237,6 @@ CBlockIndex* InsertBlockIndex(uint256 hash)
     if (!pindexNew)
         throw runtime_error("LoadBlockIndex() : new CBlockIndex failed");
     mi = mapBlockIndex.insert(make_pair(hash, pindexNew)).first;
-
-    //mark as PoS seen
-    if (pindexNew->IsProofOfStake())
-        setStakeSeen.insert(make_pair(pindexNew->prevoutStake, pindexNew->nStakeTime));
 
     pindexNew->phashBlock = &((*mi).first);
 

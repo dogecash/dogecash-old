@@ -136,19 +136,48 @@ RPC Changes
 
 The `backupwallet` RPC command no longer allows for overwriting the currently in use wallet.dat file. This was done to avoid potential file corruption caused by multiple conflicting file access operations.
 
-### Spendzerocoin Security Level Removed
+
+- "isPublicSpend" boolean (optional) input parameter is removed from the following commands:
+ - `createrawzerocoinspend`
+ - `spendzerocoin`
+ - `spendzerocoinmints`
+ - `spendrawzerocoin`
 
 The `securitylevel` argument has been removed from the `spendzerocoin` RPC command.
 
-### Spendzerocoinmints Added
+
+- "mintchange" and "minimizechange" boolean input parameters are removed from the following commands:
+ - `spendzerocoin`
 
 Introduce the `spendzerocoinmints` RPC call to enable spending specific zerocoins, provided as an array of hex strings (serial hashes).
 
-### Getreceivedbyaddress Update
+
+- `setstakesplitthreshold` now accepts decimal amounts. If the provided value is `0`, split staking gets disabled. `getstakesplitthreshold` returns a double.
 
 When calling `getreceivedbyaddress` with a non-wallet address, return a proper error code/message instead of just `0`
 
-### Validateaddress More Verbosity
+- The output of `getstakingstatus` was reworked. It now shows the following information:
+  ```
+  {
+     "staking_status": true|false,       (boolean) whether the wallet is staking or not
+     "staking_enabled": true|false,      (boolean) whether staking is enabled/disabled in pivx.conf
+     "coldstaking_enabled": true|false,  (boolean) whether cold-staking is enabled/disabled in pivx.conf
+     "haveconnections": true|false,      (boolean) whether network connections are present
+     "mnsync": true|false,               (boolean) whether masternode data is synced
+     "walletunlocked": true|false,       (boolean) whether the wallet is unlocked
+     "stakeablecoins": n,                (numeric) number of stakeable UTXOs
+     "stakingbalance": d,                (numeric) DOGEC value of the stakeable coins (minus reserve balance, if any)
+     "stakesplitthreshold": d,           (numeric) value of the current threshold for stake split
+     "lastattempt_age": n,               (numeric) seconds since last stake attempt
+     "lastattempt_depth": n,             (numeric) depth of the block on top of which the last stake attempt was made
+     "lastattempt_hash": xxx,            (hex string) hash of the block on top of which the last stake attempt was made
+     "lastattempt_coins": n,             (numeric) number of stakeable coins available during last stake attempt
+     "lastattempt_tries": n,             (numeric) number of stakeable coins checked during last stake attempt
+   }
+   ```
+
+
+### Removed commands
 
 `validateaddress` now has the ability to return more (non-critical or identifying) details about P2SH (multisig) addresses by removing the needless check against ISMINE_NO.
 

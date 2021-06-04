@@ -451,7 +451,426 @@ class BitcoinTestFramework():
         for i in range(self.num_nodes):
             initialize_datadir(self.options.tmpdir, i)
 
-class ComparisonTestFramework(BitcoinTestFramework):
+
+    ### PIVX Specific TestFramework ###
+    ###################################
+    def init_dummy_key(self):
+        self.DUMMY_KEY = CECKey()
+        self.DUMMY_KEY.set_secretbytes(hash256(pack('<I', 0xffff)))
+
+    def test_PoS_chain_balances(self):
+        from .util import DecimalAmt
+        # 330 blocks
+        # - Nodes 0 and 1 get 82 blocks:
+        # 62 pow + 20 pos (20 immature)
+        # - Nodes 2 gets 82 blocks:
+        # 62 pow + 20 pos (26 immature)
+        # - Nodes 3 gets 84 blocks:
+        # 64 pow + 20 pos (34 immature)
+        # - Nodes 2 and 3 have 6666 DOGEC worth of zerocoins
+        zc_tot = sum(vZC_DENOMS)
+        zc_fee = len(vZC_DENOMS) * 0.01
+        used_utxos = (zc_tot // 250) + 1
+        zc_change = 250 * used_utxos - zc_tot - zc_fee
+
+        # check at least 1 node and at most 5
+        num_nodes = min(5, len(self.nodes))
+        assert_greater_than(num_nodes, 0)
+
+        # each node has the same height and tip
+        best_block = self.nodes[0].getbestblockhash()
+        for i in range(num_nodes):
+            assert_equal(self.nodes[i].getblockcount(), 330)
+            if i > 0:
+                assert_equal(self.nodes[i].getbestblockhash(), best_block)
+
+        # balance is mature pow blocks rewards minus stake inputs (spent)
+        w_info = [self.nodes[i].getwalletinfo() for i in range(num_nodes)]
+        assert_equal(w_info[0]["balance"], DecimalAmt(250.0 * (62 - 20)))
+        assert_equal(w_info[1]["balance"], DecimalAmt(250.0 * (62 - 20)))
+        assert_equal(w_info[2]["balance"], DecimalAmt(250.0 * (56 - 20) - (used_utxos * 250) + zc_change))
+        assert_equal(w_info[3]["balance"], DecimalAmt(250.0 * (50 - 20) - (used_utxos * 250) + zc_change))
+        for i in range(4, num_nodes):
+            # only first 4 nodes have mined/staked
+            assert_equal(w_info[i]["balance"], DecimalAmt(0))
+
+        # immature balance is immature pow blocks rewards plus
+        # immature stakes (outputs=inputs+rewards)
+        assert_equal(w_info[0]["immature_balance"], DecimalAmt(500.0 * 20))
+        assert_equal(w_info[1]["immature_balance"], DecimalAmt(500.0 * 20))
+        assert_equal(w_info[2]["immature_balance"], DecimalAmt((250.0 * 6) + (500.0 * 20)))
+        assert_equal(w_info[3]["immature_balance"], DecimalAmt((250.0 * 14) + (500.0 * 20)))
+        for i in range(4, num_nodes):
+            # only first 4 nodes have mined/staked
+            assert_equal(w_info[i]["immature_balance"], DecimalAmt(0))
+
+        # check zerocoin balances / mints
+        for peer in [2, 3]:
+            if num_nodes > peer:
+                zcBalance = self.nodes[peer].getzerocoinbalance()
+                zclist = self.nodes[peer].listmintedzerocoins(True)
+                zclist_spendable = self.nodes[peer].listmintedzerocoins(True, True)
+                assert_equal(len(zclist), len(vZC_DENOMS))
+                assert_equal(zcBalance['Total'], 6666)
+                assert_equal(zcBalance['Immature'], 0)
+                if peer == 2:
+                    assert_equal(len(zclist), len(zclist_spendable))
+                assert_equal(set([x['denomination'] for x in zclist]), set(vZC_DENOMS))
+                assert_equal([x['confirmations'] for x in zclist], [30-peer] * len(vZC_DENOMS))
+
+        self.log.info("Balances of first %d nodes check out" % num_nodes)
+
+
+    def get_prevouts(self, node_id, utxo_list, zpos=False, nHeight=-1):
+        """ get prevouts (map) for each utxo in a list
+        :param   node_id:                   (int) index of the CTestNode used as rpc connection. Must own the utxos.
+                 utxo_list: <if zpos=False> (JSON list) utxos returned from listunspent used as input
+                            <if zpos=True>  (JSON list) mints returned from listmintedzerocoins used as input
+                 zpos:                      (bool) type of utxo_list
+                 nHeight:                   (int) height of the previous block. used only if zpos=True for
+                                            stake checksum. Optional, if not provided rpc_conn's height is used.
+        :return: prevouts:         ({bytes --> (int, bytes, int)} dictionary)
+                                   maps CStake "uniqueness" (i.e. serialized COutPoint -or hash stake, for zdogec-)
+                                   to (amount, prevScript, timeBlockFrom).
+                                   For zdogec prevScript is replaced with serialHash hex string.
+        """
+        assert_greater_than(len(self.nodes), node_id)
+        rpc_conn = self.nodes[node_id]
+        prevouts = {}
+
+        for utxo in utxo_list:
+            if not zpos:
+                outPoint = COutPoint(int(utxo['txid'], 16), utxo['vout'])
+                outValue = int(utxo['amount']) * COIN
+                prevtx_json = rpc_conn.getrawtransaction(utxo['txid'], 1)
+                prevTx = CTransaction()
+                prevTx.deserialize(BytesIO(hex_str_to_bytes(prevtx_json['hex'])))
+                if (prevTx.is_coinbase() or prevTx.is_coinstake()) and utxo['confirmations'] < 100:
+                    # skip immature coins
+                    continue
+                prevScript = prevtx_json['vout'][utxo['vout']]['scriptPubKey']['hex']
+                prevTime = prevtx_json['blocktime']
+                prevouts[outPoint.serialize_uniqueness()] = (outValue, prevScript, prevTime)
+
+            else:
+                uniqueness = bytes.fromhex(utxo['hash stake'])[::-1]
+                prevouts[uniqueness] = (int(utxo["denomination"]) * COIN, utxo["serial hash"], 0)
+
+        return prevouts
+
+
+    def make_txes(self, node_id, spendingPrevOuts, to_pubKey):
+        """ makes a list of CTransactions each spending an input from spending PrevOuts to an output to_pubKey
+        :param   node_id:            (int) index of the CTestNode used as rpc connection. Must own spendingPrevOuts.
+                 spendingPrevouts:   ({bytes --> (int, bytes, int)} dictionary)
+                                     maps CStake "uniqueness" (i.e. serialized COutPoint -or hash stake, for zdogec-)
+                                     to (amount, prevScript, timeBlockFrom).
+                                     For zdogec prevScript is replaced with serialHash hex string.
+                 to_pubKey           (bytes) recipient public key
+        :return: block_txes:         ([CTransaction] list)
+        """
+        assert_greater_than(len(self.nodes), node_id)
+        rpc_conn = self.nodes[node_id]
+        block_txes = []
+        for uniqueness in spendingPrevOuts:
+            if is_zerocoin(uniqueness):
+                # spend zdogec
+                _, serialHash, _ = spendingPrevOuts[uniqueness]
+                raw_spend = rpc_conn.createrawzerocoinspend(serialHash, "", False)
+            else:
+                # spend DOGEC
+                value_out = int(spendingPrevOuts[uniqueness][0] - DEFAULT_FEE * COIN)
+                scriptPubKey = CScript([to_pubKey, OP_CHECKSIG])
+                prevout = COutPoint()
+                prevout.deserialize_uniqueness(BytesIO(uniqueness))
+                tx = create_transaction_from_outpoint(prevout, b"", value_out, scriptPubKey)
+                # sign tx
+                raw_spend = rpc_conn.signrawtransaction(bytes_to_hex_str(tx.serialize()))['hex']
+            # add signed tx to the list
+            signed_tx = CTransaction()
+            signed_tx.from_hex(raw_spend)
+            block_txes.append(signed_tx)
+
+        return block_txes
+
+    def stake_block(self, node_id,
+            nHeight,
+            prevHhash,
+            prevModifier,
+            stakeableUtxos,
+            startTime=None,
+            privKeyWIF=None,
+            vtx=[],
+            fDoubleSpend=False):
+        """ manually stakes a block selecting the coinstake input from a list of candidates
+        :param   node_id:           (int) index of the CTestNode used as rpc connection. Must own stakeableUtxos.
+                 nHeight:           (int) height of the block being produced
+                 prevHash:          (string) hex string of the previous block hash
+                 prevModifier       (string) hex string of the previous block stake modifier
+                 stakeableUtxos:    ({bytes --> (int, bytes, int)} dictionary)
+                                    maps CStake "uniqueness" (i.e. serialized COutPoint -or hash stake, for zdogec-)
+                                    to (amount, prevScript, timeBlockFrom).
+                                    For zdogec prevScript is replaced with serialHash hex string.
+                 startTime:         (int) epoch time to be used as blocktime (iterated in solve_stake)
+                 privKeyWIF:        (string) private key to be used for staking/signing
+                                    If empty string, it will be used the pk from the stake input
+                                    (dumping the sk from rpc_conn). If None, then the DUMMY_KEY will be used.
+                 vtx:               ([CTransaction] list) transactions to add to block.vtx
+                 fDoubleSpend:      (bool) wether any tx in vtx is allowed to spend the coinstake input
+        :return: block:             (CBlock) block produced, must be manually relayed
+        """
+        assert_greater_than(len(self.nodes), node_id)
+        rpc_conn = self.nodes[node_id]
+        if not len(stakeableUtxos) > 0:
+            raise Exception("Need at least one stakeable utxo to stake a block!")
+        # Get start time to stake
+        if startTime is None:
+            startTime = time.time()
+        # Create empty block with coinbase
+        nTime = int(startTime) & 0xfffffff0
+        coinbaseTx = create_coinbase_pos(nHeight)
+        block = create_block(int(prevHhash, 16), coinbaseTx, nTime)
+
+        # Find valid kernel hash - iterates stakeableUtxos, then block.nTime
+        block.solve_stake(stakeableUtxos, int(prevModifier, 16))
+
+        # Check if this is a zPoS block or regular/cold stake - sign stake tx
+        block_sig_key = CECKey()
+        isZPoS = is_zerocoin(block.prevoutStake)
+        if isZPoS:
+            # !TODO: remove me
+            raise Exception("zPOS tests discontinued")
+
+        else:
+            coinstakeTx_unsigned = CTransaction()
+            prevout = COutPoint()
+            prevout.deserialize_uniqueness(BytesIO(block.prevoutStake))
+            coinstakeTx_unsigned.vin.append(CTxIn(prevout, b"", 0xffffffff))
+            coinstakeTx_unsigned.vout.append(CTxOut())
+            amount, prevScript, _ = stakeableUtxos[block.prevoutStake]
+            outNValue = int(amount + 250 * COIN)
+            coinstakeTx_unsigned.vout.append(CTxOut(outNValue, hex_str_to_bytes(prevScript)))
+            if privKeyWIF == "":
+                # Use dummy key
+                if not hasattr(self, 'DUMMY_KEY'):
+                    self.init_dummy_key()
+                block_sig_key = self.DUMMY_KEY
+                # replace coinstake output script
+                coinstakeTx_unsigned.vout[1].scriptPubKey = CScript([block_sig_key.get_pubkey(), OP_CHECKSIG])
+            else:
+                if privKeyWIF == None:
+                    # Use pk of the input. Ask sk from rpc_conn
+                    rawtx = rpc_conn.getrawtransaction('{:064x}'.format(prevout.hash), True)
+                    privKeyWIF = rpc_conn.dumpprivkey(rawtx["vout"][prevout.n]["scriptPubKey"]["addresses"][0])
+                # Use the provided privKeyWIF (cold staking).
+                # export the corresponding private key to sign block
+                privKey, compressed = wif_to_privkey(privKeyWIF)
+                block_sig_key.set_compressed(compressed)
+                block_sig_key.set_secretbytes(bytes.fromhex(privKey))
+
+            # Sign coinstake TX and add it to the block
+            stake_tx_signed_raw_hex = rpc_conn.signrawtransaction(
+                bytes_to_hex_str(coinstakeTx_unsigned.serialize()))['hex']
+
+        # Add coinstake to the block
+        coinstakeTx = CTransaction()
+        coinstakeTx.from_hex(stake_tx_signed_raw_hex)
+        block.vtx.append(coinstakeTx)
+
+        # Add provided transactions to the block.
+        # Don't add tx doublespending the coinstake input, unless fDoubleSpend=True
+        for tx in vtx:
+            if not fDoubleSpend:
+                # assume txes don't double spend zdogec inputs when fDoubleSpend is false. It needs to
+                # be checked outside until a convenient tx.spends(zerocoin) is added to the framework.
+                if not isZPoS and tx.spends(prevout):
+                    continue
+            block.vtx.append(tx)
+
+        # Get correct MerkleRoot and rehash block
+        block.hashMerkleRoot = block.calc_merkle_root()
+        block.rehash()
+
+        # sign block with block signing key and return it
+        block.sign_block(block_sig_key)
+        return block
+
+
+    def stake_next_block(self, node_id,
+            stakeableUtxos,
+            btime=None,
+            privKeyWIF=None,
+            vtx=[],
+            fDoubleSpend=False):
+        """ Calls stake_block appending to the current tip"""
+        assert_greater_than(len(self.nodes), node_id)
+        nHeight = self.nodes[node_id].getblockcount()
+        prevHhash = self.nodes[node_id].getblockhash(nHeight)
+        prevModifier = self.nodes[node_id].getblock(prevHhash)['stakeModifier']
+        return self.stake_block(node_id,
+                                nHeight+1,
+                                prevHhash,
+                                prevModifier,
+                                stakeableUtxos,
+                                btime,
+                                privKeyWIF,
+                                vtx,
+                                fDoubleSpend)
+
+
+    def check_tx_in_chain(self, node_id, txid):
+        assert_greater_than(len(self.nodes), node_id)
+        rawTx = self.nodes[node_id].getrawtransaction(txid, 1)
+        assert_greater_than(rawTx["confirmations"], 0)
+
+
+    def spend_inputs(self, node_id, inputs, outputs):
+        """ auxiliary function used by spend_utxo / spend_utxos """
+        assert_greater_than(len(self.nodes), node_id)
+        rpc_conn = self.nodes[node_id]
+        spendingTx = rpc_conn.createrawtransaction(inputs, outputs)
+        spendingTx_signed = rpc_conn.signrawtransaction(spendingTx)
+        if spendingTx_signed["complete"]:
+            txhash = rpc_conn.sendrawtransaction(spendingTx_signed["hex"])
+            return txhash
+        else:
+            return ""
+
+
+    def spend_utxo(self, node_id, utxo, recipient=''):
+        """ spend amount from previously unspent output to a provided address
+        :param    node_id:    (int) index of the CTestNode used as rpc connection. Must own the utxo.
+                  utxo:       (JSON) returned from listunspent used as input
+                  recipient:  (string) destination address (new one if not provided)
+        :return:  txhash:     (string) tx hash if successful, empty string otherwise
+        """
+        assert_greater_than(len(self.nodes), node_id)
+        rpc_conn = self.nodes[node_id]
+        inputs = [{"txid": utxo["txid"], "vout": utxo["vout"]}]
+        out_amount = float(utxo["amount"]) - DEFAULT_FEE
+        outputs = {}
+        if recipient == '':
+            recipient = rpc_conn.getnewaddress()
+        outputs[recipient] = out_amount
+        return self.spend_inputs(node_id, inputs, outputs)
+
+
+    def spend_utxos(self, node_id, utxo_list, recipient='', fMultiple=False):
+        """ spend utxos to provided list of addresses or 10 new generate ones.
+        :param    node_id:     (int) index of the CTestNode used as rpc connection. Must own the utxo.
+                  utxo_list:   (JSON list) returned from listunspent used as input
+                  recipient:   (string, optional) destination address (new one if not provided)
+                  fMultiple:   (boolean, optional, default=false) spend each utxo on a different tx
+        :return:  txHashes:    (string list) list of hashes of completed txs
+        """
+        assert_greater_than(len(self.nodes), node_id)
+        rpc_conn = self.nodes[node_id]
+        txHashes = []
+
+        # If no recipient is given, create a new one
+        if recipient == '':
+            recipient = rpc_conn.getnewaddress()
+
+        # If fMultiple=True send one tx for each utxo
+        if fMultiple:
+            for utxo in utxo_list:
+                txHash = self.spend_utxo(node_id, utxo, recipient)
+                if txHash != "":
+                    txHashes.append(txHash)
+
+        # Otherwise make a single tx with all the inputs
+        else:
+            inputs = [{"txid": x["txid"], "vout": x["vout"]} for x in utxo_list]
+            out_amount = sum([float(x["amount"]) for x in utxo_list]) - DEFAULT_FEE
+            outputs = {}
+            if recipient == '':
+                recipient = rpc_conn.getnewaddress()
+            outputs[recipient] = out_amount
+            txHash = self.spend_inputs(node_id, inputs, outputs)
+            if txHash != "":
+                txHashes.append(txHash)
+
+        return txHashes
+
+
+    def generate_pos(self, node_id, btime=None):
+        """ stakes a block using generate on nodes[node_id]"""
+        assert_greater_than(len(self.nodes), node_id)
+        rpc_conn = self.nodes[node_id]
+        ss = rpc_conn.getstakingstatus()
+        assert ss["walletunlocked"]
+        assert ss["stakeablecoins"] > 0
+        assert ss["stakingbalance"] > 0.0
+        if btime is not None:
+            next_btime = btime + 60
+        fStaked = False
+        failures = 0
+        while not fStaked:
+            try:
+                rpc_conn.generate(1)
+                fStaked = True
+            except JSONRPCException as e:
+                if ("Couldn't create new block" in str(e)):
+                    failures += 1
+                    # couldn't generate block. check that this node can still stake (after 60 failures)
+                    if failures > 60:
+                        ss = rpc_conn.getstakingstatus()
+                        if not (ss["walletunlocked"] and ss["stakeablecoins"] > 0 and ss["stakingbalance"] > 0.0):
+                            raise AssertionError("Node %d unable to stake!" % node_id)
+                    # try to stake one sec in the future
+                    if btime is not None:
+                        btime += 1
+                        set_node_times(self.nodes, btime)
+                    else:
+                        time.sleep(1)
+                else:
+                    raise e
+        # block generated. adjust block time
+        if btime is not None:
+            btime = max(btime + 1, next_btime)
+            set_node_times(self.nodes, btime)
+            return btime
+        else:
+            return None
+
+
+    def generate_pow(self, node_id, btime=None):
+        """ stakes a block using generate on nodes[node_id]"""
+        assert_greater_than(len(self.nodes), node_id)
+        self.nodes[node_id].generate(1)
+        if btime is not None:
+            btime += 60
+            set_node_times(self.nodes, btime)
+        return btime
+
+
+    def set_spork(self, node_id, sporkName, value):
+        assert_greater_than(len(self.nodes), node_id)
+        return self.nodes[node_id].spork(sporkName, value)
+
+
+    def get_spork(self, node_id, sporkName):
+        assert_greater_than(len(self.nodes), node_id)
+        return self.nodes[node_id].spork("show")[sporkName]
+
+
+    def activate_spork(self, node_id, sporkName):
+        return self.set_spork(node_id, sporkName, SPORK_ACTIVATION_TIME)
+
+
+    def deactivate_spork(self, node_id, sporkName):
+        return self.set_spork(node_id, sporkName, SPORK_DEACTIVATION_TIME)
+
+
+    def is_spork_active(self, node_id, sporkName):
+        assert_greater_than(len(self.nodes), node_id)
+        return self.nodes[node_id].spork("active")[sporkName]
+
+
+
+### ------------------------------------------------------
+
+class ComparisonTestFramework(PivxTestFramework):
     """Test framework for doing p2p comparison testing
 
     Sets up some dogecashd binaries:

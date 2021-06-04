@@ -18,6 +18,8 @@ class CWallet;
 
 struct CBlockTemplate;
 
+/** Get reliable pointer to current chain tip */
+CBlockIndex* GetChainTip();
 /** Generate a new block, without valid proof-of-work */
 CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, bool fProofOfStake);
 CBlockTemplate* CreateNewBlockWithKey(CReserveKey& reservekey, CWallet* pwallet, bool fProofOfStake);

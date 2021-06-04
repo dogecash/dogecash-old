@@ -95,7 +95,7 @@ enum AvailableCoinsType {
     ONLY_NOT10000IFMN = 3,
     ONLY_NONDENOMINATED_NOT10000IFMN = 4, // ONLY_NONDENOMINATED and not 10000 DOGEC at the same time
     ONLY_10000 = 5,                        // find masternode outputs including locked ones (use with caution)
-    STAKABLE_COINS = 6                          // UTXO's that are valid for staking
+    STAKEABLE_COINS = 6                          // UTXO's that are valid for staking
 };
 
 // Possible states for zdogec send
@@ -109,13 +109,13 @@ enum ZerocoinSpendStatus {
     zdogec_TRX_FUNDS_PROBLEMS = 6,                    // Everything related to available funds
     zdogec_TRX_CREATE = 7,                            // Everything related to create the transaction
     zdogec_TRX_CHANGE = 8,                            // Everything related to transaction change
-    zdogec_TXMINT_GENERAL = 9,                        // General errors in MintToTxIn
+    zdogec_TXMINT_GENERAL = 9,                        // General errors in MintsToInputVectorPublicSpend
     zdogec_INVALID_COIN = 10,                         // Selected mint coin is not valid
     zdogec_FAILED_ACCUMULATOR_INITIALIZATION = 11,    // Failed to initialize witness
     zdogec_INVALID_WITNESS = 12,                      // Spend coin transaction did not verify
     zdogec_BAD_SERIALIZATION = 13,                    // Transaction verification failed
     zdogec_SPENT_USED_zdogec = 14,                      // Coin has already been spend
-    zdogec_TX_TOO_LARGE = 15,                          // The transaction is larger than the max tx size
+    zdogec_TX_TOO_LARGE = 15,                         // The transaction is larger than the max tx size
     zdogec_SPEND_V1_SEC_LEVEL                         // Spend is V1 and security level is not set to 100
 };
 
@@ -163,6 +163,44 @@ public:
             READWRITE(fInternal);
         }
     }
+};
+
+/** Record info about last stake attempt:
+ *  - tipBlock       index of the block on top of which last stake attempt was made
+ *  - nTime          time slot of last attempt
+ *  - nTries         number of UTXOs hashed during last attempt
+ *  - nCoins         number of stakeable utxos during last attempt
+**/
+class CStakerStatus
+{
+private:
+    const CBlockIndex* tipBlock{nullptr};
+    int64_t nTime{0};
+    int nTries{0};
+    int nCoins{0};
+
+public:
+    // Get
+    const CBlockIndex* GetLastTip() const { return tipBlock; }
+    uint256 GetLastHash() const { return (GetLastTip() == nullptr ? UINT256_ZERO : GetLastTip()->GetBlockHash()); }
+    int GetLastHeight() const { return (GetLastTip() == nullptr ? 0 : GetLastTip()->nHeight); }
+    int GetLastCoins() const { return nCoins; }
+    int GetLastTries() const { return nTries; }
+    int64_t GetLastTime() const { return nTime; }
+    // Set
+    void SetLastCoins(const int coins) { nCoins = coins; }
+    void SetLastTries(const int tries) { nTries = tries; }
+    void SetLastTip(const CBlockIndex* lastTip) { tipBlock = lastTip; }
+    void SetLastTime(const uint64_t lastTime) { nTime = lastTime; }
+    void SetNull()
+    {
+        SetLastCoins(0);
+        SetLastTries(0);
+        SetLastTip(nullptr);
+        SetLastTime(0);
+    }
+    // Check whether staking status is active (last attempt earlier than 30 seconds ago)
+    bool IsActive() const { return (nTime + 30) >= GetTime(); }
 };
 
 /**
@@ -311,6 +349,7 @@ public:
     // Stake Settings
     uint64_t nStakeSplitThreshold;
     int nStakeSetUpdateTime;
+    CStakerStatus* pStakerStatus = nullptr;
 
     //MultiSend
     std::vector<std::pair<std::string, int> > vMultiSend;
@@ -515,7 +554,7 @@ public:
     bool CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey, std::string strCommand = "tx");
     bool AddAccountingEntry(const CAccountingEntry&, CWalletDB & pwalletdb);
     int GenerateObfuscationOutputs(int nTotalValue, std::vector<CTxOut>& vout);
-    bool CreateCoinStake(const CKeyStore& keystore, const CBlockIndex* pindexPrev, unsigned int nBits, int64_t nSearchInterval, CMutableTransaction& txNew, int64_t& nTxNewTime);
+    bool CreateCoinStake(const CKeyStore& keystore, const CBlockIndex* pindexPrev, unsigned int nBits, CMutableTransaction& txNew, int64_t& nTxNewTime);
     bool MultiSend();
     void AutoCombineDust();
     void AutoZeromint();
@@ -730,7 +769,7 @@ public:
 
     void Init()
     {
-        hashBlock = 0;
+        hashBlock = UINT256_ZERO;
         nIndex = -1;
     }
 

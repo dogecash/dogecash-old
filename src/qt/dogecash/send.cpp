@@ -323,17 +323,17 @@ void SendWidget::setFocusOnLastEntry()
 void SendWidget::showHideCheckBoxDelegations()
 {
     // Show checkbox only when there is any available owned delegation,
-    // coincontrol is not selected, and we are trying to spend PIV (not zPIV)
-    const bool isZpiv = ui->pushRight->isChecked();
+    // coincontrol is not selected, and we are trying to spend DOGEC (not zdogec)
+    const bool iszdogec = ui->pushRight->isChecked();
     const bool isCControl = CoinControlDialog::coinControl->HasSelected();
     const bool hasDel = cachedDelegatedBalance > 0;
 
-    const bool showCheckBox = !isZpiv && !isCControl && hasDel;
+    const bool showCheckBox = !iszdogec && !isCControl && hasDel;
     ui->checkBoxDelegations->setVisible(showCheckBox);
     if (showCheckBox)
         ui->checkBoxDelegations->setToolTip(
                 tr("Possibly spend coins delegated for cold-staking (currently available: %1").arg(
-                        GUIUtil::formatBalance(cachedDelegatedBalance, nDisplayUnit, isZpiv))
+                        GUIUtil::formatBalance(cachedDelegatedBalance, nDisplayUnit, iszdogec))
         );
 }
 

@@ -62,13 +62,13 @@ class ZerocoinSpendTest(PivxTestFramework):
         def get_zerocoin_data(coin):
             return coin["s"], coin["r"], coin["k"], coin["id"], coin["d"], coin["t"]
 
-        def check_balances(denom, zpiv_bal, piv_bal):
-            zpiv_bal -= denom
-            assert_equal(self.nodes[2].getzerocoinbalance()['Total'], zpiv_bal)
+        def check_balances(denom, zdogec_bal, piv_bal):
+            zdogec_bal -= denom
+            assert_equal(self.nodes[2].getzerocoinbalance()['Total'], zdogec_bal)
             piv_bal += denom
             wi = self.nodes[2].getwalletinfo()
             assert_equal(wi['balance'] + wi['immature_balance'], piv_bal)
-            return zpiv_bal, piv_bal
+            return zdogec_bal, piv_bal
 
         def stake_4_blocks(block_time):
             for peer in range(2):
@@ -84,9 +84,9 @@ class ZerocoinSpendTest(PivxTestFramework):
         # Start with cache balances
         wi = self.nodes[2].getwalletinfo()
         balance = wi['balance'] + wi['immature_balance']
-        zpiv_balance = self.nodes[2].getzerocoinbalance()['Total']
+        zdogec_balance = self.nodes[2].getzerocoinbalance()['Total']
         assert_equal(balance, DecimalAmt(13833.92))
-        assert_equal(zpiv_balance, 6666)
+        assert_equal(zdogec_balance, 6666)
 
         # Export zerocoin data
         listmints = self.nodes[2].listmintedzerocoins(True, True)
@@ -134,7 +134,7 @@ class ZerocoinSpendTest(PivxTestFramework):
         # stake 4 blocks - check it gets included on chain and check balances
         block_time = stake_4_blocks(block_time)
         self.check_tx_in_chain(0, txid)
-        zpiv_balance, balance = check_balances(denom_2, zpiv_balance, balance)
+        zdogec_balance, balance = check_balances(denom_2, zdogec_balance, balance)
         self.log.info("--> VALID PUBLIC COIN SPEND (v3) PASSED")
 
         # 5) Check double spends - spend v3
@@ -153,7 +153,7 @@ class ZerocoinSpendTest(PivxTestFramework):
         # stake 4 blocks - check it gets included on chain and check balances
         block_time = stake_4_blocks(block_time)
         self.check_tx_in_chain(0, txid)
-        zpiv_balance, balance = check_balances(denom_3, zpiv_balance, balance)
+        zdogec_balance, balance = check_balances(denom_3, zdogec_balance, balance)
         self.log.info("--> VALID PUBLIC COIN SPEND (v4) PASSED")
 
         # 8) Check double spends - spend v4
@@ -163,7 +163,7 @@ class ZerocoinSpendTest(PivxTestFramework):
 
         # 9) Try to relay old v3 spend now (serial_1)
         self.log.info("Trying to send old v3 spend now...")
-        assert_raises_rpc_error(-26, "bad-txns-invalid-zpiv",
+        assert_raises_rpc_error(-26, "bad-txns-invalid-zdogec",
                                 self.nodes[2].sendrawtransaction, old_spend_v3)
         self.log.info("GOOD: Old transaction not sent.")
 
@@ -182,7 +182,7 @@ class ZerocoinSpendTest(PivxTestFramework):
         self.check_tx_in_chain(0, txid)
         # need to reset spent mints since this was a raw broadcast
         self.nodes[2].resetmintzerocoin()
-        _, _ = check_balances(denom_1, zpiv_balance, balance)
+        _, _ = check_balances(denom_1, zdogec_balance, balance)
         self.log.info("--> VALID PUBLIC COIN SPEND (v3) PASSED")
 
 
