@@ -137,7 +137,7 @@
     </message>
     <message>
         <source>For anonymization, automint, and staking only</source>
-        <translation>Anonimizzazione, conio automatico e modalit staking only</translation>
+        <translation>Anonimizzazione, conio automatico e modalità staking only</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
