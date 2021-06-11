@@ -1235,7 +1235,7 @@ Indirizzo: %4
     </message>
     <message>
         <source>Choose data directory on startup (default: %u)</source>
-        <translation>Seleziona la cartella dati all'avvio (predefinita: %u)</translation>
+        <translation>Seleziona la cartella dei dati all'avvio (predefinita: %u)</translation>
     </message>
     <message>
         <source>Show splash screen on startup (default: %u)</source>
