@@ -1,0 +1,31 @@
+--- old/qtbase/src/corelib/tools/qbytearray.cpp
++++ new/qtbase/src/corelib/tools/qbytearray.cpp
+@@ -38,6 +38,9 @@
+ **
+ ****************************************************************************/
+ 
++#include <stdexcept>
++#include <limits>
++
+ #include "qbytearray.h"
+ #include "qbytearraymatcher.h"
+ #include "qtools_p.h"
+@@ -58,7 +61,6 @@
+ #include <zlib.h>
+ #endif
+ #include <ctype.h>
+-#include <limits.h>
+ #include <string.h>
+ #include <stdlib.h>
+ 
+--- old/qtbase/src/corelib/tools/qbytearray.h
++++ new/qtbase/src/corelib/tools/qbytearray.h
+@@ -51,6 +51,8 @@
+ 
+ #include <string>
+ #include <iterator>
++#include <stdexcept>
++#include <limits>
+ 
+ #ifdef truncate
+ #error qbytearray.h must be included before any header file that defines truncate
